@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Solving Equations by Factoring · Math 15 4.9</title>
+<meta name="description" content="Math 15 Unit 4 Lesson 9: solving polynomial equations by factoring. The zero product property, making one side 0, factoring, setting each factor equal to 0, checking by substitution, and decomposition when a is not 1. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u4l9.css">
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 4 Factoring · Lesson 9</div>
+  <h1>Solving Polynomial Equations by Factoring</h1>
+  <p class="lede">All unit long, factoring has been <b>expanding run backwards</b>. Today it pays off: factoring <b>solves equations</b>. It all rests on one simple fact: if a product is <b>0</b>, then one of the factors must be <b>0</b>. That turns one hard equation into <b>two easy ones</b>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>explain the <b>zero product property</b>: if <span class="tex">A\cdot B=0</span>, then <span class="tex">A=0</span> or <span class="tex">B=0</span></li>
+      <li>solve an equation that is already factored, like <span class="tex">(x-4)(x+7)=0</span></li>
+      <li>solve a quadratic equation by factoring: make one side <b>0</b>, <b>factor</b>, set <b>each factor</b> equal to 0, and <b>solve</b></li>
+      <li><b>rearrange</b> an equation so one side is 0 before I factor it</li>
+      <li><b>check</b> my solutions by substituting them into the original equation</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN5</b> Demonstrate an understanding of common factors and trinomial factoring, concretely, pictorially and symbolically.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Zero Riddles" id="wu" style="--wf-side: 318px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Zero Riddles</h2>
+  <p class="wf-rule">Two mystery boxes are multiplied together. The answer is <b>0</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u4l9-scenes">
+      <div class="u4l9-scene">
+        <div class="u4l9-sh">Scene 1</div>
+        <div class="u4l9-srow">
+          <div class="u4l9-gift open"><span class="u4l9-gnum">8</span></div><span class="u4l9-op">×</span>
+          <button type="button" class="u4l9-gift" data-gift="s1" aria-label="Open the mystery box"><span class="u4l9-gnum">?</span></button><span class="u4l9-op">=</span><span class="u4l9-op">0</span>
+        </div>
+        <div class="bk-wq u4l9-sq">
+          <div class="q-line"><div class="q-num">1</div><div>What is in the <b>?</b> box? <span class="muted small">(tap it)</span></div></div>
+          <div class="u4l9-wqa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><b>0.</b> Nothing else times 8 gives 0.</div></div>
+        </div>
+      </div>
+      <div class="u4l9-scene">
+        <div class="u4l9-sh">Scene 2</div>
+        <div class="u4l9-srow">
+          <div class="u4l9-gift" data-gift="s2"><span class="u4l9-gnum">?</span></div><span class="u4l9-op">×</span>
+          <div class="u4l9-gift" data-gift="s2"><span class="u4l9-gnum">?</span></div><span class="u4l9-op">=</span><span class="u4l9-op">0</span>
+        </div>
+        <div class="u4l9-s2ctl"><button type="button" class="pill small" data-s2="way">Show a way</button><button type="button" class="pill small" data-s2="nz">Two non-zeros?</button></div>
+        <div class="u4l9-s2res"></div>
+        <div class="bk-wq u4l9-sq">
+          <div class="q-line"><div class="q-num">2</div><div>Fill the boxes <b>3</b> ways. What do all 3 have in common?</div></div>
+          <div class="u4l9-wqa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans">e.g. <span class="tex">0\times5,\ 3\times0,\ 0\times0</span>. Every way has <b>a 0 in at least one box</b>.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="u4l9-cs">
+      <div class="u4l9-csl"><div>me</div><div>my square</div></div>
+      <button type="button" class="u4l9-csc" data-v="-3"><span>−3</span><span>9</span></button>
+      <button type="button" class="u4l9-csc" data-v="-2"><span>−2</span><span>4</span></button>
+      <button type="button" class="u4l9-csc" data-v="-1"><span>−1</span><span>1</span></button>
+      <button type="button" class="u4l9-csc" data-v="0"><span>0</span><span>0</span></button>
+      <button type="button" class="u4l9-csc" data-v="1"><span>1</span><span>1</span></button>
+      <button type="button" class="u4l9-csc" data-v="2"><span>2</span><span>4</span></button>
+      <button type="button" class="u4l9-csc" data-v="3"><span>3</span><span>9</span></button>
+      <button type="button" class="u4l9-csc" data-v="4"><span>4</span><span>16</span></button>
+      <button type="button" class="u4l9-csc" data-v="5"><span>5</span><span>25</span></button>
+      <button type="button" class="u4l9-csc" data-v="6"><span>6</span><span>36</span></button>
+      <div class="u4l9-cst">cheat<br>sheet</div>
+    </div>
+    <p class="u4l9-social">Make up your own: <i>“My square is ___ times me.”</i> Can your neighbour find <b>every</b> answer?</p>
+  </div><div class="wf-side">
+    <div class="bk-wq" data-hl="0,5">
+      <div class="q-line"><div class="q-num">3</div><div><i>“My square is 5 times me.”</i> Who am I? Is there <b>anyone else</b>?</div></div>
+      <div class="u4l9-wqa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><b>5</b> (<span class="tex">25=5\times5</span>) <b>and 0</b> (<span class="tex">0=5\times0</span>).</div></div>
+    </div>
+    <div class="poll wf-poll" data-hl="4,-3">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> <i>“My square is 12 more than me.”</i> How many different numbers fit? <b>Guess first</b>, then track them all down.</div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> none</div>
+        <div class="opt"><b>B</b> exactly 1</div>
+        <div class="opt right"><b>C</b> exactly 2</div>
+      </div>
+      <button class="pill" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: 4 and −3.</b> <span class="tex">4^2=16=4+12</span> ✓ and <span class="tex">(-3)^2=9=-3+12</span> ✓. A negative squared is positive, so −3 is easy to miss!<br><b>Today:</b> <span class="tex">x^2=x+12</span> becomes <span class="tex">(x-4)(x+3)=0</span>, and the zero product property finds <b>both</b>.</div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 1. The zero product property ================= -->
+<section class="card" data-ink="s1" data-section="1. The Zero Product Property">
+  <div class="sec-h"><span class="badge">1</span><h2>The Zero Product Property</h2></div>
+  <p>What times 7 gives 0? Only <b>0</b>: if <span class="tex">7\times m=0</span>, then <span class="tex">m=0</span>. In the same way, a product can only be zero when <b>one of its factors is zero</b>.</p>
+  <div class="def"><b>Zero Product Property:</b> if <span class="tex">A\cdot B=0</span>, then <span class="tex">A=0</span> or <span class="tex">B=0</span>.</div>
+  <div class="explainer" data-explainer="zeroGrid"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Try every x">
+  <h3 class="sub">Seeing it with <span class="tex">x</span>: try every value</h3>
+  <p>In <span class="tex">(x-3)(x+5)</span>, each bracket is a number once we pick <span class="tex">x</span>. Try lots of values of <span class="tex">x</span> and see when the product is 0.</p>
+  <div class="explainer" data-explainer="tryTable"></div>
+</section>
+
+<section class="card" data-ink="s1c" data-section="1. Split it into two">
+  <h3 class="sub">Split it into two small equations</h3>
+  <p>So <span class="tex">(x-3)(x+5)=0</span> splits into <span class="tex">x-3=0</span> <b>or</b> <span class="tex">x+5=0</span>. That gives <b>two</b> solutions (also called <b>roots</b>): <span class="tex">x=3</span> and <span class="tex">x=-5</span>.</p>
+  <div class="explainer" data-explainer="zpSplit"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>A number in front never gives a solution.</b> In <span class="tex">4(x-5)(x+3)=0</span>, the 4 can never be 0, so only the factors with an <span class="tex">x</span> matter. But a lone <span class="tex">x</span> <b>is</b> a factor: <span class="tex">x(x-6)=0</span> gives <span class="tex">x=0</span> or <span class="tex">x=6</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Equations that are already factored</h3></div>
+  <p class="q">Solve each equation using the Zero Product Property.</p>
+  <div class="parts u4l9-c4">
+    <div class="part"><div class="pl">(a) <span class="tex">(x-4)(x+7)=0</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x-4=0</span> or <span class="tex">x+7=0</span><br><span class="tex">\boldsymbol{x=4}</span> or <span class="tex">\boldsymbol{x=-7}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(x+2)(x-9)=0</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x+2=0</span> or <span class="tex">x-9=0</span><br><span class="tex">\boldsymbol{x=-2}</span> or <span class="tex">\boldsymbol{x=9}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(x+6)(x+1)=0</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x+6=0</span> or <span class="tex">x+1=0</span><br><span class="tex">\boldsymbol{x=-6}</span> or <span class="tex">\boldsymbol{x=-1}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">4(x-5)(x+3)=0</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The 4 gives no solution.<br><span class="tex">\boldsymbol{x=5}</span> or <span class="tex">\boldsymbol{x=-3}</span></div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> Run it backwards: write an equation whose solutions are <span class="tex">x=2</span> and <span class="tex">x=-6</span>.</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x=2</span> comes from <span class="tex">x-2=0</span>, and <span class="tex">x=-6</span> from <span class="tex">x+6=0</span>: <span class="tex">\boldsymbol{(x-2)(x+6)=0}</span>. Expanded, that is <span class="tex">x^2+4x-12=0</span>.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Solving quadratic equations by factoring ================= -->
+<section class="card" data-ink="s2" data-section="2. Solving by Factoring">
+  <div class="sec-h"><span class="badge">2</span><h2>Solving Quadratic Equations by Factoring</h2></div>
+  <p>Most equations don’t arrive already factored. That’s where everything from this unit comes in. The plan is always the same four steps:</p>
+  <div class="u4l9-steps4">
+    <div><b class="n">1</b>Make one side exactly <b>0</b>.</div>
+    <div><b class="n">2</b><b>Factor</b> the other side completely: GCF first, then difference of squares or trinomial.</div>
+    <div><b class="n">3</b>Set <b>each factor</b> equal to 0.</div>
+    <div><b class="n">4</b><b>Solve</b> each small equation.</div>
+  </div>
+  <p>Every equation in Example 2 is already equal to 0, so we can start factoring right away.</p>
+  <div class="explainer" data-explainer="solveA"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Factor, then split</h3></div>
+  <p class="q">Solve each equation by factoring.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2-49=0</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Difference of squares: <span class="tex">(x-7)(x+7)=0</span><br><span class="tex">\boldsymbol{x=7}</span> or <span class="tex">\boldsymbol{x=-7}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2+9x=0</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Common factor <span class="tex">x</span>: <span class="tex">x(x+9)=0</span><br><span class="tex">\boldsymbol{x=0}</span> or <span class="tex">\boldsymbol{x=-9}</span> (don’t divide the <span class="tex">x</span> away: it is a solution)</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x^2-5x+6=0</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product 6, sum −5: <span class="tex">-2</span> and <span class="tex">-3</span>. <span class="tex">(x-2)(x-3)=0</span><br><span class="tex">\boldsymbol{x=2}</span> or <span class="tex">\boldsymbol{x=3}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">x^2+2x-24=0</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product −24, sum 2: <span class="tex">6</span> and <span class="tex">-4</span>. <span class="tex">(x+6)(x-4)=0</span><br><span class="tex">\boldsymbol{x=-6}</span> or <span class="tex">\boldsymbol{x=4}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Don’t divide by x">
+  <h3 class="sub">Don’t divide the <span class="tex">x</span> away</h3>
+  <p>In Example 2(b) it is tempting to divide both sides by <span class="tex">x</span>. Watch what that does to the warm-up riddle, <span class="tex">x^2=5x</span> (“my square is 5 times me”).</p>
+  <div class="explainer" data-explainer="lostRoot"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Never divide both sides by <span class="tex">x</span>.</b> It throws away the solution <span class="tex">x=0</span>. Move everything to one side and <b>factor out</b> the <span class="tex">x</span> instead.</div></div>
+</section>
+
+<!-- ================= 3. Rearranging first ================= -->
+<section class="card" data-ink="s3" data-section="3. Rearranging First">
+  <div class="sec-h"><span class="badge">3</span><h2>Equations That Need Rearranging First</h2></div>
+  <p>The zero product property only works when the product equals <b>0</b>. You <b>cannot</b> split <span class="tex">x(x+3)=10</span> into <span class="tex">x=10</span> and <span class="tex">x+3=10</span>.</p>
+  <div class="explainer" data-explainer="notZero"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Make one side 0">
+  <h3 class="sub">Move every term to one side</h3>
+  <p>First move every term to one side, so the other side is 0. For example, <span class="tex">x^2+5x=14</span> becomes <span class="tex">x^2+5x-14=0</span>. That factors as <span class="tex">(x+7)(x-2)=0</span>, so <span class="tex">x=-7</span> or <span class="tex">x=2</span>.</p>
+  <div class="explainer" data-explainer="solveB"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Rearrange, factor, split</h3></div>
+  <p class="q">Solve each equation. Rearrange first so that one side is 0.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2+3x=10</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2+3x-10=0</span><br><span class="tex">(x+5)(x-2)=0</span><br><span class="tex">\boldsymbol{x=-5}</span> or <span class="tex">\boldsymbol{x=2}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2=8x-15</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2-8x+15=0</span><br><span class="tex">(x-3)(x-5)=0</span><br><span class="tex">\boldsymbol{x=3}</span> or <span class="tex">\boldsymbol{x=5}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x^2-4x=12</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2-4x-12=0</span><br><span class="tex">(x-6)(x+2)=0</span><br><span class="tex">\boldsymbol{x=6}</span> or <span class="tex">\boldsymbol{x=-2}</span></div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> Which equation is ready for the zero product property <b>right now</b>?</div>
+      <div class="bk-mc" data-answer="C"><div><span class="tex">x(x+3)=10</span></div><div><span class="tex">x^2+5x=14</span></div><div><span class="tex">(x+7)(x-2)=0</span></div><div><span class="tex">x^2=4x</span></div></div>
+      <div class="work" style="--h:60px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>C</b>: it is a product equal to <b>0</b>. The others need rearranging (and factoring) first.</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u4l9"></section>
+
+<!-- ================= 4. Checking ================= -->
+<section class="card" data-ink="s4" data-section="4. Checking Solutions">
+  <div class="sec-h"><span class="badge">4</span><h2>Checking Solutions by Substitution</h2></div>
+  <p>Substitute each root back into the <b>original</b> equation, not the factored form. For <span class="tex">x^2+5x=14</span>: <span class="tex">(-7)^2+5(-7)=49-35=14</span> ✓ and <span class="tex">(2)^2+5(2)=4+10=14</span> ✓, so both roots are confirmed.</p>
+  <div class="explainer" data-explainer="subCheck"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Brackets around negative numbers.</b> <span class="tex">(-3)^2=9</span>, but <span class="tex">-3^2</span> means <span class="tex">-(3^2)=-9</span>. Substitute with brackets every time.</div></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Checking with a calculator</b> (at home; the unit test is no-calculator). Check <span class="tex">x=-3</span> in <span class="tex">x^2-x</span>: <span class="keys"><kbd>(</kbd><kbd>(−)</kbd><kbd>3</kbd><kbd>)</kbd><kbd>x²</kbd><kbd>−</kbd><kbd>(</kbd><kbd>(−)</kbd><kbd>3</kbd><kbd>)</kbd><kbd>ENTER</kbd></span> gives 12 ✓</div>
+    <button class="pill" data-keys="( (−) 3 ) x² − ( (−) 3 ) =">Show me</button>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Solve, then check</h3></div>
+  <p class="q">Solve <span class="tex">x^2-x=12</span> by factoring, then check both solutions in the original equation.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">Solve:</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2-x-12=0</span><br>Product −12, sum −1: <span class="tex">-4</span> and <span class="tex">3</span><br><span class="tex">(x-4)(x+3)=0</span><br><span class="tex">\boldsymbol{x=4}</span> or <span class="tex">\boldsymbol{x=-3}</span></div></div></div>
+    <div class="part"><div class="pl">Check:</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x=4</span>: <span class="tex">4^2-4=16-4=12</span> ✓<br><span class="tex">x=-3</span>: <span class="tex">(-3)^2-(-3)=9+3=12</span> ✓<br>Both roots satisfy the original equation.</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= 5. Leading coefficient other than one ================= -->
+<section class="card" data-ink="s5" data-section="5. When a Is Not 1">
+  <div class="sec-h"><span class="badge">5</span><h2>Combining Skills: A Leading Coefficient Other Than One</h2></div>
+  <p>When the leading coefficient is not 1, factor by <b>decomposition</b> first (Lesson 7), then use the zero product property exactly as before. The solutions may be <b>fractions</b>, and that is perfectly normal.</p>
+  <div class="explainer" data-explainer="decompSolve"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Decomposition, then split</h3></div>
+  <p class="q">Solve <span class="tex">2x^2+5x=3</span> by factoring, then check both solutions in the original equation.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">Solve:</div><div class="work" style="--h:290px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2x^2+5x-3=0</span><br><span class="tex">ac=-6</span>, sum 5: <span class="tex">6</span> and <span class="tex">-1</span><br><span class="tex">2x^2+6x-x-3=2x(x+3)-1(x+3)</span><br><span class="tex">(x+3)(2x-1)=0</span><br><span class="tex">\boldsymbol{x=-3}</span> or <span class="tex">2x-1=0\Rightarrow \boldsymbol{x=\tfrac12}</span></div></div></div>
+    <div class="part"><div class="pl">Check:</div><div class="work" style="--h:290px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x=-3</span>: <span class="tex">2(9)+5(-3)=18-15=3</span> ✓<br><span class="tex">x=\tfrac12</span>: <span class="tex">2\left(\tfrac14\right)+5\left(\tfrac12\right)=\tfrac12+\tfrac52=3</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Zero product property:</b> if <span class="tex">A\cdot B=0</span>, then <span class="tex">A=0</span> or <span class="tex">B=0</span>. So <span class="tex">(x-3)(x+5)=0</span> gives <span class="tex">x=3</span> or <span class="tex">x=-5</span>. A number in front gives no solution.</div>
+    <div><b>Four steps:</b> make one side <b>0</b>, <b>factor</b> completely, set <b>each factor</b> = 0, <b>solve</b> each one. A quadratic usually has <b>two</b> solutions (roots).</div>
+    <div><b>It must be 0.</b> Rearrange first: <span class="tex">x^2+5x=14\to x^2+5x-14=0</span>. Never divide both sides by <span class="tex">x</span>: factor it out, and keep <span class="tex">x=0</span>.</div>
+    <div><b>Check</b> each root in the <b>original</b> equation, with brackets around negatives. When <span class="tex">a\neq1</span>, use decomposition; fraction answers like <span class="tex">x=\tfrac12</span> are normal.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u4l9">
+    <div><div class="kicker">Your turn</div><b>Assignment 9 — Solving Polynomial Equations by Factoring</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l10/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 10 — Unit Review: Factoring</b><div class="muted">Every kind of factoring from the unit in one place, and how to choose, ready for the unit test</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u4l9.js';
+  boot({ key: 'u4l9', homeHref: '../../', title: '4.9 Solving Equations by Factoring' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

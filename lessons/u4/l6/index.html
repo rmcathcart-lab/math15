@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Factoring Perfect Square Trinomials · Math 15 4.6</title>
+<meta name="description" content="Math 15 Unit 4 Lesson 6: perfect square trinomials. The three-part test, the sum case a² + 2ab + b² = (a + b)², the difference case a² − 2ab + b² = (a − b)², and telling a true perfect square from an impostor (then using sum–product). Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Math 15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#0f5f5a">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u4l6.css">
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 4 Factoring · Lesson 6</div>
+  <h1>Factoring Perfect Square Trinomials</h1>
+  <p class="lede">Squaring a binomial always gives three terms: <span class="tex">(x+5)^2=x^2+10x+25</span>. Today we run that pattern <b>backwards</b>, and learn to tell a true perfect square from an <b>impostor</b>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>use the <b>three-part test</b> to decide whether a trinomial is a perfect square trinomial</li>
+      <li>factor the <b>sum case</b> <span class="tex">a^2+2ab+b^2=(a+b)^2</span> and the <b>difference case</b> <span class="tex">a^2-2ab+b^2=(a-b)^2</span></li>
+      <li>spot an impostor and factor it with the <b>sum–product</b> method instead</li>
+      <li>check every answer by expanding</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN5</b> Demonstrate an understanding of common factors and trinomial factoring, concretely, pictorially and symbolically.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Can You Build a Square?" style="--wf-side: 300px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Can You Build a Square?</h2>
+  <p class="wf-rule">Each kit: <b>1</b> big square, some <b>strips</b>, some <b>small squares</b>. Use <b>every</b> tile! <span class="muted">Pick a kit, then tap Build.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u4l6-kit">
+      <div class="u4l6-kit-top no-ink">
+        <div class="u4l6-kit-tabs" id="wu-kit-tabs"></div>
+        <button class="pill small" type="button" id="wu-kit-build">Build it</button>
+        <button class="pill small" type="button" id="wu-kit-reset" aria-label="Spill the tiles again">↺</button>
+      </div>
+      <div class="u4l6-kit-stage" id="wu-kit"></div>
+    </div>
+    <div class="u4l6-wq2">
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">1</div><div>Kit A builds a square: side <span class="u4l6-nw"><span class="tex">x+2</span>.</span> Can Kit <b>B</b>? What is its side?</div></div>
+        <div class="u4l6-wa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><b>Yes.</b> 3 strips on each side, and the 9 small squares fill the corner as a <span class="tex">3\times3</span> block. Side <span class="tex">x+3</span>.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">2</div><div>Now try Kit <b>C</b>. Square or not?</div></div>
+        <div class="u4l6-wa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><b>No.</b> 3 strips per side needs a <span class="tex">3\times3=9</span> corner, but there are only 8. (It does make a rectangle, <span class="tex">x+2</span> by <span class="tex">x+4</span>.)</div></div>
+      </div>
+    </div>
+  </div><div class="wf-side">
+    <div class="bk-wq">
+      <div class="q-line"><div class="q-num">3</div><div>A kit has 1 big and <b>25</b> small squares. How many <b>strips</b> does it need?</div></div>
+      <div class="u4l6-wa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><b>10 strips.</b> 25 small squares make a <span class="tex">5\times5</span> corner, so 5 strips on each side.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Kit <b>D</b> looks perfect: 1 big square, and its 16 small squares make a neat <span class="tex">4\times4</span> block. It has <b>10</b> strips. Can it build a square? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Yes, <span class="tex">x+4</span></div>
+        <div class="opt"><b>B</b> Yes, <span class="tex">x+5</span></div>
+        <div class="opt right"><b>C</b> No</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C, it’s an impostor.</b> A <span class="tex">4\times4</span> corner needs 4 strips on each side: 8 strips. Kit D has 10, two too many. (Side <span class="tex">x+5</span> would need 25 small squares.)<br><span class="muted">Its tiles make a rectangle instead: <span class="tex">x+2</span> by <span class="tex">x+8</span>.</span></div>
+    </div>
+  </div></div>
+
+  <div class="bk-wq u4l6-bonus">
+    <div class="q-line"><div class="q-num bonus">+</div><div><b>Challenge your neighbour:</b> invent your own <b>impostor</b> kit that fools them.</div></div>
+    <div class="u4l6-wa row"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans">Use a square number of small squares but the wrong number of strips: 1 big, <b>6</b> strips, 4 small (needs 4 strips), or 1 big, <b>12</b> strips, 25 small (needs 10).</div></div>
+  </div>
+</section>
+
+<!-- ================= 1. The pattern and the three-part test ================= -->
+<section class="card" data-ink="s1" data-section="1. The Pattern and the Three-Part Test">
+  <div class="sec-h"><span class="badge">1</span><h2>The Pattern and the Three-Part Test</h2></div>
+  <p>Squaring a binomial always gives three terms. Name the tiles from the warm-up (<span class="u4l6-nw">big <span class="tex">=x^2</span></span>, <span class="u4l6-nw">strip <span class="tex">=x</span></span>, <span class="u4l6-nw">small <span class="tex">=1</span>)</span> and every square you built is one of these:</p>
+  <div class="u4l6-pat">
+    <div><span class="u4l6-pat-h">sum case</span><span class="tex">a^2+2ab+b^2=(a+b)^2</span></div>
+    <div><span class="u4l6-pat-h">difference case</span><span class="tex">a^2-2ab+b^2=(a-b)^2</span></div>
+  </div>
+  <p>Where does the <b>2</b> come from? Look at the square from the side: two equal rectangles.</p>
+  <div class="explainer" data-explainer="squarePic"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Can the tiles make a square?">
+  <h3 class="sub">Can the tiles make a square?</h3>
+  <p>A <b>perfect square trinomial</b> is exactly a set of tiles that builds a <b>square</b>: the strips split evenly between two sides, and the small squares fill the corner exactly.</p>
+  <div class="explainer" data-explainer="squareTiles"></div>
+</section>
+
+<section class="card" data-ink="s1c" data-section="1. The three-part test">
+  <h3 class="sub">The three-part test</h3>
+  <div class="def">A trinomial is a <b>perfect square trinomial</b> only if it passes all three:
+    <ol class="u4l6-ol">
+      <li>the <b>first</b> term is a perfect square;</li>
+      <li>the <b>last</b> term is a perfect square (and positive);</li>
+      <li>the <b>middle</b> term equals <span class="tex">2\times\sqrt{\text{first}}\times\sqrt{\text{last}}</span>.</li>
+    </ol>
+    <div class="eg">For <span class="tex">t^2+16t+64</span>: roots <span class="tex">t</span> and <span class="tex">8</span>, and <span class="tex">2(t)(8)=16t</span> matches. All three pass.</div>
+  </div>
+  <div class="explainer" data-explainer="psCheck"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>The three-part test</h3></div>
+  <p class="q">Use the three-part test to decide whether each trinomial is a perfect square trinomial.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2+6x+9</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">x</span> and <span class="tex">3</span>; <span class="tex">2(x)(3)=6x</span> ✓<br><b>Yes</b>: <span class="tex">\boldsymbol{(x+3)^2}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2-6x+9</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Same roots, middle negative.<br><b>Yes</b>: <span class="tex">\boldsymbol{(x-3)^2}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x^2+7x+10</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">10</span> is not a perfect square.<br><b>No</b></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">x^2+10x-25</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The last term is <span class="tex">-25</span>; a square is never negative.<br><b>No</b></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. The sum case ================= -->
+<section class="card" data-ink="s2" data-section="2. Factoring the Sum Case">
+  <div class="sec-h"><span class="badge">2</span><h2>Factoring the Sum Case</h2></div>
+  <p>If the test passes and the middle term is <b>positive</b>, take the square root of the first term and of the last term, then write their <b>sum</b>, squared. No guess-and-check is needed!</p>
+  <div class="u4l6-big tex display">x^2+10x+25:\quad \sqrt{x^2}=x,\ \ \sqrt{25}=5,\ \ 2(x)(5)=10x\ \checkmark\quad\Rightarrow\quad (x+5)^2</div>
+  <div class="explainer" data-explainer="pst1"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>The sum case</h3></div>
+  <p class="q">Factor each perfect square trinomial.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2+8x+16</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">x</span>, <span class="tex">4</span>; <span class="tex">2(x)(4)=8x</span> ✓<br><span class="tex">=\boldsymbol{(x+4)^2}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2+14x+49</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">x</span>, <span class="tex">7</span>; <span class="tex">2(x)(7)=14x</span> ✓<br><span class="tex">=\boldsymbol{(x+7)^2}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x^2+20x+100</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">x</span>, <span class="tex">10</span><br><span class="tex">=\boldsymbol{(x+10)^2}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">x^2+18x+81</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">x</span>, <span class="tex">9</span><br><span class="tex">=\boldsymbol{(x+9)^2}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Check (c) with a number: put <span class="tex">x=1</span> into <span class="tex">x^2+20x+100</span> and into <span class="tex">(x+10)^2</span>.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">1+20+100=\boldsymbol{121}</span> and <span class="tex">(1+10)^2=11^2=\boldsymbol{121}</span>. They match ✓</div></div></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. The difference case ================= -->
+<section class="card" data-ink="s3" data-section="3. Factoring the Difference Case">
+  <div class="sec-h"><span class="badge">3</span><h2>Factoring the Difference Case</h2></div>
+  <p>Compare <span class="tex">x^2-10x+25</span>: same first and last terms, same roots <span class="tex">x</span> and <span class="tex">5</span>, and <span class="tex">2(x)(5)=10x</span> still matches. But the middle term is <b>negative</b>, so the binomial being squared is a <b>difference</b>: <span class="tex">x^2-10x+25=(x-5)^2</span>.</p>
+  <div class="def">Only the <b>middle sign</b> changes. The last term is always <b>added</b>, since a square is never negative.</div>
+  <div class="explainer" data-explainer="signCase"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Factor the difference case">
+  <h3 class="sub">Same steps, minus sign in the bracket</h3>
+  <div class="explainer" data-explainer="pst2"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t mix up the patterns.</b> <span class="tex">x^2-10x+25=(x-5)^2</span> has a middle term. <span class="tex">x^2-25=(x+5)(x-5)</span> (Lesson 5) has none. Count the terms first.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>The difference case</h3></div>
+  <p class="q">Factor each perfect square trinomial.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2-8x+16</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">x</span>, <span class="tex">4</span>; <span class="tex">2(x)(4)=8x</span> ✓<br><span class="tex">=\boldsymbol{(x-4)^2}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2-14x+49</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">x</span>, <span class="tex">7</span><br><span class="tex">=\boldsymbol{(x-7)^2}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x^2-20x+100</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">x</span>, <span class="tex">10</span><br><span class="tex">=\boldsymbol{(x-10)^2}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">x^2-18x+81</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">x</span>, <span class="tex">9</span><br><span class="tex">=\boldsymbol{(x-9)^2}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u4l6"></section>
+
+<!-- ================= 4. Perfect square or ordinary? ================= -->
+<section class="card" data-ink="s4" data-section="4. Perfect Square, or an Ordinary Trinomial?">
+  <div class="sec-h"><span class="badge">4</span><h2>Perfect Square, or an Ordinary Trinomial?</h2></div>
+  <p>Most trinomials are <b>not</b> perfect squares, so run the test first. If it passes, use the shortcut. If it fails, fall back on the <b>sum–product method</b>: two numbers that multiply to <span class="tex">c</span> and add to <span class="tex">b</span>.</p>
+  <div class="def amber"><b>Classic near-misses.</b> <span class="tex">x^2+10x+24</span> looks almost like <span class="tex">(x+5)^2=x^2+10x+25</span>, but 24 is not a perfect square: <span class="tex">(x+4)(x+6)</span>. And Kit D, <span class="tex">x^2+10x+16</span>, has the right squares but the wrong middle: <span class="tex">2(x)(4)=8x\neq10x</span>, so <span class="tex">(x+2)(x+8)</span>.</div>
+  <div class="explainer" data-explainer="chooser"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Choose the method</h3></div>
+  <p class="q">Decide whether each is a perfect square trinomial, then factor completely by the appropriate method.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2+9x+14</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">14 isn’t a square: <b>not</b> a PST.<br>Sum–product (<span class="tex">2,7</span>):<br><span class="tex">=\boldsymbol{(x+2)(x+7)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2+14x+49</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2(x)(7)=14x</span> ✓ <b>PST</b><br><span class="tex">=\boldsymbol{(x+7)^2}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x^2-11x+18</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">18 isn’t a square: <b>not</b> a PST.<br><span class="tex">(-2)(-9)</span>:<br><span class="tex">=\boldsymbol{(x-2)(x-9)}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">x^2-16x+64</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2(x)(8)=16x</span> ✓ <b>PST</b><br><span class="tex">=\boldsymbol{(x-8)^2}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Numbers in front, and negatives</h3></div>
+  <p class="q">Decide whether each is a perfect square trinomial, then factor completely by the appropriate method.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">4x^2+12x+9</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">2x</span> and <span class="tex">3</span>; <span class="tex">2(2x)(3)=12x</span> ✓<br><b>PST</b>: <span class="tex">\boldsymbol{(2x+3)^2}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2+9x+18</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Not a PST (18 isn’t a square).<br><span class="tex">3,6</span>: <span class="tex">=\boldsymbol{(x+3)(x+6)}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">9x^2-30x+25</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">3x</span>, <span class="tex">5</span>; <span class="tex">2(3x)(5)=30x</span> ✓<br><b>PST</b>: <span class="tex">\boldsymbol{(3x-5)^2}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">x^2-5x-14</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Last term negative: not a PST.<br><span class="tex">-7,2</span>: <span class="tex">=\boldsymbol{(x-7)(x+2)}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Why can the <b>last</b> term of a perfect square trinomial never be negative?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">It is <span class="tex">b^2</span>, a number times <b>itself</b>. Positive × positive and negative × negative are both positive: <span class="tex">5^2=25</span> and <span class="tex">(-5)^2=25</span>.</div></div></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><span class="tex">a^2+2ab+b^2=(a+b)^2</span> and <span class="tex">a^2-2ab+b^2=(a-b)^2</span>. The <b>2</b> is the two equal rectangles in the square.</div>
+    <div><b>Three-part test:</b> first term a square, last term a square (and +), middle <span class="tex">=2\times\sqrt{\text{first}}\times\sqrt{\text{last}}</span>.</div>
+    <div><b>Factor:</b> square roots in one bracket, joined by the <b>middle sign</b>, then square it: <span class="tex">x^2-10x+25=(x-5)^2</span>. Check by expanding.</div>
+    <div><b>Impostor?</b> If any test fails, use sum–product: <span class="tex">x^2+10x+24=(x+4)(x+6)</span>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u4l6">
+    <div><div class="kicker">Your turn</div><b>Assignment 6 — Factoring Perfect Square Trinomials</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l7/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 7 — Factoring <span class="tex">ax^2+bx+c</span> (where <span class="tex">a\neq1</span>)</b><div class="muted">When the <span class="tex">x^2</span> term has a number in front</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u4l6.js';
+  boot({ key: 'u4l6', homeHref: '../../', title: '4.6 Perfect Square Trinomials' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

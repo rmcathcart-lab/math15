@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Factoring the Difference of Squares · Math 15 4.5</title>
+<meta name="description" content="Math 15 Unit 4 Lesson 5: factoring a difference of squares, a² − b² = (a + b)(a − b), by taking the square root of each term; spotting perfect squares; removing the GCF first; and knowing when a binomial is not a difference of squares. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Math 15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#0f5f5a">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u4l5.css">
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 4 Factoring · Lesson 5</div>
+  <h1>Factoring the Difference of Squares</h1>
+  <p class="lede">Multiply a sum by a difference and the middle terms cancel: <span class="tex">(a+b)(a-b)=a^2-b^2</span>. Today we run that shortcut <b>backwards</b> to factor, and learn to spot when it does <b>not</b> apply.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>factor <span class="tex">a^2-b^2</span> as <span class="tex">(a+b)(a-b)</span>: take the square root of each term, then write one bracket with <b>+</b> and one with <b>−</b></li>
+      <li>spot perfect squares quickly: square numbers, and letters with <b>even</b> exponents</li>
+      <li>take out the <b>GCF first</b>, then factor <b>completely</b></li>
+      <li>tell when a binomial is <b>not</b> a difference of squares, and check my answer by expanding</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN5</b> Demonstrate an understanding of common factors and trinomial factoring, concretely, pictorially and symbolically.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Prime Suspects" style="--wf-side: 300px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Prime Suspects</h2>
+  <p class="wf-rule">A <b>prime</b> can only be split as <span class="tex">1\times</span> itself. Some of these numbers are <b>faking it</b>. Each one has an <b>alias</b>: square minus square. <span class="muted">Tap a poster to crack it.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u4l5-posters" id="wu-posters"></div>
+    <div class="u4l5-wu-bar no-ink">
+      <div class="u4l5-sqstrip"><span class="u4l5-sqh">Squares:</span><span>1</span><span>4</span><span>9</span><span>16</span><span>25</span><span>36</span><span>49</span><span>64</span><span>81</span><span>100</span><span class="u4l5-dots">…</span><span>400</span><span class="u4l5-dots">…</span><span>900</span></div>
+      <button class="pill small" type="button" id="wu-crack-all">Crack them all</button>
+      <button class="pill small" type="button" id="wu-crack-reset" aria-label="Put the posters back">↺</button>
+    </div>
+    <div class="u4l5-wq2">
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">1</div><div>Suspect A: <span class="tex">15=\underline{\quad}\times\underline{\quad}</span>. Not prime!</div></div>
+        <div class="u4l5-wa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><span class="tex">15=3\times5</span>. Alias <span class="tex">16-1</span>: <span class="tex">3=4-1</span> and <span class="tex">5=4+1</span>.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">2</div><div>Suspect B: <span class="tex">35=\underline{\quad}\times\underline{\quad}</span>. Compare your numbers with <b>6</b>.</div></div>
+        <div class="u4l5-wa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><span class="tex">35=5\times7</span>: one less and one more than 6, because <span class="tex">36-1=6^2-1^2</span>.</div></div>
+      </div>
+    </div>
+  </div><div class="wf-side">
+    <div class="bk-wq">
+      <div class="q-line"><div class="q-num">3</div><div>Suspect C: <span class="tex">91=10^2-3^2</span>. Is <b>91</b> prime?</div></div>
+      <div class="u4l5-wa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><b>No!</b> <span class="tex">(10-3)(10+3)=7\times13</span>. Most people think 91 is prime.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Suspect D is <b>899</b>. Not even, doesn’t end in 5, and 3 doesn’t divide it. Is it prime? <b>Guess first</b>, then find its alias and crack it, <b>no calculator</b>.</div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Prime</div>
+        <div class="opt right"><b>B</b> Faking it</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, faking it.</b> <span class="tex">899=900-1=30^2-1^2</span><br><span class="tex">=(30-1)(30+1)=\boldsymbol{29\times31}</span>.<br><span class="muted">Testing 7, 11, 13, … 29 one by one takes ages. The square trick cracks it in one line.</span></div>
+    </div>
+  </div></div>
+
+  <div class="bk-wq u4l5-bonus">
+    <div class="q-line"><div class="q-num bonus">+</div><div>Suspect E’s alias uses a <b>+</b>. Does the trick still work? Then <b>invent your own fake prime</b> (square − square) and see if a neighbour can crack it.</div></div>
+    <div class="u4l5-wa row"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><b>No.</b> <span class="tex">100+1</span> is a <b>sum</b> of squares: there is no “one plus, one minus” split. 101 really is prime, the innocent suspect. Fakes: <span class="tex">400-9=391=17\times23</span>, <span class="tex">400-1=399=19\times21</span>.</div></div>
+  </div>
+</section>
+
+<!-- ================= 1. Reversing the pattern ================= -->
+<section class="card" data-ink="s1" data-section="1. Reversing the Pattern">
+  <div class="sec-h"><span class="badge">1</span><h2>Reversing the Pattern</h2></div>
+  <p>Multiplying a sum by a difference cancels the middle terms: <span class="tex">(a+b)(a-b)=a^2-b^2</span>. Read that <b>backwards</b> and you have a factoring rule.</p>
+  <div class="u4l5-identity">
+    <div class="u4l5-id-h">Difference of squares</div>
+    <div class="u4l5-id-f"><span class="tex">a^2-b^2=(a+b)(a-b)</span></div>
+    <div class="u4l5-id-arrows"><span class="u4l5-id-l">factor →</span><span class="u4l5-id-r">← expand</span></div>
+  </div>
+  <div class="def"><b>How to factor it:</b> take the <b>square root of each term</b>, then write one bracket with a <b>+</b> and one with a <b>−</b>.<div class="eg"><span class="tex">x^2-64=x^2-8^2=(x+8)(x-8)</span></div></div>
+  <div class="explainer" data-explainer="fds1"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Why it works: a picture">
+  <h3 class="sub">Why it works: cut and move</h3>
+  <p>Take a square, <span class="tex">a</span> by <span class="tex">a</span>, and cut a smaller square, <span class="tex">b</span> by <span class="tex">b</span>, out of its corner. The L-shape left over has area <span class="tex">a^2-b^2</span>. Cut it into two pieces and slide one over: it becomes a rectangle <span class="tex">a+b</span> long and <span class="tex">a-b</span> tall.</p>
+  <div class="explainer" data-explainer="cutMove"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>One plus, one minus.</b> <span class="tex">x^2-36\neq(x-6)^2</span>. Expanding <span class="tex">(x-6)(x-6)</span> gives <span class="tex">x^2-12x+36</span>, which has a middle term. The brackets must be <span class="tex">(x+6)(x-6)</span> so the middle terms cancel.</div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>The bare pattern</h3></div>
+  <p class="q">Factor each difference of squares.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">q^2-1</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{q^2}=q</span>, <span class="tex">\sqrt1=1</span><br><span class="tex">=\boldsymbol{(q+1)(q-1)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">m^2-16</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{m^2}=m</span>, <span class="tex">\sqrt{16}=4</span><br><span class="tex">=\boldsymbol{(m+4)(m-4)}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">c^2-100</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{c^2}=c</span>, <span class="tex">\sqrt{100}=10</span><br><span class="tex">=\boldsymbol{(c+10)(c-10)}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">x^2-y^2</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{x^2}=x</span>, <span class="tex">\sqrt{y^2}=y</span><br><span class="tex">=\boldsymbol{(x+y)(x-y)}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Back to the warm-up: <span class="tex">x^2-9=(x+3)(x-3)</span>. Put <span class="tex">x=10</span> into <b>both</b> sides. What do you get?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">10^2-9=\boldsymbol{91}</span> and <span class="tex">(10+3)(10-3)=13\times7=\boldsymbol{91}</span>. The same number: that’s Suspect C! Trying a number in both forms is a quick check.</div></div></div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Perfect squares ================= -->
+<section class="card" data-ink="s2" data-section="2. Identifying Perfect Squares Quickly">
+  <div class="sec-h"><span class="badge">2</span><h2>Identifying Perfect Squares Quickly</h2></div>
+  <p>Know the small squares on sight. <span class="muted">(Tap a square to see its root.)</span></p>
+  <div class="u4l5-ref">
+    <div class="u4l5-ref-h">Perfect squares to know</div>
+    <div class="u4l5-ref-row" id="sq-ref"></div>
+  </div>
+  <div class="def">A letter power is a perfect square when its exponent is <b>even</b>: <span class="tex">x^4=(x^2)^2</span>, <span class="tex">x^6=(x^3)^2</span>. A monomial is a perfect square when its <b>number is a square</b> <i>and</i> <b>every exponent is even</b>.<div class="eg"><span class="tex">\sqrt{4x^2}=2x</span>, &nbsp; <span class="tex">\sqrt{16x^4}=4x^2</span>, &nbsp; <span class="tex">\sqrt{25y^6}=5y^3</span> &nbsp; (square root the number, halve each exponent)</div></div>
+  <div class="explainer" data-explainer="rootFinder"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Factoring with coefficients">
+  <h3 class="sub">Numbers in front? Same steps</h3>
+  <p>When a term has a number in front, its square root includes the root of the number: <span class="tex">4x^2-9=(2x)^2-3^2=(2x+3)(2x-3)</span>. After factoring, <b>look again</b>: a bracket may be a difference of squares too.</p>
+  <div class="explainer" data-explainer="fds2"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Numbers and powers</h3></div>
+  <p class="q">Factor each difference of squares.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">4x^2-9</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{4x^2}=2x</span>, <span class="tex">\sqrt9=3</span><br><span class="tex">=\boldsymbol{(2x+3)(2x-3)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">9a^2-1</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{9a^2}=3a</span>, <span class="tex">\sqrt1=1</span><br><span class="tex">=\boldsymbol{(3a+1)(3a-1)}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x^4-16</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{x^4}=x^2</span>, <span class="tex">\sqrt{16}=4</span><br><span class="tex">=(x^2+4)(x^2-4)</span><br>Keep going: <span class="tex">x^2-4=(x+2)(x-2)</span><br><span class="tex">=\boldsymbol{(x^2+4)(x+2)(x-2)}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">25p^2-4q^2</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{25p^2}=5p</span>, <span class="tex">\sqrt{4q^2}=2q</span><br><span class="tex">=\boldsymbol{(5p+2q)(5p-2q)}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> In (c), why does <span class="tex">x^2+4</span> stay as it is?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">It is a <b>sum</b> of squares, not a difference. The pattern needs a <b>minus</b> (Section 4), so <span class="tex">x^2+4</span> can’t be factored.</div></div></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. GCF first ================= -->
+<section class="card" data-ink="s3" data-section="3. Remove the GCF First">
+  <div class="sec-h"><span class="badge">3</span><h2>Remove the GCF First</h2></div>
+  <p><b>Always check for a greatest common factor before anything else.</b> A binomial may not look like a difference of squares until the GCF is out: neither <span class="tex">2x^2</span> nor <span class="tex">18</span> is a perfect square, but</p>
+  <div class="u4l5-big tex display">2x^2-18=2(x^2-9)=2(x+3)(x-3)</div>
+  <div class="explainer" data-explainer="tileGroups"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Factor completely">
+  <h3 class="sub">Factor <em>completely</em></h3>
+  <p>Keep going until nothing left inside the brackets can be factored. Four steps, every time:</p>
+  <div class="u4l5-steps4">
+    <div><span class="u4l5-sn">1</span><b>GCF</b> out front</div>
+    <div><span class="u4l5-sn">2</span>bracket a <b>difference of squares</b>?</div>
+    <div><span class="u4l5-sn">3</span>check <b>every</b> new bracket</div>
+    <div><span class="u4l5-sn">4</span><b>check</b> by expanding</div>
+  </div>
+  <div class="explainer" data-explainer="gcfFirst"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Right product, not finished.</b> <span class="tex">4x^2-36=(2x+6)(2x-6)</span> multiplies back correctly, but each bracket still has a common factor of 2. Take out the GCF 4 first: <span class="tex">4(x^2-9)=4(x+3)(x-3)</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>A number GCF</h3></div>
+  <p class="q">Factor completely by first removing the greatest common factor.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">2x^2-18</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">2</span>: &nbsp;<span class="tex">2(x^2-9)</span><br><span class="tex">=\boldsymbol{2(x+3)(x-3)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">3m^2-48</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">3</span>: &nbsp;<span class="tex">3(m^2-16)</span><br><span class="tex">=\boldsymbol{3(m+4)(m-4)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>A GCF with letters, and a two-letter square</h3></div>
+  <p class="q">Factor completely by first removing the greatest common factor.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">5x^3-45x</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">5x</span>: &nbsp;<span class="tex">5x(x^2-9)</span><br><span class="tex">=\boldsymbol{5x(x+3)(x-3)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">8a^2b^2-32</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">8</span>: &nbsp;<span class="tex">8(a^2b^2-4)</span><br><span class="tex">\sqrt{a^2b^2}=ab</span>, so<br><span class="tex">=\boldsymbol{8(ab+2)(ab-2)}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Mia factored <span class="tex">3x^3-12x</span> as <span class="tex">3(x^3-4x)</span> and stopped. What would you tell her?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The GCF is <span class="tex">3x</span>, not 3: both terms still share an <span class="tex">x</span>. <span class="tex">3x(x^2-4)</span>, and that bracket is a difference of squares: <span class="tex">\boldsymbol{3x(x+2)(x-2)}</span>.</div></div></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u4l5"></section>
+
+<!-- ================= 4. Not a difference of squares ================= -->
+<section class="card" data-ink="s4" data-section="4. When It Is NOT a Difference of Squares">
+  <div class="sec-h"><span class="badge">4</span><h2>When It Is NOT a Difference of Squares</h2></div>
+  <div class="def amber">The pattern needs <b>both</b> conditions: <b>subtraction</b>, and <b>two perfect squares</b>.
+    <div class="u4l5-two">
+      <div><b>A sum</b> such as <span class="tex">x^2+9</span> cannot be factored over the integers.</div>
+      <div><span class="tex">x^2-20</span> can’t be either: <span class="tex">20</span> is not a perfect square (<span class="tex">16</span> and <span class="tex">25</span> are its neighbours).</div>
+    </div>
+  </div>
+  <div class="explainer" data-explainer="sumNever"></div>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. The three checks">
+  <h3 class="sub">Check all three before you factor</h3>
+  <p>First term a perfect square? Second term a perfect square? A <b>minus</b> between them? Only when all three pass is it a difference of squares. <span class="muted">(If one fails, look for a GCF first: it might pass after.)</span></p>
+  <div class="explainer" data-explainer="detector"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Difference of squares, or not?</h3></div>
+  <p class="q">Decide whether each is a difference of squares. If it is, factor it; if not, explain why not.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2+9</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> It is a <b>sum</b> of squares. Not factorable over the integers.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2-9</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes:</b><br><span class="tex">=\boldsymbol{(x+3)(x-3)}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">4y^2-15</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> <span class="tex">4y^2</span> is a perfect square but <span class="tex">15</span> is not <span class="tex">(3^2=9,\ 4^2=16)</span>.</div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">16x^2-1</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes:</b> <span class="tex">\sqrt{16x^2}=4x</span><br><span class="tex">=\boldsymbol{(4x+1)(4x-1)}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Change <b>one</b> thing in <span class="tex">4y^2-15</span> so that it <b>does</b> factor. How many ways can you find?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Make the 15 a square: <span class="tex">4y^2-16=4(y+2)(y-2)</span> (GCF first!), <span class="tex">4y^2-9=(2y+3)(2y-3)</span>, <span class="tex">4y^2-25=(2y+5)(2y-5)</span>, <span class="tex">4y^2-1=(2y+1)(2y-1)</span>…</div></div></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><span class="tex">a^2-b^2=(a+b)(a-b)</span>. Take the <b>square root of each term</b>; one bracket <b>+</b>, one bracket <b>−</b>. Check by expanding: the middle terms cancel.</div>
+    <div><b>Perfect squares:</b> 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, … and <b>even</b> exponents. <span class="tex">\sqrt{16x^4}=4x^2</span>: root the number, halve the exponent.</div>
+    <div><b>GCF first</b>, then factor <b>completely</b>: <span class="tex">5x^3-45x=5x(x+3)(x-3)</span>. Look again at every bracket: <span class="tex">x^4-16=(x^2+4)(x+2)(x-2)</span>.</div>
+    <div><b>Not</b> a difference of squares: a <b>sum</b> like <span class="tex">x^2+9</span>, or a term that isn’t a perfect square, like <span class="tex">x^2-20</span>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u4l5">
+    <div><div class="kicker">Your turn</div><b>Assignment 5 — Factoring the Difference of Squares</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l6/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 6 — Factoring Perfect Square Trinomials</b><div class="muted">When a trinomial is a binomial times itself: <span class="tex">(a+b)^2</span> run backwards</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u4l5.js';
+  boot({ key: 'u4l5', homeHref: '../../', title: '4.5 Difference of Squares' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>
