@@ -33,7 +33,7 @@
     AN2: { s: 'hex', f: '#245e73', a: '#f4eedd', b: '#ffd866', i: 'root', w: 'RADICALS' },
     AN3: { s: 'scallop', f: '#b4471f', a: '#fbf3e0', b: '#2b2b2b', i: 'power', w: 'EXPONENTS' },
     AN4: { s: 'oct', f: '#5b3a8c', a: '#f4eedd', b: '#f2b134', i: 'area', w: 'POLYNOMIALS' },
-    AN5: { s: 'square', f: '#2f6b3a', a: '#f6f0dc', b: '#f2b134', i: 'parens', w: 'FACTORING' },
+    AN5: { s: 'square', f: '#2f6b3a', a: '#f6f0dc', b: '#f2b134', i: 'tiles', w: 'FACTORING' },
     RF1: { s: 'circle', f: '#a3305f', a: '#fbf0f3', b: '#ffd866', i: 'story', w: 'GRAPHS' },
     RF2: { s: 'hex2', f: '#7a2d52', a: '#f7ecf1', b: '#8fd0c4', i: 'mapping', w: 'RELATIONS' },
     RF3: { s: 'scallop', f: '#1d6b63', a: '#f1f5ef', b: '#f2b134', i: 'slope', w: 'SLOPE' },
@@ -79,7 +79,8 @@
     root: function () { return [['M33 52l5-3l7 15l9-30h14', 'a', 3.6], ['M57 46h8M61 42v8', 'b', 2.6]]; },
     power: function () { return [['M36 44l12 18M48 44l-12 18', 'a', 3.6], ['M54 33q3-4 7-1q2 3-2 7l-6 6h10', 'b', 2.8]]; },
     area: function () { return [['M34 36h32v28h-32zM34 48h32M50 36v28', 'a', 2.8], ['M38 42h8M54 42h8M38 57h8M54 57h8', 'b', 2.2]]; },
-    parens: function () { return [['M35 37q-5 13 0 26M43 37q5 13 0 26M57 37q-5 13 0 26M65 37q5 13 0 26', 'a', 3.2], ['M39.5 50l0 0M60.5 50l0 0', 'b', 6.2]]; },
+    tiles: function () { // algebra tiles: x² + 3x + 2 laid out as a rectangle (x + 1)(x + 2)
+      return [['M34 37h32v26h-32zM54 37v26M60 37v26M34 57h32', 'a', 2.6], ['M40 43l8 8M48 43l-8 8', 'b', 2.4], ['M55.6 58.9h2.8v2.2h-2.8zM61.6 58.9h2.8v2.2h-2.8z', 'b', 2.2]]; },
     story: function () { return [['M33 66V34M33 66h34', 'a', 2.6], ['M36 62q6-14 12-12t9-10l8 0', 'b', 3.2]]; },
     mapping: function () { return [['M36 37v26M64 37v26', 'a', 7.5], ['M39 42l21 2M39 52l21 6M39 60l21-14', 'b', 2.2]]; },
     slope: function () { return [['M34 64L66 36', 'a', 3.2], ['M42 57h16v-14', 'b', 2.4]]; },
