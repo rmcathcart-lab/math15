@@ -371,11 +371,11 @@ const pairTable = {
 };
 
 /* ============ 3. The diamond: c on top, b on the bottom, the sides go into the brackets ============ */
-const DM = { d: [11, 18], e: [12, 35], a: [7, 12], b: [9, 18], c: [11, 24] };
+const DM = { d: [11, 18], e: [13, 42], a: [7, 12], b: [9, 18], c: [11, 24] };
 const diamond = {
   title: 'Factoring with a diamond', height: 486,
   minW: 900,
-  choices: [{ v: 'd', label: tex('x^2+11x+18') }, { v: 'e', label: tex('x^2+12x+35') }, { sep: 'Example 3 check:' }, ...['a', 'b', 'c'].map((k) => ({ v: k, label: '(' + k + ')' }))],
+  choices: [{ v: 'd', label: tex('x^2+11x+18') }, { v: 'e', label: tex('x^2+13x+42') }, { sep: 'Example 3 check:' }, ...['a', 'b', 'c'].map((k) => ({ v: k, label: '(' + k + ')' }))],
   intro: (k) => `Factor ${T(triT(DM[k][0], DM[k][1]))}. The diamond holds the two clues: <b>multiply to</b> ${T('c')}, <b>add to</b> ${T('b')}.`,
   make(stage, key, ex) {
     const W = ex.W, [b, c] = DM[key], P = triT(b, c);
