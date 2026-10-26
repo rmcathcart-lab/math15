@@ -404,8 +404,9 @@
      unit up to the one the student is on */
   function startedUnits() {
     var out = {}, CD = calData(), LAY = CD && HW.Cal ? HW.Cal.layout(CD.cal, CD.noSchool) : null, TODAY = HW.Cal ? HW.Cal.today() : '';
-    if (CD && LAY) { CD.cal.items.forEach(function (x) { var d = LAY.dateOf[x[0]], i = d && d <= TODAY ? HW.Cal.info(x[0]) : null; if (i && i.unit) out[i.unit] = 1; }); return out; }
-    for (var u = 1, cu = currentUnit(null, null, TODAY); u <= cu; u++) out[u] = 1;
+    // only units with practice on the site count: a unit taught before it was put online has no badge to start
+    if (CD && LAY) { CD.cal.items.forEach(function (x) { var d = LAY.dateOf[x[0]], i = d && d <= TODAY ? HW.Cal.info(x[0]) : null; if (i && i.unit && unitOnline(i.unit)) out[i.unit] = 1; }); return out; }
+    for (var u = 1, cu = currentUnit(null, null, TODAY); u <= cu; u++) if (unitOnline(u)) out[u] = 1;
     return out;
   }
   function homeMedals(box) {
@@ -626,8 +627,10 @@
       var i = next && HW.Cal.info(next[0]); if (i) return i.unit;
     }
     var last = lastLesson(); if (last && HW.lessons[last]) return HW.lessons[last].unit;
-    return 1;
+    var first = HW.CATALOG.filter(function (u) { return unitOnline(u.unit); })[0]; // no calendar yet: the first unit with practice online
+    return first ? first.unit : 1;
   }
+  function unitOnline(n) { var u = HW.CATALOG.filter(function (x) { return x.unit === n; })[0]; return !!(u && u.lessons.some(function (c) { var l = HW.lessons[c.id]; return l && !l.test; })); }
   function lastLesson() { var best = null; Object.keys(S.lessons).forEach(function (k) { if (!best || (S.lessons[k].updated || 0) > (S.lessons[best].updated || 0)) best = k; }); return best; }
   function mins(s) { if (s < 60) return '<1 min'; var m = Math.round(s / 60); return m < 60 ? m + ' min' : Math.floor(m / 60) + ' h ' + (m % 60) + ' min'; }
 
