@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trinomials, c Positive · Math 15 4.3</title>
+<meta name="description" content="Math 15 Unit 4 Lesson 3: factoring trinomials x² + bx + c when c is positive. FOIL run backwards, algebra-tile rectangles, the sum–product rule, diamond puzzles, sign patterns when b is negative, common factors first, and checking by expanding. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u4l3.css">
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 4 Factoring · Lesson 3</div>
+  <h1>Factoring Trinomials <span class="tex">x^2+bx+c</span>, Part 1: <span class="tex">c</span> Positive</h1>
+  <p class="lede">FOIL turns <span class="tex">(x+2)(x+9)</span> into <span class="tex">x^2+11x+18</span>. Today we run FOIL <b>backwards</b>: start with the trinomial and find the two brackets. The secret is two numbers that <b>multiply to <span class="tex">c</span></b> and <b>add to <span class="tex">b</span></b>, just like the diamond puzzles.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>expand <span class="tex">(x+p)(x+q)</span> and explain where <span class="tex">b</span> and <span class="tex">c</span> come from</li>
+      <li>find two numbers with a given <b>product</b> and <b>sum</b></li>
+      <li>factor <span class="tex">x^2+bx+c</span> when <span class="tex">b</span> and <span class="tex">c</span> are both <b>positive</b></li>
+      <li>factor <span class="tex">x^2+bx+c</span> when <span class="tex">b</span> is <b>negative</b> and <span class="tex">c</span> is positive</li>
+      <li><b>check</b> my answer by expanding, and take out a <b>common factor first</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN5</b> Demonstrate an understanding of common factors and trinomial factoring, concretely, pictorially and symbolically.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Diamond Puzzles" id="wu" style="--wf-side: 330px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Diamond Puzzles</h2>
+  <p class="wf-rule">The two side numbers <b>multiply</b> to the top and <b>add</b> to the bottom. <span class="muted">Tap a diamond to check your sides.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u4l3-wtop">
+      <div class="u4l3-exbox">
+        <div class="u4l3-exh">Example</div>
+        <div class="u4l3-dia lg" data-top="10" data-bot="7" data-l="2" data-r="5" data-open="1"></div>
+        <div class="u4l3-exl"><span class="tex">\textcolor{#c93a33}{2}\times\textcolor{#c93a33}{5}=10</span><br><span class="tex">\textcolor{#c93a33}{2}+\textcolor{#c93a33}{5}=7</span></div>
+      </div>
+      <div class="u4l3-dgrid">
+        <button type="button" class="u4l3-dia" data-name="A" data-top="12" data-bot="7" data-l="3" data-r="4"></button>
+        <button type="button" class="u4l3-dia" data-name="B" data-top="20" data-bot="9" data-l="4" data-r="5"></button>
+        <button type="button" class="u4l3-dia" data-name="C" data-top="18" data-bot="11" data-l="2" data-r="9"></button>
+        <button type="button" class="u4l3-dia" data-name="D" data-top="36" data-bot="13" data-l="4" data-r="9"></button>
+        <button type="button" class="u4l3-dia" data-name="E" data-top="30" data-bot="13" data-l="3" data-r="10"></button>
+        <button type="button" class="u4l3-dia" data-name="F" data-top="12" data-bot="-7" data-l="-3" data-r="-4"></button>
+      </div>
+    </div>
+    <div class="u4l3-wqs">
+      <div class="bk-wq" id="wq1"><div class="q-line"><div class="q-num">1</div><div>Solve diamonds <b>A</b>, <b>B</b> and <b>C</b>. <button class="pill small" type="button" data-bk-toggle data-wqd="ABC">Answer</button></div></div>
+        <div class="u4l3-wa"><div class="bk-ans">A: <b>3, 4</b> &nbsp; B: <b>4, 5</b> &nbsp; C: <b>2, 9</b></div></div></div>
+      <div class="bk-wq" id="wq2"><div class="q-line"><div class="q-num">2</div><div><b>D</b> and <b>E</b> have the same bottom. Are their answers the same? <button class="pill small" type="button" data-bk-toggle data-wqd="DE">Answer</button></div></div>
+        <div class="u4l3-wa"><div class="bk-ans"><b>No.</b> D: 4, 9 (4 × 9 = 36). E: 3, 10 (3 × 10 = 30). The same sum can come from different pairs: the <b>top</b> decides.</div></div></div>
+      <div class="bk-wq" id="wq3"><div class="q-line"><div class="q-num">3</div><div><b>F</b> has a <b>negative</b> bottom, but the top is still +12. Now what? <button class="pill small" type="button" data-bk-toggle data-wqd="F">Answer</button></div></div>
+        <div class="u4l3-wa"><div class="bk-ans"><b>−3 and −4.</b> <span class="tex">(-3)(-4)=+12</span> and <span class="tex">(-3)+(-4)=-7</span>. Positive top, negative bottom: <b>both negative</b>.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll" id="wpoll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> One of these is <b>impossible</b>: no whole numbers work. <b>Guess first:</b> which one?</div></div>
+      <div class="poll-opts c4 u4l3-popts">
+        <div class="opt"><b>A</b><div class="u4l3-dia sm" data-top="24" data-bot="10" data-l="4" data-r="6"></div></div>
+        <div class="opt"><b>B</b><div class="u4l3-dia sm" data-top="24" data-bot="11" data-l="3" data-r="8"></div></div>
+        <div class="opt right"><b>C</b><div class="u4l3-dia sm" data-top="24" data-bot="12" data-l="" data-r="" data-no="1"></div></div>
+        <div class="opt"><b>D</b><div class="u4l3-dia sm" data-top="24" data-bot="14" data-l="2" data-r="12"></div></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C is impossible.</b> The pairs that multiply to 24 are 1 × 24, 2 × 12, 3 × 8 and 4 × 6, with sums 25, 14, 11 and 10. So A is 4, 6; B is 3, 8; D is 2, 12. No pair adds to 12.<br>
+        <b>Today’s lesson:</b> every diamond is a trinomial. Diamond A is <span class="tex">x^2+7x+12=(x+3)(x+4)</span>.</div>
+    </div>
+  </div></div>
+
+  <div class="u4l3-trbox">
+    <div class="u4l3-ph">Settle the big one: every pair that multiplies to 24 <span class="muted">(tap a card to open it)</span></div>
+    <div class="u4l3-pcs">
+      <button type="button" class="u4l3-pc"><span class="pq">?</span><span class="pp">1 × 24</span><small>sum 25</small></button>
+      <button type="button" class="u4l3-pc"><span class="pq">?</span><span class="pp">2 × 12</span><small>sum 14</small></button>
+      <button type="button" class="u4l3-pc"><span class="pq">?</span><span class="pp">3 × 8</span><small>sum 11</small></button>
+      <button type="button" class="u4l3-pc"><span class="pq">?</span><span class="pp">4 × 6</span><small>sum 10</small></button>
+    </div>
+    <div class="u4l3-trctl"><button type="button" class="pill small" data-pc="all">Show the pairs</button><button type="button" class="pill small" data-pc="sums">Show the sums</button><span class="muted">Is 12 on the list?</span></div>
+  </div>
+
+  <div class="u4l3-maker">
+    <div class="u4l3-mkh"><b>Make your own diamond</b> <span class="muted">Pick two side numbers; the top and bottom fill in.</span></div>
+    <div class="u4l3-mkrow">
+      <div class="u4l3-step"><button type="button" class="pill small" data-mk="l-">−</button><span class="u4l3-stv" data-mkv="l">3</span><button type="button" class="pill small" data-mk="l+">+</button></div>
+      <div class="u4l3-dia md" id="mkdia" data-top="18" data-bot="9" data-l="3" data-r="6" data-open="1"></div>
+      <div class="u4l3-step"><button type="button" class="pill small" data-mk="r-">−</button><span class="u4l3-stv" data-mkv="r">6</span><button type="button" class="pill small" data-mk="r+">+</button></div>
+    </div>
+  </div>
+  <p class="u4l3-social">Make your own diamond and trade with a neighbour. Can you build one that is <b>impossible</b>?</p>
+</section>
+
+<!-- ================= 1. From FOIL back to factors ================= -->
+<section class="card" data-ink="s1" data-section="1. From FOIL Back to Factors">
+  <div class="sec-h"><span class="badge">1</span><h2>From FOIL Back to Factors</h2></div>
+  <p>FOIL turns <span class="tex">(x+2)(x+9)</span> into <span class="tex">x^2+9x+2x+18=x^2+11x+18</span>. <b>Factoring</b> runs that in reverse: start from <span class="tex">x^2+11x+18</span> and find your way back to <span class="tex">(x+2)(x+9)</span>, without testing every pair. The trick is to notice exactly where the <span class="tex">11</span> and the <span class="tex">18</span> came from.</p>
+  <div class="u4l3-rule"><span class="tex" style="text-align:right">(x+2)(x+9)</span><div class="mid"><b class="u4l3-exp">expanding →</b><br><b style="color:var(--amber)">← factoring</b></div><span class="tex">x^2+11x+18</span></div>
+  <h3 class="sub">A picture: algebra tiles make a rectangle</h3>
+  <p>An <span class="tex">x^2</span>-tile is a square, an <span class="tex">x</span>-tile is a long strip, and a unit tile is a small square. The tiles for a trinomial fit together into a <b>rectangle</b>. Its length and width are the two brackets.</p>
+  <div class="u4l3-key"></div>
+  <div class="explainer" data-explainer="tileRect"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Expand, then look for the pattern</h3></div>
+  <p class="q">Expand each product. Compare the coefficient of <span class="tex">x</span> (that is <span class="tex">b</span>) and the constant (that is <span class="tex">c</span>) to the two numbers in the binomials.</p>
+  <div class="parts u4l3-c4">
+    <div class="part"><div class="pl">(a) <span class="tex">(x+2)(x+6)</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2+6x+2x+12</span><br><span class="tex">=\boldsymbol{x^2+8x+12}</span><br><span class="tex">2+6=8</span>, <span class="tex">2\times6=12</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(x+4)(x+5)</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2+5x+4x+20</span><br><span class="tex">=\boldsymbol{x^2+9x+20}</span><br><span class="tex">4+5=9</span>, <span class="tex">4\times5=20</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(x+1)(x+8)</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2+8x+x+8</span><br><span class="tex">=\boldsymbol{x^2+9x+8}</span><br><span class="tex">1+8=9</span>, <span class="tex">1\times8=8</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">(x+3)(x+3)</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2+3x+3x+9</span><br><span class="tex">=\boldsymbol{x^2+6x+9}</span><br><span class="tex">3+3=6</span>, <span class="tex">3\times3=9</span></div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> What do you notice about the connection between <span class="tex">b</span> and the two numbers? Between <span class="tex">c</span> and the two numbers?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Every time, <span class="tex">b</span> is the <b>sum</b> of the two numbers in the brackets and <span class="tex">c</span> is their <b>product</b>. So factoring means hunting for two numbers that <b>multiply to <span class="tex">c</span></b> and <b>add to <span class="tex">b</span></b>.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. The sum–product rule ================= -->
+<section class="card" data-ink="s2" data-section="2. The Sum–Product Rule">
+  <div class="sec-h"><span class="badge">2</span><h2>The Sum–Product Rule</h2></div>
+  <p>In general <span class="tex">(x+p)(x+q)=x^2+(p+q)x+pq</span>. Comparing with <span class="tex">x^2+bx+c</span> gives <span class="tex">b=p+q</span> and <span class="tex">c=pq</span>.</p>
+  <div class="def">To factor <span class="tex">x^2+bx+c</span>, find two numbers that <b>multiply to <span class="tex">c</span></b> and <b>add to <span class="tex">b</span></b>. Those numbers are <span class="tex">p</span> and <span class="tex">q</span>, and <span class="tex">x^2+bx+c=(x+p)(x+q)</span>.</div>
+  <div class="u4l3-rule"><span class="tex" style="text-align:right">(x+p)(x+q)</span><div class="mid"><b class="u4l3-exp">expanding →</b><br><b style="color:var(--amber)">← factoring</b></div><span class="tex">x^2+(p+q)x+pq</span></div>
+  <div class="explainer" data-explainer="expandGrid"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Finding the two numbers">
+  <h3 class="sub">Finding the two numbers: list the pairs</h3>
+  <p>Guessing works for small numbers. A <b>list</b> never misses: write the pairs that multiply to the product, starting from <span class="tex">1</span>, and add each pair until one gives the sum. It is a diamond puzzle with the work shown.</p>
+  <div class="explainer" data-explainer="pairTable"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Sum and product</h3></div>
+  <p class="q">Complete the table by finding two <b>positive</b> integers with the given sum and the given product.</p>
+  <div class="u4l3-tabs">
+    <div class="u4l3-tab">
+      <div class="u4l3-th"><div>Sum</div><div>Product</div><div>Integers</div></div>
+      <div class="part u4l3-trow"><div><span class="tex">7</span></div><div><span class="tex">10</span></div><div class="u4l3-tw"><div class="work"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2</span> and <span class="tex">5</span></div></div></div></div>
+      <div class="part u4l3-trow"><div><span class="tex">9</span></div><div><span class="tex">20</span></div><div class="u4l3-tw"><div class="work"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4</span> and <span class="tex">5</span></div></div></div></div>
+      <div class="part u4l3-trow"><div><span class="tex">10</span></div><div><span class="tex">24</span></div><div class="u4l3-tw"><div class="work"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4</span> and <span class="tex">6</span></div></div></div></div>
+      <div class="part u4l3-trow"><div><span class="tex">13</span></div><div><span class="tex">36</span></div><div class="u4l3-tw"><div class="work"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4</span> and <span class="tex">9</span></div></div></div></div>
+    </div>
+    <div class="u4l3-tabside">
+      <div class="u4l3-dia md" data-top="c" data-bot="b" data-l="p" data-r="q" data-open="1"></div>
+      <p>Each row is a diamond: the <b>product</b> goes on top, the <b>sum</b> on the bottom, and the two integers are the sides.</p>
+    </div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. b and c positive ================= -->
+<section class="card" data-ink="s3" data-section="3. b and c Both Positive">
+  <div class="sec-h"><span class="badge">3</span><h2>Factoring When <span class="tex">b</span> and <span class="tex">c</span> Are Both Positive</h2></div>
+  <p>If <span class="tex">c</span> is positive, the two numbers have the <b>same sign</b>. If <span class="tex">b</span> is also positive, that sign must be <b>positive</b>: two positive numbers give a positive product and a positive sum. So for <span class="tex">x^2+7x+12</span>, look for two positive numbers with product <span class="tex">12</span> and sum <span class="tex">7</span>.</p>
+  <div class="u4l3-steps4">
+    <div><b class="n">1</b><b>Diamond:</b> <span class="tex">c</span> on top, <span class="tex">b</span> on the bottom.</div>
+    <div><b class="n">2</b><b>List</b> the pairs that multiply to <span class="tex">c</span>.</div>
+    <div><b class="n">3</b><b>Pick</b> the pair that adds to <span class="tex">b</span>.</div>
+    <div><b class="n">4</b><b>Write</b> the brackets, then <b>check</b> by expanding.</div>
+  </div>
+  <div class="explainer" data-explainer="diamond"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Both numbers positive</h3></div>
+  <p class="q">Factor each trinomial. In each case both numbers in your factors should be positive.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2+7x+12</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product <span class="tex">12</span>, sum <span class="tex">7</span>: <b>3 and 4</b><br><span class="tex">=\boldsymbol{(x+3)(x+4)}</span><br><span class="u4l3-ack">Check: <span class="tex">x^2+4x+3x+12=x^2+7x+12</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2+9x+18</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product <span class="tex">18</span>, sum <span class="tex">9</span>: <b>3 and 6</b><br><span class="tex">=\boldsymbol{(x+3)(x+6)}</span><br><span class="u4l3-ack">Check: <span class="tex">x^2+6x+3x+18=x^2+9x+18</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x^2+11x+24</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product <span class="tex">24</span>, sum <span class="tex">11</span>: <b>3 and 8</b><br><span class="tex">=\boldsymbol{(x+3)(x+8)}</span><br><span class="u4l3-ack">Check: <span class="tex">x^2+8x+3x+24=x^2+11x+24</span> ✓</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. b negative, c positive ================= -->
+<section class="card" data-ink="s4" data-section="4. b Negative, c Positive">
+  <div class="sec-h"><span class="badge">4</span><h2>Factoring When <span class="tex">b</span> Is Negative and <span class="tex">c</span> Is Positive</h2></div>
+  <p>With <span class="tex">c</span> positive the two numbers still share a sign, but a negative <span class="tex">b</span> forces both to be <b>negative</b>. For <span class="tex">x^2-8x+15</span> we need product <span class="tex">15</span> and sum <span class="tex">-8</span>. That is <span class="tex">-3</span> and <span class="tex">-5</span>, so <span class="tex">x^2-8x+15=(x-3)(x-5)</span>.</p>
+  <div class="def"><b>Rule of thumb:</b> <span class="tex">c</span> positive <span class="tex">\Rightarrow</span> both numbers have the <b>same sign</b>, and that sign <b>matches <span class="tex">b</span></b>.</div>
+  <div class="u4l3-signs">
+    <div class="hd"></div><div class="hd"><span class="tex">b</span> positive</div><div class="hd"><span class="tex">b</span> negative</div>
+    <div class="hd"><span class="tex">c</span> positive</div><div class="pp">both <b class="p">&nbsp;positive</b> <span class="muted small">&nbsp;&nbsp;<span class="tex">x^2+7x+12</span>: 3, 4</span></div><div class="pn">both <b class="n">&nbsp;negative</b> <span class="muted small">&nbsp;&nbsp;<span class="tex">x^2-7x+12</span>: −3, −4</span></div>
+  </div>
+  <div class="explainer" data-explainer="signFlip"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Same numbers, different signs.</b> <span class="tex">x^2+7x+12=(x+3)(x+4)</span> but <span class="tex">x^2-7x+12=(x-3)(x-4)</span>. Only the sign of <span class="tex">b</span> changed, so only the signs in the brackets change.</div></div>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Factoring with both negative">
+  <h3 class="sub">Factoring with both numbers negative</h3>
+  <p>Same steps as before. List the pairs that multiply to <span class="tex">c</span>, make them both negative, and find the pair that adds to <span class="tex">b</span>.</p>
+  <div class="explainer" data-explainer="inspectB"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Both numbers negative</h3></div>
+  <p class="q">Factor each trinomial. In each case both numbers in your factors should be negative.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2-7x+12</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product <span class="tex">12</span>, sum <span class="tex">-7</span>: <b>−3 and −4</b><br><span class="tex">=\boldsymbol{(x-3)(x-4)}</span><br><span class="u4l3-ack">Check: <span class="tex">x^2-4x-3x+12=x^2-7x+12</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2-9x+18</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product <span class="tex">18</span>, sum <span class="tex">-9</span>: <b>−3 and −6</b><br><span class="tex">=\boldsymbol{(x-3)(x-6)}</span><br><span class="u4l3-ack">Check: <span class="tex">x^2-6x-3x+18=x^2-9x+18</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x^2-11x+24</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product <span class="tex">24</span>, sum <span class="tex">-11</span>: <b>−3 and −8</b><br><span class="tex">=\boldsymbol{(x-3)(x-8)}</span><br><span class="u4l3-ack">Check: <span class="tex">x^2-8x-3x+24=x^2-11x+24</span> ✓</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u4l3"></section>
+
+<!-- ================= 5. Checking, and common factors ================= -->
+<section class="card" data-ink="s5" data-section="5. Checking Your Answer">
+  <div class="sec-h"><span class="badge">5</span><h2>Checking Your Answer, and Common Factors</h2></div>
+  <p>Check any factoring by <b>expanding it back</b> with FOIL. If you get the original trinomial, you are correct. Factoring is expanding run backwards, so the check runs it forwards.</p>
+  <div class="explainer" data-explainer="errorCheck"></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>A quick second check:</b> put <span class="tex">x=2</span> into both forms. They must give the same number. For <span class="tex">x^2+13x+30=(x+3)(x+10)</span>: <span class="keys"><kbd>2</kbd><kbd>x²</kbd><kbd>+</kbd><kbd>1</kbd><kbd>3</kbd><kbd>×</kbd><kbd>2</kbd><kbd>+</kbd><kbd>3</kbd><kbd>0</kbd><kbd>=</kbd></span> and <span class="keys"><kbd>(</kbd><kbd>2</kbd><kbd>+</kbd><kbd>3</kbd><kbd>)</kbd><kbd>×</kbd><kbd>(</kbd><kbd>2</kbd><kbd>+</kbd><kbd>1</kbd><kbd>0</kbd><kbd>)</kbd><kbd>=</kbd></span> both give 60 ✓ (Use 2 or 3, not 0 or 1.)</div>
+    <div class="pill-col"><button class="pill" data-keys="2 x² + 13 × 2 + 30 =">Show trinomial</button><button class="pill" data-keys="( 2 + 3 ) × ( 2 + 10 ) =">Show factored</button></div>
+  </div>
+</section>
+
+<section class="card" data-ink="s5b" data-section="5. Common factor first">
+  <h3 class="sub">Common factor first</h3>
+  <div class="def">If the terms share a <b>common factor</b>, remove it <b>first</b>. Factoring is not finished until nothing more can be factored.</div>
+  <div class="explainer" data-explainer="inspectC"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Keep the common factor in your answer.</b> <span class="tex">3x^2+15x+18=3(x+2)(x+3)</span>. Writing only <span class="tex">(x+2)(x+3)</span> loses the 3, and that is a different trinomial.</div></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Check, factor, and factor completely</h3></div>
+  <p class="q">Complete each of the following.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) It is claimed that <span class="tex">x^2+13x+30=(x+3)(x+10)</span>. Check by expanding with FOIL.</div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(x+3)(x+10)</span><br><span class="tex">=x^2+10x+3x+30</span><br><span class="tex">=x^2+13x+30</span><br>It matches: the claim is <b>correct</b> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) Factor <span class="tex">x^2+13x+36</span>.</div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product <span class="tex">36</span>, sum <span class="tex">13</span>: <b>4 and 9</b><br><span class="tex">=\boldsymbol{(x+4)(x+9)}</span><br><span class="u4l3-ack">Check: <span class="tex">x^2+9x+4x+36=x^2+13x+36</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl">(c) Factor completely: <span class="tex">3x^2+27x+60</span>. <span class="muted">(Remove the common factor first.)</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">3</span>: <span class="tex">3(x^2+9x+20)</span><br>Product <span class="tex">20</span>, sum <span class="tex">9</span>: <b>4 and 5</b><br><span class="tex">=\boldsymbol{3(x+4)(x+5)}</span><br><span class="u4l3-ack">Check: <span class="tex">3(x^2+9x+20)=3x^2+27x+60</span> ✓</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Backwards FOIL:</b> <span class="tex">(x+p)(x+q)=x^2+(p+q)x+pq</span>. So <span class="tex">b</span> is the <b>sum</b> of the two numbers and <span class="tex">c</span> is their <b>product</b>.</div>
+    <div><b>The search:</b> list the pairs that multiply to <span class="tex">c</span>, then pick the pair that adds to <span class="tex">b</span>. <span class="tex">x^2+11x+18</span>: 2 and 9, so <span class="tex">(x+2)(x+9)</span>.</div>
+    <div><b>Signs:</b> <span class="tex">c</span> positive means the same sign, and it <b>matches <span class="tex">b</span></b>. <span class="tex">x^2+7x+12=(x+3)(x+4)</span>; <span class="tex">x^2-7x+12=(x-3)(x-4)</span>.</div>
+    <div><b>Common factor first</b>, then the pair: <span class="tex">3x^2+27x+60=3(x+4)(x+5)</span>. Always <b>check by expanding</b>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u4l3">
+    <div><div class="kicker">Your turn</div><b>Assignment 3 — Factoring Trinomials <span class="tex">x^2+bx+c</span>, Part 1: <span class="tex">c</span> Positive</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l4/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 4 — Factoring Trinomials <span class="tex">x^2+bx+c</span>, Part 2: <span class="tex">c</span> Negative</b><div class="muted">A negative <span class="tex">c</span> means opposite signs: <span class="tex">x^2+3x-18=(x+6)(x-3)</span></div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u4l3.js';
+  boot({ key: 'u4l3', homeHref: '../../', title: '4.3 Trinomials, c Positive' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

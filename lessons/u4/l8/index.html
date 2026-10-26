@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Choosing a Factoring Strategy · Math 15 4.8</title>
+<meta name="description" content="Math 15 Unit 4 Lesson 8: choosing a factoring strategy. The five methods side by side and the factoring checklist: GCF first, count the terms, then check whether any factor can be factored again. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u4l8.css">
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 4 Factoring · Lesson 8</div>
+  <h1>Choosing a Factoring Strategy</h1>
+  <p class="lede">No new technique today! You already know five ways to factor. The new skill is <b>picking the right one</b> for an expression you’ve never seen. We’ll use a short <b>checklist</b> that works every single time.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>name the five factoring methods and the <b>clue</b> that tells me to use each one</li>
+      <li>follow the checklist: <b>GCF first</b>, then <b>count the terms</b>, then <b>check</b> every factor</li>
+      <li>spot when taking out a GCF uncovers a difference of squares or an easier trinomial</li>
+      <li>factor an expression <b>completely</b> and check my answer by expanding</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN5</b> Demonstrate an understanding of common factors and trinomial factoring, concretely, pictorially and symbolically.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Pick the Right Tool" style="--wf-side: 318px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Pick the Right Tool</h2>
+  <p class="wf-rule">Each job needs a tool. Use each tool’s <b>clue</b> to find its job. <span class="muted">Tap a job to see its tool.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+
+  <div class="u4l8-board" id="u4l8-tools"></div>
+  <div class="u4l8-jobs" id="u4l8-jobs"></div>
+
+  <div class="u4l8-wqs">
+    <div class="bk-wq" data-jobs="1"><div class="q-line"><div class="q-num">1</div><div>Job 1 is <span class="tex">5x+20</span>. Which tool?</div><button class="pill small" type="button" data-bk-toggle>Answer</button></div>
+      <div class="bk-ans"><b>A, the hammer</b> (GCF): <span class="tex">5x+20=5(x+4)</span>.</div></div>
+    <div class="bk-wq" data-jobs="2,3,4,5"><div class="q-line"><div class="q-num">2</div><div>Match Jobs 2–5 to tools B–E. Each tool is used <b>once</b>.</div><button class="pill small" type="button" data-bk-toggle>Answer</button></div>
+      <div class="bk-ans">2 → C <span class="tex">(x+3)^2</span> · 3 → E <span class="tex">(2x+1)(x+3)</span> · 4 → B <span class="tex">(x-7)(x+7)</span> · 5 → D <span class="tex">(x+2)(x+5)</span>. <span class="muted">(Job 2 also works with D, but 10 isn’t a square, so Job 5 must take D.)</span></div></div>
+    <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Jobs 4 and 5 both start with <span class="tex">x^2</span>. What quick <b>count</b> tells them apart?</div><button class="pill small" type="button" data-bk-toggle>Answer</button></div>
+      <div class="bk-ans">Count the <b>terms</b>: Job 4 has 2 terms (square − square), Job 5 has 3.</div></div>
+  </div>
+
+  </div><div class="wf-side">
+
+  <div class="poll wf-poll" data-jobs="6">
+    <div class="q-line"><div class="q-num big-one">!</div><b>The big one.</b> Job 6 is <span class="u4l8-nw"><span class="tex">2x^2-50</span></span>. Neither <span class="tex">2x^2</span> nor <span class="tex">50</span> is a perfect square! How many tools does it take to fix it <b>completely</b>? <b>Guess first,</b> then name the tools in order.</div>
+    <div class="poll-opts">
+      <div class="opt"><b>A</b> 1</div>
+      <div class="opt right"><b>B</b> 2</div>
+      <div class="opt"><b>C</b> 3</div>
+    </div>
+    <button class="pill" type="button" data-poll-reveal>Reveal</button>
+    <div class="poll-ans"><b>B, two tools: hammer, then pliers.</b> <span class="tex">2x^2-50=2(x^2-25)=2(x-5)(x+5)</span>. The GCF <b>uncovers</b> a difference of squares that was hiding. <span class="muted">Stopping at <span class="tex">2(x^2-25)</span> is one tool short.</span></div>
+  </div>
+  </div></div>
+
+  <div class="bk-wq u4l8-yt"><div class="q-line"><div class="q-num">→</div><div><b>Your turn:</b> invent a job that needs the <b>hammer</b> and the <b>wrench</b>. Can your neighbour fix it?</div><button class="pill small" type="button" data-bk-toggle>Answer</button></div>
+    <div class="bk-ans">For example <span class="tex">2x^2+12x+18=2(x^2+6x+9)=2(x+3)^2</span>, or <span class="tex">3x^2+6x+3=3(x+1)^2</span>.</div></div>
+</section>
+
+<!-- ================= 1. The five methods ================= -->
+<section class="card" data-ink="s1" data-section="1. The Five Methods">
+  <div class="sec-h"><span class="badge">1</span><h2>The Five Methods, Side by Side</h2></div>
+  <p>You already know how to run each method. The new skill is picking the right one. Everything from Lessons 1–7 fits in this one table.</p>
+  <table class="u4l8-tbl">
+    <thead><tr><th>Method</th><th>Terms</th><th>What to look for</th><th>Pattern</th></tr></thead>
+    <tbody>
+      <tr class="k1"><td><span class="u4l8-tl">A</span><b>GCF</b></td><td>any</td><td>Every term shares a common factor</td><td><span class="tex">ab+ac=a(b+c)</span></td></tr>
+      <tr class="k2"><td><span class="u4l8-tl">B</span><b>Difference of squares</b></td><td>2</td><td>Two perfect squares with a <b>subtraction</b> between them</td><td><span class="tex">a^2-b^2=(a-b)(a+b)</span></td></tr>
+      <tr class="k5"><td><span class="u4l8-tl">C</span><b>Perfect square trinomial</b></td><td>3</td><td>First and last terms are perfect squares; middle is <span class="tex">2\times</span>(their roots)</td><td><span class="tex">a^2\pm2ab+b^2=(a\pm b)^2</span></td></tr>
+      <tr class="k3"><td><span class="u4l8-tl">D</span><b>Trinomial, <span class="tex">a=1</span></b></td><td>3</td><td>Leading coefficient is 1</td><td>Two numbers: product <span class="tex">c</span>, sum <span class="tex">b</span></td></tr>
+      <tr class="k4"><td><span class="u4l8-tl">E</span><b>Trinomial, <span class="tex">a\neq1</span></b></td><td>3</td><td>Leading coefficient is not 1</td><td>Two numbers: product <span class="tex">ac</span>, sum <span class="tex">b</span> (decomposition)</td></tr>
+    </tbody>
+  </table>
+  <p class="small muted">The letters match the warm-up’s tools: A hammer, B pliers, C wrench, D screwdriver, E saw.</p>
+  <div class="explainer" data-explainer="toolMatch"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Name the method</h3></div>
+  <p class="q">Name the method (or methods, in order) you would use. Do <b>not</b> factor yet.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2-4</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Two terms, both perfect squares, subtraction: <b>difference of squares</b></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2+7x+12</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Three terms, <span class="tex">a=1</span>, 12 isn’t a square: <b>trinomial by inspection</b></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">4x^2-8x</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Both terms share <span class="tex">4x</span>: <b>GCF only</b></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">3x^2+13x+4</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Three terms with <span class="tex">a=3\neq1</span>: <b>decomposition</b></div></div></div>
+    <div class="part"><div class="pl">(e) <span class="tex">x^2+10x+25</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">25=5^2</span> and <span class="tex">2(x)(5)=10x</span>: <b>perfect square trinomial</b></div></div></div>
+    <div class="part"><div class="pl">(f) <span class="tex">2x^2-50</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>GCF first</b>, then the two terms left are a <b>difference of squares</b>.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. The checklist ================= -->
+<section class="card" data-ink="s2" data-section="2. The Factoring Checklist">
+  <div class="sec-h"><span class="badge">2</span><h2>The Factoring Strategy Checklist</h2></div>
+  <p>Work these steps <b>in order, every single time</b>:</p>
+  <div class="u4l8-steps">
+    <div class="k1"><b class="n">1</b><span class="h">GCF first</span>Factor out the GCF. This is the <b>most commonly missed</b> step.</div>
+    <div class="k3"><b class="n">2</b><span class="h">Count the terms left</span><b>2 terms:</b> difference of squares? <b>3 terms:</b> perfect square first; otherwise inspection (<span class="tex">a=1</span>) or decomposition (<span class="tex">a\neq1</span>). <b>4+ terms:</b> grouping (a future lesson).</div>
+    <div class="k6"><b class="n">3</b><span class="h">Check every factor</span>Can any factor be factored <b>again</b>? Stopping one step early is the other common mistake.</div>
+  </div>
+  <p>The checklist is often drawn as a <b>flowchart</b>. Pick an expression and step through it: the path lights up one decision at a time, and the written work builds on the right.</p>
+  <div class="explainer" data-explainer="flow"></div>
+  <p class="small muted">The dashed “yes” loop is Step 3: a factor that can still be factored goes back to the top of the chart on its own.</p>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Perfect Square? Check First">
+  <h3 class="sub">Three terms? Check for a perfect square first</h3>
+  <p>A perfect square trinomial is quick to factor, but only if you <b>notice</b> it. Three questions: is the first term a perfect square? Is the last term? Is the middle term <span class="tex">2\times</span>(the two roots)?</p>
+  <div class="explainer" data-explainer="psqTest"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>The last term of a perfect square trinomial is always positive.</b> <span class="tex">(a-b)^2=a^2-2ab+b^2</span> ends in <span class="tex">+b^2</span>. If the last term is negative, skip straight to inspection or decomposition.</div></div>
+</section>
+
+<!-- ================= 3. GCF then trinomial ================= -->
+<section class="card" data-ink="s3" data-section="3. GCF, Then a Trinomial">
+  <div class="sec-h"><span class="badge">3</span><h2>The Checklist in Action: GCF, Then a Trinomial</h2></div>
+  <p>Factor <span class="tex">2x^2+20x+42</span>.</p>
+  <div class="u4l8-run">
+    <div class="k1"><b class="n">1</b><div>Every term is divisible by 2, so <span class="tex">2x^2+20x+42=2(x^2+10x+21)</span>.</div></div>
+    <div class="k3"><b class="n">2</b><div>Three terms remain. 21 is not a perfect square, so this is <b>not</b> a perfect square trinomial. The leading coefficient is 1, so find two numbers with product 21 and sum 10: <b>7 and 3</b>. That gives <span class="tex">2(x+7)(x+3)</span>.</div></div>
+    <div class="k6"><b class="n">3</b><div>Neither binomial factors again, so we are <b>finished</b>: <span class="tex">\boldsymbol{2x^2+20x+42=2(x+7)(x+3)}</span></div></div>
+  </div>
+  <p class="small muted">Taking out the 2 first turned a decomposition (<span class="tex">ac=84</span>) into an easy inspection (product 21).</p>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>GCF, then a trinomial</h3></div>
+  <p class="q">Factor completely.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">2x^2+14x+20</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Step 1: GCF 2: <span class="tex">2(x^2+7x+10)</span><br>Step 2: product 10, sum 7: <b>2 and 5</b><br><span class="tex">=\boldsymbol{2(x+2)(x+5)}</span><br>Step 3: neither binomial factors further ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">4x^2-8x-60</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Step 1: GCF 4: <span class="tex">4(x^2-2x-15)</span><br>Step 2: product <span class="tex">-15</span>, sum <span class="tex">-2</span>: <b><span class="tex">-5</span> and 3</b><br><span class="tex">=\boldsymbol{4(x-5)(x+3)}</span><br>Step 3: neither binomial factors further ✓</div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 4. GCF then difference of squares ================= -->
+<section class="card" data-ink="s4" data-section="4. GCF, Then a Difference of Squares">
+  <div class="sec-h"><span class="badge">4</span><h2>Two-Step Factoring: GCF, Then a Difference of Squares</h2></div>
+  <p>When a two-term expression is not a difference of squares as written, remove the GCF and <b>look again</b>:</p>
+  <p class="display u4l8-big"><span class="tex">4x^2-64=4(x^2-16)=4(x-4)(x+4)</span></p>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t stop one step too early.</b> Leaving the answer as <span class="tex">4(x^2-16)</span> is not finished: <span class="tex">x^2-16</span> is still a difference of squares.</div></div>
+  <div class="explainer" data-explainer="hiddenDos"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Two steps</h3></div>
+  <p class="q">Factor completely. (Hint: this will take two steps.)</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">4x^2-64</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF 4: <span class="tex">4(x^2-16)</span><br><span class="tex">x^2-16</span> is a difference of squares:<br><span class="tex">=\boldsymbol{4(x-4)(x+4)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">6x^2-24</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF 6: <span class="tex">6(x^2-4)</span><br><span class="tex">x^2-4</span> is a difference of squares:<br><span class="tex">=\boldsymbol{6(x-2)(x+2)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u4l8"></section>
+
+<!-- ================= 5. Mixed practice ================= -->
+<section class="card" data-ink="s5" data-section="5. Mixed Practice">
+  <div class="sec-h"><span class="badge">5</span><h2>Mixed Practice</h2></div>
+  <p>With no hint to tell you which method applies, run the checklist from the top: <b>GCF</b>, then <b>count terms</b>, then <b>check the factors</b>. An answer can be <b>true</b> but still <b>not finished</b>. Step 3 catches that:</p>
+  <div class="explainer" data-explainer="finished"></div>
+</section>
+
+<section class="card" data-ink="s5b" data-section="5. Check by Expanding">
+  <h3 class="sub">Is it right? Confirm by expanding</h3>
+  <p>Factoring is expanding run backwards. So expand your answer: if you get the question back, the factoring is right. A quick extra check: put <span class="tex">x=1</span> into both forms.</p>
+  <div class="explainer" data-explainer="expand"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>No hints</h3></div>
+  <p class="q">Factor completely.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2-64</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">No GCF; two terms, both squares:<br><span class="tex">=\boldsymbol{(x-8)(x+8)}</span><br>Check: <span class="tex">x^2+8x-8x-64=x^2-64</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2-3x-40</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">No GCF; three terms, <span class="tex">a=1</span>.<br>Product <span class="tex">-40</span>, sum <span class="tex">-3</span>: <b><span class="tex">-8</span> and 5</b><br><span class="tex">=\boldsymbol{(x-8)(x+5)}</span><br>Check: <span class="tex">x^2+5x-8x-40=x^2-3x-40</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>No hints, part 2</h3></div>
+  <p class="q">Factor completely.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">3x^2+11x+6</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">No GCF; <span class="tex">a=3</span>, so decompose.<br><span class="tex">ac=18</span>, sum 11: <b>9 and 2</b><br><span class="tex">3x^2+9x+2x+6=3x(x+3)+2(x+3)</span><br><span class="tex">=\boldsymbol{(x+3)(3x+2)}</span><br>Check: <span class="tex">3x^2+2x+9x+6=3x^2+11x+6</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2-12x+36</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">36=6^2</span> and <span class="tex">2(x)(6)=12x</span>: a perfect square trinomial.<br><span class="tex">=\boldsymbol{(x-6)^2}</span><br>Check: <span class="tex">x^2-6x-6x+36=x^2-12x+36</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s5c" data-section="5. Lightning Round">
+  <h3 class="sub">Lightning round: which tools?</h3>
+  <p>Say the tools out loud first, then tap a row to check the route and the answer.</p>
+  <div class="u4l8-lr" id="u4l8-lr"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Five methods, five clues:</b> GCF (shared factor), difference of squares (2 terms, square − square), perfect square (square, <span class="tex">2\times</span>, square), <span class="tex">a=1</span> (product <span class="tex">c</span>, sum <span class="tex">b</span>), <span class="tex">a\neq1</span> (product <span class="tex">ac</span>, sum <span class="tex">b</span>).</div>
+    <div><b>Step 1, every time: GCF first.</b> It can uncover a difference of squares (<span class="tex">2x^2-50</span>) or make a trinomial easier.</div>
+    <div><b>Step 2: count the terms left.</b> 2 → difference of squares. 3 → perfect square first, then inspection or decomposition.</div>
+    <div><b>Step 3: check every factor.</b> Can any factor be factored again? Then <b>check by expanding</b>: factoring is expanding run backwards.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u4l8">
+    <div><div class="kicker">Your turn</div><b>Assignment 8 — Choosing a Factoring Strategy</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l9/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 9 — Solving Polynomial Equations by Factoring</b><div class="muted">If <span class="tex">(x-5)(x+5)=0</span>, what could <span class="tex">x</span> be? Factoring helps us solve equations.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u4l8.js';
+  boot({ key: 'u4l8', homeHref: '../../', title: '4.8 Choosing a Factoring Strategy' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>
