@@ -1,22 +1,28 @@
-# Math 10C
+# Math 15
 
-Everything for Mr. Cathcart's Math 10C, in one site: https://rmcathcart-lab.github.io/math10c/
+Everything for Mr. Cathcart's Math 15, in one site: https://rmcathcart-lab.github.io/math15/
+
+It is the Math 10C site's engine (https://github.com/rmcathcart-lab/math10c) with the Math 15 course: its own catalog
+(`js/catalog.js`, 8 units), navy accent colour, embroidered outcome badges (`js/badges.js`) instead of the 10C medals,
+and its own Apps Script backends. Math 15 uses the Math 15 outcome codes (AN1–AN5, RF1–RF9) at introductory expectations.
 
 | Part | Where | Repo folder |
 |---|---|---|
-| **Practice** (students: homework with generated questions, sign-in, progress) | `/math10c/` | root (`index.html`, `js/`, `assets/`) |
-| **Lessons** (projected from the iPad with Apple Pencil ink; students view the class notes with `?class=B`) | `/math10c/lessons/` | `lessons/` (see `lessons/README.md`, `lessons/LESSON_BRIEF.md`) |
-| **Teacher dashboard** (Teacher Ledger) | `/math10c/teacher/` | `teacher/` |
+| **Practice** (students: homework with generated questions, sign-in, progress) | `/math15/` | root (`index.html`, `js/`, `assets/`) |
+| **Lessons** (projected from the iPad with Apple Pencil ink; students view the class notes with `?class=B`) | `/math15/lessons/` | `lessons/` (see `lessons/README.md`, `lessons/LESSON_BRIEF.md`) |
+| **Teacher dashboard** (Teacher Ledger) | `/math15/teacher/` | `teacher/` |
 
-The lesson pages share the practice site's calculator (`js/calc.js`) and KaTeX (`assets/katex`). Each has its own Apps Script
-backend (`backend/Code.gs` = Teacher Ledger, `lessons/backend/Code.gs` = Teaching Ink).
+Each part with a server has its own Apps Script backend (`backend/Code.gs` = Teacher Ledger, `lessons/backend/Code.gs` =
+Teaching Ink); their web-app URLs go in `js/config.js` and `lessons/js/config.js`.
 
 **Publishing:** GitHub Pages builds from the `gh-pages` branch, so push `main` to both: `git push origin main main:gh-pages`.
-(This replaces the old separate `math10C-practice` and `math10c-teaching` repos; their full history is included here.)
+
+**Built so far:** Unit 4 (Factoring Polynomial Expressions): 10 lesson pages, 10 practice assignments with extra practice,
+an exit slip per lesson and the unit test. The other units show as "coming soon".
 
 # Practice
 
-Homework practice for every Math 10C lesson, built from the course booklets. Every question is a generator: it keeps the idea and difficulty of the booklet question and changes the numbers, so each student gets their own version (the same on every device) and a fresh one whenever they need it.
+Homework practice for every Math 15 lesson, built from the course booklets. Every question is a generator: it keeps the idea and difficulty of the booklet question and changes the numbers, so each student gets their own version (the same on every device) and a fresh one whenever they need it.
 
 - **Students:** `index.html`. Sign in with the class code (or the class link/QR code), pick your name, make a 4-digit PIN.
 - **Teacher:** `teacher/` (the Teacher Ledger). Needs the teacher key from the Apps Script project.
@@ -56,11 +62,11 @@ Homework practice for every Math 10C lesson, built from the course booklets. Eve
 
 ## Backend
 
-`backend/Code.gs` runs as an Apps Script web app (Execute as: me · Who has access: Anyone) and writes to the "Math 10C Practice Ledger" spreadsheet: Roster, Attempts, Events, Progress, Days. Run `setup()` once; the teacher key is in Project Settings → Script properties. Put the web-app URL in `js/config.js`. After changing `Code.gs`, deploy a **new version of the same deployment** so the URL stays the same.
+`backend/Code.gs` runs as an Apps Script web app (Execute as: me · Who has access: Anyone) and writes to the "Math 15 Practice Ledger" spreadsheet: Roster, Attempts, Events, Progress, Days. Run `setup()` once; the teacher key is in Project Settings → Script properties. Put the web-app URL in `js/config.js`. After changing `Code.gs`, deploy a **new version of the same deployment** so the URL stays the same.
 
 ## Link to the teaching site
 
 The home page shows a small **Lesson** card to the left of each assignment, and the lesson sidebar starts with a
-**Go to the lesson** button. Both open the same lesson on the Math 10C Teaching site in a new tab (`HW.TEACHING` in
+**Go to the lesson** button. Both open the same lesson on the Math 15 Teaching site in a new tab (`HW.TEACHING` in
 `js/catalog.js` lists the lessons it has), with `?class=<block>` so the student sees that class's notes. The block is the one set for the class in the dashboard's Settings; without one, a final letter
 A–D in the class code (e.g. `10c-b`) is used, otherwise the link has no class.
