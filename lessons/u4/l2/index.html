@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Common Factors: Finding and Removing the GCF · Math 15 4.2</title>
+<meta name="description" content="Math 15 Unit 4 Lesson 2: factoring by removing the greatest common factor from binomials and trinomials, GCFs that include a variable, and taking out a negative GCF so the bracket starts positive. Check every factoring by expanding. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u4l2.css">
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 4 Factoring · Lesson 2</div>
+  <h1>Common Factors: Finding and Removing the GCF</h1>
+  <p class="lede">Last lesson: <b>factoring is expanding run backwards</b>, and the <b>GCF</b> is the biggest thing every term shares. Today we <b>remove the GCF</b> from longer expressions: two terms, three terms, terms with letters, and expressions that start with a <b>negative</b>. Every answer gets <b>checked by expanding</b>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>factor a <b>binomial</b> or a <b>trinomial</b> by removing the GCF: find it, divide <b>every</b> term, write GCF(what’s left)</li>
+      <li>include a <b>letter</b> in the GCF when every term has it, at its <b>lowest</b> power</li>
+      <li>keep the <b>1</b> when a term equals the GCF</li>
+      <li>take out a <b>negative</b> GCF when the first term is negative, so the bracket starts positive</li>
+      <li><b>check</b> every factoring by expanding it back out</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN5</b> Demonstrate an understanding of common factors and trinomial factoring, concretely, pictorially and symbolically.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Party Bag Puzzle" style="--wf-side: 320px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Party Bag Puzzle</h2>
+  <p class="wf-rule">You have <b>24 candies</b> and <b>36 stickers</b>. Pack <b>all</b> of it into <b>identical</b> bags, with nothing left over.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u4l2-pbox" id="u4l2-party"></div>
+    <div class="u4l2-wqs">
+      <div class="wq bk-wq">
+        <div class="q-line"><div class="q-num">1</div><div>Can you make <b>6</b> identical bags? What goes in each one?</div></div>
+        <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>Yes:</b> <span class="tex">24\div6=4</span> and <span class="tex">36\div6=6</span>, so each bag gets <b>4 candies + 6 stickers</b>.</div></div>
+      </div>
+      <div class="wq bk-wq">
+        <div class="q-line"><div class="q-num">2</div><div>Why <b>won’t</b> 8 bags work?</div></div>
+        <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans">The candies split (<span class="tex">24\div8=3</span>) but the stickers don’t: <span class="tex">8\times4=32</span> leaves <b>4 stickers</b> over. 8 is a factor of 24 but <b>not</b> of 36.</div></div>
+      </div>
+    </div>
+  </div><div class="wf-side">
+    <div class="wq bk-wq">
+      <div class="q-line"><div class="q-num">3</div><div>What’s the <b>most</b> bags you can make? What goes in each one?</div></div>
+      <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>12 bags</b>, each with <b>2 candies + 3 stickers</b>. The bag counts that work are the common factors 1, 2, 3, 4, 6, 12. The biggest, 12, is the <b>GCF</b> of 24 and 36.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A friend shows up with <b>25 balloons</b>. Every candy, sticker <b>and</b> balloon must still go in identical bags. Now what’s the most bags? <b>Guess first.</b></div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b> 12</div>
+        <div class="opt"><b>B</b> 5</div>
+        <div class="opt"><b>C</b> 25</div>
+        <div class="opt right"><b>D</b> 1</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D, just 1 bag!</b> <span class="tex">25=5\times5</span> shares no factor with 24 except 1, so no bag count bigger than 1 splits all three piles. One awkward pile wrecks the whole party.</div>
+    </div>
+  </div></div>
+
+  <div class="wq bk-wq wq-wide">
+    <div class="q-line"><div class="q-num bonus">+</div><div><b>With a neighbour.</b> Swap the 25 balloons for a number that keeps it at <b>12 bags</b>. What’s the smallest one that works? The biggest under 100?</div></div>
+    <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans">It must be a <b>multiple of 12</b>. Smallest: <b>12</b> (1 per bag). Biggest under 100: <b>96</b> (8 per bag).</div></div>
+  </div>
+  <div class="u4l2-bridge">Let <span class="tex">c</span> = a candy and <span class="tex">s</span> = a sticker. The whole pile is <span class="tex">24c+36s=12(2c+3s)</span>. The <b>GCF</b> is the number of bags; the <b>bracket</b> is one bag. Removing the GCF is packing party bags!</div>
+</section>
+
+<!-- ================= 1. Recall the GCF, then remove it ================= -->
+<section class="card" data-ink="s1" data-section="1. Recall the GCF, Then Remove It">
+  <div class="sec-h"><span class="badge">1</span><h2>Recall the GCF, Then Remove It</h2></div>
+  <div class="def">The <b>GCF</b> of a set of monomials is the GCF of the numbers times each <b>common letter</b> at its <b>lowest</b> exponent. The GCF of <span class="tex">12x^2</span> and <span class="tex">18x</span> is <span class="tex">6x</span>.</div>
+  <div class="u4l2-steps">
+    <div><b>1</b><span><b>Find</b> the GCF</span></div>
+    <div><b>2</b><span><b>Divide</b> every term by it</span></div>
+    <div><b>3</b><span><b>Write</b> GCF(what’s left)</span></div>
+    <div><b>4</b><span><b>Check</b> by expanding</span></div>
+  </div>
+  <p>Example: <span class="tex">10x+15=5(2x+3)</span>, because <span class="tex">5(2x+3)=10x+15</span> ✓</p>
+  <div class="explainer" data-explainer="bags"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Remove the GCF from a binomial</h3></div>
+  <p class="q">Factor each binomial by removing the GCF. Verify by expanding.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">6x+8</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=2</span><br><span class="tex">=\boldsymbol{2(3x+4)}</span><br>Check: <span class="tex">6x+8</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">12y-9</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=3</span><br><span class="tex">=\boldsymbol{3(4y-3)}</span><br>Check: <span class="tex">12y-9</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">10a+25</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=5</span><br><span class="tex">=\boldsymbol{5(2a+5)}</span><br>Check: <span class="tex">10a+25</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">14b-21</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=7</span><br><span class="tex">=\boldsymbol{7(2b-3)}</span><br>Check: <span class="tex">14b-21</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Factoring a trinomial ================= -->
+<section class="card" data-ink="s2" data-section="2. Factoring a Trinomial">
+  <div class="sec-h"><span class="badge">2</span><h2>Factoring a Trinomial</h2></div>
+  <p>The same routine works on <b>three</b> terms. There is just one more term to divide in Step 2. For <span class="tex">6x^2+12x+18</span>, the GCF is 6, and dividing each term gives <span class="tex">6(x^2+2x+3)</span>.</p>
+  <div class="explainer" data-explainer="pullT"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t drop the 1.</b> When a term <b>equals</b> the GCF, dividing leaves a 1: <span class="tex">3x^2+6x+3=3(x^2+2x+\boldsymbol{1})</span>, not <span class="tex">3(x^2+2x)</span>. Expanding would catch it: <span class="tex">3(x^2+2x)</span> is missing the <span class="tex">+3</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Remove the GCF from a trinomial</h3></div>
+  <p class="q">Factor each trinomial by removing the GCF. Verify by expanding.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">3x^2+6x+9</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=3</span> (no <span class="tex">x</span>: the last term has none)<br><span class="tex">=\boldsymbol{3(x^2+2x+3)}</span><br>Check: <span class="tex">3x^2+6x+9</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">10a^2-15a-25</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=5</span><br><span class="tex">=\boldsymbol{5(2a^2-3a-5)}</span><br>Check: <span class="tex">10a^2-15a-25</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">8y^2+12y-4</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=4</span><br><span class="tex">=\boldsymbol{4(2y^2+3y-1)}</span><br>(<span class="tex">-4\div4=-1</span>: keep the 1.)</div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. A GCF that includes a variable ================= -->
+<section class="card" data-ink="s3" data-section="3. A GCF That Includes a Variable">
+  <div class="sec-h"><span class="badge">3</span><h2>A GCF That Includes a Variable</h2></div>
+  <p>If <b>every</b> term shares a letter, that letter joins the GCF at its <b>lowest</b> exponent. For <span class="tex">8x^3+12x^2</span>: the GCF of 8 and 12 is 4, and the lowest power of <span class="tex">x</span> is <span class="tex">x^2</span>. So the GCF is <span class="tex">4x^2</span>, and <span class="tex">8x^3+12x^2=4x^2(2x+3)</span>.</p>
+  <div class="explainer" data-explainer="lowest"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Dividing by the GCF">
+  <h3 class="sub">Dividing by a GCF with letters: cancel what matches</h3>
+  <p>To divide a term by the GCF, write both as factors and <b>cancel</b> the matching ones. Whatever is left on top goes in the bracket.</p>
+  <div class="explainer" data-explainer="cancel"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Lowest power, not highest.</b> In <span class="tex">8x^3+12x^2</span> you can’t take out <span class="tex">x^3</span>: the term <span class="tex">12x^2</span> only has two <span class="tex">x</span>’s to give.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>A GCF with a variable</h3></div>
+  <p class="q">Factor each polynomial by removing a GCF that includes a variable. Verify by expanding.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">8x^3+12x^2</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=4x^2</span><br><span class="tex">=\boldsymbol{4x^2(2x+3)}</span><br>Check: <span class="tex">8x^3+12x^2</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">12a^2b+18ab^2</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Numbers: 6; letters: <span class="tex">ab</span>.<br><span class="tex">=\boldsymbol{6ab(2a+3b)}</span><br>Check: <span class="tex">12a^2b+18ab^2</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">4x^3+8x^2+12x</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=4x</span> (the lowest power is <span class="tex">x^1</span>)<br><span class="tex">=\boldsymbol{4x(x^2+2x+3)}</span><br>Check: <span class="tex">4x^3+8x^2+12x</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. A negative GCF ================= -->
+<section class="card" data-ink="s4" data-section="4. Special Case: A Negative GCF">
+  <div class="sec-h"><span class="badge">4</span><h2>Special Case: A Negative GCF</h2></div>
+  <div class="def amber">When the <b>first term is negative</b>, factor out a <b>negative</b> GCF, so that what’s left in the bracket starts with a <b>positive</b> term. For <span class="tex">-4x-12</span>, take out <span class="tex">-4</span> (not 4): <span class="tex">-4x\div(-4)=x</span> and <span class="tex">-12\div(-4)=3</span>, giving <span class="tex">-4(x+3)</span>.</div>
+  <div class="explainer" data-explainer="flipSigns"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Every sign flips, not just the first.</b> <span class="tex">-2x+8=-2(x\boldsymbol{-}4)</span>, because <span class="tex">8\div(-2)=-4</span>. Check: <span class="tex">-2\cdot(-4)=+8</span> ✓</div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Remove a negative GCF</h3></div>
+  <p class="q">Factor each polynomial by removing a <i>negative</i> GCF. Verify by expanding.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">-4x-12</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=-4</span><br><span class="tex">-4x\div(-4)=x</span>, <span class="tex">-12\div(-4)=3</span><br><span class="tex">=\boldsymbol{-4(x+3)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">-5a+15</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=-5</span><br><span class="tex">15\div(-5)=-3</span><br><span class="tex">=\boldsymbol{-5(a-3)}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">-3x^2+9x-6</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=-3</span>; every sign flips.<br><span class="tex">=\boldsymbol{-3(x^2-3x+2)}</span><br>Check: <span class="tex">-3x^2+9x-6</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u4l2"></section>
+
+<!-- ================= 5. Negative GCF with a variable ================= -->
+<section class="card" data-ink="s5" data-section="5. Negative GCF with a Variable">
+  <div class="sec-h"><span class="badge">5</span><h2>Putting It Together: Negative GCF with a Variable</h2></div>
+  <p>A GCF can carry a <b>negative sign</b> and a <b>letter</b> at the same time. For <span class="tex">-6x^3-15x^2</span>: the GCF of 6 and 15 is 3, the lowest power of <span class="tex">x</span> is <span class="tex">x^2</span>, and the first term is negative. So the GCF is <span class="tex">-3x^2</span>, and the factored form is <span class="tex">-3x^2(2x+5)</span>.</p>
+  <div class="u4l2-gcfparts">
+    <div><span class="u4l2-gk">sign</span><span class="tex">-</span><span class="u4l2-gw">first term negative</span></div>
+    <div class="u4l2-x">×</div>
+    <div><span class="u4l2-gk">number</span><span class="tex">3</span><span class="u4l2-gw">GCF of 6 and 15</span></div>
+    <div class="u4l2-x">×</div>
+    <div><span class="u4l2-gk">letters</span><span class="tex">x^2</span><span class="u4l2-gw">lowest power</span></div>
+    <div class="u4l2-x">=</div>
+    <div class="on"><span class="u4l2-gk">GCF</span><span class="tex">-3x^2</span><span class="u4l2-gw">take it out</span></div>
+  </div>
+  <div class="explainer" data-explainer="pullN"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Negative GCF with a variable</h3></div>
+  <p class="q">Factor each polynomial completely. Verify by expanding.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">-6x^3-15x^2</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=-3x^2</span><br><span class="tex">=\boldsymbol{-3x^2(2x+5)}</span><br>Check: <span class="tex">-6x^3-15x^2</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">-8a^3+12a^2-4a</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">=-4a</span><br><span class="tex">=\boldsymbol{-4a(2a^2-3a+1)}</span><br>(<span class="tex">-4a\div(-4a)=1</span>.)</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">-10x^2y-15xy^2</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Numbers 5, letters <span class="tex">xy</span>, first term negative.<br><span class="tex">=\boldsymbol{-5xy(2x+3y)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="err" data-section="Find the error">
+  <h3 class="sub">Find the error: four common mistakes</h3>
+  <p>Each student’s factoring has one mistake. <b>Expand</b> to find it, then fix it.</p>
+  <div class="explainer" data-explainer="findErr"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Find, divide, write, check.</b> Divide <b>every</b> term by the GCF, write GCF(what’s left), and expand to check: <span class="tex">10x+15=5(2x+3)</span>.</div>
+    <div><b>Letters in the GCF:</b> only a letter that is in <b>every</b> term, at its <b>lowest</b> power. <span class="tex">8x^3+12x^2=4x^2(2x+3)</span>.</div>
+    <div><b>Keep the 1.</b> A term that equals the GCF leaves a 1 behind: <span class="tex">-8a^3+12a^2-4a=-4a(2a^2-3a+1)</span>.</div>
+    <div><b>First term negative?</b> Take out a <b>negative</b> GCF. Every sign in the bracket flips, and the bracket starts positive: <span class="tex">-4x-12=-4(x+3)</span>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u4l2">
+    <div><div class="kicker">Your turn</div><b>Assignment 2 — Common Factors: Finding and Removing the GCF</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l3/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 3 — Factoring Trinomials <span class="tex">x^2+bx+c</span>, Part 1: c Positive</b><div class="muted">Un-multiplying two brackets: find two numbers with the right sum and product</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u4l2.js';
+  boot({ key: 'u4l2', homeHref: '../../', title: '4.2 Removing the GCF' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

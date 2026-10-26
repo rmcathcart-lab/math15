@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Multiplying and Factoring: The Reverse Relationship · Math 15 4.1</title>
+<meta name="description" content="Math 15 Unit 4 Lesson 1: factoring is expanding run backwards. Reading a multiplying fact backwards, the GCF of numbers by prime factorization, the GCF of monomials (lowest powers), checking a factoring by expanding, and factoring then verifying. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u4l1.css">
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 4 Factoring · Lesson 1</div>
+  <h1>Multiplying and Factoring: The Reverse Relationship</h1>
+  <p class="lede">You already know how to <b>expand</b>: <span class="tex">4(x+3)=4x+12</span>. <b>Factoring is expanding run backwards</b>: start with <span class="tex">4x+12</span> and find the factors that made it. Today we read multiplying facts backwards, find <b>greatest common factors</b>, and <b>check</b> every factoring by expanding it again.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>explain how <b>expanding</b> and <b>factoring</b> are the same fact read in opposite directions</li>
+      <li>find the <b>GCF</b> of two numbers using <b>prime factorization</b></li>
+      <li>find the <b>GCF</b> of monomials (the GCF of the numbers, and each common letter to its <b>lowest</b> power)</li>
+      <li><b>check</b> a factoring by expanding it, and fix it if it doesn’t match</li>
+      <li>factor a simple expression by removing the GCF: <b>find, divide, write, verify</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN5</b> Demonstrate an understanding of common factors and trinomial factoring, concretely, pictorially and symbolically.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: How Many Rectangles?" style="--wf-side: 320px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>How Many Rectangles?</h2>
+  <p class="wf-rule">Use <b>all</b> the square tiles, no gaps, to build a <b>rectangle</b>. Turning it doesn’t make a new one. A square counts!</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u4l1-rbox" id="u4l1-rects"></div>
+    <div class="u4l1-wqs">
+      <div class="wq bk-wq">
+        <div class="q-line"><div class="q-num">1</div><div>Find <b>every</b> rectangle you can build with <b>12</b> tiles. How many are there?</div></div>
+        <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>3 rectangles:</b> <span class="tex">1\times12</span>, <span class="tex">2\times6</span>, <span class="tex">3\times4</span>. Rows of 5 leave 2 over. Each rectangle is a <b>factor pair</b> of 12.</div></div>
+      </div>
+      <div class="wq bk-wq">
+        <div class="q-line"><div class="q-num">2</div><div>Now do the same with <b>18</b> tiles.</div></div>
+        <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>3 rectangles:</b> <span class="tex">1\times18</span>, <span class="tex">2\times9</span>, <span class="tex">3\times6</span>.</div></div>
+      </div>
+    </div>
+  </div><div class="wf-side">
+    <div class="wq bk-wq">
+      <div class="q-line"><div class="q-num">3</div><div>Stand a 12-tile rectangle next to an 18-tile one, the <b>same height</b>. What is the <b>tallest</b> they could be?</div></div>
+      <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans">Heights that work for both: 1, 2, 3, 6. The tallest is <b>6</b> (<span class="tex">6\times2</span> and <span class="tex">6\times3</span>). 6 is the <b>GCF</b> of 12 and 18.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Which pile builds the <b>most</b> different rectangles? And which pile is <b>stuck</b> with one long row? <b>Guess first.</b></div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b> 36</div>
+        <div class="opt right"><b>B</b> 60</div>
+        <div class="opt"><b>C</b> 97</div>
+        <div class="opt"><b>D</b> 100</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, 60 makes the most: 6 rectangles</b> (<span class="tex">1\times60</span>, <span class="tex">2\times30</span>, <span class="tex">3\times20</span>, <span class="tex">4\times15</span>, <span class="tex">5\times12</span>, <span class="tex">6\times10</span>). 36 and 100 make 5 each.<br><b>C, 97 is stuck:</b> only <span class="tex">1\times97</span>, because 97 is <b>prime</b>. A bigger pile doesn’t mean more rectangles!</div>
+    </div>
+  </div></div>
+
+  <div class="wq bk-wq wq-wide">
+    <div class="q-line"><div class="q-num bonus">+</div><div><b>Challenge your neighbour.</b> What is the <b>smallest</b> pile that builds <b>exactly 4</b> different rectangles?</div></div>
+    <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>24:</b> <span class="tex">1\times24</span>, <span class="tex">2\times12</span>, <span class="tex">3\times8</span>, <span class="tex">4\times6</span>. Nothing smaller makes 4.</div></div>
+  </div>
+  <div class="u4l1-bridge"><b>Two directions.</b> Given the sides, <b>multiply</b> to get the tiles: <span class="tex">3\times4=12</span>. Given the tiles, find the sides: <span class="tex">12=3\times4</span>. That’s <b>factoring</b>: the same fact, read backwards.</div>
+</section>
+
+<!-- ================= 1. What is factoring? ================= -->
+<section class="card" data-ink="s1" data-section="1. What Is Factoring?">
+  <div class="sec-h"><span class="badge">1</span><h2>What Is Factoring?</h2></div>
+  <p><b>Expanding</b> multiplies a factor across a bracket. <b>Factoring</b> runs the same road backwards: it rewrites an expanded expression as a <b>product of factors</b>.</p>
+  <div class="u4l1-ef">
+    <div class="u4l1-efh"><span>product of factors</span><span></span><span>sum of terms</span></div>
+    <div class="u4l1-efr"><span class="tex">4(x+3)</span><span class="u4l1-efa"></span><span class="tex">4x+12</span></div>
+    <div class="u4l1-efr"><span class="tex">2(x+5)</span><span class="u4l1-efa"></span><span class="tex">2x+10</span></div>
+    <div class="u4l1-efr"><span class="tex">x(x+7)</span><span class="u4l1-efa"></span><span class="tex">x^2+7x</span></div>
+  </div>
+  <div class="def"><b>Factoring</b> rewrites an expression as a <b>product of factors</b>: <span class="tex">4x+12=4(x+3)</span>. If multiplying your factors back out gives the original <b>exactly</b>, the factoring is correct.</div>
+  <div class="explainer" data-explainer="twoWay"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Read it backwards">
+  <h3 class="sub">Every multiplying fact is also a factoring fact</h3>
+  <p>Since <span class="tex">2(x+5)=2x+10</span>, we can turn it around: <span class="tex">2x+10=2(x+5)</span>. Since <span class="tex">x(x+7)=x^2+7x</span>, we know <span class="tex">x^2+7x=x(x+7)</span>. The common factor can be a <b>number</b> or a <b>letter</b>.</p>
+  <div class="explainer" data-explainer="flip"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>From a multiplying fact to a factoring fact</h3></div>
+  <p class="q">Each multiplication fact is done for you. Use it to write the matching factoring fact.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Since <span class="tex">3(x+4)=3x+12</span>,<br>then <span class="tex">3x+12=\underline{\qquad}(\underline{\qquad\quad})</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3x+12=\boldsymbol{3(x+4)}</span>: just read the multiplication backwards.</div></div></div>
+    <div class="part"><div class="pl">(b) Since <span class="tex">8(y-1)=8y-8</span>,<br>then <span class="tex">8y-8=\underline{\qquad}(\underline{\qquad\quad})</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">8y-8=\boldsymbol{8(y-1)}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Since <span class="tex">x(x+9)=x^2+9x</span>,<br>then <span class="tex">x^2+9x=\underline{\qquad}(\underline{\qquad\quad})</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2+9x=\boldsymbol{x(x+9)}</span>: the common factor is a letter here.</div></div></div>
+    <div class="part"><div class="pl">(d) Since <span class="tex">4x(x-5)=4x^2-20x</span>,<br>then <span class="tex">4x^2-20x=\underline{\qquad}(\underline{\qquad\quad})</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4x^2-20x=\boldsymbol{4x(x-5)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. The GCF of numbers ================= -->
+<section class="card" data-ink="s2" data-section="2. Recall: The GCF of Numbers">
+  <div class="sec-h"><span class="badge">2</span><h2>Recall: The GCF of Numbers</h2></div>
+  <div class="def">The <b>greatest common factor (GCF)</b> of two numbers is the <b>largest</b> number that divides evenly into both. Find it by <b>prime factorization</b>: break each number into primes, then multiply the primes that appear in <b>every</b> list.</div>
+  <div class="u4l1-pfx">
+    <div><span class="tex">12=\underline{2}\times2\times\underline{3}</span><span class="tex">18=\underline{2}\times\underline{3}\times3</span></div>
+    <div class="u4l1-pfr">shared: one 2 and one 3 · GCF <span class="tex">=2\times3=\boldsymbol{6}</span></div>
+  </div>
+  <h3 class="sub">Try it: split each number until only primes are left</h3>
+  <div class="u4l1-trees" id="u4l1-trees"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Line up the primes">
+  <h3 class="sub">Line up the prime factors and look for the shared ones</h3>
+  <div class="explainer" data-explainer="columnsN"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Shared means in <i>every</i> list.</b> <span class="tex">12</span> has two 2’s but <span class="tex">18</span> has only one, so only <b>one</b> 2 goes into the GCF.</div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>The GCF of two numbers</h3></div>
+  <p class="q">Find the GCF of each pair. Show the prime factorization of each number first.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">10,\ 15</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">10=2\times5</span><br><span class="tex">15=3\times5</span><br>Shared: one 5. GCF <span class="tex">=\boldsymbol{5}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">8,\ 20</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">8=2\times2\times2</span><br><span class="tex">20=2\times2\times5</span><br>Shared: two 2’s. GCF <span class="tex">=\boldsymbol{4}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">9,\ 24</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">9=3\times3</span><br><span class="tex">24=2\times2\times2\times3</span><br>Shared: one 3. GCF <span class="tex">=\boldsymbol{3}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">16,\ 28</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">16=2\times2\times2\times2</span><br><span class="tex">28=2\times2\times7</span><br>Shared: two 2’s. GCF <span class="tex">=\boldsymbol{4}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. The GCF of monomials ================= -->
+<section class="card" data-ink="s3" data-section="3. The GCF of a Monomial Set">
+  <div class="sec-h"><span class="badge">3</span><h2>The GCF of a Monomial Set</h2></div>
+  <p>The same idea works for <b>monomials</b>: just add the <b>letters</b> to the list of factors.</p>
+  <div class="u4l1-pfx">
+    <div><span class="tex">6x^3=2\times\underline{3}\times\underline{x}\times\underline{x}\times x</span><span class="tex">9x^2=\underline{3}\times3\times\underline{x}\times\underline{x}</span></div>
+    <div class="u4l1-pfr">shared: one 3 and two <span class="tex">x</span>’s · GCF <span class="tex">=\boldsymbol{3x^2}</span></div>
+  </div>
+  <div class="explainer" data-explainer="columnsM"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. The shortcut">
+  <h3 class="sub">The shortcut: by inspection</h3>
+  <div class="def"><b>Shortcut:</b> take the <b>GCF of the coefficients</b> (the numbers), then each <b>common letter</b> raised to its <b>lowest</b> exponent.<div class="eg">GCF of <span class="tex">6x^3</span> and <span class="tex">9x^2</span>: the GCF of 6 and 9 is 3, and the lowest power of <span class="tex">x</span> is <span class="tex">x^2</span>, so the GCF is <span class="tex">3x^2</span>.</div></div>
+  <div class="explainer" data-explainer="lowest"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Lowest, not highest.</b> It’s tempting to grab the biggest power, but <span class="tex">x^3</span> doesn’t fit inside <span class="tex">x^2</span>. The GCF can only use what <b>every</b> term has.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>The GCF of monomials</h3></div>
+  <p class="q">Find the GCF of each set of monomials, by prime factorization or by inspection.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">4a^2,\ 10a</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Numbers: GCF of 4 and 10 is 2.<br><span class="tex">a</span>: lowest power is <span class="tex">a^1</span>.<br>GCF <span class="tex">=\boldsymbol{2a}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">12x^2y,\ 8xy^2</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Numbers: 4.<br><span class="tex">x^1</span> and <span class="tex">y^1</span> (lowest of each).<br>GCF <span class="tex">=\boldsymbol{4xy}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">15m^3n^2,\ 25m^2n</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Numbers: 5.<br><span class="tex">m^2</span> and <span class="tex">n^1</span>.<br>GCF <span class="tex">=\boldsymbol{5m^2n}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">9p^2q^2,\ 6pq^3</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Numbers: 3.<br><span class="tex">p^1</span> and <span class="tex">q^2</span>.<br>GCF <span class="tex">=\boldsymbol{3pq^2}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Verifying ================= -->
+<section class="card" data-ink="s4" data-section="4. Verifying a Factoring">
+  <div class="sec-h"><span class="badge">4</span><h2>Verifying a Factoring Is Correct</h2></div>
+  <p>To check a factored form, <b>expand it back out</b>. If the product gives the original expression <b>exactly</b>, the factoring is correct.</p>
+  <div class="u4l1-vrow">
+    <div class="u4l1-vbox ok"><span class="tex">3x+9\overset{?}{=}3(x+3)</span><span class="u4l1-vline"><span class="tex">3(x+3)=3x+9</span> <b>✓ correct</b></span></div>
+    <div class="u4l1-vbox no"><span class="tex">4x+8\overset{?}{=}4(x+3)</span><span class="u4l1-vline"><span class="tex">4(x+3)=4x+12</span> <b>✗ not 4x + 8</b></span><span class="u4l1-vfix">The GCF of <span class="tex">4x</span> and <span class="tex">8</span> is 4, and <span class="tex">8\div4=2</span>, so the correct form is <span class="tex">4(x+2)</span>.</span></div>
+  </div>
+  <div class="explainer" data-explainer="checkIt"></div>
+  <div class="tip-row">
+    <div class="tip watch"><div class="tip-ic">!</div><div><b>The front factor multiplies <i>every</i> term.</b> <span class="tex">4(x+3)</span> is <span class="tex">4x+12</span>, not <span class="tex">4x+3</span>.</div></div>
+    <div class="tip"><div class="tip-ic">?</div><div><b>Another quick check: try a number.</b> Put <span class="tex">x=2</span> into both forms. <span class="tex">4x+8=16</span> but <span class="tex">4(x+3)=20</span>: different, so it’s wrong. (Same answer doesn’t <i>prove</i> it right; expanding does.)</div></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Check by expanding</h3></div>
+  <p class="q">Expand each proposed factored form to check it. If it does not match, write the correct form.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Is <span class="tex">4x+12=4(x+3)</span> correct?</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4(x+3)=4x+12</span>: matches the original. ✓ <b>Correct.</b></div></div></div>
+    <div class="part"><div class="pl">(b) Is <span class="tex">5x+15=5(x+2)</span> correct?</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">5(x+2)=5x+10\neq5x+15</span>. <b>Incorrect.</b><br><span class="tex">15\div5=3</span>, so the correct form is <span class="tex">\boldsymbol{5(x+3)}</span>.</div></div></div>
+    <div class="part"><div class="pl">(c) Is <span class="tex">3x^2+6x=3x(x+2)</span> correct?</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3x(x+2)=3x^2+6x</span>: matches. ✓ <b>Correct.</b></div></div></div>
+    <div class="part"><div class="pl">(d) Is <span class="tex">8x+10=2(4x+6)</span> correct?</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2(4x+6)=8x+12\neq8x+10</span>. <b>Incorrect.</b><br><span class="tex">10\div2=5</span>, so the correct form is <span class="tex">\boldsymbol{2(4x+5)}</span>.</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u4l1"></section>
+
+<!-- ================= 5. Factor, then verify ================= -->
+<section class="card" data-ink="s5" data-section="5. Factor, Then Verify">
+  <div class="sec-h"><span class="badge">5</span><h2>Putting It Together: Factor, Then Verify</h2></div>
+  <p>Think of an expression as the <b>area of a rectangle</b>. Factoring it means finding the rectangle’s <b>side lengths</b>. With algebra tiles: arrange the tiles into equal rows. The <b>tallest</b> side you can make is the GCF.</p>
+  <div class="explainer" data-explainer="tileRect"></div>
+</section>
+
+<section class="card" data-ink="s5b" data-section="5. The routine">
+  <h3 class="sub">Without tiles: the four-step routine</h3>
+  <div class="u4l1-steps">
+    <div><b>1</b><span><b>Find</b> the GCF</span><span class="tex">6</span></div>
+    <div><b>2</b><span><b>Divide</b> each term</span><span class="tex">6x\div6=x,\ \ 18\div6=3</span></div>
+    <div><b>3</b><span><b>Write</b> GCF(what’s left)</span><span class="tex">6x+18=6(x+3)</span></div>
+    <div><b>4</b><span><b>Verify</b> by expanding</span><span class="tex">6(x+3)=6x+18\ \checkmark</span></div>
+  </div>
+  <div class="explainer" data-explainer="pull"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Use the <i>greatest</i> common factor.</b> <span class="tex">6x+18=2(3x+9)</span> expands back correctly, but <span class="tex">3x</span> and <span class="tex">9</span> still share a 3. Take out <b>6</b> and you’re done: <span class="tex">6(x+3)</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Factor, then verify</h3></div>
+  <p class="q">Factor each expression completely, and verify your answer by expanding it back out.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">4x+8</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF of <span class="tex">4x</span> and <span class="tex">8</span> is 4.<br><span class="tex">4x\div4=x</span>, <span class="tex">8\div4=2</span><br><span class="tex">=\boldsymbol{4(x+2)}</span><br>Check: <span class="tex">4(x+2)=4x+8</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">9x+12</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF is 3 (not 9: it must divide 12 too).<br><span class="tex">=\boldsymbol{3(3x+4)}</span><br>Check: <span class="tex">3(3x+4)=9x+12</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">6x^2+8x</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Numbers: GCF 2; both terms have an <span class="tex">x</span>.<br><span class="tex">=\boldsymbol{2x(3x+4)}</span><br>Check: <span class="tex">2x(3x+4)=6x^2+8x</span> ✓</div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> Why can’t the GCF of <span class="tex">9x+12</span> be 9?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The GCF has to divide <b>every</b> term. 9 divides <span class="tex">9x</span>, but <span class="tex">12\div9</span> isn’t a whole number. The biggest number that divides both 9 and 12 is 3.</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Factoring is expanding run backwards.</b> <span class="tex">4(x+3)=4x+12</span> read backwards is <span class="tex">4x+12=4(x+3)</span>. An expression is a rectangle’s area; the factors are its sides.</div>
+    <div><b>GCF of numbers:</b> write each as a product of primes; multiply the primes found in <b>every</b> list. <span class="tex">12=2\cdot2\cdot3</span>, <span class="tex">18=2\cdot3\cdot3</span>: GCF <span class="tex">=6</span>.</div>
+    <div><b>GCF of monomials:</b> the GCF of the numbers, times each <b>common</b> letter to its <b>lowest</b> power. GCF of <span class="tex">6x^3</span> and <span class="tex">9x^2</span> is <span class="tex">3x^2</span>.</div>
+    <div><b>Find, divide, write, verify.</b> Always <b>check by expanding</b>: if you don’t get the original back <b>exactly</b>, fix the factoring.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u4l1">
+    <div><div class="kicker">Your turn</div><b>Assignment 1 — Multiplying and Factoring: The Reverse Relationship</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l2/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 2 — Common Factors: Finding and Removing the GCF</b><div class="muted">Taking the GCF out of longer expressions, with letters and negative signs</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u4l1.js';
+  boot({ key: 'u4l1', homeHref: '../../', title: '4.1 Multiplying and Factoring' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>
