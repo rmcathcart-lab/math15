@@ -359,10 +359,10 @@
     view.appendChild(foot);
     L.setStatus({ view: 'home' }, false);
   }
-  /* ---------------- outcome medals (js/medals.js) ----------------
-   * One medal per outcome beside "Hi, …", at the student's best level: the higher of their practice level (the hardest
+  /* ---------------- outcome badges (js/badges.js) ----------------
+   * One badge per outcome beside "Hi, …", at the student's best level: the higher of their practice level (the hardest
    * question right on the first try, as in "Your level") and their level on released tests and exit slips.
-   * A medal that's new or higher since this device last showed them opens big, once. */
+   * A badge that's new or higher since this device last showed them opens big, once. */
   function practiceTiers() {
     var best = {};
     Object.keys(HW.lessons).forEach(function (lid) {
@@ -393,7 +393,7 @@
     HW.CATALOG.forEach(function (u) {
       String(u.outcomes || '').split(/\s*·\s*/).forEach(function (o) {
         if (!o) return; if (order.indexOf(o) < 0) order.push(o);
-        // a unit that has started: its outcomes begin at Rust until practice (or a test) gives a level
+        // a unit that has started: its outcomes begin at Pattern until practice (or a test) gives a level
         if (started[u.unit] && !best[o]) best[o] = { tier: 0, src: 'Unit ' + u.unit + ' has started: practise to move up' };
       });
     });
@@ -423,12 +423,12 @@
       // new or higher since last time on this device: show them big (the first time, just remember what there is)
       var seen = null; try { seen = JSON.parse(ls(key) || 'null'); } catch (e) { seen = null; }
       var now = {}; list.forEach(function (x) { now[x.o] = x.tier; });
-      var fresh = seen ? list.filter(function (x) { return x.tier > 0 && (seen[x.o] == null || x.tier > seen[x.o]); }) : [];   // Rust doesn't pop up
+      var fresh = seen ? list.filter(function (x) { return x.tier > 0 && (seen[x.o] == null || x.tier > seen[x.o]); }) : [];   // Pattern (not sewn yet) doesn't pop up
       if (!fresh.length) { ls(key, JSON.stringify(now)); return; }
-      if (document.querySelector('#testmode, .medal-pop, #cal-pop')) return;   // not over a test or another pop-up; next time
+      if (document.querySelector('#testmode, .badge-pop, #cal-pop')) return;   // not over a test or another pop-up; next time
       ls(key, JSON.stringify(now));
-      box.querySelectorAll('.medal-btn').forEach(function (b, i) { if (fresh.some(function (f) { return f.o === list[i].o; })) b.classList.add('is-new'); });
-      HW.Medals.open(fresh, 0, { title: fresh.length > 1 ? 'New medals!' : 'New medal!' });
+      box.querySelectorAll('.badge-btn').forEach(function (b, i) { if (fresh.some(function (f) { return f.o === list[i].o; })) b.classList.add('is-new'); });
+      HW.Medals.open(fresh, 0, { title: fresh.length > 1 ? 'New badges!' : 'New badge!' });
     });
   }
 
