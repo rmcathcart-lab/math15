@@ -20,11 +20,11 @@
     'sol-sign-one': 'One solution has the wrong sign', 'sol-flip': 'Solved ax + b = 0 upside down',
     'u4l9-no-divide': 'Solved ax + b = 0 as x = −b (did not divide by a)', 'u4l9-lost-zero': 'Lost the root x = 0 (divided by x)', 'u4l9-constant-root': 'Took a root from the constant factor',
     'u4l9-not-zero': 'Split a product that is not equal to 0', 'u4l9-not-rearranged': 'Factored without making one side 0', 'u4l9-pick': 'Wrong choice of root in context',
-    'u4l9-k-sign': 'Sign slip finding k', 'u4l9-pq': 'p + q from the wrong root or not in lowest terms', 'u4l9-eq-root-sign': 'Equation from roots: factor signs wrong',
+    'u4l9-k-sign': 'Sign slip finding k', 'u4l9-sq-neg': 'Squared a negative number as negative', 'u4l9-pq': 'p + q from the wrong root or not in lowest terms', 'u4l9-eq-root-sign': 'Equation from roots: factor signs wrong',
     'u4l9-eq-not-int': 'Equation from roots: fraction coefficients left', 'u4l9-check': 'Check by substitution: wrong values chosen', 'u4l9-dims': 'Dimensions wrong or in the wrong boxes'
   });
   HW.addPartial({ 'u4l9-no-divide': 's', 'u4l9-lost-zero': 's', 'u4l9-constant-root': 's', 'u4l9-not-zero': 'n', 'u4l9-not-rearranged': 'n', 'u4l9-pick': 'b',
-    'u4l9-k-sign': 's', 'u4l9-pq': 'b', 'u4l9-eq-root-sign': 's', 'u4l9-eq-not-int': 'b', 'u4l9-check': 'n', 'u4l9-dims': 's' });
+    'u4l9-k-sign': 's', 'u4l9-sq-neg': 's', 'u4l9-pq': 'b', 'u4l9-eq-root-sign': 's', 'u4l9-eq-not-int': 'b', 'u4l9-check': 'n', 'u4l9-dims': 's' });
 
   /* ---------------- helpers ---------------- */
   function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var r = a % b; a = b; b = r; } return a; }
@@ -260,13 +260,16 @@
         } }] },
       { num: '14', stem: '<i>(Numerical Response)</i>', parts: [
         { id: '14', level: 'ADV', make: function (r) {
-          var ab = two(r, [2, 12], [-9, -1], function (a, b) { return a + b !== 0 && Math.abs(a * b) <= 60; }) || [8, -3], s = ab[0], o2 = ab[1], c = s * o2, k = -(s + o2);
-          return B.nr('The equation ' + t('x^{2}+kx' + (c < 0 ? '' : '+') + c + '=0') + ' has one solution ' + t('x=' + s) + '. The value of ' + t('k') + ' is ________.', k, function (v) {
-            if (v === -k) return { code: 'u4l9-k-sign', hint: 'Check the sign: ' + t(s + '^{2}+k(' + s + ')' + (c < 0 ? '' : '+') + c + '=0') + ' gives ' + t(s + 'k=' + (-(s * s + c))) + '.' };
+          /* a negative given root s and a positive other root o2 with |s| > o2, so k = −(s + o2) is positive (an NR bubble answer) */
+          var ab = two(r, [-12, -2], [1, 9], function (a, b) { return -a > b && -a * b <= 60; }) || [-8, 3], s = ab[0], o2 = ab[1], m = -s, c = s * o2, k = -(s + o2), sq = s * s;
+          var kx = (k === 1 ? '' : k) + 'x';
+          return B.nr('The equation ' + t('x^{2}+kx' + c + '=0') + ' has one solution ' + t('x=' + s) + '. The value of ' + t('k') + ' is ________.', k, function (v) {
+            if (v === -k) return { code: 'u4l9-k-sign', hint: 'Check the signs: ' + t('(' + s + ')^{2}+k(' + s + ')' + c + '=0') + ' is ' + t(sq + '-' + m + 'k' + c + '=0') + ', so ' + t((sq + c) + '-' + m + 'k=0') + ' and ' + t(m + 'k=' + (sq + c)) + '.' };
             if (v === o2) return { code: 'value', hint: 'That is the other solution. The question asks for ' + t('k') + '.' };
+            if (v === -(m + o2)) return { code: 'u4l9-sq-neg', hint: 'Check ' + t('(' + s + ')^{2}') + ': a negative number squared is <b>positive</b>, ' + t('(' + s + ')^{2}=' + sq) + '.' };
             return null;
-          }, 'Substitute ' + t('x=' + s) + ': ' + t(s * s + '+' + s + 'k' + (c < 0 ? '' : '+') + c + '=0') + ', so ' + t(s + 'k=' + (-(s * s + c))) + ' and ' + t('k=' + k) + '.<br>(Check: ' + t('x^{2}' + (k < 0 ? '' : '+') + (k === 1 ? '' : k === -1 ? '-' : k) + 'x' + (c < 0 ? '' : '+') + c + '=(x-' + s + ')(x' + (o2 < 0 ? '+' + (-o2) : '-' + o2) + ')') + ', so the other solution is ' + t('x=' + o2) + '.)',
-          ['A solution makes the equation true: substitute ' + t('x=' + s) + ' and solve for ' + t('k') + '.'], 'NR k from a root');
+          }, 'Substitute ' + t('x=' + s) + ': ' + t('(' + s + ')^{2}+k(' + s + ')' + c + '=0') + '<br>' + t(sq + '-' + m + 'k' + c + '=0') + '<br>' + t((sq + c) + '-' + m + 'k=0') + ', so ' + t(m + 'k=' + (sq + c)) + ' and ' + t('k=\\mathbf{' + k + '}') + '.<br>(Check: ' + t('x^{2}+' + kx + c + '=(x+' + m + ')(x-' + o2 + ')') + ', so the other solution is ' + t('x=' + o2) + '.)',
+          ['A solution makes the equation true: substitute ' + t('x=' + s) + ' and solve for ' + t('k') + '.', 'Use brackets: ' + t('(' + s + ')^{2}') + ' is positive, and ' + t('k(' + s + ')=-' + m + 'k') + '.'], 'NR k from a root');
         } }] },
       { num: '15', stem: '<i>(Numerical Response)</i>', parts: [
         { id: '15', level: 'PRG', make: function (r) { return pqPart(r, { book: [[2, -3], [3, 1]] }); } }] }

@@ -415,8 +415,8 @@
   }
 
   /* "write a polynomial whose GCF is G (containing the term T), then factor it" — any correct polynomial is accepted */
-  HW.addCodes({ 'u4l2-terms': 'Wrong number of terms in the polynomial asked for', 'u4l2-no-term': 'Left out the given term', 'u4l2-gcf-big': 'Polynomial’s GCF is larger than asked', 'u4l2-gcf-wrong': 'Polynomial’s GCF is not the one asked for', 'u4l2-gcf-sign': 'GCF sign wrong (first term’s sign)', 'u4l2-whole': 'Fractional coefficient in a written polynomial', 'u4l2-opp-sign': 'Opposite brackets: sign not changed when taking out −1' });
-  HW.addPartial({ 'u4l2-terms': 's', 'u4l2-no-term': 's', 'u4l2-gcf-big': 'b', 'u4l2-gcf-wrong': 'n', 'u4l2-gcf-sign': 's', 'u4l2-whole': 'n', 'u4l2-opp-sign': 's' });
+  HW.addCodes({ 'u4l2-terms': 'Wrong number of terms in the polynomial asked for', 'u4l2-no-term': 'Left out the given term', 'u4l2-gcf-big': 'Polynomial’s GCF is larger than asked', 'u4l2-gcf-wrong': 'Polynomial’s GCF is not the one asked for', 'u4l2-gcf-sign': 'GCF sign wrong (first term’s sign)', 'u4l2-whole': 'Fractional coefficient in a written polynomial', 'u4l2-opp-sign': 'Opposite brackets: sign not changed when taking out −1', 'u4l2-nr-add': 'NR: added a, b, c instead of multiplying' });
+  HW.addPartial({ 'u4l2-terms': 's', 'u4l2-no-term': 's', 'u4l2-gcf-big': 'b', 'u4l2-gcf-wrong': 'n', 'u4l2-gcf-sign': 's', 'u4l2-whole': 'n', 'u4l2-opp-sign': 's', 'u4l2-nr-add': 'b' });
   function writtenTerms(resp) {
     var a = K.read(resp); if (a.res) return { res: a.res };
     var rd = PL.read(a.ast); if (!rd.ok) return { res: wrong('not-poly', 'That isn’t a polynomial. Write a sum of terms like ' + t('8x^{3}+4x^{2}') + '.') };
@@ -621,17 +621,22 @@
           } }] },
       { num: '11', stem: function (sh) { return 'A student factored ' + t(sh.Ttx) + ' as ' + t(sh.shown) + '.'; },
         shared: function (r) { var o = pickWhere(function () { return { g: r.int(2, 6), c: cop2(r, 2, 7) }; }, function (o) { return o.g * Math.max(o.c[0], o.c[1]) <= 40; }), v = r.pick(['x', 'x', 'a', 'y']);
-          var terms = [X(-o.g * o.c[0], v), N(-o.g * o.c[1])]; return { o: o, v: v, terms: terms, Ttx: seq(terms), shown: o.g + '(-' + o.c[0] + v + '-' + o.c[1] + ')', right: '-' + o.g + '(' + o.c[0] + v + '+' + o.c[1] + ')' }; },
+          /* the student's claim −g(c₀v − c₁) for −g·c₀v − g·c₁: the last sign is wrong (it expands to −g·c₀v + g·c₁) */
+          var terms = [X(-o.g * o.c[0], v), N(-o.g * o.c[1])], gc = o.g * o.c[1];
+          return { o: o, v: v, terms: terms, Ttx: seq(terms), shown: '-' + o.g + '(' + o.c[0] + v + '-' + o.c[1] + ')', E: '-' + o.g * o.c[0] + v + '+' + gc, right: '-' + o.g + '(' + o.c[0] + v + '+' + o.c[1] + ')', gc: gc }; },
         parts: [
           { id: '11a', level: 'EMG', make: function (r, sh) {
+            var g = sh.o.g, c1 = sh.o.c[1];
             return mcPart(r, 'Identify the error in the student’s work.', [
-              { html: 'The first term is negative, so a <b>negative</b> GCF should be removed: ' + t(sh.right) + ' (then the bracket starts with a positive term).', right: true },
-              { html: 'It doesn’t expand back to ' + t(sh.Ttx) + '.', why: 'It does: ' + t(sh.shown + '=' + sh.Ttx) + '. The issue is the course convention for the sign of the GCF.' },
-              { html: t(sh.o.g) + ' is not the greatest common factor.', why: t('\\gcd(' + sh.o.g * sh.o.c[0] + ',' + sh.o.g * sh.o.c[1] + ')=' + sh.o.g) + ' — the size is right. Look at the <b>sign</b>.' },
-              { html: 'There is no error.', why: 'It is equal, but the convention is: when the first term is negative, take out a <b>negative</b> GCF.' }],
-              t(sh.shown) + ' does expand to ' + t(sh.Ttx) + ', but the first term ' + t(tx(sh.terms[0])) + ' is negative, so the convention is to remove a negative GCF, ' + t(-sh.o.g) + ': ' + t(sh.Ttx + '=' + sh.right) + '.', ['Look at the sign of the first term.'], 'negative GCF convention');
+              { html: 'The sign of the last term is wrong: ' + t(sh.shown + '=' + sh.E) + ', not ' + t(sh.Ttx) + '. Dividing ' + t('-' + sh.gc) + ' by ' + t('-' + g) + ' gives ' + t('+' + c1) + ', not ' + t('-' + c1) + '.', right: true },
+              { html: 'The GCF should be positive: ' + t(g) + ', not ' + t('-' + g) + '.', why: 'The first term ' + t(tx(sh.terms[0])) + ' is negative, so taking out ' + t('-' + g) + ' is right. Expand the student’s answer and compare the <b>last</b> term with ' + t(tx(sh.terms[1])) + '.' },
+              { html: t(g) + ' is not the greatest common factor.', why: t('\\gcd(' + g * sh.o.c[0] + ',' + sh.gc + ')=' + g) + ' — the size is right. Expand the student’s answer and compare the signs.' },
+              { html: 'There is no error.', why: 'Expand it: ' + t('-' + g + '\\times(-' + c1 + ')=+' + sh.gc) + ', so ' + t(sh.shown + '=' + sh.E) + ', not ' + t(sh.Ttx) + '.' }],
+              'Check by expanding: ' + t(sh.shown + '=' + sh.E) + ', but the last term should be ' + t(tx(sh.terms[1])) + '.<br>Dividing ' + t('-' + sh.gc) + ' by ' + t('-' + g) + ' gives ' + t('+' + c1) + ', not ' + t('-' + c1) + '.<br>Correct: ' + t(sh.Ttx + '=' + sh.right) + '.',
+              ['Expand the student’s answer and compare it with ' + t(sh.Ttx) + ' term by term.', 'A negative divided by a negative is positive.'], 'sign error in a negative GCF');
           } },
-          { id: '11b', level: 'BEG', make: function (r, sh) { return fp(sh.terms, { prompt: 'Write the correct factored form of ' + t(sh.Ttx) + '.' }); } }] },
+          { id: '11b', level: 'BEG', make: function (r, sh) { return fp(sh.terms, { prompt: 'Write the correct factored form of ' + t(sh.Ttx) + '.',
+            hints: ['The first term is negative, so take out ' + t('-' + sh.o.g) + '. Then divide <b>each</b> term by it.', 'A negative divided by a negative is positive: ' + t('-' + sh.gc + '\\div(-' + sh.o.g + ')=+' + sh.o.c[1]) + '.'] }); } }] },
       { num: '12', stem: '<i>(Multiple Choice)</i>', parts: [
         { id: '12', level: 'EMG', make: function (r) {
           var o = pickWhere(function () { return { g: r.int(2, 6), c: cop2(r, 2, 5) }; }, function (o) { return o.g * Math.max(o.c[0], o.c[1]) <= 30; }), v = r.pick(['x', 'x', 'a', 'y']), terms = [X(-o.g * o.c[0], v, 2), X(-o.g * o.c[1], v)], poly = seq(terms);
@@ -645,14 +650,15 @@
       { num: '13', stem: '<i>(Numerical Response)</i>', parts: [
         { id: '13', level: 'PRG', make: function (r) {
           var o = pickWhere(function () { return { g: r.int(2, 9), b: r.int(2, 5), c: r.int(2, 7) }; }, function (o) { return gcd(o.b, o.c) === 1 && o.g * Math.max(o.b, o.c) <= 50; });
-          var terms = [X(-o.g * o.b, 'x', 3), X(o.g * o.c, 'x', 2)], ans = -o.g + o.b - o.c;
-          return KP.nr('When ' + t(seq(terms)) + ' is factored by removing the GCF, the result has the form ' + t('ax^{2}(bx+c)') + '. The value of ' + t('a+b+c') + ' is ________.', ans, function (v) {
-            if (v === o.g + o.b + o.c || v === o.g - o.b + o.c) return { code: 'c-sign', hint: 'Check the signs: the GCF is <b>negative</b> (the first term is negative), so ' + t('a=-' + o.g) + ', and then ' + t('c=-' + o.c) + '.' };
-            if (v === o.g - o.b - o.c) return { code: 'neg-rule', hint: 'The first term is negative, so take the GCF negative: ' + t('a=-' + o.g) + ' and the bracket starts with ' + t('+' + o.b + 'x') + '.' };
-            if (v === -o.g + o.b + o.c) return { code: 'neg-signs', hint: 'Dividing ' + t(o.g * o.c + 'x^{2}') + ' by ' + t('-' + o.g + 'x^{2}') + ' gives ' + t(-o.c) + ', so ' + t('c=-' + o.c) + '.' };
+          /* −g·b x³ + g·c x² = −g x²(b x − c): a = −g, b = b, c = −c, so a×b×c = g·b·c (always positive, an NR bubble answer) */
+          var terms = [X(-o.g * o.b, 'x', 3), X(o.g * o.c, 'x', 2)], ans = o.g * o.b * o.c, g = o.g;
+          return KP.nr('When ' + t(seq(terms)) + ' is factored by removing the GCF, the result has the form ' + t('ax^{2}(bx+c)') + '. The value of ' + t('a\\times b\\times c') + ' is ________.', ans, function (v) {
+            if (v === -g + o.b - o.c || v === g - o.b + o.c) return { code: 'u4l2-nr-add', hint: 'That is ' + t('a+b+c') + '. This question asks for the <b>product</b> ' + t('a\\times b\\times c') + '.' };
+            if (v === -ans) return { code: 'neg-rule', hint: 'Your product is negative, so one sign is off. The first term is negative, so the GCF is negative: ' + t('a=-' + g) + '. Then dividing ' + t(o.g * o.c + 'x^{2}') + ' by ' + t('-' + g + 'x^{2}') + ' gives ' + t('c=-' + o.c) + ' — two negatives in the product.' };
+            for (var d = 1; d < g; d++) if (g % d === 0 && v === ans * g / d) return { code: 'not-greatest', hint: 'Check the GCF: ' + t('\\gcd(' + g * o.b + ',' + g * o.c + ')=' + g) + ', so ' + t('a=-' + g) + '. With a smaller common factor the bracket can still be factored.' };
             return null;
-          }, 'The first term is negative, so the GCF is ' + t('-' + o.g + 'x^{2}') + ': ' + t(seq(terms) + '=-' + o.g + 'x^{2}(' + o.b + 'x-' + o.c + ')') + '.<br>' + t('a=-' + o.g + ',\\ b=' + o.b + ',\\ c=-' + o.c) + ', so ' + t('a+b+c=-' + o.g + '+' + o.b + '+(-' + o.c + ')=\\mathbf{' + ans + '}') + '.',
-          ['Take out a negative GCF (the first term is negative). Then read off ' + t('a') + ', ' + t('b') + ' and ' + t('c') + ' with their signs.'], 'NR negative GCF a+b+c');
+          }, 'The first term is negative, so the GCF is ' + t('-' + g + 'x^{2}') + ': ' + t(seq(terms) + '=-' + g + 'x^{2}(' + o.b + 'x-' + o.c + ')') + '.<br>' + t('a=-' + g + ',\\ b=' + o.b + ',\\ c=-' + o.c) + ', so ' + t('a\\times b\\times c=(-' + g + ')(' + o.b + ')(-' + o.c + ')=\\mathbf{' + ans + '}') + '.',
+          ['Take out a negative GCF (the first term is negative). Then read off ' + t('a') + ', ' + t('b') + ' and ' + t('c') + ' with their signs.', 'Multiply the three numbers: two negative factors make a positive product.'], 'NR negative GCF a×b×c');
         } }] },
       { num: '14', stem: 'Factor each polynomial completely. Verify your answers by expanding.', parts: [
         { id: '14a', level: 'BEG', make: function (r) { var o = pickWhere(function () { return { g: r.int(2, 6), c: cop2(r, 2, 5) }; }, function (o) { return o.g * Math.max(o.c[0], o.c[1]) <= 30; }); return fp(gl(X(o.g, 'x'), [X(o.c[0], 'x'), N(o.c[1])])); } },

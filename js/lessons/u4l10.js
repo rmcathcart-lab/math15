@@ -8,7 +8,8 @@
  * chip selections or grids; "factor or say it is prime" items use one poly box with a none key.
  * Levels (Math 15): BEG one named method; EMG signs / a ≠ 1 / a zero root; PRG GCF first then a second method,
  * fraction roots; ADV three stages, expand-then-solve, negative GCF with decomposition, working backwards;
- * MAS every value of b or c (extra 16b, 17), an equation from a fraction root (extra 15b), x⁶ − 1 (extra 24). */
+ * MAS every value of b or c (extra 16b, 17), an equation from a fraction root (extra 15b), (x + p)² − q² with a bracket as one
+ * square (extra 24). */
 (function (root) {
   'use strict';
   var HW = root.HW, K = HW.kit, t = K.t, ok = K.ok, wrong = K.wrong, form = K.form, B = K.P, P = HW.poly, FA = HW.factor, ex = HW.ex, nt = HW.nt;
@@ -32,9 +33,10 @@
   });
   HW.addCodes({
     'u4l10-common': 'Equation from roots: common factor not removed', 'u4l10-missing-c': 'Missing some values of c', 'u4l10-extra-c': 'A value of c that does not work',
-    'u4l10-pairs': 'Integer pairs wrong or missing', 'u4l10-sub': 'Substitution slip', 'u4l10-perim': 'Perimeter not 2(l + w)'
+    'u4l10-pairs': 'Integer pairs wrong or missing', 'u4l10-sub': 'Substitution slip', 'u4l10-perim': 'Perimeter not 2(l + w)',
+    'u4l10-br-sign': 'Bracket as one square: sign slip simplifying (A − B)'
   });
-  HW.addPartial({ 'u4l10-common': 's', 'u4l10-missing-c': 's', 'u4l10-extra-c': 's', 'u4l10-pairs': 'b', 'u4l10-sub': 's', 'u4l10-perim': 'b' });
+  HW.addPartial({ 'u4l10-common': 's', 'u4l10-missing-c': 's', 'u4l10-extra-c': 's', 'u4l10-pairs': 'b', 'u4l10-sub': 's', 'u4l10-perim': 'b', 'u4l10-br-sign': 's' });
 
   /* ---------------- small helpers ---------------- */
   function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var r = a % b; a = b; b = r; } return a; }
@@ -954,16 +956,31 @@
         { id: 'e22', level: 'ADV', make: function (r) { var pq = twoSq9(r, [1, 3], 6); return quartic(pq[0], pq[1], r.pick(['x', 'x', 'y'])); } }] },
       { num: '23', stem: 'Solve. Factor completely first, then use the zero product property.', parts: [
         { id: 'e23', level: 'ADV', make: function (r) { var pq = twoSq9(r, [1, 3], 6), v = r.pick(['x', 'x', 'y']); return solvePart(Eq({ v: v, fs: [[1, -pq[0]], [1, pq[0]], [1, -pq[1]], [1, pq[1]]] }), { how: 'a trinomial in ' + t(v + '^{2}') + ', then difference of squares twice', sol: quarticSol(pq[0], pq[1], v) + '<br>A fourth-degree polynomial can have up to four linear factors, and each one gives a root.' }); } }] },
-      { num: '24', stem: 'Factor completely over the integers. <i>Hint:</i> ' + t('x^{6}=(x^{3})^{2}') + ', so begin with a difference of squares; then use ' + t('a^{3}-b^{3}=(a-b)(a^{2}+ab+b^{2})') + ' and ' + t('a^{3}+b^{3}=(a+b)(a^{2}-ab+b^{2})') + ' on the two brackets.', parts: [
+      { num: '24', stem: 'Factor completely. <i>Hint:</i> treat the bracket as one square: ' + t('A^{2}-B^{2}=(A-B)(A+B)') + '. Then simplify each bracket, and check your answer by expanding both the original and your factored form.', parts: [
         { id: 'e24', level: 'MAS', make: function (r) {
-          var n = r.pick([1, 1, 2]), k = r.pick([1, 1, 2, 3]), v = r.pick(['x', 'x', 'y', 'a', 'm']), x1 = V(v), x2 = {}; x2[v] = 2;
-          var list = (k > 1 ? [N(k)] : []).concat([S(x1, N(-n)), S(x1, N(n)), S(M(1, x2), M(n, v), N(n * n)), S(M(1, x2), M(-n, v), N(n * n))]);
-          var expr = FA.product(list), x3m = S(M(1, (function () { var o = {}; o[v] = 3; return o; })()), N(-n * n * n)), x3p = S(M(1, (function () { var o = {}; o[v] = 3; return o; })()), N(n * n * n));
-          var p = B.factored(t(tx(expr)), list, { wrong: [{ is: (k > 1 ? [N(k)] : []).concat([x3m, x3p]), code: 'not-finished', hint: 'Right first step — now factor the difference and the sum of cubes.' }] },
-            (k > 1 ? 'GCF ' + t(k) + ' first. ' : '') + t(tx(P.scale(expr, [1, k])) + '=(' + v + '^{3})^{2}-' + (n * n * n) + '^{2}=(' + tx(x3m) + ')(' + tx(x3p) + ')') + '.<br>' + t(tx(x3m) + '=(' + tx(list[k > 1 ? 1 : 0]) + ')(' + tx(list[k > 1 ? 3 : 2]) + ')') + ' and ' + t(tx(x3p) + '=(' + tx(list[k > 1 ? 2 : 1]) + ')(' + tx(list[k > 1 ? 4 : 3]) + ')') + '.<br>Neither quadratic factors over the integers, so ' + t(tx(expr) + '=' + lst(list)) + '.',
-            ['Start with a difference of squares: ' + t('(' + v + '^{3})^{2}-' + (n * n * n) + '^{2}') + '.', 'Then use the difference and sum of cubes on the two brackets.'], 'x^6 - n^6');
-          p.bad = [lst((k > 1 ? [N(k)] : []).concat([x3m, x3p]))];
-          return p;
+          /* (x + p)² − q² = (x + p − q)(x + p + q); q ≠ p so neither bracket is just x; the brackets are monic, so no common factor */
+          var o = { p: r.int(1, 6), q: r.int(2, 9) }; if (o.q === o.p) o.q = o.p + 1;
+          var p = o.p, q = o.q, A = S(X, N(p)), D = S(X, N(p - q)), Sm = S(X, N(p + q)), T = P.mul(D, Sm), e = '(x+' + p + ')^{2}-' + q * q;
+          var key = '(' + tx(D) + ')(' + tx(Sm) + ')', raw = '\\left((x+' + p + ')-' + q + '\\right)\\left((x+' + p + ')+' + q + '\\right)';
+          var flip = S(X, N(q - p)), sqn = q * q;
+          var ws = [
+            { is: [flip, Sm], code: 'u4l10-br-sign', hint: 'Simplify the first bracket carefully: ' + t('(x+' + p + ')-' + q + '=x' + (p - q < 0 ? '' : '+') + (p - q)) + '. Expand your answer to check: it must give ' + t(tx(T)) + '.' },
+            { is: [S(X, N(p - sqn)), S(X, N(p + sqn))], code: 'no-root', hint: 'Use the square <b>root</b>: ' + t(sqn + '=' + q + '^{2}') + ', so ' + t('B=' + q) + '.' },
+            { is: [{ p: D, k: 2 }], code: 'dsq-square', hint: 'Use ' + t('(A-B)(A+B)') + ': one minus bracket and one plus bracket.' },
+            { is: [S(X, N(-p - q)), S(X, N(q - p))], code: 'u4l10-br-sign', hint: 'Check the signs: ' + t('A=x+' + p) + ' (not ' + t('x-' + p) + ') and ' + t('B=' + q) + ', so the brackets are ' + t('(x+' + p + ')-' + q) + ' and ' + t('(x+' + p + ')+' + q) + '.' }];
+          var p0 = B.factored(t(e), [D, Sm], { wrong: ws, keyTex: key },
+            'Treat ' + t('(x+' + p + ')') + ' as one square: ' + t('A=x+' + p) + ' and ' + t('B=' + q) + ' (since ' + t(sqn + '=' + q + '^{2}') + ').<br>' + t(e + '=' + raw) + '<br>Simplify each bracket: ' + t('=\\mathbf{' + key + '}') + '<br>Check: ' + t(e + '=x^{2}+' + 2 * p + 'x+' + p * p + '-' + sqn + '=' + tx(T)) + ' and ' + t(key + '=' + tx(T)) + ' ✓',
+            ['Let ' + t('A=x+' + p) + ' and ' + t('B=' + q) + ' (the square root of ' + t(sqn) + '), and write ' + t('(A-B)(A+B)') + ' with the whole bracket for ' + t('A') + '.', 'Then simplify each bracket to the form ' + t('(x+\\square)') + ', and check by expanding both forms.'], 'factor ' + e);
+          var chk = p0.check;
+          p0.check = function (resp) {
+            var res = chk(resp);
+            if (res.v === 'form' && res.code === 'simplify-bracket') return form('simplify-bracket', 'Right value — now <b>simplify inside each bracket</b>: ' + t('(x+' + p + ')-' + q) + ' and ' + t('(x+' + p + ')+' + q) + ' each collect to ' + t('x') + ' plus one number.');
+            if (res.v === 'form' && res.code === 'not-factored') return form('not-factored', 'That’s equal to ' + t(e) + ', but it isn’t factored. Use ' + t('A^{2}-B^{2}=(A-B)(A+B)') + ' with ' + t('A=x+' + p) + ' and ' + t('B=' + q) + ' to write it as a <b>product</b>.');
+            return res;
+          };
+          p0.good = ['(' + tx(Sm) + ')(' + tx(D) + ')'];
+          p0.bad = ['(' + tx(flip) + ')(' + tx(Sm) + ')', '(' + tx(S(X, N(p - sqn))) + ')(' + tx(S(X, N(p + sqn))) + ')', '(' + tx(D) + ')^{2}', raw, tx(T), e];
+          return p0;
         } }] }
     ]
   });

@@ -8,8 +8,9 @@
  * Conversions: "is it correct? if not, write the correct form" → a multiple-choice verdict (the options are the
  * expansions) plus the correct factored form; "explain" → multiple choice; "list the pairs" → number boxes;
  * area model → the area-box input; matching / sorting → a table of choices.
- * Levels (Math 15): LIM BEG EMG PRG ADV MAS. Extra practice 3(b)(c), 5, 14, 15, 18 use trinomial factoring (Lessons 3–4)
- * before it is taught, so they carry hints for the product–sum search and higher levels. */
+ * Levels (Math 15): LIM BEG EMG PRG ADV MAS. The Extra Practice uses no trinomial factoring (taught in Lesson 3): its round
+ * trips expand and check by substituting a number, its "incorrect" claims ask what the proposed form really expands to,
+ * working backwards is ax(x + b) = Ax² + Bx, and the stretch (extra 18, MAS list) is every k giving 12x² + kx a GCF of 4x. */
 (function (root) {
   'use strict';
   var HW = root.HW, F = HW.fmt, K = HW.kit, KP = K.P, PL = HW.poly, FA = HW.factor, ex = HW.ex, nt = HW.nt,
@@ -29,9 +30,14 @@
     'swap-bc': 'Numbers multiply to b and add to c (roles swapped)', 'gcf-dropped': 'Dropped the common factor', 'gcf-part': 'Took out only part of the GCF',
     'gave-sum': 'Gave the sum instead of the missing number', 'gave-product': 'Gave the product instead of the missing number',
     'not-b': 'Listed a value that isn’t a pair sum', 'missing-b': 'Missed some values of b', 'no-negatives': 'Forgot the negative values', 'fl-only': 'Expanded with only First and Last',
-    'not-subst': 'Substitution slip', 'gcf-lcm': 'Gave the LCM instead of the GCF', 'u4l1-pairs-half': 'Counted only the positive factor pairs'
+    'not-subst': 'Substitution slip', 'gcf-lcm': 'Gave the LCM instead of the GCF', 'u4l1-pairs-half': 'Counted only the positive factor pairs',
+    'u4l1-mid-sign': 'Expansion: middle term with the wrong sign', 'u4l1-last-sign': 'Expansion: constant term with the wrong sign', 'u4l1-g-twice': 'Multiplied the number in front into both brackets',
+    'u4l1-gave-target': 'Gave the expression being checked instead of the real expansion', 'u4l1-ab-swap': 'Working backwards: a and b swapped',
+    'u4l1-k-not-mult': 'GCF list: a k that is not a multiple of the GCF’s number', 'u4l1-k-gcf-big': 'GCF list: a k that makes the GCF larger', 'u4l1-k-range': 'GCF list: a k outside the allowed range',
+    'u4l1-k-missing': 'GCF list: missed some values of k'
   });
-  HW.addPartial({ 'gcf-lcm': 'n', 'u4l1-pairs-half': 'b' });
+  HW.addPartial({ 'gcf-lcm': 'n', 'u4l1-pairs-half': 'b', 'u4l1-mid-sign': 's', 'u4l1-last-sign': 's', 'u4l1-g-twice': 'b', 'u4l1-gave-target': 'n', 'u4l1-ab-swap': 's',
+    'u4l1-k-not-mult': 'n', 'u4l1-k-gcf-big': 'b', 'u4l1-k-range': 's', 'u4l1-k-missing': 's' });
 
   /* ================= shared helpers (Math 15 Unit 4) ================= */
   function M(c, v) { return PL.mono(c, v || {}); }
@@ -366,10 +372,7 @@
       'FOIL: ' + t(c.claimTex + '=' + foilTex(c.cs) + '=' + tx(c.E)) + '. ' + (c.truth ? 'That is exactly ' + t(c.Ttx) + ', so the factoring is <b>correct</b>.' : 'That is not ' + t(c.Ttx) + ', so the factoring is <b>incorrect</b>.'),
       ['Expand with FOIL (First, Outer, Inner, Last) and collect like terms. Compare with the trinomial term by term.'], 'check claim ' + plain(c.Ttx + '=' + c.claimTex));
   }
-  function triCorrect(c, level) {
-    var ws = c.truth ? [] : [{ is: c.E, code: 'kept-error', hint: 'That is the claimed form, and it is not correct: it expands to ' + t(tx(c.E)) + '.' }];
-    return facPart(c.s, { prompt: 'Write the correct factored form of ' + t(c.Ttx) + '. (If the claim was correct, it is the claimed form.)', wrong: ws, check: true, text: 'correct form ' + plain(c.Ttx) });
-  }
+
   /* two polynomial boxes: expanded, then factored back */
   function mathField(label, vars, ph) { return { name: label, label: label, mode: 'math', keys: 'poly', vars: vars || ['x'], wide: true, placeholder: ph }; }
   function roundTrip(prompt, expanded, factorCheck, keys, answer, sol, hints, text, opt) {
@@ -619,11 +622,11 @@
     ],
     extra: [
       /* ---------------- Part A — Round trips ---------------- */
-      { num: '1', section: 'Extra practice A — Round trips: expand, then factor back', stem: 'Expand each product. Then factor your expanded answer back into a product, and confirm that you return to the expression you started with.', parts: [
-        { id: 'e1a', level: 'BEG', make: function (r) { var o = pickWhere(function () { return [r.int(1, 6), r.int(2, 9)]; }, function (o) { return o[0] < o[1]; }); return tripPart(spec({ p: o[0], q: o[1] })); } },
-        { id: 'e1b', level: 'BEG', make: function (r) { var o = pickWhere(function () { return [r.int(1, 4), r.int(5, 12)]; }, function (o) { return o[0] * o[1] <= 60; }); return tripPart(spec({ p: o[0], q: o[1] })); } },
-        { id: 'e1c', level: 'BEG', make: function (r) { var o = pickWhere(function () { return [r.int(2, 6), r.int(3, 9)]; }, function (o) { return o[0] < o[1]; }); return tripPart(spec({ p: -o[0], q: -o[1] })); } },
-        { id: 'e1d', level: 'EMG', make: function (r) { var o = pickWhere(function () { return [r.int(3, 9), r.int(1, 8)]; }, function (o) { return o[0] !== o[1]; }); return tripPart(spec({ p: o[0], q: -o[1] })); } }] },
+      { num: '1', section: 'Extra practice A — Round trips: expand, factor, and check', stem: 'Expand each product. Then check your expansion by substituting ' + t('x=2') + ' into both the product and your expanded answer — the two values must match.', parts: [
+        { id: 'e1a', level: 'BEG', make: function (r) { var o = pickWhere(function () { return [r.int(1, 6), r.int(2, 9)]; }, function (o) { return o[0] < o[1]; }); return expandPart(spec({ p: o[0], q: o[1] }), 2); } },
+        { id: 'e1b', level: 'BEG', make: function (r) { var o = pickWhere(function () { return [r.int(1, 4), r.int(5, 12)]; }, function (o) { return o[0] * o[1] <= 60; }); return expandPart(spec({ p: o[0], q: o[1] }), 2); } },
+        { id: 'e1c', level: 'BEG', make: function (r) { var o = pickWhere(function () { return [r.int(2, 6), r.int(3, 9)]; }, function (o) { return o[0] < o[1]; }); return expandPart(spec({ p: -o[0], q: -o[1] }), 2); } },
+        { id: 'e1d', level: 'EMG', make: function (r) { var o = pickWhere(function () { return [r.int(3, 9), r.int(1, 8)]; }, function (o) { return o[0] !== o[1]; }); return expandPart(spec({ p: o[0], q: -o[1] }), 2); } }] },
       { num: '2', stem: function (sh) { return 'Expand each product, then factor the result <b>completely</b>. In one of these four, the starting form was not completely factored — find it.<br>(a) ' + t(sh.f[0].shown) + ' &nbsp; (b) ' + t(sh.f[1].shown) + ' &nbsp; (c) ' + t(sh.f[2].shown) + ' &nbsp; (d) ' + t(sh.f[3].shown); },
         shared: function (r) {
           var a = pickWhere(function () { return { g: r.int(2, 7), c: cop2(r, 2, 7) }; }, function (o) { return o.g * Math.max(o.c[0], o.c[1]) <= 35; });
@@ -644,17 +647,18 @@
         } }]) },
       { num: '3', stem: 'Now run the trip the other way. Factor each expression, then expand your factored form to verify it reproduces the original exactly.', parts: [
         { id: 'e3a', level: 'BEG', make: function (r) { var o = pickWhere(function () { return { g: r.int(2, 6), c: cop2(r, 2, 5) }; }, function (o) { return o.g * Math.max(o.c[0], o.c[1]) <= 30; }); return factorPart([M(o.g * o.c[0], { x: 2 }), M(o.g * o.c[1], { x: 1 })], { verify: true }); } },
-        { id: 'e3b', level: 'PRG', make: function (r) { var o = pickWhere(function () { return [r.int(1, 4), r.int(3, 9)]; }, function (o) { return o[0] < o[1] && o[0] * o[1] <= 36; }); return facPart(spec({ p: o[0], q: o[1] }), { check: true }); } },
-        { id: 'e3c', level: 'ADV', make: function (r) { var o = pickWhere(function () { return [r.int(2, 9), r.int(1, 7)]; }, function (o) { return o[0] > o[1] && o[0] * o[1] <= 40; }); return facPart(spec({ p: -o[0], q: o[1] }), { check: true, hints: ['Look for two integers with product ' + t(-o[0] * o[1]) + ' and sum ' + t(o[1] - o[0]) + '. A negative product means one is positive and one is negative.', 'List the factor pairs of ' + t(o[0] * o[1]) + ' and give one of them a minus sign.'] }); } }] },
-      { num: '4', stem: 'Each product below has <b>three</b> factors. Expand it completely, then factor your answer back — all three factors must reappear.', parts: [
-        { id: 'e4a', level: 'EMG', make: function (r) { var o = pickWhere(function () { return [r.int(1, 4), r.int(2, 7)]; }, function (o) { return o[0] < o[1]; }); return tripPart(spec({ G: N(r.int(2, 5)), p: o[0], q: o[1] })); } },
-        { id: 'e4b', level: 'PRG', make: function (r) { var o = pickWhere(function () { return [r.int(1, 5), r.int(1, 5)]; }, function (o) { return o[0] !== o[1]; }); return tripPart(spec({ G: N(r.int(2, 5)), p: o[0], q: -o[1] })); } }] },
+        /* (b) A x² − B x and (c) A x³ + B x² with GCF g x²: GCF factoring only (trinomials are Lesson 3) */
+        { id: 'e3b', level: 'BEG', make: function (r) { var o = pickWhere(function () { return { g: r.int(2, 6), c: cop2(r, 2, 5) }; }, function (o) { return o.g * Math.max(o.c[0], o.c[1]) <= 30; }); return factorPart([M(o.g * o.c[0], { x: 2 }), M(-o.g * o.c[1], { x: 1 })], { verify: true }); } },
+        { id: 'e3c', level: 'EMG', make: function (r) { var o = pickWhere(function () { return { g: r.int(2, 6), c: cop2(r, 2, 5) }; }, function (o) { return o.g * Math.max(o.c[0], o.c[1]) <= 30; }); return factorPart([M(o.g * o.c[0], { x: 3 }), M(o.g * o.c[1], { x: 2 })], { verify: true }); } }] },
+      { num: '4', stem: 'Each product below has <b>three</b> factors. Expand it completely, then check your answer by substituting ' + t('x=1') + ' into both the product and your expanded form.', parts: [
+        { id: 'e4a', level: 'EMG', make: function (r) { var o = pickWhere(function () { return [r.int(1, 4), r.int(2, 7)]; }, function (o) { return o[0] < o[1]; }); return expandPart(spec({ G: N(r.int(2, 5)), p: o[0], q: o[1] }), 1); } },
+        { id: 'e4b', level: 'PRG', make: function (r) { var o = pickWhere(function () { return [r.int(1, 5), r.int(1, 5)]; }, function (o) { return o[0] !== o[1]; }); return expandPart(spec({ G: N(r.int(2, 5)), p: o[0], q: -o[1] }), 1); } }] },
       /* ---------------- Part B — Checking ---------------- */
-      triClaimQ('5', 'a', function (r) { var o = pickWhere(function () { return [r.int(1, 5), r.int(2, 9)]; }, function (o) { return o[0] < o[1]; }); return o; }, ['BEG', 'EMG'], 'Extra practice B — Checking a factorization by expanding'),
+      triClaimQ('5', 'a', function (r) { var o = pickWhere(function () { return [r.int(1, 5), r.int(2, 9)]; }, function (o) { return o[0] < o[1]; }); return o; }, ['BEG', 'BEG'], 'Extra practice B — Checking a factorization by expanding'),
       triClaimQ('5', 'b', function (r) { var o = pickWhere(function () { return [r.int(1, 5), r.int(2, 9)]; }, function (o) { return o[0] < o[1]; }); return [-o[0], -o[1]]; }, ['BEG', 'EMG']),
-      triClaimQ('5', 'c', function (r) { var o = pickWhere(function () { return [r.int(1, 3), r.int(6, 12)]; }, function (o) { return posPairs(o[0] * o[1]).length >= 3; }); return o; }, ['BEG', 'EMG']),
-      triClaimQ('5', 'd', function (r) { var o = pickWhere(function () { return [r.int(3, 7), r.int(2, 6)]; }, function (o) { return o[0] !== o[1]; }); return [-o[0], o[1]]; }, ['BEG', 'PRG']),
-      triClaimQ('5', 'e', function (r) { var o = pickWhere(function () { return [r.int(3, 7), r.int(1, 5)]; }, function (o) { return o[0] > o[1]; }); return [o[0], -o[1]]; }, ['BEG', 'PRG']),
+      triClaimQ('5', 'c', function (r) { var o = pickWhere(function () { return [r.int(1, 3), r.int(6, 12)]; }, function (o) { return posPairs(o[0] * o[1]).length >= 3; }); return o; }, ['BEG', 'BEG']),
+      triClaimQ('5', 'd', function (r) { var o = pickWhere(function () { return [r.int(3, 7), r.int(2, 6)]; }, function (o) { return o[0] !== o[1]; }); return [-o[0], o[1]]; }, ['BEG', 'EMG']),
+      triClaimQ('5', 'e', function (r) { var o = pickWhere(function () { return [r.int(3, 7), r.int(1, 5)]; }, function (o) { return o[0] > o[1]; }); return [o[0], -o[1]]; }, ['BEG', 'EMG']),
       triClaimQ('5', 'f', function (r) { var o = pickWhere(function () { return [r.int(2, 5), r.int(3, 8)]; }, function (o) { return o[0] < o[1]; }); return [-o[0], -o[1]]; }, ['BEG', 'EMG']),
       compQ('a', 'incomplete', 'Extra practice B — Correct, and complete?'),
       compQ('b', 'xsq'),
@@ -765,37 +769,48 @@
         { id: 'e13a', level: 'EMG', make: function (r) { var o = pickWhere(function () { return { g: r.int(2, 5), c: cop2(r, 2, 7) }; }, function (o) { return o.g * Math.max(o.c[0], o.c[1]) <= 35; }); return sidePart([M(o.g * o.c[0], { x: 2 }), M(o.g * o.c[1], { x: 1 })], M(o.g, { x: 1 })); } },
         { id: 'e13b', level: 'BEG', make: function (r) { var o = pickWhere(function () { return { g: r.int(2, 6), c: cop2(r, 1, 7) }; }, function (o) { return o.c[0] > 1 && o.g * Math.max(o.c[0], o.c[1]) <= 42; }); return sidePart([M(o.g * o.c[0], { x: 1 }), N(o.g * o.c[1])], N(o.g)); } },
         { id: 'e13c', level: 'BEG', make: function (r) { var k = r.int(2, 12), v = r.pick(['x', 'x', 'a', 'y']); return sidePart([V(v, 2), M(k, { [v]: 1 })], V(v)); } }] },
-      { num: '14', stem: function (sh) { return '<b>Working backwards.</b> Suppose ' + t('(x+a)(x+b)=x^{2}+' + sh.b + 'x+' + sh.c) + ', where ' + t('a') + ' and ' + t('b') + ' are positive whole numbers.'; },
-        shared: function (r) { var c = r.pick([24, 24, 18, 20, 30, 36, 28, 40, 12, 32, 42, 48]), pp = posPairs(c), pr = r.pick(pp.filter(function (x) { return x[0] !== x[1]; })); return { c: c, pp: pp, a: pr[0], bb: pr[1], b: pr[0] + pr[1] }; },
+      { num: '14', stem: function (sh) { return '<b>Working backwards.</b> Suppose ' + t('ax(x+b)=' + sh.A + 'x^{2}+' + sh.AB + 'x') + ', where ' + t('a') + ' and ' + t('b') + ' are positive whole numbers.'; },
+        shared: function (r) { var a = r.int(2, 9), b = pickWhere(function () { return r.int(2, 9); }, function (v) { return v !== a; }); return { a: a, b: b, A: a, AB: a * b }; },
         parts: [
           { id: 'e14a', level: 'PRG', make: function (r, sh) {
-            return mcPart(r, 'Expand ' + t('(x+a)(x+b)') + '. What must ' + t('a\\times b') + ' and ' + t('a+b') + ' equal?', [
-              { html: t('a\\times b=' + sh.c) + ' and ' + t('a+b=' + sh.b), right: true },
-              { html: t('a\\times b=' + sh.b) + ' and ' + t('a+b=' + sh.c), why: 'Expand: ' + t('(x+a)(x+b)=x^{2}+(a+b)x+ab') + '. The <b>product</b> is the constant term.' },
-              { html: t('a\\times b=' + sh.c) + ' and ' + t('a+b=' + (sh.c + 1)), why: t('a+b') + ' is the coefficient of ' + t('x') + ' in the trinomial, ' + t(sh.b) + '.' },
-              { html: t('a+b=' + sh.c) + ' and ' + t('a-b=' + sh.b), why: 'Expand: ' + t('(x+a)(x+b)=x^{2}+ax+bx+ab=x^{2}+(a+b)x+ab') + '.' }],
-              t('(x+a)(x+b)=x^{2}+ax+bx+ab=x^{2}+(a+b)x+ab') + '. Matching with ' + t('x^{2}+' + sh.b + 'x+' + sh.c) + ': ' + t('ab=' + sh.c) + ' and ' + t('a+b=' + sh.b) + '.', ['Use FOIL, then compare the coefficients.'], 'what ab and a+b equal');
+            var A = sh.A, AB = sh.AB;
+            return mcPart(r, 'Expand ' + t('ax(x+b)') + '. What must ' + t('a') + ' and ' + t('a\\times b') + ' equal?', [
+              { html: t('ax(x+b)=ax^{2}+abx') + ', so ' + t('a=' + A) + ' and ' + t('a\\times b=' + AB), right: true },
+              { html: t('ax(x+b)=ax^{2}+abx') + ', so ' + t('a=' + AB) + ' and ' + t('a\\times b=' + A), why: 'Match term by term: ' + t('a') + ' is the coefficient of ' + t('x^{2}') + ', which is ' + t(A) + '; ' + t('ab') + ' is the coefficient of ' + t('x') + ', ' + t(AB) + '.' },
+              { html: t('ax(x+b)=ax^{2}+bx') + ', so ' + t('a=' + A) + ' and ' + t('b=' + AB), why: t('ax') + ' multiplies <b>both</b> terms in the bracket: ' + t('ax\\times b=abx') + ', not ' + t('bx') + '.' },
+              { html: t('ax(x+b)=ax+abx') + ', so ' + t('a+a\\times b=' + (A + AB)), why: t('ax\\times x=ax^{2}') + ', not ' + t('ax') + '. Then compare the ' + t('x^{2}') + '-terms and the ' + t('x') + '-terms separately.' }],
+              t('ax(x+b)=ax\\cdot x+ax\\cdot b=ax^{2}+abx') + '. Matching with ' + t(A + 'x^{2}+' + AB + 'x') + ': the ' + t('x^{2}') + '-terms give ' + t('a=' + A) + ' and the ' + t('x') + '-terms give ' + t('a\\times b=' + AB) + '.', ['Multiply ' + t('ax') + ' by each term in the bracket, then compare coefficients term by term.'], 'what a and ab equal');
           } },
-          { id: 'e14b', level: 'PRG', make: function (r, sh) {
-            var pp = sh.pp;
-            return KP.fields('List every pair of positive whole numbers whose product is ' + t(sh.c) + ', with the sum of each pair. Enter each sum.', pp.map(function (x) { return numField(t(x[0] + '\\times ' + x[1]) + ': sum'); }),
-              pp.map(function (x) { return K.number(x[0] + x[1], function (v) { return v === x[0] * x[1] ? { code: 'gave-product', hint: 'That is the product. Add the two numbers.' } : null; }); }), pp.map(function (x) { return String(x[0] + x[1]); }),
-              pp.map(function (x) { return t(x[0] + '+' + x[1] + '=' + (x[0] + x[1])); }).join(', '),
-              pp.map(function (x) { return t(x[0] + '\\times ' + x[1]) + ': sum ' + t(x[0] + x[1]) + (x[0] + x[1] === sh.b ? ' ✓' : ''); }).join('<br>') + '<br>Exactly one pair gives a sum of ' + t(sh.b) + '.', ['Work through the pairs in order: ' + t('1\\times ' + sh.c) + ', ' + t('2\\times ?') + ', …'], 'pair sums for ' + sh.c);
+          { id: 'e14b', level: 'ADV', make: function (r, sh) {
+            var A = sh.A, Bv = sh.b, AB = sh.AB;
+            var check = function (resp) {
+              resp = resp || [];
+              var x = HW.parse.number(resp[0] == null ? '' : resp[0]), y = HW.parse.number(resp[1] == null ? '' : resp[1]);
+              if (!x.ok || !y.ok) return form('empty', 'Enter one number in each box.');
+              if (x.value === A && y.value === Bv) return ok();
+              if (x.value === A && y.value === AB) return wrong('gave-product', t(AB) + ' is ' + t('a\\times b') + '. Divide by ' + t('a') + ' to get ' + t('b') + ': ' + t('b=' + AB + '\\div ' + A) + '.');
+              if (x.value === Bv && y.value === A) return wrong('u4l1-ab-swap', 'Swapped: ' + t('a') + ' is the coefficient of ' + t('x^{2}') + ', so ' + t('a=' + A) + '.');
+              if (x.value !== A) return wrong('value', t('a') + ' is the coefficient of ' + t('x^{2}') + ' in ' + t(A + 'x^{2}+' + AB + 'x') + '.');
+              return wrong('value', 'With ' + t('a=' + A) + ', you need ' + t(A + '\\times b=' + AB) + '.');
+            };
+            return { prompt: 'Use part (a) to find ' + t('a') + ' and ' + t('b') + '.', input: { type: 'fields', fields: [numField(t('a=')), numField(t('b='))] }, check: check,
+              key: [String(A), String(Bv)], answer: t('a=' + A + ',\\ b=' + Bv),
+              solution: 'From part (a): ' + t('a=' + A) + ', and ' + t('a\\times b=' + AB) + ', so ' + t(A + '\\times b=' + AB) + ' and ' + t('b=' + AB + '\\div ' + A + '=\\mathbf{' + Bv + '}') + '.',
+              hints: ['Read ' + t('a') + ' straight from the ' + t('x^{2}') + '-term.', 'Then ' + t('a\\times b=' + AB) + ': divide to find ' + t('b') + '.'], text: 'find a and b from ' + A + 'x^2+' + AB + 'x',
+              bad: [[String(A), String(AB)], [String(Bv), String(A)]] };
           } },
-          { id: 'e14c', level: 'ADV', make: function (r, sh) {
-            var s = spec({ p: sh.a, q: sh.bb });
-            return pairNumPart(sh.a, sh.bb, 'State ' + t('a') + ' and ' + t('b') + '. (Then expand ' + t('(x+a)(x+b)') + ' to verify.)', ['a', 'b'],
-              'The pair with product ' + t(sh.c) + ' and sum ' + t(sh.b) + ' is ' + t(sh.a + ',\\ ' + sh.bb) + '.<br>Check: ' + t(s.key + '=' + foilTex(s) + '=' + tx(s.inner)) + ' ✓');
+          { id: 'e14c', level: 'PRG', make: function (r, sh) {
+            return factorPart([M(sh.A, { x: 2 }), M(sh.AB, { x: 1 })], { verify: true, prompt: 'Write the factored form of ' + t(sh.A + 'x^{2}+' + sh.AB + 'x') + ', then expand it to verify that you get ' + t(sh.A + 'x^{2}+' + sh.AB + 'x') + ' back.',
+              sol: 'With ' + t('a=' + sh.A) + ' and ' + t('b=' + sh.b) + ': ' + t('ax(x+b)=\\mathbf{' + sh.A + 'x(x+' + sh.b + ')}') + '.<br>Check by expanding: ' + t(sh.A + 'x(x+' + sh.b + ')=' + sh.A + 'x\\cdot x+' + sh.A + 'x\\cdot ' + sh.b + '=' + sh.A + 'x^{2}+' + sh.AB + 'x') + ' ✓',
+              hints: ['Put your ' + t('a') + ' and ' + t('b') + ' into ' + t('ax(x+b)') + '.', 'The GCF of ' + t(sh.A + 'x^{2}') + ' and ' + t(sh.AB + 'x') + ' is ' + t(sh.A + 'x') + '.'], text: 'factored form ' + sh.A + 'x(x+' + sh.b + ')' });
           } }] },
       { num: '15', stem: 'Fill in each blank so that the statement is true. Expand to check every answer.', parts: [
         { id: 'e15a', level: 'PRG', make: function (r) { var p = r.int(2, 6), q = pickWhere(function () { return r.int(2, 9); }, function (v) { return v !== p; });
           return blanksPart('(x+' + p + ')(x+\\underline{\\quad})=x^{2}+\\underline{\\quad}x+' + p * q, [q, p + q], p, q, ['First blank', 'Second blank']); } },
         { id: 'e15b', level: 'ADV', make: function (r) { var p = r.int(2, 7), q = r.int(p + 1, 10);
           return blanksPart('(x-' + p + ')(x+\\underline{\\quad})=x^{2}+\\underline{\\quad}x-' + p * q, [q, q - p], -p, q, ['First blank', 'Second blank']); } },
-        { id: 'e15c', level: 'PRG', make: function (r) { var o = pickWhere(function () { return [r.int(2, 6), r.int(3, 9)]; }, function (o) { return o[0] < o[1] && o[0] * o[1] <= 60; });
-          var s = spec({ p: o[0], q: o[1] });
-          return pairNumPart(o[0], o[1], t('(x+\\underline{\\quad})(x+\\underline{\\quad})=' + tx(s.inner)), ['First blank', 'Second blank'], 'Two numbers with product ' + t(s.c) + ' and sum ' + t(s.b) + ': ' + t(o[0]) + ' and ' + t(o[1]) + ' (either order).<br>Check: ' + t(s.key + '=' + tx(s.inner)) + ' ✓'); } },
+        { id: 'e15c', level: 'PRG', make: function (r) { var p = r.int(2, 6), q = pickWhere(function () { return r.int(2, 9); }, function (v) { return v !== p; });
+          return sumBlanksPart(p, q); } },
         { id: 'e15d', level: 'BEG', make: function (r) { var g = r.int(2, 9), k = r.int(2, 9), B = sum([V('x'), N(k)]); return frontPart(PL.mul(N(g), B), N(g), B, { prompt: t('\\underline{\\qquad}\\,(x+' + k + ')=' + g + 'x+' + g * k) }); } }] },
       { num: '16', stem: '<b>Reasoning.</b>', parts: [
         { id: 'e16a', level: 'EMG', make: function (r) { var o = pickWhere(function () { return [r.int(1, 6), r.int(3, 9)]; }, function (o) { return o[0] < o[1]; }), s = spec({ p: o[0], q: o[1] });
@@ -821,57 +836,120 @@
             { html: 'Because ' + t('1') + ' is a prime number.', why: t('1') + ' is not prime. Multiplying by ' + t('1') + ' simply leaves the expression unchanged.' },
             { html: 'Because a factoring must always have exactly two brackets.', why: 'Factorings like ' + t('5(x+3)') + ' have one bracket. What matters is that real factors are broken off.' }],
             t('1(' + T + ')') + ' is always true but gives no new information. A useful factoring breaks the expression into factors of lower degree (or takes out a number greater than ' + t('1') + '), each of which cannot be factored further.', [], 'why 1·P is not useful'); } }] },
-      { num: '18', stem: function (sh) { return '<b>Stretch.</b> The expression ' + t(sh.v + '^{2}+k' + sh.v + '+' + sh.c) + ' factors over the integers exactly when there are two integers whose product is ' + t(sh.c) + ' and whose sum is ' + t('k') + '.'; },
-        shared: function (r) { return { c: r.pick([18, 18, 12, 20, 28, 30, 24, 32, 50, 45, 44, 40, 42, 52, 54, 27, 63]), v: r.pick(['x', 'x', 'y', 'm']) }; },
+      { num: '18', stem: function (sh) { return '<b>Stretch.</b> In the expression ' + t(sh.L + 'x^{2}+kx') + ', the number ' + t('k') + ' is a positive whole number less than ' + t(sh.K) + '.'; },
+        shared: function (r) { return gcfFamily(r); },
         parts: [
-          { id: 'e18a', level: 'PRG', make: function (r, sh) { var n = posPairs(sh.c).length;
-            return KP.number('How many pairs of integers (order doesn’t matter) have a product of ' + t(sh.c) + '? Remember that two negatives also multiply to a positive.', 2 * n, function (v) {
-              if (v === n) return { code: 'u4l1-pairs-half', hint: 'That counts only the positive pairs. Each one has a negative partner: ' + t('(-1)(-' + sh.c + ')=' + sh.c) + '.' };
-              return null;
-            }, 'Positive pairs: ' + t(pairsTex(sh.c)) + ' — that is ' + t(n) + '. Each has a negative partner (both numbers negative), so there are ' + t('2\\times ' + n + '=\\mathbf{' + 2 * n + '}') + ' pairs.', ['List the positive pairs first: ' + t('1\\times ' + sh.c) + ', ' + t('2\\times ?') + ', …', 'Then make both numbers negative.'], 'count integer pairs of ' + sh.c); } },
-          { id: 'e18b', level: 'MAS', make: function (r, sh) {
-            var c = sh.c, sums = []; posPairs(c).forEach(function (pq) { sums.push(pq[0] + pq[1], -(pq[0] + pq[1])); });
-            sums.sort(function (a, b) { return b - a; });
-            var p = KP.valueSet('Find <b>all</b> integer values of ' + t('k') + ' for which ' + t(sh.v + '^{2}+k' + sh.v + '+' + c) + ' factors over the integers. (Separate them with commas, or use ' + t('\\pm') + '.)', sums, { v: 'k', keyTex: 'k=' + posPairs(c).map(function (pq) { return '\\pm ' + (pq[0] + pq[1]); }).join(',\\ '), diag: function (A) {
-                var bad = A.filter(function (v) { return sums.indexOf(v) < 0; });
-                if (bad.length) return { code: 'not-b', hint: t(bad[0]) + ' is not the sum of a pair of integers with product ' + t(c) + ', so ' + t(sh.v + '^{2}' + (bad[0] < 0 ? '' : '+') + bad[0] + sh.v + '+' + c) + ' doesn’t factor.' };
-                if (A.every(function (v) { return v > 0; })) return { code: 'no-negatives', hint: 'Those are the positive values. Two <b>negative</b> numbers also multiply to ' + t(c) + ' — their sums are negative.' };
-                return { code: 'missing-b', hint: 'You have ' + A.length + ' of the ' + sums.length + ' values. Go through every factor pair of ' + t(c) + ', positive and negative.' };
+          { id: 'e18a', sub: 'a', level: 'MAS', make: function (r, sh) {
+            var L = sh.L, d = sh.d, K = sh.K, list = sh.list;
+            var p = KP.valueSet('List <b>every</b> value of ' + t('k') + ' for which the GCF of ' + t(L + 'x^{2}+kx') + ' is exactly ' + t(d + 'x') + '. (Separate them with commas.)', list, { v: 'k', keyTex: list.join(',\\ '), diag: function (A) {
+                var out = A.filter(function (v) { return v <= 0 || v >= K || v % 1; })[0];
+                if (out != null) return { code: 'u4l1-k-range', hint: t('k') + ' must be a positive whole number less than ' + t(K) + ', so ' + t(out) + ' is not allowed.' };
+                var nm = A.filter(function (v) { return v % d; })[0];
+                if (nm != null) return { code: 'u4l1-k-not-mult', hint: t(nm) + ' is not a multiple of ' + t(d) + ', so ' + t(d + 'x') + ' is not a factor of ' + t(nm + 'x') + '. The GCF is ' + t(gcfTex(L, nm)) + '.' };
+                var big = A.filter(function (v) { return gcd(L, v) > d; })[0];
+                if (big != null) return { code: 'u4l1-k-gcf-big', hint: 'For ' + t('k=' + big) + ' the GCF of ' + t(L + 'x^{2}+' + big + 'x') + ' is ' + t(gcfTex(L, big)) + ' — bigger than ' + t(d + 'x') + ', because ' + t(L) + ' and ' + t(big) + ' share the factor ' + t(gcd(L, big)) + '.' };
+                return { code: 'u4l1-k-missing', hint: 'You have ' + A.length + ' of the ' + list.length + ' values. Go through <b>every</b> multiple of ' + t(d) + ' below ' + t(K) + ' and check the GCF of each.' };
               } },
-              'Each integer pair with product ' + t(c) + ' gives one value of ' + t('k') + ' (its sum): ' + posPairs(c).map(function (pq) { return t(pq[0] + '\\times ' + pq[1]) + ' → ' + t(pq[0] + pq[1]) + ', ' + t('(-' + pq[0] + ')(-' + pq[1] + ')') + ' → ' + t(-(pq[0] + pq[1])); }).join('; ') + '.<br>' + t('k=' + posPairs(c).map(function (pq) { return '\\pm' + (pq[0] + pq[1]); }).join(',\\ ')),
-              ['List every pair of integers with product ' + t(c) + ' — positive pairs and negative pairs — and add each pair.', 'Each sum is one value of ' + t('k') + '.'], 'all k for ' + sh.v + '^2+k' + sh.v + '+' + c);
-            p.good = [posPairs(c).map(function (pq) { return '\\pm ' + (pq[0] + pq[1]); }).join(', ')];
-            p.bad = [sums.filter(function (v) { return v > 0; }).join(', '), c + ', -' + c, sums.slice(1).join(', ')];
+              'For the GCF to be ' + t(d + 'x') + ', ' + t(d) + ' must divide ' + t('k') + ', so ' + t('k') + ' is a multiple of ' + t(d) + '; but ' + t(L) + ' and ' + t('k') + ' must share nothing more.<br>Multiples of ' + t(d) + ' less than ' + t(K) + ', with the GCF of ' + t(L) + ' and each:<br>' + sh.mults.map(function (k) { var g = gcd(L, k); return t(k) + ': ' + t(g) + (g === d ? ' ✓' : ''); }).join(', &nbsp;') + '<br>So ' + t('k=\\mathbf{' + list.join(',\\ ') + '}') + '.',
+              ['' + t('k') + ' must be a multiple of ' + t(d) + ' (otherwise ' + t(d) + ' does not divide ' + t('k') + ').', 'Cross out each multiple of ' + t(d) + ' that shares an extra factor with ' + t(L) + ' — then the GCF would be bigger than ' + t(d + 'x') + '.'], 'all k with GCF ' + d + 'x of ' + L + 'x^2+kx');
+            p.good = [list.slice().reverse().join(', '), list.map(function (v) { return 'k=' + v; }).join(', ')];
+            p.bad = [sh.mults.join(', '), list.slice(0, -1).join(', '), list.concat([sh.kstar]).join(', '), list.concat([d + 1]).join(', ')];
             return p;
           } },
-          { id: 'e18c', level: 'ADV', make: function (r, sh) {
-            var c = sh.c, v = sh.v, big = spec({ v: v, p: 1, q: c }), small = spec({ v: v, p: -1, q: -c });
-            var fb = facPart(big), fs = facPart(small);
-            return KP.fields('Give the factored form for the <b>largest</b> and for the <b>smallest</b> value of ' + t('k') + '.', [mathField('Largest k', [v], 'e.g. (x + 2)(x + 3)'), mathField('Smallest k', [v], 'e.g. (x - 2)(x - 3)')], [fb.check, fs.check], [big.key, small.key],
-              'Largest: ' + t(tx(big.full) + '=' + big.key) + '; smallest: ' + t(tx(small.full) + '=' + small.key),
-              'The largest sum comes from ' + t('1\\times ' + c) + ': ' + t('k=' + (c + 1)) + ', so ' + t(tx(big.full) + '=' + big.key) + '.<br>The smallest comes from ' + t('(-1)(-' + c + ')') + ': ' + t('k=-' + (c + 1)) + ', so ' + t(tx(small.full) + '=' + small.key) + '.',
-              ['The pair ' + t('1\\times ' + c) + ' has the biggest sum; its negative partner has the smallest.'], 'largest/smallest k forms');
+          { id: 'e18b', sub: 'b', level: 'PRG', make: function (r, sh) {
+            var km = sh.list[sh.list.length - 1], L = sh.L, d = sh.d;
+            return factorPart([M(L, { x: 2 }), M(km, { x: 1 })], { verify: true, prompt: 'For the <b>largest</b> ' + t('k') + ' on your list (the GCF is exactly ' + t(d + 'x') + '), write ' + t(L + 'x^{2}+kx') + ' in factored form, and expand to check.',
+              sol: 'The largest value is ' + t('k=' + km) + '. The GCF of ' + t(L + 'x^{2}+' + km + 'x') + ' is ' + t(d + 'x') + ': ' + t(L + 'x^{2}\\div ' + d + 'x=' + L / d + 'x') + ' and ' + t(km + 'x\\div ' + d + 'x=' + km / d) + '.<br>' + t(L + 'x^{2}+' + km + 'x=\\mathbf{' + d + 'x(' + L / d + 'x+' + km / d + ')}') + '<br>Check: ' + t(d + 'x(' + L / d + 'x+' + km / d + ')=' + L + 'x^{2}+' + km + 'x') + ' ✓',
+              hints: ['Use the largest ' + t('k') + ' from part (a). Its GCF is ' + t(d + 'x') + '.', 'Divide each term by ' + t(d + 'x') + ', then expand to check.'], text: 'factor ' + L + 'x^2+' + km + 'x' });
           } },
-          { id: 'e18d', level: 'PRG', make: function (r, sh) {
-            return mcPart(r, 'Why do the values of ' + t('k') + ' come in pairs (' + t('k') + ' and ' + t('-k') + ')?', [
-              { html: 'Replacing both numbers of a pair by their opposites keeps the product ' + t(sh.c) + ' but makes the sum the opposite.', right: true },
-              { html: 'Because ' + t(sh.c) + ' is even.', why: 'It happens for any positive constant, odd or even: ' + t('(-m)(-n)=mn') + '.' },
-              { html: 'Because every factor of ' + t(sh.c) + ' appears twice in its list.', why: 'The reason is about signs: ' + t('m\\times n') + ' and ' + t('(-m)(-n)') + ' have the same product but opposite sums.' },
-              { html: 'They don’t always come in pairs; it depends on ' + t('k') + '.', why: 'For every positive pair there is a negative pair, so they always pair up.' }],
-              'If ' + t('m\\times n=' + sh.c) + ', then ' + t('(-m)(-n)=' + sh.c) + ' too, with sum ' + t('-(m+n)') + '. So each value of ' + t('k') + ' has a partner ' + t('-k') + '.', [], 'why k comes in ± pairs');
+          { id: 'e18c', sub: 'c i', level: 'PRG', make: function (r, sh) {
+            var L = sh.L, d = sh.d, ks = sh.kstar, G = gcd(L, ks), K = sh.K;
+            return mcPart(r, 'Why is ' + t('k=' + ks) + ' <b>not</b> on your list?', [
+              { html: (ks === L ? 'Both coefficients are ' + t(L) + ', so ' + t(L) + ' divides both numbers — and ' + t(L) + ' is bigger than ' + t(d) + '. So' : ks % L === 0 ? t(ks) + ' is a multiple of ' + t(L) + ', so ' + t(L) + ' divides both numbers — and ' + t(L) + ' is bigger than ' + t(d) + '. So' : t(ks) + ' and ' + t(L) + ' share the factor ' + t(G) + ', which is bigger than ' + t(d) + '. So') + ' the GCF of ' + t(L + 'x^{2}+' + ks + 'x') + ' is ' + t(G + 'x') + ', not ' + t(d + 'x') + '.', right: true },
+              { html: t(ks) + ' is not a multiple of ' + t(d) + '.', why: 'It is: ' + t(ks + '=' + d + '\\times ' + ks / d) + '. The problem is that ' + t(L) + ' and ' + t(ks) + ' share an even <b>bigger</b> factor.' },
+              { html: t(ks) + ' is not less than ' + t(K) + '.', why: t(ks + '<' + K) + ', so it is allowed. Find the GCF of ' + t(L) + ' and ' + t(ks) + '.' },
+              { html: t(ks + 'x') + ' has no ' + t('x^{2}') + ', so the GCF has no ' + t('x') + '.', why: 'Both terms contain ' + t('x') + ' (the lowest power is ' + t('x') + '), so ' + t('x') + ' is in the GCF. Look at the numbers.' }],
+              t('\\gcd(' + L + ',' + ks + ')=' + G) + ', which is bigger than ' + t(d) + '. So ' + t(L + 'x^{2}+' + ks + 'x=' + G + 'x(' + (L / G === 1 ? '' : L / G) + 'x+' + ks / G + ')') + ' — its GCF is ' + t(G + 'x') + ', not ' + t(d + 'x') + '.', ['Find the greatest number that divides both ' + t(L) + ' and ' + t(ks) + '.'], 'why k=' + ks + ' is not on the list');
+          } },
+          { id: 'e18d', sub: 'c ii', level: 'EMG', make: function (r, sh) {
+            return gcfPart([M(sh.L, { x: 2 }), M(sh.kstar, { x: 1 })], { prompt: 'Give the GCF of ' + t(sh.L + 'x^{2}+' + sh.kstar + 'x') + '.', text: 'GCF of ' + sh.L + 'x^2+' + sh.kstar + 'x' });
           } }] }
     ]
   });
 
   /* ---------- part makers that use the lesson tools above ---------- */
-  function tripPart(s) {
-    var fac = facPart(s);
-    var prompt = 'Expand ' + t(s.key) + '. Then factor your expanded answer back.';
-    var wr = s.g1 ? [{ is: PL.add(PL.pow(s.u, 2), PL.num(s.c)), code: 'fl-only', hint: 'Add the Outer and Inner products: they make the middle term.' }] : [];
-    return roundTrip(prompt, s.full, fac.check, [tx(s.full), s.key], 'Expanded: ' + t(tx(s.full)) + '; factored back: ' + t(s.key),
-      (s.g1 ? '' : 'Expand the brackets first, then multiply by ' + t(s.gtex) + ': ') + t(s.key + '=' + (s.g1 ? foilTex(s) + '=' : s.gtex + '(' + tx(s.inner) + ')=') + tx(s.full)) + '.<br>Factor back: ' + solFac(s).replace(/<br>/g, ' ') + ' — the same as the start ✓',
-      ['Expand with FOIL (First, Outer, Inner, Last), then collect like terms.', 'To factor back: two numbers multiply to the constant and add to the middle coefficient' + (s.g1 ? '' : ' (take the common factor out first)') + '.'], 'round trip ' + s.key, { wrong: wr });
+  /* Extra 1 and 4: expand a product (x + p)(x + q) or G(x + p)(x + q); the check by substituting x0 is in the solution */
+  function valsSeq(vals) { return vals.map(function (v, i) { return i && v >= 0 ? '+' + v : String(v); }).join(''); }
+  function expandPart(s, x0) {
+    var G = s.G, g = s.g1 ? 1 : cv(G), b = s.b, c = s.c, x2 = V('x', 2), x1 = V('x');
+    var Gm = function (q) { return PL.mul(G, q); };
+    var ws = [{ is: Gm(PL.add(x2, N(c))), code: 'fl-only', hint: 'That is only the First and Last products. The Outer and Inner products make the middle term: ' + t(par(s.q) + 'x+' + par(s.p) + 'x') + '.' }];
+    if (b) ws.push({ is: Gm(PL.add(x2, PL.scale(x1, -b), N(c))), code: 'u4l1-mid-sign', hint: 'Check the sign of the middle term: the Outer and Inner products are ' + t(tx(PL.scale(x1, s.q)) + '\\ \\text{and}\\ ' + tx(PL.scale(x1, s.p))) + ', which add to ' + t(tx(PL.scale(x1, b))) + '.' });
+    ws.push({ is: Gm(PL.add(x2, PL.scale(x1, b), N(-c))), code: 'u4l1-last-sign', hint: 'Check the last term: ' + t(par(s.p) + '\\times ' + par(s.q) + '=' + c) + '.' });
+    if (!s.g1) {
+      ws.push({ is: s.inner, code: 'gcf-dropped', hint: 'Your brackets are expanded correctly, but the ' + t(g) + ' in front is missing: multiply every term by ' + t(g) + '.' });
+      ws.push({ is: PL.mul(G, G, s.inner), code: 'u4l1-g-twice', hint: 'The ' + t(g) + ' in front multiplies the product only <b>once</b>. Expand the two brackets first, then multiply every term by ' + t(g) + '.' });
+      ws.push({ is: PL.add(Gm(x2), PL.scale(x1, b), N(c)), code: 'first-only', hint: 'Multiply ' + t(g) + ' by <b>every</b> term of ' + t(tx(s.inner)) + ', not just the first.' });
+    }
+    var W = dedupW(s.full, ws);
+    var at = function (P) { return PL.at(P, { x: x0 }); };
+    var brV = [x0 + s.p, x0 + s.q], P0 = g * brV[0] * brV[1];
+    var termVals = PL.sorted(s.full).map(function (T) { return at(M(T.c, T.v)); });
+    var prodTex = s.key.replace(/x/g, String(x0)) + '=' + (s.g1 ? (brV.some(function (v) { return v < 0; }) ? '(' + brV[0] + ')(' + brV[1] + ')' : brV[0] + '\\times ' + brV[1]) : g + '(' + brV[0] + ')(' + brV[1] + ')') + '=' + P0;
+    var sol = (s.g1 ? t(s.key + '=' + foilTex(s) + '=\\mathbf{' + tx(s.full) + '}')
+      : 'Expand the two brackets first: ' + t('(' + tx(s.A) + ')(' + tx(s.B) + ')=' + foilTex(s) + '=' + tx(s.inner)) + '.<br>Then multiply every term by ' + t(g) + ': ' + t(s.key + '=' + g + '(' + tx(s.inner) + ')=\\mathbf{' + tx(s.full) + '}'))
+      + '<br>Check at ' + t('x=' + x0) + ': ' + t(prodTex) + ' and ' + t(valsSeq(termVals) + '=' + at(s.full)) + ' ✓';
+    var p = KP.poly('Expand ' + t(s.key) + '.', s.full, { wrong: W.map(function (w) { return { is: w.p, code: w.code, hint: w.hint }; }) }, sol,
+      s.g1 ? ['Use FOIL (First, Outer, Inner, Last), then collect the two middle terms.', 'Check: substitute ' + t('x=' + x0) + ' into the product and into your answer — the values must match.']
+        : ['Expand the two brackets first (FOIL), then multiply every term by ' + t(g) + '.', 'Check: substitute ' + t('x=' + x0) + ' into the product and into your answer — the values must match.'], 'expand ' + s.key);
+    p.bad = W.map(function (w) { return tx(w.p); });
+    return p;
   }
+  /* Extra 5 ii: what the proposed form really expands to (the same question for a correct and an incorrect claim) */
+  function claimExpandPart(c) {
+    var cs = c.cs, x2 = V('x', 2), x1 = V('x'), m = cs.b, n = cs.c, ws = [];
+    if (!c.truth) ws.push({ is: c.s.full, code: 'u4l1-gave-target', hint: 'That is the trinomial in the question — the claim is that the two are equal. Expand ' + t(c.claimTex) + ' itself (FOIL) and see what it really gives.' });
+    ws.push({ is: PL.add(x2, N(n)), code: 'fl-only', hint: 'That is only the First and Last products. Add the Outer and Inner products to get the middle term.' });
+    if (m) ws.push({ is: PL.add(x2, PL.scale(x1, -m), N(n)), code: 'u4l1-mid-sign', hint: 'Check the sign of the middle term: the Outer and Inner products are ' + t(tx(PL.scale(x1, cs.q)) + '\\ \\text{and}\\ ' + tx(PL.scale(x1, cs.p))) + '.' });
+    ws.push({ is: PL.add(x2, PL.scale(x1, m), N(-n)), code: 'u4l1-last-sign', hint: 'Check the last term: ' + t(par(cs.p) + '\\times ' + par(cs.q) + '=' + n) + '.' });
+    var W = dedupW(c.E, ws);
+    var p = KP.poly('Write what ' + t(c.claimTex) + ' really expands to.', c.E, { wrong: W.map(function (w) { return { is: w.p, code: w.code, hint: w.hint }; }) },
+      'FOIL: ' + t(c.claimTex + '=' + foilTex(cs) + '=\\mathbf{' + tx(c.E) + '}') + '.<br>' + (c.truth ? 'That is exactly ' + t(c.Ttx) + ', so the claim is <b>correct</b>.' : 'That is not ' + t(c.Ttx) + ', so the claim is <b>incorrect</b>.'),
+      ['Use FOIL (First, Outer, Inner, Last), then collect the two middle terms.', 'Watch the signs: the last term is the product of the two numbers in the brackets.'], 'expand claim ' + plain(c.claimTex));
+    p.bad = W.map(function (w) { return tx(w.p); });
+    return p;
+  }
+  /* Extra 15(c): (x + __)(x + p) = x² + s x + __ */
+  function sumBlanksPart(p, q) {
+    var s0 = p + q, c = p * q, sp = spec({ p: q, q: p });
+    var c1 = K.number(q, function (v) {
+      if (v === s0) return { code: 'gave-sum', hint: t(s0) + ' is the middle coefficient. The numbers in the brackets <b>add</b> to it: ' + t('\\square+' + p + '=' + s0) + '.' };
+      if (v === s0 + p) return { code: 'value', hint: 'The two numbers in the brackets add to the middle coefficient: ' + t('\\square+' + p + '=' + s0) + ', so <b>subtract</b> ' + t(p) + '.' };
+      return { code: 'value', hint: 'The two numbers in the brackets add to the middle coefficient: ' + t('\\square+' + p + '=' + s0) + '.' };
+    });
+    var c2 = K.number(c, function (v) {
+      if (v === s0) return { code: 'gave-sum', hint: 'The constant term is the <b>product</b> of the two numbers in the brackets, not their sum.' };
+      if (v === p * s0) return { code: 'gave-product', hint: 'Multiply the two numbers in the <b>brackets</b> (' + t(q) + ' and ' + t(p) + '), not ' + t(p) + ' and the middle coefficient.' };
+      return { code: 'value', hint: 'The constant term is the product of the two numbers in the brackets.' };
+    });
+    var eqTex = '(x+\\underline{\\quad})(x+' + p + ')=x^{2}+' + s0 + 'x+\\underline{\\quad}';
+    var part = KP.fields(t(eqTex), [numField('First blank'), numField('Second blank')], [c1, c2], [String(q), String(c)], t(q) + ' and ' + t(c),
+      'The numbers in the brackets add to the middle coefficient: ' + t('\\square+' + p + '=' + s0) + ', so the first blank is ' + t(s0 + '-' + p + '=' + q) + '.<br>They multiply to the constant: ' + t(q + '\\times ' + p + '=' + c) + ', so the second blank is ' + t(c) + '.<br>Check: ' + t('(x+' + q + ')(x+' + p + ')=' + foilTex(sp) + '=' + tx(sp.inner)) + ' ✓',
+      ['The middle coefficient is the <b>sum</b> of the two numbers in the brackets.', 'The constant term is their <b>product</b>.'], 'fill blanks ' + plain(eqTex));
+    part.bad = [[String(s0), String(c)], [String(q), String(s0)]];
+    return part;
+  }
+  /* Extra 18: families (L, d, K) for "every k < K with GCF of Lx² + kx exactly dx" (at least 3 answers); k* = a multiple of d with a bigger GCF */
+  var GCF_FAM = [[12, 4, 30], [12, 4, 30], [12, 4, 25], [12, 3, 30], [12, 3, 40], [12, 6, 50], [18, 6, 40], [18, 6, 50], [18, 3, 30], [20, 4, 30], [20, 4, 25], [20, 5, 40],
+    [8, 4, 40], [16, 4, 40], [24, 4, 50], [24, 8, 50], [24, 6, 50], [30, 6, 50], [30, 5, 50], [15, 5, 40], [10, 5, 50], [14, 7, 50], [16, 8, 50], [18, 9, 50], [24, 6, 40], [16, 4, 30], [30, 10, 50], [10, 5, 40]];
+  function gcfFamily(r) {
+    var f = r.pick(GCF_FAM), L = f[0], d = f[1], K = f[2], mults = [], list = [], big = [];
+    for (var k = d; k < K; k += d) { mults.push(k); if (gcd(L, k) === d) list.push(k); else big.push(k); }
+    var kstar = L < K && L % d === 0 && r.chance(0.5) ? L : r.pick(big);
+    if (L === 12 && d === 4 && K === 30 && r.chance(0.6)) kstar = 24;
+    return { L: L, d: d, K: K, mults: mults, list: list, big: big, kstar: kstar };
+  }
+  function gcfTex(L, k) { var g = gcd(L, k); return (g === 1 ? '' : g) + 'x'; }
   function expandFactorPart(f, lab) {
     var T = sum(f.terms), fp = factorPart(f.terms);
     var p = roundTrip(lab + 'Expand ' + t(f.shown) + ', then factor the result <b>completely</b>.', T, fp.check, [seq(f.terms), fp.key], 'Expanded: ' + t(seq(f.terms)) + '; completely factored: ' + t(fp.key),
@@ -879,7 +957,7 @@
     return p;
   }
   function triClaimQ(letter, sub, gen, levels, section) {
-    return { num: '5', section: section, stem: function (sh) { return 'Expand the proposed factored form to decide whether it is correct.<br>(' + sub + ') &nbsp;Is ' + t(sh.Ttx + '=' + sh.claimTex) + '?'; },
+    return { num: '5', section: section, stem: function (sh) { return 'Expand the proposed factored form to decide whether it is correct, and write what it really expands to.<br>(' + sub + ') &nbsp;Is ' + t(sh.Ttx + '=' + sh.claimTex) + '?'; },
       shared: function (r) {
         var pq = gen(r), p = pq[0], q = pq[1], truth = r.chance(0.5);
         if (truth) return triClaim(p, q, p, q);
@@ -892,7 +970,7 @@
       },
       parts: [
         { id: 'e5' + sub + '1', sub: sub + ' i', level: levels[0], make: function (r, sh) { return triVerdict(r, sh); } },
-        { id: 'e5' + sub + '2', sub: sub + ' ii', level: levels[1], make: function (r, sh) { return triCorrect(sh); } }] };
+        { id: 'e5' + sub + '2', sub: sub + ' ii', level: levels[1], make: function (r, sh) { return claimExpandPart(sh); } }] };
   }
   function compQ(sub, kind, section) {
     return { num: '6', section: section, stem: function (sh) { return 'Expand to check each proposed factoring. One of them expands back correctly but is still <b>not completely factored</b>.<br>(' + sub + ') &nbsp;Is ' + t(seq(sh.terms) + '=' + gTex(sh.claimG) + '(' + seq(sh.claimBr) + ')') + '?'; },
@@ -920,23 +998,6 @@
       ['Area = length × width, so divide each term of the area by the width.', 'Check by multiplying your length by the width.'], 'other side of ' + plain(Ttx));
     p.bad = W.map(function (x) { return tx(x.p); });
     return p;
-  }
-  function pairNumPart(a, b, prompt, labels, sol) {
-    var s = a + b, c = a * b;
-    return { prompt: prompt, input: { type: 'fields', fields: [numField(labels[0]), numField(labels[1])] },
-      check: function (resp) {
-        resp = resp || [];
-        var A = HW.parse.number(resp[0] == null ? '' : resp[0]), Bn = HW.parse.number(resp[1] == null ? '' : resp[1]);
-        if (!A.ok || !Bn.ok) return form('empty', 'Enter one number in each box.');
-        var x = A.value, y = Bn.value;
-        if ((x === a && y === b) || (x === b && y === a)) return ok();
-        var both = 'Yours: ' + t(par(x) + '\\times ' + par(y) + '=' + x * y) + ' and ' + t(par(x) + '+' + par(y) + '=' + (x + y)) + '. ';
-        if (x * y === c) return wrong('pair-sum', both + 'The product is right ✓ but the sum must be ' + t(s) + '. Try another factor pair of ' + t(c) + '.');
-        if (x + y === s) return wrong('pair-product', both + 'The sum is right ✓ but the product must be ' + t(c) + '.');
-        return wrong('value', both + 'Find two numbers that multiply to ' + t(c) + ' and add to ' + t(s) + '.');
-      },
-      key: [String(a), String(b)], answer: t(a + ',\\ ' + b), solution: sol, hints: ['The two numbers multiply to ' + t(c) + ' and add to ' + t(s) + '.', 'List the factor pairs of ' + t(c) + ' and add each pair.'], text: 'pair product ' + c + ' sum ' + s,
-      good: [[String(b), String(a)]], bad: [[String(c), String(s)], [String(-a), String(-b)]] };
   }
   function blanksPart(eqTex, want, p, q, labels) {
     var c = p * q, s = p + q;
