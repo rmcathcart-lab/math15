@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Math 15</title>
+<link rel="icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<meta name="robots" content="noindex">
+<!-- The lessons no longer have their own home page: students reach them from their assignments (practice site), the
+     teacher from the Teacher Ledger (Lessons, Launch Today's Lesson). This page sends old links and home-screen icons there. -->
+<script>
+  (function () {
+    var teacher = false; try { teacher = !!localStorage.getItem('ink:teacher') || !!localStorage.getItem('hw:tkey'); } catch (e) {}
+    location.replace(teacher ? '../teacher/' : '../');
+  })();
+</script>
+</head>
+<body style="font: 18px/1.5 system-ui, sans-serif; padding: 40px;">
+<p>Opening… <a href="../">Your assignments</a> · <a href="../teacher/">Teacher Ledger</a></p>
+</body>
+</html>
