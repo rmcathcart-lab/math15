@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Where Graphs Meet the Axes · Math 15 5.4</title>
+<meta name="description" content="Math 15 Unit 5 Lesson 4: x- and y-intercepts. Where a graph crosses each axis, why one coordinate is always 0 there, reading intercepts from graphs and tables, and what the intercepts mean in a real situation. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u5l4.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u5l4">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 5 Relations and Functions · Lesson 4</div>
+  <h1>Where Graphs Meet the Axes: <span class="tex">x</span>- and <span class="tex">y</span>-Intercepts</h1>
+  <p class="lede">Two spots on a graph are worth a closer look: where it crosses the <b>bottom axis</b> and where it crosses the <b>side axis</b>. These points are called <b>intercepts</b>. At each one, one of the coordinates is always <b>0</b>. In a real situation they tell the start and the end of the story.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>explain what an <b class="u5l4-xt"><span class="tex">x</span>-intercept</b> and a <b class="u5l4-yt"><span class="tex">y</span>-intercept</b> are, and why one coordinate is <b>0</b> at each</li>
+      <li>read the intercepts from a <b>graph</b> and write them as ordered pairs</li>
+      <li>find <b>every</b> intercept, even when a graph meets an axis more than once</li>
+      <li>find the intercepts in a <b>table of values</b></li>
+      <li>explain what the intercepts <b>mean</b> in a real situation (the starting value, and when something reaches zero)</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF5</b> Determine the characteristics of the graphs of linear relations, including the intercepts, slope, domain and range.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Low Battery!" id="wu" style="--wf-side: 400px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Low Battery!</h2>
+  <p class="wf-rule">Your phone drains at a steady rate while you text. Read the graph.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l4-wtop">
+      <div id="batt-graph"></div>
+      <div class="u5l4-phones">
+        <div class="u5l4-phone" id="ph-you"><div class="u5l4-ph-scr"><div class="u5l4-ph-bat"><i></i></div><b>80%</b></div><div class="u5l4-ph-lab">You<small>texting</small></div></div>
+        <div class="u5l4-phone u5l4-ph-j" id="ph-jo"><div class="u5l4-ph-scr"><div class="u5l4-ph-bat"><i></i></div><b>100%</b></div><div class="u5l4-ph-lab">Jordan<small>streaming video</small><em>loses 20% every hour</em></div></div>
+        <div class="u5l4-clock"><span id="batt-t">0</span> h</div>
+        <button type="button" class="pill small" id="batt-play">Play: start texting</button>
+      </div>
+    </div>
+    <div class="u5l4-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What was your battery at the <b>start</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l4-wa"><div class="bk-ans"><b>80%.</b> At 0 hours the line sits at 80 on the side axis.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>After how many hours does it <b>die</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l4-wa"><div class="bk-ans"><b>8 hours.</b> The line reaches the bottom axis at 8. (It drops 10% per hour, and <span class="tex">80\div10=8</span>.)</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Fill in the blanks. <span class="muted small">(tap a blank)</span> <button class="pill small" type="button" data-bk-toggle>Answer</button><br>
+        On the <b>bottom</b> axis, battery <span class="tex">=</span> <span data-reveal><b class="u5l4-blank">0</b></span> %. &nbsp; On the <b>side</b> axis, time <span class="tex">=</span> <span data-reveal><b class="u5l4-blank">0</b></span> hours.</div></div>
+        <div class="u5l4-wa"><div class="bk-ans">Both blanks are <b>0</b>. Everywhere on the bottom axis the battery is 0; everywhere on the side axis no time has passed yet.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll" id="wpoll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Jordan starts with a <b>full</b> 100% battery, but streaming video eats <b>20%</b> every hour. You both start now. Whose phone dies <b>first</b>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Yours</div>
+        <div class="opt right"><b>B</b> Jordan’s</div>
+        <div class="opt"><b>C</b> A tie</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, Jordan’s phone dies first</b>, at <b>5 hours</b> (<span class="tex">100\div20=5</span>), three hours before yours. A higher start does not mean a later finish: how fast it drains matters too.<br>
+        <button class="pill small" type="button" id="batt-race">Race the two phones</button><br>
+        Jordan’s line runs from <span class="tex">(0,\ 100)</span> to <span class="tex">(5,\ 0)</span>. It crosses yours at <span class="tex">(2,\ 60)</span>: after 2 hours both phones show 60%.<br>
+        <b>Today’s lesson:</b> the points where a graph meets the axes, like <span class="tex">(0,\ 80)</span> and <span class="tex">(8,\ 0)</span>, are called <b>intercepts</b>.</div>
+    </div>
+  </div></div>
+  <p class="u5l4-social">Come up and sketch Jordan’s line on the grid. Where does it start? Where does it hit zero?</p>
+</section>
+
+<!-- ================= 1. What an intercept is ================= -->
+<section class="card" data-ink="s1" data-section="1. What an Intercept Is">
+  <div class="sec-h"><span class="badge">1</span><h2>What an Intercept Is</h2></div>
+  <div class="u5l4-s1row">
+    <div id="s1-fig"></div>
+    <div>
+      <div class="def">An <b class="u5l4-xt"><span class="tex">x</span>-intercept</b> is a point where a graph crosses the <span class="tex">x</span>-axis. A <b class="u5l4-yt"><span class="tex">y</span>-intercept</b> is a point where it crosses the <span class="tex">y</span>-axis.</div>
+      <p>Every point on the <span class="tex">x</span>-axis has <span class="tex">y=0</span>, and every point on the <span class="tex">y</span>-axis has <span class="tex">x=0</span>. On a graph, read off the point where the graph meets the axis: the line at left meets the <span class="tex">x</span>-axis at <span class="tex">(4,\ 0)</span>.</p>
+    </div>
+  </div>
+  <div class="u5l4-forms">
+    <div class="u5l4-form u5l4-fx"><div class="u5l4-fh"><span class="tex">x</span>-intercept</div><div class="u5l4-fb"><span class="tex">(\,\square,\ 0\,)</span></div><div class="u5l4-ff">on the <span class="tex">x</span>-axis, so <b><span class="tex">y=0</span></b></div></div>
+    <div class="u5l4-form u5l4-fy"><div class="u5l4-fh"><span class="tex">y</span>-intercept</div><div class="u5l4-fb"><span class="tex">(\,0,\ \square\,)</span></div><div class="u5l4-ff">on the <span class="tex">y</span>-axis, so <b><span class="tex">x=0</span></b></div></div>
+  </div>
+  <p class="u5l4-method">That gives the method: <b>set <span class="tex">y=0</span> to find an <span class="tex">x</span>-intercept, and set <span class="tex">x=0</span> to find a <span class="tex">y</span>-intercept.</b></p>
+  <div class="explainer" data-explainer="axisZero"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>The zero goes in the other spot.</b> A line that crosses the <span class="tex">x</span>-axis at 4 has <span class="tex">x</span>-intercept <span class="tex">(4,\ 0)</span>, not <span class="tex">(0,\ 4)</span>. The point is <b>on the <span class="tex">x</span>-axis</b>, so its <span class="tex">y</span>-coordinate is the zero.</div></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Reading an intercept">
+  <h3 class="sub">Reading an intercept from a graph</h3>
+  <p>Follow the graph to the axis. Read the number where it crosses, then write the point with a <b>0</b> in the other spot.</p>
+  <div class="explainer" data-explainer="readInt"></div>
+</section>
+
+<section class="card example" data-ink="ex12" data-section="Examples 1 and 2">
+  <div class="ex-head"><span class="ex-tag">Examples 1 and 2</span><h3>Reading one intercept</h3></div>
+  <p class="q">Each graph below shows a line.</p>
+  <div class="u5l4-excols">
+    <div class="u5l4-excol">
+      <div class="u5l4-exh">Example 1</div>
+      <div class="u5l4-fig" id="ex1-fig"></div>
+      <div class="parts c1">
+        <div class="part" data-part="ex1a"><div class="pl">(a) State the coordinates of the point where the graph crosses the <span class="tex">x</span>-axis.</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The line meets the <span class="tex">x</span>-axis at <span class="tex">x=2</span>, so the <span class="tex">x</span>-intercept is <span class="tex">\boldsymbol{(2,\ 0)}</span>.</div></div></div>
+        <div class="part"><div class="pl">(b) What is the value of <span class="tex">y</span> at that point?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=\boldsymbol{0}</span>: every point on the <span class="tex">x</span>-axis has <span class="tex">y=0</span>.</div></div></div>
+      </div>
+    </div>
+    <div class="u5l4-excol">
+      <div class="u5l4-exh">Example 2</div>
+      <div class="u5l4-fig" id="ex2-fig"></div>
+      <div class="parts c1">
+        <div class="part" data-part="ex2a"><div class="pl">(a) State the coordinates of the point where the graph crosses the <span class="tex">y</span>-axis.</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The line meets the <span class="tex">y</span>-axis at <span class="tex">y=2</span>, so the <span class="tex">y</span>-intercept is <span class="tex">\boldsymbol{(0,\ 2)}</span>.</div></div></div>
+        <div class="part"><div class="pl">(b) What is the value of <span class="tex">x</span> at that point?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x=\boldsymbol{0}</span>: every point on the <span class="tex">y</span>-axis has <span class="tex">x=0</span>.</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="space" id="ex12-space"></div>
+  <button class="more" data-more="ex12-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Several intercepts, tables ================= -->
+<section class="card" data-ink="s2" data-section="2. Several Intercepts">
+  <div class="sec-h"><span class="badge">2</span><h2>Several Intercepts, and Intercepts from a Table</h2></div>
+  <div class="def">A graph can meet the <span class="tex">x</span>-axis <b>more than once</b>, so list <b>every</b> spot where the graph touches an axis.</div>
+  <div class="explainer" data-explainer="meetAxes"></div>
+  <div class="explainer" data-explainer="countMeet"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Intercepts from a table">
+  <h3 class="sub">Intercepts from a table</h3>
+  <div class="def">A table of values works the same way without a picture: the column where <span class="tex">x=0</span> gives the <b class="u5l4-yt"><span class="tex">y</span>-intercept</b>, and the column where <span class="tex">y=0</span> gives the <b class="u5l4-xt"><span class="tex">x</span>-intercept</b>. <span class="muted">(In a table that stands up, look for the row.)</span></div>
+  <div class="explainer" data-explainer="tableInt"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Look for the 0, not for the first column.</b> The intercepts are wherever a <b>0</b> shows up. If the table is out of order, the zero might be anywhere.</div></div>
+</section>
+
+<section class="card example" data-ink="ex34" data-section="Examples 3 and 4">
+  <div class="ex-head"><span class="ex-tag">Examples 3 and 4</span><h3>Two <span class="tex">x</span>-intercepts, and a table</h3></div>
+  <p class="q">Example 3 shows a curve; Example 4 shows several points on a relation.</p>
+  <div class="u5l4-excols">
+    <div class="u5l4-excol">
+      <div class="u5l4-exh">Example 3</div>
+      <div class="u5l4-fig" id="ex3-fig"></div>
+      <div class="parts c1">
+        <div class="part" data-part="ex3a"><div class="pl">(a) State the coordinates of both <span class="tex">x</span>-intercepts.</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The curve meets the <span class="tex">x</span>-axis twice: <span class="tex">\boldsymbol{(-3,\ 0)}</span> and <span class="tex">\boldsymbol{(3,\ 0)}</span>.</div></div></div>
+        <div class="part" data-part="ex3b"><div class="pl">(b) State the coordinates of the <span class="tex">y</span>-intercept.</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">It crosses the <span class="tex">y</span>-axis at the lowest point, <span class="tex">\boldsymbol{(0,\ -4)}</span>.</div></div></div>
+      </div>
+    </div>
+    <div class="u5l4-excol">
+      <div class="u5l4-exh">Example 4</div>
+      <div class="u5l4-fig u5l4-tfig" id="ex4-tab"></div>
+      <div class="parts c1">
+        <div class="part" data-part="ex4a"><div class="pl">(a) Which ordered pair is the <span class="tex">y</span>-intercept?</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Look for the column with <span class="tex">x=0</span>: it pairs with <span class="tex">y=2</span>, so the <span class="tex">y</span>-intercept is <span class="tex">\boldsymbol{(0,\ 2)}</span>.</div></div></div>
+        <div class="part" data-part="ex4b"><div class="pl">(b) Which ordered pair is the <span class="tex">x</span>-intercept?</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Look for the column with <span class="tex">y=0</span>: it pairs with <span class="tex">x=-2</span>, so the <span class="tex">x</span>-intercept is <span class="tex">\boldsymbol{(-2,\ 0)}</span>.</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="space" id="ex34-space"></div>
+  <button class="more" data-more="ex34-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l4"></section>
+
+<!-- ================= 3. Real situations ================= -->
+<section class="card" data-ink="s3" data-section="3. Intercepts in Real Situations">
+  <div class="sec-h"><span class="badge">3</span><h2>Intercepts in Real Situations</h2></div>
+  <div class="def">When a graph models a real situation, the <b class="u5l4-yt"><span class="tex">y</span>-intercept</b> usually gives the <b>starting value</b> (before any time has passed), and the <b class="u5l4-xt"><span class="tex">x</span>-intercept</b> usually tells <b>when a quantity reaches zero</b>.</div>
+  <div class="u5l4-forms">
+    <div class="u5l4-form u5l4-fy"><div class="u5l4-fh"><span class="tex">y</span>-intercept <span class="tex">(0,\ \square)</span></div><div class="u5l4-fb2">the <b>start</b></div><div class="u5l4-ff">time is 0: nothing has happened yet</div></div>
+    <div class="u5l4-form u5l4-fx"><div class="u5l4-fh"><span class="tex">x</span>-intercept <span class="tex">(\square,\ 0)</span></div><div class="u5l4-fb2">the <b>end</b></div><div class="u5l4-ff">the amount has run out: it is 0</div></div>
+  </div>
+  <div class="explainer" data-explainer="story"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Reading between the intercepts">
+  <h3 class="sub">Reading the graph between the intercepts</h3>
+  <p>To find an output, go <b>up</b> from the input to the graph, then <b>across</b> to the side axis. To find an input, go <b>across</b> from the output to the graph, then <b>down</b>.</p>
+  <div class="explainer" data-explainer="readGraph"></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Check a graph reading with the rate.</b> $40 spent evenly over 8 weeks is <span class="keys"><kbd>4</kbd><kbd>0</kbd><kbd>÷</kbd><kbd>8</kbd><kbd>=</kbd></span> $5 per week. After 4 weeks: <span class="keys"><kbd>4</kbd><kbd>0</kbd><kbd>−</kbd><kbd>4</kbd><kbd>×</kbd><kbd>5</kbd><kbd>=</kbd></span> $20 left.</div>
+    <div class="pill-col"><button class="pill" data-keys="40 ÷ 8 =">Per week</button><button class="pill" data-keys="40 − 4 × 5 =">After 4 weeks</button></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>The gift card</h3></div>
+  <p class="q">Malik loads <b>$40</b> onto a gift card and spends it steadily; <span class="tex">B</span> is the balance after <span class="tex">t</span> weeks.</p>
+  <div class="u5l4-ex5">
+    <div class="u5l4-fig" id="ex5-fig"></div>
+    <div class="parts c2">
+      <div class="part" data-part="ex5a"><div class="pl">(a) What is the <span class="tex">y</span>-intercept of the graph? What does it represent here?</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{(0,\ 40)}</span>. At <span class="tex">t=0</span> weeks nothing has been spent: the <b>starting balance of $40</b> on the card.</div></div></div>
+      <div class="part" data-part="ex5b"><div class="pl">(b) What is the <span class="tex">x</span>-intercept of the graph? What does it represent here?</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{(8,\ 0)}</span>. The balance reaches $0 at <span class="tex">t=8</span>: the card is <b>empty after 8 weeks</b>.</div></div></div>
+      <div class="part" data-part="ex5c"><div class="pl">(c) Use the graph to estimate the balance remaining after <span class="tex">4</span> weeks.</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Up from <span class="tex">t=4</span> to the line, then across: <span class="tex">B=\boldsymbol{\$20}</span>. (Check: $5 per week, <span class="tex">40-4(5)=20</span>.)</div></div></div>
+      <div class="part" data-part="ex5d"><div class="pl">(d) Use the graph to estimate after how many weeks the balance is $10.</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Across from <span class="tex">B=10</span> to the line, then down: <span class="tex">t=\boldsymbol{6}</span> weeks. (Check: <span class="tex">40-6(5)=10</span> ✓)</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b><span class="tex">x</span>-intercept:</b> where a graph crosses the <span class="tex">x</span>-axis. It looks like <span class="tex">(\square,\ 0)</span>: there <span class="tex">y=0</span>.</div>
+    <div><b><span class="tex">y</span>-intercept:</b> where a graph crosses the <span class="tex">y</span>-axis. It looks like <span class="tex">(0,\ \square)</span>: there <span class="tex">x=0</span>.</div>
+    <div><b>List every one.</b> A curve can meet the <span class="tex">x</span>-axis twice. In a table, look for the <b>0</b>: <span class="tex">x=0</span> gives the <span class="tex">y</span>-intercept, <span class="tex">y=0</span> the <span class="tex">x</span>-intercept.</div>
+    <div><b>In a story:</b> the <span class="tex">y</span>-intercept is the <b>starting value</b> ($40 on the card); the <span class="tex">x</span>-intercept is <b>when it runs out</b> (empty after 8 weeks).</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u5l4">
+    <div><div class="kicker">Your turn</div><b>Assignment 4 — Where Graphs Meet the Axes: <span class="tex">x</span>- and <span class="tex">y</span>-Intercepts</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l5/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 5 — Domain and Range of a Relation, Part 1: Reading From a Graph</b><div class="muted">Which inputs and outputs does a graph use? Squash it onto each axis and see.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u5l4.js';
+  boot({ key: 'u5l4', homeHref: '../../', title: '5.4 Intercepts' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

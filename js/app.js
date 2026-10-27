@@ -579,7 +579,7 @@
   }
   /* Printable Notes: one row per unit with its lessons-only booklet (assets/notes/math15-unit-N-notes.pdf).
      Print opens the browser's print dialog for the PDF (a new tab on iPad/iPhone, where printing a frame doesn't work). */
-  var NOTES_PAGES = { 4: 14 }; // unit → pages, for the units that have a notes booklet in assets/notes
+  var NOTES_PAGES = { 4: 14, 5: 26 }; // unit → pages, for the units that have a notes booklet in assets/notes
   function notesUrl(u) { return 'assets/notes/math15-unit-' + u + '-notes.pdf'; }
   function printPdf(url) {
     var ios = /iP(ad|hone|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);

@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unit 5 Review · Math 15 5.12</title>
+<meta name="description" content="Math 15 Unit 5 Lesson 12: unit review of relations and functions. Relation Bingo, the Cartesian plane, patterns, four views of a relation, intercepts, domain and range, a graphing-calculator screen, the vertical line test, function notation forwards and backwards, real-world graphs, and mixed challenges. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u5l12.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 5 Relations and Functions · Lesson 12</div>
+  <h1>Unit Review: Relations and Functions</h1>
+  <p class="lede">The whole unit in one lesson: one reminder and one review question for every idea, then three mixed challenges like the ones on the test. One big idea ties it together: a <b>relation</b> is a set of ordered pairs you can show <b>four ways</b>, and a <b>function</b> gives every input <b>exactly one</b> output.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>plot points and name the <b>quadrant</b> (or axis) of any point</li>
+      <li>extend a pattern, and name the <b>independent</b> and <b>dependent</b> variables</li>
+      <li>show one relation as <b>ordered pairs</b>, a <b>table</b>, a <b>mapping diagram</b> and a <b>graph</b></li>
+      <li>find <b>intercepts</b> and the <b>domain and range</b>, from a table, a graph, a list or a calculator screen</li>
+      <li>use the <b>vertical line test</b>, and use <b>function notation</b> forwards and backwards</li>
+      <li>read and sketch <b>real-world graphs</b></li>
+    </ul>
+  </div>
+  <div class="u5l12-outs">
+    <div class="outcome"><b>RF1</b> Interpret and explain the relationships among data, graphs and situations.</div>
+    <div class="outcome"><b>RF2</b> Demonstrate an understanding of relations and functions.</div>
+    <div class="outcome"><b>RF4</b> Describe and represent linear relations, using words, ordered pairs, tables of values, graphs and equations.</div>
+    <div class="outcome"><b>RF5</b> Determine the characteristics of the graphs of linear relations, including the intercepts, slope, domain and range.</div>
+    <div class="outcome"><b>RF8</b> Represent a linear function, using function notation.</div>
+  </div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Relation Bingo" id="wu" style="--wf-side: 390px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Relation Bingo</h2>
+  <p class="wf-rule">The caller reads a clue. It fits <b>exactly one</b> square: find it and mark it! <span class="muted">Tap a square to mark it.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l12-bingo" id="wu-bingo"></div>
+  </div><div class="wf-side">
+    <div class="u5l12-calls">
+      <div class="u5l12-ch">The first 3 calls <span class="muted">(3 in a line wins)</span></div>
+      <div class="u5l12-call"><span class="u5l12-ball">1</span><div>My <span class="tex">y</span>-intercept is <span class="tex">2</span>.</div><div class="u5l12-cg">square <span data-reveal><b>C</b></span></div></div>
+      <div class="u5l12-call"><span class="u5l12-ball">2</span><div>My domain is <span class="tex">\{1,2,3,4\}</span>.</div><div class="u5l12-cg">square <span data-reveal><b>E</b></span></div></div>
+      <div class="u5l12-call"><span class="u5l12-ball">3</span><div><span class="tex">f(4)=1</span>.</div><div class="u5l12-cg">square <span data-reveal><b>B</b></span></div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Call <span class="u5l12-ball sm">4</span> “I am <b>NOT</b> a function.” Ana: “BINGO, top row!” Ben: “BINGO, diagonal!” Who is right? <b>Guess first.</b></div></div>
+      <div class="poll-opts u5l12-c3">
+        <div class="opt"><b>A</b> Ana</div>
+        <div class="opt right"><b>B</b> Ben</div>
+        <div class="opt"><b>C</b> both</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>Ben: square G</b>, so the diagonal C–E–G. G has the input 5 <b>twice</b>, with outputs 1 and 6: one input, two outputs, <b>not a function</b>.<br>
+        <span class="muted">Ana marked A because two arrows land on 5. That’s allowed! Each <b>input</b> still has one arrow, so A is a function.</span></div>
+    </div>
+    <p class="u5l12-social">Your turn: write a call that fits square <b>I</b> and <b>no other</b> square. Can your neighbour find it?</p>
+  </div></div>
+</section>
+
+<section class="card" data-ink="wuex" data-section="Warm-up: play the calls">
+  <h3 class="sub">Warm-up check: play the calls</h3>
+  <div class="explainer" data-explainer="bingo"></div>
+</section>
+
+<!-- ================= quick reference ================= -->
+<section class="card" data-ink="ref" data-section="The Whole Unit on One Card">
+  <div class="sec-h"><span class="badge">★</span><h2>The Whole Unit on One Card</h2></div>
+  <div class="u5l12-ref">
+    <div class="u5l12-rc"><div class="u5l12-rh"><b>Cartesian plane</b><small>5.1</small></div><div class="u5l12-rfig" data-mini="plane"></div><div class="u5l12-rt"><span class="tex">(x,\ y)</span>: right/left, <b>then</b> up/down. I <span class="tex">(+,+)</span>, II <span class="tex">(-,+)</span>, III <span class="tex">(-,-)</span>, IV <span class="tex">(+,-)</span>. A zero coordinate puts the point <b>on an axis</b>.</div></div>
+    <div class="u5l12-rc"><div class="u5l12-rh"><b>Relation</b><small>5.2 · 5.3</small></div><div class="u5l12-rfig" data-mini="views"></div><div class="u5l12-rt">One set of pairs shown <b>four ways</b>: ordered pairs, table of values, mapping diagram, graph.</div></div>
+    <div class="u5l12-rc"><div class="u5l12-rh"><b>Intercepts</b><small>5.4</small></div><div class="u5l12-rfig" data-mini="int"></div><div class="u5l12-rt"><b class="u5l12-am"><span class="tex">x</span>-intercept</b>: <span class="tex">y=0</span>. <b class="u5l12-pu"><span class="tex">y</span>-intercept</b>: <span class="tex">x=0</span>.</div></div>
+    <div class="u5l12-rc"><div class="u5l12-rh"><b>Domain / Range</b><small>5.5 – 5.7</small></div><div class="u5l12-rfig" data-mini="dr"></div><div class="u5l12-rt"><b class="u5l12-am">Domain</b> = all <span class="tex">x</span>-values. <b class="u5l12-pu">Range</b> = all <span class="tex">y</span>-values. Use <span class="tex">\{\ \}</span> for lists, inequalities for segments.</div></div>
+    <div class="u5l12-rc"><div class="u5l12-rh"><b>Function</b><small>5.8</small></div><div class="u5l12-rfig" data-mini="vlt"></div><div class="u5l12-rt">Every input has <b>exactly one</b> output. On a graph: no vertical line may cross <b>twice</b>.</div></div>
+    <div class="u5l12-rc"><div class="u5l12-rh"><b>Function notation</b><small>5.9 · 5.10</small></div><div class="u5l12-rfig" data-mini="fn"></div><div class="u5l12-rt"><span class="tex">f(a)</span>: substitute <span class="tex">a</span> for <span class="tex">x</span>. Given <span class="tex">f(x)=b</span>: set the rule equal to <span class="tex">b</span> and <b>solve</b>.</div></div>
+  </div>
+</section>
+
+<!-- ================= 1. Cartesian plane ================= -->
+<section class="card" data-ink="s1" data-section="1. The Cartesian Plane">
+  <div class="sec-h"><span class="badge">1</span><h2>The Cartesian Plane and Plotting Points</h2></div>
+  <p>The <b>signs</b> of the coordinates decide the quadrant. A <b>zero</b> coordinate puts a point on an axis, not in a quadrant.</p>
+  <div class="explainer" data-explainer="plane"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Quadrants, then plotting</h3></div>
+  <div class="u5l12-two">
+    <div class="part"><div class="pl"><b>(a)</b> State the quadrant (or axis) containing each point.</div>
+      <div class="u5l12-qlist">
+        <div><span class="tex">P(-6,\ 2)</span><span data-reveal><b>Quadrant II</b></span></div>
+        <div><span class="tex">Q(4,\ -5)</span><span data-reveal><b>Quadrant IV</b></span></div>
+        <div><span class="tex">R(0,\ 7)</span><span data-reveal><b>on the <span class="tex">y</span>-axis</b></span></div>
+        <div><span class="tex">S(-3,\ -8)</span><span data-reveal><b>Quadrant III</b></span></div>
+      </div>
+      <div class="work" style="--h:90px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">P</span> is <span class="tex">(-,+)</span>: II. <span class="tex">Q</span> is <span class="tex">(+,-)</span>: IV. <span class="tex">x=0</span> puts <span class="tex">R</span> on the vertical axis (no quadrant). <span class="tex">S</span> is <span class="tex">(-,-)</span>: III.</div></div></div>
+    <div class="part"><div class="pl"><b>(b)</b> Plot and label <span class="tex">T(3,\ 5)</span>, <span class="tex">U(-4,\ 1)</span>, <span class="tex">V(-2,\ -6)</span> and <span class="tex">W(5,\ -3)</span>.</div>
+      <div class="work u5l12-axwork" style="--h:330px"><div class="u5l12-ax" id="ex1-grid"></div></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u5l12-ansfig" id="ex1-ans"></div>Run across first, then up or down. <span class="tex">T</span>: right 3, up 5 (I). <span class="tex">U</span>: left 4, up 1 (II). <span class="tex">V</span>: left 2, down 6 (III). <span class="tex">W</span>: right 5, down 3 (IV).</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Patterns ================= -->
+<section class="card" data-ink="s2" data-section="2. Patterns and Variables">
+  <div class="sec-h"><span class="badge">2</span><h2>Patterns and Variables</h2></div>
+  <p>A growing pattern adds the <b>same amount</b> each step. The variable you <b>control</b> is the <b>independent</b> variable; the one that <b>results</b> is the <b>dependent</b> variable.</p>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Rows of chairs</h3></div>
+  <p class="q">A community centre sets up rows of chairs. Row 1 has 6 chairs, and each row after has 5 more than the row before.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl"><b>(a)</b> Complete the table of values for Rows 1 to 5.</div>
+      <table class="u5l12-tv"><tr><th>Row Number, <span class="tex">n</span></th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+        <tr><th>Chairs, <span class="tex">C</span></th><td>6</td><td><span data-reveal>11</span></td><td><span data-reveal>16</span></td><td><span data-reveal>21</span></td><td><span data-reveal>26</span></td></tr></table>
+      <div class="work" style="--h:90px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Add 5 each row: <span class="tex">6,\ 11,\ 16,\ 21,\ 26</span>. (Rule: <span class="tex">C=5n+1</span>.)</div></div></div>
+    <div class="part"><div class="pl"><b>(b)</b> State the independent variable and the dependent variable.</div><div class="work" style="--h:150px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Independent:</b> the row number <span class="tex">n</span>: you choose which row to look at.<br><b>Dependent:</b> the number of chairs <span class="tex">C</span>: it is decided by the row number.</div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Representing a relation ================= -->
+<section class="card" data-ink="s3" data-section="3. Representing a Relation">
+  <div class="sec-h"><span class="badge">3</span><h2>Representing a Relation</h2></div>
+  <p>Ordered pairs, a table, a mapping diagram and a graph are <b>four pictures</b> of the same set of pairs.</p>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>From a mapping diagram</h3></div>
+  <p class="q">The mapping diagram shows a relation between sets <span class="tex">A</span> and <span class="tex">B</span>.</p>
+  <div class="u5l12-ex3">
+    <div class="u5l12-figbox" id="ex3-map"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl"><b>(a)</b> Write this relation as a set of ordered pairs <span class="tex">(A,\ B)</span>.</div><div class="work" style="--h:90px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Follow each arrow, input first: <span class="tex">\boldsymbol{(10,\ 2),\ (20,\ 4),\ (30,\ 6),\ (40,\ 8)}</span></div></div></div>
+      <div class="part"><div class="pl"><b>(b)</b> Represent the same relation in a table of values.</div><div class="work" style="--h:110px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><table class="u5l12-tv sm"><tr><th><span class="tex">A</span></th><td>10</td><td>20</td><td>30</td><td>40</td></tr><tr><th><span class="tex">B</span></th><td>2</td><td>4</td><td>6</td><td>8</td></tr></table>Same relation, different picture: each output is <span class="tex">\tfrac15</span> of its input.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Four views">
+  <h3 class="sub">Examples 2 and 3 check: one relation, four views</h3>
+  <div class="explainer" data-explainer="views"></div>
+</section>
+
+<!-- ================= 4. Intercepts ================= -->
+<section class="card" data-ink="s4" data-section="4. Intercepts">
+  <div class="sec-h"><span class="badge">4</span><h2>Intercepts</h2></div>
+  <p>An <b class="u5l12-am"><span class="tex">x</span>-intercept</b> has <span class="tex">y=0</span> (it is on the <span class="tex">x</span>-axis). A <b class="u5l12-pu"><span class="tex">y</span>-intercept</b> has <span class="tex">x=0</span> (it is on the <span class="tex">y</span>-axis).</p>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Intercepts from a table</h3></div>
+  <p class="q">The table shows several points on a relation.</p>
+  <table class="u5l12-tv"><tr><th><span class="tex">x</span></th><td><span class="tex">-1</span></td><td><span class="tex">0</span></td><td><span class="tex">1</span></td><td><span class="tex">2</span></td><td><span class="tex">3</span></td><td><span class="tex">4</span></td></tr>
+    <tr><th><span class="tex">y</span></th><td><span class="tex">-4</span></td><td><span class="tex">-3</span></td><td><span class="tex">-2</span></td><td><span class="tex">-1</span></td><td><span class="tex">0</span></td><td><span class="tex">1</span></td></tr></table>
+  <div class="parts c2">
+    <div class="part"><div class="pl"><b>(a)</b> Which ordered pair is the <span class="tex">y</span>-intercept?</div><div class="work" style="--h:110px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Find the column with <span class="tex">x=0</span>; it pairs with <span class="tex">y=-3</span>: <span class="tex">\boldsymbol{(0,\ -3)}</span></div></div></div>
+    <div class="part"><div class="pl"><b>(b)</b> Which ordered pair is the <span class="tex">x</span>-intercept?</div><div class="work" style="--h:110px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Find the column with <span class="tex">y=0</span>; it pairs with <span class="tex">x=3</span>: <span class="tex">\boldsymbol{(3,\ 0)}</span></div></div></div>
+  </div>
+  <div class="explainer" data-explainer="intercepts"></div>
+</section>
+
+<!-- ================= 5. Domain and range ================= -->
+<section class="card" data-ink="s5" data-section="5. Domain and Range">
+  <div class="sec-h"><span class="badge">5</span><h2>Domain and Range</h2></div>
+  <p><b class="u5l12-am">Domain</b> = all the <span class="tex">x</span>-values. <b class="u5l12-pu">Range</b> = all the <span class="tex">y</span>-values. Read them off a graph (squash it onto each axis), or list them in set notation.</p>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>A segment, then a list</h3></div>
+  <p class="q">State the domain and range for each relation.</p>
+  <div class="u5l12-two">
+    <div class="part"><div class="pl"><b>(a)</b> The graph shows a line segment. State its domain and range.</div>
+      <div class="u5l12-figbox" id="ex5-graph"></div>
+      <div class="work" style="--h:100px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The endpoints are <span class="tex">(-5,\ -3)</span> and <span class="tex">(3,\ 6)</span>, and the segment is unbroken between them.<br><span class="tex">D:\ -5\le x\le 3\qquad R:\ -3\le y\le 6</span></div></div></div>
+    <div class="part"><div class="pl"><b>(b)</b> State the domain and range, using set notation, of the relation <span class="tex">(3,\ 7),\ (5,\ 2),\ (3,\ 9),\ (8,\ 2)</span>.</div><div class="work" style="--h:240px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x</span>’s: <span class="tex">3,5,3,8</span>: the 3 is written once. <span class="tex">y</span>’s: <span class="tex">7,2,9,2</span>: the 2 is written once.<br><span class="tex">D=\{3,\ 5,\ 8\}\qquad R=\{2,\ 7,\ 9\}</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s5b" data-section="5. The shadows">
+  <h3 class="sub">Example 5 check: squash it onto the axes</h3>
+  <div class="explainer" data-explainer="shadow"></div>
+</section>
+
+<!-- ================= 6. Technology ================= -->
+<section class="card" data-ink="s6" data-section="6. Using Technology">
+  <div class="sec-h"><span class="badge">6</span><h2>Using Technology to Graph a Relation</h2></div>
+  <p>A graphing calculator draws the relation once you enter it and set a <b>window</b>. A line that runs off both edges without turning has a domain and range of <b>all real numbers</b>.</p>
+</section>
+
+<section class="card example" data-ink="ex6" data-section="Example 6">
+  <div class="ex-head"><span class="ex-tag">Example 6</span><h3>Diego’s calculator screen</h3></div>
+  <p class="q">Diego graphs <span class="tex">y=-2x+8</span> in the standard window, <span class="tex">x:[-10,\ 10]</span>, <span class="tex">y:[-10,\ 10]</span>.</p>
+  <div class="u5l12-ex6">
+    <div class="u5l12-figbox" id="ex6-screen"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl"><b>(a)</b> State the window shown on the screen.</div><div class="work" style="--h:70px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The <b>standard window</b>: <span class="tex">x:[-10,\ 10]</span>, <span class="tex">y:[-10,\ 10]</span>.</div></div></div>
+      <div class="part"><div class="pl"><b>(b)</b> Use the screen to estimate the <span class="tex">x</span>-intercept and the <span class="tex">y</span>-intercept.</div><div class="work" style="--h:90px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The line meets the <span class="tex">y</span>-axis at 8 and the <span class="tex">x</span>-axis at 4: <span class="tex">y</span>-intercept <span class="tex">\boldsymbol{(0,\ 8)}</span>, <span class="tex">x</span>-intercept <span class="tex">\boldsymbol{(4,\ 0)}</span>. Check: <span class="tex">y=-2(0)+8=8</span>; <span class="tex">0=-2x+8\Rightarrow x=4</span> ✓</div></div></div>
+      <div class="part"><div class="pl"><b>(c)</b> State the domain and range of this relation.</div><div class="work" style="--h:70px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The line leaves the screen through opposite edges with no endpoints, so it continues forever. <b>Domain: all real numbers. Range: all real numbers.</b></div></div></div>
+    </div>
+  </div>
+  <div class="explainer" data-explainer="screen"></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l12"></section>
+
+<!-- ================= 7. Functions ================= -->
+<section class="card" data-ink="s7" data-section="7. Functions and the VLT">
+  <div class="sec-h"><span class="badge">7</span><h2>Functions and the Vertical Line Test</h2></div>
+  <p>A relation is a <b>function</b> when each input has <b>exactly one</b> output: no vertical line may cross the graph twice.</p>
+</section>
+
+<section class="card example" data-ink="ex7" data-section="Example 7">
+  <div class="ex-head"><span class="ex-tag">Example 7</span><h3>Which one is not a function?</h3></div>
+  <p class="q">Exactly one graph below is <b>not</b> a function. Use the vertical line test to identify it, and justify your answer.</p>
+  <div class="u5l12-three" id="ex7-graphs"></div>
+  <div class="parts c1">
+    <div class="part"><div class="work" style="--h:120px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Graph B is not a function.</b> A vertical line through the middle of the circle (for example <span class="tex">x=0</span>) crosses it <b>twice</b>, once at the top and once at the bottom: one input has two different outputs. A (an arch) and C (a V) each pass the test: every vertical line meets them at most once.</div></div></div>
+  </div>
+  <div class="explainer" data-explainer="vlt"></div>
+</section>
+
+<!-- ================= 8. Evaluating ================= -->
+<section class="card" data-ink="s8" data-section="8. Evaluating Function Notation">
+  <div class="sec-h"><span class="badge">8</span><h2>Evaluating Function Notation</h2></div>
+  <p>To find <span class="tex">f(a)</span>, substitute <span class="tex">a</span> for every <span class="tex">x</span> (<b>forwards</b>). To work <b>backwards</b>, set the rule equal to the output and solve.</p>
+</section>
+
+<section class="card example" data-ink="ex8" data-section="Example 8">
+  <div class="ex-head"><span class="ex-tag">Example 8</span><h3>Forwards, then backwards</h3></div>
+  <p class="q">Consider the function <span class="tex">g(x)=4x-9</span>.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl"><b>(a)</b> Determine the value of <span class="tex">g(6)</span>.</div><div class="work" style="--h:160px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Substitute the input:<br><span class="tex">g(6)=4(6)-9=24-9=\boldsymbol{15}</span></div></div></div>
+    <div class="part"><div class="pl"><b>(b)</b> If <span class="tex">g(k)=7</span>, determine the value of <span class="tex">k</span>.</div><div class="work" style="--h:160px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The <b>output</b> is given, so set the rule equal to 7 and solve:<br><span class="tex">4k-9=7\ \Rightarrow\ 4k=16\ \Rightarrow\ k=\boldsymbol{4}</span><br>Check: <span class="tex">g(4)=4(4)-9=7</span> ✓</div></div></div>
+  </div>
+  <div class="explainer" data-explainer="fwdBack"></div>
+</section>
+
+<!-- ================= 9. Graphs and models ================= -->
+<section class="card" data-ink="s9" data-section="9. Function Notation: Graphs, Models">
+  <div class="sec-h"><span class="badge">9</span><h2>Function Notation with Graphs and Models</h2></div>
+  <p>Function notation can be <b>read off a graph</b>, or used to <b>model</b> a real cost that depends on a quantity <span class="tex">n</span>.</p>
+</section>
+
+<section class="card example" data-ink="ex9" data-section="Example 9">
+  <div class="ex-head"><span class="ex-tag">Example 9</span><h3>From a graph, and from a model</h3></div>
+  <div class="u5l12-two">
+    <div class="part"><div class="pl"><b>(a)</b> The diagram shows the graph of <span class="tex">y=f(x)</span>. Use it to determine the value of <span class="tex">f(-1)+f(2)</span>.</div>
+      <div class="u5l12-figbox" id="ex9-graph"></div>
+      <div class="work" style="--h:90px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">At <span class="tex">x=-1</span> the point is <span class="tex">(-1,\ 0)</span>, so <span class="tex">f(-1)=0</span>. At <span class="tex">x=2</span> the point is <span class="tex">(2,\ -6)</span>, so <span class="tex">f(2)=-6</span>.<br><span class="tex">f(-1)+f(2)=0+(-6)=\boldsymbol{-6}</span></div></div></div>
+    <div class="part"><div class="pl"><b>(b)</b> A dog-walking business charges a $10 booking fee plus $8 for each walk, so the cost of <span class="tex">n</span> walks is <span class="tex">W(n)=10+8n</span>. Determine <span class="tex">W(5)</span>, and state the domain of this relation in the form <span class="tex">n\ge\ \_\_</span>.</div><div class="work" style="--h:250px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">W(5)=10+8(5)=10+40=\boldsymbol{\$50}</span>: five walks cost $50.<br>A number of walks cannot be negative, so the domain is <span class="tex">\boldsymbol{n\ge 0}</span>. (Strictly, <span class="tex">n</span> must also be a whole number: the graph is separate dots.)</div></div></div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Order of operations is built in.</b> For <span class="tex">W(5)</span>, type the rule as it is written: <span class="keys"><kbd>1</kbd><kbd>0</kbd><kbd>+</kbd><kbd>8</kbd><kbd>×</kbd><kbd>5</kbd><kbd>=</kbd></span> gives 50 (it multiplies first). For a negative input like <span class="tex">g(-2)=4(-2)-9</span>, use the <kbd>(−)</kbd> key: <span class="keys"><kbd>4</kbd><kbd>×</kbd><kbd>(−)</kbd><kbd>2</kbd><kbd>−</kbd><kbd>9</kbd><kbd>=</kbd></span> gives <span class="tex">-17</span>.</div>
+    <div class="pill-col"><button class="pill" data-keys="10 + 8 × 5 =">Show W(5)</button><button class="pill" data-keys="4 × (−) 2 − 9 =">Show g(−2)</button></div>
+  </div>
+  <div class="space" id="ex9-space"></div>
+  <button class="more" data-more="ex9-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s9b" data-section="9. Reading the graph">
+  <h3 class="sub">Example 9 check: across, up or down, then over</h3>
+  <div class="explainer" data-explainer="readGraph"></div>
+</section>
+
+<!-- ================= 10. Real-world graphs ================= -->
+<section class="card" data-ink="s10" data-section="10. Real-World Graphs">
+  <div class="sec-h"><span class="badge">10</span><h2>Interpreting and Sketching Real-World Graphs</h2></div>
+  <p><b>Rising</b> means increasing, <b>falling</b> means decreasing, <b>flat</b> means staying the same. No numbers are needed to sketch: only the shape.</p>
+</section>
+
+<section class="card example" data-ink="ex10" data-section="Example 10">
+  <div class="ex-head"><span class="ex-tag">Example 10</span><h3>Read one graph, sketch the other</h3></div>
+  <div class="u5l12-two">
+    <div class="part"><div class="pl"><b>(a)</b> The graph shows a cyclist’s speed, in km/h, during the first 7 minutes of a ride. Describe, in words, what happens to the speed during the first 2 minutes, during minutes 2 through 5, and during the last 2 minutes.</div>
+      <div class="u5l12-figbox" id="ex10-graph"></div>
+      <div class="work" style="--h:110px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Minutes 0–2:</b> the graph rises from 0 to about 15 km/h: the cyclist starts from rest and <b>speeds up steadily</b>.<br><b>Minutes 2–5:</b> flat at about 15 km/h: the speed is <b>constant</b> (cruising).<br><b>Minutes 5–7:</b> the graph falls back to 0: the cyclist <b>slows down steadily and stops</b>.</div></div></div>
+    <div class="part"><div class="pl"><b>(b)</b> Sketch a graph showing the temperature of a cup of hot coffee, from the moment it is poured until it has cooled down to room temperature and stays there.</div>
+      <div class="work u5l12-axwork" style="--h:300px"><div class="u5l12-ax" id="ex10b-ax"></div></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u5l12-ansfig" id="ex10b-ans"></div>Start high (just poured), fall <b>steeply</b> at first, then flatten as the coffee nears room temperature. Once it gets there the graph is <b>flat</b>: it cannot cool any further.</div></div></div>
+  </div>
+  <div class="explainer" data-explainer="story"></div>
+</section>
+
+<!-- ================= 11. Mixed review ================= -->
+<section class="card" data-ink="s11" data-section="11. Mixed Review">
+  <div class="sec-h"><span class="badge">11</span><h2>Mixed Review: Putting It All Together</h2></div>
+  <p>Each question below combines more than one skill: exactly like a test question. <span class="muted">(Check them with the Challenge chips in the explainers of Sections 3, 4, 5, 7 and 8.)</span></p>
+</section>
+
+<section class="card example" data-ink="ch1" data-section="Challenge 1">
+  <div class="ex-head"><span class="ex-tag">Challenge 1</span><h3>The landscaping company</h3></div>
+  <p class="q">A landscaping company charges a $25 site fee plus $15 per tree planted: <span class="tex">C(p)=25+15p</span>.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl"><b>(a)</b> Determine <span class="tex">C(8)</span>.</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">C(8)=25+15(8)</span><br><span class="tex">=25+120=\boldsymbol{\$145}</span></div></div></div>
+    <div class="part"><div class="pl"><b>(b)</b> If <span class="tex">C(p)=175</span>, determine the number of trees planted.</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">25+15p=175</span><br><span class="tex">15p=150</span><br><span class="tex">p=\boldsymbol{10}</span> trees. Check: <span class="tex">25+15(10)=175</span> ✓</div></div></div>
+    <div class="part"><div class="pl"><b>(c)</b> State an appropriate domain for this function, given the context.</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">You can’t plant a negative number of trees, or part of a tree: <span class="tex">D=\{0,\ 1,\ 2,\ 3,\ \dots\}</span>, the whole numbers. (A sensible upper limit, like the most the crew can plant in a day, is also fine.)</div></div></div>
+  </div>
+  <div class="space" id="ch1-space"></div>
+  <button class="more" data-more="ch1-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ch2" data-section="Challenge 2">
+  <div class="ex-head"><span class="ex-tag">Challenge 2</span><h3>One graph, three questions</h3></div>
+  <p class="q">The graph below shows a relation.</p>
+  <div class="u5l12-ex6">
+    <div class="u5l12-figbox" id="ch2-graph"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl"><b>(a)</b> Is this relation a function? Justify your answer using the vertical line test.</div><div class="work" style="--h:80px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> The curve opens <b>downward</b>, so any vertical line meets it at most once. Every input has exactly one output.</div></div></div>
+      <div class="part"><div class="pl"><b>(b)</b> State the domain and range of the relation.</div><div class="work" style="--h:90px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">As drawn, the curve runs from about <span class="tex">x=-2.2</span> to about <span class="tex">x=4.2</span>; its heights run from about <span class="tex">-1.2</span> at the ends up to the peak <span class="tex">(1,\ 9)</span>.<br><span class="tex">D:</span> about <span class="tex">-2.2\le x\le 4.2\qquad R:</span> about <span class="tex">-1.2\le y\le 9</span><br><span class="muted">(If it continued forever, <span class="tex">D</span> would be all real numbers and <span class="tex">R:\ y\le 9</span>.)</span></div></div></div>
+      <div class="part"><div class="pl"><b>(c)</b> State the coordinates of the <span class="tex">x</span>-intercepts and the <span class="tex">y</span>-intercept.</div><div class="work" style="--h:80px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x</span>-intercepts <span class="tex">\boldsymbol{(-2,\ 0)}</span> and <span class="tex">\boldsymbol{(4,\ 0)}</span>; <span class="tex">y</span>-intercept <span class="tex">\boldsymbol{(0,\ 8)}</span>. Check with <span class="tex">y=-x^2+2x+8</span>: at <span class="tex">x=0</span>, <span class="tex">y=8</span>; at <span class="tex">x=4</span>, <span class="tex">-16+8+8=0</span>; at <span class="tex">x=-2</span>, <span class="tex">-4-4+8=0</span> ✓</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ch2-space"></div>
+  <button class="more" data-more="ch2-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ch3" data-section="Challenge 3">
+  <div class="ex-head"><span class="ex-tag">Challenge 3</span><h3>The community garden</h3></div>
+  <p class="q">A community garden has 8 plants in Week 1, and 6 more plants are added every week after that. Let <span class="tex">n</span> be the week number and <span class="tex">P(n)</span> the number of plants.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl"><b>(a)</b> Write a function rule <span class="tex">P(n)</span>.</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Week 1 has 8; each later week adds 6, so after <span class="tex">n-1</span> extra weeks:<br><span class="tex">P(n)=8+6(n-1)=8+6n-6=\boldsymbol{6n+2}</span>. Check: <span class="tex">P(1)=8</span> ✓</div></div></div>
+    <div class="part"><div class="pl"><b>(b)</b> Determine <span class="tex">P(6)</span>.</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">P(6)=6(6)+2=36+2=\boldsymbol{38}</span> plants</div></div></div>
+    <div class="part"><div class="pl"><b>(c)</b> In what week will there be 62 plants?</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">6n+2=62</span><br><span class="tex">6n=60</span><br><span class="tex">n=\boldsymbol{10}</span>: <b>Week 10</b></div></div></div>
+    <div class="part"><div class="pl"><b>(d)</b> State a reasonable domain, given the context.</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Week numbers are counting numbers starting at 1: <span class="tex">D=\{1,\ 2,\ 3,\ 4,\ \dots\}</span>. (There is no “week 2.5”.)</div></div></div>
+  </div>
+  <div class="space" id="ch3-space"></div>
+  <button class="more" data-more="ch3-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>A relation</b> is a set of ordered pairs <span class="tex">(x,\ y)</span>, shown four ways: pairs, table, mapping diagram, graph. Across first, then up or down.</div>
+    <div><b>Domain</b> = all <span class="tex">x</span>-values, <b>range</b> = all <span class="tex">y</span>-values. <b>Intercepts:</b> <span class="tex">y=0</span> for the <span class="tex">x</span>-intercept, <span class="tex">x=0</span> for the <span class="tex">y</span>-intercept.</div>
+    <div><b>Function:</b> each input has exactly one output (vertical line test). <span class="tex">f(a)</span>: substitute. <span class="tex">f(x)=b</span>: solve.</div>
+    <div><b>Real-world graphs:</b> rising, falling, flat; steep = fast. Read the axis labels, and think about the context for the domain.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u5l12">
+    <div><div class="kicker">Your turn</div><b>Assignment 12 — Unit Review: Relations and Functions</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <div class="u5l12-review">
+    <div class="u5l12-review-h"><span class="kicker">Up next</span><b>Unit 5 test.</b> <span class="muted">Shaky on an idea today? Go back to its lesson.</span></div>
+    <div class="u5l12-review-grid">
+      <a href="../l1/"><span class="rn">5.1</span>The Cartesian plane <small>Example 1</small></a>
+      <a href="../l2/"><span class="rn">5.2</span>Patterns and variables <small>Example 2, Challenge 3</small></a>
+      <a href="../l3/"><span class="rn">5.3</span>Representing a relation <small>Example 3</small></a>
+      <a href="../l4/"><span class="rn">5.4</span>Intercepts <small>Example 4, Challenge 2(c)</small></a>
+      <a href="../l5/"><span class="rn">5.5</span>Domain and range from a graph <small>Example 5(a), Challenge 2(b)</small></a>
+      <a href="../l6/"><span class="rn">5.6</span>Domain and range from pairs <small>Example 5(b)</small></a>
+      <a href="../l7/"><span class="rn">5.7</span>Using technology <small>Example 6</small></a>
+      <a href="../l8/"><span class="rn">5.8</span>Functions, vertical line test <small>Example 7, Challenge 2(a)</small></a>
+      <a href="../l9/"><span class="rn">5.9</span>Evaluating <span class="tex">f(x)</span> <small>Example 8, Challenge 1</small></a>
+      <a href="../l10/"><span class="rn">5.10</span><span class="tex">f(x)</span> graphs and models <small>Example 9, Challenge 3</small></a>
+      <a href="../l11/"><span class="rn">5.11</span>Real-world graphs <small>Example 10</small></a>
+      <div class="test"><span class="rn">Test</span>Unit 5 test: RF1, RF2, RF4, RF5, RF8 <small>scientific calculator allowed · every idea from today’s review</small></div>
+    </div>
+  </div>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u5l12.js';
+  boot({ key: 'u5l12', homeHref: '../../', title: '5.12 Unit 5 Review' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

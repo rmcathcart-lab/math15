@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Real-World Graphs · Math 15 5.11</title>
+<meta name="description" content="Math 15 Unit 5 Lesson 11: interpreting and sketching real-world graphs. Trips to school played in step with their graphs, increasing, decreasing and constant pieces, steep and gradual (rate of change), a speed graph of a bike ride, matching a story to a graph, sketching from a story, and finishing a bath graph. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u5l11.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 5 Relations and Functions · Lesson 11</div>
+  <h1>Interpreting and Sketching Real-World Graphs</h1>
+  <p class="lede">Every real-world graph tells a <b>story</b>. Today we read that story one piece at a time: where the graph <b>rises</b>, <b>falls</b> or stays <b>flat</b>, and how <b>steep</b> it is. Then we go the other way: read a story and <b>sketch its graph</b>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>read a graph <b>left to right</b> and say what is happening in each interval: <b>increasing</b>, <b>decreasing</b> or <b>constant</b></li>
+      <li>tell a <b>steep</b> piece (fast change) from a <b>gradual</b> one (slow change), and find a <b>rate of change</b> with units</li>
+      <li><b>match</b> a written story to its graph, and explain why the other graphs don’t fit</li>
+      <li><b>sketch</b> a graph with no scale from a written story</li>
+      <li>finish a graph that shows only <b>part</b> of a story</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF1</b> Interpret and explain the relationships among data, graphs and situations.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Who’s Who?" id="wu" style="--wf-side: 400px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Who’s Who?</h2>
+  <p class="wf-rule">Each graph shows how far a friend is from <b>home</b> as time goes by. <b>Match each friend to a graph.</b></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l11-wgraphs" id="wu-graphs"></div>
+    <div class="u5l11-wqs">
+      <div class="u5l11-mq"><div class="q-num">1</div><div><b>Ava</b> walks to school at a steady pace.</div><div class="u5l11-mg">graph <span data-reveal><b>D</b></span></div></div>
+      <div class="u5l11-mq"><div class="q-num">2</div><div><b>Ben</b> runs to a friend’s house and stays to play.</div><div class="u5l11-mg">graph <span data-reveal><b>C</b></span></div></div>
+      <div class="u5l11-mq"><div class="q-num">3</div><div><b>Cam</b> walks toward school, turns back home for his lunch, then runs all the way to school.</div><div class="u5l11-mg">graph <span data-reveal><b>A</b></span></div></div>
+      <div class="u5l11-mq"><div class="q-num">4</div><div><b>Dee</b> walks to the bus stop, waits, then rides the bus to school.</div><div class="u5l11-mg">graph <span data-reveal><b>B</b></span></div></div>
+      <div class="u5l11-mq q5"><div class="q-num">5</div><div>Ava and Ben both head straight out. Who is <b>faster</b>? How can you <b>see</b> it?</div><div class="u5l11-mg"><span data-reveal><b>Ben</b>: his line is <b>steeper</b></span></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Eli graphed <i>his</i> trip to school. How long did he take to cover the <b class="u5l11-red">red part</b>? <b>Guess first.</b></div></div>
+      <div class="u5l11-eli" id="wu-eli"></div>
+      <div class="poll-opts u5l11-c4">
+        <div class="opt"><b>A</b> 3 min</div>
+        <div class="opt"><b>B</b> 1 min</div>
+        <div class="opt"><b>C</b> 10 s</div>
+        <div class="opt right"><b>D</b> 0 s</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D, 0 seconds.</b> The red part is <b>vertical</b>: it starts and ends at 3 min. At 3 minutes the graph says Eli is at 200 m <b>and</b> at 600 m: in two places at once! That’s teleporting, so the graph is <b>impossible</b>.<br>
+        <span class="muted">A real trip takes some time, so the red part must lean to the right, for example from (3, 200) to (4, 600) for a 1-minute bus ride.</span></div>
+    </div>
+    <p class="u5l11-social">Argue with your neighbour: could Eli’s trip really happen? What would he have to do?</p>
+  </div></div>
+</section>
+
+<!-- ================= 1. Reading the shape ================= -->
+<section class="card" data-ink="s1" data-section="1. Reading the Shape of a Graph">
+  <div class="sec-h"><span class="badge">1</span><h2>Reading the Shape of a Graph</h2></div>
+  <p>Read a graph <b>left to right</b>, one interval (piece) at a time, the way time moves. In each interval the quantity is:</p>
+  <div class="u5l11-four">
+    <div class="u5l11-k inc"><svg viewBox="0 0 90 60"><path d="M10 52L80 10"/></svg><div><b>increasing</b><br>the graph <b>rises</b></div></div>
+    <div class="u5l11-k dec"><svg viewBox="0 0 90 60"><path d="M10 10L80 52"/></svg><div><b>decreasing</b><br>the graph <b>falls</b></div></div>
+    <div class="u5l11-k con"><svg viewBox="0 0 90 60"><path d="M10 31H80"/></svg><div><b>constant</b><br>the graph is <b>flat</b>: no change at all</div></div>
+    <div class="u5l11-k stp"><svg viewBox="0 0 90 60"><path class="a" d="M10 54L36 6"/><path class="b" d="M10 54L84 34"/></svg><div><b class="a">steep</b> = fast<br><b class="b">gradual</b> = slow</div></div>
+  </div>
+  <div class="def">The <b>steepness</b> of a piece is its <b>rate of change</b>: a <b>steep</b> piece changes fast, a <b>gradual</b> piece changes slowly.
+    <div class="eg">On a <b>distance from home</b> graph: rising = moving away, flat = stopped, falling = coming back home.</div></div>
+  <p>Watch the warm-up trips happen, in step with their graphs.</p>
+  <div class="explainer" data-explainer="story"></div>
+  <div class="parts c1" style="margin-top:16px">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> Could a real distance-from-home graph ever have a perfectly <b>vertical</b> piece? What about a very steep one?</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Never vertical:</b> a vertical piece puts you in two places at the same moment (like Eli). A <b>very steep</b> piece is fine: a fast trip (a bus, a car) still takes a little time, so the piece leans slightly to the right.</div></div></div>
+  </div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Steeper means faster">
+  <h3 class="sub">How fast? The rate of change</h3>
+  <p>To compare steepness with numbers, find the <b>rate of change</b> of a piece:</p>
+  <div class="def"><span class="tex">\text{rate of change}=\dfrac{\text{change in the quantity (up or down)}}{\text{change in time (across)}}</span>
+    <div class="eg">The units are “quantity <b>per</b> time”: km/h per minute, cm per minute, m per minute. Rising pieces have a <b>positive</b> rate, falling pieces a <b>negative</b> rate, flat pieces a rate of <b>0</b>.</div></div>
+  <div class="explainer" data-explainer="rate"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Steeper means faster, not higher.</b> To find the fastest change, compare the <b>size</b> of the rates and ignore the sign: a rate of <span class="tex">-12</span> is a faster change than a rate of <span class="tex">6</span>.</div></div>
+</section>
+
+<!-- ================= Example 1 ================= -->
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Jae’s bike ride: a speed graph</h3></div>
+  <p class="q">Jae rides her bicycle from home to the library along a route with one stop sign. The graph shows her <b>speed</b> at every moment of the 18-minute ride, made of five segments meeting at <span class="tex">A</span> to <span class="tex">F</span>.</p>
+  <div class="u5l11-figbox" id="ex1-graph"></div>
+  <p class="q"><b>(a)</b> With reference to Jae’s ride, explain what is happening during each interval.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(i) <span class="tex">A</span> to <span class="tex">B</span></div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The graph rises from 0 to 24 km/h over the first 4 minutes: Jae is <b>starting from rest and steadily speeding up</b> until she reaches her cruising speed of 24 km/h.</div></div></div>
+    <div class="part"><div class="pl">(ii) <span class="tex">C</span> to <span class="tex">D</span></div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The graph falls steeply from 24 km/h to 0 between 9 and 11 minutes: Jae is <b>braking</b>, slowing down and coming to a complete stop at the stop sign.</div></div></div>
+    <div class="part"><div class="pl">(iii) <span class="tex">E</span> to <span class="tex">F</span></div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The graph rises again from 0 to 20 km/h over the last 6 minutes: after the stop Jae <b>pulls away and speeds up again</b>, but only to 20 km/h, a bit slower than before.</div></div></div>
+  </div>
+  <div class="parts c3">
+    <div class="part"><div class="pl"><b>(b)</b> Determine the rate of change, in km/h per minute, between <span class="tex">C</span> and <span class="tex">D</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">C=(9,\ 24)</span> and <span class="tex">D=(11,\ 0)</span>.<br><span class="tex">\text{rate}=\dfrac{0-24}{11-9}=\dfrac{-24}{2}=\boldsymbol{-12}</span> km/h per minute.<br>The negative sign means her speed is <b>dropping</b> by 12 km/h each minute.</div></div></div>
+    <div class="part"><div class="pl"><b>(c)</b> Which single segment shows the fastest rate of change (steepest), and what does this tell you about Jae at that time?</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Compare the three slanted segments: <span class="tex">A\text{–}B:\ \tfrac{24}{4}=6</span>; <span class="tex">C\text{–}D:\ \tfrac{-24}{2}=-12</span>; <span class="tex">E\text{–}F:\ \tfrac{20}{6}\approx 3.3</span>.<br><b><span class="tex">C</span> to <span class="tex">D</span> is the steepest</b> (size 12). Jae is braking hard: her speed changes fastest as she stops for the stop sign.</div></div></div>
+    <div class="part"><div class="pl"><b>(d)</b> For how many minutes, in total, was Jae’s speed constant?</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Flat segments only:<br><span class="tex">B</span> to <span class="tex">C</span>: <span class="tex">9-4=5</span> min (cruising at 24 km/h)<br><span class="tex">D</span> to <span class="tex">E</span>: <span class="tex">12-11=1</span> min (stopped: constant at 0)<br>Total: <span class="tex">5+1=\boldsymbol{6}</span> minutes</div></div></div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Rates on the calculator.</b> Part (b): <span class="keys"><kbd>(−)</kbd><kbd>2</kbd><kbd>4</kbd><kbd>÷</kbd><kbd>2</kbd><kbd>=</kbd></span> gives <span class="tex">-12</span>. Part (c), <span class="tex">E</span> to <span class="tex">F</span>: <span class="keys"><kbd>2</kbd><kbd>0</kbd><kbd>÷</kbd><kbd>6</kbd><kbd>=</kbd></span> gives <span class="tex">3.333…</span>, about <span class="tex">3.3</span>.</div>
+    <div class="pill-col"><button class="pill" data-keys="(−) 24 ÷ 2 =">Show (b)</button><button class="pill" data-keys="20 ÷ 6 =">Show E to F</button></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex1b" data-section="Example 1: Jae’s ride">
+  <h3 class="sub">Example 1 check: ride along with Jae</h3>
+  <p>The bike, the speedometer and the graph move together. Check your answers to part (a).</p>
+  <div class="explainer" data-explainer="jae"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Flat doesn’t always mean stopped.</b> Read the <b>axis label</b> first. On a <b>speed</b> graph, flat and high means moving at a <b>steady speed</b>; only flat <b>at 0</b> means stopped. On a <b>distance</b> graph, any flat piece means stopped.</div></div>
+</section>
+
+<section class="card" data-ink="ex1c" data-section="Example 1: sorting the pieces">
+  <h3 class="sub">Sorting the pieces</h3>
+  <p>To answer “for how long was it increasing (or constant)?”, sort the pieces first, then add up their times.</p>
+  <div class="explainer" data-explainer="pieces"></div>
+</section>
+
+<!-- ================= 2. Matching ================= -->
+<section class="card" data-ink="s2" data-section="2. Matching a Story to a Graph">
+  <div class="sec-h"><span class="badge">2</span><h2>Matching a Written Story to a Graph</h2></div>
+  <p>Break the story into <b>phases</b>, in order. Then rule out any graph whose shape doesn’t fit a phase.</p>
+  <div class="u5l11-cues">
+    <div><b>a stop or a pause</b><span>→ a <b>flat</b> piece</span></div>
+    <div><b>“faster”</b><span>→ a <b>steeper</b> piece</span></div>
+    <div><b>“coming back”</b><span>→ a <b>decreasing</b> piece</span></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Which graph is Sam’s walk?</h3></div>
+  <p class="q"><b>Story:</b> Sam leaves home and walks at a steady pace toward school. Partway there, he stops at a corner to talk to a friend for a few minutes. Then he jogs the rest of the way to school, covering the remaining distance <b>faster</b> than he walked the first part. Each graph shows Sam’s <b>distance from home</b> versus <b>time</b>.</p>
+  <div class="u5l11-minis" id="ex2-graphs"></div>
+  <div class="parts c2">
+    <div class="part"><div class="pl"><b>(a)</b> Which graph matches Sam’s story?</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The story has three phases: a steady walk (rising), a stop (flat), then a <b>faster</b> jog (rising more steeply). Only <b>A</b> shows gentle rise → flat → steeper rise.<br>Answer: <b>A</b></div></div></div>
+    <div class="part"><div class="pl"><b>(b)</b> Explain, in one sentence each, why the <b>other three</b> graphs do not match.</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>B:</b> the first piece is steeper than the last, so Sam would have <i>walked</i> faster than he jogged.<br><b>C:</b> the middle piece goes <b>down</b>: Sam heads back toward home instead of stopping.<br><b>D:</b> the flat parts come first and last: he waits before leaving and stops at the end, instead of pausing partway.</div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex2b" data-section="Example 2: rule them out">
+  <h3 class="sub">Example 2 check: phase by phase, rule them out</h3>
+  <div class="explainer" data-explainer="match"></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l11"></section>
+
+<!-- ================= 3. Sketching ================= -->
+<section class="card" data-ink="s3" data-section="3. Sketching From a Story">
+  <div class="sec-h"><span class="badge">3</span><h2>Sketching a Graph From a Written Story</h2></div>
+  <p>With no scale, only the <b>shape</b> matters. Exact numbers don’t matter.</p>
+  <div class="u5l11-steps">
+    <div><b class="n">1</b><b>Choose the axes.</b> Time usually goes across. Label both axes.</div>
+    <div><b class="n">2</b><b>Split the story</b> into phases, in order.</div>
+    <div><b class="n">3</b><b>Each phase:</b> increasing, decreasing or constant? Steep or gradual?</div>
+    <div><b class="n">4</b><b>Join the pieces</b> into one continuous graph, left to right.</div>
+  </div>
+  <h3 class="sub">Straight or curved?</h3>
+  <p>A <b>steady</b> rate makes a <b>straight</b> piece. If the change gets faster or slower, the piece <b>curves</b>. <span class="muted">Name each shape first, then tap it.</span></p>
+  <div class="u5l11-shapes" id="shape-row"></div>
+  <div class="explainer" data-explainer="shapes"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>From a story to a sketch</h3></div>
+  <p class="q">Sketch a graph with no scale for each situation. Label your axes.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Height of water in a bottle: a tap fills the bottle at a steady rate from empty until it is full, and then the tap is shut off and the bottle sits full and unchanged.</div><div class="work u5l11-axwork" style="--h:300px"><div class="u5l11-ax" id="ex3a-ax"></div></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u5l11-ansfig" id="ex3a-ans"></div>A straight <b>rising</b> piece (steady filling) that turns <b>flat</b> the moment the tap is shut off: the height then stays constant.</div></div></div>
+    <div class="part"><div class="pl">(b) Temperature of a mug of hot cocoa left on a table: it cools quickly at first, then cools more and more slowly as it gets close to room temperature (never quite reaching it).</div><div class="work u5l11-axwork" style="--h:300px"><div class="u5l11-ax" id="ex3b-ax"></div></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u5l11-ansfig" id="ex3b-ans"></div>A <b>curve</b> that falls steeply at first and then flattens out, getting closer and closer to room temperature without ever touching it.</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex3b" data-section="Example 3: sketch it">
+  <h3 class="sub">Example 3 check: one phrase, one piece</h3>
+  <p>Each phrase of the story becomes one piece of the graph. Watch the scene and the sketch together.</p>
+  <div class="explainer" data-explainer="sketch"></div>
+</section>
+
+<!-- ================= 4. Combining ================= -->
+<section class="card" data-ink="s4" data-section="4. Combining Reading and Sketching">
+  <div class="sec-h"><span class="badge">4</span><h2>Combining Reading and Sketching</h2></div>
+  <p>Some questions graph only <b>part</b> of a story. You <b>read</b> that part (often its rate of change), then <b>continue the sketch</b> for the rest of the story on the same grid.</p>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Mia’s bath</h3></div>
+  <p class="q">Mia runs a bath. For the first 6 minutes the tap fills the tub at a steady rate and the depth rises from 0 cm to 24 cm (already drawn below). She then soaks for 10 minutes, during which the depth stays about the same. Finally she pulls the plug and the tub drains at a steady rate, from 24 cm back to 0 cm over the next 8 minutes.</p>
+  <div class="u5l11-ex4">
+    <div class="u5l11-ex4fig"><div id="ex4-graph"></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl"><b>(a)</b> What is the rate of change of the water depth during the first 6 minutes (while the tap is filling the tub)?</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The depth goes from 0 cm to 24 cm in 6 minutes:<br><span class="tex">\text{rate}=\dfrac{24-0}{6-0}=\dfrac{24}{6}=\boldsymbol{4}</span> cm per minute. Positive, because the tub is filling.</div></div></div>
+      <div class="part"><div class="pl"><b>(b)</b> On the same grid, continue the sketch to show the rest of Mia’s bath (the soak, then the drain).</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u5l11-ansfig" id="ex4-ans"></div><b>Soak:</b> a <b>flat</b> piece at 24 cm from 6 to 16 minutes (10 minutes, depth unchanged).<br><b>Drain:</b> a straight piece falling from <span class="tex">(16,\ 24)</span> to <span class="tex">(24,\ 0)</span> over 8 minutes: a rate of <span class="tex">\tfrac{-24}{8}=-3</span> cm per minute, so it is a little <b>less steep</b> than the filling part.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex4b" data-section="Example 4: the bath">
+  <h3 class="sub">Example 4 check: fill, soak, drain</h3>
+  <div class="explainer" data-explainer="bath"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>The drive to the cabin</h3></div>
+  <p class="q">A family drives from home to a mountain cabin. Sketch their <b>speed</b> versus <b>time</b> for the whole trip.</p>
+  <div class="u5l11-ex5">
+    <ul class="u5l11-bul">
+      <li>They pull out of the driveway and speed up steadily to highway speed.</li>
+      <li>They cruise at that highway speed for a long stretch.</li>
+      <li>They slow down and come to a complete stop at a gas station, where they stay stopped for a while to refuel.</li>
+      <li>After refuelling, they speed up again, but only back up to a <b>slightly slower</b> cruising speed than before (more traffic near the cabin).</li>
+      <li>Finally, they slow down and come to a stop as they arrive at the cabin.</li>
+    </ul>
+    <div class="part"><div class="work u5l11-axwork" style="--h:300px"><div class="u5l11-ax" id="ex5-ax"></div></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u5l11-ansfig" id="ex5-ans"></div>Left to right: <b>rising</b> (speeding up), <b>flat and high</b> (highway), <b>falling to 0</b> then <b>flat along the axis</b> (stopped at the gas station), <b>rising</b> to a <b>lower</b> flat level (slower cruise), and <b>falling to 0</b> (arriving). Only the shape matters.</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex5b" data-section="Example 5: the drive">
+  <h3 class="sub">Example 5 check: drive to the cabin</h3>
+  <p>The same phrase-by-phrase method, with a speedometer to watch.</p>
+  <div class="explainer" data-explainer="drive"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Read left to right</b>, one piece at a time: <b>rising</b> = increasing, <b>falling</b> = decreasing, <b>flat</b> = constant (no change).</div>
+    <div><b>Steep = fast, gradual = slow.</b> <span class="tex">\text{rate of change}=\dfrac{\text{change in quantity}}{\text{change in time}}</span>, with units like cm per minute. Compare sizes, ignore the sign.</div>
+    <div><b>Matching:</b> split the story into phases. A stop is <b>flat</b>, “faster” is <b>steeper</b>, “coming back” is <b>decreasing</b>. Rule out graphs that don’t fit.</div>
+    <div><b>Sketching:</b> label the axes, one piece per phase, steady = <b>straight</b>, changing speed = <b>curved</b>. Read the axis label: flat on a <b>speed</b> graph is not stopped!</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u5l11">
+    <div><div class="kicker">Your turn</div><b>Assignment 11 — Interpreting and Sketching Real-World Graphs</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l12/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 12 — Unit Review: Relations and Functions</b><div class="muted">The whole unit together: relations, domain and range, intercepts, functions, f(x) and story graphs</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u5l11.js';
+  boot({ key: 'u5l11', homeHref: '../../', title: '5.11 Real-World Graphs' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

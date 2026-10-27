@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Cartesian Plane · Math 15 5.1</title>
+<meta name="description" content="Math 15 Unit 5 Lesson 1: the Cartesian plane and plotting points. The x-axis, y-axis, origin and four quadrants, plotting a point from its ordered pair (over first, then up or down), reading the coordinates of a plotted point, naming the quadrant from the signs, and spotting a pattern in several points. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u5l1.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 5 Relations and Functions · Lesson 1</div>
+  <h1>The Cartesian Plane and Plotting Points</h1>
+  <p class="lede">Every spot on a grid has an <b>address</b> made of two numbers. Today: the parts of the <b>Cartesian plane</b>, how to <b>plot</b> a point from its ordered pair (<b>over first</b>, then up or down), how to <b>read</b> the coordinates of a point, and how the <b>signs</b> tell you the quadrant without plotting at all.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>name the <b><span class="tex">x</span>-axis</b>, the <b><span class="tex">y</span>-axis</b>, the <b>origin</b> and the four <b>quadrants</b></li>
+      <li><b>plot</b> a point from its <b>ordered pair</b> <span class="tex">(x,\ y)</span></li>
+      <li><b>read</b> the coordinates of a point on a grid, even a point on an axis</li>
+      <li>tell which <b>quadrant</b> a point is in from the <b>signs</b> of its coordinates, or say which <b>axis</b> it is on</li>
+      <li>plot several points and <b>describe the pattern</b> they make</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF2</b> Demonstrate an understanding of relations and functions.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Treasure Island" id="wu" style="--wf-side: 450px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Treasure Island</h2>
+  <p class="wf-rule">The captain’s map is a grid. Every spot on the island has an <b>address</b>. <span class="muted">Tap the map to dig.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l1-mwrap">
+      <div class="u5l1-map" id="tmap" data-tap></div>
+      <div class="u5l1-mctl no-ink">
+        <button type="button" class="pill small" data-tm="note">Follow the note ▸</button>
+        <button type="button" class="pill small" data-tm="hide">Hide a spot</button>
+        <button type="button" class="pill small" data-tm="reset">Reset</button>
+        <span class="u5l1-mcount" id="tm-count"></span>
+      </div>
+      <div class="u5l1-mlog" id="tm-log">Tap any spot on the map to dig there. The map tells you its address.</div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u5l1-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What is at <span class="tex">(4,\ 2)</span>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">The <b>lighthouse</b>: 4 right, then 2 up.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>What is the address of the <b>palm tree</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><span class="tex">(-4,\ -2)</span>: 4 <b>left</b>, 2 <b>down</b>. Not <span class="tex">(4,\ 2)</span>: that’s the lighthouse!</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>The <b>campfire</b> is where the two lines cross. What is its address? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><span class="tex">(0,\ 0)</span>: no moving at all. It sits on both lines.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> The captain’s note says <b class="u5l1-note-q">“Dig at <span class="tex">(-3,\ 5)</span>.”</b> Four spots are marked <b class="u5l1-red">X</b>. Only <b>one</b> has the treasure; the other three are <b>traps</b>! <b>Guess first:</b> which X?</div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b></div>
+        <div class="opt"><b>B</b></div>
+        <div class="opt right"><b>C</b></div>
+        <div class="opt"><b>D</b></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C.</b> Start at the campfire, go <b>3 left</b>, then <b>5 up</b>. Every X uses a 3 and a 5, and each trap is a classic slip:
+        <b>A</b> <span class="tex">(5,\ -3)</span> swapped the numbers; <b>B</b> <span class="tex">(3,\ 5)</span> ignored the negative; <b>D</b> <span class="tex">(-5,\ 3)</span> went 5 left first.
+        <button type="button" class="pill small no-ink" data-tm="note">Show it on the map ▸</button></div>
+    </div>
+  </div></div>
+  <p class="u5l1-social">Your turn: press <b>Hide a spot</b>, or hide a secret spot on paper. Can your partner find it in 5 guesses? Every guess must be said as an ordered pair.</p>
+</section>
+
+<!-- ================= 1. The Cartesian plane ================= -->
+<section class="card" data-ink="s1" data-section="1. The Cartesian Plane">
+  <div class="sec-h"><span class="badge">1</span><h2>The Cartesian Plane</h2></div>
+  <div class="u5l1-s1">
+    <div class="u5l1-s1fig" id="fig-plane"></div>
+    <div>
+      <div class="def">A <b>Cartesian coordinate system</b> is built from two perpendicular number lines called <b>axes</b>: the horizontal <b><span class="tex">x</span>-axis</b> and the vertical <b><span class="tex">y</span>-axis</b>. Together they form the <b>Cartesian plane</b>.</div>
+      <div class="def amber">The axes cross at the <b>origin</b>, <span class="tex">O</span>, which is always located at <span class="tex">(0,\ 0)</span>.</div>
+      <div class="def gray">The axes divide the plane into four regions called <b>quadrants</b>, numbered <b>I, II, III, IV</b>, starting in the top-right region and moving <b>counter-clockwise</b>.</div>
+    </div>
+  </div>
+  <div class="explainer" data-explainer="planeParts"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Vocabulary and the quadrants</h3></div>
+  <p class="q">Complete the vocabulary, then label the quadrants.</p>
+  <div class="parts u5l1-ex1">
+    <div class="part"><div class="pl">(a) Fill in each blank.</div>
+      <div class="u5l1-fill">The horizontal number line is called the <span class="u5l1-blank" data-reveal=" "><span class="tex">x</span></span>-axis. The vertical number line is called the <span class="u5l1-blank" data-reveal=" "><span class="tex">y</span></span>-axis. The point where the two axes cross is called the <span class="u5l1-blank wide" data-reveal=" ">origin</span>. This point has coordinates (<span class="u5l1-blank sm" data-reveal=" "><span class="tex">0</span></span>, <span class="u5l1-blank sm" data-reveal=" "><span class="tex">0</span></span>).</div>
+      <div class="work" style="--h:60px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Horizontal: the <b><span class="tex">x</span>-axis</b>. Vertical: the <b><span class="tex">y</span>-axis</b>. They cross at the <b>origin</b>, <span class="tex">(0,\ 0)</span>. <span class="muted">(Tap a blank to show one at a time.)</span></div></div></div>
+    <div class="part"><div class="pl">(b) Write “I”, “II”, “III”, or “IV” in each of the four regions.</div>
+      <div class="u5l1-gridbox" id="fig-ex1b"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>I</b> top right, <b>II</b> top left, <b>III</b> bottom left, <b>IV</b> bottom right: counter-clockwise.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Ordered pairs ================= -->
+<section class="card" data-ink="s2" data-section="2. Ordered Pairs">
+  <div class="sec-h"><span class="badge">2</span><h2>Ordered Pairs</h2></div>
+  <div class="u5l1-s2">
+    <div>
+      <div class="def">Every point on the plane is located by an <b>ordered pair</b> <span class="tex">(x,\ y)</span>.<br>
+        The <b>first</b> number is the <b><span class="tex">x</span>-coordinate</b>: how far to move <b>left or right</b> from the origin (positive is right, negative is left).<br>
+        The <b>second</b> number is the <b><span class="tex">y</span>-coordinate</b>: how far to move <b>up or down</b> (positive is up, negative is down).</div>
+      <div class="u5l1-rule2"><span class="tex">(\textcolor{#c27a0e}{x},\ \textcolor{#7b4fc4}{y})</span><div><b class="u5l1-amb">1st: over</b> (left or right)<br><b class="u5l1-pur">2nd: up or down</b></div></div>
+      <p class="u5l1-demo"><b>Worked demonstration:</b> to plot <span class="tex">P(2,\ 3)</span>, start at the origin, move <b class="u5l1-amb">2 units right</b>, then <b class="u5l1-pur">3 units up</b>.</p>
+    </div>
+    <div class="u5l1-s1fig" id="fig-p23"></div>
+  </div>
+  <div class="explainer" data-explainer="plotPoint"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Over first!">
+  <h3 class="sub">“Ordered” matters: over first, then up or down</h3>
+  <p>Swapping the two numbers gives a <b>different point</b>, and dropping a negative sign sends you the wrong way. The treasure map had a trap for each slip.</p>
+  <div class="explainer" data-explainer="traps"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Over first, then up or down.</b> <span class="tex">(1,\ 4)</span> and <span class="tex">(4,\ 1)</span> are <b>different points</b>. That is why it is called an <b>ordered</b> pair. Read the sign too: <span class="tex">-3</span> means <b>left</b> (or <b>down</b>), never right.</div></div>
+</section>
+
+<!-- ================= 3. Plotting and reading coordinates ================= -->
+<section class="card" data-ink="s3" data-section="3. Plotting and Reading Points">
+  <div class="sec-h"><span class="badge">3</span><h2>Plotting Points and Reading Their Coordinates</h2></div>
+  <p>Reading coordinates is the <b>reverse</b> of plotting. The distance from the <b><span class="tex">y</span>-axis</b> gives the <b><span class="tex">x</span>-coordinate</b>, and the distance from the <b><span class="tex">x</span>-axis</b> gives the <b><span class="tex">y</span>-coordinate</b>. Example 2 below practises plotting; Example 3 reverses it.</p>
+  <div class="explainer" data-explainer="readPoint"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>A point on an axis has a 0.</b> On the <span class="tex">y</span>-axis there is no move left or right, so <span class="tex">x=0</span>, like <span class="tex">(0,\ 2)</span>. On the <span class="tex">x</span>-axis there is no move up or down, so <span class="tex">y=0</span>, like <span class="tex">(-4,\ 0)</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Plotting points</h3></div>
+  <div class="parts u5l1-ex2">
+    <div class="part"><div class="pl">Plot and label <span class="tex">A(2,\ 4)</span>, <span class="tex">B(-3,\ 1)</span>, <span class="tex">C(-1,\ -4)</span>, <span class="tex">D(4,\ -2)</span> on the grid.</div>
+      <div class="u5l1-gridbox" id="fig-ex2"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Over first, then up or down: <span class="tex">A</span> is 2 right and 4 up; <span class="tex">B</span> is 3 left, 1 up; <span class="tex">C</span> is 1 left, 4 down; <span class="tex">D</span> is 4 right, 2 down.</div></div></div>
+    <div class="u5l1-ex2side">
+      <table class="u5l1-tbl u5l1-mvtbl">
+        <tr><th>Point</th><th>over</th><th>up or down</th></tr>
+        <tr><th><span class="tex">A(2,\ 4)</span></th><td><span data-reveal=" ">right 2</span></td><td><span data-reveal=" ">up 4</span></td></tr>
+        <tr><th><span class="tex">B(-3,\ 1)</span></th><td><span data-reveal=" ">left 3</span></td><td><span data-reveal=" ">up 1</span></td></tr>
+        <tr><th><span class="tex">C(-1,\ -4)</span></th><td><span data-reveal=" ">left 1</span></td><td><span data-reveal=" ">down 4</span></td></tr>
+        <tr><th><span class="tex">D(4,\ -2)</span></th><td><span data-reveal=" ">right 4</span></td><td><span data-reveal=" ">down 2</span></td></tr>
+      </table>
+      <p class="muted u5l1-small">Say the two moves out loud before you plot. (Tap a cell to show it.)</p>
+      <div class="work" style="--h:150px"></div>
+    </div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Reading coordinates</h3></div>
+  <div class="parts u5l1-ex2">
+    <div class="part"><div class="pl">State the coordinates of each labelled point.</div>
+      <div class="u5l1-gridbox" id="fig-ex3"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">R</span> sits on the <span class="tex">y</span>-axis, so its <span class="tex">x</span>-coordinate is <span class="tex">0</span>. <span class="tex">S</span> sits on the <span class="tex">x</span>-axis, so its <span class="tex">y</span>-coordinate is <span class="tex">0</span>.</div></div></div>
+    <div class="u5l1-ex2side">
+      <div class="u5l1-blanks">
+        <div><span class="tex">M(</span><span class="u5l1-bl" data-reveal=" "><span class="tex">2,\ 5</span></span><span class="tex">)</span></div>
+        <div><span class="tex">N(</span><span class="u5l1-bl" data-reveal=" "><span class="tex">-5,\ 2</span></span><span class="tex">)</span></div>
+        <div><span class="tex">P(</span><span class="u5l1-bl" data-reveal=" "><span class="tex">-2,\ -5</span></span><span class="tex">)</span></div>
+        <div><span class="tex">Q(</span><span class="u5l1-bl" data-reveal=" "><span class="tex">5,\ -1</span></span><span class="tex">)</span></div>
+        <div><span class="tex">R(</span><span class="u5l1-bl" data-reveal=" "><span class="tex">0,\ 4</span></span><span class="tex">)</span></div>
+        <div><span class="tex">S(</span><span class="u5l1-bl" data-reveal=" "><span class="tex">-3,\ 0</span></span><span class="tex">)</span></div>
+      </div>
+      <p class="muted u5l1-small">Tap a blank to show one answer at a time.</p>
+      <div class="work" style="--h:170px"></div>
+    </div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- sources: https://en.wikipedia.org/wiki/La_G%C3%A9om%C3%A9trie (1637, appendix to the Discourse; x, y, z for unknowns, a, b, c for knowns; no modern rectangular grid in it) · https://en.wikipedia.org/wiki/Analytic_geometry (Fermat's manuscript circulating in Paris in 1637) · https://britannica.com/topic/Ad-Locos-Planos-et-Solidos-Isagoge · https://plus.maths.org/content/maths-minute-cartesian-coordinates and https://wild.maths.org/node/2078 (the fly story, told as a legend) · https://www.etymonline.com/word/cartesian (Cartesius) -->
+<!-- ================= Math History box (brown) ================= -->
+<section class="card history" data-ink="hist" data-section="Math History: Descartes and the fly">
+  <div class="hist-head"><span class="hist-tag">Math History</span><span class="hist-dates">1637</span></div>
+  <div class="hist-grid">
+    <div class="hist-text">
+      <h3 class="hist-title">A fly on the ceiling</h3>
+      <p>The word “Cartesian” comes from <b>René Descartes</b>, a French thinker. In 1637 he published a short book, <i>La Géométrie</i>, that joined algebra to geometry. Pierre de Fermat had the same idea at about the same time.</p>
+      <p><b>Legend says</b> Descartes was lying in bed watching a fly on the ceiling. He saw that <b>two numbers</b>, its distances from two walls, could pin down exactly where it was. Nobody knows if it really happened.</p>
+      <div class="part hist-q"><div class="pl">A fly is 6 tiles from the left wall and 2 tiles from the bottom wall. Write its position as an ordered pair. Is <span class="tex">(2,\ 6)</span> the same spot?</div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\mathbf{(6,\ 2)}</span>: 6 across, 2 up. <span class="tex">(2,\ 6)</span> is 2 across and 6 up, a <b>different</b> spot. The order matters.</div></div></div>
+    </div>
+    <figure class="hist-anim">
+      <svg id="fly-anim" viewBox="0 0 600 300" role="img" aria-label="A fly wanders over a tiled ceiling. Each time it stops, dashed lines measure its distance from the left wall and the bottom wall: (3, 4), then (10, 5), then (7, 2)."></svg>
+      <figcaption><button class="hist-play" type="button">Replay</button><span>Tap the picture to play it again.</span></figcaption>
+      <p class="hist-note">“Cartesian” comes from <i>Cartesius</i>, the Latin form of his name. His book did not yet draw our grid of two number lines at right angles; that came later.</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= 4. Which quadrant? ================= -->
+<section class="card" data-ink="s4" data-section="4. Which Quadrant?">
+  <div class="sec-h"><span class="badge">4</span><h2>Which Quadrant Does a Point Lie In?</h2></div>
+  <p>The <b>signs</b> of the coordinates give the quadrant without any plotting. Right of the <span class="tex">y</span>-axis means <span class="tex">x</span> is positive; above the <span class="tex">x</span>-axis means <span class="tex">y</span> is positive.</p>
+  <div class="u5l1-signs">
+    <div class="u5l1-sg"><b>I</b><span class="tex">(+,\ +)</span></div>
+    <div class="u5l1-sg"><b>II</b><span class="tex">(-,\ +)</span></div>
+    <div class="u5l1-sg"><b>III</b><span class="tex">(-,\ -)</span></div>
+    <div class="u5l1-sg"><b>IV</b><span class="tex">(+,\ -)</span></div>
+  </div>
+  <div class="def gray">If <span class="tex">x=0</span>, the point lies <b>on the <span class="tex">y</span>-axis</b>. If <span class="tex">y=0</span>, it lies <b>on the <span class="tex">x</span>-axis</b>. <span class="tex">(0,\ 0)</span> is the origin. A point on an axis lies in <b>no quadrant</b>.</div>
+  <div class="explainer" data-explainer="quadrants"></div>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Read the signs">
+  <h3 class="sub">Read the signs, find the quadrant</h3>
+  <p>Look at each coordinate on its own: is it <b>positive</b>, <b>negative</b> or <b>zero</b>? The two signs point to one quadrant, or to an axis.</p>
+  <div class="explainer" data-explainer="signSort"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Quadrant or axis?</h3></div>
+  <p class="q">Without plotting, state which quadrant each point lies in. If it lies on an axis, say which one.</p>
+  <div class="parts u5l1-c6">
+    <div class="part"><div class="pl">(a) <span class="tex">(5,\ 3)</span></div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(+,\ +)</span><br><b>Quadrant I</b></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(-4,\ 2)</span></div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-,\ +)</span><br><b>Quadrant II</b></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(-3,\ -5)</span></div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-,\ -)</span><br><b>Quadrant III</b></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">(6,\ -1)</span></div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(+,\ -)</span><br><b>Quadrant IV</b></div></div></div>
+    <div class="part"><div class="pl">(e) <span class="tex">(0,\ -7)</span></div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x=0</span>, so it is <b>on the <span class="tex">y</span>-axis</b>.</div></div></div>
+    <div class="part"><div class="pl">(f) <span class="tex">(-8,\ 0)</span></div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=0</span>, so it is <b>on the <span class="tex">x</span>-axis</b>.</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l1"></section>
+
+<!-- ================= 5. Patterns ================= -->
+<section class="card" data-ink="s5" data-section="5. Spotting a Pattern">
+  <div class="sec-h"><span class="badge">5</span><h2>Plotting Several Points and Recognizing a Pattern</h2></div>
+  <p>Several related points plotted on one grid often reveal a <b>pattern</b>, such as lining up in a straight row. That is the first step toward a <b>relation</b>, the topic of the next lessons. Two quick patterns to watch for: points with the <b>same <span class="tex">y</span>-coordinate</b> lie in a <b>horizontal row</b>, and points with the <b>same <span class="tex">x</span>-coordinate</b> lie in a <b>vertical column</b>.</p>
+  <div class="explainer" data-explainer="pattern"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Five points in a row</h3></div>
+  <p class="q">Consider the points <span class="tex">(-4,\ -4)</span>, <span class="tex">(-2,\ -2)</span>, <span class="tex">(0,\ 0)</span>, <span class="tex">(2,\ 2)</span>, and <span class="tex">(4,\ 4)</span>.</p>
+  <div class="parts u5l1-ex5">
+    <div class="part"><div class="pl">(a) Plot all five points on the grid.</div>
+      <div class="u5l1-gridbox" id="fig-ex5"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Five points on one straight line through the origin.</div></div></div>
+    <div class="u5l1-stack">
+      <div class="part"><div class="pl">(b) What do you notice about the way these five points are arranged?</div><div class="work" style="--h:150px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">They all lie on <b>one straight line</b> through the origin, rising to the right. In every pair the two coordinates are <b>equal</b>, so each point is the same distance right as it is up (or the same distance left as it is down).</div></div></div>
+      <div class="part"><div class="pl">(c) Other than the origin, which two quadrants contain these points?</div><div class="work" style="--h:120px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Quadrant I</b>: <span class="tex">(2,\ 2)</span> and <span class="tex">(4,\ 4)</span>, both <span class="tex">(+,\ +)</span>. <b>Quadrant III</b>: <span class="tex">(-2,\ -2)</span> and <span class="tex">(-4,\ -4)</span>, both <span class="tex">(-,\ -)</span>. The origin is in no quadrant.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>The plane:</b> the horizontal <span class="tex">x</span>-axis and the vertical <span class="tex">y</span>-axis cross at the <b>origin</b> <span class="tex">O(0,\ 0)</span>. They cut the plane into four <b>quadrants</b>, I to IV, counter-clockwise from the top right.</div>
+    <div><b>Plotting:</b> <span class="tex">(x,\ y)</span> means move <b>over</b> by <span class="tex">x</span> (right <span class="tex">+</span>, left <span class="tex">-</span>), <b>then up or down</b> by <span class="tex">y</span>. Order matters: <span class="tex">(1,\ 4)\ne(4,\ 1)</span>.</div>
+    <div><b>Reading:</b> the reverse. Go straight up or down to the <span class="tex">x</span>-axis for <span class="tex">x</span>, then across to the <span class="tex">y</span>-axis for <span class="tex">y</span>. A point on an axis has a <b>0</b>.</div>
+    <div><b>Signs → quadrant:</b> I <span class="tex">(+,+)</span>, II <span class="tex">(-,+)</span>, III <span class="tex">(-,-)</span>, IV <span class="tex">(+,-)</span>. A 0 means <b>on an axis</b>, in no quadrant. Points can line up in a <b>pattern</b>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u5l1">
+    <div><div class="kicker">Your turn</div><b>Assignment 1 — The Cartesian Plane and Plotting Points</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l2/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 2 — Growing Patterns and Types of Variables</b><div class="muted">Describe a growing pattern in words, in a table of values and as points on a grid, and meet independent and dependent variables</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u5l1.js';
+  boot({ key: 'u5l1', homeHref: '../../', title: '5.1 The Cartesian Plane' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

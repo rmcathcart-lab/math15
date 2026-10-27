@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Function Notation · Math 15 5.9</title>
+<meta name="description" content="Math 15 Unit 5 Lesson 9: function notation. Renaming y as f(x), the function machine, reading f(3) = 11 (name, input, output), evaluating f(a) for numbers, letters and expressions with brackets, which direction a question asks, and interpreting C(n) in a real-world situation. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u5l9.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 5 Relations and Functions · Lesson 9</div>
+  <h1>Function Notation: Evaluating and Interpreting <span class="tex">f(x)</span></h1>
+  <p class="lede">In Lesson 8 you learned to spot a <b>function</b>: every input has exactly one output. Today we give a function a <b>name</b> and a short way to write “the output when the input is <span class="tex">x</span>”: <span class="tex">f(x)</span>, read “<span class="tex">f</span> of <span class="tex">x</span>”. Then we put numbers, letters and expressions <b>in</b>, and read what comes <b>out</b>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>read <span class="tex">f(3)=11</span> as “<span class="tex">f</span> of 3 is 11”: the <b>name</b> is <span class="tex">f</span>, the <b>input</b> is 3, the <b>output</b> is 11 (and it is <b>not</b> <span class="tex">f</span> times 3)</li>
+      <li>rewrite <span class="tex">y=2x+5</span> as <span class="tex">f(x)=2x+5</span></li>
+      <li><b>evaluate</b> <span class="tex">f(a)</span> by putting the input into every <span class="tex">x</span>, <b>in brackets</b>, including negative numbers</li>
+      <li>evaluate a function for a <b>letter</b> or an <b>expression</b>, such as <span class="tex">f(k)</span> or <span class="tex">f(x+1)</span></li>
+      <li>explain what a statement like <span class="tex">C(4)=18</span> means in a real situation, and write a sentence in function notation</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF8</b> Represent a linear function, using function notation.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Pizza Counter" id="wu" style="--wf-side: 318px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Pizza Counter</h2>
+  <p class="wf-rule">Every order ticket asks the same rule a different question. <span class="muted">Tap a ticket to ring it up.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l9-wtop">
+      <div class="u5l9-board">
+        <div class="u5l9-bname">LUIGI’S PIZZA</div>
+        <div class="u5l9-brow">
+          <svg class="u5l9-pz" id="u5l9-pz" viewBox="0 0 120 120" aria-label="A pizza with the chosen number of toppings"></svg>
+          <div class="u5l9-bmenu">
+            <div class="u5l9-bl"><b>Large pizza:</b></div>
+            <div class="u5l9-bl">$8 + $2 per topping</div>
+            <div class="u5l9-brule"><span class="tex">P(t)=8+2t</span></div>
+            <div class="u5l9-bt"><span class="tex">t</span> = number of toppings</div>
+          </div>
+        </div>
+        <div class="u5l9-build">
+          <button type="button" class="pill small" data-tp="-1" aria-label="One topping fewer">−</button>
+          <span class="u5l9-bout" id="u5l9-bout"></span>
+          <button type="button" class="pill small" data-tp="1" aria-label="One more topping">+</button>
+        </div>
+      </div>
+      <div class="u5l9-tix">
+        <button type="button" class="u5l9-tk" data-t="0"><span class="u5l9-tkh">ORDER #1</span><span class="u5l9-tkd">plain cheese<br>no toppings</span><span class="u5l9-tkp"><span class="tex">P(0)=</span></span><span class="u5l9-tkv">$ ___</span></button>
+        <button type="button" class="u5l9-tk" data-t="3"><span class="u5l9-tkh">ORDER #2</span><span class="u5l9-tkd">ham, peppers,<br>mushrooms</span><span class="u5l9-tkp"><span class="tex">P(3)=</span></span><span class="u5l9-tkv">$ ___</span></button>
+        <button type="button" class="u5l9-tk" data-t="5"><span class="u5l9-tkh">ORDER #3</span><span class="u5l9-tkd">“the works”<br>5 toppings</span><span class="u5l9-tkp"><span class="tex">P(5)=</span></span><span class="u5l9-tkv">$ ___</span></button>
+      </div>
+    </div>
+    <div class="u5l9-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What does a plain cheese pizza cost? Fill in ticket #1. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l9-wa"><div class="bk-ans"><span class="tex">P(0)=8+2(0)=\$8</span>. No toppings: just the base price.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Fill in tickets #2 and #3. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l9-wa"><div class="bk-ans"><span class="tex">P(3)=8+2(3)=\$14</span> and <span class="tex">P(5)=8+2(5)=\$18</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Luigi’s receipt says <span class="tex">P(7)=22</span>. What does the <b>7</b> count? The <b>22</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l9-wa"><div class="bk-ans">7 is the number of <b>toppings</b> (the input). 22 is the <b>price</b> in dollars (the output): 7 toppings cost $22.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>“My pizza cost $20.” So <span class="tex">P(t)=20</span>. How many toppings? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l9-wa"><div class="bk-ans"><span class="tex">8+2t=20</span>, so <span class="tex">2t=12</span> and <b>6 toppings</b>. Check: <span class="tex">P(6)=8+12=20</span> ✓</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Two tickets are waiting. Ticket X says <span class="u5l9-box"><span class="tex">P(10)</span></span>. Ticket Y says <span class="u5l9-box"><span class="tex">P(t)=10</span></span>, the price is $10. Which pizza has <b>more toppings</b>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> ticket X</div>
+        <div class="opt"><b>B</b> ticket Y</div>
+        <div class="opt"><b>C</b> the same</div>
+        <div class="opt"><b>D</b> can’t tell</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A: ticket X.</b> <span class="tex">P(10)</span> puts <b>10 toppings</b> in: <span class="tex">8+2(10)=\$28</span>. Ticket Y says the <b>price</b> is $10: <span class="tex">8+2t=10</span>, so just <b>1 topping</b>. The number <b>inside the brackets</b> is always the input.</div>
+    </div>
+  </div></div>
+  <p class="u5l9-social">Argue with your neighbour: Jordan says <span class="tex">P(3)</span> means “<span class="tex">P</span> times 3.” Why is that silly here?</p>
+</section>
+
+<!-- ================= 1. Introducing function notation ================= -->
+<section class="card" data-ink="s1" data-section="1. Function Notation">
+  <div class="sec-h"><span class="badge">1</span><h2>Introducing Function Notation</h2></div>
+  <p>When a relation is a function (every input has exactly one output), we may rename <span class="tex">y</span> with a more descriptive label: <span class="tex">f(x)</span>, read “<b><span class="tex">f</span> of <span class="tex">x</span></b>.” The equations <span class="tex">y=2x+5</span> and <span class="tex">f(x)=2x+5</span> say exactly the same thing, but <span class="tex">f(x)</span> shows <b>which</b> function made the output and <b>which</b> input was used.</p>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Warning:</b> <span class="tex">f(x)</span> does <b>not</b> mean “<span class="tex">f</span> times <span class="tex">x</span>”. The brackets hold an <b>input</b>, not a multiplication.</div></div>
+  <div class="u5l9-fmrow">
+    <div class="u5l9-fm" aria-label="Function machine: input x goes into function f, output f of x comes out">
+      <div class="u5l9-fm-b"><span class="tex">x</span><small>input</small></div>
+      <div class="u5l9-fm-a"></div>
+      <div class="u5l9-fm-m">function <span class="tex">f</span></div>
+      <div class="u5l9-fm-a"></div>
+      <div class="u5l9-fm-b wide"><span class="tex">f(x)</span><small>output</small></div>
+    </div>
+    <p class="u5l9-fmtext"><span class="tex">f</span> is a machine: the input <span class="tex">x</span> goes in, the rule is applied, and the output <span class="tex">f(x)</span> comes out.</p>
+  </div>
+  <div class="explainer" data-explainer="machine"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Name, input, output">
+  <h3 class="sub">Name, input, output</h3>
+  <p>The letter out front (<span class="tex">f,\ g,\ h,\ C,\ \ldots</span>) is just the function’s <b>name</b>. <span class="tex">x</span> is the <b>input</b> (independent variable) and <span class="tex">f(x)</span> is the <b>output</b> (dependent variable): the job <span class="tex">y</span> always did.</p>
+  <div class="u5l9-2way">
+    <div class="hd"><span class="tex">y=</span> notation</div><div class="hd">function notation</div><div class="hd"></div>
+    <div><span class="tex">y=2x+5</span></div><div><span class="tex">f(x)=2x+5</span></div><div></div>
+    <div>When <span class="tex">x=3</span>: <span class="tex">y=2(3)+5</span></div><div><span class="tex">f(3)=2(3)+5</span></div><div></div>
+    <div><span class="tex">y=11</span></div><div><span class="tex">f(3)=11</span></div><div class="note">input 3, output 11: the point <span class="tex">(3,\ 11)</span></div>
+  </div>
+  <div class="explainer" data-explainer="anatomy"></div>
+  <p class="u5l9-fliph">Quick check: tap a card to flip it.</p>
+  <div class="bk-flips" style="--bk-cols:4">
+    <div class="bk-flip"><div class="bk-front">Does <span class="tex">g(5)</span> mean <span class="tex">g\times5</span>?</div><div class="bk-back"><b>No.</b> It is the output of <span class="tex">g</span> when the input is 5.</div></div>
+    <div class="bk-flip"><div class="bk-front">In <span class="tex">h(t)=4t+1</span>, what is the <b>name</b>? The <b>input</b>?</div><div class="bk-back">Name <span class="tex">h</span>. Input <span class="tex">t</span>.</div></div>
+    <div class="bk-flip"><div class="bk-front">Write <span class="tex">y=6x-1</span> in function notation, named <span class="tex">g</span>.</div><div class="bk-back"><span class="tex">g(x)=6x-1</span>: replace <span class="tex">y</span> with <span class="tex">g(x)</span>.</div></div>
+    <div class="bk-flip"><div class="bk-front">Is <span class="tex">f(x)</span> the input or the output?</div><div class="bk-back">The <b>output</b>. The input is the <span class="tex">x</span> inside the brackets.</div></div>
+  </div>
+</section>
+
+<!-- sources: https://mathshistory.st-andrews.ac.uk/Miller/mathsym/functions (f(x) first used by Euler in 1734, Commentarii Academiae Scientiarum Petropolitanae; Cajori)
+     https://archive.blogs.harvard.edu/pamphlet/2015/09/28/whence-function-notation/ ("si f(x/a + c) denotet functionem quamcunque ipsius x/a + c"; proposed 1734, printed 1740)
+     https://mathshistory.st-andrews.ac.uk/HistTopics/Functions/ (Leibniz uses the word "function" in 1673) -->
+<!-- ================= Math History box (brown) ================= -->
+<section class="card history" data-ink="hist" data-section="Math History: Euler's f(x)">
+  <div class="hist-head"><span class="hist-tag">Math History</span><span class="hist-dates">1673 · 1734</span></div>
+  <div class="hist-grid">
+    <div class="hist-text">
+      <h3 class="hist-title">Who first wrote <i>f</i>(<i>x</i>)?</h3>
+      <p>In <b>1673</b> the German mathematician Gottfried <b>Leibniz</b> started using the word <b>“function”</b>. He had no short way to write one.</p>
+      <p>In <b>1734</b> the Swiss mathematician Leonhard <b>Euler</b> (say “OY-ler”) wrote <span class="tex">\color{#7b4fc4}f\color{#3d2817}\left(\color{#1f5bd6}\tfrac{x}{a}+c\color{#3d2817}\right)</span>: <b class="u5l9h-n">f</b> for <b class="u5l9h-n">f</b>unction, the <b class="u5l9h-i">input</b> in brackets. It is the same notation you write today.</p>
+      <div class="part hist-q"><div class="pl">Euler’s inputs were often expressions. For <span class="tex">f(x)=2x+5</span>, find <span class="tex">f\left(\tfrac{8}{2}+1\right)</span>.</div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Work out the input first: <span class="tex">\tfrac{8}{2}+1=5</span>. Then <span class="tex">f(5)=2(5)+5=\boldsymbol{15}</span>.</div></div></div>
+    </div>
+    <figure class="hist-anim">
+      <svg id="u5l9-hist" viewBox="0 0 600 300" role="img" aria-label="A function machine. In 1673 it is only called a function. In 1734 Euler names it f: the input x over a plus c goes in and f of x over a plus c comes out. Today the input 3 goes into f of x equals 2x plus 5 and f of 3 equals 11 comes out."></svg>
+      <figcaption><button class="hist-play" type="button">Replay</button><span>Tap the picture to play it again.</span></figcaption>
+      <p class="hist-note">Euler’s paper was written in 1734 and printed in 1740 in St. Petersburg, Russia, where he worked.</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= 2. Evaluating ================= -->
+<section class="card" data-ink="s2" data-section="2. Evaluating a Function">
+  <div class="sec-h"><span class="badge">2</span><h2>Evaluating a Function for a Given Input</h2></div>
+  <div class="def">To <b>evaluate</b> <span class="tex">f(a)</span>, replace every <span class="tex">x</span> in the formula with <span class="tex">a</span>, then simplify using the order of operations.</div>
+  <p>Every <span class="tex">x</span> in the rule is a <b>slot</b>. The input goes into every slot, <b>in brackets</b>.</p>
+  <div class="explainer" data-explainer="substitute"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Brackets around a negative input.</b> For <span class="tex">g(x)=x^2+3</span>, <span class="tex">g(-1)=(-1)^2+3=1+3=4</span>. A negative number squared is <b>positive</b>. Without brackets, <span class="tex">-1^2</span> means <span class="tex">-(1^2)=-1</span>, and you would get 2, which is wrong.</div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>One function, four inputs</h3></div>
+  <p class="q">Consider the function <span class="tex">f(x)=2x+5</span>. Evaluate each of the following.</p>
+  <div class="parts u5l9-c4">
+    <div class="part"><div class="pl">(a) <span class="tex">f(3)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">f(3)=2(3)+5</span><br><span class="tex">=6+5</span><br><span class="tex">=\boldsymbol{11}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">f(0)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">f(0)=2(0)+5</span><br><span class="tex">=0+5</span><br><span class="tex">=\boldsymbol{5}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">f(-4)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">f(-4)=2(-4)+5</span><br><span class="tex">=-8+5</span><br><span class="tex">=\boldsymbol{-3}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">f(6)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">f(6)=2(6)+5</span><br><span class="tex">=12+5</span><br><span class="tex">=\boldsymbol{17}</span></div></div></div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Part (c) on the TI-30XIIS.</b> Use the <b>negative</b> key <kbd>(−)</kbd> for −4, not the minus key: <span class="keys"><kbd>2</kbd><kbd>×</kbd><kbd>(−)</kbd><kbd>4</kbd><kbd>+</kbd><kbd>5</kbd><kbd>ENTER</kbd></span> gives −3.</div>
+    <button class="pill" data-keys="2 × (−) 4 + 5 =">Show me</button>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Two functions, five values</h3></div>
+  <p class="q">Consider the functions <span class="tex">f(x)=5x-4</span> and <span class="tex">g(x)=x^2+3</span>. Evaluate each of the following.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">f(3)</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">f(3)=5(3)-4</span><br><span class="tex">=15-4=\boldsymbol{11}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">g(3)</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">g(3)=(3)^2+3</span><br><span class="tex">=9+3=\boldsymbol{12}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">f(-2)</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">f(-2)=5(-2)-4</span><br><span class="tex">=-10-4=\boldsymbol{-14}</span></div></div></div>
+  </div>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(d) <span class="tex">g(-1)</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">g(-1)=(-1)^2+3</span><br><span class="tex">=1+3=\boldsymbol{4}</span><br><small>(a negative squared is positive)</small></div></div></div>
+    <div class="part span2"><div class="pl">(e) <span class="tex">f(0)+g(0)</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">f(0)=5(0)-4=-4</span> &nbsp; and &nbsp; <span class="tex">g(0)=(0)^2+3=3</span><br><span class="tex">f(0)+g(0)=-4+3=\boldsymbol{-1}</span></div></div></div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Part (d) on the calculator.</b> Bracket the negative: <span class="keys"><kbd>(</kbd><kbd>(−)</kbd><kbd>1</kbd><kbd>)</kbd><kbd>x²</kbd><kbd>+</kbd><kbd>3</kbd><kbd>ENTER</kbd></span> gives 4. Leave the brackets out and the calculator squares only the 1: it gives 2.</div>
+    <div class="pill-col"><button class="pill" data-keys="( (−) 1 ) x² + 3 =">With brackets</button><button class="pill" data-keys="(−) 1 x² + 3 =">Without</button></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Read the direction">
+  <h3 class="sub">Read the direction carefully</h3>
+  <div class="def-grid">
+    <div class="def"><span class="tex">f(3)</span> <b>hands you the input</b> (3) and asks for the output. Go <b>forwards</b> through the rule.</div>
+    <div class="def amber"><span class="tex">f(x)=11</span> <b>hands you the output</b> (11) and asks which input made it. Go <b>backwards</b>.</div>
+  </div>
+  <div class="explainer" data-explainer="direction"></div>
+</section>
+
+<!-- ================= 3. Variable or expression input ================= -->
+<section class="card" data-ink="s3" data-section="3. Letters and Expressions as Inputs">
+  <div class="sec-h"><span class="badge">3</span><h2>Evaluating for a Variable or Expression Input</h2></div>
+  <p>The same substitution works when the input is not a plain number. To find <span class="tex">f(a)</span>, <span class="tex">f(k)</span> or <span class="tex">f(x+1)</span>, replace <b>every</b> <span class="tex">x</span> with whatever sits inside the brackets, then simplify.</p>
+  <div class="def">When the input is an expression, <b>wrap it in brackets</b> everywhere it lands, so nothing gets lost while you simplify.</div>
+  <div class="explainer" data-explainer="linearExpr"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Letters and an expression into a linear function</h3></div>
+  <p class="q">Consider the function <span class="tex">f(x)=3x+2</span>. Determine each of the following.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">f(a)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Replace every <span class="tex">x</span> with <span class="tex">a</span>:<br><span class="tex">f(a)=3(a)+2</span><br><span class="tex">=\boldsymbol{3a+2}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">f(k)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The letter does not matter, only the position does:<br><span class="tex">f(k)=3(k)+2=\boldsymbol{3k+2}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">f(x+1)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Put the whole expression in brackets:<br><span class="tex">f(x+1)=3(x+1)+2</span><br><span class="tex">=3x+3+2=\boldsymbol{3x+5}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Letters and an expression into a squared function</h3></div>
+  <p class="q">Consider the function <span class="tex">f(x)=x^2+4</span>. Determine each of the following.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">f(a)</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">f(a)=(a)^2+4</span><br><span class="tex">=\boldsymbol{a^2+4}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">f(2a)</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">f(2a)=(2a)^2+4</span><br><span class="tex">=(2a)(2a)+4</span><br><span class="tex">=\boldsymbol{4a^2+4}</span><br><small>The brackets matter: the 2 is squared too, so it is <span class="tex">4a^2</span>, not <span class="tex">2a^2</span>.</small></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">f(x+3)</span><br><small class="u5l9-hint">Hint: first expand <span class="tex">(x+3)^2</span>.</small></div><div class="work" style="--h:186px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">f(x+3)=(x+3)^2+4</span><br><span class="tex">(x+3)^2=x^2+3x+3x+9=x^2+6x+9</span><br>So <span class="tex">f(x+3)=x^2+6x+9+4</span><br><span class="tex">=\boldsymbol{x^2+6x+13}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Check Example 4">
+  <h3 class="sub">Check Example 4: the square takes the whole input</h3>
+  <p>The input goes into the slot <b>whole</b> and <b>in brackets</b>, so the square acts on all of it. Then check your answer by putting a number in for the letter: both forms must agree.</p>
+  <div class="explainer" data-explainer="squareSub"></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l9"></section>
+
+<!-- ================= 4. Interpreting in context ================= -->
+<section class="card" data-ink="s4" data-section="4. Interpreting in Context">
+  <div class="sec-h"><span class="badge">4</span><h2>Interpreting Function Notation in Context</h2></div>
+  <p>If <span class="tex">C(n)</span> is the total <b>c</b>ost, in dollars, of buying <span class="tex">n</span> items, then <span class="tex">C(5)=23</span> is shorthand for “buying 5 items costs $23.” The translation runs both ways: “the cost of 8 items is $35” becomes <span class="tex">C(8)=35</span>.</p>
+  <div class="u5l9-trans">
+    <div class="u5l9-tr"><span class="u5l9-trn"><span class="tex">\textcolor{#7b4fc4}{C}(\textcolor{#1f5bd6}{5})=\textcolor{#c27a0e}{23}</span></span><span class="u5l9-tra">⇄</span><span class="u5l9-trw">“buying <b class="u5l9-ci">5 items</b> costs <b class="u5l9-co">$23</b>”</span></div>
+    <div class="u5l9-tr"><span class="u5l9-trn"><span class="tex">\textcolor{#7b4fc4}{C}(\textcolor{#1f5bd6}{8})=\textcolor{#c27a0e}{35}</span></span><span class="u5l9-tra">⇄</span><span class="u5l9-trw">“the cost of <b class="u5l9-ci">8 items</b> is <b class="u5l9-co">$35</b>”</span></div>
+  </div>
+  <p class="u5l9-rule3">The number <b class="u5l9-ci">inside the brackets</b> is the input: what you choose. The number <b class="u5l9-co">after the equals sign</b> is the output: what you get.</p>
+  <div class="explainer" data-explainer="context"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>The taco truck</h3></div>
+  <p class="q">A food truck charges a flat $6 setup fee for a catering order, plus $3 per taco. The total cost, in dollars, of ordering <span class="tex">n</span> tacos is <span class="tex">C(n)=3n+6</span>.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Evaluate <span class="tex">C(4)</span>. Then explain, in words, what this value represents in this situation.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">C(4)=3(4)+6=12+6=\boldsymbol{18}</span><br><b>Meaning:</b> ordering 4 tacos costs <b>$18</b> (the $6 setup fee plus $12 of tacos).</div></div></div>
+    <div class="part"><div class="pl">(b) The statement <span class="tex">C(10)=36</span> is true for this function. Explain, in words, what this statement means in this situation.</div><div class="work" style="--h:176px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The input 10 is a number of tacos and the output 36 is a cost in dollars, so: <b>ordering 10 tacos costs $36.</b><br>(Check: <span class="tex">3(10)+6=36</span> ✓)</div></div></div>
+    <div class="part"><div class="pl">(c) Translate into a function notation statement, and check that it is correct: <i>“The cost of ordering 12 tacos is $42.”</i></div><div class="work" style="--h:176px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Input = 12 tacos, output = $42: <span class="tex">\boldsymbol{C(12)=42}</span><br>Check: <span class="tex">C(12)=3(12)+6=36+6=42</span> ✓<br>The statement is <b>correct</b>.</div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> <span class="tex">D(t)</span> is the distance, in kilometres, a cyclist rides in <span class="tex">t</span> hours. Which sentence matches <span class="tex">D(2)=30</span>?</div>
+      <div class="bk-mc" data-answer="C" data-pick><div>The cyclist rides 2 km in 30 hours.</div><div>The cyclist rides 2 km every hour.</div><div>In 2 hours the cyclist rides 30 km.</div><div>The cyclist rides 30 km per hour for 2 km.</div></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>C.</b> Inside the brackets is the input: 2 <b>hours</b>. After the equals sign is the output: 30 <b>km</b>. A swaps them.</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Read it:</b> <span class="tex">f(3)=11</span> is “<span class="tex">f</span> of 3 is 11”: name <span class="tex">f</span>, input 3, output 11. It is <b>not</b> <span class="tex">f</span> times 3. <span class="tex">f(x)</span> does the job <span class="tex">y</span> used to do.</div>
+    <div><b>Evaluate:</b> put the input into <b>every</b> <span class="tex">x</span>, <b>in brackets</b>, then use the order of operations: <span class="tex">f(-4)=2(-4)+5=-3</span>; <span class="tex">g(-1)=(-1)^2+3=4</span>.</div>
+    <div><b>Letters and expressions</b> go in the same way, whole and in brackets: <span class="tex">f(x+1)=3(x+1)+2=3x+5</span>; <span class="tex">f(2a)=(2a)^2+4=4a^2+4</span>.</div>
+    <div><b>In context:</b> inside the brackets is the input, after the equals sign is the output. <span class="tex">C(4)=18</span>: ordering 4 tacos costs $18.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u5l9">
+    <div><div class="kicker">Your turn</div><b>Assignment 9 — Function Notation: Evaluating and Interpreting <span class="tex">f(x)</span></b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l10/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 10 — Function Notation: Graphs, Conversions, and Real-World Models</b><div class="muted">Reading <span class="tex">f(a)</span> off a graph, switching between <span class="tex">y=</span> and <span class="tex">f(x)=</span>, and functions that model real situations</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u5l9.js';
+  boot({ key: 'u5l9', homeHref: '../../', title: '5.9 Function Notation' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Describing Relationships Between Two Quantities · Math 15 5.3</title>
+<meta name="description" content="Math 15 Unit 5 Lesson 3: a relation is a set of ordered pairs. Show it as a list of ordered pairs, a table of values, a mapping diagram and a graph, and move from any one picture to another. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u5l3.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u5l3">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 5 Relations and Functions · Lesson 3</div>
+  <h1>Describing Relationships Between Two Quantities</h1>
+  <p class="lede">Hours slept and alertness. Pizza size and price. When two quantities are connected, we can write the connection as <b>ordered pairs</b>: <span class="tex">(\text{input},\ \text{output})</span>. That list of pairs is called a <b>relation</b>, and we can draw it <b>four ways</b>: as a list, a <b>table</b>, a <b>mapping diagram</b> and a <b>graph</b>. Same pairs, different pictures.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>write a relation as a set of <b>ordered pairs</b>, with the <b class="u5l3-ivt">input</b> first and the <b class="u5l3-dvt">output</b> second</li>
+      <li>read ordered pairs from a <b>table of values</b>, and fill in a table from ordered pairs</li>
+      <li>draw a <b>mapping diagram</b> with arrows from each input to its output</li>
+      <li>plot ordered pairs as points on a <b>graph</b></li>
+      <li>go from any one picture of a relation to another, and explain why they all show the <b>same relation</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF2</b> Demonstrate an understanding of relations and functions.<br><b>RF4</b> Describe and represent linear relations, using words, ordered pairs, tables of values, graphs and equations.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Who’s Connected?" id="wu" style="--wf-side: 430px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Who’s Connected?</h2>
+  <p class="wf-rule">Four friends, five pets. Each arrow points from an <b>owner</b> to a <b>pet</b>. <span class="muted">Tap a friend, then a pet, to draw an arrow.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l3-pets">
+      <div class="u5l3-petmap" id="petmap"></div>
+      <div class="u5l3-clues">
+        <div class="u5l3-clh">Clues</div>
+        <div class="u5l3-clue"><b>1</b>Every pet has <b>exactly one</b> owner.</div>
+        <div class="u5l3-clue"><b>2</b>Dev’s pet can <b>fly</b>.</div>
+        <div class="u5l3-clue"><b>3</b>Cy’s pet carries its <b>house</b> on its back.</div>
+        <div class="u5l3-clue"><b>4</b>The fish’s owner must keep it safe from their <b>cat</b>!</div>
+        <div class="u5l3-petctl"><button type="button" class="pill small" id="petreset">Start over</button><span class="muted" id="petcount"></span></div>
+      </div>
+    </div>
+    <div class="u5l3-wqs">
+      <div class="bk-wq" id="wq1"><div class="q-line"><div class="q-num">1</div><div>Who owns the dog? Write it as a pair <b>(owner, pet)</b>. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l3-wa"><div class="bk-ans"><b>Ben</b> owns the dog: <b>(Ben, dog)</b>. The owner comes first because the arrow starts at the owner.</div></div></div>
+      <div class="bk-wq" id="wq2"><div class="q-line"><div class="q-num">2</div><div>Use the clues to draw the <b>missing</b> arrows. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l3-wa"><div class="bk-ans">Clue 2: Dev → bird (the only pet that flies). Clue 3: Cy → turtle (its shell is its house). Clue 4: only Ava has a cat, so Ava → fish. Clue 1 checks it: every pet now has exactly one arrow.</div></div></div>
+      <div class="bk-wq" id="wq3"><div class="q-line"><div class="q-num">3</div><div>How many arrows in all? Does anyone have <b>two</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l3-wa"><div class="bk-ans"><b>5 arrows</b> for 4 friends: <b>Ava has two</b> (the cat and the fish). That is allowed. Ava is in two pairs: (Ava, cat) and (Ava, fish).</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll" id="wpoll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Mia and Jo each drew <b>packs → cards</b>. Are they the same relation? <b>Guess first.</b></div></div>
+      <div class="u5l3-mj" id="mj"></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> Yes, the same relation.</div>
+        <div class="opt"><b>B</b> No, they are different.</div>
+        <div class="opt"><b>C</b> Jo’s diagram is broken.</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A, the same relation.</b> Read Jo’s arrows one at a time: <span class="tex">3\to15</span>, <span class="tex">1\to5</span>, <span class="tex">4\to20</span>, <span class="tex">2\to10</span>. Those are Mia’s four pairs, just in a different order. The arrows cross, but every pack count still goes to 5 times as many cards.<br>
+        <button class="pill small u5l3-untbtn" type="button" id="untangle">Untangle Jo’s</button><br>
+        <b>Today’s lesson:</b> the order inside an oval never matters. Only <b>what connects to what</b>: the <b>ordered pairs</b>.</div>
+    </div>
+  </div></div>
+  <p class="u5l3-social">Draw arrows from 3 classmates to their favourite pizza. Does any pizza get two arrows?</p>
+</section>
+
+<!-- ================= 1. What is a relation? ================= -->
+<section class="card" data-ink="s1" data-section="1. What Is a Relation?">
+  <div class="sec-h"><span class="badge">1</span><h2>What Is a Relation?</h2></div>
+  <div class="def">A <b>relation</b> is a set of <b>ordered pairs</b> connecting the inputs of one quantity to the outputs of another.</div>
+  <p>Hours slept and alertness, pizza size and price, pages read and time spent: each is a relation. Each ordered pair <span class="tex">(x,\ y)</span> matches one <b class="u5l3-ivt">input</b> <span class="tex">x</span> with its <b class="u5l3-dvt">output</b> <span class="tex">y</span>, so the list of ordered pairs <b>is</b> the relation in its most basic form.</p>
+  <div class="u5l3-anat">
+    <div class="u5l3-anat-pair"><span class="u5l3-ap">(</span><span class="u5l3-ain">3</span><span class="u5l3-ap">,</span><span class="u5l3-aout">6</span><span class="u5l3-ap">)</span></div>
+    <div class="u5l3-anat-lab"><div class="u5l3-al-in"><b>input</b> comes <b>first</b><br><span class="muted">the independent variable: you choose it</span></div><div class="u5l3-al-out"><b>output</b> comes <b>second</b><br><span class="muted">the dependent variable: it follows</span></div></div>
+  </div>
+  <div class="explainer" data-explainer="vending"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Curly brackets hold the whole set.</b> Write the relation as <span class="tex">\{(1,\ 4),\ (2,\ 7),\ (3,\ 10)\}</span>: round brackets around each pair, commas between the pairs, and curly brackets <span class="tex">\{\ \}</span> around the whole list.</div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Juice boxes</h3></div>
+  <p class="q">A vending machine sells juice boxes for <b>$2</b> each. Let <span class="tex">n</span> be the number bought and <span class="tex">C</span> the total cost, in dollars.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Determine the total cost for <span class="tex">n=1,\ 2,\ 3,</span> and <span class="tex">4</span> juice boxes.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">C=2n</span>: each box adds $2.<br><span class="tex">n=1\to\$2</span>; <span class="tex">n=2\to\$4</span>; <span class="tex">n=3\to\$6</span>; <span class="tex">n=4\to\$8</span></div></div></div>
+    <div class="part"><div class="pl">(b) Write this relation as a set of ordered pairs <span class="tex">(n,\ C)</span>.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\{(1,\ 2),\ (2,\ 4),\ (3,\ 6),\ (4,\ 8)\}</span><br>Input first, output second.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Table of values ================= -->
+<section class="card" data-ink="s2" data-section="2. Table of Values">
+  <div class="sec-h"><span class="badge">2</span><h2>Representing a Relation with a Table of Values</h2></div>
+  <div class="def">A <b>table of values</b> is an organized way of writing the ordered pairs: <b class="u5l3-ivt">inputs</b> in one row, each matching <b class="u5l3-dvt">output</b> directly beside it. Reading straight down a <b>column</b> gives you one ordered pair.</div>
+  <div class="u5l3-tdemo">
+    <div id="tdemo"></div>
+    <div class="u5l3-tdemo-txt">The <b class="u5l3-ivt">input</b> row is on <b>top</b> (or the left column, when the table stands up). Each column is one pair: this table holds <span class="tex">\{(1,\ 5),\ (2,\ 10),\ (3,\ 15)\}</span>.</div>
+  </div>
+  <div class="explainer" data-explainer="tableRead"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Tricycle wheels</h3></div>
+  <p class="q">Each tricycle in a bike-shop display has <b>3</b> wheels. The table shows tricycles, <span class="tex">t</span>, and total wheels, <span class="tex">W</span>.</p>
+  <div class="u5l3-qfig" id="ex2-tab"></div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Write this relation as a set of ordered pairs <span class="tex">(t,\ W)</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Read straight down each column:<br><span class="tex">\{(1,\ 3),\ (2,\ 6),\ (3,\ 9),\ (4,\ 12)\}</span></div></div></div>
+    <div class="part"><div class="pl">(b) State the independent variable and the dependent variable.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Independent: <span class="tex">t</span>, the number of tricycles (you choose it).<br>Dependent: <span class="tex">W</span>, the total wheels. It follows: three per tricycle.</div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Mapping diagram ================= -->
+<section class="card" data-ink="s3" data-section="3. Mapping Diagram">
+  <div class="sec-h"><span class="badge">3</span><h2>Representing a Relation with a Mapping Diagram</h2></div>
+  <div class="def">A <b>mapping diagram</b> shows a relation with two ovals joined by arrows: <b class="u5l3-ivt">inputs</b> in the left oval, <b class="u5l3-dvt">outputs</b> in the right oval. The arrows always point <b>from</b> the input <b>to</b> the output: the same “independent to dependent” direction you already know.</div>
+  <div class="explainer" data-explainer="buildMap"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Each value goes in its oval once.</b> If two inputs share an output, write that output <b>once</b> and let two arrows point to it. Then count the arrows: one arrow for every ordered pair.</div></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Tangled arrows">
+  <h3 class="sub">Tangled arrows? Same relation.</h3>
+  <p>The order of the numbers inside an oval doesn’t matter. Read each arrow as an ordered pair. If the pairs match, the diagrams show the same relation, even when the arrows cross (like Jo’s in the warm-up).</p>
+  <div class="explainer" data-explainer="untangleEx"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Chair legs</h3></div>
+  <p class="q">Each chair at a banquet table has <b>4</b> legs. The table shows chairs, <span class="tex">c</span>, and total legs, <span class="tex">L</span>.</p>
+  <div class="u5l3-qfig" id="ex3-tab"></div>
+  <div class="parts c2 u5l3-ex3">
+    <div class="part"><div class="pl">(a) Write this relation as a set of ordered pairs <span class="tex">(c,\ L)</span>.</div><div class="work" style="--h:330px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\{(2,\ 8),\ (3,\ 12),\ (4,\ 16),\ (5,\ 20)\}</span><br>Each chair adds 4 legs, so <span class="tex">L=4c</span>.</div></div></div>
+    <div class="part" data-part="ex3b"><div class="pl">(b) Represent the relation with the mapping diagram: write the inputs in the left oval and the outputs in the right oval, then draw an arrow from each input to its matching output.</div><div class="u5l3-fig" id="ex3-map"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Inputs <span class="tex">2,\ 3,\ 4,\ 5</span> in the left oval, outputs <span class="tex">8,\ 12,\ 16,\ 20</span> in the right, each arrow running <b>from</b> an input <b>to</b> its own output.</div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> In the warm-up, Ava had <b>two</b> arrows (to the cat and to the fish). Is an input with two arrows allowed in a relation?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> A relation is any set of ordered pairs, and (Ava, cat) and (Ava, fish) are two different pairs. Hold on to this idea: in Lesson 8 you will meet relations where every input has <b>only one</b> arrow.</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Graph ================= -->
+<section class="card" data-ink="s4" data-section="4. Graph">
+  <div class="sec-h"><span class="badge">4</span><h2>Representing a Relation with a Graph</h2></div>
+  <div class="def">A relation can also be pictured as a <b>graph</b>. Each ordered pair <span class="tex">(x,\ y)</span> becomes <b>one point</b>: the <b class="u5l3-ivt">input</b> is measured along the horizontal <span class="tex">x</span>-axis and the <b class="u5l3-dvt">output</b> along the vertical <span class="tex">y</span>-axis. Independent horizontal, dependent vertical, exactly as before.</div>
+  <div class="u5l3-steps3">
+    <div><b class="n">1</b>Start at the <b>origin</b> <span class="tex">(0,\ 0)</span>.</div>
+    <div><b class="n">2</b>Go <b>right</b> by the input.</div>
+    <div><b class="n">3</b>Go <b>up</b> by the output, and draw a dot.</div>
+  </div>
+  <div class="explainer" data-explainer="plotPairs"></div>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Order matters">
+  <h3 class="sub">Order matters: <span class="tex">(2,\ 5)</span> is not <span class="tex">(5,\ 2)</span></h3>
+  <p>Swap the two numbers and you land on a <b>different point</b>. In a story the meaning changes too: “2 boxes cost $5” is not the same as “5 boxes cost $2”. Always write the <b>input first</b>.</p>
+  <div class="explainer" data-explainer="orderMatters"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>From pairs to a table and a graph</h3></div>
+  <p class="q">Consider the relation given by the ordered pairs <span class="tex">(x,\ y)</span>: <span class="tex">(1,\ 5),\ (2,\ 7),\ (3,\ 9),\ (4,\ 11)</span>.</p>
+  <div class="parts c1">
+    <div class="part" data-part="ex4"><div class="pl">(a) Complete the table of values. &nbsp; (b) Plot the four ordered pairs on the grid.</div>
+      <div class="u5l3-tg">
+        <div class="u5l3-tg-l"><div id="ex4-tab"></div><div class="work" style="--h:250px"></div></div>
+        <div id="ex4-grid"></div>
+      </div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">(a) The outputs are <span class="tex">5,\ 7,\ 9,\ 11</span>. &nbsp;(b) Points at <span class="tex">(1,\ 5),\ (2,\ 7),\ (3,\ 9),\ (4,\ 11)</span>: each step of 1 to the right raises <span class="tex">y</span> by 2.</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l3"></section>
+
+<!-- ================= 5. Same relation, three pictures ================= -->
+<section class="card" data-ink="s5" data-section="5. Same Relation, Three Pictures">
+  <div class="sec-h"><span class="badge">5</span><h2>Same Relation, Three Pictures</h2></div>
+  <div class="def">A table of values, a mapping diagram and a graph can all describe the <b>exact same relation</b>. They are three pictures of one set of ordered pairs. Find the ordered pairs, and you can build any one picture from any other.</div>
+  <div class="u5l3-four">
+    <div><b>Ordered pairs</b><span class="tex">\{(1,\ 4),\ (2,\ 6),\ (3,\ 8)\}</span></div>
+    <div><b>Table</b>each <b>column</b> is a pair</div>
+    <div><b>Mapping diagram</b>each <b>arrow</b> is a pair</div>
+    <div><b>Graph</b>each <b>point</b> is a pair</div>
+  </div>
+  <div class="explainer" data-explainer="threeViews"></div>
+</section>
+
+<section class="card" data-ink="s5b" data-section="5. Spot the mismatch">
+  <h3 class="sub">Spot the mismatch</h3>
+  <p>Four pictures that are supposed to show the same relation. One of them has a mistake. Check each picture against the ordered pairs, one pair at a time.</p>
+  <div class="explainer" data-explainer="oddOneOut"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>One relation, three pictures</h3></div>
+  <p class="q">The mapping diagram below shows a relation between two sets of numbers, <span class="tex">A</span> and <span class="tex">B</span>.</p>
+  <div class="u5l3-qfig" id="ex5-map"></div>
+  <div class="parts c2 u5l3-ex5">
+    <div class="part"><div class="pl">(a) Write this relation as a set of ordered pairs <span class="tex">(A,\ B)</span>.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Follow each arrow:<br><span class="tex">\{(2,\ 5),\ (4,\ 9),\ (6,\ 13),\ (8,\ 17)\}</span></div></div></div>
+    <div class="part" data-part="ex5b"><div class="pl">(b) Complete a table of values for this relation.</div><div class="u5l3-fig" id="ex5-tab"></div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">A</span>: <span class="tex">2,\ 4,\ 6,\ 8</span> &nbsp; <span class="tex">B</span>: <span class="tex">5,\ 9,\ 13,\ 17</span></div></div></div>
+    <div class="part" data-part="ex5c"><div class="pl">(c) Plot the ordered pairs from part (a) on the grid to represent this relation as a graph.</div><div class="u5l3-fig" id="ex5-grid"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Four points: <span class="tex">(2,\ 5),\ (4,\ 9),\ (6,\ 13),\ (8,\ 17)</span>. Each time <span class="tex">A</span> goes up by 2, <span class="tex">B</span> goes up by 4, so the points climb steadily.</div></div></div>
+    <div class="part"><div class="pl">(d) In one sentence, explain why the mapping diagram, the table, and the graph all describe the same relation.</div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">All three are built from the very same four ordered pairs: the diagram shows them as <b>arrows</b>, the table as <b>columns</b> and the graph as <b>points</b>, so they carry the same information in three different formats.</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>A relation</b> is a set of ordered pairs <span class="tex">(\text{input},\ \text{output})</span>. Input <b>first</b>: <span class="tex">(2,\ 5)</span> and <span class="tex">(5,\ 2)</span> are different pairs.</div>
+    <div><b>Table of values:</b> inputs in the top row (or left column). Read straight down a <b>column</b> to get one ordered pair.</div>
+    <div><b>Mapping diagram:</b> inputs in the left oval, outputs in the right. Arrows point <b>from input to output</b>. The order inside an oval doesn’t matter.</div>
+    <div><b>Graph:</b> go <b>right</b> by the input, <b>up</b> by the output: one point per pair. Pairs, table, diagram and graph are all the <b>same relation</b>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u5l3">
+    <div><div class="kicker">Your turn</div><b>Assignment 3 — Describing Relationships Between Two Quantities</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l4/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 4 — Where Graphs Meet the Axes: <span class="tex">x</span>- and <span class="tex">y</span>-Intercepts</b><div class="muted">Where does a graph cross the axes, and what do those points mean in a story?</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u5l3.js';
+  boot({ key: 'u5l3', homeHref: '../../', title: '5.3 Describing Relationships' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

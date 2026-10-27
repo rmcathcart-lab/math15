@@ -7,7 +7,8 @@
   /* lessons that have a lesson page under lessons/ (examples + the teacher's class notes); the home page and the
    * lesson sidebar link to it as lessons/u1/l7/?class=<block> */
   root.HW.TEACHING = { base: 'lessons/',
-    lessons: ['u4l1', 'u4l2', 'u4l3', 'u4l4', 'u4l5', 'u4l6', 'u4l7', 'u4l8', 'u4l9', 'u4l10'] };
+    lessons: ['u4l1', 'u4l2', 'u4l3', 'u4l4', 'u4l5', 'u4l6', 'u4l7', 'u4l8', 'u4l9', 'u4l10',
+      'u5l1', 'u5l2', 'u5l3', 'u5l4', 'u5l5', 'u5l6', 'u5l7', 'u5l8', 'u5l9', 'u5l10', 'u5l11', 'u5l12'] };
   root.HW.CATALOG = [
     { unit: 1, title: 'Number', outcomes: 'AN1 · AN2', lessons: [
       { id: 'u1l1', num: '1', title: 'Review: Integer Operations and Order of Operations' },

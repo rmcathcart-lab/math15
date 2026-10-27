@@ -1,0 +1,101 @@
+/* Math 15 · Unit 5 · Lesson 10 — Function Notation: Graphs, Conversions, and Real-World Models: styles for this page.
+ * Adapted from Math 10C u5l7. Colour code (as in Lesson 9): name purple, input blue, output amber, the graph teal. */
+
+.ex-cap { min-height: 128px; }
+.ex-cap .katex { font-size: 1.04em; }
+.chip .katex { font-size: 1em; }
+.pl .katex { font-size: 1.1em; }
+.ans .katex { font-size: 1.04em; }
+.lesson .katex { white-space: nowrap; }
+h1 .katex { font-size: .92em; }
+h2 .katex, h3 .katex { font-size: .95em; }
+.u5l10-cin { color: #1f5bd6; }
+.u5l10-cout { color: #c27a0e; }
+.u5l10-cok { color: #12805a; }
+.parts.u5l10-c4 { grid-template-columns: repeat(4, 1fr); }
+.poll-opts.c4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ---------------- warm-up: the hiking trail ---------------- */
+.u5l10-wtop { position: relative; display: flex; flex-direction: column; align-items: center; margin: 0; }
+.u5l10-place { font: 700 14.5px var(--round); color: #4a2c14; }
+.u5l10-lake { color: #1e5aa8; }
+.u5l10-walk { position: absolute; left: 150px; top: 2px; display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, .92); border: 1.5px solid var(--line); border-radius: 12px; padding: 4px 8px; }
+.u5l10-walk .pill.small { margin: 0; min-width: 40px; font-size: 22px; font-weight: 800; }
+.u5l10-wread { min-width: 230px; text-align: center; font-size: 20px; line-height: 1.2; }
+.u5l10-wsub { display: block; font-size: 14px; color: var(--ink2); }
+.u5l10-wqs { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; margin-top: 2px; }
+.wf .u5l10-wqs .q-line { margin: 6px 0 0; font-size: 17px; gap: 10px; line-height: 1.38; }
+.wf .u5l10-wqs .q-line .pill.small { margin-left: 4px; vertical-align: 1px; }
+.u5l10-wa { margin: 2px 0 0 40px; }
+.u5l10-wqs .bk-ans { margin: 0; font-size: 16px; line-height: 1.35; }
+.wf .wf-poll .poll-opts.c4 { grid-template-columns: 1fr 1fr; gap: 6px; }
+.wf .wf-poll .opt { font-size: 17px; padding: 6px 10px; }
+.u5l10-show300 { display: block; margin: 8px 0 0 !important; }
+.u5l10-social { margin: 10px 0 0; font-size: 19px; font-style: italic; text-align: center; color: var(--ink2); }
+
+/* ---------------- notes and examples ---------------- */
+.u5l10-disp { text-align: center; font-size: 24px; margin: 0 0 14px; }
+.u5l10-ntab { display: grid; grid-template-columns: 260px 260px; width: fit-content; margin: 0 auto 16px; border-radius: 12px; overflow: hidden; border: 1.5px solid var(--line2); font-size: 22px; text-align: center; }
+.u5l10-ntab > div { padding: 8px 14px; background: #fff; }
+.u5l10-ntab > div:nth-child(odd) { border-right: 1.5px solid var(--line2); }
+.u5l10-ntab .u5l10-nh { background: #f3f2ee; font-weight: 800; font-size: 17px; color: var(--ink2); }
+.u5l10-ex1 { display: grid; grid-template-columns: 340px 1fr; gap: 18px; align-items: start; margin-bottom: 14px; }
+.u5l10-ex1 .parts { margin: 0; }
+.u5l10-tbl { border-collapse: collapse; margin: 8px 0 6px; font-size: 21px; }
+.u5l10-tbl th, .u5l10-tbl td { border: 2px solid var(--ink2); min-width: 58px; height: 44px; text-align: center; padding: 0 8px; font-weight: 500; }
+.u5l10-tbl th { background: #f3f2ee; min-width: 70px; }
+.u5l10-tbl.ans th, .u5l10-tbl.ans td { border-color: #e2a39f; height: 38px; }
+.u5l10-tbl.ans tr:last-child td { color: var(--red); font-weight: 700; }
+.u5l10-ex5 { display: grid; grid-template-columns: 362px 1fr; gap: 14px; align-items: start; margin-bottom: 14px; }
+.u5l10-ex5r { margin: 0; }
+.u5l10-gpart #u5l10-g-ex5 { margin: 6px 0 4px; }
+.u5l10-gpart .ans { font-size: 17px; }
+
+/* explainer extras */
+.u5l10-rule { font-size: 32px; background: #ffecb3; border: 2px solid #c88c14; border-radius: 10px; padding: 2px 16px; }
+.u5l10-msub { font-size: 26px; color: #1f5bd6; }
+.u5l10-line.u5l10-note { color: #12805a; font-weight: 700; }
+.u5l10-small { font-size: 16px; color: var(--muted); }
+.u5l10-pen { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.u5l10-paw { height: 62px; border-radius: 12px; background: #f7efe2; display: flex; align-items: center; justify-content: center; }
+.u5l10-paw svg { width: 44px; height: 44px; }
+.u5l10-jar { font-size: 22px; min-height: 34px; }
+/* ---------------- explainer pieces ---------------- */
+.u5l10-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 12px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+.u5l10-ph { font: 800 14px var(--round); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.u5l10-line { font-size: 20px; line-height: 1.35; }
+.u5l10-line.u5l10-big { font-size: 26px; font-weight: 700; }
+.u5l10-count { font-size: 20px; color: #7b4fc4; }
+.u5l10-gpill { font-size: 18px; }
+.u5l10-say { background: #fff; border: 2px solid var(--brand2); border-radius: 12px; padding: 8px 14px; font-size: 20px; line-height: 1.45; box-sizing: border-box; box-shadow: 0 3px 10px rgba(0, 0, 0, .06); }
+.u5l10-read { font: 700 17px var(--round); background: #fff; border: 2px solid var(--line2); border-radius: 10px; padding: 2px 10px; white-space: nowrap; line-height: 1.4; }
+
+/* swap */
+.u5l10-sw > * { position: absolute; }
+.u5l10-row { display: flex; align-items: center; font-size: 40px; white-space: nowrap; }
+.u5l10-lhs { width: 210px; text-align: right; }
+.u5l10-eqs { width: 54px; text-align: center; }
+.u5l10-ntag { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.u5l10-repl { font-size: 19px; color: var(--brand); font-weight: 700; }
+.u5l10-leg { font-size: 20px; line-height: 1.6; }
+.u5l10-sw .u5l10-tg { position: relative; }
+.u5l10-sw.u5l10-tags .u5l10-tg::after { content: attr(data-tag); position: absolute; left: 50%; top: 100%; transform: translate(-50%, 4px); font: 800 14px/1 var(--round); letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; animation: fadeUp .35s; }
+.u5l10-sw.u5l10-tags .u5l10-nm::after { color: #7b4fc4; }
+.u5l10-sw.u5l10-tags .u5l10-in::after { color: #1f5bd6; }
+.u5l10-sw.u5l10-tags .u5l10-out::after { color: #c27a0e; }
+.u5l10-sw .u5l10-iv, .u5l10-sw .u5l10-in { transition: color .4s; }
+.u5l10-sw.u5l10-hot .u5l10-iv, .u5l10-sw.u5l10-hot .u5l10-in { color: #1f5bd6; }
+
+/* candle */
+.u5l10-wax { background: linear-gradient(90deg, #f3e2bf, #fff9ea 45%, #e8d2a4); border: 2px solid #c9a86a; border-bottom: 0; border-radius: 6px 6px 0 0; box-sizing: border-box; }
+.u5l10-wick { background: #3a3026; border-radius: 2px; }
+.u5l10-flame { width: 22px; height: 32px; border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%; background: radial-gradient(ellipse at 50% 72%, #fff6c8 0 22%, #ffc23a 46%, #f07a12 78%); box-shadow: 0 0 18px 6px rgba(255, 190, 60, .45); transition: opacity .3s; }
+.u5l10-plate { background: #8a94a6; border-radius: 5px; }
+.u5l10-ruler { border-right: 2px solid #9aa0ab; }
+.u5l10-rt { position: absolute; left: 0; width: 18px; text-align: right; font: 700 13px var(--round); color: #6b7280; transform: translateY(-50%); }
+.u5l10-rt::after { content: ""; position: absolute; right: -6px; top: 50%; width: 6px; border-top: 2px solid #9aa0ab; }
+
+.ex-stage .bk-stamp.bk-sm { font-size: 18px; }
+.u5l10-tnote { font-size: 23px; }
+.u5l10 .ex-stage .bk-table, .ex-stage .bk-table .katex { font-size: 22px; }
+#u5l10-a-ex5 { margin-top: 10px; }

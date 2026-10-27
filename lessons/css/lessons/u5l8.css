@@ -1,0 +1,91 @@
+/* Math 15 · Unit 5 · Lesson 8 — Introducing Functions: The Vertical Line Test: styles used only on this page (prefix u5l8-).
+ * Adapted from Math 10C u5l5. Laser / failing crossings red, passing green. */
+
+.ex-cap { min-height: 112px; }
+.ex-cap .katex { font-size: 1.04em; }
+.chip .katex { font-size: .95em; }
+.pl .katex { font-size: 1.08em; }
+.ans .katex { font-size: 1.04em; }
+.lesson .katex { white-space: nowrap; }
+h2 .katex, h3 .katex { font-size: .95em; }
+
+/* ---------------- warm-up: the laser scanner ---------------- */
+.u5l8-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.u5l8-gc { background: #fff; border: 1.5px solid #e1b25a; border-radius: 10px; padding: 4px 6px 4px; }
+.u5l8-gch { display: flex; align-items: center; gap: 8px; height: 26px; }
+.u5l8-gch > b { font: 800 18px var(--round); }
+.u5l8-hits { font: 700 15px var(--round); color: var(--muted); }
+.u5l8-hits.one { color: var(--ok); }
+.u5l8-hits.bad { color: var(--red); }
+.u5l8-pf { margin-left: auto; visibility: hidden; font: 800 13px var(--round); color: #fff; border-radius: 7px; padding: 0 7px; }
+.u5l8-pf.ok { background: var(--ok); } .u5l8-pf.no { background: var(--red); }
+.u5l8-cards.u5l8-on .u5l8-pf { visibility: visible; animation: fadeUp .35s; }
+.u5l8-gfig { width: 100%; }
+.u5l8-laser { display: flex; align-items: center; gap: 12px; margin: 10px 0 0; background: #fff1ef; border-radius: 12px; padding: 6px 14px; }
+.u5l8-lz { font: 800 15px var(--round); color: var(--red); text-transform: uppercase; letter-spacing: .05em; }
+.u5l8-laser input[type=range] { flex: 1; accent-color: var(--red); height: 30px; }
+.u5l8-lx { font: 800 17px var(--round); min-width: 74px; }
+.u5l8-wqs .q-line { margin: 2px 0 6px; font-size: 17px; }
+.u5l8-wa { margin: -6px 0 4px 40px; }
+.u5l8-wa .bk-ans { font-size: 15.5px; line-height: 1.35; }
+.u5l8-arcopts .opt { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px !important; }
+.u5l8-arcopts .bk-otxt, .u5l8-arcopts .opt > div { display: flex; flex-direction: column; align-items: center; }
+.u5l8-arcopts .u5l8-none { justify-content: center; }
+.u5l8-wq1 { margin-top: 10px; }
+.u5l8-social { font-style: italic; color: var(--ink2); font-size: 19px; text-align: center; margin: 16px 0 0; }
+
+/* ---------------- notes ---------------- */
+.u5l8-rules { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 0 0 16px; }
+.u5l8-r3 { grid-template-columns: 1.3fr 1fr 1fr; }
+.u5l8-rule { border-radius: 14px; padding: 10px 16px; font-size: 18.5px; line-height: 1.4; background: #eef6f1; border: 2px solid #bfe0cb; }
+.u5l8-rule2 { background: #fff4dd; border-color: #ecd09b; }
+.u5l8-rbad { background: #fff1ef; border-color: #f2c9c4; }
+.u5l8-rh { font: 800 16px var(--round); text-transform: uppercase; letter-spacing: .05em; color: #1d7a45; margin-bottom: 2px; }
+.u5l8-rule2 .u5l8-rh { color: var(--amber); }
+.u5l8-rbad .u5l8-rh { color: var(--red); }
+.u5l8-figrow { display: flex; justify-content: center; gap: 40px; margin: 0 0 14px; }
+.u5l8-fbox { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 320px; }
+.u5l8-fcap { font-size: 17px; text-align: center; line-height: 1.35; }
+.u5l8-qfig { display: flex; justify-content: center; margin: 4px 0 8px; }
+.u5l8-dh { font: 800 18px var(--round); color: var(--brand); text-align: center; }
+.u5l8-gh { font: 800 20px var(--round); text-align: center; }
+.parts.u5l8-c4 { grid-template-columns: repeat(4, 1fr); }
+.u5l8-c4 .part { padding-left: 8px; padding-right: 8px; }
+.u5l8-tab { border-collapse: collapse; margin: 6px 0; font-size: 20px; }
+.u5l8-tab th, .u5l8-tab td { border: 1.5px solid #8d93a0; padding: 4px 12px; text-align: center; }
+.u5l8-tab th { background: var(--brand-soft); }
+.u5l8-ex5 { display: grid; grid-template-columns: 430px 1fr; gap: 18px; align-items: start; }
+.u5l8-ex5 .parts { margin-bottom: 0; }
+
+/* ---------------- explainer panels and pair chips ---------------- */
+.u5l8-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 8px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; }
+.u5l8-notes { justify-content: center; }
+.u5l8-ph { font: 800 14px var(--round); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.u5l8-line { font-size: 20px; line-height: 1.35; }
+.u5l8-line.ok { color: var(--ok); font-weight: 700; }
+.u5l8-line.no { color: var(--red); font-weight: 700; }
+.u5l8-line.fine { color: #8a5a08; }
+.u5l8-cnt { font-size: 22px; border-radius: 9px; padding: 2px 10px; background: #f6f5f1; }
+.u5l8-cnt.good { background: #e9f6ef; } .u5l8-cnt.good .u5l8-n { color: var(--ok); }
+.u5l8-cnt.bad { background: #fde3e0; } .u5l8-cnt.bad .u5l8-n { color: var(--red); }
+.u5l8-n { font: 800 24px var(--round); margin-left: 6px; }
+.u5l8-pr { display: inline-block; font-size: 20px; background: #fff; border: 2px solid #d9d4c7; border-radius: 10px; padding: 2px 8px; white-space: nowrap; transition: background .25s, border-color .25s, color .25s; }
+.u5l8-pr.good { border-color: var(--ok); background: #e9f6ef; }
+.u5l8-pr.bad { border-color: var(--red); background: #fde3e0; color: var(--red); }
+.u5l8-pr.fine { border-color: var(--amber); background: var(--amber-soft); }
+.u5l8-plist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; justify-items: start; }
+.u5l8-note { font-size: 19px; color: var(--ink2); margin-top: 4px; }
+.u5l8-rowlab { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.bk-map-item.u5l8-good { background: #e3f4ea; color: var(--ok); box-shadow: 0 0 0 2px var(--ok); }
+.u5l8-famh { font: 800 16px var(--round); color: var(--ink2); text-align: center; }
+.u5l8-famh.big { font-size: 22px; color: var(--ink); }
+
+/* ---------------- one screen (warm-up) ---------------- */
+.wf .wf-head { margin-bottom: 4px; }
+.wf .q-num { width: 30px; height: 30px; font-size: 17px; }
+.wf .wf-poll { margin-top: 4px; }
+.wf .wf-poll .q-line { margin: 8px 0 6px; }
+.wf .wf-poll .poll-opts { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.wf .wf-poll .opt { font-size: 15px; padding: 5px 8px; }
+.wf .wf-poll:not(.revealed) .poll-ans { display: none; }
+.wf .wf-poll .poll-ans { font-size: 15.5px; }

@@ -1,0 +1,99 @@
+/* Math 15 · Unit 5 · Lesson 6 — Domain and Range, Part 2. Every class is prefixed u5l6-.
+ * Domain (inputs) amber, range (outputs) purple, as in Lesson 5. Adapted from Math 10C u5l4. */
+:root { --u5l6-dom: #c27a0e; --u5l6-ran: #7b4fc4; --u5l6-ran-soft: #f1ebfb; }
+
+/* ---------- warm-up: the Vending Machine ---------- */
+.u5l6-wtop { display: grid; grid-template-columns: 336px minmax(0, 1fr); gap: 16px; align-items: start; }
+.u5l6-machine { background: #d23c32; border-radius: 16px; padding: 6px 10px 10px; box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .15); }
+.u5l6-mh { color: #fff; font: 900 20px var(--round); letter-spacing: .14em; text-align: center; margin: 0 0 4px; }
+#u5l6-vm { display: grid; grid-template-columns: repeat(3, 1fr); background: #e8f0fc; border: 2px solid #1e2d46; border-radius: 6px; }
+.u5l6-slot { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 0; height: 92px; padding: 4px 2px 2px; border: 0; border-right: 1px solid #9aa6b8; border-bottom: 1px solid #9aa6b8; background: transparent; font: inherit; cursor: pointer; color: var(--ink); }
+.u5l6-slot:nth-child(3n) { border-right: 0; } .u5l6-slot:nth-child(n+7) { border-bottom: 0; }
+.u5l6-slot:active { background: #d6e4f8; }
+.u5l6-ic { display: block; height: 40px; }
+.u5l6-sn { font: 700 14px var(--round); margin-top: 1px; white-space: nowrap; }
+.u5l6-code { position: absolute; bottom: 3px; left: 50%; translate: -50% 0; background: #1e2d46; color: #fff; font: 800 12px var(--round); border-radius: 4px; padding: 0 5px; }
+.u5l6-slot.broken { background: repeating-linear-gradient(45deg, #d5d8de 0 8px, #c9ccd3 8px 16px); }
+.u5l6-ooo { margin-top: 12px; rotate: -14deg; background: #ffd54f; border: 1.5px solid #1e2d46; font: 900 11px var(--round); line-height: 1.1; padding: 2px 5px; text-align: center; }
+.u5l6-tray { margin-top: 8px; background: #1e2d46; color: #fff; border-radius: 8px; min-height: 40px; display: flex; align-items: center; justify-content: center; gap: 6px; font: 700 16px var(--round); padding: 2px 8px; }
+.u5l6-tray.bad { color: #ffb3ab; }
+.u5l6-tic svg { width: 30px; height: 30px; display: block; }
+.u5l6-logbox { background: #fbfaf6; border: 1px solid var(--line2); border-radius: 14px; padding: 8px 12px 10px; }
+.u5l6-lh { font: 800 16px var(--round); margin-bottom: 6px; }
+#u5l6-log { display: flex; flex-wrap: wrap; gap: 6px; min-height: 120px; align-content: flex-start; margin-bottom: 8px; }
+.u5l6-lp { background: #fff; border: 1.5px solid var(--line); border-radius: 8px; padding: 1px 7px; font: 600 15px var(--round); white-space: nowrap; }
+.u5l6-wqs { display: grid; gap: 2px; }
+.u5l6-wqs .q-line, .u5l6-nb .q-line { font-size: 17px; margin: 0; gap: 10px; line-height: 1.38; }
+.u5l6-wqs .q-line .pill.small, .u5l6-nb .q-line .pill.small { margin-left: 4px; vertical-align: 1px; }
+.u5l6-wa { margin: 1px 0 6px 40px; }
+.u5l6-wa .bk-ans { margin-top: 0; font-size: 15.5px; line-height: 1.35; min-height: 1.35em; }
+.u5l6-nb { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); }
+.u5l6-nb .q-num.bonus { background: var(--brand2); }
+.wf .u5l6-poll { margin-top: 10px; padding: 8px 14px 10px; display: grid; grid-template-columns: 270px minmax(0, 1fr); column-gap: 16px; align-items: start; }
+.u5l6-poll .q-line { margin: 2px 0 4px; font-size: 17px; }
+.u5l6-poll .poll-opts { margin: 4px 0 8px; }
+.u5l6-poll .poll-ans { grid-column: 1 / -1; }
+.poll-opts.u5l6-p4 { grid-template-columns: repeat(4, 1fr) !important; gap: 6px; }
+.u5l6-p4 .opt { font-size: 18px; padding: 6px 8px; text-align: center; }
+
+/* ---------- sections ---------- */
+.u5l6-2q { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 6px 0 16px; }
+.u5l6-qd, .u5l6-qr { border-radius: 12px; padding: 10px 14px; font-size: 19px; line-height: 1.45; border: 2px solid; }
+.u5l6-qd { background: #f6f5f1; border-color: #d9d3c4; }
+.u5l6-qr { background: var(--brand-soft); border-color: #b9c8e6; }
+.u5l6-qtag { display: inline-block; font: 800 14px var(--round); letter-spacing: .06em; text-transform: uppercase; color: #fff; border-radius: 7px; padding: 2px 8px; margin-right: 6px; vertical-align: 2px; background: var(--brand2); }
+.u5l6-qd .u5l6-qtag { background: var(--ink2); }
+.u5l6-3f { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+.u5l6-3f > div { background: #fbfaf6; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; font-size: 18px; line-height: 1.45; }
+.u5l6-3f b { display: block; font: 800 18px var(--round); color: var(--brand); margin-bottom: 2px; }
+.u5l6-fig { display: flex; justify-content: center; margin: 10px 0 2px; }
+.u5l6-fig .bk-td, .u5l6-fig .bk-th { font-size: 21px; }
+.u5l6-sh { opacity: 0; transition: opacity .4s; }
+.part.shown .u5l6-sh { opacity: 1; }
+
+/* ---------- explainer pieces ---------- */
+.u5l6-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 12px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+.u5l6-ph { font: 800 14px var(--round); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.u5l6-pl { font-size: 20px; line-height: 1.38; }
+.u5l6-pl.dom { color: var(--u5l6-dom); } .u5l6-pl.ran { color: var(--u5l6-ran); }
+.u5l6-pl.dom .katex, .u5l6-pl.ran .katex { color: var(--ink); }
+.u5l6-pl.u5l6-ans { font-size: 21px; background: #fbfaf6; border-radius: 10px; padding: 4px 8px; }
+.u5l6-pl.u5l6-sm { font-size: 18px; }
+.u5l6-pl.u5l6-small, .u5l6-small { font-size: 16px; color: var(--ink2); }
+.u5l6-pl.u5l6-note { font-size: 18px; color: var(--ok); }
+.u5l6-pl.u5l6-note.bad { color: var(--red); }
+.u5l6-toks { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 6px; font-size: 21px; }
+.u5l6-tl { font: 800 14px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-right: 4px; }
+.u5l6-tok { position: relative; display: inline-block; }
+.u5l6-cm { font-style: normal; color: var(--ink2); }
+.u5l6-tok.u5l6-dup { opacity: .45; }
+.u5l6-tok.u5l6-dup::after, .u5l6-stok.u5l6-dup::after { content: ''; position: absolute; left: -3px; right: 2px; top: 50%; border-top: 3px solid var(--red); transform: rotate(-14deg); }
+.u5l6-formtag { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u5l6-pairs { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 21px; line-height: 1.5; }
+.u5l6-pairs.big { gap: 14px 18px; font-size: 32px; }
+.u5l6-px, .u5l6-py { border-radius: 6px; padding: 0 3px; transition: background .25s, color .25s; }
+.u5l6-px.on { background: var(--amber-soft); color: var(--u5l6-dom); box-shadow: 0 0 0 2px #e9c37c; }
+.u5l6-py.on { background: var(--u5l6-ran-soft); color: var(--u5l6-ran); box-shadow: 0 0 0 2px #c9b5ee; }
+.bk-td.u5l6-hlr, .bk-th.u5l6-hlr { background: var(--u5l6-ran-soft); color: var(--u5l6-ran); }
+.u5l6-vt .bk-td, .u5l6-vt .bk-th { font-size: 26px; }
+.bk-map-item.u5l6-hotr { background: var(--u5l6-ran-soft); color: var(--u5l6-ran); box-shadow: 0 0 0 2px var(--u5l6-ran); }
+.u5l6-broke { background: #fde3e0; color: var(--red); border: 2px solid var(--red); border-radius: 10px; padding: 2px 10px; font: 600 16px var(--round); white-space: nowrap; }
+/* set-building rows */
+.u5l6-srow { height: 64px; }
+.u5l6-srow > div { position: absolute; top: 0; translate: -50% 0; font-size: 40px; line-height: 64px; }
+.u5l6-srow.u5l6-small > div { font-size: 30px; }
+.u5l6-scm { color: var(--ink2); }
+.u5l6-stok { padding: 0 4px; }
+.u5l6-sbr { color: var(--brand2); }
+.u5l6-sname { translate: 0 0 !important; }
+.u5l6-src { text-align: center; font-size: 26px; color: var(--ink2); }
+.u5l6-say { text-align: center; font-size: 24px; color: var(--ink2); font-style: italic; }
+.u5l6-eqmark { color: var(--ok); font: 800 20px var(--round); }
+.u5l6-nogo { fill: #c93a33; fill-opacity: .08; }
+.u5l6-nolab { color: var(--red); font: 800 15px var(--round); background: rgba(255, 255, 255, .9); border-radius: 5px; padding: 0 4px; white-space: nowrap; }
+/* Stand Up Break tables */
+.u5l6-sutab { border-collapse: collapse; margin: 6px auto; font: 600 30px 'KaTeX_Main', 'Times New Roman', serif; }
+.u5l6-sutab th, .u5l6-sutab td { border: 2px solid #9aa0ab; padding: 4px 16px; text-align: center; }
+.u5l6-sutab th { background: var(--brand-soft); }
+.u5l6-mach .bk-map-item { font-size: 19px; }
+.su-old .u5l6-sutab { font-size: 15px; } .su-old .u5l6-sutab th, .su-old .u5l6-sutab td { padding: 2px 6px; border-width: 1.5px; }

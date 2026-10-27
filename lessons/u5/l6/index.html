@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Domain and Range, Part 2 · Math 15 5.6</title>
+<meta name="description" content="Math 15 Unit 5 Lesson 6: the domain and range of a relation from ordered pairs and tables of values, each value written once, set notation with curly braces, an inequality when the values can't be listed, and real situations that limit the domain. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u5l6.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 5 Relations and Functions · Lesson 6</div>
+  <h1>Domain and Range of a Relation, Part 2</h1>
+  <p class="lede">Last lesson we read the domain and range off a graph using its shadows. Today the relation arrives already <b>written down</b>, as ordered pairs or a table. We read the inputs and outputs straight off, write each value <b>once</b>, and put them in <b>set notation</b>: <span class="tex">D=\{2,\ 3,\ 4,\ 6\}</span>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>list the <b>domain</b> (the <span class="tex">x</span>-values) and the <b>range</b> (the <span class="tex">y</span>-values) of a set of <b>ordered pairs</b>, writing each value once</li>
+      <li>state the domain and range of a relation given in a <b>table of values</b></li>
+      <li>write a domain or range in <b>set notation</b> with curly braces, like <span class="tex">R=\{1,\ 5,\ 8\}</span></li>
+      <li>use an <b>inequality</b> such as <span class="tex">y\ge 0</span> when the values go on forever and can’t be listed</li>
+      <li>explain how a <b>real situation</b> limits the domain</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF2</b> Demonstrate an understanding of relations and functions.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Vending Machine" id="wu" style="--wf-side: 352px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Vending Machine</h2>
+  <p class="wf-rule">Press a button, get a snack. <b>Button in, snack out.</b> <span class="muted">Tap a button to try it.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l6-wtop">
+      <div class="u5l6-machine">
+        <div class="u5l6-mh">SNACKS</div>
+        <div id="u5l6-vm"></div>
+        <div class="u5l6-tray" id="u5l6-tray">PUSH</div>
+      </div>
+      <div class="u5l6-logbox">
+        <div class="u5l6-lh">What came out <span class="muted">(button, snack)</span></div>
+        <div id="u5l6-log"></div>
+        <button type="button" class="pill small" data-u5l6-all>Press every button</button>
+      </div>
+    </div>
+    <div class="poll wf-poll u5l6-poll">
+      <div class="u5l6-pq">
+        <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> You have plenty of coins. What is the <b>fewest</b> buttons you must press to taste <b>every</b> kind of snack? <b>Guess first!</b></div></div>
+      </div>
+      <div>
+        <div class="poll-opts u5l6-p4">
+          <div class="opt"><b>A</b> 9</div>
+          <div class="opt"><b>B</b> 8</div>
+          <div class="opt right"><b>C</b> 5</div>
+          <div class="opt"><b>D</b> 3</div>
+        </div>
+        <button class="pill small" type="button" data-poll-reveal>Reveal</button>
+      </div>
+      <div class="poll-ans"><b>C, 5 presses:</b> one per <b>different</b> snack, like A1, A2, B1, B3, C1. A3 or C3 after A1 is wasted (more Chips). 8 working buttons, but only 5 different snacks!
+        <b>Today:</b> the working buttons (Q3) are the <b>domain</b>; the snacks (Q4) are the <b>range</b>.</div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u5l6-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What do you get if you press <b>C1</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l6-wa"><div class="bk-ans">A <b>candy bar</b>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which buttons give you <b>Chips</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l6-wa"><div class="bk-ans"><b>A1, A3</b> and <b>C3</b>: three buttons, one snack.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>List every button that <b>works</b>. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l6-wa"><div class="bk-ans">A1, A2, A3, B1, B3, C1, C2, C3: <b>8</b> buttons. B2 gives no snack, so it doesn’t count.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>List every snack you could get. Write each snack only <b>once</b>. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l6-wa"><div class="bk-ans">Candy bar, Chips, Cookies, Gum, Juice: <b>5</b> snacks.</div></div></div>
+    </div>
+    <div class="bk-wq u5l6-nb"><div class="q-line"><div class="q-num bonus">+</div><div><b>Argue with your neighbour:</b> could 8 working buttons ever sell 10 different snacks? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="u5l6-wa"><div class="bk-ans"><b>No.</b> Each button gives exactly one snack, so 8 buttons give <b>at most</b> 8 different snacks, fewer if some repeat.</div></div></div>
+  </div></div>
+</section>
+
+<!-- ================= 1. Recall ================= -->
+<section class="card" data-ink="s1" data-section="1. Recall: From a Graph">
+  <div class="sec-h"><span class="badge">1</span><h2>Recall: Domain and Range from a Graph</h2></div>
+  <p>The <b>domain</b> is the complete set of input (<span class="tex">x</span>) values a relation uses. The <b>range</b> is the complete set of output (<span class="tex">y</span>) values it produces. On a graph we found these by shining an imaginary light <b>down</b> (domain) or <b>across</b> (range). Today the relation arrives already written as ordered pairs or in a table, so we read the values <b>directly</b> instead.</p>
+  <div class="explainer" data-explainer="recall"></div>
+</section>
+
+<!-- ================= 2. Ordered pairs ================= -->
+<section class="card" data-ink="s2" data-section="2. From Ordered Pairs">
+  <div class="sec-h"><span class="badge">2</span><h2>Domain and Range from a Set of Ordered Pairs</h2></div>
+  <div class="def">Every ordered pair has the form <span class="tex">(x,y)</span>. The <b>domain</b> is every <span class="tex">x</span>-coordinate that appears. The <b>range</b> is every <span class="tex">y</span>-coordinate that appears. A repeated value is written only <b>once</b>.</div>
+  <p>For <span class="tex">(2,5),\ (3,5),\ (4,8),\ (6,1)</span> the <span class="tex">x</span>’s are <span class="tex">2,\ 3,\ 4,\ 6</span> (no repeats), so the domain is <span class="tex">2,\ 3,\ 4,\ 6</span>. The <span class="tex">y</span>’s are <span class="tex">5,\ 5,\ 8,\ 1</span>; the <span class="tex">5</span> repeats, so the range is <span class="tex">1,\ 5,\ 8</span>. It is a good habit (not yet required) to list values from smallest to largest.</p>
+  <div class="explainer" data-explainer="pairs"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. The vending machine">
+  <h3 class="sub">The warm-up machine is a relation</h3>
+  <p>Each working button and its snack make a pair: <i>(button, snack)</i>, like <i>(A1, Chips)</i>. The buttons are the inputs and the snacks are the outputs, so the same rules apply.</p>
+  <div class="explainer" data-explainer="machine"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Ordered pairs</h3></div>
+  <p class="q">List the domain and range of each set of ordered pairs.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">(1,4),\ (2,6),\ (3,4),\ (5,9)</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x</span>’s: <span class="tex">1,\ 2,\ 3,\ 5</span>: no repeats.<br><span class="tex">y</span>’s: <span class="tex">4,\ 6,\ 4,\ 9</span>: the <span class="tex">4</span> repeats, so write it once.<br><b>Domain: <span class="tex">1,\ 2,\ 3,\ 5</span> &nbsp; Range: <span class="tex">4,\ 6,\ 9</span></b></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(7,2),\ (7,5),\ (7,8)</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x</span>’s: <span class="tex">7,\ 7,\ 7</span>: all the same, so the domain has just one value.<br><span class="tex">y</span>’s: <span class="tex">2,\ 5,\ 8</span>: all different.<br><b>Domain: <span class="tex">7</span> &nbsp; Range: <span class="tex">2,\ 5,\ 8</span></b></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Tables ================= -->
+<section class="card" data-ink="s3" data-section="3. From a Table">
+  <div class="sec-h"><span class="badge">3</span><h2>Domain and Range from a Table of Values</h2></div>
+  <p>A table lists the same information as a set of ordered pairs, just organized into two rows instead of brackets. The same rule applies: the <b>domain</b> is every value in the <span class="tex">x</span>-row and the <b>range</b> is every value in the <span class="tex">y</span>-row, each written once.</p>
+  <div class="explainer" data-explainer="table"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Tables of values</h3></div>
+  <p class="q">State the domain and range of each relation given by a table of values.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a)<div class="u5l6-fig" data-fig="e2a"></div></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Read straight off the rows (no repeats in either).<br><b>Domain: <span class="tex">0,\ 1,\ 2,\ 3,\ 4</span></b><br><b>Range: <span class="tex">2,\ 4,\ 6,\ 8,\ 10</span></b></div></div></div>
+    <div class="part"><div class="pl">(b)<div class="u5l6-fig" data-fig="e2b"></div></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The <span class="tex">y</span>-row is <span class="tex">5,\ 2,\ 5,\ 2</span>: only two different values, each written once.<br><b>Domain: <span class="tex">-3,\ -1,\ 1,\ 3</span></b><br><b>Range: <span class="tex">2,\ 5</span></b></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Set notation ================= -->
+<section class="card" data-ink="s4" data-section="4. Set Notation">
+  <div class="sec-h"><span class="badge">4</span><h2>Formal Set Notation for Domain and Range</h2></div>
+  <div class="def">Mathematicians write these lists inside <b>curly braces</b> <span class="tex">\{\ \ \}</span> to show they form a <b>set</b>: a collection of values with <b>no repeats</b>. The demonstration in Section 2 becomes <span class="tex">D=\{2,\ 3,\ 4,\ 6\}</span> and <span class="tex">R=\{1,\ 5,\ 8\}</span>.</div>
+  <div class="explainer" data-explainer="setNote"></div>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. A list or an inequality?">
+  <h3 class="sub">When a list is impossible</h3>
+  <p>Some relations, like graphs with <b>arrows</b> on the ends, have infinitely many values. They can’t be listed, so we describe them with an <b>inequality</b> instead: if every <span class="tex">y</span>-value is <span class="tex">0</span> or greater, the range is <span class="tex">y\ge 0</span>.</p>
+  <div class="u5l6-2q">
+    <div class="u5l6-qd"><span class="u5l6-qtag">A list</span> a few separate values (dots, pairs, a table): <span class="tex">D=\{2,\ 4,\ 6\}</span></div>
+    <div class="u5l6-qr"><span class="u5l6-qtag">An inequality</span> values that go on forever (an arrow): <span class="tex">x\ge 0</span></div>
+  </div>
+  <div class="explainer" data-explainer="listOrIneq"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Read the symbol out loud.</b> <span class="tex">\ge</span> is “greater than or equal to” and <span class="tex">\le</span> is “less than or equal to”. “<span class="tex">0</span> or greater” is <span class="tex">x\ge 0</span>; “<span class="tex">6</span> or less” is <span class="tex">x\le 6</span>. The “or equal” part means the starting value itself is included.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Set notation, or an inequality</h3></div>
+  <p class="q">Write the domain and range using set notation (or an inequality where a list is impossible).</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) The ordered pairs <span class="tex">(2,5),\ (4,5),\ (6,9),\ (8,3)</span>.</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x</span>’s: <span class="tex">2,\ 4,\ 6,\ 8</span>. <span class="tex">y</span>’s: <span class="tex">5,\ 5,\ 9,\ 3</span>, so <span class="tex">3,\ 5,\ 9</span>.<br><b><span class="tex">D=\{2,\ 4,\ 6,\ 8\}</span></b><br><b><span class="tex">R=\{3,\ 5,\ 9\}</span></b></div></div></div>
+    <div class="part"><div class="pl">(b) The table below.<div class="u5l6-fig" data-fig="e3b"></div></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Every output is <span class="tex">7</span>, so the range is a one-value set.<br><b><span class="tex">D=\{-4,\ -2,\ 0,\ 2\}</span></b><br><b><span class="tex">R=\{7\}</span></b></div></div></div>
+    <div class="part"><div class="pl">(c) A ray starts at <span class="tex">(0,0)</span> and rises forever up and to the right, with an arrow at the end. Every <span class="tex">x</span>-value and every <span class="tex">y</span>-value on the ray is <span class="tex">0</span> or greater. Write the domain and the range using inequalities.<div class="u5l6-fig" data-fig="e3c"></div></div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The ray never ends, so the values can’t be listed: use inequalities.<br><b>D: <span class="tex">x\ge 0</span></b><br><b>R: <span class="tex">y\ge 0</span></b></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l6"></section>
+
+<!-- ================= 5. Combining skills ================= -->
+<section class="card" data-ink="s5" data-section="5. Combining Skills">
+  <div class="sec-h"><span class="badge">5</span><h2>Combining Skills</h2></div>
+  <p>We can now find the domain and range of a relation however it is presented, as <b>ordered pairs</b>, a <b>table</b> or a <b>graph</b>, and write the answer in proper set notation. Whatever the form: inputs give the domain, outputs give the range, each value once.</p>
+  <div class="u5l6-3f">
+    <div><b>Ordered pairs</b>the first numbers <span class="tex">\to D</span><br>the second numbers <span class="tex">\to R</span></div>
+    <div><b>Table</b>the <span class="tex">x</span>-row <span class="tex">\to D</span><br>the <span class="tex">y</span>-row <span class="tex">\to R</span></div>
+    <div><b>Graph (dots)</b>read each dot’s <span class="tex">(x,y)</span>,<br>then the same as pairs</div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Three forms, one method</h3></div>
+  <p class="q">State the domain and range, using set notation, of each relation below.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">(-3,8),\ (-1,8),</span> <span class="tex">(1,2),\ (3,-4)</span></div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b><span class="tex">D=\{-3,\ -1,\ 1,\ 3\}</span></b><br><span class="tex">y</span>’s are <span class="tex">8,\ 8,\ 2,\ -4</span>, so<br><b><span class="tex">R=\{-4,\ 2,\ 8\}</span></b></div></div></div>
+    <div class="part"><div class="pl">(b) The table shows five ordered pairs.<div class="u5l6-fig" data-fig="e4b"></div></div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b><span class="tex">D=\{1,\ 2,\ 3,\ 4,\ 5\}</span></b><br><b><span class="tex">R=\{3,\ 6,\ 9,\ 12,\ 15\}</span></b><br>(no repeats to remove)</div></div></div>
+    <div class="part"><div class="pl">(c) The graph shows four points.<div class="u5l6-fig" data-fig="e4c"></div></div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Read the four dots: <span class="tex">(-4,-2),\ (-2,1),</span> <span class="tex">(0,1),\ (3,5)</span>.<br><b><span class="tex">D=\{-4,\ -2,\ 0,\ 3\}</span></b><br>The <span class="tex">y</span>-value <span class="tex">1</span> occurs twice:<br><b><span class="tex">R=\{-2,\ 1,\ 5\}</span></b></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s5b" data-section="5. Real situations">
+  <h3 class="sub">A real situation can limit the domain</h3>
+  <p>When a relation comes from real life, the situation itself can set limits: a store may sell only so many, a worker may work only so many hours. A pair that breaks the limit is <b>not</b> part of the relation, even if the arithmetic works.</p>
+  <div class="explainer" data-explainer="real"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Deshawn’s part-time job</h3></div>
+  <p class="q">Deshawn earns $12 per hour at his part-time job. He can work at most <span class="tex">10</span> hours per week at this job. The table shows his earnings, <span class="tex">E</span> dollars, for various numbers of hours worked, <span class="tex">h</span>.</p>
+  <div class="u5l6-fig" data-fig="e5"></div>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) State the domain and range of this relation using set notation.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Hours are the inputs, earnings the outputs:<br><b><span class="tex">D=\{2,\ 4,\ 6,\ 8,\ 10\}</span></b><br><b><span class="tex">R=\{24,\ 48,\ 72,\ 96,\ 120\}</span></b></div></div></div>
+    <div class="part"><div class="pl">(b) Explain why <span class="tex">h</span> cannot be greater than <span class="tex">10</span> in this situation.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Deshawn is allowed to work <b>at most 10 hours</b> per week at this job, so 11 or 12 hours is not possible. The situation itself limits the domain.</div></div></div>
+    <div class="part"><div class="pl">(c) Would the ordered pair <span class="tex">(12,\ 144)</span> belong to this relation? Explain.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> The arithmetic fits (<span class="tex">12\times\$12=\$144</span>), but <span class="tex">h=12</span> is outside the domain: he can’t work 12 hours, so that pair is not part of <i>this</i> relation.</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Domain</b> = the inputs: the <span class="tex">x</span>-values (the first numbers, or the top row). <b>Range</b> = the outputs: the <span class="tex">y</span>-values (the second numbers, or the bottom row).</div>
+    <div><b>Each value once.</b> <span class="tex">(2,5),\ (3,5),\ (4,8),\ (6,1)</span>: the <span class="tex">5</span> repeats, so the range is <span class="tex">1,\ 5,\ 8</span>. Tidy habit: smallest to largest.</div>
+    <div><b>Set notation:</b> curly braces, no repeats, order doesn’t matter: <span class="tex">D=\{2,\ 3,\ 4,\ 6\}</span>, <span class="tex">R=\{1,\ 5,\ 8\}</span>. One value is fine: <span class="tex">R=\{7\}</span>.</div>
+    <div><b>Can’t list it?</b> A ray goes on forever: use an inequality, like <span class="tex">x\ge 0</span>. <b>Real situations</b> limit the domain: Deshawn’s <span class="tex">h</span> can’t be more than <span class="tex">10</span>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u5l6">
+    <div><div class="kicker">Your turn</div><b>Assignment 6 — Domain and Range of a Relation, Part 2</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l7/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 7 — Using Technology to Graph and Explore Relations</b><div class="muted">Graph a relation on a graphing calculator or Desmos, set the viewing window, and read intercepts, domain and range from the screen</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u5l6.js';
+  boot({ key: 'u5l6', homeHref: '../../', title: '5.6 Domain and Range, Part 2' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Growing Patterns · Math 15 5.2</title>
+<meta name="description" content="Math 15 Unit 5 Lesson 2: growing patterns and types of variables. A pattern that grows by a constant amount, described in words, in a table of values and as points on a grid; independent and dependent variables; plotting a table of values. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u5l2.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 5 Relations and Functions · Lesson 2</div>
+  <h1>Growing Patterns and Types of Variables</h1>
+  <p class="lede">Some patterns grow by the <b>same amount</b> every step. Today we describe a growing pattern three ways: in <b>words</b>, in a <b>table of values</b>, and as <b>points on a grid</b>. We also sort the two quantities into the one you <b>choose</b> (independent) and the one that <b>results</b> (dependent).</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>continue a <b>growing pattern</b> and describe in words how it grows</li>
+      <li>complete and extend a <b>table of values</b>, and find the <b>constant amount</b> it grows by</li>
+      <li>name the <b>independent</b> and the <b>dependent</b> variable in a situation</li>
+      <li>plot a table of values as <b>ordered pairs</b> and say whether the points <b>line up</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF1</b> Interpret and explain the relationships among data, graphs and situations.<br><b>RF4</b> Describe and represent linear relations, using: words; ordered pairs; tables of values; graphs; equations.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Toothpick Street" id="wu" style="--wf-side: 420px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Toothpick Street</h2>
+  <p class="wf-rule">Each stage adds one more house to the street. <b>Count the toothpicks!</b> <span class="muted">Press + to build the next stage.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l2-street">
+      <div class="u5l2-stbar no-ink">
+        <span class="u5l2-stlab">Stage</span>
+        <button type="button" class="pill small" data-st="-">−</button><b class="u5l2-stn" id="st-n">3</b><button type="button" class="pill small" data-st="+">+</button>
+        <span class="u5l2-stcount" id="st-count">16 toothpicks</span>
+      </div>
+      <div class="u5l2-stsvg" id="st-svg"></div>
+    </div>
+    <div class="u5l2-wrow">
+      <div class="u5l2-wtab" id="st-tab"></div>
+      <div class="u5l2-wgraph" id="st-graph"></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u5l2-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many toothpicks in Stage <b>4</b>? In Stage <b>5</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Stage 4: <b>21</b>. Stage 5: <b>26</b>.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Each new house adds how many? Why not 6? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>5</b>: a new house <b>borrows</b> the wall beside it.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>You <b>choose</b> the stage. Do you choose the toothpicks? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>No.</b> The toothpicks are <b>decided for you</b>.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Stage <b>100</b> is a street of 100 houses. How many toothpicks does it take? <b>Guess first.</b></div></div>
+      <div class="poll-opts c3">
+        <div class="opt"><b>A</b> 500</div>
+        <div class="opt right"><b>B</b> 501</div>
+        <div class="opt"><b>C</b> 600</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: 501.</b> The first house uses 6, and each of the other 99 houses adds 5: <span class="tex">6+99\times5=501</span>. Or: 1 left wall plus 5 per house, <span class="tex">1+5\times100=501</span>.
+        <span class="muted">C (600) forgets the shared walls; A (500) forgets the very first wall.</span></div>
+    </div>
+  </div></div>
+  <div class="bk-wq u5l2-race">
+    <div class="q-line"><div class="q-num bonus">+</div><div><b>Race your neighbour:</b> which stage uses exactly <b>76</b> toothpicks?</div></div>
+    <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>Stage 15.</b> Take away the first wall: <span class="tex">76-1=75</span>. Then 5 per house: <span class="tex">75\div5=15</span>. Check: <span class="tex">6+14\times5=76</span> ✓</div>
+  </div>
+</section>
+
+<!-- ================= 1. Growing patterns ================= -->
+<section class="card" data-ink="s1" data-section="1. Growing Patterns">
+  <div class="sec-h"><span class="badge">1</span><h2>Growing Patterns</h2></div>
+  <div class="def">A <b>growing pattern</b> is a sequence of figures or numbers in which each step grows by the <b>same fixed amount</b> every time. We say the pattern grows by a <b>constant amount</b>.</div>
+  <p>Toothpick Street grows by a constant amount: every new house adds <b>5</b> toothpicks. Counting them in groups shows why.</p>
+  <div class="explainer" data-explainer="streetCount"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>A tile pattern</h3></div>
+  <p class="q">The pattern below is built from small square tiles arranged in two rows. Look for what each new figure adds.</p>
+  <div class="u5l2-tilefig" id="fig-tiles"></div>
+  <div class="parts u5l2-ex1">
+    <div class="part"><div class="pl">(a) Draw Figure 4 and Figure 5 of the pattern in the space below.</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Add one more column of 2 tiles each time.<div class="u5l2-tilefig sm" id="fig-tiles45"></div></div></div></div>
+    <div class="u5l2-stack">
+      <div class="part"><div class="pl">(b) How many tiles would be in Figure 6? (Continue the pattern.)</div><div class="work" style="--h:110px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Figure 6 has 6 columns of 2 tiles: <span class="tex">6\times2=\boldsymbol{12}</span> tiles. (Or continue 2, 4, 6, 8, 10, <b>12</b>.)</div></div></div>
+      <div class="part"><div class="pl">(c) Describe in words how this pattern grows from one figure to the next.</div><div class="work" style="--h:110px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Each new figure adds <b>one more column of 2 tiles</b>, so the number of tiles goes up by <b>2</b> every time: a constant amount.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Watch the tiles grow">
+  <h3 class="sub">Watch the tile pattern grow</h3>
+  <p>Each new figure is the one before it <b>plus one new column</b>. Watch the new tiles, and keep a running count.</p>
+  <div class="explainer" data-explainer="growTiles"></div>
+</section>
+
+<!-- ================= 2. Table of values ================= -->
+<section class="card" data-ink="s2" data-section="2. A Table of Values">
+  <div class="sec-h"><span class="badge">2</span><h2>Representing a Pattern in a Table of Values</h2></div>
+  <div class="def">A <b>table of values</b> stores the <b>figure number</b> in one row and the <b>resulting value</b> in the other. It makes the pattern easy to read, extend, and later plot.</div>
+  <div class="u5l2-mini">
+    <table class="u5l2-tbl u5l2-htbl">
+      <tr><th>Figure Number, <span class="tex">n</span></th><td>1</td><td>2</td><td>3</td></tr>
+      <tr><th>Number of Tiles, <span class="tex">T</span></th><td>2</td><td>4</td><td>6</td></tr>
+    </table>
+    <p>For the tile pattern: <span class="tex">n=1,\ 2,\ 3</span> gives <span class="tex">T=2,\ 4,\ 6</span>. The <b>difference</b> between neighbours is the constant amount the pattern grows by.</p>
+  </div>
+  <div class="explainer" data-explainer="tableDiffs"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>The tile pattern in a table</h3></div>
+  <p class="q">Continue working with the tile pattern from Example 1.</p>
+  <div class="parts c1">
+    <div class="part"><div class="pl">(a) Complete the table of values below for Figures 1 through 6.</div>
+      <table class="u5l2-tbl u5l2-htbl u5l2-center">
+        <tr><th>Figure Number, <span class="tex">n</span></th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+        <tr><th>Number of Tiles, <span class="tex">T</span></th><td>2</td><td><span data-reveal=" ">4</span></td><td><span data-reveal=" ">6</span></td><td><span data-reveal=" ">8</span></td><td><span data-reveal=" ">10</span></td><td><span data-reveal=" ">12</span></td></tr>
+      </table>
+      <div class="work" style="--h:50px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Add 2 each time: <span class="tex">2,\ 4,\ 6,\ 8,\ 10,\ 12</span> <span class="muted">(tap a cell to show one at a time)</span></div></div></div>
+  </div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(b) How many tiles are added each time you move to the next figure?</div><div class="work" style="--h:120px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>2 tiles</b> each time (<span class="tex">4-2=2</span>, <span class="tex">6-4=2</span>, …): one new column of two.</div></div></div>
+    <div class="part"><div class="pl">(c) Continue the pattern to find the number of tiles in Figure 10.</div><div class="work" style="--h:120px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Keep adding 2: <span class="tex">12,\ 14,\ 16,\ 18,\ \boldsymbol{20}</span>. Figure 10 has <b>20 tiles</b> (10 columns of 2).</div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Independent and dependent ================= -->
+<section class="card" data-ink="s3" data-section="3. Independent and Dependent">
+  <div class="sec-h"><span class="badge">3</span><h2>Independent and Dependent Variables</h2></div>
+  <div class="u5l2-vars">
+    <div class="def amber">The <b class="u5l2-ivt">independent variable</b> is the one <b>you choose</b>. It goes in the <b>first row</b> of a table and on the <b>horizontal (<span class="tex">x</span>) axis</b>.</div>
+    <div class="def u5l2-dvdef">The <b class="u5l2-dvt">dependent variable</b> <b>results</b> from that choice: it depends on it. It goes in the <b>second row</b> and on the <b>vertical (<span class="tex">y</span>) axis</b>.</div>
+  </div>
+  <p>If notebooks cost <b>$2 each</b>, the number you buy is the independent variable (you choose it) and the total cost is the dependent variable (it results from your choice). For the tiles, the figure number <span class="tex">n</span> is independent and the number of tiles <span class="tex">T</span> is dependent.</p>
+  <div class="explainer" data-explainer="causeEffect"></div>
+  <div class="tip u5l2-ahead"><div class="tip-ic">?</div><div><b>A quick test:</b> say the sentence “<i>___ depends on ___</i>” both ways. Only one way makes sense. The cost depends on the number of notebooks, but the number of notebooks does not depend on the cost (you decide it).</div></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Look for “based on”">
+  <h3 class="sub">Look for the words “based on”</h3>
+  <p>In a sentence like “the <b>cost</b>, based on the number of <b>kilometres</b>”, the quantity <b>after</b> “based on” is what changes first: the <b class="u5l2-ivt">independent</b> variable. The quantity that is “based on” it is the <b class="u5l2-dvt">dependent</b> variable.</p>
+  <div class="explainer" data-explainer="sortVars"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Independent or dependent?</h3></div>
+  <p class="q">For each situation, identify the independent variable and the dependent variable.</p>
+  <div class="parts c2 u5l2-ex3">
+    <div class="part"><div class="pl">(a) The temperature of an oven while it preheats, based on the number of minutes since it was turned on.</div>
+      <div class="u5l2-iv-line"><span class="u5l2-ivt">Independent:</span> <span class="u5l2-bl" data-reveal=" ">time in minutes</span></div>
+      <div class="u5l2-iv-line"><span class="u5l2-dvt">Dependent:</span> <span class="u5l2-bl" data-reveal=" ">oven temperature</span></div>
+      <div class="work" style="--h:50px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">You can choose how many minutes to wait; the temperature <b>results</b>.</div></div></div>
+    <div class="part"><div class="pl">(b) The distance a cyclist has travelled, based on the number of hours cycling at a steady speed.</div>
+      <div class="u5l2-iv-line"><span class="u5l2-ivt">Independent:</span> <span class="u5l2-bl" data-reveal=" ">hours cycling</span></div>
+      <div class="u5l2-iv-line"><span class="u5l2-dvt">Dependent:</span> <span class="u5l2-bl" data-reveal=" ">distance travelled</span></div>
+      <div class="work" style="--h:50px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The distance depends on how long the cyclist rides.</div></div></div>
+    <div class="part"><div class="pl">(c) The height remaining on a candle, based on the number of hours it has been burning.</div>
+      <div class="u5l2-iv-line"><span class="u5l2-ivt">Independent:</span> <span class="u5l2-bl" data-reveal=" ">hours burning</span></div>
+      <div class="u5l2-iv-line"><span class="u5l2-dvt">Dependent:</span> <span class="u5l2-bl" data-reveal=" ">candle height</span></div>
+      <div class="work" style="--h:50px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The height left depends on how long it has burned.</div></div></div>
+    <div class="part"><div class="pl">(d) The total cost of a taxi ride, based on the number of kilometres travelled.</div>
+      <div class="u5l2-iv-line"><span class="u5l2-ivt">Independent:</span> <span class="u5l2-bl" data-reveal=" ">kilometres travelled</span></div>
+      <div class="u5l2-iv-line"><span class="u5l2-dvt">Dependent:</span> <span class="u5l2-bl" data-reveal=" ">total cost</span></div>
+      <div class="work" style="--h:50px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The cost depends on how far you ride.</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l2"></section>
+
+<!-- ================= 4. Plotting a table ================= -->
+<section class="card" data-ink="s4" data-section="4. Plotting a Table">
+  <div class="sec-h"><span class="badge">4</span><h2>Plotting a Pattern’s Table of Values</h2></div>
+  <p>Each column of a table of values is an <b>ordered pair</b> in disguise. The <b class="u5l2-ivt">independent</b> value becomes the <span class="tex">x</span>-coordinate and the <b class="u5l2-dvt">dependent</b> value becomes the <span class="tex">y</span>-coordinate. Because these values are positive whole numbers, only <b>Quadrant I</b> is needed. When a pattern grows by a <b>constant amount</b>, its points line up in a straight line. We call it a <b>linear</b> pattern.</p>
+  <div class="explainer" data-explainer="plotTable"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Count the grid lines carefully.</b> On the Example 4 grid, each line up is <b>2 tiles</b>, not 1. Read the numbers on the axis before you plot.</div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Plot the tile pattern</h3></div>
+  <p class="q">Use your completed table of values for the tile pattern from Example 2.</p>
+  <div class="parts u5l2-ex4">
+    <div class="part"><div class="pl">(a) Plot all six ordered pairs <span class="tex">(n,\ T)</span> on the grid shown.</div>
+      <div class="u5l2-gridbox" id="fig-ex4"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(1,\ 2),\ (2,\ 4),\ (3,\ 6),\ (4,\ 8),\ (5,\ 10),\ (6,\ 12)</span></div></div></div>
+    <div class="part"><div class="pl">(b) Do the plotted points appear to line up in a straight pattern?</div><div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> Every step of 1 to the right moves the point up exactly 2, so the six points fall on one straight line (shown dashed). The dots are not joined: there is no Figure 2½.</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Raised flower beds</h3></div>
+  <p class="q">A garden club builds a row of raised flower beds. The first bed uses <b>5 boards</b>, and each additional bed needs <b>4 more boards</b>.</p>
+  <div class="parts c1">
+    <div class="part"><div class="pl">(a) Complete the table of values below for beds 1 through 5.</div>
+      <table class="u5l2-tbl u5l2-htbl u5l2-center">
+        <tr><th>Bed Number, <span class="tex">n</span></th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+        <tr><th>Number of Boards, <span class="tex">B</span></th><td>5</td><td><span data-reveal=" ">9</span></td><td><span data-reveal=" ">13</span></td><td><span data-reveal=" ">17</span></td><td><span data-reveal=" ">21</span></td></tr>
+      </table>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Add 4 each time: <span class="tex">5,\ 9,\ 13,\ 17,\ 21</span></div></div></div>
+  </div>
+  <div class="parts u5l2-ex5">
+    <div class="u5l2-stack">
+      <div class="part"><div class="pl">(b) Describe in words how the number of boards grows from one bed to the next.</div><div class="work" style="--h:120px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">It starts at <b>5 boards</b> for the first bed and adds <b>4 more boards</b> for every extra bed: a constant increase of 4.</div></div></div>
+      <div class="part"><div class="pl">(d) Do the plotted points appear to line up?</div><div class="work" style="--h:110px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> A constant growth of 4 per bed puts all five points on one straight line.</div></div></div>
+    </div>
+    <div class="part"><div class="pl">(c) Plot the ordered pairs <span class="tex">(n,\ B)</span> from your table on the grid shown.</div>
+      <div class="u5l2-gridbox" id="fig-ex5"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(1,\ 5),\ (2,\ 9),\ (3,\ 13),\ (4,\ 17),\ (5,\ 21)</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Growing pattern:</b> each step grows by the <b>same amount</b> (a constant amount). Say it in words: “starts at 5 and adds 4 each time.”</div>
+    <div><b>Table of values:</b> figure number on top, the value underneath. The <b>difference</b> between neighbours is the constant amount: <span class="tex">2,\ 4,\ 6,\ 8</span> grows by 2.</div>
+    <div><b class="u5l2-ivt">Independent</b> = you choose it (first row, <span class="tex">x</span>-axis). <b class="u5l2-dvt">Dependent</b> = it results (second row, <span class="tex">y</span>-axis). “Cost, <b>based on</b> kilometres”: kilometres is independent.</div>
+    <div><b>Plotting:</b> each column <span class="tex">(n,\ T)</span> is a point in Quadrant I. A pattern that grows by a constant amount makes points that <b>line up</b> in a straight row.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u5l2">
+    <div><div class="kicker">Your turn</div><b>Assignment 2 — Growing Patterns and Types of Variables</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l3/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 3 — Describing Relationships Between Two Quantities</b><div class="muted">One relation shown four ways: ordered pairs, a table, a mapping diagram and a graph</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u5l2.js';
+  boot({ key: 'u5l2', homeHref: '../../', title: '5.2 Growing Patterns' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

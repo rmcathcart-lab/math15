@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Graphing with Technology · Math 15 5.7</title>
+<meta name="description" content="Math 15 Unit 5 Lesson 7: using a graphing calculator or Desmos. The viewing window as a picture frame (Xmin, Xmax, Ymin, Ymax), fixing a window that hides an intercept, zero, trace, value and table, reading domain and range off the screen, and letting the context decide the domain and range. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u5l7.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 5 Relations and Functions · Lesson 7</div>
+  <h1>Using Technology to Graph and Explore Relations</h1>
+  <p class="lede">A graphing calculator or Desmos draws a graph in a second. But the screen only shows <b>part</b> of the plane: the part inside the <b>viewing window</b>. Today we learn to set that window, fix it when something important is hiding, and read intercepts, domain and range right off the screen.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>explain what <b>Xmin</b>, <b>Xmax</b>, <b>Ymin</b> and <b>Ymax</b> do, and set a viewing window</li>
+      <li>notice when a window hides an intercept, and choose a <b>better window</b></li>
+      <li>use the <b>zero</b>, <b>trace</b>, <b>value</b> or <b>table</b> feature to find intercepts</li>
+      <li>read the <b>domain</b> and <b>range</b> of a line from the screen</li>
+      <li>decide the domain and range that make sense in a <b>real situation</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF5</b> Determine the characteristics of the graphs of linear relations, including the intercepts, slope, domain and range.</div>
+  <div class="outcome"><b>RF2</b> Demonstrate an understanding of relations and functions.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Wrong Window!" id="wu" style="--wf-side: 318px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Wrong Window!</h2>
+  <p class="wf-rule">Four screens, <b>one</b> line: <span class="tex">y=2x-40</span>. The window cards got mixed up!</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l7-wscreens">
+      <div class="u5l7-wcol"><div class="u5l7-wname">Screen A <b class="u5l7-wmatch">Card 2</b></div><div class="u5l7-wscr" data-wscreen="A"></div></div>
+      <div class="u5l7-wcol"><div class="u5l7-wname">Screen B <b class="u5l7-wmatch">Card 3</b></div><div class="u5l7-wscr" data-wscreen="B"></div></div>
+      <div class="u5l7-wcol"><div class="u5l7-wname">Screen C <b class="u5l7-wmatch">Card 1</b></div><div class="u5l7-wscr" data-wscreen="C"></div></div>
+    </div>
+    <div class="u5l7-wcards">
+      <div class="u5l7-wcard"><b class="u5l7-wnum">1</b><div><span class="tex">x</span>: −10 to 30<br><span class="tex">y</span>: −50 to 10</div></div>
+      <div class="u5l7-wcard"><b class="u5l7-wnum">2</b><div><span class="tex">x</span>: −10 to 10<br><span class="tex">y</span>: −200 to 200</div></div>
+      <div class="u5l7-wcard"><b class="u5l7-wnum">3</b><div><span class="tex">x</span>: −100 to 100<br><span class="tex">y</span>: −10 to 10</div></div>
+    </div>
+    <div class="u5l7-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Which screen shows a nearly <b>flat</b> line? Which one looks almost <b>straight up</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l7-wa"><div class="bk-ans">Flat: <b>Screen A</b>. Straight up: <b>Screen B</b>. Same line, same steepness: only the window changed.</div></div></div>
+      <div class="bk-wq" id="wq2"><div class="q-line"><div class="q-num">2</div><div>Match screens A, B, C to cards 1, 2, 3. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l7-wa"><div class="bk-ans"><b>A–2, B–3, C–1.</b> Card 2 stretches <span class="tex">y</span> to ±200, so the line looks flat. Card 3 stretches <span class="tex">x</span> to ±100, so it looks steep. Card 1 is the only one not centred on the origin.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Find the screen for <b>Card 1</b> (grid lines 10 apart). Where does the line cross the <span class="tex">x</span>-axis? The <span class="tex">y</span>-axis? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l7-wa"><div class="bk-ans">Screen C. It crosses the <span class="tex">x</span>-axis at <span class="tex">(20,\ 0)</span> and the <span class="tex">y</span>-axis at <span class="tex">(0,\ -40)</span>. Check: <span class="tex">2(20)-40=0</span> ✓</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u5l7-wD">
+      <div class="u5l7-wname red">Screen D <span class="u5l7-wmsg" id="wDmsg">empty!</span></div>
+      <div class="u5l7-wscr" data-wscreen="D"></div>
+      <div class="u5l7-wcard u5l7-wcardD"><b class="u5l7-wnum">D</b>
+        <div class="u5l7-wsteps">
+          <div class="u5l7-wstep"><span class="tex">x</span>: <button type="button" class="u5l7-sb" data-wd="xmin-">−</button><b data-wv="xmin">−10</b><button type="button" class="u5l7-sb" data-wd="xmin+">+</button> to <button type="button" class="u5l7-sb" data-wd="xmax-">−</button><b data-wv="xmax">10</b><button type="button" class="u5l7-sb" data-wd="xmax+">+</button></div>
+          <div class="u5l7-wstep"><span class="tex">y</span>: <button type="button" class="u5l7-sb" data-wd="ymin-">−</button><b data-wv="ymin">−10</b><button type="button" class="u5l7-sb" data-wd="ymin+">+</button> to <button type="button" class="u5l7-sb" data-wd="ymax-">−</button><b data-wv="ymax">10</b><button type="button" class="u5l7-sb" data-wd="ymax+">+</button></div>
+        </div></div>
+    </div>
+    <div class="poll wf-poll" id="wpoll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Screen D uses the <b>standard</b> window and it’s <b>empty</b>! Where is the line? <b>Guess first:</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Above it</div>
+        <div class="opt right"><b>B</b> Below it</div>
+        <div class="opt"><b>C</b> To the left</div>
+        <div class="opt"><b>D</b> Not there</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: below the screen.</b> From <span class="tex">x=-10</span> to <span class="tex">x=10</span>, <span class="tex">y=2x-40</span> only goes from <span class="tex">-60</span> up to <span class="tex">-20</span>. Every point is below <span class="tex">\text{Ymin}=-10</span>. Nothing is broken: the frame is in the wrong place.</div>
+    </div>
+  </div></div>
+  <p class="u5l7-social"><b>Try it:</b> tap <b>−</b> or <b>+</b> to change just <b>one</b> number on Card D so the line shows up on Screen D. How many different ways can your table find?</p>
+  <div class="bk-wq u5l7-tryans"><button class="pill small" type="button" data-bk-toggle id="tryBtn">Show two ways</button>
+    <div class="bk-ans">Make <b>Ymin = −50</b> (the line shows from <span class="tex">x=-5</span> to <span class="tex">10</span>) or make <b>Xmax = 30</b> (it shows from <span class="tex">x=15</span> to <span class="tex">25</span>). Card 1 does both: that is Screen C.</div></div>
+</section>
+
+<!-- ================= 1. Entering a relation and setting a window ================= -->
+<section class="card" data-ink="s1" data-section="1. Setting a Window">
+  <div class="sec-h"><span class="badge">1</span><h2>Entering a Relation and Setting a Window</h2></div>
+  <div class="def">The <b>viewing window</b> is a <b>picture frame</b> laid over the plane: only the part of the graph <b>inside the frame</b> appears on the screen. Four numbers control it: <b>Xmin</b> and <b>Xmax</b> (the smallest and largest <span class="tex">x</span> shown) and <b>Ymin</b> and <b>Ymax</b> (the smallest and largest <span class="tex">y</span> shown).<div class="eg">The <b>standard window</b> is <span class="tex">x:[-10,\ 10]</span>, <span class="tex">y:[-10,\ 10]</span>. We read <span class="tex">x:[-10,\ 10]</span> as “<span class="tex">x</span> from −10 to 10”.</div></div>
+  <div class="explainer" data-explainer="frame"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. TI-84 or Desmos">
+  <h3 class="sub">Graphing it: a TI-84 or Desmos</h3>
+  <div class="u5l7-how">
+    <div class="u5l7-howc"><div class="u5l7-howh">TI-84</div>
+      <ol><li>Press <span class="keys"><kbd>Y=</kbd></span> and type the right side of the equation. (The equation must start with <span class="tex">y=</span>: solve for <span class="tex">y</span> first.)</li>
+        <li>Press <span class="keys"><kbd>WINDOW</kbd></span> to set Xmin, Xmax, Ymin, Ymax.</li>
+        <li>Press <span class="keys"><kbd>GRAPH</kbd></span>.</li></ol></div>
+    <div class="u5l7-howc u5l7-howd"><div class="u5l7-howh">Desmos</div>
+      <ol><li>Type the equation on an empty line of the expression list.</li>
+        <li>The graph appears at once. Drag to move around; scroll or pinch to zoom.</li>
+        <li>Click the <b>wrench</b> icon to type exact window values.</li></ol>
+      <a class="pill small u5l7-out" href="https://www.desmos.com/calculator" target="_blank" rel="noopener">Open Desmos ↗</a></div>
+  </div>
+  <div class="explainer" data-explainer="keys"></div>
+</section>
+
+<!-- ================= Window Lab: the interactive screen ================= -->
+<section class="card u5l7-labcard" data-ink="lab" data-section="Window Lab">
+  <div class="sec-h"><span class="badge u5l7-labbadge">⌖</span><h2>Window Lab: Move the Frame</h2></div>
+  <p class="u5l7-labp">Pick a relation, then change the window. The <b>left</b> picture is the whole plane with the frame on it; the <b>right</b> picture is the calculator screen: only what is <b>inside the frame</b>. <span class="muted">Drag the frame to slide it. Tap the screen to trace.</span></p>
+  <div class="u5l7-lab" id="lab">
+    <div class="u5l7-lab-top">
+      <div class="u5l7-lab-eqs" id="labEqs"></div>
+      <form class="u5l7-lab-own" id="labOwn"><span class="u5l7-y1">Y₁ =</span><input type="text" id="labInput" inputmode="text" autocomplete="off" spellcheck="false" placeholder="e.g. 3x-15" aria-label="Your own relation"><button type="submit" class="pill small">Graph</button></form>
+    </div>
+    <div class="u5l7-lab-main">
+      <div class="u5l7-lab-left">
+        <div class="u5l7-lab-h">The whole plane <span class="muted">(the frame is the window)</span></div>
+        <div class="u5l7-lab-map" id="labMap" data-tap></div>
+      </div>
+      <div class="u5l7-lab-right">
+        <div class="u5l7-lab-h">The screen <span class="muted" id="labEqLabel"></span></div>
+        <div class="u5l7-lab-scr" id="labScr" data-tap></div>
+        <div class="u5l7-lab-win" id="labWin"></div>
+      </div>
+    </div>
+    <div class="u5l7-lab-bot">
+      <div class="u5l7-lab-btns">
+        <button type="button" class="pill small" data-lab="std">ZStandard</button>
+        <button type="button" class="pill small" data-lab="out">Zoom Out ×4</button>
+        <button type="button" class="pill small" data-lab="in">Zoom In ×4</button>
+        <button type="button" class="pill small u5l7-fitb" data-lab="fit">Fit both intercepts</button>
+        <span class="u5l7-lab-sep"></span>
+        <button type="button" class="pill small" data-lab="zero">2nd CALC zero</button>
+        <button type="button" class="pill small" data-lab="value">value at <span class="tex">x=0</span></button>
+      </div>
+      <div class="u5l7-lab-status" id="labStatus"></div>
+    </div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Reading the standard window</h3></div>
+  <p class="q">Deshawn graphs <span class="tex">y=2x+1</span> and leaves the standard window, <span class="tex">x:[-10,\ 10]</span>, <span class="tex">y:[-10,\ 10]</span>, in place.</p>
+  <div class="u5l7-exrow">
+    <div class="u5l7-exfig"><div class="u5l7-fig" data-fig="ex1"></div><div class="u5l7-figcap"><span class="tex">x:[-10,\ 10]</span>, <span class="tex">y:[-10,\ 10]</span> <span class="muted">· grid lines 2 apart</span></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) State the window shown: <span class="tex">x:[\_\_\_,\ \_\_\_]</span>, <span class="tex">y:[\_\_\_,\ \_\_\_]</span>.</div><div class="work" style="--h:60px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x:[-10,\ 10]</span>, <span class="tex">y:[-10,\ 10]</span>: the <b>standard window</b>. Xmin <span class="tex">=-10</span>, Xmax <span class="tex">=10</span>, Ymin <span class="tex">=-10</span>, Ymax <span class="tex">=10</span>.</div></div></div>
+      <div class="part"><div class="pl">(b) Does this window show the line clearly, with room to spare on every side? Explain.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> The line passes through the middle of the screen, and both intercepts are near the origin, well inside the frame. Nothing important is cut off.</div></div></div>
+      <div class="part"><div class="pl">(c) From the screen, estimate the <span class="tex">x</span>-intercept and the <span class="tex">y</span>-intercept.</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y</span>-intercept <span class="tex">\boldsymbol{(0,\ 1)}</span>. The line crosses the <span class="tex">x</span>-axis halfway between <span class="tex">-1</span> and <span class="tex">0</span>: <span class="tex">x</span>-intercept <span class="tex">\boldsymbol{(-0.5,\ 0)}</span>. <span class="muted">Check: <span class="tex">0=2x+1</span> gives <span class="tex">x=-\tfrac12</span> ✓</span></div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Adjusting the window ================= -->
+<section class="card" data-ink="s2" data-section="2. Adjusting the Window">
+  <div class="sec-h"><span class="badge">2</span><h2>Adjusting the Window When Needed</h2></div>
+  <p>If an intercept or another important part of the graph is missing, change the window. Either <b>type a custom window</b> (<span class="keys"><kbd>WINDOW</kbd></span> on a calculator, the wrench in Desmos) or <b>zoom out</b> (<span class="keys"><kbd>ZOOM</kbd><kbd>3</kbd></span> on a TI-84; scroll or pinch in Desmos).</p>
+  <div class="def amber"><b>Best strategy:</b> work out the intercepts <b>first</b>, then set Xmin, Xmax, Ymin and Ymax a little <b>beyond</b> them, so there is room to spare.</div>
+  <div class="explainer" data-explainer="fixWindow"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>A window that hides the intercept</h3></div>
+  <p class="q">Aisha graphs <span class="tex">y=5x-40</span>. Screen 1 uses the standard window; Screen 2 uses an adjusted window.</p>
+  <div class="u5l7-exrow">
+    <div class="u5l7-exfig"><div class="u5l7-fig" data-fig="ex2a"></div><div class="u5l7-figcap"><b>Screen 1:</b> standard window <span class="muted">· grid 2 apart</span></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) What problem do you notice with Screen 1?</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Almost the whole line is missing. Only a short, steep piece shows on the right side. The <span class="tex">y</span>-intercept is at <span class="tex">y=-40</span>, far below Ymin <span class="tex">=-10</span>, so it <b>cannot be seen at all</b>.</div></div></div>
+      <div class="part"><div class="pl">(b) Determine a better window that shows both intercepts comfortably. State Xmin, Xmax, Ymin, Ymax.</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Intercepts first: <span class="tex">0=5x-40</span> gives <span class="tex">x=8</span>; <span class="tex">x=0</span> gives <span class="tex">y=-40</span>. Then go a little beyond both, e.g. <b>Xmin <span class="tex">=-2</span>, Xmax <span class="tex">=12</span>, Ymin <span class="tex">=-45</span>, Ymax <span class="tex">=10</span></b>. <span class="muted">(Any window holding <span class="tex">(8,\ 0)</span> and <span class="tex">(0,\ -40)</span> with room to spare is fine.)</span></div></div></div>
+    </div>
+  </div>
+  <div class="u5l7-exrow">
+    <div class="u5l7-exfig"><div class="u5l7-fig" data-fig="ex2b"></div><div class="u5l7-figcap"><b>Screen 2:</b> <span class="tex">x:[-2,\ 12]</span>, <span class="tex">y:[-45,\ 10]</span> <span class="muted">· grid 2 and 5</span></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(c) Does Screen 2 show the full shape of the line, including both intercepts, more clearly than Screen 1? Explain.</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> Screen 2 runs from <span class="tex">-2</span> to <span class="tex">12</span> across and from <span class="tex">-45</span> to <span class="tex">10</span> up, so <span class="tex">(8,\ 0)</span> and <span class="tex">(0,\ -40)</span> are both inside the frame with room around them. The relation did <b>not</b> change: only the part of the plane being shown did.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Using technology to find intercepts ================= -->
+<section class="card" data-ink="s3" data-section="3. Finding Intercepts">
+  <div class="sec-h"><span class="badge">3</span><h2>Using Technology to Find Intercepts</h2></div>
+  <p>An <span class="tex">x</span>-intercept is where the graph crosses the <span class="tex">x</span>-axis (<span class="tex">y=0</span>). A <span class="tex">y</span>-intercept is where it crosses the <span class="tex">y</span>-axis (<span class="tex">x=0</span>). The calculator has tools for both:</p>
+  <div class="u5l7-tools">
+    <div><b class="u5l7-tool">zero</b> (or root) finds an <span class="tex">x</span>-intercept exactly. <span class="muted">TI-84: <span class="keys"><kbd>2nd</kbd><kbd>TRACE</kbd></span> → 2: zero</span></div>
+    <div><b class="u5l7-tool">trace</b> moves a cursor along the graph and shows its <span class="tex">(x,\ y)</span>.</div>
+    <div><b class="u5l7-tool">value</b> gives <span class="tex">y</span> at any <span class="tex">x</span> you type: <span class="tex">x=0</span> gives the <span class="tex">y</span>-intercept. <span class="muted">TI-84: <span class="keys"><kbd>2nd</kbd><kbd>TRACE</kbd></span> → 1: value</span></div>
+    <div><b class="u5l7-tool">table</b> lists <span class="tex">(x,\ y)</span> pairs. Look for the row with <span class="tex">y=0</span> and the row with <span class="tex">x=0</span>. <span class="muted">TI-84: <span class="keys"><kbd>2nd</kbd><kbd>GRAPH</kbd></span></span></div>
+  </div>
+  <div class="explainer" data-explainer="tools"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. The table">
+  <h3 class="sub">The table: two rows tell you both intercepts</h3>
+  <p>In a table, the <span class="tex">x</span>-intercept is the row where <span class="tex">y</span> is <b>0</b>, and the <span class="tex">y</span>-intercept is the row where <span class="tex">x</span> is <b>0</b>.</p>
+  <div class="explainer" data-explainer="table"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Trace is close, zero is exact.</b> The trace cursor jumps from pixel to pixel, so it may land near the intercept but not exactly on it (like <span class="tex">x=2.9787</span>). Use <b>zero</b> or <b>value</b> for the exact answer.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Intercepts with the calculator’s tools</h3></div>
+  <p class="q">The screen shows <span class="tex">y=4x-12</span> using the window <span class="tex">x:[-2,\ 8]</span>, <span class="tex">y:[-14,\ 6]</span>.</p>
+  <div class="u5l7-exrow">
+    <div class="u5l7-exfig"><div class="u5l7-fig" data-fig="ex3"></div><div class="u5l7-figcap"><span class="tex">x:[-2,\ 8]</span>, <span class="tex">y:[-14,\ 6]</span> <span class="muted">· grid 2 apart</span></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Use the zero (or trace) feature to determine the <span class="tex">x</span>-intercept.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The zero feature gives <span class="tex">\boldsymbol{x=3}</span>. <span class="muted">Check: <span class="tex">0=4x-12</span>, <span class="tex">4x=12</span>, <span class="tex">x=3</span> ✓</span></div></div></div>
+      <div class="part"><div class="pl">(b) Use the trace, table, or value feature (at <span class="tex">x=0</span>) to determine the <span class="tex">y</span>-intercept.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">At <span class="tex">x=0</span> the value/table feature gives <span class="tex">\boldsymbol{y=-12}</span>. <span class="muted">Check: <span class="tex">y=4(0)-12=-12</span> ✓</span></div></div></div>
+      <div class="part"><div class="pl">(c) Write both intercepts as coordinate pairs.</div><div class="work" style="--h:60px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x</span>-intercept <span class="tex">\boldsymbol{(3,\ 0)}</span> &nbsp; <span class="tex">y</span>-intercept <span class="tex">\boldsymbol{(0,\ -12)}</span></div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l7"></section>
+
+<!-- ================= 4. Domain and range off the screen ================= -->
+<section class="card" data-ink="s4" data-section="4. Domain and Range">
+  <div class="sec-h"><span class="badge">4</span><h2>Reading Domain and Range Off the Screen</h2></div>
+  <p><b>Domain</b> is the set of <span class="tex">x</span>-values: scan the graph <b>left to right</b>. <b>Range</b> is the set of <span class="tex">y</span>-values: scan it <b>bottom to top</b>.</p>
+  <div class="u5l7-rules">
+    <div class="u5l7-rule"><div class="u5l7-rh">Runs off the edge</div>The graph keeps going forever in that direction, past the window.</div>
+    <div class="u5l7-rule u5l7-rule2"><div class="u5l7-rh">Stops or turns around</div>You can see an end: the domain or range is <b>limited</b>.</div>
+  </div>
+  <div class="def">A straight, <b>slanted</b> line runs off the screen at <b>both ends</b>, however far you zoom out. So its domain <b>and</b> its range are both <b>all real numbers</b>: <span class="tex">x\in R</span> and <span class="tex">y\in R</span>.</div>
+  <div class="explainer" data-explainer="offEdges"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Domain and range of a line on the screen</h3></div>
+  <p class="q">The screen shows <span class="tex">y=-3x+6</span> using the standard window, <span class="tex">x:[-10,\ 10]</span>, <span class="tex">y:[-10,\ 10]</span>.</p>
+  <div class="u5l7-exrow">
+    <div class="u5l7-exfig"><div class="u5l7-fig" data-fig="ex4"></div><div class="u5l7-figcap"><span class="tex">x:[-10,\ 10]</span>, <span class="tex">y:[-10,\ 10]</span> <span class="muted">· grid 2 apart</span></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Does the line stop anywhere inside the screen, or does it run off the edges of the window in both directions?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">It <b>never stops</b>. It leaves the screen through the <b>top</b> edge and the <b>bottom</b> edge. There are no endpoints, so the line keeps going forever in both directions.</div></div></div>
+      <div class="part"><div class="pl">(b) State the domain of this relation.</div><div class="work" style="--h:60px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>All real numbers</b> (<span class="tex">x\in R</span>). Every <span class="tex">x</span>-value has a point on the line.</div></div></div>
+      <div class="part"><div class="pl">(c) State the range of this relation.</div><div class="work" style="--h:60px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>All real numbers</b> (<span class="tex">y\in R</span>). The line is slanted, so it reaches every height eventually.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= 5. A real-world relation ================= -->
+<section class="card" data-ink="s5" data-section="5. A Real-World Relation">
+  <div class="sec-h"><span class="badge">5</span><h2>A Real-World Relation Explored with Technology</h2></div>
+  <p>When a relation models a real situation, not every input is allowed: you can’t order a <b>negative</b> number of items. Technology draws the graph and finds the intercepts, but the <b>context</b> decides the domain and range.</p>
+  <div class="u5l7-rules">
+    <div class="u5l7-rule u5l7-rule3"><div class="u5l7-rh">Counting things</div>Only <b>whole numbers</b> make sense (items ordered, people, tickets): the graph is really just <b>dots</b>.</div>
+    <div class="u5l7-rule u5l7-rule4"><div class="u5l7-rh">Measuring things</div>Any value <b>in between</b> makes sense too (hours, kilometres, litres): the graph is a <b>solid</b> line or ray.</div>
+  </div>
+  <div class="explainer" data-explainer="context"></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>No graphing calculator? The scientific calculator works too.</b> Cost of 6 candles: <span class="keys"><kbd>5</kbd><kbd>+</kbd><kbd>2</kbd><kbd>×</kbd><kbd>6</kbd><kbd>=</kbd></span> gives 17. Candles for $23: undo the steps, <span class="keys"><kbd>(</kbd><kbd>2</kbd><kbd>3</kbd><kbd>−</kbd><kbd>5</kbd><kbd>)</kbd><kbd>÷</kbd><kbd>2</kbd><kbd>=</kbd></span> gives 9.</div>
+    <div class="pill-col"><button class="pill" data-keys="5 + 2 × 6 =">Show cost</button><button class="pill" data-keys="( 23 − 5 ) ÷ 2 =">Show candles</button></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Candles for sale</h3></div>
+  <p class="q">An online store charges a $5 flat shipping fee plus $2 per candle, so the total cost <span class="tex">C</span> of <span class="tex">n</span> candles is <span class="tex">C=5+2n</span>. The window is <span class="tex">x:[0,\ 12]</span>, <span class="tex">y:[0,\ 30]</span>; red dots mark whole-number <span class="tex">n</span>.</p>
+  <div class="u5l7-exrow">
+    <div class="u5l7-exfig"><div class="u5l7-fig" data-fig="ex5"></div><div class="u5l7-figcap"><span class="tex">x:[0,\ 12]</span>, <span class="tex">y:[0,\ 30]</span> <span class="muted">· grid 2 and 5</span></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Use the trace, table, or value feature to determine the <span class="tex">C</span>-intercept (the cost when <span class="tex">n=0</span>). What does it represent here?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">At <span class="tex">n=0</span>: <span class="tex">C=5+2(0)=\boldsymbol{5}</span>, so the intercept is <span class="tex">(0,\ 5)</span>. It is the <b>$5 flat shipping fee</b>: the charge before any candles are added.</div></div></div>
+      <div class="part"><div class="pl">(b) Algebraically determine the <span class="tex">n</span>-intercept. Does this value make sense as a number of candles? Explain.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">0=5+2n</span>, <span class="tex">2n=-5</span>, <span class="tex">n=\boldsymbol{-2.5}</span>. <b>No.</b> You can’t order <span class="tex">-2.5</span> candles, and the cost is never $0 because of the shipping fee. The <span class="tex">n</span>-intercept belongs to the equation, not to the real situation.</div></div></div>
+    </div>
+  </div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(c) Use technology to determine the cost of ordering <span class="tex">6</span> candles.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Value or table at <span class="tex">n=6</span>: <span class="tex">C=5+2(6)=5+12=\boldsymbol{17}</span>. The cost is <b>$17</b>.</div></div></div>
+    <div class="part"><div class="pl">(d) Use technology (or algebra) to determine how many candles were ordered if the total cost was $23.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Trace along to <span class="tex">C=23</span>, or solve: <span class="tex">23=5+2n</span>, <span class="tex">18=2n</span>, <span class="tex">n=\boldsymbol{9}</span>. <b>9 candles.</b></div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">(e) State an appropriate domain and range for this relation, given the context.</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">You can only order a <b>whole</b> number of candles, never a negative number, so the graph is really just the red dots.<br><b>Domain:</b> <span class="tex">n=0,\ 1,\ 2,\ 3,\ \dots</span> (whole numbers; up to <span class="tex">12</span> on this screen). &nbsp; <b>Range:</b> the matching costs <span class="tex">C=5,\ 7,\ 9,\ 11,\ \dots</span> ($5 plus $2 for each candle; up to $29 on this screen).</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>The window is a frame.</b> Xmin, Xmax, Ymin, Ymax decide which part of the plane shows. Standard: <span class="tex">x:[-10,\ 10]</span>, <span class="tex">y:[-10,\ 10]</span>. Changing the window never changes the relation.</div>
+    <div><b>Fix a bad window:</b> find the intercepts first, then set the window a little beyond them. <span class="tex">y=5x-40</span>: <span class="tex">(8,\ 0)</span> and <span class="tex">(0,\ -40)</span>, so <span class="tex">x:[-2,\ 12]</span>, <span class="tex">y:[-45,\ 10]</span>.</div>
+    <div><b>Tools:</b> <b>zero</b> finds the <span class="tex">x</span>-intercept; <b>value</b> or <b>table</b> at <span class="tex">x=0</span> gives the <span class="tex">y</span>-intercept. <b>Trace</b> is close but not always exact.</div>
+    <div><b>Domain and range:</b> a slanted line runs off both edges: <b>all real numbers</b> for both. In a real situation the <b>context</b> decides: whole numbers only for things you count.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u5l7">
+    <div><div class="kicker">Your turn</div><b>Assignment 7 — Using Technology to Graph and Explore Relations</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l8/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 8 — Introducing Functions: The Vertical Line Test</b><div class="muted">A function gives each input exactly one output, and a vertical line can check a whole graph in one sweep.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u5l7.js';
+  boot({ key: 'u5l7', homeHref: '../../', title: '5.7 Graphing with Technology' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+/* Math 15 · Unit 5 · Lesson 4 — Where Graphs Meet the Axes: x- and y-Intercepts.
+ * Colour code: x-intercepts red, y-intercepts blue. */
+.u5l4 { --u5l4-x: #c93a33; --u5l4-y: #1f5bd6; --u5l4-xs: #fde3e0; --u5l4-ys: #e3ecfd; }
+.u5l4-xt { color: var(--u5l4-x); }
+.u5l4-yt { color: var(--u5l4-y); }
+.u5l4 .pill-col { display: flex; flex-direction: column; gap: 8px; }
+[data-show] { opacity: 0; transition: opacity .35s; }
+[data-show].u5l4-on { opacity: 1; }
+
+/* ---------------- warm-up ---------------- */
+.u5l4-wtop { display: flex; gap: 16px; align-items: flex-start; }
+.u5l4-phones { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1; }
+.u5l4-phone { display: flex; align-items: center; gap: 10px; width: 100%; }
+.u5l4-ph-scr { width: 62px; height: 104px; border-radius: 12px; background: #1e2d46; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex: none; }
+.u5l4-ph-scr b { font: 800 15px var(--round); color: #fff; }
+.u5l4-ph-bat { position: relative; width: 38px; height: 18px; border: 2.5px solid #fff; border-radius: 4px; }
+.u5l4-ph-bat::after { content: ""; position: absolute; right: -6px; top: 4px; width: 3px; height: 6px; background: #fff; border-radius: 0 2px 2px 0; }
+.u5l4-ph-bat i { position: absolute; left: 1px; top: 1px; bottom: 1px; width: 80%; max-width: calc(100% - 2px); background: #3ca05a; border-radius: 2px; }
+.u5l4-phone.low .u5l4-ph-bat i { background: #e8a01e; }
+.u5l4-phone.dead .u5l4-ph-scr { background: #6a7182; }
+.u5l4-phone.dead .u5l4-ph-scr b { color: #ffb3ad; }
+.u5l4-ph-lab { font: 800 19px/1.15 var(--round); display: flex; flex-direction: column; }
+.u5l4-ph-lab small { font-size: 15px; font-weight: 600; color: var(--muted); }
+.u5l4-ph-lab em { font-style: normal; font-size: 15px; color: var(--red); }
+.u5l4-ph-j .u5l4-ph-lab { color: #12805a; }
+.u5l4-clock { font: 800 24px var(--round); color: var(--brand); }
+.u5l4-wlab { font: 800 16px var(--round); background: rgba(255, 255, 255, .9); border-radius: 6px; padding: 0 4px; white-space: nowrap; }
+.u5l4-wqs .q-line { margin: 10px 0 2px; }
+.u5l4-wa { margin-left: 50px; }
+.u5l4-blank { display: inline-block; min-width: 36px; text-align: center; color: var(--red); }
+.u5l4-social { margin: 14px 0 0; font-size: 19px; font-style: italic; color: var(--ink2); text-align: center; }
+
+/* ---------------- notes ---------------- */
+.u5l4-s1row { display: flex; gap: 24px; align-items: center; margin-bottom: 10px; }
+.u5l4-s1row > div:last-child { flex: 1; }
+.u5l4-forms { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 6px 0 12px; }
+.u5l4-form { border-radius: 14px; padding: 10px 14px; text-align: center; }
+.u5l4-fx { background: var(--u5l4-xs); border: 2px solid var(--u5l4-x); }
+.u5l4-fy { background: var(--u5l4-ys); border: 2px solid var(--u5l4-y); }
+.u5l4-fh { font: 800 18px var(--round); }
+.u5l4-fx .u5l4-fh { color: var(--u5l4-x); } .u5l4-fy .u5l4-fh { color: var(--u5l4-y); }
+.u5l4-fb { font-size: 34px; margin: 2px 0; }
+.u5l4-fb2 { font: 800 26px var(--round); margin: 2px 0; }
+.u5l4-ff { font-size: 18px; color: var(--ink2); }
+.u5l4-method { font-size: 19px; text-align: center; margin: 4px 0 14px; }
+.u5l4-excols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.u5l4-excol { display: flex; flex-direction: column; gap: 8px; }
+.u5l4-exh { font: 800 17px var(--round); color: var(--brand); text-transform: uppercase; letter-spacing: .05em; }
+.u5l4-fig { display: flex; justify-content: center; }
+.u5l4-tfig { margin: 30px 0 30px; }
+.u5l4-tfig .bk-td { position: relative; }
+.u5l4-ring { position: absolute; inset: 4px; border: 3px solid var(--red); border-radius: 10px; pointer-events: none; }
+.u5l4-ring-y { border-color: var(--red); }
+.u5l4-ex5 { display: grid; grid-template-columns: 410px 1fr; gap: 14px; align-items: start; }
+
+/* ================= explainers ================= */
+.u5l4-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+.u5l4-ph { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.u5l4-line { font-size: 20px; line-height: 1.35; display: block; }
+.u5l4-big { font-size: 23px; }
+.u5l4-notes { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.u5l4-notes2 .u5l4-line { font-size: 21px; }
+.u5l4-cx { color: var(--u5l4-x); }
+.u5l4-cy { color: var(--u5l4-y); }
+.u5l4-ro { display: flex; align-items: baseline; justify-content: center; gap: 6px; font: 700 50px/1.1 "KaTeX_Main", "Times New Roman", serif; background: #fbfaf6; border-radius: 12px; padding: 10px 0; }
+.u5l4-ro b { display: inline-block; min-width: 86px; text-align: center; font-weight: 700; border-radius: 10px; transition: background .3s, color .3s; }
+.u5l4-ro b.hot { background: #fff1c9; color: var(--red); box-shadow: 0 0 0 3px #e8a01e; }
+.u5l4-numtag { font: 800 22px var(--round); background: rgba(255, 255, 255, .92); border-radius: 8px; padding: 0 6px; box-shadow: 0 0 0 2px currentColor; }
+.u5l4-tab .bk-th, .u5l4-tab .bk-td { font-size: 22px; }
+.u5l4-tab .bk-td.u5l4-zero { background: #fff1c9; box-shadow: inset 0 0 0 3px #e8a01e; }
+
+/* story objects */
+.u5l4-obj { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; background: #fbfaf6; border-radius: 16px; border: 1.5px solid var(--line); }
+.u5l4-card { width: 170px; height: 108px; border-radius: 12px; background: linear-gradient(135deg, #2b55a0, #7b4fc4); color: #fff; padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 12px rgba(20, 24, 33, .2); transition: filter .3s; }
+.u5l4-card-h { font: 800 13px var(--round); letter-spacing: .1em; }
+.u5l4-card-v { font: 800 34px var(--round); }
+.u5l4-card-c { display: flex; gap: 6px; } .u5l4-card-c i { width: 26px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .5); }
+.u5l4-obj.zero .u5l4-card { filter: grayscale(1); }
+.u5l4-obj.zero .u5l4-card-v { color: #ffb3ad; }
+.u5l4-bigph { width: 110px; height: 180px; border-radius: 18px; background: #1e2d46; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+.u5l4-bigph .u5l4-ph-bat { width: 58px; height: 26px; }
+.u5l4-bigph .u5l4-ph-bat::after { top: 7px; height: 8px; }
+.u5l4-bigph .u5l4-card-v { font-size: 26px; }
+.u5l4-obj.zero .u5l4-bigph { background: #6a7182; }
+.u5l4-obj-t { font: 700 19px var(--round); color: var(--ink2); }
