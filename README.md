@@ -40,6 +40,8 @@ Homework practice for every Math 15 lesson, built from the course booklets. Ever
 
 | Path | What it is |
 |---|---|
+| `js/ns.js` | **First script on every page.** Keeps this site's browser storage under an `m15/` prefix, because the Math 10C site shares the same web address (otherwise the two Teacher Ledgers sign each other out and lesson ink leaks between courses) |
+| `js/courses.js` | The course switcher list (click the badge in the Teacher Ledger's corner). Keep it identical in every course's repo |
 | `js/core.js` | Seeded random numbers, number theory, answer parsing, KaTeX helpers |
 | `js/kit.js` | Shared checkers with error diagnoses, and the lesson registry |
 | `js/lessons/u1l*.js`, `u2l*.js` | Units 1 and 2: every assignment question plus the extra practice |
