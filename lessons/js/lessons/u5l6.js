@@ -178,7 +178,7 @@ function collectDef(title, keys, sep) {
           run: async (c) => { await strike(c, xTok.els); await fadeIn(c, pline(P, `<b>Domain</b> ${dLine}`, 'dom u5l6-ans')); } },
         { cap: `<b>Outputs</b>: read ${whereY}.`,
           run: async (c) => { yTok = tokenRow(P, 'outputs', ys, 'ran'); for (let i = 0; i < pts.length; i++) { hiY(i); await pop(c, yTok.els[i], 280); await sleep(c, 110); } } },
-        { cap: (ry ? `Once each: ${ry}, so ${ry.includes(' and ') ? 'each is' : 'it is'} written once.` : 'Once each: no value repeats here.') + ` Tidy habit: smallest to largest.`,
+        { cap: (ry ? `Once each: ${ry}, so ${ry.includes(' and ') ? 'each is' : 'it is'} written once.` : 'Once each: no value repeats here.') + ` List them smallest to largest: repeats are easy to spot.`,
           run: async (c) => { await strike(c, yTok.els); await fadeIn(c, pline(P, `<b>Range</b> ${rLine}`, 'ran u5l6-ans')); } }
       ];
     }
@@ -259,7 +259,7 @@ const setNote = {
           await appear(c, B.wrap, 300);
           await fadeIn(c, eq);
         } },
-        { cap: `We still sort, because a sorted set is <b>tidy</b> and easy to check. A repeat adds nothing: ${T('\\{2,\\ 2,\\ 3,\\ 3,\\ 3\\}')} is just ${T('\\{2,\\ 3\\}')}.`,
+        { cap: `List the values <b>smallest to largest</b>: it makes repeats easy to spot. A repeat adds nothing: ${T('\\{2,\\ 2,\\ 3,\\ 3,\\ 3\\}')} is just ${T('\\{2,\\ 3\\}')}.`,
         run: async (c) => {
           await appear(c, C.wrap, 300);
           const dups = C.toks.filter((t, i) => i === 1 || i >= 3);
@@ -272,12 +272,24 @@ const setNote = {
 
 /* ======================= Section 4: a list or an inequality? ======================= */
 const RY = {
+  up: { name: 'Section 4’s ray', a: [2, 1], b: [4, 4], D: ['x', '\\ge', 2], R: ['y', '\\ge', 1],
+    c1: `A <b>ray</b>: it starts at the solid point ${T('(2,1)')} and the <b>arrow</b> says it rises up and to the right <b>forever</b>.`,
+    cl: `Try to list the ${T('x')}-values: ${T('2,\\ 3,\\ 4,\\ \\dots')} and also ${T('2.5')}, ${T('9.75')}, ${T('1000')} … The list <b>never ends</b>.`,
+    cd: `The floor shadow starts at ${T('2')} and runs <b>right forever</b>. Every ${T('x')} is ${T('2')} or <b>greater</b>.`,
+    cr: `The wall shadow starts at ${T('1')} and runs <b>up forever</b>. Every ${T('y')}-value is ${T('1')} or <b>greater</b>.`,
+    tokens: ['2', '3', '4', '2.5', '9.75', '1000'] },
   left: { name: 'A ray going left', a: [2, -1], b: [0, 2], D: ['x', '\\le', 2], R: ['y', '\\ge', -1],
     c1: `A <b>ray</b>: it starts at the solid point ${T('(2,-1)')} and the <b>arrow</b> says it goes up and to the left <b>forever</b>.`,
     cl: `Try to list the ${T('x')}-values: ${T('2,\\ 1,\\ 0,\\ -1,\\ \\dots')} and also ${T('1.5')}, ${T('-0.25')}, ${T('-1000')} … The list <b>never ends</b>.`,
     cd: `The floor shadow starts at ${T('2')} and runs <b>left forever</b>. Every ${T('x')} is ${T('2')} or <b>less</b>.`,
     cr: `The wall shadow starts at ${T('-1')} and runs <b>up forever</b>. Every ${T('y')} is ${T('-1')} or <b>greater</b>.`,
     tokens: ['2', '1', '0', '-1', '1.5', '-0.25', '-1000'] },
+  seg: { name: 'Solid dots at both ends', seg: true, a: [-3, -1], b: [4, 3], D: ['-3\\le x\\le 4'], R: ['-1\\le y\\le 3'],
+    c1: `A continuous piece with <b>solid dots at both ends</b>: from ${T('(-3,-1)')} to ${T('(4,3)')}. No arrows, so it stops at the dots.`,
+    cl: `Try to list the ${T('x')}-values: ${T('-3,\\ -2,\\ \\dots,\\ 4')} and also ${T('0.5')}, ${T('-2.9')}, ${T('3.99')} … The line has no gaps, so the list <b>never ends</b>.`,
+    cd: `The floor shadow runs from ${T('-3')} to ${T('4')}. “${T('x')} from ${T('-3')} to ${T('4')}” (Lesson 5) is the inequality ${T('-3\\le x\\le 4')}.`,
+    cr: `The wall shadow runs from ${T('-1')} to ${T('3')}:`,
+    tokens: ['-3', '-2', '-1', '0.5', '-2.9', '3.99'] },
   e3c: { name: 'Example 3(c)', a: [0, 0], b: [2, 3], D: ['x', '\\ge', 0], R: ['y', '\\ge', 0], ex: true,
     c1: `Example 3(c): a ray starts at ${T('(0,0)')} and rises <b>forever</b> up and to the right.`,
     cl: `Try to list the ${T('x')}-values: ${T('0,\\ 1,\\ 2,\\ 3,\\ \\dots')} and also ${T('0.5')}, ${T('2.7')}, ${T('1000')} … The list <b>never ends</b>.`,
@@ -285,21 +297,25 @@ const RY = {
     cr: `The wall shadow starts at ${T('0')} and runs <b>up forever</b>. Every ${T('y')} is ${T('0')} or <b>greater</b>.`,
     tokens: ['0', '1', '2', '3', '0.5', '2.7', '1000'] }
 };
-const ineqT = (I) => `${I[0]}${I[1]} ${nT(I[2])}`;
+const ineqT = (I) => (I.length === 1 ? I[0] : `${I[0]}${I[1]} ${nT(I[2])}`);
 const listOrIneq = {
   title: 'When a list is impossible: an inequality',
   height: 470,
   minW: 940,
-  choices: [{ v: 'left', label: 'A ray going left' }, { sep: 'Check:' }, { v: 'e3c', label: 'Example 3(c)' }],
-  intro: (k) => (RY[k].ex ? 'Example 3(c): a ray with an arrow. Press <b>Next</b>.' : 'A graph with an <b>arrow</b>. Can we list its values? Press <b>Next</b>.'),
+  choices: [{ v: 'up', label: 'Section 4’s ray' }, { v: 'left', label: 'A ray going left' }, { v: 'seg', label: 'Solid dots at both ends' }, { sep: 'Check:' }, { v: 'e3c', label: 'Example 3(c)' }],
+  intro: (k) => (RY[k].ex ? 'Example 3(c): a ray with an arrow. Press <b>Next</b>.' : RY[k].seg ? 'An unbroken piece with two solid end dots. Can we list its values? Press <b>Next</b>.' : 'A graph with an <b>arrow</b>. Can we list its values? Press <b>Next</b>.'),
   make(stage, k, ex) {
     const d = RY[k], G = new Graph(stage, { x: 14, y: 14, width: 440, height: 440, xmin: -6, xmax: 6, ymin: -6, ymax: 6 });
     const P = panel(stage, 474, 14, ex.W - 488, 440, 'Write it down');
     const dirX = d.b[0] > d.a[0] ? 1 : -1;
+    const ptLab = (p, pos) => G.label(p[0], p[1], T(pairTex(p[0], p[1])), { pos, cls: 'bk-ptlab' });
     let toks;
     return [
       { cap: d.c1,
-        run: async (c) => { await G.drawIn(G.ray(d.a, d.b, { start: 'closed' }), 1000, c); await G.reveal(G.label(d.a[0], d.a[1], T(pairTex(d.a[0], d.a[1])), { pos: dirX > 0 ? 'nw' : 'e', cls: 'bk-ptlab' }), c); } },
+        run: async (c) => {
+          if (d.seg) { await G.drawIn(G.segment(d.a, d.b, { ends: ['closed', 'closed'] }), 1000, c); await G.reveal(ptLab(d.a, 'w'), c); await G.reveal(ptLab(d.b, 'e'), c); return; }
+          await G.drawIn(G.ray(d.a, d.b, { start: 'closed' }), 1000, c); await G.reveal(ptLab(d.a, dirX > 0 ? 'nw' : 'e'), c);
+        } },
       { cap: d.cl,
         run: async (c) => {
           toks = pline(P, '<span class="u5l6-tl">x-values</span>', 'u5l6-toks dom');
@@ -309,21 +325,22 @@ const listOrIneq = {
         } },
       { cap: d.cd + ` So write the domain as an <b>inequality</b>: ${T(ineqT(d.D))}.`,
         run: async (c) => {
-          const sh = G.shadeX(dirX > 0 ? d.a[0] : -Infinity, dirX > 0 ? Infinity : d.a[0], { band: true }); await G.drawIn(sh, 800, c);
+          const sh = d.seg ? G.shadeX(d.a[0], d.b[0], { band: true }) : G.shadeX(dirX > 0 ? d.a[0] : -Infinity, dirX > 0 ? Infinity : d.a[0], { band: true }); await G.drawIn(sh, 800, c);
           await fadeIn(c, pline(P, `<b>Domain</b> ${T('D:\\ ' + ineqT(d.D))}`, 'dom u5l6-ans'));
-          await fadeIn(c, pline(P, `${T(d.D[1])} means “${d.D[1] === '\\ge' ? 'greater than' : 'less than'} <b>or equal to</b>”: ${T(nT(d.D[2]))} itself is included (solid dot).`, 'u5l6-small'));
+          await fadeIn(c, pline(P, d.seg ? `Read ${T('\\le')} as “is less than <b>or equal to</b>”: ${T('-3')} and ${T('4')} themselves are included (solid dots).`
+            : `Read ${T(d.D[1])} as “is ${d.D[1] === '\\ge' ? 'greater than' : 'less than'} <b>or equal to</b>”: ${T(nT(d.D[2]))} itself is included (solid dot).`, 'u5l6-small'));
         } },
       { cap: d.cr + ` ${T('R:\\ ' + ineqT(d.R))}.`,
-        run: async (c) => { await G.drawIn(G.shadeY(d.a[1], Infinity, { band: true }), 800, c); await fadeIn(c, pline(P, `<b>Range</b> ${T('R:\\ ' + ineqT(d.R))}`, 'ran u5l6-ans')); } }
+        run: async (c) => { await G.drawIn(d.seg ? G.shadeY(d.a[1], d.b[1], { band: true }) : G.shadeY(d.a[1], Infinity, { band: true }), 800, c); await fadeIn(c, pline(P, `<b>Range</b> ${T('R:\\ ' + ineqT(d.R))}`, 'ran u5l6-ans')); } }
     ];
   }
 };
 
 /* ======================= Section 5: a real situation limits the domain ======================= */
 const RL = {
-  e5: { name: 'Example 5', pts: E5, rate: 12, max: 10, v: ['h', 'E'], win: { xmin: 0, xmax: 13, ymin: 0, ymax: 160, xstep: 1, ystep: 10, ylabels: 20, xlabels: 1 }, out: [12, 144], ex: true,
+  e5: { name: 'Example 5', pts: E5, rate: 12, max: 10, v: ['h', 'E'], win: { xmin: 0, xmax: 13, ymin: 0, ymax: 160, xstep: 1, ystep: 10, ylabels: 20, xlabels: 1 }, out: [12, 144], ex: true, ask: 'Could Deshawn earn $144 in one week?',
     who: 'Deshawn earns $12 per hour and may work <b>at most 10 hours</b> a week.', unit: ['hours', 'dollars'] },
-  tix: { name: 'Movie tickets', pts: [[1, 9], [2, 18], [3, 27], [4, 36]], rate: 9, max: 4, v: ['n', 'C'], win: { xmin: 0, xmax: 6, ymin: 0, ymax: 50, xstep: 1, ystep: 5, ylabels: 10 }, out: [5, 45],
+  tix: { name: 'Movie tickets', pts: [[1, 9], [2, 18], [3, 27], [4, 36]], rate: 9, max: 4, v: ['n', 'C'], win: { xmin: 0, xmax: 6, ymin: 0, ymax: 50, xstep: 1, ystep: 5, ylabels: 10 }, out: [5, 45], ask: 'Could one person spend $45 on tickets?',
     who: 'Movie tickets cost $9 each, with a limit of <b>4 tickets</b> per person.', unit: ['tickets', 'dollars'] }
 };
 const real = {
@@ -351,10 +368,10 @@ const real = {
           const vl = G.vline(d.max, { color: 'red', width: 2.5 }); await G.drawIn(vl, 500, c);
           await fadeIn(c, G.label((d.max + d.win.xmax) / 2, d.win.ymax * 0.45, `not<br>allowed`, { cls: 'u5l6-nolab' }));
         } },
-      { cap: `What about ${T(pairTex(ox, oy))}? The arithmetic fits, ${T(`${ox}\\times ${d.rate}=${oy}`)}, but ${T(u + '=' + ox)} is <b>outside the domain</b>. So it is <b>not</b> part of this relation.`,
+      { cap: `${d.ask} It would take ${T(`${oy}\\div ${d.rate}=${ox}`)} ${d.unit[0]}, but ${T(u)} can’t be more than ${T(nT(d.max))}. So <b>no</b>: the most is ${T(`${d.max}\\times\\$${d.rate}=\\$${d.max * d.rate}`)}.`,
         run: async (c) => {
           const g = G.point(ox, oy, { color: 'red', r: 7, open: true, label: T(pairTex(ox, oy)) + ' ✗', pos: 'nw' }); await G.reveal(g, c);
-          await fadeIn(c, pline(P, `${T(pairTex(ox, oy))} is <b>not</b> in the relation ✗<br><span class="u5l6-small">${T(u + '=' + ox)} is not in the domain.</span>`, 'u5l6-note bad'));
+          await fadeIn(c, pline(P, `${T('\\$' + oy)} would need ${T(u + '=' + ox)} ✗<br><span class="u5l6-small">${T(u + '=' + ox)} is not in the domain, so the most is ${T('\\$' + d.max * d.rate)}.</span>`, 'u5l6-note bad'));
         } }
     ];
   }

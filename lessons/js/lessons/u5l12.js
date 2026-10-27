@@ -113,7 +113,7 @@ function mountStatic() {
   const an10 = document.getElementById('ex10b-ans');
   if (an10) { const G = storyGraph(an10, { width: 330, height: 210, xmin: 0, xmax: 10.6, ymin: 0, ymax: 10.4, grid: false, xt: 'time', yt: 'temperature', pad: [10, 18, 34, 44] }); G.fn(COFFEE, { from: 0.3, to: 10, color: SKETCH, width: 4, arrows: false, samples: 120 }); G.hline(2, { color: 'gray', width: 2 }); G.label(7.6, 2, 'room temperature', { pos: 'n', cls: 'u5l12-note' }); }
   const c2 = document.getElementById('ch2-graph');
-  if (c2) { const G = new Graph(c2, CH2WIN({ width: 340, height: 380 })); G.fn(PARAB, { from: -2.2, to: 4.2, arrows: false, color: 'blue', width: 3.5 }); }
+  if (c2) { const G = new Graph(c2, CH2WIN({ width: 340, height: 380 })); G.fn(PARAB, { from: -2, to: 4, arrows: false, color: 'blue', width: 3.5 }); [-2, 4].forEach((x) => G.point(x, 0, { color: 'blue', r: 6 })); }
 }
 
 /* =============================== explainer: Relation Bingo =============================== */
@@ -302,7 +302,7 @@ const intercepts = {
     const G = new Graph(stage, CH2WIN({ x: 8, y: 26, width: 420, height: 432 }));
     const P = panel(stage, 446, 4, ex.W - 456, 452, `the rule: ${T('y=-x^2+2x+8')}`);
     return [
-      { cap: 'The curve from Challenge 2.', run: (c) => G.drawIn(G.fn(PARAB, { from: -2.2, to: 4.2, arrows: false, color: 'blue', width: 3.5 }), 900, c) },
+      { cap: 'The curve from Challenge 2, from the solid dot at x = −2 to the solid dot at x = 4.', run: async (c) => { await G.drawIn(G.fn(PARAB, { from: -2, to: 4, arrows: false, color: 'blue', width: 3.5 }), 900, c); [-2, 4].forEach((x) => G.point(x, 0, { color: 'blue', r: 6 })); } },
       { cap: `<b>${T('y')}-intercept:</b> where it crosses the ${T('y')}-axis: ${T('(0,\\ 8)')}. Check: put ${T('x=0')} in the rule.`,
         run: async (c) => { await G.reveal(G.point(0, 8, { color: PUR, r: 8, label: T('(0,\\ 8)'), pos: 'nw' }), c); await say(c, P, `${T('x=0')}: ${T('y=-0+0+8=8')} ✓`, 'ran'); } },
       { cap: `<b>${T('x')}-intercepts:</b> it crosses the ${T('x')}-axis <b>twice</b>, at ${T('(-2,\\ 0)')} and ${T('(4,\\ 0)')}.`,
@@ -337,20 +337,20 @@ const shadow = {
     const seg = k === 'a';
     const G = seg ? new Graph(stage, { x: 8, y: 26, width: 440, height: 432, xmin: -7, xmax: 5, ymin: -5, ymax: 8, xlabels: 1, ylabels: 1, fontSize: 14 }) : new Graph(stage, CH2WIN({ x: 8, y: 26, width: 420, height: 432 }));
     const P = panel(stage, seg ? 466 : 446, 4, ex.W - (seg ? 476 : 456), 452, 'write it down');
-    const dx = seg ? [-5, 3] : [-2.2, 4.2], dy = seg ? [-3, 6] : [PARAB(-2.2), 9];
+    const dx = seg ? [-5, 3] : [-2, 4], dy = seg ? [-3, 6] : [0, 9];
     let sx;
     return [
-      { cap: seg ? `A line segment from ${T('(-5,\\ -3)')} to ${T('(3,\\ 6)')}, closed dots at both ends.` : 'The curve from Challenge 2, drawn from about −2.2 to about 4.2, with its peak at (1, 9).',
+      { cap: seg ? `A line segment from ${T('(-5,\\ -3)')} to ${T('(3,\\ 6)')}, closed dots at both ends.` : 'The curve from Challenge 2: from the solid dot at (−2, 0) to the solid dot at (4, 0), with its peak at (1, 9).',
         run: async (c) => {
           if (seg) { await G.drawIn(G.segment([-5, -3], [3, 6], { closedA: true, closedB: true, color: 'blue', width: 3.5 }), 900, c); await G.reveal(G.point(-5, -3, { color: 'blue', label: T('(-5,\\ -3)'), pos: 'se' }), c); await G.reveal(G.point(3, 6, { color: 'blue', label: T('(3,\\ 6)'), pos: 'w' }), c); }
-          else { await G.drawIn(G.fn(PARAB, { from: -2.2, to: 4.2, arrows: false, color: 'blue', width: 3.5 }), 900, c); await G.reveal(G.point(1, 9, { color: 'blue', label: T('(1,\\ 9)'), pos: 'ne' }), c); }
+          else { await G.drawIn(G.fn(PARAB, { from: -2, to: 4, arrows: false, color: 'blue', width: 3.5 }), 900, c); for (const x of [-2, 4]) await G.reveal(G.point(x, 0, { color: 'blue', r: 6, label: T(`(${x},\\ 0)`), pos: x < 0 ? 'nw' : 'ne' }), c, 200); await G.reveal(G.point(1, 9, { color: 'blue', label: T('(1,\\ 9)'), pos: 'ne' }), c); }
         } },
-      { cap: `<b>Domain:</b> squash the graph straight down onto the ${T('x')}-axis. It covers ${seg ? 'from −5 to 3' : 'from about −2.2 to about 4.2'}.`,
-        run: async (c) => { sx = G.shadeX(dx[0], dx[1], { band: true, color: AMB }); await G.drawIn(sx, 800, c); await say(c, P, seg ? T('D:\\ -5\\le x\\le 3') : `${T('D:')} about ${T('-2.2\\le x\\le 4.2')}`, 'dom big'); } },
-      { cap: `<b>Range:</b> squash it sideways onto the ${T('y')}-axis. ${seg ? 'From −3 up to 6.' : 'From about −1.2 (the ends) up to 9 (the peak).'}`,
-        run: async (c) => { G.remove(sx); G.shadeX(dx[0], dx[1], { color: AMB }); await G.drawIn(G.shadeY(dy[0], dy[1], { band: true, color: PUR }), 800, c); await say(c, P, seg ? T('R:\\ -3\\le y\\le 6') : `${T('R:')} about ${T('-1.2\\le y\\le 9')}`, 'ran big'); } },
-      { cap: seg ? 'An unbroken segment, so we use <b>inequalities</b>, not a list. The closed dots mean the ends are included: ≤.' : 'The highest point sets the top of the range. (If the curve went on forever, the domain would be all real numbers and the range y ≤ 9.)',
-        run: (c) => say(c, P, seg ? 'segment → inequalities' : `forever: ${T('x\\in\\mathbb{R}')}, ${T('y\\le 9')}`, 'sm') }
+      { cap: `<b>Domain:</b> squash the graph straight down onto the ${T('x')}-axis. It covers ${seg ? 'from −5 to 3' : 'from −2 to 4'}.`,
+        run: async (c) => { sx = G.shadeX(dx[0], dx[1], { band: true, color: AMB }); await G.drawIn(sx, 800, c); await say(c, P, seg ? T('D:\\ -5\\le x\\le 3') : T('D:\\ -2\\le x\\le 4'), 'dom big'); } },
+      { cap: `<b>Range:</b> squash it sideways onto the ${T('y')}-axis. ${seg ? 'From −3 up to 6.' : 'From 0 (the two ends) up to 9 (the peak).'}`,
+        run: async (c) => { G.remove(sx); G.shadeX(dx[0], dx[1], { color: AMB }); await G.drawIn(G.shadeY(dy[0], dy[1], { band: true, color: PUR }), 800, c); await say(c, P, seg ? T('R:\\ -3\\le y\\le 6') : T('R:\\ 0\\le y\\le 9'), 'ran big'); } },
+      { cap: seg ? 'An unbroken segment, so we use <b>inequalities</b>, not a list. The closed dots mean the ends are included: ≤.' : 'The peak sets the top of the range, and the two end dots set the bottom. The solid dots mean the ends are included: ≤.',
+        run: (c) => say(c, P, seg ? 'segment → inequalities' : 'solid dots → ≤', 'sm') }
     ];
   }
 };
@@ -393,13 +393,13 @@ const screen = {
 };
 
 /* =============================== explainer: the vertical line test (Example 7, Challenge 2(a)) =============================== */
-const E7WIN = { xmin: -3.4, xmax: 2.2, ymin: -1.9, ymax: 2.1, xstep: 0.5, ystep: 0.5, grid: false, numbers: false };
+const E7WIN = { xmin: -2.2, xmax: 2.2, ymin: -1.9, ymax: 2.1, xstep: 0.5, ystep: 0.5, grid: false, numbers: false };
 const CIRC = []; for (let i = 0; i <= 80; i++) { const a = i / 80 * 2 * Math.PI; CIRC.push([1.5 * Math.cos(a), 0.1 + 1.5 * Math.sin(a)]); }
 const E7 = {
-  A: { name: 'Graph A: an arch', draw: (G, o = {}) => G.fn((x) => Math.sqrt(Math.max(0, 2.25 - (x + 1.5) ** 2)), Object.assign({ from: -3, to: 0, arrows: false, color: 'ink', width: 3.5, samples: 160 }, o)), hits: (x) => (x >= -3 && x <= 0 ? [Math.sqrt(Math.max(0, 2.25 - (x + 1.5) ** 2))] : []), fn: true },
+  A: { name: 'Graph A: an arch', draw: (G, o = {}) => G.fn((x) => Math.sqrt(Math.max(0, 2.25 - x * x)), Object.assign({ from: -1.5, to: 1.5, arrows: false, color: 'ink', width: 3.5, samples: 160 }, o)), hits: (x) => (x >= -1.5 && x <= 1.5 ? [Math.sqrt(Math.max(0, 2.25 - x * x))] : []), fn: true }, // centred at the origin, (1.5, 0) to (−1.5, 0)
   B: { name: 'Graph B: a circle', draw: (G, o = {}) => G.polyline(CIRC, Object.assign({ closed: true, color: 'ink', width: 3.5 }, o)), hits: (x) => (Math.abs(x) <= 1.5 ? [0.1 + Math.sqrt(2.25 - x * x), 0.1 - Math.sqrt(2.25 - x * x)] : []), fn: false },
   C: { name: 'Graph C: a V', draw: (G, o = {}) => G.polyline([[-1.5, 1.6], [0, -0.2], [1.5, 1.6]], Object.assign({ color: 'ink', width: 3.5 }, o)), hits: (x) => (Math.abs(x) <= 1.5 ? [1.2 * Math.abs(x) - 0.2] : []), fn: true },
-  P: { name: 'Challenge 2: the curve', draw: (G) => G.fn(PARAB, { from: -2.2, to: 4.2, arrows: false, color: 'blue', width: 3.5 }), hits: (x) => (x >= -2.2 && x <= 4.2 ? [PARAB(x)] : []), fn: true, grid: true }
+  P: { name: 'Challenge 2: the curve', draw: (G) => { const g = G.fn(PARAB, { from: -2, to: 4, arrows: false, color: 'blue', width: 3.5 }); [-2, 4].forEach((x) => G.point(x, 0, { color: 'blue', r: 6 })); return g; }, hits: (x) => (x >= -2 && x <= 4 ? [PARAB(x)] : []), fn: true, grid: true }
 };
 const vlt = {
   title: 'The vertical line test',
@@ -518,8 +518,8 @@ const readGraph = {
       { cap: `$10 to book, plus $8 per walk. Even 0 walks costs $10: the first dot is ${T('(0,\\ 10)')}.`, run: async (c) => { for (let n = 0; n <= 7; n++) await pop(c, G.point(n, W(n), { color: 'teal', r: 6 }), 140); await say(c, P, T('W(n)=10+8n'), 'big'); } },
       { cap: `${T('W(5)')}: substitute ${T('n=5')}. ${T('W(5)=10+8(5)=10+40=50')}.`,
         run: async (c) => { await G.drawIn(G.polyline([[5, 0], [5, 50], [0, 50]], { color: 'blue', width: 3, dash: '7 6', ends: [null, 'arrow'] }), 900, c); await say(c, P, T('W(5)=10+8(5)=50')); await say(c, P, 'Five walks cost <b>$50</b>.', 'ok'); } },
-      { cap: `<b>Domain:</b> you can’t book a negative number of walks, so ${T('n\\ge 0')}. (And whole numbers only: the graph is <b>dots</b>.)`,
-        run: async (c) => { for (let n = 0; n <= 7; n++) await pop(c, G.point(n, 0, { color: AMB, r: 6 }), 100); await say(c, P, T('n\\ge 0'), 'dom big'); } }
+      { cap: `<b>Domain:</b> a number of walks is a whole number and can’t be negative (the graph is <b>dots</b>), so ${T('D=\\{0,\\ 1,\\ 2,\\ 3,\\ \\dots\\}')}.`,
+        run: async (c) => { for (let n = 0; n <= 7; n++) await pop(c, G.point(n, 0, { color: AMB, r: 6 }), 100); await say(c, P, T('D=\\{0,\\ 1,\\ 2,\\ 3,\\ \\dots\\}'), 'dom big'); await say(c, P, `also written ${T('n\\ge 0')}, ${T('n')} a whole number`, 'sm'); } }
     ];
   }
 };

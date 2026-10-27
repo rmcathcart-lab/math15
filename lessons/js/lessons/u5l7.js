@@ -177,7 +177,7 @@ function mountFigures() {
   document.querySelectorAll('[data-fig]').forEach((el) => {
     const d = FIGS[el.dataset.fig]; if (!d || el.dataset.done) return; el.dataset.done = '1';
     const G = screen(el, { width: d.w || 290, height: d.h || 290, win: d.win, gx: d.gx, gy: d.gy });
-    G.fn(d.f, { width: 3.5 });
+    G.fn(d.f, d.dots ? { width: 2, dash: '6 6' } : { width: 3.5 }); // Example 5: a thin dashed guide under the whole-number dots (booklet)
     if (d.dots) for (let n = d.win.xmin; n <= d.win.xmax; n++) G.point(n, d.f(n), { color: RED, r: 4.5 });
     if (d.names) { G.label(d.win.xmax, d.win.ymin, T(d.names[0]), { pos: 'nw', cls: 'u5l7-axn', clip: false }); G.label(d.win.xmin, d.win.ymax, T(d.names[1]), { pos: 'se', cls: 'u5l7-axn', clip: false }); }
   });

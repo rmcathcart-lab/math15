@@ -248,12 +248,11 @@
     o = o || {};
     var T = S.parse(Ry).set;
     var wr = (o.wrong || []).filter(function (w) { var q = S.parse(w.is); return q.ok && !S.eq(q.set, T); });
-    var base = K.set(Ry, { v: 'y', other: o.other, otherName: 'domain', wrong: wr });
+    var base = K.set(Ry, { v: 'y', other: o.other, otherName: 'domain', wrong: wr, tag: false });
     var fx = fname + '(' + dv + ')';
     return function (resp) {
       var r = base(toY(resp, fname, dv));
-      if (r.v === 'form' && r.code === 'set-letter') return form('set-letter', 'Right set — but the range is a set of <b>outputs</b>: write it with ' + t(fx) + ' (or ' + t('y') + '), e.g. ' + t('\\{' + fx + '\\mid \\ldots\\}') + '.');
-      if (r.v === 'form' && r.code === 'set-tag') return form('set-tag', 'Right — now finish the set notation with ' + t(',\\ ' + fx + '\\in\\mathbb{R}') + '.');
+      if (r.v === 'form' && r.code === 'set-letter') return form('set-letter', 'Right set — but the range is a set of <b>outputs</b>: write it with ' + t(fx) + ' (or ' + t('y') + '), e.g. ' + t('1\\le ' + fx + '\\le 4') + '.');
       if (r.v === 'wrong' && o.ctx && o.ctx[r.code]) return wrong(r.code, o.ctx[r.code]);
       return r;
     };
@@ -262,7 +261,7 @@
     o = o || {};
     var T = S.parse(D).set;
     var wr = (o.wrong || []).filter(function (w) { var q = S.parse(w.is); return q.ok && !S.eq(q.set, T); });
-    var base = K.set(D, { v: dv, other: other, otherName: 'range', wrong: wr });
+    var base = K.set(D, { v: dv, other: other, otherName: 'range', wrong: wr, tag: false });
     return function (resp) { var r = base(resp); if (r.v === 'wrong' && o.ctx && o.ctx[r.code]) return wrong(r.code, o.ctx[r.code]); return r; };
   }
   function ivAlt(tex) {
@@ -275,18 +274,20 @@
     var Dt = o.disc ? lst(o.D) : bld(dv, o.D[0], o.D[1]), Ry = o.disc ? lst(o.R) : bld('y', o.R[0], o.R[1]);
     var Rshow = o.disc ? lst(o.R) : '\\{' + fx + '\\mid ' + cond(fx, o.R[0], o.R[1]) + ',\\ ' + fx + '\\in\\mathbb{R}\\}';
     var cD = domChk(Dt, dv, Ry, { wrong: o.dW, ctx: o.dC }), cR = rangeChk(Ry, fname, dv, { other: Dt, wrong: o.rW, ctx: o.rC });
-    var fl = [{ label: 'Domain', name: 'Domain', mode: 'math', keys: 'set', vars: [dv, fname], placeholder: 'e.g. {' + dv + ' | -2 <= ' + dv + ' <= 5, ' + dv + ' in R}' },
-      { label: 'Range', name: 'Range', mode: 'math', keys: 'set', vars: [dv, fname], placeholder: 'e.g. {' + fx + ' | 1 <= ' + fx + ' <= 4, ' + fx + ' in R}' }];
-    var p = BF(prompt, fl, [cD, cR], [Dt, Rshow], t('D=' + Dt) + '<br>' + t('R=' + Rshow), sol, hints, text);
-    p.good = o.disc ? [] : [[ivAlt(Dt), ivAlt(Ry)], [cond(dv, o.D[0], o.D[1]), cond(fx, o.R[0], o.R[1])], [Dt, Ry]];
+    var fl = [{ label: 'Domain', name: 'Domain', mode: 'math', keys: 'set', vars: [dv, fname], placeholder: o.disc ? 'e.g. {0, 1, 2, 3}' : 'e.g. -2 <= ' + dv + ' <= 5' },
+      { label: 'Range', name: 'Range', mode: 'math', keys: 'set', vars: [dv, fname], placeholder: o.disc ? 'e.g. {0, 8, 16, 24}' : 'e.g. 1 <= ' + fx + ' <= 4' }];
+    // the booklet writes a continuous domain and range as inequalities (D: 0 ≤ t ≤ 20, R: 40 ≤ V(t) ≤ 540); set-builder is still accepted
+    var Dk = o.disc ? Dt : cond(dv, o.D[0], o.D[1]), Rk = o.disc ? Rshow : cond(fx, o.R[0], o.R[1]);
+    var p = BF(prompt, fl, [cD, cR], [Dk, Rk], o.disc ? t('D=' + Dt) + '<br>' + t('R=' + Rshow) : t('D:\\ ' + Dk) + '<br>' + t('R:\\ ' + Rk), sol, hints, text);
+    p.good = o.disc ? [] : [[ivAlt(Dt), ivAlt(Ry)], [Dt, Rshow], [Dt, Ry], [Dt.replace(/,\\ [a-zA-Z]\\in\\mathbb\{R\}/, ''), Ry.replace(/,\\ y\\in\\mathbb\{R\}/, '')]];
     p.bad = [[Ry, Dt]].concat((o.dW || []).map(function (w) { return [w.is, Rshow]; })).concat((o.rW || []).map(function (w) { return [Dt, w.is]; })).filter(function (b) { return !(S.eq(S.parse(b[0]).set, S.parse(Dt).set) && S.eq(S.parse(toY(b[1], fname, dv)).set, S.parse(Ry).set)); });
     return p;
   }
-  function drSol(dv, fname, D, R) { return t(bld(dv, D[0], D[1])) + '<br>' + t('\\{' + fname + '(' + dv + ')\\mid ' + cond(fname + '(' + dv + ')', R[0], R[1]) + ',\\ ' + fname + '(' + dv + ')\\in\\mathbb{R}\\}'); }
+  function drSol(dv, fname, D, R) { return t('D:\\ ' + cond(dv, D[0], D[1])) + '<br>' + t('R:\\ ' + cond(fname + '(' + dv + ')', R[0], R[1])); }
 
   /* ---------------- small builders ---------------- */
   function phFix(fl) {
-    fl.forEach(function (f) { if (f.mode === 'math' && !f.placeholder) f.placeholder = f.keys === EQK ? 'e.g. f(2) = 5' : f.keys === 'fraction' ? 'e.g. 7 or 10/3' : f.keys === 'solutions' ? 'e.g. 5' : f.keys === 'set' ? 'e.g. {x | 0 <= x <= 5, x in R}' : ''; });
+    fl.forEach(function (f) { if (f.mode === 'math' && !f.placeholder) f.placeholder = f.keys === EQK ? 'e.g. f(2) = 5' : f.keys === 'fraction' ? 'e.g. 7 or 10/3' : f.keys === 'solutions' ? 'e.g. 5' : f.keys === 'set' ? 'e.g. 0 <= x <= 5' : ''; });
     return fl;
   }
   function BF(prompt, fl, ch, keys, answer, sol, hints, text) { return B.fields(prompt, phFix(fl), ch, keys, answer, sol, hints, text); }

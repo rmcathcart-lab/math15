@@ -5,7 +5,8 @@
  * the numbers; the booklet's own numbers are among the possible values.
  * Answer format: Part A asks to "list" the domain and range, so a plain list ("2, 3, 5") is accepted (braces too); from
  * Part B on the booklet asks for set notation, so a correct list without braces gets a nudge (no try used). A value
- * written twice gets a nudge; order is not required (booklet: "good habit, not yet required"). Rays/inequalities are typed
+ * written twice gets a nudge; order is not checked (the booklet says to list smallest to largest because it makes repeats
+ * easy to spot, but a set's order doesn't change the set). Rays/inequalities are typed
  * with the keypad's ≤ < ≥ > keys; "all real numbers" is accepted for ℝ; the Extra Practice's whole-number lists use … .
  * The domain/range checker, keypad and sketch checker are the ones of u5l5.js (copied: each lesson file stands alone).
  * Conversions: "explain" → multiple choice with reasons; True/False → buttons; Q15 → a table of choices (list or
@@ -22,9 +23,9 @@
     'cnt-zero': 'Forgot n = 0', 'pairs-count': 'Ordered pairs with the wrong counts', 'ctx-eval': 'Substituted instead of solving', 'ctx-no-sub': 'Didn’t subtract the starting amount', 'ctx-mult': 'Multiplied instead of dividing',
     'eq-unreadable': 'Equation unreadable', 'eq-not-line': 'Not a straight line', 'rule-through': 'Graph misses a required point', 'rule-range': 'Graph has the wrong range', 'rule-domain': 'Graph has the wrong domain',
     'sk-swap': 'Sketch: domain and range swapped', 'sk-points': 'Sketch: points instead of a line for an interval', 'sk-ends': 'Sketch: wrong end dots / arrows',
-    'u5l5-count-all': 'Counted repeated values', 'u5l5-not-between': 'Gave a value outside the graph’s domain', 'u5l5-in-list': 'Gave a value that is already a dot', 'u5l5-wrong-letter': 'Wrote the range with x instead of y'
+    'u5l5-count-all': 'Counted repeated values', 'u5l6-sum-count': 'Counted the values instead of adding them', 'u5l6-sum-domain': 'Added the domain instead of the range', 'u5l5-not-between': 'Gave a value outside the graph’s domain', 'u5l5-in-list': 'Gave a value that is already a dot', 'u5l5-wrong-letter': 'Wrote the range with x instead of y'
   });
-  HW.addPartial({ 'u5l5-not-between': 'n', 'u5l5-in-list': 'n', 'u5l5-wrong-letter': 's', 'u5l5-count-all': 'b' });
+  HW.addPartial({ 'u5l6-sum-count': 'n', 'u5l6-sum-domain': 'n', 'u5l5-not-between': 'n', 'u5l5-in-list': 'n', 'u5l5-wrong-letter': 's', 'u5l5-count-all': 'b' });
 
   /* ---------------- numbers ---------------- */
   function range(a, b) { var o = []; for (var i = a; i <= b; i++) o.push(i); return o; }
@@ -360,14 +361,14 @@
         } }] },
       { num: '8', stem: 'Each description is part of a graph that continues forever in one direction, like the graphs from Lesson 5. Write the indicated set using an inequality.', parts: [
         { id: '8a', level: 'EMG', make: function (r) {
-          var k = r.chance(0.25) ? 4 : r.pick(nz(-10, 12));
-          return oneSet('(a) A ray rises forever to the upper right, with an arrow at the end. Every ' + t('y') + '-value on the ray is ' + t(k) + ' or greater. Write the <b>range</b>.', 'y\\ge ' + k, 'y', { which: 'R', rW: [{ is: 'y>' + k, code: 'set-endpoint', hint: '“' + t(k) + ' or greater” includes ' + t(k) + ' itself: use ' + t('\\ge') + '.' }, { is: 'y\\le ' + k, code: 'dr-ray-dir', hint: '“Or greater” means ' + t('y') + ' is at least ' + t(k) + ': ' + t('y\\ge ' + k) + '.' }] },
-            '“' + t(k) + ' or greater” is ' + t('y\\ge ' + k) + '.', ['“Or greater” → ' + t('\\ge') + '; “or less” → ' + t('\\le') + '.'], 'range y>=k');
+          var bk = r.chance(0.25), k = bk ? 4 : r.pick(nz(-10, 12)), h = bk ? 1 : r.pick(nz(-8, 8).filter(function (x) { return x !== k; }));
+          return oneSet('(a) A ray starts at the point ' + t(ptT([h, k])) + ' and rises forever to the upper right, with an arrow at the end. Write the <b>range</b>.', 'y\\ge ' + k, 'y', { which: 'R', rW: [{ is: 'y>' + k, code: 'set-endpoint', hint: 'The ray starts <b>at</b> ' + t(ptT([h, k])) + ', so ' + t('y=' + k) + ' is on it: use ' + t('\\ge') + '.' }, { is: 'y\\le ' + k, code: 'dr-ray-dir', hint: 'The ray <b>rises</b> from its start, so every ' + t('y') + '-value is ' + t(k) + ' or greater.' }, { is: 'y\\ge ' + h, code: 'dr-swap', hint: t(h) + ' is the <b>' + t('x') + '</b>-coordinate of the starting point. The range is about ' + t('y') + '-values: use the second coordinate.' }] },
+            'Infinitely many values, so a list is impossible: use an inequality. The ray starts at height ' + t(k) + ' and rises forever, so every ' + t('y') + '-value is ' + t(k) + ' or greater: ' + t('R:\\ y\\ge ' + k) + '.', ['Where does the ray start, and which way does it go from there: up or down?', 'The lowest ' + t('y') + '-value is the starting point’s ' + t('y') + '-coordinate. “Or greater” → ' + t('\\ge') + '.'], 'range y>=k');
         } },
         { id: '8b', level: 'EMG', make: function (r) {
-          var k = r.chance(0.25) ? 6 : r.pick(nz(-10, 12));
-          return oneSet('(b) A ray extends forever to the left, with an arrow at the end. Every ' + t('x') + '-value on the ray is ' + t(k) + ' or less. Write the <b>domain</b>.', 'x\\le ' + k, 'x', { dW: [{ is: 'x<' + k, code: 'set-endpoint', hint: '“' + t(k) + ' or less” includes ' + t(k) + ': use ' + t('\\le') + '.' }, { is: 'x\\ge ' + k, code: 'dr-ray-dir', hint: '“Or less” means ' + t('x') + ' is at most ' + t(k) + '.' }] },
-            '“' + t(k) + ' or less” is ' + t('x\\le ' + k) + '.', ['“Or less” → ' + t('\\le') + '.'], 'domain x<=k');
+          var bk = r.chance(0.25), k = bk ? 6 : r.pick(nz(-10, 12)), y0 = bk ? 2 : r.pick(nz(-8, 8).filter(function (y) { return y !== k; }));
+          return oneSet('(b) A ray starts at the point ' + t(ptT([k, y0])) + ' and extends forever to the left, with an arrow at the end. Write the <b>domain</b>.', 'x\\le ' + k, 'x', { dW: [{ is: 'x<' + k, code: 'set-endpoint', hint: 'The ray starts <b>at</b> ' + t(ptT([k, y0])) + ', so ' + t('x=' + k) + ' is on it: use ' + t('\\le') + '.' }, { is: 'x\\ge ' + k, code: 'dr-ray-dir', hint: 'The ray goes to the <b>left</b> from its start, so every ' + t('x') + '-value is ' + t(k) + ' or less.' }, { is: 'x\\le ' + y0, code: 'dr-swap', hint: t(y0) + ' is the <b>' + t('y') + '</b>-coordinate of the starting point. The domain is about ' + t('x') + '-values: use the first coordinate.' }] },
+            'The ray starts at ' + t('x=' + k) + ' and goes left forever, so every ' + t('x') + '-value is ' + t(k) + ' or less. “' + t(k) + ' or less” includes ' + t(k) + ' itself: ' + t('D:\\ x\\le ' + k) + '.', ['Where does the ray start, and which way does it go from there: left or right?', '“Or less” → ' + t('\\le') + '.'], 'domain x<=k');
         } }] },
       { num: '9', section: 'Part C — Combining Representations and Applications', stem: 'State the domain and range, using set notation, of the relation shown in the graph.', parts: [
         { id: '9', level: 'EMG', make: function (r) {
@@ -407,13 +408,13 @@
               'The story says only ' + t(o.N) + ' combos are available, so no more than ' + t(o.N) + ' can be sold.', ['Read the story: how many combos are there?'], 'why n <= N');
           } },
           { id: '11c', sub: 'c', level: 'PRG', outcome: 'RF1', make: function (r, o) {
-            var n = o.N + r.pick([5, 2, 10]), R = n * o.p;
-            return mc(r, '(c) Would the ordered pair ' + t('(' + n + ',\\ ' + nn(R) + ')') + ' belong to this relation?', [
-              { html: '<b>No:</b> ' + t('n=' + n) + ' is outside the domain — more combos than were available — even though ' + t(nn(o.p) + '\\times ' + n + '=' + nn(R)) + ' matches the price.', right: true },
-              { html: '<b>Yes:</b> ' + t(nn(o.p) + '\\times ' + n + '=' + nn(R)) + ', so it fits the pattern.', why: 'The arithmetic fits, but can they sell ' + t(n) + ' combos?' },
-              { html: '<b>No:</b> the revenue is calculated wrong.', why: 'Check: ' + t(nn(o.p) + '\\times ' + n + '=' + nn(R)) + ' — the arithmetic is right. Look at ' + t('n') + '.' },
-              { html: '<b>Yes:</b> any whole number of combos can be sold.', why: 'Only ' + t(o.N) + ' combos are available.' }],
-              '<b>No.</b> The price works out, but ' + t(n) + ' combos is more than the ' + t(o.N) + ' available, so ' + t('n=' + n) + ' is not in the domain.', ['Is ' + t('n=' + n) + ' possible in this story?'], 'pair outside domain');
+            var n = o.N + r.pick([5, 2, 10]), R = n * o.p, M = o.N * o.p, $ = function (x) { return '\\$' + (x % 1 ? x.toFixed(2) : nn(x)); };
+            return mc(r, '(c) Could the snack bar collect ' + t($(R)) + ' from popcorn combos during this shift?', [
+              { html: '<b>No:</b> ' + t($(R)) + ' would take ' + t(nn(R) + '\\div ' + nn(o.p) + '=' + n) + ' combos, but only ' + t(o.N) + ' exist, so the most they can collect is ' + t(o.N + '\\times ' + $(o.p) + '=' + $(M)) + '.', right: true },
+              { html: '<b>Yes:</b> ' + t(nn(R) + '\\div ' + nn(o.p) + '=' + n) + ' is a whole number of combos, so it fits the pattern.', why: 'The arithmetic fits, but can they sell ' + t(n) + ' combos?' },
+              { html: '<b>No:</b> ' + t($(R)) + ' is not a multiple of the price.', why: 'Check: ' + t(nn(R) + '\\div ' + nn(o.p) + '=' + n) + ' exactly. Look at how many combos that is.' },
+              { html: '<b>Yes:</b> they just have to sell enough combos.', why: 'Only ' + t(o.N) + ' combos are available that shift.' }],
+              '<b>No.</b> ' + t($(R)) + ' would take ' + t(nn(R) + '\\div ' + nn(o.p) + '=' + n) + ' combos, but only ' + t(o.N) + ' exist, so the most they can collect is ' + t(o.N + '\\times ' + $(o.p) + '=' + $(M)) + '.', ['How many combos would it take to collect that much?', 'Is that many combos possible in this story?'], 'revenue outside range');
           } }] },
       { num: '12', section: 'Part D — Concepts and Review', stem: 'State whether each sentence is <b>True</b> or <b>False</b>.', parts: [
         { id: '12a', level: 'BEG', make: function (r) { return B.tf(r, 'The domain of a relation can never contain a repeated value once written in set notation.', true, 'In set notation each value is listed once.', '<b>True.</b> A set lists each value only once.', [HONCE], 'TF no repeats'); } },
@@ -434,13 +435,23 @@
         } }] },
       { num: '14', stem: '<i>(Numerical Response)</i>', parts: [
         { id: '14', level: 'PRG', make: function (r) {
-          var P;
-          if (r.chance(0.25)) P = [[-6, 14], [-2, 9], [0, 9], [3, 14], [5, 20]];
-          else { var xs = r.sample(range(-7, 7), 5).sort(function (a, b) { return a - b; }), v = r.sample(range(-3, 20), r.pick([3, 4])), ys = v.slice(); while (ys.length < 5) ys.push(r.pick(v)); ys = r.shuffle(ys); P = xs.map(function (x, i) { return [x, ys[i]]; }); }
-          var a = uniq(P.map(function (p) { return p[0]; })).length, b = uniq(P.map(function (p) { return p[1]; })).length;
-          return B.nr('A relation includes the ordered pairs ' + ptsH(P) + '. If ' + t('a') + ' is the number of elements in the domain and ' + t('b') + ' is the number of elements in the range, the value of ' + t('a+b') + ' is ________.', a + b,
-            function (v) { return v === 10 && a + b !== 10 ? { code: 'u5l5-count-all', hint: 'A repeated ' + t('y') + '-value counts only once in the range.' } : null; },
-            t('D=' + lst(P.map(function (p) { return p[0]; }))) + ' (' + t('a=' + a) + '), ' + t('R=' + lst(P.map(function (p) { return p[1]; }))) + ' (' + t('b=' + b) + '). ' + t('a+b=' + (a + b)) + '.', ['Write each set with each value once, then count.'], 'NR a+b');
+          var sum = function (a) { return a.reduce(function (x, y) { return x + y; }, 0); };
+          var o = r.chance(0.25) ? { P: [[-6, 14], [-2, 9], [0, 9], [3, 14], [5, 20]] } : pickWhere(function () {
+            var xs = r.sample(range(-7, 7), 5).sort(function (a, b) { return a - b; }), v = r.sample(range(1, 24), r.pick([3, 4])), ys = v.slice();
+            while (ys.length < 5) ys.push(r.pick(v));
+            ys = r.shuffle(ys); return { P: xs.map(function (x, i) { return [x, ys[i]]; }) };
+          }, function (q) { var ys = q.P.map(function (p) { return p[1]; }), u = uniq(ys), xs = q.P.map(function (p) { return p[0]; }); return [sum(ys), u.length + 5, sum(xs), u.length].indexOf(sum(u)) < 0; });
+          var P = o.P, ys = P.map(function (p) { return p[1]; }), R = uniq(ys), ans = sum(R), all = sum(ys), xs = P.map(function (p) { return p[0]; }), a = uniq(xs).length;
+          var dl = [[all, 'u5l5-count-all', 'Each repeated ' + t('y') + '-value is written <b>once</b> in the range, so add it only once.'],
+            [a + R.length, 'u5l6-sum-count', 'That counts the elements. The question asks for the <b>sum</b> of the numbers in the range.'],
+            [R.length, 'u5l6-sum-count', 'That is how many numbers are in the range. Now <b>add</b> them.'],
+            [sum(xs), 'u5l6-sum-domain', 'That adds the ' + t('x') + '-values (the domain). The range is the ' + t('y') + '-values.']];
+          dl = dl.filter(function (d) { return d[0] !== ans; });
+          var p = B.nr('A relation includes the ordered pairs ' + ptsH(P) + '. When the range is written in set notation, the sum of all the numbers in the range is ________.', ans,
+            function (v) { for (var i = 0; i < dl.length; i++) if (v === dl[i][0]) return { code: dl[i][1], hint: dl[i][2] }; return null; },
+            t('y') + '’s: ' + t(ys.join(',\\ ')) + '; each repeat is written once, so ' + t('R=' + lst(ys)) + '.<br>' + t(R.join('+') + '=' + ans) + ' (not ' + t(all) + ': don’t count repeats twice).',
+            ['Write the range in set notation first: each ' + t('y') + '-value once.', 'Then add the numbers in the braces.'], 'NR range sum');
+          p.bad = dl.map(function (d) { return String(d[0]); }); return p;
         } }] },
       { num: '15', stem: 'A list in braces (such as ' + t('\\{2,\\ 4,\\ 6\\}') + ') or an inequality (such as ' + t('x\\ge 0') + ')?', parts: [
         { id: '15', level: 'PRG', make: function (r) {
@@ -466,7 +477,7 @@
   var HALL = 'If every number can be substituted, the domain is all real numbers (type “all real numbers” or ' + t('x\\in\\mathbb{R}') + ').';
   function EXTRA() {
     return [
-      { num: '1', section: 'Extra Practice A — Domain and Range From an Equation', shared: function (r) { return r.chance(0.25) ? { m: 2, b: 1, xs: [-4, -1, 0, 3.5, 10] } : { m: r.pick([2, 3, -2, 4, 5, -3]), b: r.pick([1, -3, 5, 2, -1, 4, 7]), xs: [r.int(-6, -2), -1, 0, r.pick([1.5, 2.5, 3.5]), r.pick([8, 10, 12])] }; },
+      { num: '1', section: 'Extra Practice A — Challenge: Domain and Range From an Equation', shared: function (r) { return r.chance(0.25) ? { m: 2, b: 1, xs: [-4, -1, 0, 3.5, 10] } : { m: r.pick([2, 3, -2, 4, 5, -3]), b: r.pick([1, -3, 5, 2, -1, 4, 7]), xs: [r.int(-6, -2), -1, 0, r.pick([1.5, 2.5, 3.5]), r.pick([8, 10, 12])] }; },
         stem: function (o) { return 'The equation ' + t('y=' + (o.m === 1 ? '' : o.m) + 'x' + (o.b < 0 ? o.b : '+' + o.b)) + ' has no picture, so the domain is decided by asking: <i>which numbers am I allowed to substitute for ' + t('x') + '?</i>'; },
         parts: [
           { id: 'e1a', sub: 'a', level: 'BEG', make: function (r, o) { var f = function (x) { return o.m * x + o.b; }; return tablePart('(a) Complete the table.', o.xs, f, o.xs.map(function (x) { return t('y=' + o.m + '(' + nn(x) + ')' + (o.b < 0 ? o.b : '+' + o.b) + '=' + nn(f(x))); }).join(', ') + '.', ['Substitute each ' + t('x') + ': multiply by ' + t(o.m) + ', then add ' + t(o.b) + '.'], 'EP1 table'); } },

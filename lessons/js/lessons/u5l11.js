@@ -223,7 +223,7 @@ function jaeDist(t) {
   const u = t - 12; return 3.2 + u * u / 36;
 }
 // Example 2: Sam's four graphs (as in the booklet)
-const SAM = { A: [[0.2, 0.3], [1.1, 1.3], [1.7, 1.3], [2.3, 2.6]], B: [[0.2, 0.3], [0.9, 2.2], [1.5, 2.2], [2.3, 2.6]], C: [[0.2, 0.3], [1, 1.5], [1.6, 0.3], [2.3, 2]], D: [[0.2, 0.3], [0.9, 0.3], [1.6, 1.7], [2.3, 1.7]] };
+const SAM = { A: [[0.2, 0], [1.1, 1.1], [1.7, 1.1], [2.3, 2.6]], B: [[0.2, 0], [0.9, 2.2], [1.5, 2.2], [2.3, 2.6]], C: [[0.2, 0], [1, 1.5], [1.6, 0], [2.3, 2]], D: [[0.2, 0], [0.9, 0], [1.6, 1.7], [2.3, 1.7]] }; // each starts on the time axis (distance 0 at home)
 // Example 4: Mia's bath
 const MIA = [[0, 0], [6, 24], [16, 24], [24, 0]];
 const miaAxes = (o) => Object.assign({ xmin: 0, xmax: 25.6, ymin: 0, ymax: 27.6, xstep: 6, ystep: 6,

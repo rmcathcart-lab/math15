@@ -493,7 +493,7 @@
 
   function EXTRA() {
     return [
-      { num: '1', section: 'Extra Practice A — Solid Dots, Open Circles, and Arrows', stem: 'In this extra practice, write the domain and range of a <b>continuous</b> graph as an inequality (e.g. ' + t('-3\\le x\\le 4') + ') and of a <b>discrete</b> graph as a list in braces (e.g. ' + t('\\{-3,\\ 0,\\ 4\\}') + ').<br>Complete each sentence.', parts: [
+      { num: '1', section: 'Extra Practice A — Solid Dots, Open Circles, and Arrows', stem: 'In this extra practice (a step beyond Lesson 5; Lesson 6 explains it further), write the domain and range of a <b>continuous</b> graph as an inequality (e.g. ' + t('-3\\le x\\le 4') + ') and of a <b>discrete</b> graph as a list in braces (e.g. ' + t('\\{-3,\\ 0,\\ 4\\}') + ').<br>Complete each sentence.', parts: [
         { id: 'e1a', level: 'BEG', make: function (r) {
           return B.mc(r, 'A <b>solid</b> dot at the end of a graph means that value ________, so the inequality uses ________.', [{ html: '<b>is</b> included; ' + t('\\le') + ' or ' + t('\\ge'), right: true }, { html: 'is <b>not</b> included; ' + t('<') + ' or ' + t('>'), why: 'That describes an open circle. A solid (filled-in) dot is part of the graph.' }, { html: '<b>is</b> included; ' + t('<') + ' or ' + t('>'), why: t('<') + ' leaves the end value out. Which symbol includes it?' }, { html: 'is never part of the domain; ' + t('=') + '', why: 'A solid dot is a point of the graph, so its value is included.' }],
             'A solid dot is a point of the graph, so its value <b>is included</b>: use ' + t('\\le') + ' or ' + t('\\ge') + '.', [HN], 'solid dot meaning');
@@ -510,7 +510,7 @@
           return B.mc(r, 'A relation drawn as separate dots is ________, and its domain is written as a ________ in braces.', [{ html: 'discrete; list', right: true }, { html: 'continuous; list', why: 'Separate dots are <b>discrete</b>; continuous means unbroken.' }, { html: 'discrete; inequality', why: 'An inequality includes every value in between — a discrete relation has only its dots.' }, { html: 'continuous; inequality', why: 'Separate dots are not unbroken.' }],
             'Separate dots are <b>discrete</b>, and the domain is a <b>list</b> in braces, e.g. ' + t('\\{-3,\\ 0,\\ 4\\}') + '.', [HLIST], 'dots = discrete, list');
         } }] },
-      { num: '2', stem: 'Each graph is a line segment with <b>both</b> endpoints drawn. Read the endpoints carefully and state the domain and range.', parts: [
+      { num: '2', stem: 'Each graph is a line segment with <b>both</b> endpoints marked (solid or open). Read the endpoints carefully and state the domain and range.', parts: [
         { id: 'e2a', sub: 'a', level: 'BEG', make: function (r) {
           var s = segShape(r, [[-4, -3], [3, 4]]), I = segEP(s[0], s[1], 'closed', 'closed', 'EP2a solid segment');
           return drEP(Gfix({ segs: [{ pts: s, start: 'closed', end: 'closed' }] }), I);

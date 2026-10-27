@@ -574,7 +574,7 @@
             { html: '<b>Yes,</b> if the line is steep enough.', why: 'A steep line crosses the ' + t('x') + '-axis once and then keeps moving away from it. Steepness doesn’t make it come back.' },
             { html: '<b>No,</b> because a straight line never crosses the ' + t('x') + '-axis.', why: 'Most straight lines do cross the ' + t('x') + '-axis — exactly once (Question 4). The question is whether they can cross twice.' }],
             '<b>No.</b> A straight line heads in one direction forever and never turns around, so after it crosses the ' + t('x') + '-axis it keeps moving away from it. A slanted line crosses the ' + t('x') + '-axis exactly once (a horizontal line crosses it never, unless the line lies along the ' + t('x') + '-axis itself); a curve like the one in Question 5 can cross twice because it turns around.',
-            ['Try to draw one.', 'Picture a line crossing the ' + t('x') + '-axis. What would it have to do to come back and cross again?'], 'line crosses twice?');
+            ['Picture a line crossing the ' + t('x') + '-axis. What would it have to do to come back and cross again?'], 'line crosses twice?');
         } }] }
     ],
     extra: EXTRA()

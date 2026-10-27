@@ -100,7 +100,7 @@ const EX1 = { xmin: -5, xmax: 5, ymin: -3, ymax: 7, ytitle: 'f(x)' };
 const CAWIN = { xmin: 0, xmax: 11, ymin: 0, ymax: 22, ystep: 2, ylabels: 4, xlabels: 2, xtitle: 't', ytitle: 'h(t)' };
 function mountFigures() {
   const $ = (id) => document.getElementById(id);
-  if ($('u5l10-g-ex1')) { const G = new Graph($('u5l10-g-ex1'), Object.assign({ width: 340, height: 340 }, EX1)); G.segment([-4, -2], [4, 6], { color: 'ink', width: 3.6 }); }
+  if ($('u5l10-g-ex1')) { const G = new Graph($('u5l10-g-ex1'), Object.assign({ width: 340, height: 340 }, EX1)); G.segment([-4, -2], [4, 6], { color: 'ink', width: 3.6, ends: ['closed', 'closed'] }); }
   if ($('u5l10-g-ex5')) new Graph($('u5l10-g-ex5'), Object.assign({ width: 330, height: 410 }, CAWIN));
   if ($('u5l10-a-ex5')) {
     const G = new Graph($('u5l10-a-ex5'), Object.assign({ width: 230, height: 260, fontSize: 14 }, CAWIN));
@@ -176,7 +176,7 @@ const readGraph = {
       ];
     }
     const G = new Graph(stage, Object.assign({ x: 10, y: 8, width: GW, height: 444, fontSize: 17 }, EX1));
-    const L = G.segment([-4, -2], [4, 6], { color: 'ink', width: 3.6 });
+    const L = G.segment([-4, -2], [4, 6], { color: 'ink', width: 3.6, ends: ['closed', 'closed'] });
     if (k === 'a') {
       let cur = [];
       return [

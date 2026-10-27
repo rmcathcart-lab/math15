@@ -530,7 +530,7 @@
     } }] },
 
     /* ---------------- Q6 domain and range of a line on the standard window ---------------- */
-    { num: '6', stem: 'Each screen shows a straight (non-horizontal) line in the standard window, ' + t(winT(STD)) + '. State the domain and the range.', parts: [
+    { num: '6', stem: 'Each screen shows a straight, slanted line in the standard window, ' + t(winT(STD)) + '. State the domain and the range.', parts: [
       { id: '6a', sub: 'a', level: 'BEG', outcome: 'RF2', make: function (r) {
         var m = r.chance(0.15) ? 5 : r.pick(pm(2, 6)), b = r.chance(0.15) ? -2 : r.pick(nz(-5, 5));
         return lineDR('(a) ' + t(eqT(m, b)) + '<br>' + screen({ w: STD, gx: 2, gy: 2, lx: 5, ly: 5, lines: [{ m: m, b: b }], max: 210 }), m, b, STD, 'D&R of y=' + m + 'x+' + b);
@@ -790,7 +790,7 @@
       }) },
 
     /* ---------------- EP3 predict ---------------- */
-    { num: '3', stem: '<b>Predict first.</b> Before any graph is drawn, choose the description that fits the equation: rising or falling (left to right), steeper or shallower than ' + t('y=x') + ', and the ' + t('y') + '-intercept.',
+    { num: '3', stem: '<b>Predict first.</b> Before any graph is drawn, choose the description that fits the equation: rising or falling (left to right), steeper or shallower than ' + t('y=x') + ', and the ' + t('y') + '-intercept.<br><i>A word used in this set:</i> the <b>slope</b> of a line ' + t('y=\\square x+\\square') + ' is the number multiplying ' + t('x') + ': it tells how steep the line is and whether it rises or falls. (Slope gets its own lessons in Unit 6.)',
       parts: ['a', 'b', 'c'].map(function (L, i) {
         return { id: 'e3' + L, sub: L, level: i === 0 ? 'BEG' : 'EMG', outcome: 'RF4', make: function (r) {
           var bk = r.chance(0.15), z = bk ? [[-4, 3], [0.5, -2], [-0.5, 4]][i] : [r.pick([-4, -3, -2, 2, 3, 4]), r.pick([0.5, -0.5, 0.25, -0.25]), r.pick([-0.5, 0.5, -3, 3, 0.25, -2])][i];
@@ -834,27 +834,27 @@
             'The ' + t('y') + '-intercept is ' + t('b') + ' and can be read straight off the screen. Rising/falling (the sign of ' + t('m') + ') and steepness (the size of ' + t('m') + ') settle the rest.', ['Which number in ' + t('y=mx+b') + ' is a point on the ' + t('y') + '-axis?'], 'EP4 feature');
         } }] },
 
-    /* ---------------- EP5 bread ---------------- */
-    { num: '5', stem: function (sh) { return 'A loaf of bread comes out of the oven at ' + t(sh.T0 + '^{\\circ}\\text{C}') + ' and cools steadily. Its temperature ' + t('T') + ', in degrees Celsius, after ' + t('m') + ' minutes is ' + t('T=' + sh.T0 + '-' + sh.k + 'm') + ' (until it reaches room temperature).'; },
+    /* ---------------- EP5 water tank ---------------- */
+    { num: '5', stem: function (sh) { return 'A water tank holds ' + t(sh.T0) + '&nbsp;L and drains at a steady rate. The volume ' + t('V') + ', in litres, left after ' + t('m') + ' minutes is ' + t('V=' + sh.T0 + '-' + sh.k + 'm') + ' (until the tank is empty).'; },
       shared: function (r) { var c = r.chance(0.15) ? [200, 8] : r.pick([[200, 8], [180, 6], [240, 8], [200, 10], [160, 8], [210, 7], [225, 9], [180, 9], [240, 12], [150, 6], [175, 7], [220, 11], [190, 10], [195, 13], [250, 10], [200, 5], [160, 5], [180, 12], [210, 10], [240, 10]]); return { T0: c[0], k: c[1], mi: c[0] / c[1] }; },
       parts: [
         { id: 'e5a', sub: 'a', level: 'BEG', make: function (r, sh) {
-          return valsPart('(a) Determine the ' + t('T') + '-intercept and the ' + t('m') + '-intercept.', [{ label: t('T') + '-intercept:', name: 'T-intercept', before: t('T='), ans: sh.T0, diag: [[sh.mi, 'int-gave-x', 'That is the ' + t('m') + '-intercept. The ' + t('T') + '-intercept is the temperature at ' + t('m=0') + '.'], [-sh.k, 'int-gave-m', t('-' + sh.k) + ' is the rate of cooling. Substitute ' + t('m=0') + '.']] },
-            { label: t('m') + '-intercept:', name: 'm-intercept', before: t('m='), ans: sh.mi, diag: [[-sh.mi, 'int-sign', 'Check the sign: ' + t('0=' + sh.T0 + '-' + sh.k + 'm') + ' gives ' + t(sh.k + 'm=' + sh.T0) + '.'], [sh.T0, 'int-gave-y', 'That is the ' + t('T') + '-intercept. For the ' + t('m') + '-intercept set ' + t('T=0') + '.'], [sh.T0 * sh.k, 'ctx-mult', 'Divide by ' + t(sh.k) + ', don’t multiply.']] }],
-            t('T') + '-intercept: at ' + t('m=0') + ', ' + t('T=' + sh.T0) + ' (the starting temperature).<br>' + t('m') + '-intercept: ' + t('0=' + sh.T0 + '-' + sh.k + 'm') + ' → ' + t(sh.k + 'm=' + sh.T0) + ' → ' + t('m=' + sh.mi) + ' minutes.', HXY, 'EP5 intercepts');
+          return valsPart('(a) Determine the ' + t('V') + '-intercept and the ' + t('m') + '-intercept.', [{ label: t('V') + '-intercept:', name: 'V-intercept', before: t('V='), ans: sh.T0, diag: [[sh.mi, 'int-gave-x', 'That is the ' + t('m') + '-intercept. The ' + t('V') + '-intercept is the volume at ' + t('m=0') + '.'], [-sh.k, 'int-gave-m', t('-' + sh.k) + ' is the rate the tank drains (litres per minute). Substitute ' + t('m=0') + '.']] },
+            { label: t('m') + '-intercept:', name: 'm-intercept', before: t('m='), ans: sh.mi, diag: [[-sh.mi, 'int-sign', 'Check the sign: ' + t('0=' + sh.T0 + '-' + sh.k + 'm') + ' gives ' + t(sh.k + 'm=' + sh.T0) + '.'], [sh.T0, 'int-gave-y', 'That is the ' + t('V') + '-intercept. For the ' + t('m') + '-intercept set ' + t('V=0') + '.'], [sh.T0 * sh.k, 'ctx-mult', 'Divide by ' + t(sh.k) + ', don’t multiply.']] }],
+            t('V') + '-intercept: at ' + t('m=0') + ', ' + t('V=' + sh.T0) + ' (the full tank).<br>' + t('m') + '-intercept: ' + t('0=' + sh.T0 + '-' + sh.k + 'm') + ' → ' + t(sh.k + 'm=' + sh.T0) + ' → ' + t('m=' + sh.mi) + ' minutes (the tank is empty).', HXY, 'EP5 intercepts');
         } },
         { id: 'e5b', sub: 'b', level: 'PRG', make: function (r, sh) {
-          var o = { ctx: true, show: [{ p: [0, sh.T0], name: 'the ' + t('T') + '-intercept' }, { p: [sh.mi, 0], name: 'the ' + t('m') + '-intercept' }], v: 'm', w: 'T' };
-          return winPart('(b) State a window suited to this situation (' + t('x') + ' is ' + t('m') + ', ' + t('y') + ' is ' + t('T') + ').', o,
-            'Time starts at ' + t('0') + ' and the interesting part ends by ' + t('m=' + sh.mi) + '; ' + t('T') + ' runs from ' + t('0') + ' up past ' + t(sh.T0) + '. For example ' + t(winT(niceWin(o))) + '.', ['Start both at ' + t('0') + ': time and (here) temperature don’t go negative in this story.', 'Xmax a bit past ' + t(sh.mi) + ', Ymax a bit past ' + t(sh.T0) + '.'], 'EP5 window');
+          var o = { ctx: true, show: [{ p: [0, sh.T0], name: 'the ' + t('V') + '-intercept' }, { p: [sh.mi, 0], name: 'the ' + t('m') + '-intercept' }], v: 'm', w: 'V' };
+          return winPart('(b) State a window suited to this situation (' + t('x') + ' is ' + t('m') + ', ' + t('y') + ' is ' + t('V') + ').', o,
+            'Time starts at ' + t('0') + ' and the tank is empty at ' + t('m=' + sh.mi) + '; ' + t('V') + ' runs from ' + t('0') + ' up to ' + t(sh.T0) + '. For example ' + t(winT(niceWin(o))) + '.', ['Start both at ' + t('0') + ': time and the volume of water don’t go negative in this story.', 'Xmax a bit past ' + t(sh.mi) + ', Ymax a bit past ' + t(sh.T0) + '.'], 'EP5 window');
         } },
         { id: 'e5c', sub: 'c', level: 'EMG', make: function (r, sh) {
           return mc(r, '(c) Why would the standard window ' + t(winT(STD)) + ' show a completely blank screen here?', [
-            { html: 'For ' + t('0\\le m\\le 10') + ' the temperature is between ' + t(sh.T0 - 10 * sh.k) + ' and ' + t(sh.T0) + ' — all far above Ymax ' + t('=10') + '.', right: true },
+            { html: 'For ' + t('0\\le m\\le 10') + ' the volume is between ' + t(sh.T0 - 10 * sh.k) + ' and ' + t(sh.T0) + ' — all far above Ymax ' + t('=10') + '.', right: true },
             { html: 'The relation has no graph until it is entered in a better window.', why: 'The graph exists no matter what window is used; the window only decides what part you see.', code: 'nograph' },
             { html: 'The line is too steep to be drawn.', why: 'A calculator draws any slope. The problem is where the line is, not its steepness.', code: 'steep' },
-            { html: 'Negative times are not allowed, so nothing is drawn.', why: 'The calculator doesn’t know the story — it would draw negative times too. The issue is the size of ' + t('T') + '.', code: 'neg' }],
-            'In the standard window only ' + t('-10\\le m\\le 10') + ' is shown. There ' + t('T') + ' is at least ' + t(sh.T0 + '-' + sh.k + '(10)=' + (sh.T0 - 10 * sh.k)) + ', far above Ymax ' + t('=10') + ', so no part of the line falls inside the screen.', ['What is ' + t('T') + ' when ' + t('m=10') + '? Is that inside ' + t('[-10,\\ 10]') + '?'], 'EP5 blank screen');
+            { html: 'Negative times are not allowed, so nothing is drawn.', why: 'The calculator doesn’t know the story — it would draw negative times too. The issue is the size of ' + t('V') + '.', code: 'neg' }],
+            'In the standard window only ' + t('-10\\le m\\le 10') + ' is shown. There ' + t('V') + ' is at least ' + t(sh.T0 + '-' + sh.k + '(10)=' + (sh.T0 - 10 * sh.k)) + ', far above Ymax ' + t('=10') + ', so no part of the line falls inside the screen.', ['What is ' + t('V') + ' when ' + t('m=10') + '? Is that inside ' + t('[-10,\\ 10]') + '?'], 'EP5 blank screen');
         } }] },
 
     /* ---------------- EP6 reading a screen carefully ---------------- */

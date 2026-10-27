@@ -247,7 +247,7 @@
     flatup: ['A hiker rests at a lookout 1 km along the trail, then walks steadily onward. The quantity is the hiker’s distance from the trailhead.', 'A plant is 10 cm tall and doesn’t grow for a week, then grows steadily. The quantity is its height.', 'An account holds $50 untouched for a while, then steady weekly deposits begin. The quantity is the balance.'] };
   var SH_WORD = { up: 'rises steadily from 0', down: 'falls steadily to 0', flat: 'stays the same', flatup: 'stays level, then rises steadily' };
   X.push({ num: '1', section: 'Extra practice A — Shapes, Variables, and What a Relationship Means', stem: function (sh) {
-      return 'Each graph shows the general <b>shape</b> of a relationship between two quantities. Time runs along the horizontal axis; the quantity runs up the vertical axis.<div style="display:flex;flex-wrap:wrap;gap:6px 18px">' +
+      return '<i>Note:</i> some questions in this set look ahead: reading the <b>shape</b> of a graph as a story is Lesson 11, and steady versus changing rates come back in Unit 6. Treat them as a preview.<br>Each graph shows the general <b>shape</b> of a relationship between two quantities. Time runs along the horizontal axis; the quantity runs up the vertical axis.<div style="display:flex;flex-wrap:wrap;gap:6px 18px">' +
         ['A', 'B', 'C', 'D'].map(function (L) { return '<div style="text-align:center;flex:0 0 140px;width:140px"><b>Graph ' + L + '</b><br>' + shapeGraph(SHAPES[sh.map[L]], 'graph ' + L, { max: 140 }) + '</div>'; }).join('') + '</div>';
     },
     shared: function (r) { var order = r.chance(0.25) ? ['up', 'down', 'flat', 'flatup'] : r.shuffle(['up', 'down', 'flat', 'flatup']), map = {}, inv = {}; ['A', 'B', 'C', 'D'].forEach(function (L, i) { map[L] = order[i]; inv[order[i]] = L; }); return { map: map, inv: inv }; },
@@ -266,7 +266,8 @@
   X.push({ num: '2', stem: 'For each pair of quantities, state the <b>independent</b> variable and the <b>dependent</b> variable. (The independent variable belongs on the horizontal axis.)', parts: [0, 1, 2, 3].map(function (i) {
     return { id: 'e2' + 'abcd'[i], level: 'BEG', outcome: 'RF1', make: function (r) {
       var c = r.chance(0.6) ? IV2[i] : IV2[i + 4], order = r.chance(0.5) ? [c[0], c[1]] : [c[1], c[0]];
-      return ivPart(r, c[0], c[1], c[2], cap(order[0]) + ' and ' + order[1] + '.', 'EP2 ' + c[0], true);
+      var p = ivPart(r, c[0], c[1], c[2], cap(order[0]) + ' and ' + order[1] + '.', 'EP2 ' + c[0], true);
+      p.solution += ' (The order a pair is listed in doesn’t tell you which is which: ask which one depends on the other.)'; return p;
     } };
   }) });
   /* ----- EP 3 ----- */

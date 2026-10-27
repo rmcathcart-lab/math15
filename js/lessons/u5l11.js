@@ -19,10 +19,10 @@
     'story-bend': 'Stage drawn with the wrong bend (straight vs curved, steeper vs flatter)', 'story-zero': 'Graph reaches zero when it shouldn’t (or not when it should)', 'story-when': 'A stage at the wrong time',
     'story-lines': 'Points instead of a line', 'story-below': 'Graph drops below a level it can’t go under', 'story-peak': 'Peak at the wrong place',
     'u5l11-one-flat': 'Counted only one of the flat stretches', 'u5l11-rate-days': 'Divided by the end time instead of the change in time', 'u5l11-round': 'Rate not rounded to one decimal place',
-    'u5l11-stops': 'Wrong number of stops', 'u5l11-fastest': 'Fastest stretch not between the 2nd and 3rd stops', 'u5l11-limit': 'Graph goes past a stated limit',
+    'u5l11-stops': 'Wrong number of stops', 'u5l11-count-ends': 'Counted the stop at the start or finish', 'u5l11-fastest': 'Fastest stretch not between the 2nd and 3rd stops', 'u5l11-limit': 'Graph goes past a stated limit',
     'u5l11-stop-time': 'Stopped time not exactly as stated', 'u5l11-ends': 'Graph does not start or end where stated', 'xint-yint': 'Gave the vertical intercept for the horizontal one', 'sign': 'Wrong sign'
   });
-  HW.addPartial({ 'u5l11-one-flat': 's', 'u5l11-rate-days': 'n', 'u5l11-round': 's', 'u5l11-stops': 'n', 'u5l11-fastest': 'b', 'u5l11-limit': 's', 'u5l11-stop-time': 's', 'u5l11-ends': 's', 'story-below': 'n', 'story-peak': 'b' });
+  HW.addPartial({ 'u5l11-count-ends': 'b', 'u5l11-one-flat': 's', 'u5l11-rate-days': 'n', 'u5l11-round': 's', 'u5l11-stops': 'n', 'u5l11-fastest': 'b', 'u5l11-limit': 's', 'u5l11-stop-time': 's', 'u5l11-ends': 's', 'story-below': 'n', 'story-peak': 'b' });
 
   /* ---------- small helpers ---------- */
   var C1 = '#2b55a0', C2 = '#b0562b', C3 = '#6a4fb0', INK = '#2b3340';
@@ -190,11 +190,11 @@
 
   /* ---------- Q11: hiking trail ---------- */
   function trail(r) {
-    if (r.chance(0.2)) return { V: [[0, 200], [3, 500], [5, 500], [8, 150]], x1: 3, fl: 2, dl: 3, rise: 300, drop: 350, rAB: 100, rCD: -350 / 3 };
+    if (r.chance(0.2)) return { V: [[0, 200], [3, 500], [5, 500], [8, 50]], x1: 3, fl: 2, dl: 3, rise: 300, drop: 450, rAB: 100, rCD: -150 };
     for (var k = 0; k < 400; k++) {
-      var e0 = pick(r, [200, 200, 100, 150, 250, 300]), x1 = pick(r, [3, 3, 2, 4]), rise = pick(r, [300, 300, 200, 400, 240]), fl = pick(r, [2, 2, 1, 3]), dl = pick(r, [3, 3, 2, 4]), drop = pick(r, [350, 350, 250, 300, 450, 400, 500]);
+      var e0 = pick(r, [200, 200, 100, 150, 250, 300]), x1 = pick(r, [3, 3, 2, 4]), rise = pick(r, [300, 300, 200, 400, 240]), fl = pick(r, [2, 2, 1, 3]), dl = pick(r, [3, 3, 2, 4]), drop = pick(r, [450, 450, 350, 250, 300, 400, 500]);
       var e1 = e0 + rise, e3 = e1 - drop; if (e3 < 0 || e3 === e0) continue;
-      if (Math.abs(rise / x1 - drop / dl) < 1 || rise % x1) continue;
+      if (Math.abs(rise / x1 - drop / dl) < 1 || rise % x1 || drop % dl) continue; // whole-number rates, like the booklet's −150 m/km
       return { V: [[0, e0], [x1, e1], [x1 + fl, e1], [x1 + fl + dl, e3]], x1: x1, fl: fl, dl: dl, rise: rise, drop: drop, rAB: rise / x1, rCD: -drop / dl };
     }
   }
@@ -440,7 +440,7 @@
       bk(function (r) { var a = pick(r, [[200, 10], [300, 15], [500, 25]]); return 'The water left in a ' + a[0] + ' L tank that drains at ' + a[1] + ' L per minute.'; }),
       bk(function (r) { return 'The number of pages left to read in a novel if you read ' + pick(r, [20, 25, 30, 40]) + ' pages every day.'; }),
       bk(function (r) { return 'The time left on a ' + pick(r, [30, 45, 60, 90]) + '-minute timer as it counts down.'; })],
-    D: [bk(function (r) { return 'The temperature of a ' + pick(r, ['mug of hot cocoa', 'cup of tea', 'bowl of soup', 'mug of coffee', 'bowl of oatmeal']) + ' left on a table (it cools quickly, then levels off).'; }),
+    D: [bk(function (r) { return 'The speed of a hockey puck sliding across ' + pick(r, ['rough ice', 'rough ice', 'a bumpy outdoor rink', 'slushy ice']) + ' (slows quickly at first, then more and more gently as it comes to a stop).'; }),
       bk(function (r) { return 'The value of a new ' + pick(r, ['car', 'truck', 'phone', 'laptop']) + ' over ' + pick(r, [5, 8, 10]) + ' years (it loses value quickly at first, then more slowly).'; }),
       bk(function (r) { return 'The speed of a skydiver just after the parachute opens at ' + pick(r, [800, 1000, 1200]) + ' m (the speed drops quickly, then levels off).'; }),
       bk(function (r) { return 'The amount of medicine in a patient’s blood in the ' + pick(r, [6, 8, 12]) + ' hours after one dose (it drops quickly at first, then more and more slowly).'; }),
@@ -1047,12 +1047,16 @@
         return p;
       } },
       { id: 'e17b', level: 'EMG', make: function (r, c) {
-        return mcG(r, '(a) How does each complete stop show up on your speed–time graph?', [
-          { html: 'The graph comes down to speed ' + t('0') + ' — it touches (or runs along) the time axis.', right: true },
-          { html: 'As a flat piece at the top of a peak.', why: 'Flat at the top means a constant <b>high</b> speed. Stopped means speed ' + t('0') + '.' },
-          { html: 'As a vertical drop.', why: 'A speed can’t drop to ' + t('0') + ' in no time; it slopes down as the ' + c.v + ' brakes.' },
-          { html: 'As a falling piece that stays above the axis.', why: 'Falling means slowing down. A stop is when the speed actually reaches ' + t('0') + '.' }],
-          'A complete stop is speed ' + t('0') + ': the graph reaches the time axis (a flat stretch on the axis if the ' + c.v + ' waits there). Three stops in the middle means it touches the axis three times between the start and the finish.', ['What is the speed of a stopped ' + c.v + '?'], 'EP stop on speed graph');
+        var u = c.T / 20, fl = [[5, 6], [10, 11], [16, 17]].map(function (z) { return t(dn(z[0] * u) + '\\text{–}' + dn(z[1] * u)); });
+        var p = B.number('(a) How many times does your graph come down to speed ' + t('0') + ' <i>between</i> the start and the finish?', 3, function (v) {
+          if (v === 4) return { code: 'u5l11-count-ends', hint: 'Count only the stops <b>between</b> the start and the finish: the ' + c.v + ' resting at the finish doesn’t count.' };
+          if (v === 5) return { code: 'u5l11-count-ends', hint: 'Count only the stops <b>between</b> the start and the finish, not the ' + c.v + ' resting before it pulls away or after it arrives.' };
+          if (v === 0) return { code: 'u5l11-stops', hint: 'A complete stop is speed ' + t('0') + ': every time your graph touches the time axis in the middle is a stop.' };
+          return { code: 'u5l11-stops', hint: 'The first condition says the ' + c.v + ' stops exactly three times besides the start and the finish.' };
+        }, '<b>Three times</b>: the three stops between the start and the finish. (The sample graph is flat at speed ' + t('0') + ' from ' + fl.join(', ') + ' minutes.) The ' + c.v + ' resting at the very start and the very finish is not counted.',
+          ['A complete stop is speed ' + t('0') + ': the graph touches the time axis.', 'Don’t count the start or the finish.'], 'EP stops between', { after: 'times' });
+        p.bad = ['4', '5', '2'];
+        return p;
       } }] },
     { num: '18', shared: function (r) { var d = pick(r, [2, 2, 1.5, 3, 2.5]), t1 = pick(r, [10, 10, 15, 20]), s = pick(r, [5, 5, 10]), nm = pick(r, ['Priya', 'Priya', 'Noah', 'Ines', 'Kenji']), pl = pick(r, ['a store', 'a store', 'the library', 'a friend’s house']); return { d: d, t1: t1, s: s, nm: nm, pl: pl, T: 2 * t1 + s }; },
       stem: function (c) { return c.nm + ' walks ' + t(dn(c.d)) + ' km to ' + c.pl + ' in ' + t(c.t1) + ' minutes, stays for ' + t(c.s) + ' minutes, then walks the same ' + t(dn(c.d)) + ' km home in ' + t(c.t1) + ' minutes. Sketch <b>two</b> graphs of this one trip.'; }, parts: [
