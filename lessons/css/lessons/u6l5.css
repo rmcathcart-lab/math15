@@ -1,0 +1,114 @@
+/* Math 15 · Unit 6 · Lesson 5 — Applications: Distance, Midpoint, and Finding a Missing Endpoint: styles used only on
+ * this page (prefix u6l5-). Colours: run / east-west amber, rise / north-south purple, segments blue, midpoints red. */
+:root { --u6l5-run: #c27a0e; --u6l5-rise: #7b4fc4; --u6l5-seg: #1f5bd6; }
+
+.u6l5 .ex-cap .katex { font-size: 1.04em; }
+.u6l5 .chip .katex { font-size: 1em; }
+.u6l5 .pl .katex { font-size: 1.1em; }
+.u6l5 .ans .katex { font-size: 1.04em; }
+.u6l5 .part.span2 { grid-column: span 2; }
+.u6l5 .pill-col { display: flex; flex-direction: column; gap: 6px; }
+.u6l5 .katex { white-space: nowrap; }
+.u6l5 h2 .katex, .u6l5 h3 .katex { font-size: .95em; }
+.u6l5-crun { color: var(--u6l5-run); }
+.u6l5-crise { color: var(--u6l5-rise); }
+
+/* ---------------- warm-up ---------------- */
+.u6l5-wfig { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.u6l5-wbtns { display: flex; gap: 6px; flex-wrap: wrap; }
+.wf .u6l5-wbtns .pill { font-size: 14.5px; padding: 6px 11px; white-space: nowrap; }
+.wf .u6l5-wqs .q-line { font-size: 17px; margin: 4px 0 2px; gap: 10px; }
+.wf .u6l5-wqs .q-line .pill.small { padding: 2px 10px; }
+.u6l5-wa { margin: 0 0 6px 40px; }
+.wf .u6l5-wqs .bk-ans { font-size: 15.5px; line-height: 1.32; margin-top: 2px; }
+.u6l5-rope { margin: 0 0 0 40px; }
+.u6l5-q { color: var(--red); font-size: 24px; }
+.u6l5-wlab { font: italic 600 15px var(--font); color: var(--ink2); }
+.wf .wf-poll { margin-top: 8px; padding: 2px 14px 12px; }
+.wf .wf-poll > .q-line { font-size: 17px; margin: 8px 0 8px; }
+.wf .wf-poll .opt { padding: 5px 9px; font-size: 16.5px; white-space: nowrap; }
+.wf-poll:not(.revealed) .poll-ans { display: none; }
+.wf .u6l5-poll4 .poll-opts { grid-template-columns: repeat(4, auto); justify-content: start; gap: 6px; margin: 0 0 8px; }
+.u6l5-wlow { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 18px; align-items: center; margin-top: 6px; }
+.wf .u6l5-poll3 { margin-top: 0; }
+.wf .u6l5-poll3 .poll-opts { grid-template-columns: repeat(3, auto); justify-content: start; gap: 8px; margin: 0 0 8px; }
+.u6l5-social { font-style: italic; color: var(--ink2); font-size: 18px; text-align: center; margin: 0; }
+.u6l5-fog { transition: opacity .3s; }
+
+/* ---------------- section cards and static figures ---------------- */
+.u6l5-two { grid-template-columns: 1fr 1fr; }
+.u6l5-two .def { margin: 0; font-size: 19px; }
+.u6l5-disp { text-align: center; font-size: 25px; margin: 8px 0 6px; }
+.u6l5-short { font-size: 20px; }
+.u6l5-demo { display: grid; grid-template-columns: 270px 1fr; gap: 20px; align-items: center; background: #fbfaf6; border: 1px solid var(--line2); border-radius: 12px; padding: 10px 18px; margin: 0 0 16px; font-size: 19.5px; line-height: 1.45; }
+.u6l5-dl { font-size: 22px; margin: 6px 0 6px 18px; }
+.u6l5-exrow { display: grid; grid-template-columns: 330px 1fr; gap: 20px; align-items: center; margin-bottom: 12px; }
+.u6l5-exrow .q { margin: 0; }
+.u6l5-compassrow { display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: center; margin: 0 0 14px; }
+.u6l5-compassrow .def { margin: 0; }
+.u6l5-compass { display: flex; justify-content: center; }
+
+/* ---------------- explainers ---------------- */
+.u6l5-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+.u6l5-ph { font: 800 17px var(--round); color: var(--muted); }
+.u6l5-ph:empty { display: none; }
+.u6l5-ph .katex { text-transform: none; font-size: 1.25em; }
+.u6l5-line { font-size: 21px; line-height: 1.35; }
+.u6l5-big { font-size: 23px; font-weight: 700; }
+.u6l5-sm { font-size: 18px; }
+.u6l5-note { font-size: 18px; color: var(--ink2); }
+.u6l5-trun { color: var(--u6l5-run); }
+.u6l5-trise { color: var(--u6l5-rise); }
+.u6l5-rule { margin-top: auto; background: var(--brand-soft); border-left: 5px solid var(--brand2); border-radius: 10px; padding: 8px 14px; font-size: 21px; line-height: 1.5; }
+.u6l5-legl { font: 800 19px var(--round); background: #fff; border: 2.5px solid currentColor; border-radius: 11px; padding: 0 8px; white-space: nowrap; }
+.u6l5-lrun { color: var(--u6l5-run); }
+.u6l5-lrise { color: var(--u6l5-rise); }
+.u6l5-lhyp { color: var(--u6l5-seg); }
+.u6l5-wbody { transform-box: fill-box; transform-origin: 50% 100%; }
+.u6l5-icon { transform-box: fill-box; transform-origin: center; }
+.u6l5-mapn { font-size: 17px; }
+
+/* tools: the two boxes */
+.u6l5-tbox { border-radius: 12px; padding: 6px 12px 8px; display: flex; flex-direction: column; gap: 4px; }
+.u6l5-tdist { background: #eef3fd; border-left: 5px solid var(--u6l5-seg); }
+.u6l5-tmid { background: #fdf0ef; border-left: 5px solid var(--red); }
+.u6l5-th { font: 800 19px var(--round); color: var(--ink); }
+.u6l5-th span { font: 600 16px var(--font); color: var(--muted); margin-left: 6px; }
+
+/* solve: the equation rows under the number line */
+.u6l5-eqs { display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.u6l5-eqrow { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: center; background: #fff; border: 1px solid var(--line2); border-radius: 12px; padding: 6px 16px; }
+.u6l5-eq { font-size: 27px; text-align: right; }
+.u6l5-eqn { font-size: 18px; color: var(--ink2); }
+.u6l5-erun { border-left: 5px solid var(--u6l5-run); }
+.u6l5-erise { border-left: 5px solid var(--u6l5-rise); }
+.u6l5-echk { border-left: 5px solid var(--ok); background: #eef8f2; }
+
+/* trap: the three tries */
+.u6l5-try { position: relative; border: 1px solid var(--line2); border-radius: 12px; padding: 6px 12px; display: flex; flex-direction: column; gap: 3px; }
+.u6l5-tryh { font: 800 17px var(--round); }
+.u6l5-tryb { font-size: 19px; }
+.u6l5-tryc { font-size: 17px; min-height: 0; }
+.u6l5-tryc.u6l5-ok { color: var(--ok); }
+.u6l5-tryc.u6l5-bad { color: var(--red); }
+.u6l5-try .u6l5-trys { position: absolute; right: 10px; top: 6px; }
+
+/* rescue: the scale bar */
+.u6l5-bar { display: flex; flex-wrap: nowrap; gap: 2px; margin-top: 6px; }
+.u6l5-cell { height: 26px; border-radius: 4px; background: repeating-linear-gradient(90deg, #f3d9a6 0 50%, #e8bd6a 50% 100%); border: 1px solid #c27a0e; box-sizing: border-box; }
+.u6l5-tot { font-size: 20px; min-height: 28px; }
+
+/* which: cards and bins */
+.u6l5-card { background: #fffdf4; border: 2px solid #e6dcc0; border-radius: 14px; padding: 12px 18px 12px 56px; font-size: 22px; line-height: 1.4; box-shadow: 0 6px 16px rgba(0, 0, 0, .08); box-sizing: border-box; position: relative; }
+.u6l5-cardn { position: absolute; left: 14px; top: 12px; width: 30px; height: 30px; border-radius: 50%; background: var(--brand2); color: #fff; font: 800 17px/30px var(--round); text-align: center; }
+.u6l5-kw { transition: background .3s; border-radius: 5px; padding: 0 3px; }
+.u6l5-kw.on { background: #ffe58a; }
+.u6l5-bin { border: 2.5px solid; border-radius: 14px; background: #fff; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden; }
+.u6l5-binh { padding: 6px 12px; border-bottom: 2px solid; font-size: 19px; display: flex; flex-direction: column; }
+.u6l5-binh span { font: 700 15px var(--round); text-transform: uppercase; letter-spacing: .04em; opacity: .85; }
+.u6l5-binl { padding: 6px 10px; display: flex; flex-direction: column; gap: 6px; }
+.u6l5-binit { font-size: 18px; line-height: 1.3; background: #f6f7f9; border-radius: 8px; padding: 4px 8px; }
+.u6l5-binit b { display: inline-block; width: 22px; height: 22px; border-radius: 50%; background: var(--brand2); color: #fff; text-align: center; font: 800 14px/22px var(--round); margin-right: 4px; }
+.u6l5-ord { font: 800 13px var(--round); text-transform: uppercase; color: var(--red); margin-right: 4px; }
+.u6l5-ansbox { margin-top: auto; align-self: center; border: 3px solid var(--ok); background: #eef8f2; color: #0d5c3f; border-radius: 12px; padding: 6px 16px; font-size: 21px; text-align: center; }
+.u6l5-tick { font-weight: 800; color: var(--ok); margin-right: 4px; }

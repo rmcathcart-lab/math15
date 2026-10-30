@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parallel and Perpendicular Lines · Math 15 6.9</title>
+<meta name="description" content="Math 15 Unit 6 Lesson 9: compare the slopes of two segments. Equal slopes mean parallel; negative reciprocals (flip it and change the sign, a product of −1) mean perpendicular. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u6l9.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u6l9">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 6 Characteristics of Linear Relations · Lesson 9</div>
+  <h1>Parallel and Perpendicular Lines</h1>
+  <p class="lede">Two segments on the same grid. Do they point the <b>same way</b> forever, or meet at a perfect <b>square corner</b>? Your eyes can be fooled, but the slopes can’t. Find both slopes and compare: <b>equal</b> slopes mean <b class="u6l9-part">parallel</b>; slopes that are <b>flipped with the sign changed</b> mean <b class="u6l9-perp">perpendicular</b>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>calculate the slope of each segment with the slope formula <span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}</span></li>
+      <li>show two segments are <b class="u6l9-part">parallel</b> because their slopes are <b>equal</b></li>
+      <li>find the <b>negative reciprocal</b> of a slope: <b>flip it and change the sign</b></li>
+      <li>show two segments are <b class="u6l9-perp">perpendicular</b> because their slopes multiply to <span class="tex">-1</span></li>
+      <li>decide whether two slopes are parallel, perpendicular, or neither</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF3</b> Demonstrate an understanding of slope with respect to: rise and run; line segments and lines; rate of change; parallel lines; perpendicular lines.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Pick-Up Sticks" id="wu" style="--wf-side: 372px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Pick-Up Sticks</h2>
+  <p class="wf-rule">The sticks landed on a pegboard. Every stick runs from <b>peg</b> to <b>peg</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u6l9-wfig">
+      <div id="u6l9-board"></div>
+      <div class="u6l9-wbtns">
+        <button type="button" class="pill" id="u6l9-wcount">Count A, B, G</button>
+        <button type="button" class="pill" id="u6l9-wlong">Make A, B, G longer</button>
+        <button type="button" class="pill" id="u6l9-wsq">Square corners?</button>
+      </div>
+      <div class="u6l9-wnote muted" id="u6l9-wnote"></div>
+    </div>
+    <div class="poll wf-poll u6l9-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Which pair of sticks makes a <b>perfect square corner</b> (exactly <span class="tex">90^\circ</span>) if you slid them or made them longer until they met? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> C and D</div>
+        <div class="opt right"><b>B</b> E and F</div>
+        <div class="opt"><b>C</b> both pairs</div>
+        <div class="opt"><b>D</b> neither pair</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: only E and F.</b> C and D look like a perfect “+”, but that corner is about <span class="tex">93^\circ</span>. E goes up 2, across 3; F goes down 3, across 2: the numbers <b>swapped</b> and the direction <b>flipped</b>. Exactly <span class="tex">90^\circ</span>, even though E and F never touch.<br><b>Today:</b> your eyes can be fooled; the slopes can’t.</div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u6l9-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Stick <b>A</b> goes how many pegs <b>up</b>, and how many <b>across</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l9-wa"><div class="bk-ans"><b>Up 2, across 6.</b></div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Sticks <b>B</b> and <b>G</b> both look like A. Only one of them would <em>never</em> touch A, even if both sticks were a mile long. Which one? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l9-wa"><div class="bk-ans"><b>B.</b> G goes up 2 for every 5 across, a little steeper than A, so far enough to the left it would cross A (30 pegs left of the board!).</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Compare B’s up and across with A’s. What do you notice? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l9-wa"><div class="bk-ans">B goes up 1, across 3. A goes up 2, across 6: that is also <b>1 up for every 3 across</b>. Same steepness, so they never meet.</div></div></div>
+    </div>
+    <p class="u6l9-social">Make a perfect “+” with two pencils by eye. Then check it with the corner of a sheet of paper!</p>
+  </div></div>
+</section>
+
+<!-- ================= 1. Slope and the two relationships ================= -->
+<section class="card" data-ink="s1" data-section="1. Slope, and the Two Relationships">
+  <div class="sec-h"><span class="badge">1</span><h2>Slope, and the Two Relationships</h2></div>
+  <div class="def u6l9-formula">For <span class="tex">P(x_1,\ y_1)</span> and <span class="tex">Q(x_2,\ y_2)</span>, the slope is <span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}=\dfrac{\color{#7b4fc4}\text{rise}}{\color{#c27a0e}\text{run}}</span>.</div>
+  <div class="u6l9-rules">
+    <div class="u6l9-rule u6l9-rpar"><div class="u6l9-rh">Parallel</div><div class="u6l9-rb">slopes are <b>equal</b><br><span class="tex">m_1=m_2</span></div></div>
+    <div class="u6l9-rule u6l9-rperp"><div class="u6l9-rh">Perpendicular</div><div class="u6l9-rb">slopes are <b>negative reciprocals</b><br><span class="tex">m_1\times m_2=-1</span></div></div>
+  </div>
+  <div class="def amber"><b>Special case.</b> A horizontal segment has slope <span class="tex">0</span> and a vertical segment has an <b>undefined</b> slope. Those two are <b>perpendicular</b> to each other, but the product rule can’t be used on them (you can’t multiply by “undefined”).</div>
+  <div class="explainer" data-explainer="spin"></div>
+</section>
+
+<!-- ================= 2. Parallel ================= -->
+<section class="card" data-ink="s2" data-section="2. Parallel Lines Have Equal Slopes">
+  <div class="sec-h"><span class="badge">2</span><h2>Parallel Lines Have Equal Slopes</h2></div>
+  <p>Parallel segments point in the <b>same direction</b>, so they must have the <b>same steepness</b>. No matter how far you extend them, they never meet.</p>
+  <div class="u6l9-demo">
+    <div id="u6l9-demo2"></div>
+    <div class="u6l9-demo-txt">
+      <p><b>Worked demonstration.</b> Segment <span class="tex">AB</span> (blue) and segment <span class="tex">CD</span> (red) sit on the same grid:</p>
+      <div class="u6l9-wk"><span class="tex">m_{AB}=\dfrac{1-(-2)}{-1-(-6)}=\dfrac{3}{5}</span><span class="tex">m_{CD}=\dfrac{-1-(-4)}{5-0}=\dfrac{3}{5}</span></div>
+      <p>The slopes are identical, so <span class="tex">AB\parallel CD</span>.</p>
+      <div class="def u6l9-rulebox"><b>Rule:</b> <span class="tex">AB\parallel CD</span> if and only if <span class="tex">m_{AB}=m_{CD}</span>. To <b>test</b> a pair, find each slope separately, then compare the two values.</div>
+    </div>
+  </div>
+  <div class="explainer" data-explainer="translate"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Are they parallel? Read the graph</h3></div>
+  <p class="q">The graph shows segments <span class="tex">PQ</span> and <span class="tex">RS</span>.</p>
+  <div class="u6l9-exg">
+    <div id="u6l9-ex1fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Calculate the slope of segment <span class="tex">PQ</span>.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">P(-5,\ -3)</span>, <span class="tex">Q(-1,\ 3)</span>: <span class="tex">m_{PQ}=\dfrac{3-(-3)}{-1-(-5)}=\dfrac{6}{4}=\boldsymbol{\dfrac{3}{2}}</span></div></div></div>
+      <div class="part"><div class="pl">(b) Calculate the slope of segment <span class="tex">RS</span>.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">R(0,\ -5)</span>, <span class="tex">S(4,\ 1)</span>: <span class="tex">m_{RS}=\dfrac{1-(-5)}{4-0}=\dfrac{6}{4}=\boldsymbol{\dfrac{3}{2}}</span></div></div></div>
+      <div class="part"><div class="pl">(c) Are <span class="tex">PQ</span> and <span class="tex">RS</span> parallel? Explain how you know.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> Both segments have slope <span class="tex">\tfrac{3}{2}</span>, and segments with <b>equal</b> slopes are parallel, so <span class="tex">PQ\parallel RS</span>.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Are they parallel? From the coordinates</h3></div>
+  <p class="q">Segment <span class="tex">TU</span> has endpoints <span class="tex">T(-8,\ 5)</span> and <span class="tex">U(4,\ -1)</span>; segment <span class="tex">VW</span> has endpoints <span class="tex">V(-3,\ -2)</span> and <span class="tex">W(9,\ -8)</span>.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Calculate the slope of <span class="tex">TU</span>.</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m_{TU}=\dfrac{-1-5}{4-(-8)}=\dfrac{-6}{12}</span><br><span class="tex">=\boldsymbol{-\dfrac{1}{2}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Calculate the slope of <span class="tex">VW</span>.</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m_{VW}=\dfrac{-8-(-2)}{9-(-3)}=\dfrac{-6}{12}</span><br><span class="tex">=\boldsymbol{-\dfrac{1}{2}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Are <span class="tex">TU</span> and <span class="tex">VW</span> parallel? Explain.</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes, parallel.</b> The two slopes are equal (<span class="tex">-\tfrac12=-\tfrac12</span>), and equal slopes mean the segments never meet.</div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Brackets around a negative coordinate.</b> <span class="tex">4-(-8)=4+8=12</span>. Write the bracket every time you subtract a negative.</div></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>The whole slope in one go.</b> Bracket the top and the bottom, and use <kbd>(−)</kbd> for a negative: <span class="keys"><kbd>(</kbd><kbd>(−)</kbd><kbd>1</kbd><kbd>−</kbd><kbd>5</kbd><kbd>)</kbd><kbd>÷</kbd><kbd>(</kbd><kbd>4</kbd><kbd>−</kbd><kbd>(−)</kbd><kbd>8</kbd><kbd>)</kbd><kbd>=</kbd></span> gives <span class="tex">-0.5</span>. Then <span class="keys"><kbd>2nd</kbd><kbd>F◂▸D</kbd></span> shows it as a fraction: <b>−1┘2</b>, which means <span class="tex">-\tfrac12</span>.</div>
+    <div class="pill-col"><button class="pill" data-keys="( (−) 1 − 5 ) ÷ ( 4 − (−) 8 ) = F◂▸D">Show me</button></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Make them longer: do they meet?">
+  <h3 class="sub">Make them longer: do they ever meet?</h3>
+  <p>Equal slopes keep the gap between two segments the same forever. If the slopes are even a little different, the segments are <b>not</b> parallel: make them long enough and they cross.</p>
+  <div class="explainer" data-explainer="meet"></div>
+</section>
+
+<!-- sources: https://en.wikipedia.org/wiki/Equals_sign (The Whetstone of Witte, 1557; "a paire of paralleles, or Gemowe lines of one lengthe, thus: =, bicauſe noe .2. thynges, can be moare equalle"; original sign much wider than today's)
+     https://mathshistory.st-andrews.ac.uk/DNB/Recorde.html (Recorde c. 1512-1558, of Tenby, Pembrokeshire; MD Cambridge 1545; the Whetstone was his last book)
+     https://blog.plover.com/math/recorde.html ("Gemowe" means twin)
+     https://chalkdustmagazine.com/features/roots-all-things-being-equal (his first equation, in modern form: 14x + 15 = 71) -->
+<!-- ================= Math History box (brown) ================= -->
+<section class="card history" data-ink="hist" data-section="Math History: the equals sign">
+  <div class="hist-head"><span class="hist-tag">Math History</span><span class="hist-dates">1557</span></div>
+  <div class="hist-grid">
+    <div class="hist-text">
+      <h3 class="hist-title">Why “=” is two parallel lines</h3>
+      <p>In <b>1557</b> the Welsh doctor Robert <b>Recorde</b> wrote a math book, <i>The Whetstone of Witte</i>. He was tired of writing “is equalle to” over and over, so he drew <b>“Gemowe</b> [twin] <b>lines of one lengthe”</b>.</p>
+      <p>His reason: “bicause noe .2. thynges, can be moare equalle.” Two twin lines are <b>parallel</b>, so their <b>slopes are equal</b>: today’s lesson, hiding in every equation you write.</p>
+      <div class="part hist-q"><div class="pl">A tilted “=” has its bottom line from <span class="tex">(0,\ 0)</span> to <span class="tex">(6,\ 2)</span>. The top line starts at <span class="tex">(0,\ 3)</span>. Where must it end to be parallel and the same length? What is each slope?</div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Slide the bottom line <span class="tex">3</span> up: it ends at <span class="tex">\boldsymbol{(6,\ 5)}</span>. Both slopes are <span class="tex">\frac{2-0}{6-0}=\frac{5-3}{6-0}=\boldsymbol{\frac{1}{3}}</span>.</div></div></div>
+    </div>
+    <figure class="hist-anim">
+      <svg id="u6l9-hist" viewBox="0 0 600 300" role="img" aria-label="Recorde's first equation, 14x plus 15 is equal to 71. The words is equal to become two long parallel lines, which shrink to today's short equals sign. Then the sign tilts onto a grid: each line rises 4 and runs 8, so both have slope one half."></svg>
+      <figcaption><button class="hist-play" type="button">Replay</button><span>Tap the picture to play it again.</span></figcaption>
+      <p class="hist-note">His sign was much longer than the one we write today. His first equation with it, in today’s symbols, was <span class="tex">14x+15=71</span>.</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= 3. Perpendicular ================= -->
+<section class="card" data-ink="s3" data-section="3. Perpendicular Lines Have Negative Reciprocal Slopes">
+  <div class="sec-h"><span class="badge">3</span><h2>Perpendicular Lines Have Negative Reciprocal Slopes</h2></div>
+  <p>Perpendicular segments meet at a <b>right angle</b> (<span class="tex">90^\circ</span>). To get the <b>negative reciprocal</b> of a slope, <b>flip it and change the sign</b>: the perpendicular of <span class="tex">\tfrac{2}{3}</span> is <span class="tex">-\tfrac{3}{2}</span>, and the perpendicular of <span class="tex">-5</span> (that is, <span class="tex">-\tfrac{5}{1}</span>) is <span class="tex">\tfrac{1}{5}</span>.</p>
+  <div class="u6l9-demo">
+    <div id="u6l9-demo3"></div>
+    <div class="u6l9-demo-txt">
+      <p><b>Worked demonstration.</b> <span class="tex">EF</span> and <span class="tex">FG</span> meet at <span class="tex">F</span>, and the small square marks the right angle there:</p>
+      <div class="u6l9-wk"><span class="tex">m_{EF}=\dfrac{0-(-3)}{2-(-2)}=\dfrac{3}{4}</span><span class="tex">m_{FG}=\dfrac{-4-0}{5-2}=-\dfrac{4}{3}</span></div>
+      <div class="u6l9-wk"><span class="tex">m_{EF}\times m_{FG}=\dfrac{3}{4}\times\left(-\dfrac{4}{3}\right)=-1</span></div>
+      <p>Notice <span class="tex">-\tfrac{4}{3}</span> is <span class="tex">\tfrac{3}{4}</span> flipped, with the sign changed.</p>
+      <div class="def u6l9-rulebox"><b>Rule:</b> two segments are perpendicular if and only if <span class="tex">m_1\times m_2=-1</span>. To test a pair, find both slopes and <b>multiply</b>.</div>
+    </div>
+  </div>
+  <div class="explainer" data-explainer="rotate"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Flip it and change the sign">
+  <h3 class="sub">Flip it and change the sign</h3>
+  <p>From one slope you can get both partners: a <b class="u6l9-part">parallel</b> slope (the same number) and a <b class="u6l9-perp">perpendicular</b> slope (flip it, change the sign). <span class="muted">Tap a card to check.</span></p>
+  <div class="bk-flips u6l9-flips" style="--bk-cols:4">
+    <div class="bk-flip"><div class="bk-front"><span class="tex">m=\dfrac{3}{4}</span></div><div class="bk-back">∥ <span class="tex">\dfrac34</span> &nbsp; ⊥ <span class="tex">-\dfrac43</span></div></div>
+    <div class="bk-flip"><div class="bk-front"><span class="tex">m=-3</span></div><div class="bk-back">∥ <span class="tex">-3</span> &nbsp; ⊥ <span class="tex">\dfrac13</span></div></div>
+    <div class="bk-flip"><div class="bk-front"><span class="tex">m=-\dfrac{2}{5}</span></div><div class="bk-back">∥ <span class="tex">-\dfrac25</span> &nbsp; ⊥ <span class="tex">\dfrac52</span></div></div>
+    <div class="bk-flip"><div class="bk-front"><span class="tex">m=6</span></div><div class="bk-back">∥ <span class="tex">6</span> &nbsp; ⊥ <span class="tex">-\dfrac16</span></div></div>
+  </div>
+  <div class="explainer" data-explainer="flipSign"></div>
+</section>
+
+<section class="card" data-ink="s3c" data-section="3. Multiply the slopes">
+  <h3 class="sub">Multiply the slopes: is it a square corner?</h3>
+  <p>A “+” can <b>look</b> perfect and still be a few degrees off. The product of the slopes settles it: exactly <span class="tex">-1</span> means a right angle; anything else means it is not.</p>
+  <div class="explainer" data-explainer="perpTest"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>A square corner at <span class="tex">N</span>?</h3></div>
+  <p class="q">The graph shows segments <span class="tex">MN</span> and <span class="tex">NO</span>, which share the point <span class="tex">N</span>.</p>
+  <div class="u6l9-exg">
+    <div id="u6l9-ex3fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Calculate the slope of segment <span class="tex">MN</span>.</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">M(-4,\ -3)</span>, <span class="tex">N(2,\ 1)</span>: <span class="tex">m_{MN}=\dfrac{1-(-3)}{2-(-4)}=\dfrac{4}{6}=\boldsymbol{\dfrac{2}{3}}</span></div></div></div>
+      <div class="part"><div class="pl">(b) Calculate the slope of segment <span class="tex">NO</span>.</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">N(2,\ 1)</span>, <span class="tex">O(4,\ -2)</span>: <span class="tex">m_{NO}=\dfrac{-2-1}{4-2}=\dfrac{-3}{2}=\boldsymbol{-\dfrac{3}{2}}</span></div></div></div>
+      <div class="part"><div class="pl">(c) Multiply the two slopes together. Are <span class="tex">MN</span> and <span class="tex">NO</span> perpendicular?</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{2}{3}\times\left(-\dfrac{3}{2}\right)=-\dfrac{6}{6}=\boldsymbol{-1}</span><br><b>Yes, perpendicular.</b> The product is <span class="tex">-1</span> (the slopes are negative reciprocals), which matches the right-angle mark at <span class="tex">N</span>.</div></div></div>
+    </div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Multiply fractions with the fraction key.</b> <span class="keys"><kbd>2</kbd><kbd>ab/c</kbd><kbd>3</kbd><kbd>×</kbd><kbd>(−)</kbd><kbd>3</kbd><kbd>ab/c</kbd><kbd>2</kbd><kbd>=</kbd></span> gives <span class="tex">-1</span>: perpendicular.</div>
+    <div class="pill-col"><button class="pill" data-keys="2 ab/c 3 × (−) 3 ab/c 2 =">Show me</button></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Perpendicular? From the coordinates</h3></div>
+  <p class="q">Segment <span class="tex">HI</span> has endpoints <span class="tex">H(-7,\ 2)</span> and <span class="tex">I(1,\ -2)</span>; segment <span class="tex">JK</span> has endpoints <span class="tex">J(-3,\ -6)</span> and <span class="tex">K(1,\ 2)</span>.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Calculate the slope of <span class="tex">HI</span>.</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m_{HI}=\dfrac{-2-2}{1-(-7)}=\dfrac{-4}{8}</span><br><span class="tex">=\boldsymbol{-\dfrac{1}{2}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Calculate the slope of <span class="tex">JK</span>.</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m_{JK}=\dfrac{2-(-6)}{1-(-3)}=\dfrac{8}{4}</span><br><span class="tex">=\boldsymbol{2}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Multiply the slopes. Are <span class="tex">HI</span> and <span class="tex">JK</span> perpendicular?</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">-\dfrac{1}{2}\times 2=\boldsymbol{-1}</span><br><b>Yes, perpendicular.</b></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u6l9"></section>
+
+<!-- ================= Parallel, perpendicular, or neither ================= -->
+<section class="card" data-ink="s4" data-section="Parallel, perpendicular, or neither?">
+  <h3 class="sub">Parallel, perpendicular, or neither?</h3>
+  <p>Two slopes, two questions. Are they <b>equal</b>? Then parallel. If not, is their <b>product <span class="tex">-1</span></b>? Then perpendicular. If neither is true: <b>neither</b>. Watch the trap: flipping the fraction <b>without</b> changing the sign gives neither.</p>
+  <div class="explainer" data-explainer="classify"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Parallel, perpendicular, or neither?</h3></div>
+  <p class="q">For each pair of slopes, state whether the segments are <b>parallel</b>, <b>perpendicular</b>, or <b>neither</b>.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">m_1=\dfrac{2}{5},\ m_2=\dfrac{2}{5}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The slopes are equal.<br><b>Parallel</b></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">m_1=\dfrac{3}{4},\ m_2=-\dfrac{4}{3}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{3}{4}\times\left(-\dfrac{4}{3}\right)=-1</span><br><b>Perpendicular</b></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">m_1=\dfrac{5}{6},\ m_2=\dfrac{6}{5}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Flipped, but the sign did <b>not</b> change: <span class="tex">\dfrac{5}{6}\times\dfrac{6}{5}=+1</span>, not <span class="tex">-1</span>.<br><b>Neither</b></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s5" data-section="Extra: a missing number in a slope">
+  <h3 class="sub">Extra: a missing number in a slope</h3>
+  <p>Sometimes one slope has a letter in it. Use the rule as an equation. <b class="u6l9-part">Parallel:</b> set the two slopes <b>equal</b>. <b class="u6l9-perp">Perpendicular:</b> set the letter’s slope equal to the <b>negative reciprocal</b> (flip it and change the sign). Then solve.</p>
+  <div class="explainer" data-explainer="dialK"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Find both slopes first.</b> <span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}</span>, same order top and bottom, brackets around negatives: <span class="tex">4-(-8)=12</span>.</div>
+    <div><b class="u6l9-part">Parallel</b> segments have <b>equal slopes</b>: <span class="tex">m_1=m_2</span>. They point the same way and never meet.</div>
+    <div><b class="u6l9-perp">Perpendicular</b> segments have <b>negative reciprocal</b> slopes: flip it and change the sign. Check: <span class="tex">m_1\times m_2=-1</span>.</div>
+    <div><b>Neither</b> if the slopes are not equal and the product is not <span class="tex">-1</span>. Special case: horizontal (<span class="tex">0</span>) <span class="tex">\perp</span> vertical (undefined).</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u6l9">
+    <div><div class="kicker">Your turn</div><b>Assignment 9 — Parallel and Perpendicular Lines</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l10/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 10 — Unit Review: Coordinate Geometry</b><div class="muted">Lengths, midpoints and slopes, all on one grid: get ready for the unit test.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u6l9.js';
+  boot({ key: 'u6l9', homeHref: '../../', title: '6.9 Parallel and Perpendicular Lines' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

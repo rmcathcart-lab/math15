@@ -1,0 +1,97 @@
+/* Math 15 · Unit 6 · Lesson 4 — The Midpoint Formula: styles used only on this page (prefix u6l4-).
+ * Colours: run / x amber, rise / y purple, segments blue, midpoints red. */
+.u6l4 { --u6l4-run: #c27a0e; --u6l4-rise: #7b4fc4; --u6l4-seg: #1f5bd6; }
+
+.ex-cap { min-height: 118px; }
+.ex-cap .katex { font-size: 1.04em; }
+.chip .katex { font-size: 1em; }
+.pl .katex { font-size: 1.1em; }
+.ans .katex { font-size: 1.04em; }
+.pill-col { display: flex; flex-direction: column; gap: 6px; }
+.u6l4 .katex { white-space: nowrap; }
+h2 .katex, h3 .katex { font-size: .95em; }
+.u6l4-crun { color: var(--u6l4-run); }
+.u6l4-crise { color: var(--u6l4-rise); }
+.u6l4-cm { color: var(--red); }
+.u6l4-today { display: block; margin-top: 6px; font-size: .92em; color: var(--ink2); }
+
+/* ---------------- warm-up ---------------- */
+.u6l4-town { display: flex; justify-content: center; }
+.u6l4-wbtns { display: flex; gap: 8px; justify-content: center; align-items: center; margin: 4px 0 0; }
+.u6l4-wbtns .pill { font-size: 16px; padding: 6px 13px; }
+.u6l4-wbtns .pill.on { background: var(--brand2); color: #fff; border-color: var(--brand2); }
+.u6l4-wbtns .u6l4-clr { background: #fff; color: var(--muted); }
+.u6l4-send { font-size: 16px; margin-right: 2px; }
+.wf .u6l4-wqs .q-line { margin: 6px 0 0; font-size: 17px; gap: 10px; line-height: 1.36; }
+.wf .u6l4-wqs .q-line .pill.small { margin-left: 4px; padding: 2px 10px; vertical-align: 1px; }
+.wf .u6l4-wqs .bk-ans { font-size: 16px; line-height: 1.36; margin-top: 2px; }
+.u6l4-wa { margin: 0 0 4px 40px; }
+.u6l4-tlab { font: 800 13px var(--round); color: var(--ink); background: rgba(255, 255, 255, .88); border-radius: 5px; padding: 0 4px; white-space: nowrap; }
+.u6l4-lakel { font: 800 14px var(--round); color: #fff; text-shadow: 0 0 3px #2c6a9c; }
+.u6l4-lakel.u6l4-sm { font-size: 15px; }
+.wf .u6l4-poll { margin-top: 8px; display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px; align-items: center; }
+.wf .u6l4-poll > .q-line, .wf .u6l4-poll > .poll-ans { grid-column: 1 / -1; }
+.wf .u6l4-poll .poll-opts { grid-template-columns: repeat(2, 1fr); gap: 6px; margin: 0; }
+.wf .u6l4-poll > .pill { margin: 0; padding: 6px 14px; }
+.wf .u6l4-poll .opt { padding: 4px 10px; white-space: nowrap; }
+.u6l4-social { margin: 8px 0 0; font-size: 19px; font-style: italic; color: var(--ink2); text-align: center; }
+
+/* ---------------- section cards and static figures ---------------- */
+.u6l4-s1row { display: grid; grid-template-columns: 1fr 340px; gap: 20px; align-items: center; margin-bottom: 8px; }
+.u6l4-s1row .def { margin: 0; }
+.u6l4-svgt { font: italic 700 24px "KaTeX_Math", Georgia, serif; fill: var(--ink); }
+.u6l4-svgm { fill: var(--red); }
+.u6l4-svgs { font: 700 16px var(--round); fill: var(--red); text-anchor: middle; }
+.u6l4-gridq { display: flex; justify-content: center; margin: 6px 0 4px; }
+.u6l4-ansfig { display: flex; justify-content: center; margin: 4px 0 8px; }
+.u6l4-blanks { text-align: center; font-size: 22px; margin: 4px 0; display: flex; justify-content: center; gap: 4px 18px; flex-wrap: wrap; }
+.u6l4-blanks .bk-rv { min-width: 64px; display: inline-block; text-align: center; border-bottom: 2px solid var(--ink2); }
+.u6l4-exrow { display: grid; grid-template-columns: 400px 1fr; gap: 18px; align-items: start; margin-bottom: 14px; }
+.u6l4-exrow .parts { margin-bottom: 0; }
+.u6l4-formula { font-size: 20px; }
+.u6l4-disp { text-align: center; font-size: 27px; margin: 8px 0 6px; }
+
+/* playground */
+.u6l4-play { display: grid; grid-template-columns: 440px 1fr; gap: 20px; align-items: start; }
+.u6l4-readout { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; min-height: 300px; }
+.u6l4-readout .u6l4-line { font-size: 21px; }
+.u6l4-readout .u6l4-note { font-size: 17px; }
+
+/* ---------------- explainers ---------------- */
+.u6l4-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+.u6l4-ph { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u6l4-ph:empty { display: none; }
+.u6l4-ph .katex { text-transform: none; font-size: 1.2em; }
+.u6l4-line { font-size: 21px; line-height: 1.35; }
+.u6l4-big { font-size: 25px; font-weight: 700; }
+.u6l4-note { font-size: 18px; color: var(--ink2); }
+.u6l4-mute { color: var(--muted); }
+.u6l4-trun { color: var(--u6l4-run); }
+.u6l4-trise { color: var(--u6l4-rise); }
+.u6l4-boxed { align-self: center; margin-top: 8px; font-size: 23px; border: 3px solid var(--brand2); border-radius: 12px; padding: 6px 14px; background: var(--brand-soft); }
+.u6l4-nlh { font-size: 18px; margin-top: 2px; }
+.u6l4-steq { position: absolute; font-size: 30px; white-space: nowrap; }
+.u6l4-nlm { font-weight: 700; }
+.u6l4-hl { font: 800 19px var(--round); }
+.u6l4-legl { font: 800 20px var(--round); background: #fff; border: 2.5px solid currentColor; border-radius: 11px; padding: 0 8px; }
+.u6l4-lrun { color: var(--u6l4-run); }
+.u6l4-lrise { color: var(--u6l4-rise); }
+.u6l4-tick { font: 800 14px var(--round); color: #fff; width: 22px; height: 22px; line-height: 22px; text-align: center; border-radius: 50%; padding: 0; }
+.u6l4-tick-r { background: var(--u6l4-run); }
+.u6l4-tick-u { background: var(--u6l4-rise); }
+.u6l4-wbody { transform-box: fill-box; transform-origin: 50% 100%; }
+.u6l4-wdot { transform-box: fill-box; transform-origin: center; }
+.u6l4-mapl { font: 700 italic 16px var(--font); color: #5f7f56; }
+.u6l4-mapr { color: #3f7fb3; }
+
+/* traps: the students' cards */
+.u6l4-tcard { border: 1.5px solid var(--line2); border-radius: 10px; padding: 5px 10px; font-size: 19px; background: #f7f7f8; }
+.u6l4-tcard.ok { border-color: var(--red); background: #fdeeed; }
+.u6l4-tmark { float: right; font: 800 20px var(--round); color: #8a8f99; }
+.u6l4-tcard.ok .u6l4-tmark { color: var(--ok); }
+.u6l4-twhy { font-size: 17px; color: var(--ink2); line-height: 1.3; }
+.u6l4-house { pointer-events: none; }
+.u6l4-nlm { font-size: 24px; color: var(--red); background: #fff; border: 2.5px solid var(--red); border-radius: 10px; padding: 0 8px; }
+.u6l4-edge { font: 600 13px var(--round); color: var(--muted); }
+.u6l4-bl { white-space: nowrap; }
+.u6l4-blanks .bk-rv { min-width: 56px; padding: 0 4px; }

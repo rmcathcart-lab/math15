@@ -1,0 +1,86 @@
+/* Math 15 · Unit 6 · Lesson 6 — Rise Over Run: The Slope of a Line Segment: styles used only on this page (prefix u6l6-).
+ * Colours: run amber, rise purple, segments blue. */
+:root { --u6l6-run: #c27a0e; --u6l6-rise: #7b4fc4; --u6l6-seg: #1f5bd6; }
+
+.u6l6 .ex-cap .katex { font-size: 1.04em; }
+.u6l6 .chip .katex { font-size: 1em; }
+.u6l6 .pl .katex { font-size: 1.1em; }
+.u6l6 .ans .katex { font-size: 1.04em; }
+.u6l6 .pill-col { display: flex; flex-direction: column; gap: 6px; }
+.u6l6 .katex { white-space: nowrap; }
+.u6l6-crun { color: var(--u6l6-run); }
+.u6l6-crise { color: var(--u6l6-rise); }
+
+/* ---------------- warm-up ---------------- */
+.u6l6-slides { display: flex; justify-content: center; margin: 4px 0 0; }
+.u6l6-swrap { position: relative; }
+.u6l6-sview { position: absolute; left: 0; top: 0; }
+.u6l6-sbadge { color: #fff; font: 800 18px var(--round); border-radius: 50%; width: 30px; height: 30px; line-height: 30px; text-align: center; padding: 0; }
+.u6l6-srun { color: #c93a33; font: 800 17px var(--round); background: #fff; border-radius: 6px; padding: 0 4px; }
+.u6l6-srise { color: #c93a33; font: 800 17px var(--round); background: rgba(255, 255, 255, .92); border-radius: 6px; padding: 0 4px; }
+.u6l6-sdiv { font-size: 18px; font-weight: 700; background: rgba(255, 255, 255, .92); border-radius: 6px; padding: 0 4px; }
+.u6l6-ssm.u6l6-sbadge { width: 24px; height: 24px; line-height: 24px; font-size: 15px; }
+.u6l6-ssm.u6l6-srun, .u6l6-ssm.u6l6-srise { font-size: 14px; }
+.u6l6-ssm.u6l6-sdiv { font-size: 15px; }
+.u6l6-snote { font: italic 600 15px var(--font); color: var(--ink2); }
+.u6l6-wbtns { display: flex; gap: 8px; justify-content: center; margin: 2px 0 6px; }
+.u6l6-wbtns .pill { font-size: 15px; padding: 6px 12px; }
+.u6l6-wlow { display: grid; grid-template-columns: minmax(0, 1fr) 400px; gap: 18px; align-items: start; }
+.wf .u6l6-wqs .q-line { font-size: 17px; margin: 4px 0 2px; gap: 10px; }
+.wf .u6l6-wqs .q-line .pill.small { padding: 2px 10px; }
+.u6l6-wa { margin: 0 0 6px 40px; }
+.wf .u6l6-wqs .bk-ans { font-size: 15.5px; line-height: 1.32; margin-top: 2px; }
+.wf .wf-poll { margin-top: 0; padding: 2px 14px 12px; }
+.wf .wf-poll > .q-line { font-size: 17px; margin: 8px 0 8px; }
+.wf .wf-poll .opt { padding: 5px 9px; font-size: 16.5px; }
+.wf-poll:not(.revealed) .poll-ans { display: none; }
+.u6l6-social { font-style: italic; color: var(--ink2); font-size: 18px; text-align: center; margin: 10px 0 0; }
+
+/* ---------------- section cards and static figures ---------------- */
+.u6l6-s1row { display: grid; grid-template-columns: 240px 1fr; gap: 22px; align-items: center; margin-bottom: 8px; }
+.u6l6-s1row p { margin-top: 0; }
+.u6l6-formula { font-size: 20px; }
+.u6l6-disp { text-align: center; font-size: 27px; margin: 8px 0 6px; }
+.u6l6-grade { font-size: 20px; }
+.u6l6-exrow { display: grid; grid-template-columns: 330px 1fr; gap: 20px; align-items: start; margin-bottom: 12px; }
+.u6l6-exrow .parts { margin-bottom: 0; }
+.u6l6-exrow-s { grid-template-columns: 310px 1fr; }
+.u6l6-exrow-s .q { margin-top: 0; }
+.u6l6-ansfig { display: flex; justify-content: center; margin: 6px 0 2px; }
+.u6l6-tab { border-collapse: collapse; font-size: 22px; width: 100%; margin: 4px 0 10px; }
+.u6l6-tab th, .u6l6-tab td { border: 1.5px solid var(--line2); padding: 6px 10px; text-align: center; height: 62px; }
+.u6l6-tab th { font: 800 16px var(--round); text-transform: uppercase; letter-spacing: .04em; height: 36px; background: #f6f5f1; }
+.u6l6-trailfig { display: flex; justify-content: center; margin: 4px 0 10px; }
+.u6l6-trailfig > div, .u6l6-trailfig { position: relative; }
+
+/* try it: drag the points */
+.u6l6-try { display: grid; grid-template-columns: 440px 1fr; gap: 20px; align-items: start; }
+.u6l6-tryside { display: flex; flex-direction: column; gap: 14px; }
+.u6l6-presets { display: flex; flex-wrap: wrap; gap: 8px; }
+.u6l6-ro { display: flex; flex-direction: column; gap: 8px; }
+.u6l6-ro-r { display: flex; align-items: baseline; gap: 14px; font-size: 28px; background: #f6f5f1; border-radius: 12px; padding: 4px 16px; border-left: 6px solid; }
+.u6l6-ro-run { border-color: var(--u6l6-run); color: var(--u6l6-run); }
+.u6l6-ro-rise { border-color: var(--u6l6-rise); color: var(--u6l6-rise); }
+.u6l6-ro-k { font: 800 20px var(--round); color: var(--ink2); min-width: 54px; }
+.u6l6-ro-m { font-size: 28px; text-align: center; padding: 6px 0; }
+.u6l6-ro-w { font-size: 20px; text-align: center; color: var(--ink2); }
+
+/* ---------------- explainers ---------------- */
+.u6l6-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+.u6l6-ph { font: 800 17px var(--round); color: var(--muted); }
+.u6l6-ph:empty { display: none; }
+.u6l6-ph .katex { font-size: 1.15em; }
+.u6l6-line { font-size: 21px; line-height: 1.4; }
+.u6l6-big { font-size: 24px; }
+.u6l6-sm { font-size: 18.5px; }
+.u6l6-tlab { font: 700 18px var(--round); background: rgba(255, 255, 255, .9); border-radius: 7px; padding: 0 5px; white-space: nowrap; }
+.u6l6-trun { color: var(--u6l6-run); } .u6l6-trise { color: var(--u6l6-rise); }
+.u6l6-bub { font: 800 14px var(--round); color: #fff; border-radius: 10px; padding: 0 6px; min-width: 20px; text-align: center; line-height: 20px; }
+.u6l6-bub-run { background: var(--u6l6-run); } .u6l6-bub-rise { background: var(--u6l6-rise); }
+.u6l6-ansbox { margin-top: auto; align-self: center; border: 3px solid var(--ok); background: #eef8f2; color: #0d5c3f; border-radius: 12px; padding: 6px 16px; font-size: 21px; text-align: center; }
+.u6l6-tick { font-weight: 800; color: var(--ok); margin-right: 4px; }
+.u6l6-okc { color: var(--ok); } .u6l6-badc { color: var(--red); }
+.u6l6-try.u6l6-line { display: block; border: 1px solid var(--line2); border-radius: 10px; padding: 4px 10px; }
+.u6l6-slab { font: 800 18px var(--round); background: rgba(255, 255, 255, .9); border-radius: 6px; padding: 0 4px; }
+.u6l6-nltag { position: absolute; font-size: 20px; color: var(--ink2); }
+.u6l6-rank { position: absolute; font-size: 21px; background: var(--brand-soft); border-left: 5px solid var(--brand2); border-radius: 10px; padding: 6px 14px; }

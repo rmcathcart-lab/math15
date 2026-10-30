@@ -1,0 +1,144 @@
+/* Math 15 · Unit 6 · Lesson 3 — Diagonal Segments and the Distance Formula: styles used only on this page (prefix u6l3-).
+ * Colours: run amber, rise purple, segments / hypotenuse blue, the corner and answers red, truck navy. */
+.u6l3 { --u6l3-run: #c27a0e; --u6l3-rise: #7b4fc4; --u6l3-seg: #1f5bd6; }
+
+.ex-cap { min-height: 118px; }
+.ex-cap .katex { font-size: 1.04em; }
+.chip .katex { font-size: 1em; }
+.pl .katex { font-size: 1.1em; }
+.ans .katex { font-size: 1.04em; }
+.part.span2 { grid-column: span 2; }
+.pill-col { display: flex; flex-direction: column; gap: 6px; }
+.u6l3 .katex { white-space: nowrap; }
+h2 .katex, h3 .katex { font-size: .95em; }
+.u6l3-crun, .u6l3-ca { color: var(--u6l3-run); }
+.u6l3-crise, .u6l3-cp { color: var(--u6l3-rise); }
+.u6l3-cb { color: var(--u6l3-seg); }
+.u6l3-cr { color: var(--red); }
+.u6l3-cg { color: var(--ok); }
+.u6l3-today { display: block; margin-top: 6px; font-size: .92em; color: var(--ink2); }
+
+/* ---------------- warm-up ---------------- */
+.u6l3-city { display: flex; justify-content: center; }
+.u6l3-wbtns { display: flex; gap: 8px; justify-content: center; align-items: center; margin: 4px 0 0; }
+.u6l3-send { font-size: 16px; margin-right: 2px; }
+.u6l3-wbtns .pill { font-size: 16px; padding: 6px 14px; }
+.u6l3-wbtns .pill.on { background: var(--brand2); color: #fff; border-color: var(--brand2); }
+.u6l3-wbtns .u6l3-clr { background: #fff; color: var(--muted); }
+.wf .u6l3-wqs .q-line { margin: 6px 0 0; font-size: 17px; gap: 10px; line-height: 1.36; }
+.wf .u6l3-wqs .q-line .pill.small { margin-left: 4px; padding: 2px 10px; vertical-align: 1px; }
+.wf .u6l3-wqs .bk-ans { font-size: 16px; line-height: 1.36; margin-top: 2px; }
+.u6l3-wa { margin: 0 0 4px 40px; }
+.u6l3-hlab { font: 800 15px var(--round); color: var(--ink); background: rgba(255, 255, 255, .92); border-radius: 6px; padding: 0 5px; white-space: nowrap; }
+.u6l3-shop { position: absolute; translate: -50% -50%; background: #c88c14; color: #fff; font: 800 13px var(--round); letter-spacing: .04em; padding: 2px 6px; border: 1.5px solid #1c2230; border-radius: 5px; z-index: 2; }
+.u6l3-tpill, .u6l3-dpill { font: 800 15px var(--round); background: #fff; border: 2px solid currentColor; border-radius: 9px; padding: 0 6px; white-space: nowrap; }
+.u6l3-tpill { color: #1e3a6e; }
+.u6l3-dpill { color: var(--red); }
+.u6l3-wtab { background: #fff; border: 1.5px solid var(--line2); border-radius: 12px; padding: 6px 14px 8px; }
+.wf .u6l3-wq3 { margin-top: 6px; }
+.u6l3-wth { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-bottom: 4px; }
+.u6l3-wtg { display: grid; grid-template-columns: 1fr 80px 80px; gap: 2px 8px; align-items: center; font-size: 17px; }
+.u6l3-wtc { font: 800 16px var(--round); text-align: center; }
+.u6l3-wtg > div:not(.u6l3-wtr):not(.u6l3-wtc) { text-align: center; }
+.u6l3-wtr { font-weight: 700; }
+.wf .u6l3-poll { margin-top: 8px; }
+.wf .u6l3-poll .poll-opts { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.wf .u6l3-poll .opt { white-space: nowrap; }
+.u6l3-social { margin: 8px 0 0; font-size: 19px; font-style: italic; color: var(--ink2); text-align: center; }
+
+/* ---------------- section cards and static figures ---------------- */
+.u6l3-s1row { display: grid; grid-template-columns: 330px 1fr; gap: 22px; align-items: center; margin-bottom: 10px; }
+.u6l3-s1row p { margin: 0 0 10px; }
+.u6l3-flab { font: 800 17px var(--round); background: rgba(255, 255, 255, .92); border-radius: 6px; padding: 0 4px; white-space: nowrap; }
+.u6l3-pyth, .u6l3-formula { font-size: 20px; }
+.u6l3-disp { text-align: center; font-size: 25px; margin: 8px 0 6px; }
+.u6l3-exrow { display: grid; grid-template-columns: 440px 1fr; gap: 18px; align-items: start; margin-bottom: 14px; }
+.u6l3-exrow .parts { margin-bottom: 0; }
+.u6l3-gridq { display: flex; justify-content: center; margin: 6px 0 4px; }
+.u6l3-ansfig { display: flex; justify-content: center; margin: 6px 0 2px; }
+.u6l3-recipe { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 4px 0 14px; }
+.u6l3-recipe > div, .u6l3-steps2 > div { background: var(--brand-soft); border-radius: 12px; padding: 8px 12px; font-size: 18px; line-height: 1.3; }
+.u6l3-recipe .n, .u6l3-steps2 .n { display: inline-grid; place-items: center; width: 26px; height: 26px; margin-right: 6px; border-radius: 50%; background: var(--brand2); color: #fff; font-size: 15px; }
+.u6l3-steps2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 4px 0 14px; }
+
+/* ---------------- explainers ---------------- */
+.u6l3-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+.u6l3-ph { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u6l3-ph:empty { display: none; }
+.u6l3-ph .katex { text-transform: none; font-size: 1.25em; }
+.u6l3-line { font-size: 21px; line-height: 1.35; }
+.u6l3-big { font-size: 25px; font-weight: 700; }
+.u6l3-sm { font-size: 18px; }
+.u6l3-note { font-size: 18px; color: var(--ink2); }
+.u6l3-mute { color: var(--muted); font-size: 19px; }
+.u6l3-trun { color: var(--u6l3-run); }
+.u6l3-trise { color: var(--u6l3-rise); }
+.u6l3-boxed { align-self: center; margin-top: 8px; font-size: 23px; border: 3px solid var(--brand2); border-radius: 12px; padding: 6px 14px; background: var(--brand-soft); }
+.u6l3-rule { margin-top: auto; background: var(--brand-soft); border-left: 5px solid var(--brand2); border-radius: 10px; padding: 8px 14px; font-size: 22px; line-height: 1.4; }
+.u6l3-hopn { font: 800 15px var(--round); }
+.u6l3-sqlab { font-size: 24px; font-weight: 700; background: rgba(255, 255, 255, .95); border-radius: 8px; padding: 0 6px; }
+.u6l3-legl { font: 800 20px var(--round); background: #fff; border: 2.5px solid currentColor; border-radius: 11px; padding: 0 8px; }
+.u6l3-lrun { color: var(--u6l3-run); }
+.u6l3-lrise { color: var(--u6l3-rise); }
+.u6l3-fly { position: absolute; z-index: 20; font: 800 20px var(--round); background: #fff; border: 2.5px solid currentColor; border-radius: 11px; padding: 0 8px; white-space: nowrap; box-shadow: 0 6px 16px rgba(0, 0, 0, .18); }
+.u6l3-fly.u6l3-flyx, .u6l3-fly.u6l3-flyy { color: var(--red); font: 700 26px KaTeX_Main, Georgia, serif; }
+.u6l3-fline { font-size: 23px; }
+.u6l3-slot { display: inline-block; border: 2px dashed #b8b2a4; border-radius: 8px; padding: 0 4px; margin: 0 2px; transition: border-color .3s; }
+.u6l3-slot > .katex { opacity: 0; transition: opacity .3s; }
+.u6l3-slot.u6l3-filled { border-color: transparent; }
+.u6l3-slot.u6l3-filled > .katex { opacity: 1; }
+.u6l3-srun { color: var(--u6l3-run); }
+.u6l3-srise { color: var(--u6l3-rise); }
+.u6l3-axl { font-size: 22px; font-weight: 700; background: rgba(255, 255, 255, .9); border-radius: 6px; padding: 0 4px; }
+.u6l3-mapl { font: 700 italic 16px var(--font); color: #5f7f56; }
+.u6l3-mapr { color: #3f7fb3; }
+
+/* corner: coordinate cards */
+.u6l3-pcards { display: flex; gap: 14px; justify-content: center; margin: 4px 0 6px; }
+.u6l3-pcard { font: 400 28px KaTeX_Main, Georgia, serif; background: #fffdf4; border: 1px solid #e6dcc0; border-radius: 10px; padding: 4px 14px; white-space: nowrap; align-self: center; }
+.u6l3-pn { font-style: italic; font-family: KaTeX_Math, Georgia, serif; }
+.u6l3-px, .u6l3-py, .u6l3-pslot { display: inline-block; padding: 0 3px; border-radius: 6px; transition: background .3s, color .3s; }
+.u6l3-hix, .u6l3-hiy { background: #fde3e1; color: var(--red); font-weight: 700; }
+.u6l3-pK { margin: 6px 0; font-size: 32px; }
+.u6l3-pslot { min-width: 26px; text-align: center; border: 2px dashed #b8b2a4; color: transparent; }
+.u6l3-pslot.u6l3-filled { border-color: transparent; color: var(--red); font-weight: 700; }
+
+/* order: two columns */
+.u6l3-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.u6l3-col { display: flex; flex-direction: column; gap: 8px; background: #fbfaf6; border: 1px solid var(--line2); border-radius: 12px; padding: 8px 10px; }
+.u6l3-colh { font: 800 20px var(--round); color: var(--ink); border-bottom: 2px solid var(--line2); padding-bottom: 4px; }
+.u6l3-col .u6l3-line { font-size: 22px; }
+.u6l3-col .u6l3-big { font-size: 25px; }
+
+/* recipe: the step ladder */
+.u6l3-rtile { position: absolute; display: flex; align-items: center; gap: 10px; box-sizing: border-box; padding: 6px 12px; border-radius: 12px; background: #fff; border: 2px solid var(--line2); font-size: 19px; line-height: 1.2; color: var(--muted); transition: background .25s, border-color .25s, color .25s; }
+.u6l3-rtile .n { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--line2); color: #fff; font-size: 17px; }
+.u6l3-rtile span { font-size: 16px; }
+.u6l3-rtile.on { background: var(--brand-soft); border-color: var(--brand2); color: var(--ink); box-shadow: 0 0 0 4px rgba(43, 85, 160, .15); }
+.u6l3-rtile.on .n, .u6l3-rtile.done .n { background: var(--brand2); }
+.u6l3-rtile.done { color: var(--ink2); }
+.u6l3-lab2 { font-size: 24px; margin-bottom: 4px; }
+.u6l3-rec .u6l3-line { font-size: 24px; }
+
+/* simplify tiles */
+.u6l3-tile { position: absolute; width: 84px; height: 84px; border-radius: 12px; background: #fff; border: 2px solid var(--line2); display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; transition: background .25s, border-color .25s, opacity .25s; }
+.u6l3-tile .u6l3-tn { font: 800 30px var(--round); color: var(--ink); line-height: 1; }
+.u6l3-tile .u6l3-ts { font-size: 17px; color: var(--muted); }
+.u6l3-tile.u6l3-yes { background: #e9f6ef; border-color: var(--ok); }
+.u6l3-tile.u6l3-no { opacity: .4; }
+.u6l3-tile.u6l3-best { background: #fff3d6; border-color: var(--amber); box-shadow: 0 0 0 4px rgba(194, 122, 14, .22); opacity: 1; }
+.u6l3-tq { position: absolute; width: 104px; text-align: center; font-size: 16px; line-height: 1.35; }
+.u6l3-steq { position: absolute; font-size: 30px; }
+
+/* map: scale bar and tape labels */
+.u6l3-scale { display: inline-block; vertical-align: middle; width: 40px; height: 10px; border: 2px solid var(--ink); border-top: none; margin-right: 4px; }
+.u6l3-tape { font: 800 14px var(--round); color: var(--ink); background: rgba(255, 255, 255, .9); border-radius: 5px; padding: 0 3px; }
+.u6l3-tapeend { font-size: 16px; color: var(--red); border: 2px solid var(--red); }
+.u6l3-house, .u6l3-truck, .u6l3-drone { pointer-events: none; }
+
+/* warm-up poll: the Reveal button beside the options, to keep the warm-up on one screen */
+.wf .u6l3-poll { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 8px; align-items: center; }
+.wf .u6l3-poll > .q-line, .wf .u6l3-poll > .poll-ans { grid-column: 1 / -1; }
+.wf .u6l3-poll .poll-opts { margin: 0; }
+.wf .u6l3-poll > .pill { margin: 0; padding: 6px 14px; }
+.wf .u6l3-poll .opt { padding: 5px 10px; }

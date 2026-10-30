@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Types of Slope · Math 15 6.7</title>
+<meta name="description" content="Math 15 Unit 6 Lesson 7: the four types of slope. Read a line left to right: rising is positive, falling is negative, horizontal is zero and vertical is undefined. Why zero is an answer but you can't divide by zero, the equations y = k and x = k, and sorting segments on one grid. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u6l7.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u6l7">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 6 Characteristics of Linear Relations · Lesson 7</div>
+  <h1>Types of Slope: Positive, Negative, Zero, and Undefined</h1>
+  <p class="lede">Every line has one of <b>four types</b> of slope, and you can spot the type before you calculate anything. Read the line from <b>left to right</b>: uphill is <b class="u6l7-pos">positive</b>, downhill is <b class="u6l7-neg">negative</b>, flat is <b class="u6l7-zero">zero</b>, and straight up is <b class="u6l7-und">undefined</b>. Today’s big idea: <b>zero is an answer; undefined means there is no answer.</b></p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>tell whether a line <b>rises</b> or <b>falls</b> from left to right, and match it to a <b>positive</b> or <b>negative</b> slope</li>
+      <li>calculate a slope with the formula and explain its sign: <b>same signs</b> give a positive slope, <b>opposite signs</b> a negative one</li>
+      <li>explain why a <b>horizontal</b> line has a slope of <b>0</b> and a <b>vertical</b> line has an <b>undefined</b> slope</li>
+      <li>write the equation of a horizontal line (<span class="tex">y=k</span>) or a vertical line (<span class="tex">x=k</span>)</li>
+      <li>sort segments on one grid into the four types, then confirm with the formula</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF3</b> Demonstrate an understanding of slope with respect to: rise and run; line segments and lines; rate of change; parallel lines; perpendicular lines.<br><span class="muted">Today: the four types of slope, and why 0 and undefined are not the same thing.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Runner" id="wu" style="--wf-side: 372px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Level 1: The Runner</h2>
+  <p class="wf-rule">Your runner always goes <b>left to right</b>. Every piece of ground is a straight line. <span class="muted">Tap a letter to count that piece.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u6l7-level" id="u6l7-level"></div>
+    <div class="u6l7-lvbtns">
+      <button type="button" class="pill" id="u6l7-run">Run!</button>
+      <button type="button" class="pill" id="u6l7-lvreset">Start over</button>
+      <span class="u6l7-lvread" id="u6l7-lvread"></span>
+    </div>
+    <div class="u6l7-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Which pieces go <b>uphill</b>? Which go <b>downhill</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l7-wa"><div class="bk-ans">Uphill: <b>B</b> and <b>H</b>. Downhill: <b>E</b> and <b>G</b>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Sort all 8 pieces into 4 groups: uphill / downhill / flat / wall. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l7-wa"><div class="bk-ans">Uphill <b>B, H</b> · Downhill <b>E, G</b> · Flat <b>A, D</b> · Wall <b>C, F</b>. Two of each!</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>On flat piece <b>D</b>, count the blocks. Up: ___ Across: ___ <span class="tex">\dfrac{\text{up}}{\text{across}}=\,?</span> <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l7-wa"><div class="bk-ans">Up <span class="tex">0</span>, across <span class="tex">3</span>: <span class="tex">\tfrac{0}{3}=0</span>. Flat ground has a perfectly ordinary answer: <b>zero</b>.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Wall <b>C</b> goes up <b>3</b> blocks and across ___ blocks. So what is <span class="tex">\tfrac{\text{up}}{\text{across}}</span> for the wall? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 0</div>
+        <div class="opt"><b>B</b> 3</div>
+        <div class="opt"><b>C</b> infinity</div>
+        <div class="opt right"><b>D</b> there is no answer at all</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D, there is no answer.</b> Across is <span class="tex">0</span>, so we would need <span class="tex">\tfrac{3}{0}</span>.<br>
+        Division undoes multiplication: <span class="tex">\tfrac{6}{3}=2</span> because <span class="tex">2\times3=6</span>. For <span class="tex">\tfrac{3}{0}</span> we need a number that <span class="tex">\times\,0</span> gives <span class="tex">3</span>, but anything <span class="tex">\times\,0</span> is <span class="tex">0</span>. No such number exists, not even “infinity”.<br>
+        <span class="muted"><b>A</b> is flat piece D’s answer, not the wall’s. <b>C</b> is a nice instinct (the wall is super steep), but infinity isn’t a number you can divide your way to.</span></div>
+    </div>
+  </div></div>
+  <p class="u6l7-social">Arm game: I call a letter. Everyone make that piece’s shape with one arm!</p>
+</section>
+
+<!-- ================= 1. Positive and negative ================= -->
+<section class="card" data-ink="s1" data-section="1. Positive and Negative Slope">
+  <div class="sec-h"><span class="badge">1</span><h2>Positive Slope and Negative Slope</h2></div>
+  <div class="u6l7-defrow">
+    <div class="def">Slope compares rise to run. Always read a line from <b>left to right</b>.</div>
+    <div class="u6l7-formula"><span class="tex">\text{slope}=\dfrac{\color{#7b4fc4}\text{rise}}{\color{#c27a0e}\text{run}}=\dfrac{\text{change in }y}{\text{change in }x}</span></div>
+  </div>
+  <div class="u6l7-twobox">
+    <div class="u6l7-tbox u6l7-tb-pos"><div class="u6l7-tb-fig" data-kfig="pos"></div><div><b>Positive slope</b>: the line <b>rises</b> from left to right. As <span class="tex">x</span> increases, <span class="tex">y</span> increases, so rise and run have the <b>same sign</b>. Their quotient is <b>positive</b>.</div></div>
+    <div class="u6l7-tbox u6l7-tb-neg"><div class="u6l7-tb-fig" data-kfig="neg"></div><div><b>Negative slope</b>: the line <b>falls</b> from left to right. As <span class="tex">x</span> increases, <span class="tex">y</span> decreases, so rise and run have <b>opposite signs</b>. Their quotient is <b>negative</b>.</div></div>
+  </div>
+  <div class="explainer" data-explainer="signs"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Sign rules for dividing.</b> <span class="tex">(+)\div(+)=(+)</span> and <span class="tex">(-)\div(-)=(+)</span>: same signs, positive. <span class="tex">(-)\div(+)=(-)</span> and <span class="tex">(+)\div(-)=(-)</span>: opposite signs, negative.</div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>A rising segment</h3></div>
+  <p class="q">Segment <span class="tex">CD</span>: <span class="tex">C(-4,-3)</span>, <span class="tex">D(2,3)</span>.</p>
+  <div class="u6l7-exg">
+    <div class="u6l7-fig" id="u6l7-ex1fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Left to right, does it rise or fall?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">It <b>rises</b>.</div></div></div>
+      <div class="part"><div class="pl">(b) Calculate the slope of <span class="tex">CD</span>. Is it positive or negative, and does that match (a)?</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}=\dfrac{3-(-3)}{2-(-4)}=\dfrac{6}{6}=\boldsymbol{1}</span><br><b>Positive</b>, and the line rises, so it matches (a).</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>A falling segment</h3></div>
+  <p class="q">Segment <span class="tex">EF</span>: <span class="tex">E(-4,3)</span>, <span class="tex">F(2,-3)</span>. It has the same run as <span class="tex">CD</span>, but it falls.</p>
+  <div class="u6l7-exg">
+    <div class="u6l7-fig" id="u6l7-ex2fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Left to right, does it rise or fall?</div><div class="work" style="--h:60px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">It <b>falls</b>.</div></div></div>
+      <div class="part"><div class="pl">(b) Calculate the slope of <span class="tex">EF</span>.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=\dfrac{-3-3}{2-(-4)}=\dfrac{-6}{6}=\boldsymbol{-1}</span></div></div></div>
+      <div class="part"><div class="pl">(c) Compare it to the slope of <span class="tex">CD</span>: what is the same, what is different, and why does that make sense?</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Same run (<span class="tex">6</span>) and same steepness, but the <b>sign</b> is opposite: <span class="tex">1</span> vs. <span class="tex">-1</span>. <span class="tex">EF</span> drops 6 instead of climbing 6, so its rise is <span class="tex">-6</span> and the quotient is negative.</div></div></div>
+    </div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Negatives on the calculator.</b> Put brackets around the top and the bottom, and use <kbd>(−)</kbd> for a negative number: <span class="keys"><kbd>(</kbd><kbd>(−)</kbd><kbd>3</kbd><kbd>−</kbd><kbd>3</kbd><kbd>)</kbd><kbd>÷</kbd><kbd>(</kbd><kbd>2</kbd><kbd>−</kbd><kbd>(−)</kbd><kbd>4</kbd><kbd>)</kbd><kbd>ENTER</kbd></span> gives <span class="tex">-1</span>.</div>
+    <div class="pill-col"><button class="pill" data-keys="( (−) 3 − 3 ) ÷ ( 2 − (−) 4 ) =">Show EF</button><button class="pill" data-keys="( 3 − (−) 3 ) ÷ ( 2 − (−) 4 ) =">Show CD</button></div>
+  </div>
+  <div class="explainer u6l7-exgap" data-explainer="mirror"></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Zero vs undefined ================= -->
+<section class="card" data-ink="s2" data-section="2. Zero vs. Undefined Slope">
+  <div class="sec-h"><span class="badge">2</span><h2>Zero Slope vs. Undefined Slope</h2></div>
+  <p class="u6l7-lead">These two are the pair most often mixed up.</p>
+  <div class="u6l7-twobox">
+    <div class="u6l7-tbox u6l7-tb-zero"><div class="u6l7-tb-fig" data-kfig="zero"></div><div>A <b>horizontal</b> line is flat. Every point has the same <span class="tex">y</span>-coordinate, so the <b class="u6l7-c-rise">rise</b> is always <span class="tex">0</span> and <span class="tex">\text{slope}=\tfrac{0}{\text{run}}=0</span>. Zero is a real, perfectly ordinary number. The line’s equation is <span class="tex">y=k</span>.</div></div>
+    <div class="u6l7-tbox u6l7-tb-und"><div class="u6l7-tb-fig" data-kfig="und"></div><div>A <b>vertical</b> line runs straight up and down. Every point has the same <span class="tex">x</span>-coordinate, so the <b class="u6l7-c-run">run</b> is always <span class="tex">0</span> and <span class="tex">\text{slope}=\tfrac{\text{rise}}{0}</span>. Dividing by <span class="tex">0</span> gives no number at all, so the slope is <b>undefined</b>: it does not exist. The line’s equation is <span class="tex">x=k</span>.</div></div>
+  </div>
+  <div class="u6l7-big">Zero is an answer; <b>undefined</b> means there is no answer.</div>
+  <div class="u6l7-hooks"><div><span class="u6l7-hk u6l7-hk-z"></span>Flat like the <b>horizon</b> → slope <b>0</b></div><div><span class="u6l7-hk u6l7-hk-u"></span>Straight up like a <b>flagpole</b> → <b>undefined</b></div></div>
+  <div class="explainer" data-explainer="zeroCase"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Why can't we divide by 0?">
+  <h3 class="sub">Why can’t we divide by 0?</h3>
+  <p>Division undoes multiplication: <span class="tex">6\div3=2</span> because <span class="tex">2\times3=6</span>. So to divide by <span class="tex">0</span>, we need a number that gives an answer when it is multiplied by <span class="tex">0</span>.</p>
+  <div class="explainer" data-explainer="divZero"></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Ask the calculator.</b> <span class="keys"><kbd>0</kbd><kbd>÷</kbd><kbd>4</kbd><kbd>ENTER</kbd></span> gives <span class="tex">0</span>. But <span class="keys"><kbd>4</kbd><kbd>÷</kbd><kbd>0</kbd><kbd>ENTER</kbd></span> gives <b>DIVIDE BY 0</b>, an error: there is no number to show.</div>
+    <div class="pill-col"><button class="pill" data-keys="0 ÷ 4 =">Show 0 ÷ 4</button><button class="pill" data-keys="4 ÷ 0 =">Show 4 ÷ 0</button></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>A horizontal line</h3></div>
+  <p class="q">A horizontal line through <span class="tex">G(-4,2)</span>, <span class="tex">H(0,2)</span>, <span class="tex">I(3,2)</span>.</p>
+  <div class="u6l7-exg">
+    <div class="u6l7-fig" id="u6l7-ex3fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Calculate the slope of <span class="tex">GH</span>, of <span class="tex">HI</span>, and of <span class="tex">GI</span>.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u6l7-ans3"><span class="tex">m_{GH}=\dfrac{2-2}{0-(-4)}=\dfrac{0}{4}=\boldsymbol{0}</span><br><span class="tex">m_{HI}=\dfrac{2-2}{3-0}=\dfrac{0}{3}=\boldsymbol{0}</span><br><span class="tex">m_{GI}=\dfrac{2-2}{3-(-4)}=\dfrac{0}{7}=\boldsymbol{0}</span></div></div></div>
+      <div class="part"><div class="pl">(b) All three agree. Why must that happen for <em>any</em> two points on this line?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Every point on a horizontal line has the same <span class="tex">y</span>-value, so the rise is always <span class="tex">0</span>; and <span class="tex">0</span> divided by any run (that isn’t 0) is <span class="tex">0</span>.</div></div></div>
+      <div class="part"><div class="pl">(c) Equation of the line: <span class="u6l7-blank" data-reveal><span class="tex">y=2</span></span></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{y=2}</span>: every point on it has <span class="tex">y=2</span>.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>A vertical line</h3></div>
+  <p class="q">A vertical line through <span class="tex">J(-2,4)</span>, <span class="tex">K(-2,0)</span>, <span class="tex">L(-2,-3)</span>.</p>
+  <div class="u6l7-exg">
+    <div class="u6l7-fig" id="u6l7-ex4fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Calculate the slope of <span class="tex">JK</span>, of <span class="tex">KL</span>, and of <span class="tex">JL</span>.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u6l7-ans3">The run is <span class="tex">-2-(-2)=0</span> every time:<br><span class="tex">m_{JK}=\dfrac{0-4}{0}=\dfrac{-4}{0}</span><br><span class="tex">m_{KL}=\dfrac{-3-0}{0}=\dfrac{-3}{0}</span><br><span class="tex">m_{JL}=\dfrac{-3-4}{0}=\dfrac{-7}{0}</span><br>All three are <b>undefined</b>.</div></div></div>
+      <div class="part"><div class="pl">(b) All three agree. Why must that happen for <em>any</em> two points on this line?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Every point has the same <span class="tex">x</span>-value, so the run is always <span class="tex">0</span>, and dividing by <span class="tex">0</span> never gives a number.</div></div></div>
+      <div class="part"><div class="pl">(c) Equation of the line: <span class="u6l7-blank" data-reveal><span class="tex">x=-2</span></span></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{x=-2}</span>: every point on it has <span class="tex">x=-2</span>.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2c" data-section="Examples 3 and 4: check">
+  <h3 class="sub">Any two points agree</h3>
+  <p>Check Examples 3 and 4 here. Then slide a point along each line: on a horizontal line the <b class="u6l7-c-rise">rise</b> is stuck at <span class="tex">0</span>; on a vertical line the <b class="u6l7-c-run">run</b> is stuck at <span class="tex">0</span>.</p>
+  <div class="explainer" data-explainer="flatWall"></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u6l7"></section>
+
+<!-- ================= 3. Mixed practice ================= -->
+<section class="card" data-ink="s3" data-section="3. Mixed Practice">
+  <div class="sec-h"><span class="badge">3</span><h2>Mixed Practice: All Four Types on One Grid</h2></div>
+  <p>On a test all four types arrive on one grid. So <b>read each segment’s tilt first</b> (left to right), then <b>confirm with the formula</b>.</p>
+  <div class="explainer" data-explainer="walk"></div>
+  <div class="def u6l7-kinds-box"><b>The four types of slope</b> <span class="muted">(always read a graph from left to right)</span>
+    <div class="u6l7-kinds">
+      <div class="u6l7-kind u6l7-k-pos"><div class="u6l7-kfig" data-kfig="pos"></div><b>Positive</b><span class="u6l7-kt">rises; rise and run have the same sign</span></div>
+      <div class="u6l7-kind u6l7-k-neg"><div class="u6l7-kfig" data-kfig="neg"></div><b>Negative</b><span class="u6l7-kt">falls; rise and run have opposite signs</span></div>
+      <div class="u6l7-kind u6l7-k-zero"><div class="u6l7-kfig" data-kfig="zero"></div><b>Zero</b><span class="u6l7-kt">horizontal, <span class="tex">y=k</span>; rise <span class="tex">=0</span>, and <span class="tex">0\div\text{run}=0</span></span></div>
+      <div class="u6l7-kind u6l7-k-und"><div class="u6l7-kfig" data-kfig="und"></div><b>Undefined</b><span class="u6l7-kt">vertical, <span class="tex">x=k</span>; run <span class="tex">=0</span>, and we can’t divide by 0</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Turn the line">
+  <h3 class="sub">Turn the line through all four types</h3>
+  <p>One line turns around a point. Watch the slope as it climbs, stands straight up, then falls. Steeper lines have <b>bigger</b> slope numbers… until the line is vertical, where there is <b>no number at all</b>.</p>
+  <div class="explainer" data-explainer="dial"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Four segments, four types</h3></div>
+  <p class="q">Each segment has integer endpoints: <span class="tex">M(-5,-1)</span> and <span class="tex">N(1,3)</span>; <span class="tex">P(-3,1)</span> and <span class="tex">Q(3,-1)</span>; <span class="tex">R(-5,-4)</span> and <span class="tex">S(4,-4)</span>; <span class="tex">T(5,4)</span> and <span class="tex">U(5,-4)</span>.</p>
+  <div class="parts c1">
+    <div class="part">
+      <div class="pl">(a) Complete the table: find the rise, run, and slope of each segment, then state its type (positive, negative, zero, or undefined).</div>
+      <div class="u6l7-ex5">
+        <div class="u6l7-fig" id="u6l7-ex5fig"></div>
+        <table class="u6l7-tab">
+          <thead><tr><th>Segment</th><th class="u6l7-c-rise">Rise</th><th class="u6l7-c-run">Run</th><th>Slope</th><th>Type</th></tr></thead>
+          <tbody>
+            <tr><td><span class="tex">MN</span></td><td><span data-reveal><span class="tex">4</span></span></td><td><span data-reveal><span class="tex">6</span></span></td><td><span data-reveal><span class="tex">\tfrac{4}{6}=\tfrac{2}{3}</span></span></td><td><span data-reveal><b class="u6l7-pos">positive</b></span></td></tr>
+            <tr><td><span class="tex">PQ</span></td><td><span data-reveal><span class="tex">-2</span></span></td><td><span data-reveal><span class="tex">6</span></span></td><td><span data-reveal><span class="tex">\tfrac{-2}{6}=-\tfrac{1}{3}</span></span></td><td><span data-reveal><b class="u6l7-neg">negative</b></span></td></tr>
+            <tr><td><span class="tex">RS</span></td><td><span data-reveal><span class="tex">0</span></span></td><td><span data-reveal><span class="tex">9</span></span></td><td><span data-reveal><span class="tex">\tfrac{0}{9}=0</span></span></td><td><span data-reveal><b class="u6l7-zero">zero</b></span></td></tr>
+            <tr><td><span class="tex">TU</span></td><td><span data-reveal><span class="tex">-8</span></span></td><td><span data-reveal><span class="tex">0</span></span></td><td><span data-reveal><span class="tex">\tfrac{-8}{0}</span> undefined</span></td><td><span data-reveal><b class="u6l7-und">undefined</b></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Counting from each segment’s first-named point (tap a cell to reveal it): <span class="tex">MN</span>: <span class="tex">\tfrac{4}{6}=\boldsymbol{\tfrac{2}{3}}</span>, positive. <span class="tex">PQ</span>: <span class="tex">\tfrac{-2}{6}=\boldsymbol{-\tfrac{1}{3}}</span>, negative. <span class="tex">RS</span>: <span class="tex">\tfrac{0}{9}=\boldsymbol{0}</span>, zero. <span class="tex">TU</span>: <span class="tex">\tfrac{-8}{0}</span>, <b>undefined</b>.</div></div>
+    </div>
+    <div class="part"><div class="pl">(b) One of these four segments could <em>never</em> be written in the form <span class="tex">y=mx+b</span>. Which one, and why? <span class="muted u6l7-note">(In <span class="tex">y=mx+b</span>, the letter <span class="tex">m</span> stands for the slope. You’ll use this form in Unit 7.)</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b><span class="tex">TU</span></b>, the vertical segment <span class="tex">x=5</span>. The form <span class="tex">y=mx+b</span> needs a value for <span class="tex">m</span>, but <span class="tex">TU</span> has run <span class="tex">0</span>, so its slope does not exist: there is no number to put in for <span class="tex">m</span>. Its equation can only be written as <span class="tex">x=5</span>.</div></div></div>
+  </div>
+  <div class="explainer u6l7-exgap" data-explainer="ex5"></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Read left to right.</b> A line that <b>rises</b> has a <b>positive</b> slope; a line that <b>falls</b> has a <b>negative</b> slope.</div>
+    <div><b>The sign comes from rise and run.</b> Same signs: positive. Opposite signs: negative. A mirror flip keeps the steepness and changes the sign (<span class="tex">1</span> and <span class="tex">-1</span>).</div>
+    <div><b>Horizontal: slope 0.</b> The rise is always <span class="tex">0</span>, and <span class="tex">\tfrac{0}{\text{run}}=0</span>. Equation <span class="tex">y=k</span>. Flat like the horizon.</div>
+    <div><b>Vertical: undefined.</b> The run is always <span class="tex">0</span>, and we can’t divide by <span class="tex">0</span>. Equation <span class="tex">x=k</span>. Zero is an answer; undefined means <b>no answer</b>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u6l7">
+    <div><div class="kicker">Your turn</div><b>Assignment 7 — Types of Slope: Positive, Negative, Zero, and Undefined</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l8/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 8 — Determining Collinearity Using Slope</b><div class="muted">Do three points lie on one straight line? Compare two slopes and find out.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u6l7.js';
+  boot({ key: 'u6l7', homeHref: '../../', title: '6.7 Types of Slope' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

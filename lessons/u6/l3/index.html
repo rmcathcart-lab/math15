@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diagonal Segments and the Distance Formula · Math 15 6.3</title>
+<meta name="description" content="Math 15 Unit 6 Lesson 3: measuring a diagonal line segment. Build the right triangle hiding under it (the corner shares one coordinate with each end), find the run and the rise, use the Pythagorean theorem, then turn it into the distance formula. Exact answers in simplest radical form, decimals, and distances on a map. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u6l3.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u6l3">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 6 Characteristics of Linear Relations · Lesson 3</div>
+  <h1>Measuring the Length of a Line Segment: Diagonal Segments and the Distance Formula</h1>
+  <p class="lede">Most segments on a grid are <b>diagonal</b>: no row of squares to count. But every diagonal segment hides a <b>right triangle</b>. Its two legs are the <b class="u6l3-crun">run</b> and the <b class="u6l3-crise">rise</b>, and the segment is the <b class="u6l3-cb">hypotenuse</b>. Pythagoras does the rest, and written with coordinates it becomes the <b>distance formula</b>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>draw the <b>right triangle</b> under a diagonal segment and name the coordinates of its right-angle corner</li>
+      <li>find the <b class="u6l3-crun">run</b> and the <b class="u6l3-crise">rise</b> by subtracting coordinates</li>
+      <li>use the <b>Pythagorean theorem</b> to find the length of a diagonal segment</li>
+      <li>use the <b>distance formula</b> <span class="tex">d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}</span>, with or without a grid</li>
+      <li>give a length exactly (in <b>simplest form</b>, like <span class="tex">3\sqrt5</span>) and as a <b>decimal</b>, and use a map scale</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF3</b> Demonstrate an understanding of slope with respect to: rise and run; line segments and lines; rate of change; parallel lines; perpendicular lines.<br><span class="u6l3-today">Today: the run and the rise of a diagonal segment, the same two numbers that slope is built from.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Drone vs. Delivery Truck" id="wu" style="--wf-side: 440px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Drone vs. Delivery Truck</h2>
+  <p class="wf-rule">The truck drives along the <b>streets</b>. The drone flies in a <b>straight line</b>. 1 square = 1 block.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u6l3-city" id="u6l3-city"></div>
+    <div class="u6l3-wbtns">
+      <span class="muted u6l3-send">Send both to:</span><button type="button" class="pill" data-u6l3-go="A">House A</button>
+      <button type="button" class="pill" data-u6l3-go="B">House B</button>
+      <button type="button" class="pill" data-u6l3-go="F">Farm</button>
+      <button type="button" class="pill u6l3-clr" id="u6l3-wclear">Clear</button>
+    </div>
+    <div class="u6l3-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many blocks does the truck drive to <b>House A</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l3-wa"><div class="bk-ans"><b>7 blocks</b>: 3 right, then 4 up.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>To <b>House B</b>: does the drone save any blocks? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l3-wa"><div class="bk-ans"><b>No.</b> House B is 6 blocks straight along one street, so truck = drone = 6. No corner to cut, so no triangle.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u6l3-wtab">
+      <div class="u6l3-wth">From the shop</div>
+      <div class="u6l3-wtg">
+        <div></div><div class="u6l3-wtc">truck</div><div class="u6l3-wtc u6l3-cr">drone</div>
+        <div class="u6l3-wtr">House A</div><div><span data-reveal><b>7</b></span></div><div><span data-reveal><b class="u6l3-cr">5</b></span></div>
+        <div class="u6l3-wtr">House B</div><div><span data-reveal><b>6</b></span></div><div><span data-reveal><b class="u6l3-cr">6</b></span></div>
+        <div class="u6l3-wtr">Farm</div><div><span data-reveal><b>17</b></span></div><div><span data-reveal><b class="u6l3-cr">13</b></span></div>
+      </div>
+    </div>
+    <div class="u6l3-wqs u6l3-wq3">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>To House A, the two paths make a triangle. What kind? How far does the drone fly? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l3-wa"><div class="bk-ans">A <b>right triangle</b>: the streets meet at a square corner. The drone’s path is the <b>hypotenuse</b>: <span class="tex">3^2+4^2=25</span>, so <span class="tex">\sqrt{25}=5</span> blocks. It saves 2 blocks.</div></div></div>
+    </div>
+    <div class="poll wf-poll u6l3-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> To the <b>Farm</b>, the truck drives <b>12</b> blocks right, then <b>5</b> up: <b>17</b> blocks. How far does the drone fly? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> <span class="tex">8\tfrac12</span></div>
+        <div class="opt right"><b>B</b> 13</div>
+        <div class="opt"><b>C</b> 16</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: 13 blocks.</b> <span class="tex">12^2+5^2=144+25=169</span>, and <span class="tex">\sqrt{169}=13</span>. The drone saves only 4 blocks: the trip is mostly in one direction, so the corner it cuts is small (not half!).<br><b>Today:</b> every diagonal segment is the drone’s path, and the truck’s two streets are its <b class="u6l3-crun">run</b> and <b class="u6l3-crise">rise</b>.</div>
+    </div>
+  </div></div>
+  <p class="u6l3-social">Tell your neighbour: where do <b>you</b> cut across like a drone?</p>
+</section>
+
+<!-- ================= 1. Diagonal → right triangle ================= -->
+<section class="card" data-ink="s1" data-section="1. Diagonal Segment → Right Triangle">
+  <div class="sec-h"><span class="badge">1</span><h2>Turning a Diagonal Segment into a Right Triangle</h2></div>
+  <div class="u6l3-s1row">
+    <div id="u6l3-s1fig"></div>
+    <div>
+      <p>Segment <span class="tex">AB</span> runs <b>diagonally</b>, from <span class="tex">A(1,\ 1)</span> to <span class="tex">B(5,\ 4)</span>. To measure it, build a right triangle under it. Add a third point <span class="tex">C</span> that takes its <span class="tex">x</span>-coordinate from <span class="tex">B</span> and its <span class="tex">y</span>-coordinate from <span class="tex">A</span>: <span class="tex">C(5,\ 1)</span>. The right angle is at <span class="tex">C</span>.</p>
+      <p>The horizontal leg <span class="tex">AC</span> is the <b class="u6l3-crun">run</b> and the vertical leg <span class="tex">CB</span> is the <b class="u6l3-crise">rise</b>, found just like in Lesson 2: <span class="tex">\text{run}=5-1=4</span> and <span class="tex">\text{rise}=4-1=3</span>.</p>
+    </div>
+  </div>
+  <div class="def u6l3-pyth"><b><span class="tex">AB</span> is the hypotenuse</b>, so
+    <div class="u6l3-disp"><span class="tex">(AB)^2=(\textcolor{#c27a0e}{\text{run}})^2+(\textcolor{#7b4fc4}{\text{rise}})^2=4^2+3^2=25\quad\Longrightarrow\quad AB=\sqrt{25}=5</span></div>
+  </div>
+  <div class="explainer" data-explainer="hidden"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t add the run and the rise.</b> <span class="tex">4+3=7</span> is the truck’s trip along the two legs (the long way round). The diagonal is the drone’s short cut: <b>shorter</b> than run + rise, but <b>longer</b> than either leg.</div></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Finding the corner">
+  <h3 class="sub">Finding the corner</h3>
+  <p>The right-angle corner sits straight <b>across</b> from one endpoint and straight <b>up or down</b> from the other. So it borrows one coordinate from each end: the <span class="tex">x</span> from one, the <span class="tex">y</span> from the other.</p>
+  <div class="explainer" data-explainer="corner"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Build the triangle under <span class="tex">CD</span></h3></div>
+  <p class="q">The diagonal segment <span class="tex">CD</span> is graphed below, from <span class="tex">C(-1,\ -2)</span> to <span class="tex">D(3,\ 1)</span>.</p>
+  <div class="u6l3-exrow">
+    <div class="part u6l3-figpart" data-part="ex1a"><div class="pl">(a) On the grid, draw the horizontal leg and the vertical leg needed to form a right triangle with hypotenuse <span class="tex">CD</span>. Label the right-angle vertex <span class="tex">E</span>.</div>
+      <div class="u6l3-gridq" id="u6l3-ex1fig"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Across from <span class="tex">C</span> to <span class="tex">E</span> (the run), then up from <span class="tex">E</span> to <span class="tex">D</span> (the rise). The right angle is at <span class="tex">E</span>.<div class="u6l3-ansfig" id="u6l3-ex1ans"></div></div></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(b) State the coordinates of the right-angle vertex <span class="tex">E</span> you drew.</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">E</span> takes its <span class="tex">x</span> from <span class="tex">D</span> and its <span class="tex">y</span> from <span class="tex">C</span>: <span class="tex">\boldsymbol{E(3,\ -2)}</span></div></div></div>
+      <div class="part"><div class="pl">(c) Find the length of the run (horizontal leg) and the rise (vertical leg).</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">run <span class="tex">=x_2-x_1=3-(-1)=\boldsymbol{4}</span><br>rise <span class="tex">=y_2-y_1=1-(-2)=\boldsymbol{3}</span></div></div></div>
+      <div class="part"><div class="pl">(d) Use the Pythagorean theorem to calculate the exact length of <span class="tex">CD</span>.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(CD)^2=4^2+3^2=16+9=25</span><br><span class="tex">CD=\sqrt{25}=\boldsymbol{5}</span> units</div></div></div>
+    </div>
+  </div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> Could the corner go <b>above</b> the segment instead, at <span class="tex">(-1,\ 1)</span>? Would <span class="tex">CD</span> come out different?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes, that corner works too</b> (its <span class="tex">x</span> comes from <span class="tex">C</span>, its <span class="tex">y</span> from <span class="tex">D</span>). The triangle is flipped, but the legs are still 4 and 3, so <span class="tex">CD=5</span> either way.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Deriving the distance formula ================= -->
+<section class="card" data-ink="s2" data-section="2. Deriving the Distance Formula">
+  <div class="sec-h"><span class="badge">2</span><h2>Deriving the Distance Formula</h2></div>
+  <p>Do the same construction with <b>letters</b> instead of numbers. For <span class="tex">P(x_1,\ y_1)</span> and <span class="tex">Q(x_2,\ y_2)</span>, the corner is <span class="tex">R(x_2,\ y_1)</span>, so <span class="tex">\text{run}=x_2-x_1</span> and <span class="tex">\text{rise}=y_2-y_1</span>. <span class="tex">PQ</span> is the hypotenuse, so <span class="tex">(PQ)^2=(x_2-x_1)^2+(y_2-y_1)^2</span>. Take the square root:</p>
+  <div class="def u6l3-formula"><b>The Distance Formula.</b> The distance between <span class="tex">(x_1,\ y_1)</span> and <span class="tex">(x_2,\ y_2)</span> is
+    <div class="u6l3-disp"><span class="tex">d=\sqrt{(\textcolor{#c27a0e}{x_2-x_1})^2+(\textcolor{#7b4fc4}{y_2-y_1})^2}</span></div>
+    <div class="eg"><span class="u6l3-crun"><b>run</b></span> squared, plus <span class="u6l3-crise"><b>rise</b></span> squared, then the square root. It is just Pythagoras written with coordinates.</div>
+  </div>
+  <div class="explainer" data-explainer="lift"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>The square root covers the whole sum.</b> <span class="tex">\sqrt{16+9}=\sqrt{25}=5</span>. Taking the roots separately gives <span class="tex">\sqrt{16}+\sqrt{9}=4+3=7</span>: that’s adding the run and the rise again (the truck!). Add first, then take the root.</div></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Either point can go first">
+  <h3 class="sub">Either point can go first</h3>
+  <p>It does not matter which point you call <span class="tex">(x_1,\ y_1)</span>. Subtracting in the other order only flips the <b>signs</b>, and squaring erases them.</p>
+  <div class="explainer" data-explainer="order"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Straight into the formula</h3></div>
+  <p class="q">Use the distance formula to determine the exact length of each segment. No grid needed: just substitute directly into <span class="tex">d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}</span>.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">E(0,\ 0)</span> to <span class="tex">F(6,\ 8)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">d=\sqrt{(6-0)^2+(8-0)^2}</span><br><span class="tex">=\sqrt{36+64}=\sqrt{100}</span><br><span class="tex">=\boldsymbol{10}</span> units</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">G(-3,\ 4)</span> to <span class="tex">H(1,\ 1)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">d=\sqrt{(1-(-3))^2+(1-4)^2}</span><br><span class="tex">=\sqrt{4^2+(-3)^2}=\sqrt{16+9}=\sqrt{25}</span><br><span class="tex">=\boldsymbol{5}</span> units</div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Brackets around a negative.</b> <span class="tex">1-(-3)=1+3=4</span>. And when you square a negative, keep its brackets: <span class="tex">(-3)^2=9</span>, never <span class="tex">-9</span>. A squared number is never negative.</div></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Squaring a negative on the calculator.</b> <span class="keys"><kbd>(</kbd><kbd>(−)</kbd><kbd>3</kbd><kbd>)</kbd><kbd>x²</kbd><kbd>ENTER</kbd></span> gives 9. Without the brackets, <span class="keys"><kbd>(−)</kbd><kbd>3</kbd><kbd>x²</kbd></span> squares the 3 first and gives −9.</div>
+    <div class="pill-col"><button class="pill" data-keys="( (−) 3 ) x² =">With brackets</button><button class="pill" data-keys="(−) 3 x² =">Without brackets</button></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Applying the formula directly ================= -->
+<section class="card" data-ink="s3" data-section="3. Applying the Distance Formula">
+  <div class="sec-h"><span class="badge">3</span><h2>Applying the Distance Formula Directly</h2></div>
+  <p>With the formula, no grid is needed at all. Label the two points <span class="tex">(x_1,\ y_1)</span> and <span class="tex">(x_2,\ y_2)</span>, substitute, and simplify. If the number under the root isn’t a perfect square, write it as a <b>mixed radical in simplest form</b>, just like in Unit 1.</p>
+  <div class="u6l3-recipe">
+    <div><b class="n">1</b><b>Label</b> the points</div>
+    <div><b class="n">2</b><b>Subtract</b>: run and rise</div>
+    <div><b class="n">3</b><b>Square</b> each</div>
+    <div><b class="n">4</b><b>Add</b></div>
+    <div><b class="n">5</b><b>Square root</b> (simplify)</div>
+  </div>
+  <div class="explainer" data-explainer="recipe"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Exact lengths</h3></div>
+  <p class="q">Use the distance formula to determine the exact length of each segment.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">I(0,\ 0)</span> to <span class="tex">J(5,\ 12)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">d=\sqrt{(5-0)^2+(12-0)^2}</span><br><span class="tex">=\sqrt{25+144}=\sqrt{169}</span><br><span class="tex">=\boldsymbol{13}</span> units</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">K(2,\ 3)</span> to <span class="tex">L(5,\ 9)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">d=\sqrt{(5-2)^2+(9-3)^2}</span><br><span class="tex">=\sqrt{9+36}=\sqrt{45}=\sqrt{9}\cdot\sqrt{5}</span><br><span class="tex">=\boldsymbol{3\sqrt{5}}</span> units <span class="muted">(<span class="tex">\approx6.71</span>)</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Simplest form">
+  <h3 class="sub">Exact answers: a mixed radical in simplest form</h3>
+  <p>Look for the <b>biggest perfect square</b> that divides the number under the root, and take its square root out front. If no perfect square (other than 1) divides it, the root is already in simplest form.</p>
+  <div class="explainer" data-explainer="simplify"></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>The decimal of a root.</b> <span class="tex">\sqrt{\phantom{x}}</span> is <span class="keys"><kbd>2nd</kbd><kbd>x²</kbd></span>: <span class="keys"><kbd>√</kbd><kbd>4</kbd><kbd>5</kbd><kbd>ENTER</kbd></span> gives 6.708203932 → <b>6.71</b>. Check your mixed radical gives the same decimal: <span class="keys"><kbd>3</kbd><kbd>×</kbd><kbd>√</kbd><kbd>5</kbd><kbd>ENTER</kbd></span>.</div>
+    <div class="pill-col"><button class="pill" data-keys="√ 45 =">√45</button><button class="pill" data-keys="3 × √ 5 =">3√5</button></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Exact, then decimal</h3></div>
+  <p class="q">Line segment <span class="tex">MN</span> has endpoints <span class="tex">M(-3,\ -2)</span> and <span class="tex">N(3,\ 0)</span>.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Determine the exact length of <span class="tex">MN</span>, as a mixed radical in simplest form.</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">d=\sqrt{(3-(-3))^2+(0-(-2))^2}</span><br><span class="tex">=\sqrt{6^2+2^2}=\sqrt{36+4}=\sqrt{40}</span><br><span class="tex">=\sqrt{4}\cdot\sqrt{10}=\boldsymbol{2\sqrt{10}}</span> units</div></div></div>
+    <div class="part"><div class="pl">(b) Determine the length of <span class="tex">MN</span> as a decimal, rounded to the nearest hundredth.</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">MN=2\sqrt{10}=2(3.16227\ldots)</span><br><span class="tex">=6.3245\ldots\approx\boldsymbol{6.32}</span> units</div></div></div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Round only at the end.</b> <span class="keys"><kbd>2</kbd><kbd>×</kbd><kbd>√</kbd><kbd>1</kbd><kbd>0</kbd><kbd>ENTER</kbd></span> gives 6.32455532, so <b>6.32</b>. <span class="keys"><kbd>√</kbd><kbd>4</kbd><kbd>0</kbd><kbd>ENTER</kbd></span> gives the same number: a good check of your simplifying.</div>
+    <div class="pill-col"><button class="pill" data-keys="2 × √ 10 =">2√10</button><button class="pill" data-keys="√ 40 =">√40</button></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u6l3"></section>
+
+<!-- ================= 4. A real-world application ================= -->
+<section class="card" data-ink="s4" data-section="4. A Real-World Application">
+  <div class="sec-h"><span class="badge">4</span><h2>A Real-World Application</h2></div>
+  <p>The formula is especially useful when a <b>map</b> or floor plan sits on a coordinate grid: every place already has coordinates.</p>
+  <div class="u6l3-steps2">
+    <div><b class="n">1</b>Find the distance in <b>grid units</b> with the distance formula.</div>
+    <div><b class="n">2</b><b>Multiply</b> by the map scale to get the real distance.</div>
+  </div>
+  <div class="explainer" data-explainer="map"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>The park map</h3></div>
+  <p class="q">A town places a coordinate grid over a park map. The <b>picnic shelter</b> is at <span class="tex">(3,\ 8)</span> and the <b>swimming dock</b> is at <span class="tex">(11,\ 2)</span>, where each grid unit represents <span class="tex">25</span> m.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Determine the distance between the picnic shelter and the swimming dock, in grid units.</div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">d=\sqrt{(11-3)^2+(2-8)^2}</span><br><span class="tex">=\sqrt{64+36}=\sqrt{100}=\boldsymbol{10}</span> grid units</div></div></div>
+    <div class="part"><div class="pl">(b) Use the map scale to convert your answer from part (a) into an actual distance, in metres.</div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">10\text{ units}\times25\text{ m per unit}=\boldsymbol{250}\text{ m}</span><br>The shelter and the dock are 250 m apart.</div></div></div>
+    <div class="part think span2"><div class="pl"><span class="think-tag">Think</span> The park paths only run east–west and north–south. How much farther is it to <b>walk the paths</b> from the shelter to the dock?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The paths are the run and the rise: <span class="tex">8+6=14</span> units <span class="tex">=14\times25=350</span> m. That’s <b>100 m farther</b> than the straight line (the truck vs. the drone again).</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Every diagonal segment hides a right triangle.</b> The corner takes its <span class="tex">x</span> from one end and its <span class="tex">y</span> from the other. The <span class="u6l3-crun"><b>run</b></span> and <span class="u6l3-crise"><b>rise</b></span> are the legs; the segment is the hypotenuse.</div>
+    <div><b>The distance formula</b> is Pythagoras with coordinates: <span class="tex">d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}</span>. Subtract, square, add, then take the root of the <b>whole</b> sum.</div>
+    <div><b>Either point can go first.</b> The other order only flips the signs, and squaring erases them. Keep brackets on negatives: <span class="tex">(-3)^2=9</span>.</div>
+    <div><b>Exact and decimal.</b> Simplify the root: <span class="tex">\sqrt{45}=3\sqrt5</span>. Round only at the end: <span class="tex">\approx6.71</span>. On a map: grid units first, then <b>× the scale</b>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u6l3">
+    <div><div class="kicker">Your turn</div><b>Assignment 3 — Measuring the Length of a Line Segment: Diagonal Segments and the Distance Formula</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l4/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 4 — The Midpoint Formula</b><div class="muted">The drone’s battery dies exactly halfway to the Farm. Where does it land?</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u6l3.js';
+  boot({ key: 'u6l3', homeHref: '../../', title: '6.3 The Distance Formula' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

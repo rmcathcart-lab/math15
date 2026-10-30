@@ -1,0 +1,155 @@
+/* Math 15 · Unit 6 · Lesson 7 — Types of Slope: styles used only on this page (prefix u6l7-).
+ * Colours: run amber (horizontal), rise purple (vertical), segments blue; positive green, negative red, zero blue,
+ * undefined purple. Many pieces come from Math 10C u6l2.css. */
+
+.u6l7 .ex-cap { min-height: 128px; }
+.u6l7 .ex-cap .katex { font-size: 1.04em; }
+.u6l7 .chip .katex { font-size: 1em; }
+.u6l7 .pl .katex { font-size: 1.1em; }
+.u6l7 .ans .katex { font-size: 1.04em; }
+.u6l7 .pill-col { display: flex; flex-direction: column; gap: 6px; }
+.u6l7 .katex { white-space: nowrap; }
+.u6l7-c-rise { color: #7b4fc4; }
+.u6l7-c-run { color: #c27a0e; }
+.u6l7-pos { color: var(--ok, #12805a); }
+.u6l7-neg { color: var(--red, #c93a33); }
+.u6l7-zero { color: #1f5bd6; }
+.u6l7-und { color: #7b4fc4; }
+.u6l7-note { font-size: 16px; }
+.u6l7-exgap { margin-top: 18px; }
+.u6l7-lead { margin: 0 0 12px; }
+
+/* ---------------- warm-up: the Runner level ---------------- */
+.u6l7-lvwrap { position: relative; margin: 2px auto 0; }
+.u6l7-lvwrap svg { position: absolute; left: 0; top: 0; }
+.u6l7-lvtag { position: absolute; display: grid; place-items: center; border-radius: 50%; background: #fff; border: 2.5px solid #d23c32; color: #d23c32; font: 800 18px var(--round); padding: 0; box-sizing: border-box; cursor: pointer; line-height: 1; }
+button.u6l7-lvtag:hover { background: #fff3f2; }
+.u6l7-lvtag.on { background: #d23c32; color: #fff; }
+.u6l7-lvfin { font: 800 15px var(--round); color: #1e2d46; }
+.u6l7-lvway { font: 800 16px var(--round); color: #d23c32; }
+.u6l7-lvpiece { transition: stroke .3s; }
+.u6l7-lvbtns { display: flex; gap: 10px; align-items: center; margin: 8px 0 2px; flex-wrap: wrap; }
+.u6l7-lvbtns .pill { font-size: 15px; padding: 6px 14px; }
+.u6l7-lvread { font-size: 18px; margin-left: 6px; }
+.wf .u6l7-wqs .q-line { font-size: 17px; margin: 6px 0 2px; gap: 10px; }
+.wf .u6l7-wqs .q-line .pill.small { padding: 2px 10px; }
+.u6l7-wa { margin: 0 0 4px 40px; }
+.wf .u6l7-wqs .bk-ans { font-size: 15.5px; line-height: 1.32; margin-top: 2px; }
+.u6l7-social { font-style: italic; color: var(--ink2); font-size: 19px; text-align: center; margin: 12px 0 0; }
+.u6l7-lvt-pos { border-color: var(--ok, #12805a); color: var(--ok, #12805a); }
+.u6l7-lvt-neg { border-color: var(--red, #c93a33); color: var(--red, #c93a33); }
+.u6l7-lvt-zero { border-color: #1f5bd6; color: #1f5bd6; }
+.u6l7-lvt-und { border-color: #7b4fc4; color: #7b4fc4; }
+.u6l7-lvst { position: absolute; }
+.u6l7-lvnote { font-size: 21px; line-height: 1.5; text-align: center; background: #f6f5f1; border-radius: 12px; padding: 12px 14px; box-sizing: border-box; display: grid; place-items: center; opacity: 0; }
+
+/* ---------------- notes ---------------- */
+.u6l7-defrow { display: grid; grid-template-columns: 1fr 470px; gap: 18px; align-items: center; margin-bottom: 14px; }
+.u6l7-defrow .def { margin: 0; }
+.u6l7-formula { font-size: 25px; text-align: center; background: #f6f5f1; border-radius: 14px; padding: 12px 10px; }
+.u6l7-twobox { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 0 0 14px; }
+.u6l7-tbox { display: grid; grid-template-columns: 112px 1fr; gap: 12px; align-items: center; background: #fff; border-radius: 12px; padding: 10px 14px; font-size: 18.5px; line-height: 1.4; border-left: 6px solid; }
+.u6l7-tb-pos { border-color: var(--ok, #12805a); } .u6l7-tb-neg { border-color: var(--red, #c93a33); }
+.u6l7-tb-zero { border-color: #1f5bd6; } .u6l7-tb-und { border-color: #7b4fc4; }
+.u6l7-big { text-align: center; font: 700 26px var(--round); color: var(--ink); background: #fff7e0; border: 2px solid #f2b134; border-radius: 14px; padding: 10px 14px; margin: 0 0 10px; }
+.u6l7-big b { color: #7b4fc4; }
+.u6l7-hooks { display: flex; justify-content: center; gap: 36px; font-size: 19px; margin: 0 0 14px; }
+.u6l7-hooks > div { display: flex; align-items: center; gap: 10px; }
+.u6l7-hk { display: inline-block; border-radius: 3px; }
+.u6l7-hk-z { width: 34px; height: 6px; background: #1f5bd6; }
+.u6l7-hk-u { width: 6px; height: 30px; background: #7b4fc4; }
+.u6l7-blank { display: inline-block; min-width: 120px; border-bottom: 2px solid var(--ink2); text-align: center; color: var(--red); }
+
+/* ---------------- example figures ---------------- */
+.u6l7-exg { display: grid; grid-template-columns: 360px 1fr; gap: 20px; align-items: start; margin-bottom: 10px; }
+.u6l7-exg .parts { margin: 0; }
+.u6l7-fig { display: flex; justify-content: center; }
+.u6l7-ex5 { display: grid; grid-template-columns: 380px 1fr; gap: 22px; align-items: start; margin: 8px 0 10px; }
+.u6l7-tab { border-collapse: collapse; width: 100%; font-size: 20px; margin-top: 16px; }
+.u6l7-tab th, .u6l7-tab td { border: 2px solid #cfc7b5; text-align: center; padding: 6px 8px; }
+.u6l7-tab th { background: #f6f5f1; font: 800 17px var(--round); }
+.u6l7-tab td { height: 66px; }
+.u6l7-tab td:first-child { width: 90px; font-weight: 700; }
+
+/* the four kinds of slope */
+.u6l7-kinds-box { margin-top: 18px; }
+.u6l7-kinds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 10px; }
+.u6l7-kind { background: #fff; border-radius: 12px; padding: 8px 10px 10px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px; border-top: 5px solid; }
+.u6l7-kind b { font-size: 19px; }
+.u6l7-kt { font-size: 16px; color: var(--ink2); line-height: 1.3; }
+.u6l7-k-pos { border-color: var(--ok, #12805a); } .u6l7-k-neg { border-color: var(--red, #c93a33); } .u6l7-k-zero { border-color: #1f5bd6; } .u6l7-k-und { border-color: #7b4fc4; }
+
+/* ---------------- explainer pieces ---------------- */
+.u6l7-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+.u6l7-ph { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u6l7-line { font-size: 20px; line-height: 1.35; }
+.u6l7-soft { color: var(--ink2); font-size: 20px; }
+.u6l7-big .katex { font-size: 1em; }
+.u6l7-ro { display: flex; flex-direction: column; gap: 8px; margin: 4px 0 2px; }
+.u6l7-ro-r { display: flex; align-items: baseline; gap: 14px; font-size: 28px; background: #f6f5f1; border-radius: 12px; padding: 4px 16px; border-left: 6px solid; }
+.u6l7-ro-run { border-color: #c27a0e; } .u6l7-ro-rise { border-color: #7b4fc4; }
+.u6l7-ro-k { font: 800 20px var(--round); color: var(--ink2); min-width: 54px; }
+.u6l7-ro-v { font-family: var(--round); }
+.u6l7-sgn { font-size: 21px; text-align: center; min-height: 34px; }
+.u6l7-panel .u6l7-big { font: 400 26px var(--round); background: none; border: none; padding: 0; margin: 4px 0 0; }
+.u6l7-tyw { font: 800 24px var(--round); margin-top: 4px; }
+.u6l7-frbox { font-size: 24px; text-align: center; background: #f6f5f1; border-radius: 12px; padding: 8px 10px; min-height: 64px; display: grid; place-items: center; }
+.u6l7-log { display: flex; flex-direction: column; gap: 6px; font-size: 21px; }
+.u6l7-log-lg { font-size: 21px; gap: 10px; }
+.u6l7-slide { font-size: 21px; }
+.u6l7-stampb { align-self: center; margin-top: auto; margin-bottom: 8px; }
+.u6l7-rulebox { margin-top: auto; background: var(--brand-soft); border-left: 5px solid var(--brand2); border-radius: 10px; padding: 8px 14px; font-size: 20px; line-height: 1.45; }
+.u6l7-ptab { border-collapse: collapse; font-size: 20px; width: 100%; }
+.u6l7-ptab th, .u6l7-ptab td { border-bottom: 1px solid var(--line2); padding: 4px 6px; text-align: center; height: 46px; }
+.u6l7-ptab th { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .04em; color: var(--muted); height: 30px; }
+.u6l7-ptab th.u6l7-c-rise { color: #7b4fc4; } .u6l7-ptab th.u6l7-c-run { color: #c27a0e; }
+.u6l7-ptab td:first-child { font-weight: 700; }
+.u6l7-ptab .katex { font-size: 1.05em; }
+.u6l7-ptab5 { font-size: 18px; }
+.u6l7-ptab5 td, .u6l7-ptab5 th { padding: 3px 3px; }
+.u6l7-ptab5 td { height: 54px; }
+.u6l7-dirw { font: 800 19px var(--round); background: rgba(255, 255, 255, .9); border-radius: 7px; padding: 0 6px; }
+.u6l7-nm { font-size: 20px; }
+.u6l7-eqlab { font-size: 22px; color: #1f5bd6; }
+
+/* slope triangle labels and count bubbles */
+.u6l7-tlab { font: 700 18px var(--round); background: rgba(255, 255, 255, .9); border-radius: 7px; padding: 0 5px; white-space: nowrap; }
+.u6l7-trun { color: #c27a0e; } .u6l7-trise { color: #7b4fc4; }
+.u6l7-bub { font: 800 14px var(--round); color: #fff; border-radius: 10px; padding: 0 6px; min-width: 20px; text-align: center; line-height: 20px; }
+.u6l7-bub-run { background: #c27a0e; } .u6l7-bub-rise { background: #7b4fc4; }
+
+/* walk tiles */
+.u6l7-tiles { display: flex; flex-direction: column; gap: 8px; }
+.u6l7-tile { font-size: 20px; border-radius: 10px; padding: 6px 14px; background: #f6f5f1; border-left: 6px solid; }
+.u6l7-tile-pos { border-color: var(--ok, #12805a); } .u6l7-tile-neg { border-color: var(--red, #c93a33); } .u6l7-tile-zero { border-color: #1f5bd6; } .u6l7-tile-und { border-color: #7b4fc4; }
+
+/* divide by zero */
+.u6l7-tray { background: #fbfaf6; }
+.u6l7-area { position: relative; flex: none; }
+.u6l7-dot { position: absolute; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #ffd77a, #e8a01e 70%); border: 2px solid #b97a0c; box-sizing: border-box; }
+.u6l7-ring { position: absolute; border: 3.5px solid #1f5bd6; border-radius: 34px; box-sizing: border-box; }
+.u6l7-ring0 { border: 3px dashed #7b4fc4; border-radius: 50%; }
+.u6l7-empty { position: absolute; display: grid; place-items: center; font: 700 22px var(--round); color: var(--muted); border: 2px dashed var(--line2); border-radius: 12px; box-sizing: border-box; }
+.u6l7-gro { font: 700 26px var(--round); text-align: center; }
+.u6l7-gro b { color: #1f5bd6; }
+.u6l7-left { font: 700 22px var(--round); text-align: center; color: var(--ink2); }
+.u6l7-left b { color: #b97a0c; }
+
+/* the turning line */
+.u6l7-dm { font-size: 34px; text-align: center; background: #f6f5f1; border-radius: 12px; padding: 14px 10px; min-height: 84px; display: grid; place-items: center; }
+.u6l7-dm b { font-family: var(--round); }
+.u6l7-dk { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+.u6l7-dkr { display: flex; align-items: center; gap: 12px; font-size: 20px; border-radius: 10px; padding: 8px 12px; background: #f6f5f1; opacity: .45; transition: opacity .2s, transform .2s; }
+.u6l7-dkr i { width: 16px; height: 16px; border-radius: 50%; display: inline-block; }
+.u6l7-dkr.on { opacity: 1; font-weight: 800; transform: scale(1.03); box-shadow: 0 0 0 2px currentColor inset; }
+.u6l7-dkr-pos { color: var(--ok, #12805a); } .u6l7-dkr-pos i { background: var(--ok, #12805a); }
+.u6l7-dkr-neg { color: var(--red, #c93a33); } .u6l7-dkr-neg i { background: var(--red, #c93a33); }
+.u6l7-dkr-zero { color: #1f5bd6; } .u6l7-dkr-zero i { background: #1f5bd6; }
+.u6l7-dkr-und { color: #7b4fc4; } .u6l7-dkr-und i { background: #7b4fc4; }
+
+/* ---------- warm-up poll (one screen) ---------- */
+.wf .wf-poll .poll-opts { grid-template-columns: 1fr 1fr; gap: 6px; }
+.wf .wf-poll .opt { padding: 6px 10px; font-size: 16.5px; }
+.wf .wf-poll .opt.right { grid-column: 1 / -1; }
+.u6l7-tbox > div:last-child { text-align: left; }
+.u6l7-ans3 { line-height: 2.1; }

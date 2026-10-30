@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Applications: Distance, Midpoint, and Finding a Missing Endpoint · Math 15 6.5</title>
+<meta name="description" content="Math 15 Unit 6 Lesson 5: the distance and midpoint formulas at work on maps, trails and zip-lines. Find a missing endpoint by running the midpoint formula backward (double the midpoint, subtract the known endpoint), turn grid units into metres and kilometres with a map scale, say how far east or west and north or south a midpoint is, and chain both formulas together. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u6l5.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u6l5">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 6 Characteristics of Linear Relations · Lesson 5</div>
+  <h1>Applications: Distance, Midpoint, and Finding a Missing Endpoint</h1>
+  <p class="lede">Today the two formulas go to work on <b>maps</b>, <b>trails</b> and <b>zip-lines</b>. The <b>distance formula</b> tells us <em>how far apart</em> two places are. The <b>midpoint formula</b> tells us <em>where halfway is</em>. And we run the midpoint formula <b>backward</b>: if we know the middle and one end, we can find the other end.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>choose the right tool: the <b>distance formula</b> for “how far?”, the <b>midpoint formula</b> for “where is halfway?”</li>
+      <li>find a <b>missing endpoint</b> from the midpoint and the other endpoint: <b>double the midpoint, subtract the known endpoint</b></li>
+      <li>use a <b>map scale</b> to change grid units into metres or kilometres</li>
+      <li>say how far <b>east or west</b> and <b>north or south</b> one place is from another</li>
+      <li>use <b>both formulas</b>, one after the other, to solve a real problem</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF3</b> Demonstrate an understanding of slope with respect to: rise and run; line segments and lines; rate of change; parallel lines; perpendicular lines.<br><span class="muted">Today: distance and midpoint at work. The run and rise you count today are the two pieces of slope, next lesson.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Other End of the Zipline" id="wu" style="--wf-side: 450px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Other End of the Zipline</h2>
+  <p class="wf-rule">Fog fills the canyon. You can see the <b>start</b>, <span class="tex">S</span>, and the flag at the <b>exact middle</b> of the cable, <span class="tex">M</span>. 1 square = 1 unit.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u6l5-wfig">
+      <div id="u6l5-zip"></div>
+      <div class="u6l5-wbtns">
+        <button type="button" class="pill" id="u6l5-wsm">Count S to M</button>
+        <button type="button" class="pill" id="u6l5-wagain">Go the same again</button>
+        <button type="button" class="pill" id="u6l5-wfog">Clear the fog</button>
+      </div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u6l5-wqs">
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">1</div><div>A rope lies on a number line. One end is at <b>2</b>. Its exact middle is at <b>5</b>. Where is the other end? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l5-rope" id="u6l5-rope"></div>
+        <div class="u6l5-wa"><div class="bk-ans"><b>8.</b> From 2 to the middle is 3 steps, so go 3 more: <span class="tex">5+3=8</span>. Check: <span class="tex">\frac{2+8}{2}=5</span>.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">2</div><div>On the map, from <span class="tex">S</span> to the flag <span class="tex">M</span>: how many squares <b>right</b>? How many <b>down</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l5-wa"><div class="bk-ans"><b>4 right</b> and <b>3 down</b>.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">3</div><div><span class="tex">M</span> is the exact middle. So from <span class="tex">M</span> to the hidden end, how far <b>right</b>? How far <b>down</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l5-wa"><div class="bk-ans">The <b>same again</b>: 4 right and 3 down. The middle splits the cable into two equal halves.</div></div>
+      </div>
+    </div>
+    <div class="poll wf-poll u6l5-poll4">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> <span class="tex">S</span> is <span class="tex">(2,\ 9)</span> and <span class="tex">M</span> is <span class="tex">(6,\ 6)</span>. Where is the hidden end, <span class="tex">E</span>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> <span class="tex">(4,\ 7.5)</span></div>
+        <div class="opt"><b>B</b> <span class="tex">(8,\ 15)</span></div>
+        <div class="opt right"><b>C</b> <span class="tex">(10,\ 3)</span></div>
+        <div class="opt"><b>D</b> <span class="tex">(4,\ 3)</span></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: <span class="tex">E(10,\ 3)</span>.</b> From <span class="tex">M(6,\ 6)</span> go 4 right and 3 down. Check: <span class="tex">\left(\frac{2+10}{2},\ \frac{9+3}{2}\right)=(6,\ 6)</span> ✓<br>
+        <span class="muted"><b>A</b> averaged <span class="tex">S</span> and <span class="tex">M</span>: that point is between <span class="tex">S</span> and the flag, on the wrong side! <b>B</b> added <span class="tex">S</span> and <span class="tex">M</span> and never subtracted: way up in the sky. <b>D</b> is the step <span class="tex">(4,\ -3)</span> with the sign lost, not a point.</span></div>
+    </div>
+  </div></div>
+  <div class="u6l5-wlow">
+    <div class="poll wf-poll u6l5-poll3">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>Then:</b> each square is <b>20 m</b>. How long is the <b>whole</b> cable, from <span class="tex">S</span> to <span class="tex">E</span>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 140 m</div>
+        <div class="opt right"><b>B</b> 200 m</div>
+        <div class="opt"><b>C</b> 280 m</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: 200 m.</b> The whole cable goes 8 right and 6 down: <span class="tex">\sqrt{8^2+6^2}=\sqrt{100}=10</span> squares, and <span class="tex">10\times20=200</span> m. <span class="muted">(280 m counts <span class="tex">8+6=14</span> squares along the grid lines, but a cable doesn’t turn corners. 140 m is only 7 squares.)</span></div>
+    </div>
+    <p class="u6l5-social">Pencil check: put the middle of your pencil on <b>M</b> and the eraser on <b>S</b>. Where does the tip point?</p>
+  </div>
+</section>
+
+<!-- ================= 1. The two formulas ================= -->
+<section class="card" data-ink="s1" data-section="1. The Two Formulas">
+  <div class="sec-h"><span class="badge">1</span><h2>The Two Formulas</h2></div>
+  <p>For two points <span class="tex">P(x_1,\ y_1)</span> and <span class="tex">Q(x_2,\ y_2)</span>:</p>
+  <div class="def-grid u6l5-two">
+    <div class="def"><b>Distance</b> — <em>how far apart?</em><div class="u6l5-disp"><span class="tex">d=\sqrt{(\textcolor{#c27a0e}{x_2-x_1})^2+(\textcolor{#7b4fc4}{y_2-y_1})^2}</span></div><div class="eg"><b>Subtract</b> to get the <span class="u6l5-crun"><b>run</b></span> and the <span class="u6l5-crise"><b>rise</b></span>, square, add, square root.</div></div>
+    <div class="def amber"><b>Midpoint</b> — <em>where is halfway?</em><div class="u6l5-disp"><span class="tex">M\left(\dfrac{x_1+x_2}{2},\ \dfrac{y_1+y_2}{2}\right)</span></div><div class="eg"><b>Add</b> and halve: the <b>average</b> of the <span class="tex">x</span>’s and the average of the <span class="tex">y</span>’s.</div></div>
+  </div>
+  <div class="explainer" data-explainer="tools"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Subtract for distance, add for midpoint.</b> Distance asks <em>how far apart</em>, so it uses the <b>differences</b>. The midpoint asks <em>where the middle is</em>, so it uses the <b>average</b>. Mixing them up is the most common slip.</div></div>
+</section>
+
+<!-- ================= 2. Missing endpoint ================= -->
+<section class="card" data-ink="s2" data-section="2. Finding a Missing Endpoint">
+  <div class="sec-h"><span class="badge">2</span><h2>Finding a Missing Endpoint</h2></div>
+  <p>If we know the midpoint <span class="tex">M</span> and only <b>one</b> endpoint, put what we know into the midpoint formula and solve for the unknown coordinate: one small equation for <span class="tex">x</span>, one for <span class="tex">y</span>.</p>
+  <div class="def u6l5-short"><b>Shortcut:</b> <span class="tex">x_2=2x_M-x_1</span> and <span class="tex">y_2=2y_M-y_1</span>. In words: <b>double the midpoint, subtract the known endpoint.</b></div>
+  <div class="u6l5-demo">
+    <div id="u6l5-demofig"></div>
+    <div class="u6l5-demotxt"><b>Worked demonstration.</b> <span class="tex">P(2,\ 5)</span> is an endpoint and <span class="tex">M(6,\ 9)</span> is the midpoint. Solve each coordinate equation:
+      <div class="u6l5-dl"><span class="tex">\dfrac{2+x_2}{2}=6\ \Rightarrow\ 2+x_2=12\ \Rightarrow\ x_2=10</span></div>
+      <div class="u6l5-dl"><span class="tex">\dfrac{5+y_2}{2}=9\ \Rightarrow\ 5+y_2=18\ \Rightarrow\ y_2=13</span></div>
+      so <span class="tex">\boldsymbol{Q(10,\ 13)}</span>. <b>Check</b> by putting both endpoints back in: <span class="tex">\left(\dfrac{2+10}{2},\ \dfrac{5+13}{2}\right)=(6,\ 9)</span> ✓</div>
+  </div>
+  <div class="explainer" data-explainer="backward"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Why double and subtract?">
+  <h3 class="sub">Why “double the midpoint, subtract the known endpoint” works</h3>
+  <p>Take <b>one coordinate at a time</b>. The midpoint formula says “add the two ends and halve”. To run it backward, undo each step: undo the <b>÷ 2</b> by <b>doubling</b>, then undo the <b>+</b> by <b>subtracting</b> the end you know.</p>
+  <div class="explainer" data-explainer="solve"></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Negatives on the calculator.</b> Use the <kbd>(−)</kbd> key for a negative number and the <kbd>−</kbd> key for subtracting. Example 2(a): <span class="tex">2(-1)-(-6)</span> is <span class="keys"><kbd>2</kbd><kbd>×</kbd><kbd>(−)</kbd><kbd>1</kbd><kbd>−</kbd><kbd>(−)</kbd><kbd>6</kbd><kbd>ENTER</kbd></span> → 4.</div>
+    <div class="pill-col"><button class="pill" data-keys="2 × (−) 1 − (−) 6 =">2(−1) − (−6)</button><button class="pill" data-keys="2 × (−) 3 − (−) 8 =">2(−3) − (−8)</button></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Find the other endpoint</h3></div>
+  <p class="q"><span class="tex">A(4,\ 1)</span> is one endpoint of <span class="tex">\overline{AB}</span> and the midpoint is <span class="tex">M(9,\ 6)</span>. Determine the other endpoint, <span class="tex">B</span>.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">Find <span class="tex">B</span>.</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Double the midpoint, subtract the known endpoint:<br><span class="tex">x_B=2x_M-x_1=2(9)-4=18-4=\boldsymbol{14}</span><br><span class="tex">y_B=2y_M-y_1=2(6)-1=12-1=\boldsymbol{11}</span><br><span class="tex">\boldsymbol{B(14,\ 11)}</span></div></div></div>
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> How can you <b>check</b> your answer?</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Find the midpoint of <span class="tex">A</span> and your <span class="tex">B</span>. It must come out to <span class="tex">M</span>:<br><span class="tex">\left(\dfrac{4+14}{2},\ \dfrac{1+11}{2}\right)=\left(\dfrac{18}{2},\ \dfrac{12}{2}\right)=(9,\ 6)</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Missing endpoints with negatives</h3></div>
+  <p class="q">Determine the coordinates of the missing endpoint in each case.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">E(-6,\ 3)</span> is one endpoint of <span class="tex">\overline{EF}</span>, with midpoint <span class="tex">M(-1,\ 7)</span>. Find <span class="tex">F</span>.</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x_F=2(-1)-(-6)=-2+6=\boldsymbol{4}</span><br><span class="tex">y_F=2(7)-3=14-3=\boldsymbol{11}</span><br><span class="tex">\boldsymbol{F(4,\ 11)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">G(5,\ -8)</span> is one endpoint of <span class="tex">\overline{GH}</span>, with midpoint <span class="tex">M(2,\ -3)</span>. Find <span class="tex">H</span>.</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x_H=2(2)-5=4-5=\boldsymbol{-1}</span><br><span class="tex">y_H=2(-3)-(-8)=-6+8=\boldsymbol{2}</span><br><span class="tex">\boldsymbol{H(-1,\ 2)}</span></div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Brackets around a negative.</b> Subtracting a negative is adding: <span class="tex">-2-(-6)=-2+6=4</span>. Write the brackets first, then simplify.</div></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2c" data-section="2. Three tempting answers">
+  <h3 class="sub">Three tempting answers, one right one</h3>
+  <p>The midpoint is <b>not</b> an endpoint. To find the missing end, don’t average the end you know with the midpoint: go <b>past</b> the midpoint by the same amount again. Test each answer by checking that <span class="tex">M</span> is really in the middle.</p>
+  <div class="explainer" data-explainer="trap"></div>
+</section>
+
+<!-- ================= 3. Distance applications ================= -->
+<section class="card" data-ink="s3" data-section="3. Real-World Distance">
+  <div class="sec-h"><span class="badge">3</span><h2>Real-World Distance Applications</h2></div>
+  <p>When a map or floor plan is laid on a coordinate grid, the distance formula gives real distances straight from the coordinates. Find the distance in <b>grid units</b> first, then <b>multiply by the map scale</b> to change it to metres or kilometres.</p>
+  <div class="def u6l5-short"><b>Map scale:</b> “each grid unit represents 200 m” means <b>1 unit = 200 m</b>. So <span class="tex">13</span> units <span class="tex">=13\times200=2\,600</span> m. And <span class="tex">1\,000\text{ m}=1\text{ km}</span>, so divide metres by <span class="tex">1\,000</span> to get kilometres.</div>
+  <div class="explainer" data-explainer="rescue"></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>The whole distance in one line.</b> <span class="keys"><kbd>2nd</kbd><kbd>x²</kbd></span> is <span class="tex">\sqrt{\phantom{x}}</span>: <span class="keys"><kbd>√</kbd><kbd>(</kbd><kbd>5</kbd><kbd>x²</kbd><kbd>+</kbd><kbd>1</kbd><kbd>2</kbd><kbd>x²</kbd><kbd>)</kbd><kbd>ENTER</kbd></span> → 13. Close the bracket: the root covers the <b>whole</b> sum. Then <span class="keys"><kbd>×</kbd><kbd>2</kbd><kbd>0</kbd><kbd>0</kbd></span> for the scale.</div>
+    <div class="pill-col"><button class="pill" data-keys="√ ( 5 x² + 12 x² ) =">√(5² + 12²)</button><button class="pill" data-keys="13 × 200 =">13 × 200</button><button class="pill" data-keys="2600 ÷ 1000 =">2600 ÷ 1000</button></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Search and rescue</h3></div>
+  <p class="q">A search-and-rescue team overlays a grid on a topographic map. The ranger station is at <span class="tex">(3,\ 4)</span> and a hiker’s radio signal is traced to <span class="tex">(8,\ 16)</span>, where each grid unit represents <span class="tex">200</span> m.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Determine the distance between the ranger station and the hiker’s signal, in grid units.</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">d=\sqrt{(8-3)^2+(16-4)^2}</span><br><span class="tex">=\sqrt{5^2+12^2}=\sqrt{25+144}</span><br><span class="tex">=\sqrt{169}=\boldsymbol{13}</span> <b>grid units</b></div></div></div>
+    <div class="part"><div class="pl">(b) Use the map scale to convert your answer from part (a) into an actual distance, in kilometres.</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">13\text{ units}\times200\text{ m per unit}=2\,600</span> m<br><span class="tex">2\,600\div1\,000=\boldsymbol{2.6}</span> <b>km</b><br>The hiker is 2.6 km from the ranger station.</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Midpoint applications ================= -->
+<section class="card" data-ink="s4" data-section="4. Real-World Midpoint">
+  <div class="sec-h"><span class="badge">4</span><h2>Real-World Midpoint Applications</h2></div>
+  <p>The midpoint formula finds anything that must sit <b>exactly halfway</b> between two places: a meeting spot, a rest stop, the centre of a road or a pipeline. The <b>difference in coordinates</b> from one place to the midpoint tells how far <b>east or west</b> (the <span class="tex">x</span>’s) and how far <b>north or south</b> (the <span class="tex">y</span>’s) the halfway point is.</p>
+  <div class="u6l5-compassrow">
+    <div class="u6l5-compass" id="u6l5-compass"></div>
+    <div class="def u6l5-short">On a map grid, <b>right is east</b> and <b>left is west</b>; <b>up is north</b> and <b>down is south</b>. A <b>positive</b> change in <span class="tex">x</span> means east, a <b>negative</b> one means west. A positive change in <span class="tex">y</span> means north, a negative one means south.</div>
+  </div>
+  <div class="explainer" data-explainer="busstop"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>A shared bus stop</h3></div>
+  <p class="q">Two schools, Meridian at <span class="tex">M_1(-6,\ 10)</span> and Sunview at <span class="tex">M_2(18,\ -4)</span>, sit on opposite sides of town. The board wants a shared bus stop exactly halfway between them.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Determine the coordinates of the bus stop.</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">M\left(\dfrac{-6+18}{2},\ \dfrac{10+(-4)}{2}\right)</span><br><span class="tex">=\left(\dfrac{12}{2},\ \dfrac{6}{2}\right)=\boldsymbol{(6,\ 3)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) If each grid unit represents <span class="tex">100</span> m, how far east or west, and how far north or south, is the bus stop from Meridian Elementary?</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">From <span class="tex">(-6,\ 10)</span> to <span class="tex">(6,\ 3)</span>:<br><span class="tex">\Delta x=6-(-6)=12</span>, <span class="tex">\ \Delta y=3-10=-7</span><br><span class="tex">12\times100=\boldsymbol{1\,200}</span> <b>m east</b><br><span class="tex">7\times100=\boldsymbol{700}</span> <b>m south</b></div></div></div>
+    <div class="part think span2"><div class="pl"><span class="think-tag">Think</span> Is the bus stop the same distance from <b>both</b> schools? How do you know without the distance formula?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> From Sunview <span class="tex">(18,\ -4)</span> to the stop <span class="tex">(6,\ 3)</span> is 12 units west and 7 units north: the same 12 and 7, just in the opposite directions. That is what “halfway” means.</div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b><span class="tex">\Delta</span> means “change in”.</b> <span class="tex">\Delta x</span> is new minus old: <span class="tex">x_{\text{stop}}-x_{\text{Meridian}}</span>. The <b>sign</b> gives the direction (<span class="tex">-7</span>: south); the <b>size</b> gives the distance (7 units, so 700 m). A distance is never negative.</div></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u6l5"></section>
+
+<!-- ================= 5. Combined ================= -->
+<section class="card" data-ink="s5" data-section="5. A Combined Application">
+  <div class="sec-h"><span class="badge">5</span><h2>A Combined Application</h2></div>
+  <p>Some problems need <b>both tools</b>, one after the other: run the midpoint formula <b>in reverse</b> to find the missing endpoint, then use the <b>distance formula</b> on the result. The key words tell you which tool each question needs.</p>
+  <div class="explainer" data-explainer="which"></div>
+</section>
+
+<section class="card" data-ink="s5b" data-section="5. The zip-line">
+  <h3 class="sub">Two tools in a row: the zip-line</h3>
+  <p>First find where the cable ends (<b>go the same again</b>). Then measure the whole cable (<b>run, rise, Pythagoras</b>), and use the map scale last.</p>
+  <div class="explainer" data-explainer="zipline"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>The adventure-park zip-line</h3></div>
+  <div class="u6l5-exrow">
+    <div id="u6l5-ex5fig"></div>
+    <p class="q">An adventure park is designing a zip-line. The starting platform is at <span class="tex">A(2,\ 3)</span>, and the safety inspector marks the halfway cable anchor at <span class="tex">M(10,\ 9)</span>. Each grid unit represents <span class="tex">40</span> m.</p>
+  </div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Determine the coordinates of the ending platform, <span class="tex">B</span>, using the midpoint formula in reverse.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x_B=2(10)-2=20-2=\boldsymbol{18}</span><br><span class="tex">y_B=2(9)-3=18-3=\boldsymbol{15}</span><br><span class="tex">\boldsymbol{B(18,\ 15)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Determine the total length of the zip-line, from <span class="tex">A</span> to <span class="tex">B</span>, in metres.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">d=\sqrt{(18-2)^2+(15-3)^2}=\sqrt{16^2+12^2}</span><br><span class="tex">=\sqrt{256+144}=\sqrt{400}=20</span> grid units<br><span class="tex">20\times40=\boldsymbol{800}</span> <b>m</b> of zip-line cable.</div></div></div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Check (b) on the calculator.</b> <span class="keys"><kbd>√</kbd><kbd>(</kbd><kbd>1</kbd><kbd>6</kbd><kbd>x²</kbd><kbd>+</kbd><kbd>1</kbd><kbd>2</kbd><kbd>x²</kbd><kbd>)</kbd><kbd>ENTER</kbd></span> → 20, then <span class="keys"><kbd>×</kbd><kbd>4</kbd><kbd>0</kbd><kbd>ENTER</kbd></span> → 800.</div>
+    <div class="pill-col"><button class="pill" data-keys="√ ( 16 x² + 12 x² ) =">√(16² + 12²)</button><button class="pill" data-keys="20 × 40 =">20 × 40</button></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Pick the tool.</b> “How far?” → <b>distance</b> <span class="tex">d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}</span> (subtract). “Where is halfway?” → <b>midpoint</b> <span class="tex">M\left(\frac{x_1+x_2}{2},\ \frac{y_1+y_2}{2}\right)</span> (add and halve).</div>
+    <div><b>Missing endpoint:</b> <b>double the midpoint, subtract the known endpoint</b>: <span class="tex">x_2=2x_M-x_1</span>, <span class="tex">y_2=2y_M-y_1</span>. The middle is halfway, so go the same again. Check by finding the midpoint of your answer.</div>
+    <div><b>Map scale:</b> grid units first, then multiply by the scale (13 units × 200 m = 2&#8239;600 m). Divide by 1&#8239;000 for km. East/west comes from <span class="tex">\Delta x</span>, north/south from <span class="tex">\Delta y</span>; the sign is the direction.</div>
+    <div><b>Both tools in a row:</b> find the missing end with the midpoint in reverse, then the length with the distance formula, then the scale. Zip-line: <span class="tex">B(18,\ 15)</span>, 20 units, 800 m.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u6l5">
+    <div><div class="kicker">Your turn</div><b>Assignment 5 — Applications: Distance, Midpoint, and Finding a Missing Endpoint</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l6/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 6 — Rise Over Run: The Slope of a Line Segment</b><div class="muted">The same run and rise, compared instead of combined: how steep is the segment?</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u6l5.js';
+  boot({ key: 'u6l5', homeHref: '../../', title: '6.5 Distance and Midpoint Applications' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

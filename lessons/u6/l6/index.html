@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rise Over Run: The Slope of a Line Segment · Math 15 6.6</title>
+<meta name="description" content="Math 15 Unit 6 Lesson 6: slope measures steepness by comparing the rise (vertical change) with the run (horizontal change). Count rise and run on a grid, write the slope as a fraction in lowest terms, use the slope formula m = (y2 − y1)/(x2 − x1) with coordinates (negatives too), and find the slope of a hiking trail. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u6l6.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u6l6">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 6 Characteristics of Linear Relations · Lesson 6</div>
+  <h1>Rise Over Run: The Slope of a Line Segment</h1>
+  <p class="lede">How steep is it? The tallest slide is not always the scariest. Steepness depends on how the climb <b class="u6l6-crise">up</b> (the <b>rise</b>) compares with the distance <b class="u6l6-crun">across</b> (the <b>run</b>). That comparison, <b>rise over run</b>, is called the <b>slope</b>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>explain that <b>slope</b> measures how <b>steep</b> a line is</li>
+      <li>count the <b class="u6l6-crise">rise</b> (up) and the <b class="u6l6-crun">run</b> (right) between two points on a grid</li>
+      <li>write the slope as a fraction <span class="tex">\dfrac{\text{rise}}{\text{run}}</span>, in lowest terms</li>
+      <li>use the <b>slope formula</b> <span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}</span> when I only have the coordinates, even with negatives</li>
+      <li>find the slope of a ramp, road or trail from its climb and its distance across</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF3</b> Demonstrate an understanding of slope with respect to: rise and run; line segments and lines; rate of change; parallel lines; perpendicular lines.<br><span class="muted">Today: the rise and the run from the last lessons, now compared with each other. That is slope.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Which Slide Is Scariest?" id="wu">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Which Slide Is Scariest?</h2>
+  <p class="wf-rule">Scariest = <b>steepest</b>. Each slide shows how far it goes <b class="u6l6-crise">up</b> and <b class="u6l6-crun">across</b>. All four are drawn to the same scale: every square is 1 m.</p></div>
+  <div class="u6l6-slides" id="u6l6-slides"></div>
+  <div class="u6l6-wbtns">
+    <button type="button" class="pill" id="u6l6-wdiv">Show up ÷ across</button>
+    <button type="button" class="pill" id="u6l6-we">Add slide E</button>
+  </div>
+  <div class="u6l6-wlow">
+    <div class="u6l6-wqs">
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">1</div><div>Which slide is the <b>tallest</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l6-wa"><div class="bk-ans"><b>A</b>, 4 m tall.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">2</div><div><b>B</b> and <b>D</b> are both 3 m tall. Which is steeper? Why? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l6-wa"><div class="bk-ans"><b>B.</b> Both climb 3 m, but B does it in only 4 m across instead of 5 m. Same climb in less distance = steeper.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">3</div><div>For each slide, work out <b>up ÷ across</b>. Which slide gets the <b>biggest</b> number? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l6-wa"><div class="bk-ans">A: <span class="tex">4\div8=0.5</span>, B: <span class="tex">3\div4=0.75</span>, C: <span class="tex">2\div5=0.4</span>, D: <span class="tex">3\div5=0.6</span>. <b>B</b> gets the biggest number, and B <b>is</b> the steepest slide.</div></div>
+      </div>
+    </div>
+    <div class="poll wf-poll u6l6-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Slide <b>E</b> (not shown yet) is <b>6 m</b> tall, taller than all four! It stretches <b>20 m</b> across the ground. Where does E rank? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Steepest of all</div>
+        <div class="opt"><b>B</b> Somewhere in the middle</div>
+        <div class="opt right"><b>C</b> Gentlest of all</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C, gentlest of all.</b> <span class="tex">6\div20=0.3</span>, smaller than every other slide. E is the tallest, but it is spread over so much ground that it is the least scary. Tap <b>Add slide E</b> to see it.<br><span class="muted">Height alone doesn’t tell you steepness: you have to <b>compare</b> up with across.</span></div>
+    </div>
+  </div>
+  <p class="u6l6-social">With a neighbour: rank A–D, scariest to gentlest. Do your eyes agree with Question 3?</p>
+</section>
+
+<!-- ================= 1. What slope measures ================= -->
+<section class="card" data-ink="s1" data-section="1. What Slope Measures">
+  <div class="sec-h"><span class="badge">1</span><h2>What Slope Measures</h2></div>
+  <div class="u6l6-s1row">
+    <div id="u6l6-stairfig"></div>
+    <div>
+      <p>Every step of a staircase goes <b>up</b> a little and <b>across</b> a little. A straight edge laid along the front corners is a line. How steep it is depends on how the “up” compares with the “across”.</p>
+      <div class="def u6l6-formula">The <b class="u6l6-crise">rise</b> is the <b>vertical change</b> between two points. The <b class="u6l6-crun">run</b> is the <b>horizontal change</b>. The <b>slope</b> <span class="tex">m</span> compares them:
+        <div class="u6l6-disp"><span class="tex">m=\dfrac{\textcolor{#7b4fc4}{\text{rise}}}{\textcolor{#c27a0e}{\text{run}}}=\dfrac{\textcolor{#7b4fc4}{y_2-y_1}}{\textcolor{#c27a0e}{x_2-x_1}}</span></div>
+      </div>
+    </div>
+  </div>
+  <p>Rise is <b>positive</b> counting <b>up</b>, negative counting down. Run is <b>positive</b> counting <b>right</b>, negative counting left. Every segment in this lesson climbs to the right, so every slope here is positive.</p>
+  <div class="explainer" data-explainer="stairs"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Tallest isn't steepest">
+  <h3 class="sub">The warm-up again: tallest isn’t steepest</h3>
+  <p>Put all five slides at the same starting point. The steepest one is the one with the biggest <span class="tex">\dfrac{\text{rise}}{\text{run}}</span>, not the tallest one.</p>
+  <div class="explainer" data-explainer="slides"></div>
+</section>
+
+<!-- ================= 2. Counting ================= -->
+<section class="card" data-ink="s2" data-section="2. Counting Rise and Run">
+  <div class="sec-h"><span class="badge">2</span><h2>Counting Rise and Run from a Graph</h2></div>
+  <p>With both points plotted, just <b>count squares</b>: how many <b class="u6l6-crise">up</b> from one point to the other’s height, then how many <b class="u6l6-crun">right</b> to the other’s position. Don’t mix the two up: <b>rise goes on top, run on the bottom</b>.</p>
+  <div class="explainer" data-explainer="count"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Count the rise, count the run</h3></div>
+  <p class="q">Points <span class="tex">A</span> and <span class="tex">B</span> are plotted on the grid below.</p>
+  <div class="u6l6-exrow">
+    <div id="u6l6-ex1fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Starting at <span class="tex">A</span>, count how many squares <b>up</b> you must go to reach the same height as <span class="tex">B</span>. This is the <b>rise</b>.</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">A(1,\ 1)</span> and <span class="tex">B(5,\ 4)</span>: count up from <span class="tex">y=1</span> to <span class="tex">y=4</span>.<br>rise <span class="tex">=4-1=\boldsymbol{3}</span> squares up</div></div></div>
+      <div class="part"><div class="pl">(b) Starting at <span class="tex">A</span>, count how many squares <b>right</b> you must go to reach the same horizontal position as <span class="tex">B</span>. This is the <b>run</b>.</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Count right from <span class="tex">x=1</span> to <span class="tex">x=5</span>.<br>run <span class="tex">=5-1=\boldsymbol{4}</span> squares right</div></div></div>
+      <div class="part"><div class="pl">(c) Use (a) and (b) to write the slope of <span class="tex">\overline{AB}</span> as a fraction, <span class="tex">\dfrac{\text{rise}}{\text{run}}</span>.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=\dfrac{\text{rise}}{\text{run}}=\boldsymbol{\dfrac{3}{4}}</span><br>The segment rises 3 squares for every 4 squares to the right.<div class="u6l6-ansfig" id="u6l6-ex1ans"></div></div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Two segments, two slopes</h3></div>
+  <p class="q">Count rise and run for each segment, then write its slope.</p>
+  <div class="u6l6-exrow">
+    <div id="u6l6-ex2fig"></div>
+    <div class="part u6l6-tabpart">
+      <table class="u6l6-tab">
+        <tr><th>Segment</th><th class="u6l6-crise">Rise</th><th class="u6l6-crun">Run</th><th>Slope</th></tr>
+        <tr><td><span class="tex">CD</span></td><td><span data-reveal><span class="tex">3</span></span></td><td><span data-reveal><span class="tex">3</span></span></td><td><span data-reveal><span class="tex">\dfrac{3}{3}=\boldsymbol{1}</span></span></td></tr>
+        <tr><td><span class="tex">EF</span></td><td><span data-reveal><span class="tex">5</span></span></td><td><span data-reveal><span class="tex">1</span></span></td><td><span data-reveal><span class="tex">\dfrac{5}{1}=\boldsymbol{5}</span></span></td></tr>
+      </table>
+      <div class="work" style="--h:90px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">CD</span>: from <span class="tex">C(0,\ 1)</span> to <span class="tex">D(3,\ 4)</span>, up 3 and right 3: slope <span class="tex">\boldsymbol{1}</span>.<br><span class="tex">EF</span>: from <span class="tex">E(1,\ 0)</span> to <span class="tex">F(2,\ 5)</span>, up 5 and right 1: slope <span class="tex">\boldsymbol{5}</span>.<br><span class="tex">EF</span> is much steeper, and its slope is much bigger.<div class="u6l6-ansfig" id="u6l6-ex2ans"></div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Rise on top">
+  <h3 class="sub">Rise on top, run on the bottom</h3>
+  <p>The order matters. <span class="tex">\dfrac{3}{4}</span> and <span class="tex">\dfrac{4}{3}</span> describe two very different lines: flip the fraction and you get a much steeper line that misses the point you were aiming for.</p>
+  <div class="explainer" data-explainer="flip"></div>
+</section>
+
+<section class="card" data-ink="try" data-section="2. Try it: drag the points">
+  <h3 class="sub">Try it: drag the points</h3>
+  <p>Drag <span class="tex">P</span> or <span class="tex">Q</span> to any grid point. The slope triangle and the slope follow along. What happens to the slope when the segment gets steeper? Flatter?</p>
+  <div class="u6l6-try">
+    <div id="u6l6-dragfig"></div>
+    <div class="u6l6-tryside">
+      <div class="u6l6-ro" id="u6l6-ro"></div>
+      <div class="u6l6-presets">
+        <button type="button" class="pill small" data-preset="1,1,5,4">Example 1</button>
+        <button type="button" class="pill small" data-preset="1,2,4,8">Example 3</button>
+        <button type="button" class="pill small" data-preset="1,1,3,7">Steep</button>
+        <button type="button" class="pill small" data-preset="1,2,9,4">Gentle</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. Slope formula ================= -->
+<section class="card" data-ink="s3" data-section="3. The Slope Formula">
+  <div class="sec-h"><span class="badge">3</span><h2>The Slope Formula</h2></div>
+  <p>When only the coordinates are given, the counting is done by <b>subtraction</b>. For <span class="tex">P(x_1,\ y_1)</span> and <span class="tex">Q(x_2,\ y_2)</span>:</p>
+  <div class="def u6l6-formula"><div class="u6l6-disp"><span class="tex">m=\dfrac{\textcolor{#7b4fc4}{y_2-y_1}}{\textcolor{#c27a0e}{x_2-x_1}}\qquad\begin{aligned}&amp;\leftarrow\ \textcolor{#7b4fc4}{\text{rise}}\\ &amp;\leftarrow\ \textcolor{#c27a0e}{\text{run}}\end{aligned}</span></div>
+    <div class="eg">Subtract <b>in the same order</b> top and bottom: whichever point you call <span class="tex">(x_1,\ y_1)</span>, its coordinates are the ones you <b>subtract</b>, top and bottom. Reduce the fraction at the end.</div></div>
+  <div class="explainer" data-explainer="formula"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Lowest terms">
+  <h3 class="sub">Lowest terms: smaller triangles, same slope</h3>
+  <p>Reducing the fraction is not just a rule: a big slope triangle splits into smaller copies, and each copy has the <b>same</b> slope. <span class="tex">\dfrac{6}{3}=\dfrac{2}{1}</span> means “2 up for every 1 right”.</p>
+  <div class="explainer" data-explainer="split"></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Lowest terms on the calculator.</b> The <kbd>a b/c</kbd> key builds a fraction and <kbd>ENTER</kbd> reduces it: <span class="keys"><kbd>4</kbd><kbd>a b/c</kbd><kbd>6</kbd><kbd>ENTER</kbd></span> shows <b>2┘3</b>, which means <span class="tex">\tfrac{2}{3}</span>.</div>
+    <div class="pill-col"><button class="pill" data-keys="4 ab/c 6 =">4/6</button><button class="pill" data-keys="45 ab/c 300 =">45/300</button></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>The slope formula</h3></div>
+  <div class="u6l6-exrow u6l6-exrow-s">
+    <div id="u6l6-ex3fig"></div>
+    <div>
+      <p class="q">Determine the slope of the line segment joining <span class="tex">P(1,\ 2)</span> and <span class="tex">Q(4,\ 8)</span>.</p>
+      <div class="parts c1">
+        <div class="part"><div class="pl">Find <span class="tex">m</span>.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Let <span class="tex">P(1,\ 2)=(x_1,\ y_1)</span> and <span class="tex">Q(4,\ 8)=(x_2,\ y_2)</span>.<br><span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}=\dfrac{8-2}{4-1}=\dfrac{6}{3}=\boldsymbol{2}</span><br>Rise 6, run 3: the segment climbs 2 units for every 1 unit to the right.<br><span class="muted">Check by counting on the grid: up 6, right 3 ✓</span></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>With negative coordinates</h3></div>
+  <div class="u6l6-exrow u6l6-exrow-s">
+    <div id="u6l6-ex4fig"></div>
+    <div>
+      <p class="q">Determine the slope of the segment joining <span class="tex">R(-3,\ -4)</span> and <span class="tex">S(3,\ 0)</span>. The negatives change nothing about the method: just track the signs, then simplify the fraction.</p>
+      <div class="parts c1">
+        <div class="part"><div class="pl">Find <span class="tex">m</span>.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Let <span class="tex">R(-3,\ -4)=(x_1,\ y_1)</span> and <span class="tex">S(3,\ 0)=(x_2,\ y_2)</span>.<br><span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}=\dfrac{0-(-4)}{3-(-3)}=\dfrac{4}{6}=\boldsymbol{\dfrac{2}{3}}</span><br><span class="muted">Check by counting: up 4, right 6, and <span class="tex">\tfrac{4}{6}=\tfrac{2}{3}</span> ✓</span></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Brackets around a negative.</b> <span class="tex">0-(-4)=0+4=4</span> and <span class="tex">3-(-3)=3+3=6</span>. Subtracting a negative is adding. A segment that climbs to the right always gets a positive rise and a positive run.</div></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u6l6"></section>
+
+<!-- ================= 4. Real world ================= -->
+<section class="card" data-ink="s4" data-section="4. Slope in the Real World">
+  <div class="sec-h"><span class="badge">4</span><h2>Slope in the Real World</h2></div>
+  <p>Ramps, roads and trails are described by the same ratio: <b>vertical climb</b> over <b>horizontal distance</b>. Read the rise and the run off the description, then reduce.</p>
+  <div class="def u6l6-grade"><b>Grade.</b> Road signs and trail maps often give the slope as a <b>percent</b>, called the <b>grade</b>: divide, then multiply by 100. A slope of <span class="tex">\tfrac{1}{10}=0.10</span> is a <b>10%</b> grade: it climbs 10 m for every 100 m across.</div>
+  <div class="explainer" data-explainer="grade"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>The hiking trail</h3></div>
+  <p class="q">A hiking trail climbs from the trailhead at <span class="tex">(0,\ 0)</span> to a lookout at <span class="tex">(300,\ 45)</span>, each unit 1 m. Determine the slope of the trail as a fraction in lowest terms.</p>
+  <div class="u6l6-trailfig" id="u6l6-ex5fig"></div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">Find <span class="tex">m</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=\dfrac{45-0}{300-0}=\dfrac{45}{300}=\boldsymbol{\dfrac{3}{20}}</span>, a <b>15%</b> grade: the trail climbs 3 m for every 20 m travelled horizontally.</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Slope measures steepness.</b> It compares the <span class="u6l6-crise"><b>rise</b></span> (vertical change) with the <span class="u6l6-crun"><b>run</b></span> (horizontal change): <span class="tex">m=\frac{\text{rise}}{\text{run}}</span>. Tallest isn’t steepest: compare up with across.</div>
+    <div><b>On a grid:</b> count squares <b>up</b> to the other point’s height (rise), then <b>right</b> to it (run). Rise on top, run on the bottom: <span class="tex">\frac{3}{4}</span> and <span class="tex">\frac{4}{3}</span> are different lines.</div>
+    <div><b>Slope formula:</b> <span class="tex">m=\frac{y_2-y_1}{x_2-x_1}</span>. Same order top and bottom; brackets around negatives: <span class="tex">\frac{0-(-4)}{3-(-3)}=\frac{4}{6}</span>.</div>
+    <div><b>Lowest terms:</b> <span class="tex">\frac{4}{6}=\frac{2}{3}</span> means “2 up for every 3 right”. Real world: <span class="tex">\frac{45}{300}=\frac{3}{20}</span>, a 15% grade.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u6l6">
+    <div><div class="kicker">Your turn</div><b>Assignment 6 — Rise Over Run: The Slope of a Line Segment</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l7/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 7 — Types of Slope: Positive, Negative, Zero, and Undefined</b><div class="muted">Lines that go downhill, lie flat, or stand straight up: what is their slope?</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u6l6.js';
+  boot({ key: 'u6l6', homeHref: '../../', title: '6.6 Rise Over Run: Slope' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

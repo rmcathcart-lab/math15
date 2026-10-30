@@ -1,0 +1,64 @@
+/* Math 15 · Unit 6 · Lesson 8 — Determining Collinearity Using Slope: styles used only on this page (prefix u6l8-).
+ * Colours: run amber, rise purple, segments blue; collinear green, not collinear red. */
+
+.u6l8 .ex-cap { min-height: 128px; }
+.u6l8 .ex-cap .katex { font-size: 1.04em; }
+.u6l8 .chip .katex { font-size: 1em; }
+.u6l8 .pl .katex { font-size: 1.1em; }
+.u6l8 .ans .katex { font-size: 1.04em; }
+.u6l8 .pill-col { display: flex; flex-direction: column; gap: 6px; }
+.u6l8 .katex { white-space: nowrap; }
+.u6l8-yes { color: var(--ok, #12805a); }
+.u6l8-no { color: var(--red, #c93a33); }
+.u6l8-exgap { margin-top: 18px; }
+
+/* ---------------- warm-up: the arcade ---------------- */
+.u6l8-arcade { display: flex; justify-content: center; }
+.u6l8-launch { font: 800 13px var(--round); background: #fff; border-radius: 5px; padding: 0 4px; color: var(--ink); }
+.u6l8-shottag { width: 20px; height: 20px; border-radius: 50%; color: #fff; font: 800 13px var(--round); display: grid; place-items: center; line-height: 1; }
+.u6l8-beam { filter: drop-shadow(0 0 3px rgba(255, 59, 107, .7)); }
+.u6l8-score { font: 900 18px var(--round); border-radius: 8px; padding: 1px 8px; background: #fff; border: 2px solid; }
+.u6l8-hit { color: var(--ok, #12805a); border-color: var(--ok, #12805a); }
+.u6l8-miss { color: var(--red, #c93a33); border-color: var(--red, #c93a33); }
+.u6l8-fire { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 6px 0 2px; }
+.u6l8-fire .pill { font-size: 15px; padding: 6px 12px; }
+.wf .u6l8-wqs .q-line { font-size: 17px; margin: 6px 0 2px; gap: 10px; }
+.wf .u6l8-wqs .q-line .pill.small { padding: 2px 10px; }
+.u6l8-wa { margin: 0 0 4px 40px; }
+.wf .u6l8-wqs .bk-ans { font-size: 15.5px; line-height: 1.32; margin-top: 2px; }
+.u6l8-social { font-style: italic; color: var(--ink2); font-size: 19px; text-align: center; margin: 12px 0 0; }
+.wf .wf-poll .poll-opts { grid-template-columns: 1fr 1fr; gap: 6px; }
+.wf .wf-poll .opt { padding: 6px 10px; font-size: 16.5px; }
+
+/* ---------------- notes ---------------- */
+.u6l8-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 4px 0 14px; }
+.u6l8-pfig { margin: 0; background: #fff; border-radius: 12px; padding: 8px 12px 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.u6l8-pfig figcaption { font-size: 18px; text-align: center; line-height: 1.35; }
+.u6l8-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 4px 0 14px; }
+.u6l8-steps > div { display: flex; gap: 10px; align-items: flex-start; background: var(--brand-soft); border-radius: 12px; padding: 10px 14px; font-size: 19px; line-height: 1.35; }
+.u6l8-steps .n { flex: none; display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--brand2); color: #fff; font-size: 17px; }
+
+/* ---------------- explainer pieces ---------------- */
+.u6l8-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+.u6l8-ph { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u6l8-line { font-size: 20px; line-height: 1.35; }
+.u6l8-big { font-size: 24px; }
+.u6l8-mline { font-size: 21px; }
+.u6l8-good { color: var(--ok, #12805a); }
+.u6l8-bad { color: var(--red, #c93a33); }
+.u6l8-ro { font-size: 20px; background: #f6f5f1; border-radius: 10px; padding: 6px 10px; }
+.u6l8-ro.u6l8-good { background: #e8f5ee; }
+.u6l8-rulebox { margin-top: 4px; background: var(--brand-soft); border-left: 5px solid var(--brand2); border-radius: 10px; padding: 8px 14px; font-size: 19px; line-height: 1.45; }
+.u6l8-pstamp { align-self: center; margin-top: auto; margin-bottom: 8px; }
+.u6l8-runlab { color: #c27a0e; font-size: 17px; font-weight: 700; }
+.u6l8-riselab { color: #7b4fc4; font-size: 17px; font-weight: 700; }
+.u6l8-word { font: 700 16px var(--round); }
+.u6l8-gaplab { font-size: 22px; color: var(--red, #c93a33); }
+.u6l8-place { font-size: 16px; background: rgba(255, 255, 255, .92); border-radius: 7px; padding: 1px 6px; white-space: nowrap; }
+.u6l8-sbox { border: 2px solid var(--line2); border-radius: 12px; padding: 8px 12px; background: #fbfaf6; min-height: 96px; transition: border-color .2s; }
+.u6l8-sbox.on { border-color: var(--brand2); background: #fff; }
+.u6l8-sbox.good { border-color: var(--ok, #12805a); background: #eef8f2; }
+.u6l8-sbox.bad { border-color: var(--red, #c93a33); background: #fdf0ef; }
+.u6l8-sh { font-size: 17px; color: var(--ink2); }
+.u6l8-sv { font-size: 21px; margin-top: 4px; }
+.u6l8-ruler { pointer-events: none; }

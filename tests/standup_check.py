@@ -21,7 +21,11 @@ JS = r"""async () => {
       if (!x.a && !x.atext) { errs.push('no answer'); continue; }
       const html = [x.q, ...(Array.isArray(x.a) ? x.a : [x.a])].filter(Boolean).map((s) => window.katex.renderToString(String(s), { throwOnError: false, displayMode: true })).join('');
       if (/katex-error/.test(html)) errs.push('KaTeX: ' + String(x.q || x.text).slice(0, 80));
-      if (/undefined|NaN|Infinity/.test(String(x.q) + (x.text || '') + JSON.stringify(x.a) + (x.atext || ''))) errs.push('undefined/NaN: ' + String(x.q || x.text).slice(0, 80));
+      // a value that went missing (JS undefined, NaN, Infinity) — not the word "undefined" as a correct answer
+      // ("the slope is undefined"); that is flagged only when it touches a number or operator
+      var all = String(x.q) + (x.text || '') + JSON.stringify(x.a) + (x.atext || '');
+      if ((x.q === undefined && x.text === undefined) || x.a === undefined || /NaN|Infinity/.test(all) ||
+          /undefined\s*[\d\/+\-\u2212\u00d7*(=]|[\d\/+\-\u2212\u00d7*)=]\s*undefined/.test(all)) errs.push('undefined/NaN: ' + String(x.q || x.text).slice(0, 80));
       seen.add(String(x.q) + '|' + (x.text || '') + '|' + (x.fig || '').length);
     }
     out.levels[lv] = { distinct: seen.size, errs: [...new Set(errs)].slice(0, 4), nerr: errs.length };

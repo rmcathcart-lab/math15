@@ -8,7 +8,8 @@
    * lesson sidebar link to it as lessons/u1/l7/?class=<block> */
   root.HW.TEACHING = { base: 'lessons/',
     lessons: ['u4l1', 'u4l2', 'u4l3', 'u4l4', 'u4l5', 'u4l6', 'u4l7', 'u4l8', 'u4l9', 'u4l10',
-      'u5l1', 'u5l2', 'u5l3', 'u5l4', 'u5l5', 'u5l6', 'u5l7', 'u5l8', 'u5l9', 'u5l10', 'u5l11', 'u5l12'] };
+      'u5l1', 'u5l2', 'u5l3', 'u5l4', 'u5l5', 'u5l6', 'u5l7', 'u5l8', 'u5l9', 'u5l10', 'u5l11', 'u5l12',
+      'u6l1', 'u6l2', 'u6l3', 'u6l4', 'u6l5', 'u6l6', 'u6l7', 'u6l8', 'u6l9', 'u6l10'] };
   root.HW.CATALOG = [
     { unit: 1, title: 'Number', outcomes: 'AN1 · AN2', lessons: [
       { id: 'u1l1', num: '1', title: 'Review: Integer Operations and Order of Operations' },
@@ -65,7 +66,7 @@
     { unit: 6, title: 'Characteristics of Linear Relations', outcomes: 'RF3', lessons: [
       { id: 'u6l1', num: '1', title: 'Review: The Pythagorean Theorem' },
       { id: 'u6l2', num: '2', title: 'Measuring the Length of a Line Segment' },
-      { id: 'u6l3', num: '3', title: 'The Distance Formula: Diagonal Segments' },
+      { id: 'u6l3', num: '3', title: 'Measuring the Length of a Line Segment: Diagonal Segments and the Distance Formula' },
       { id: 'u6l4', num: '4', title: 'The Midpoint Formula' },
       { id: 'u6l5', num: '5', title: 'Applications: Distance, Midpoint, and Finding a Missing Endpoint' },
       { id: 'u6l6', num: '6', title: 'Rise Over Run: The Slope of a Line Segment' },

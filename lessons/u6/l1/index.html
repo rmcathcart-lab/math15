@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Review: The Pythagorean Theorem · Math 15 6.1</title>
+<meta name="description" content="Math 15 Unit 6 Lesson 1: a review of the Pythagorean theorem. Name the legs and the hypotenuse of a right triangle, see why a² + b² = c² with squares on the sides, check it with numbers, find a missing hypotenuse (add the squares, then square root) or a missing leg (subtract), and use it for ladders, diagonals and screens. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u6l1.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u6l1">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 6 Characteristics of Linear Relations · Lesson 1</div>
+  <h1>Review: The Pythagorean Theorem</h1>
+  <p class="lede">A <b>right triangle</b> has a square corner. The two sides that make the corner are the <b class="u6l1-ca">legs</b>, and the long side across from it is the <b class="u6l1-cc">hypotenuse</b>. The <b>Pythagorean theorem</b>, <span class="tex">a^2+b^2=c^2</span>, connects the three sides: know any two, and you can find the third. This whole unit leans on it, because every slanted segment on a grid hides a right triangle.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>name the two <b class="u6l1-ca">legs</b> and the <b class="u6l1-cc">hypotenuse</b> of a right triangle</li>
+      <li>state the Pythagorean theorem, <span class="tex">a^2+b^2=c^2</span>, and check it with numbers</li>
+      <li>find a missing <b class="u6l1-cc">hypotenuse</b>: square the legs, <b>add</b>, then square root</li>
+      <li>find a missing <b class="u6l1-ca">leg</b>: <b>subtract</b> the leg’s square from the hypotenuse’s square, then square root</li>
+      <li>use the theorem in real situations, like a ladder against a wall or a path across a field</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF3</b> Demonstrate an understanding of slope with respect to: rise and run; line segments and lines; rate of change; parallel lines; perpendicular lines.<br><span class="u6l1-today">Today: right triangles. Their two legs become the <b>run</b> and the <b>rise</b> you’ll need for length and slope.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Will It Fit?" id="wu" style="--wf-side: 372px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Will It Fit?</h2>
+  <p class="wf-rule">Too long to lie straight? Try it <b>corner to corner</b>: the diagonal is longer. Each corner below is a right angle.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u6l1-wfig" id="u6l1-wfig"></div>
+    <div class="u6l1-wbtns">
+      <button type="button" class="pill small" id="u6l1-w1">① Measure the box</button>
+      <button type="button" class="pill small" id="u6l1-w2">② Measure the drawer</button>
+      <button type="button" class="pill small" id="u6l1-w3">③ Lay the rod</button>
+    </div>
+    <div class="u6l1-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Is each diagonal a <b>leg</b> or the <b>hypotenuse</b>? How can you tell? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l1-wa"><div class="bk-ans">The <b>hypotenuse</b>: it is across from the right angle, and it is the longest side. The length and the width are the two <b>legs</b>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Box ①: does the 95&nbsp;cm umbrella fit lying flat, corner to corner? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l1-wa"><div class="bk-ans"><b>Yes.</b> <span class="tex">60^2+80^2=3600+6400=10\,000</span> and <span class="tex">\sqrt{10\,000}=100</span>: the diagonal is 100&nbsp;cm, 5&nbsp;cm to spare.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Drawer ②: how wide is the drawer? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l1-wa"><div class="bk-ans"><b>25&nbsp;cm.</b> The stick is the hypotenuse and the width is a leg, so subtract: <span class="tex">65^2-60^2=4225-3600=625</span>, and <span class="tex">\sqrt{625}=25</span>.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Trunk ③ is 120&nbsp;cm by 50&nbsp;cm. What is the <b>longest</b> thin rod that can lie flat on its floor? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 120 cm</div>
+        <div class="opt right"><b>B</b> 130 cm</div>
+        <div class="opt"><b>C</b> 170 cm</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, 130&nbsp;cm.</b> <span class="tex">120^2+50^2=14\,400+2500=16\,900</span>, and <span class="tex">\sqrt{16\,900}=130</span>.<br>
+        <span class="muted"><b>C</b> adds the sides (<span class="tex">120+50</span>), but that is walking around the edges, not cutting across. <b>A</b> lies along the length: the diagonal buys just 10&nbsp;cm more.</span><br>
+        <b>Today’s lesson:</b> add the <b>squares</b> of the sides, not the sides.</div>
+    </div>
+    <p class="u6l1-social">TVs and phones are sold by their <b>diagonal</b>. Predict your notebook’s diagonal, then measure it!</p>
+  </div></div>
+</section>
+
+<!-- ================= 1. Parts ================= -->
+<section class="card" data-ink="s1" data-section="1. Right Triangles and Their Parts">
+  <div class="sec-h"><span class="badge">1</span><h2>Right Triangles and Their Parts</h2></div>
+  <div class="u6l1-defrow">
+    <div class="def">A <b>right triangle</b> has one <span class="tex">90^\circ</span> angle, marked with a small square. The two sides that meet to make that angle are the <b class="u6l1-ca">legs</b>. The third side, the one <b>opposite</b> the right angle, is the <b class="u6l1-cc">hypotenuse</b>. It is always the <b>longest</b> side. A right triangle has two legs (in either order) but only ever <b>one</b> hypotenuse.</div>
+    <div id="u6l1-partsfig" class="u6l1-partsfig"></div>
+  </div>
+  <div class="explainer" data-explainer="nameSides"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Name the sides</h3></div>
+  <p class="q">Name the two legs and the hypotenuse of each right triangle.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Triangle <span class="tex">A</span></div><div class="u6l1-tfig" id="u6l1-ex1a"></div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Legs: <b>5</b> and <b>12</b><br>Hypotenuse: <b>13</b></div></div></div>
+    <div class="part"><div class="pl">(b) Triangle <span class="tex">B</span></div><div class="u6l1-tfig" id="u6l1-ex1b"></div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Legs: <b>8</b> and <b>15</b><br>Hypotenuse: <b>17</b></div></div></div>
+    <div class="part"><div class="pl">(c) Triangle <span class="tex">C</span></div><div class="u6l1-tfig" id="u6l1-ex1c"></div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Legs: <b>7</b> and <b>24</b><br>Hypotenuse: <b>25</b></div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> Is the hypotenuse always the slanted side at the top?</div><div class="work" style="--h:60px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> It is the side <b>across from the square corner</b>, wherever that is. Turn the triangle and the hypotenuse can be flat along the bottom (try the “roof” chip above).</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. The theorem ================= -->
+<section class="card" data-ink="s2" data-section="2. The Pythagorean Theorem">
+  <div class="sec-h"><span class="badge">2</span><h2>The Pythagorean Theorem</h2></div>
+  <p>Square the length of each leg and add the results: the total equals the square of the hypotenuse.</p>
+  <div class="u6l1-thm">
+    <div id="u6l1-thmfig"></div>
+    <div><b>Pythagorean Theorem.</b> In a right triangle with legs <span class="tex u6l1-ca">a</span> and <span class="tex u6l1-cb">b</span> and hypotenuse <span class="tex u6l1-cc">c</span>,
+      <div class="u6l1-thm-eq"><span class="tex">\textcolor{#7b4fc4}{a}^2+\textcolor{#c27a0e}{b}^2=\textcolor{#1f5bd6}{c}^2</span></div>
+      The letter <span class="tex">c</span> must be the hypotenuse: the side opposite the right angle, and the longest of the three. So <span class="tex">c</span> always sits <b>alone</b> on its own side of the equation.</div>
+  </div>
+  <p><b>Why is this true?</b> Build a square on each side of a 3–4–5 right triangle. The areas of the two smaller squares add up exactly to the area of the largest square, and the same pattern holds for <b>every</b> right triangle, no matter its size.</p>
+  <div class="explainer" data-explainer="squares"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Why every right triangle">
+  <h3 class="sub">Why does it work for <b>every</b> right triangle?</h3>
+  <p>Here is a proof you can see. Four copies of the same right triangle sit inside one big square. Slide them around: the empty space never changes size.</p>
+  <div class="explainer" data-explainer="whyAll"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Verify the theorem</h3></div>
+  <p class="q">Verify the theorem by evaluating <span class="tex">a^2+b^2</span> and <span class="tex">c^2</span> separately, then checking they are equal.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Legs <span class="tex">3</span> and <span class="tex">4</span>, hypotenuse <span class="tex">5</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">a^2+b^2=3^2+4^2=9+16=\boldsymbol{25}</span><br><span class="tex">c^2=5^2=\boldsymbol{25}</span><br>Both sides give 25, so the theorem holds. ✓</div></div></div>
+    <div class="part"><div class="pl">(b) Legs <span class="tex">6</span> and <span class="tex">8</span>, hypotenuse <span class="tex">10</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">a^2+b^2=6^2+8^2=36+64=\boldsymbol{100}</span><br><span class="tex">c^2=10^2=\boldsymbol{100}</span><br>Both sides give 100, so the theorem holds. ✓</div></div></div>
+  </div>
+  <div class="explainer" data-explainer="verify"></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Hypotenuse ================= -->
+<section class="card" data-ink="s3" data-section="3. Finding the Hypotenuse">
+  <div class="sec-h"><span class="badge">3</span><h2>Finding the Hypotenuse</h2></div>
+  <div class="def">When both legs are known, solve for <span class="tex">c</span> by square-rooting both sides:
+    <div class="u6l1-disp"><span class="tex">c=\sqrt{a^2+b^2}</span></div>
+    <div class="eg"><b>Add</b> the two squares <b>first</b>, then take the square root of the sum. If that sum is not a perfect square, simplify the radical as in Unit 1: <span class="tex">\sqrt{80}=\sqrt{16\times5}=4\sqrt5</span>.</div></div>
+  <div class="explainer" data-explainer="hypSteps"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t add the legs.</b> <span class="tex">\sqrt{9^2+12^2}</span> is <b>not</b> <span class="tex">9+12</span>. Walking along both legs is the long way round; the hypotenuse is the shortcut. It is always longer than each leg but shorter than the two legs together.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Find the hypotenuse</h3></div>
+  <p class="q">Find the length of the hypotenuse in each right triangle.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Legs <span class="tex">9</span> and <span class="tex">12</span>.</div><div class="u6l1-tfig" id="u6l1-ex3a"></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">c^2=a^2+b^2=9^2+12^2=81+144=225</span><br><span class="tex">c=\sqrt{225}=\boldsymbol{15}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Legs <span class="tex">4</span> and <span class="tex">8</span>. Give the exact answer as a simplified mixed radical.</div><div class="u6l1-tfig" id="u6l1-ex3b"></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">c^2=4^2+8^2=16+64=80</span><br><span class="tex">c=\sqrt{80}=\sqrt{16\times5}=\boldsymbol{4\sqrt5}</span><br><span class="u6l1-small">Check: <span class="tex">4\sqrt5\approx8.94</span>, longer than both legs. ✓</span></div></div></div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Square roots.</b> <span class="tex">\sqrt{\phantom{x}}</span> is <span class="keys"><kbd>2nd</kbd><kbd>x²</kbd></span>, and it opens a bracket. All in one go: <span class="keys"><kbd>√</kbd><kbd>9</kbd><kbd>x²</kbd><kbd>+</kbd><kbd>1</kbd><kbd>2</kbd><kbd>x²</kbd><kbd>)</kbd><kbd>ENTER</kbd></span> gives 15. Check that <span class="tex">\sqrt{80}</span> and <span class="tex">4\sqrt5</span> give the same decimal.</div>
+    <div class="pill-col"><button class="pill" data-keys="√ 9 x² + 12 x² ) =">√(9² + 12²)</button><button class="pill" data-keys="√ 80 =">√80</button><button class="pill" data-keys="4 × √ 5 =">4√5</button></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Simplifying the radical">
+  <h3 class="sub">A Unit 1 refresher: simplifying a square root</h3>
+  <p>Look for the <b>biggest perfect square</b> that divides the number under the root, and take its square root out front. If no perfect square (other than 1) divides it, the root is already as simple as it gets.</p>
+  <div class="explainer" data-explainer="simplify"></div>
+</section>
+
+<!-- ================= 4. Missing leg ================= -->
+<section class="card" data-ink="s4" data-section="4. Finding a Missing Leg">
+  <div class="sec-h"><span class="badge">4</span><h2>Finding a Missing Leg</h2></div>
+  <div class="def">If the hypotenuse and one leg are known, <b>subtract</b> instead of adding:
+    <div class="u6l1-disp"><span class="tex">a=\sqrt{c^2-b^2}\qquad\text{or}\qquad b=\sqrt{c^2-a^2}</span></div>
+    <div class="eg">Always subtract the leg’s square <b>from</b> the hypotenuse’s square, never the reverse: the hypotenuse is the longest side.</div></div>
+  <div class="explainer" data-explainer="missingLeg"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Big square minus small square.</b> <span class="tex">5^2-13^2=25-169=-144</span>, and a negative number has no square root: the calculator says <b>DOMAIN</b> error. If that happens, you subtracted the wrong way round.</div></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Subtract inside the root.</b> <span class="keys"><kbd>√</kbd><kbd>1</kbd><kbd>3</kbd><kbd>x²</kbd><kbd>−</kbd><kbd>5</kbd><kbd>x²</kbd><kbd>)</kbd><kbd>ENTER</kbd></span> gives 12. Try it the wrong way round to see the error.</div>
+    <div class="pill-col"><button class="pill" data-keys="√ 13 x² − 5 x² ) =">√(13² − 5²)</button><button class="pill" data-keys="√ 5 x² − 13 x² ) =">Wrong way round</button></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Find the missing leg</h3></div>
+  <p class="q">Find the length of the missing leg in each right triangle.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Hypotenuse <span class="tex">13</span>, one leg <span class="tex">5</span>.</div><div class="u6l1-tfig" id="u6l1-ex4a"></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">b^2=c^2-a^2=13^2-5^2=169-25=144</span><br><span class="tex">b=\sqrt{144}=\boldsymbol{12}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Hypotenuse <span class="tex">25</span>, one leg <span class="tex">7</span>.</div><div class="u6l1-tfig" id="u6l1-ex4b"></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">b^2=c^2-a^2=25^2-7^2=625-49=576</span><br><span class="tex">b=\sqrt{576}=\boldsymbol{24}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u6l1"></section>
+
+<!-- ================= 5. Applications ================= -->
+<section class="card" data-ink="s5" data-section="5. Real-World Applications">
+  <div class="sec-h"><span class="badge">5</span><h2>Real-World Applications</h2></div>
+  <p>The theorem works anywhere a right angle appears: a ladder against a wall, the diagonal of a rectangular field, a screen size. The first step never changes: <b>find the right angle</b>, decide whether the unknown side is the <b class="u6l1-cc">hypotenuse</b> or a <b class="u6l1-ca">leg</b>, then use the matching form of the theorem.</p>
+  <div class="u6l1-steps3">
+    <div><b class="n">1</b>Find the <b>right angle</b> (the square corner).</div>
+    <div><b class="n">2</b>Is the unknown <b>across</b> from it? Then it’s the <b class="u6l1-cc">hypotenuse</b>: <b>add</b>.</div>
+    <div><b class="n">3</b>Does the unknown <b>touch</b> the corner? Then it’s a <b class="u6l1-ca">leg</b>: <b>subtract</b>.</div>
+  </div>
+  <div class="explainer" data-explainer="decide"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Ladders and fields</h3></div>
+  <p class="q">Draw on the diagram, then solve.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) A <span class="tex">17</span>&nbsp;ft ladder leans against a vertical wall. Its base sits <span class="tex">8</span>&nbsp;ft from the wall. How high up the wall does the ladder reach?</div><div class="u6l1-tfig" id="u6l1-ex5a"></div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The ladder is the hypotenuse; <span class="tex">h</span> is a leg.<br><span class="tex">h^2=17^2-8^2=289-64=225</span><br><span class="tex">h=\sqrt{225}=\boldsymbol{15}</span> <b>ft</b> up the wall.</div></div></div>
+    <div class="part"><div class="pl">(b) A rectangular field is <span class="tex">6</span>&nbsp;m wide and <span class="tex">8</span>&nbsp;m long. A path is worn diagonally across it, corner to corner. Find the length of the path.</div><div class="u6l1-tfig" id="u6l1-ex5b"></div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The diagonal is the hypotenuse of a 6–8 right triangle.<br><span class="tex">d^2=6^2+8^2=36+64=100</span><br><span class="tex">d=\sqrt{100}=\boldsymbol{10}</span> <b>m</b> long.</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s5b" data-section="5. The sliding ladder">
+  <h3 class="sub">The sliding ladder: the hypotenuse never changes</h3>
+  <p>Pull the foot of the ladder away from the wall and the top slides down. The ladder stays 17&nbsp;ft long, so it is <b>always</b> the hypotenuse.</p>
+  <div class="explainer" data-explainer="ladder"></div>
+</section>
+
+<!-- ================= Math History box (brown) ================= -->
+<!-- sources: https://en.wikipedia.org/wiki/Plimpton_322 · https://personal.math.ubc.ca/~cass/courses/m446-03/pl322/pl322.html · https://www.unsw.edu.au/newsroom/news/2017/08/mathematical-mystery-of-ancient-clay-tablet-solved -->
+<section class="card history" data-ink="hist" data-section="Math History: Plimpton 322">
+  <div class="hist-head"><span class="hist-tag">Math History</span><span class="hist-dates">c. 1800 BCE · Babylon (now Iraq)</span></div>
+  <div class="hist-grid">
+    <div class="hist-text">
+      <h3 class="hist-title">A table of right triangles, 3&nbsp;800 years old</h3>
+      <p><b>Plimpton 322</b> is a clay tablet from ancient Babylon, written around 1800&nbsp;BCE, over 1000 years before Pythagoras was born. Today it is at Columbia University in New York.</p>
+      <p>Its 15 rows each give the <b>short side</b> and the <b>diagonal</b> of a right triangle, in whole numbers, written in <b>base 60</b>. Row 1 reads “1&nbsp;59” and “2&nbsp;49”: <span class="tex">1\times60+59=119</span> and <span class="tex">2\times60+49=169</span>.</p>
+      <div class="part hist-q"><div class="pl">Find the <b>other leg</b> of the Row 1 triangle (short side 119, hypotenuse 169).</div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">169^2-119^2=28\,561-14\,161=14\,400</span>, and <span class="tex">\sqrt{14\,400}=\boldsymbol{120}</span>. A whole number!</div></div></div>
+    </div>
+    <figure class="hist-anim">
+      <svg id="u6l1-hist" viewBox="0 0 600 300" role="img" aria-label="A clay tablet with rows of base-60 numbers. Row 1, 1 59 and 2 49, is read as 1 × 60 + 59 = 119 and 2 × 60 + 49 = 169. A right triangle is drawn with short side 119 and hypotenuse 169, and the missing leg is found: 169² − 119² = 14 400, so it is 120."></svg>
+      <figcaption><button class="hist-play" type="button">Replay</button><span>Tap the picture to play it again.</span></figcaption>
+      <p class="hist-note">Historians still argue about what the table was for. One idea: a teacher’s list of right triangles for practice problems.</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>The parts.</b> The two sides that make the square corner are the <b class="u6l1-ca">legs</b>. The side <b>across</b> from the corner is the <b class="u6l1-cc">hypotenuse</b>, always the longest side.</div>
+    <div><b>The theorem.</b> <span class="tex">a^2+b^2=c^2</span>: the squares on the legs add up to the square on the hypotenuse. Only <span class="tex">c</span>, the hypotenuse, sits alone.</div>
+    <div><b>Missing hypotenuse:</b> square, <b>add</b>, then square root: <span class="tex">c=\sqrt{a^2+b^2}</span>. <b>Missing leg:</b> square, <b>subtract</b> (big minus small), then square root: <span class="tex">b=\sqrt{c^2-a^2}</span>.</div>
+    <div><b>Word problems:</b> find the right angle first, decide <b>hypotenuse or leg</b>, then add or subtract. Give exact answers (<span class="tex">4\sqrt5</span>) or decimals (<span class="tex">\approx8.94</span>) as asked, with units.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u6l1">
+    <div><div class="kicker">Your turn</div><b>Assignment 1 — Review: The Pythagorean Theorem</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l2/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 2 — Measuring the Length of a Line Segment</b><div class="muted">Horizontal and vertical segments on a grid: count the squares, or subtract the coordinates.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u6l1.js';
+  boot({ key: 'u6l1', homeHref: '../../', title: '6.1 The Pythagorean Theorem' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>
