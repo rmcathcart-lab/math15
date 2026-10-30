@@ -14,7 +14,8 @@
   var HW = root.HW, K = HW.kit, B = K.P, ex = HW.ex, F = HW.fmt, t = K.t, ok = K.ok, wrong = K.wrong, form = K.form;
   var LID = 'u6l4';
 
-  HW.addCodes({
+  /* labels for the codes used here (a code another file already labels keeps its label) */
+  var CODES = {
     'd-no-root': 'Distance: forgot the square root (gave d²)', 'd-legs': 'Distance: added the run and rise', 'd-no-square': 'Distance: didn’t square the differences',
     'd-added': 'Distance: added the coordinates instead of subtracting', 'd-sign': 'Distance: sign slip subtracting a negative coordinate', 'd-half': 'Gave half the distance',
     'mid-subtract': 'Midpoint: subtracted the coordinates', 'mid-no-halve': 'Midpoint: didn’t divide by 2', 'mid-wrong-seg': 'Midpoint of the wrong segment',
@@ -26,7 +27,8 @@
     'u6l4-mid-sign': 'Midpoint: sign slip adding a negative coordinate', 'u6l4-round-half': 'Rounded a half-unit midpoint to a whole number',
     'u6l4-count-step': 'Gave the number of squares to count, not the point', 'u6l4-gave-sum': 'Gave the sum of the coordinates instead of one coordinate',
     'u6l4-other-coord': 'Gave the other coordinate', 'u6l4-quarter-wrong': 'Quarter point: halved the wrong segment', 'u6l4-not-ordered': 'Points not in order from A to B'
-  });
+  };
+  HW.addCodes(Object.keys(CODES).filter(function (k) { return !HW.CODES[k]; }).reduce(function (o, k) { o[k] = CODES[k]; return o; }, {}));
   HW.addPartial({ 'u6l4-mid-sign': 's', 'u6l4-round-half': 's', 'u6l4-count-step': 'b', 'u6l4-gave-sum': 'b', 'u6l4-other-coord': 'n', 'u6l4-quarter-wrong': 'b', 'u6l4-not-ordered': 's' });
 
   /* ======================= shared helpers (copied from Math 10C u6l1.js, DM scope) ======================= */
@@ -276,6 +278,8 @@
     var span = Math.max(w.x[1] - w.x[0], w.y[1] - w.y[0]);
     return '<div class="fig">' + HW.graph({ x: w.x, y: w.y, grid: 1, labels: span > 16 ? 4 : 2, points: pts.map(function (p, i) { return { x: p[0], y: p[1], label: names[i] }; }), segs: segs, max: o.max || 340 }) + '</div>';
   }
+  /* typical wrong answers (from a diagnosis list [[value, code, hint]]) as the part's bad list */
+  function withBad(p, cands, dp) { p.bad = (p.bad || []).concat((cands || []).filter(function (c) { return isFinite(c[0]) && Math.abs(c[0] - Number(p.key)) > 1e-6; }).map(function (c) { return dp == null ? String(cl(c[0])) : rd(c[0], dp).toFixed(Math.max(dp, 0)); }).filter(function (b) { return Math.abs(Number(b) - Number(p.key)) > 1e-9; })); return p; }
   function mcPart(r, prompt, opts, sol, hints, text, keepOrder) { return B.mc(r, prompt, opts, sol, hints, text, keepOrder); }
 
   /* ======================= lesson-specific helpers ======================= */
@@ -460,8 +464,8 @@
         var M = mid(o.P, o.Q);
         var c = [[(o.Q[0] - o.P[0]) / 2, 'mid-subtract', 'You subtracted. The midpoint’s ' + t('x') + '-coordinate is the <b>average</b>: add the two ' + t('x') + '-coordinates, then divide by ' + t('2') + '.'], [o.P[0] + o.Q[0], 'mid-no-halve', 'Divide the sum by ' + t('2') + '.'],
           [M[1], 'u6l4-other-coord', 'That is the ' + t('y') + '-coordinate. The question asks for the ' + t('x') + '-coordinate.']].filter(function (x) { return !same(x[0], M[0]); });
-        return B.nr('<i>(Numerical Response)</i> The midpoint of the segment joining ' + t(ptT(o.P)) + ' and ' + t(ptT(o.Q)) + ' has ' + t('x') + '-coordinate ______.', M[0], numDiag(c),
-          t('x_M=\\dfrac{' + nT(o.P[0]) + '+' + sgp(o.Q[0]) + '}{2}=\\dfrac{' + nT(o.P[0] + o.Q[0]) + '}{2}=' + nT(M[0])) + '. (The full midpoint is ' + t(ptT(M)) + '.)', HM, 'NR midpoint x');
+        return withBad(B.nr('<i>(Numerical Response)</i> The midpoint of the segment joining ' + t(ptT(o.P)) + ' and ' + t(ptT(o.Q)) + ' has ' + t('x') + '-coordinate ______.', M[0], numDiag(c),
+          t('x_M=\\dfrac{' + nT(o.P[0]) + '+' + sgp(o.Q[0]) + '}{2}=\\dfrac{' + nT(o.P[0] + o.Q[0]) + '}{2}=' + nT(M[0])) + '. (The full midpoint is ' + t(ptT(M)) + '.)', HM, 'NR midpoint x'), c);
       } }] },
     { num: '14', parts: [
       { id: '14', level: 'EMG', make: function (r) {
@@ -471,8 +475,8 @@
         var M = mid(o.P, o.Q);
         var c = [[(o.P[1] - o.Q[1]) / 2, 'mid-subtract', 'You subtracted. Add the two ' + t('y') + '-coordinates, then divide by ' + t('2') + '.'], [o.P[1] + o.Q[1], 'mid-no-halve', 'Divide the sum by ' + t('2') + '.'],
           [M[0], 'u6l4-other-coord', 'That is the ' + t('x') + '-coordinate. The question asks for the ' + t('y') + '-coordinate.']].filter(function (x) { return !same(x[0], M[1]); });
-        return B.nr('<i>(Numerical Response)</i> The midpoint of the segment joining ' + t(ptT(o.P)) + ' and ' + t(ptT(o.Q)) + ' has ' + t('y') + '-coordinate ______.', M[1], numDiag(c),
-          t('y_M=\\dfrac{' + nT(o.P[1]) + '+' + sgp(o.Q[1]) + '}{2}=\\dfrac{' + nT(o.P[1] + o.Q[1]) + '}{2}=' + nT(M[1])) + '. (The full midpoint is ' + t(ptT(M)) + '.)', HM, 'NR midpoint y');
+        return withBad(B.nr('<i>(Numerical Response)</i> The midpoint of the segment joining ' + t(ptT(o.P)) + ' and ' + t(ptT(o.Q)) + ' has ' + t('y') + '-coordinate ______.', M[1], numDiag(c),
+          t('y_M=\\dfrac{' + nT(o.P[1]) + '+' + sgp(o.Q[1]) + '}{2}=\\dfrac{' + nT(o.P[1] + o.Q[1]) + '}{2}=' + nT(M[1])) + '. (The full midpoint is ' + t(ptT(M)) + '.)', HM, 'NR midpoint y'), c);
       } }] },
     { num: '15', parts: [
       { id: '15', level: 'PRG', make: function (r) {
@@ -480,8 +484,8 @@
         var M = mid(o.P, o.Q), S = M[0] + M[1];
         var c = [[o.P[0] + o.Q[0] + o.P[1] + o.Q[1], 'mid-no-halve', 'Halve each sum first to get the midpoint, then add its two coordinates.'], [M[0], 'u6l4-gave-sum', 'That is only the ' + t('x') + '-coordinate. Add the ' + t('y') + '-coordinate to it.'], [M[1], 'u6l4-gave-sum', 'That is only the ' + t('y') + '-coordinate. Add the ' + t('x') + '-coordinate to it.'],
           [(o.Q[0] - o.P[0]) / 2 + (o.P[1] - o.Q[1]) / 2, 'mid-subtract', 'You subtracted. The midpoint adds the coordinates and halves.'], [(o.Q[0] - o.P[0]) / 2 + (o.Q[1] - o.P[1]) / 2, 'mid-subtract', 'You subtracted. The midpoint adds the coordinates and halves.']].filter(function (x) { return !same(x[0], S); });
-        return B.nr('<i>(Numerical Response)</i> ' + t(nm('E', o.P)) + ' and ' + t(nm('F', o.Q)) + ' are two corners of a garden, each unit ' + t('1') + '&nbsp;m. A sprinkler sits at the midpoint of ' + t('\\overline{EF}') + '. The sum of its ' + t('x') + '- and ' + t('y') + '-coordinates is ______.', S, numDiag(c),
-          t(mLine(o.P, o.Q, 'M')) + '.<br>Sum: ' + t(nT(M[0]) + '+' + sgp(M[1]) + '=' + nT(S)) + '.', ['First find the sprinkler’s position (the midpoint), then add its two coordinates.', HM[0]], 'NR sum of midpoint coordinates');
+        return withBad(B.nr('<i>(Numerical Response)</i> ' + t(nm('E', o.P)) + ' and ' + t(nm('F', o.Q)) + ' are two corners of a garden, each unit ' + t('1') + '&nbsp;m. A sprinkler sits at the midpoint of ' + t('\\overline{EF}') + '. The sum of its ' + t('x') + '- and ' + t('y') + '-coordinates is ______.', S, numDiag(c),
+          t(mLine(o.P, o.Q, 'M')) + '.<br>Sum: ' + t(nT(M[0]) + '+' + sgp(M[1]) + '=' + nT(S)) + '.', ['First find the sprinkler’s position (the midpoint), then add its two coordinates.', HM[0]], 'NR sum of midpoint coordinates'), c);
       } }] }
   ];
   function claimOf(o) {
@@ -622,7 +626,7 @@
           var Bp = sub(scl(o.M, 2), o.A), n = d2(o.A, Bp), cands = dCands(o.A, Bp).concat([[dist(o.A, o.M), 'd-half', 'That is ' + t('AM') + ', only half of the segment. Use the endpoints ' + t('A') + ' and ' + t('B') + '.']]);
           return B.fields('Determine the exact length of ' + t('AB') + ', as a mixed radical in simplest form, and then to the nearest tenth.', [lenField('AB', 'units'), decField('AB', 'units')],
             [lenCheck(n, 1, { cands: cands }), decCheck(n, 1, { cands: cands })], [lenKey(n), fx(Math.sqrt(n), 1)], t('AB=' + lenTex(n) + '\\approx ' + fx(Math.sqrt(n), 1)) + ' units',
-            dSteps(o.A, Bp) + '<br>' + t(dLine(o.A, Bp, 'AB') + simpTail(n) + '\\approx ' + fx(Math.sqrt(n), 1)) + ' units.', HD.concat(['To simplify ' + t('\\sqrt{' + n + '}') + ', look for its largest perfect-square factor.']), 'length AB exact and decimal');
+            dSteps(o.A, Bp) + '<br>' + t(dLine(o.A, Bp, 'AB') + simpTail(n) + '\\approx ' + fx(Math.sqrt(n), 1)) + ' units.', [HD[0], 'To simplify ' + t('\\sqrt{' + n + '}') + ', look for its largest perfect-square factor; round only at the end.'], 'length AB exact and decimal');
         } }] },
     /* ---- EP 8: rectangle ---- */
     { num: '8', shared: function (r) {
@@ -804,7 +808,7 @@
         { id: 'e15c', sub: 'c', level: 'PRG', make: function (r, o) {
           var M = mid(o.P, o.Q), n = d2(o.P, M), c = dCands(o.P, M).concat([[dist(o.P, o.Q), 'd-half', 'That is the whole trail. The rest stop is halfway, so it is half as far.']]);
           return B.fields('How far is the rest stop from the trailhead? Answer exactly and to the nearest tenth.', [lenField('d', 'km'), decField('d', 'km')], [lenCheck(n, 1, { cands: c }), decCheck(n, 1, { cands: c })], [lenKey(n), fx(Math.sqrt(n), 1)],
-            t('d=' + lenTex(n) + '\\approx ' + fx(Math.sqrt(n), 1)) + '&nbsp;km', 'From the trailhead to the rest stop ' + t(ptT(M)) + ':<br>' + t(dLine(o.P, M, 'd') + simpTail(n) + '\\approx ' + fx(Math.sqrt(n), 1)) + '&nbsp;km — exactly half of (b), ' + t('\\tfrac{1}{2}\\times ' + lenTex(d2(o.P, o.Q)) + '=' + lenTex(n)) + '.', HD.concat(['Shortcut: the rest stop is the midpoint, so the answer is half of part (b).']), 'trailhead to rest stop');
+            t('d=' + lenTex(n) + '\\approx ' + fx(Math.sqrt(n), 1)) + '&nbsp;km', 'From the trailhead to the rest stop ' + t(ptT(M)) + ':<br>' + t(dLine(o.P, M, 'd') + simpTail(n) + '\\approx ' + fx(Math.sqrt(n), 1)) + '&nbsp;km — exactly half of (b), ' + t('\\tfrac{1}{2}\\times ' + lenTex(d2(o.P, o.Q)) + '=' + lenTex(n)) + '.', [HD[0], 'Shortcut: the rest stop is the midpoint, so the answer is half of part (b).'], 'trailhead to rest stop');
         } }] },
     /* ---- EP 16: towns ---- */
     { num: '16', shared: function (r) {

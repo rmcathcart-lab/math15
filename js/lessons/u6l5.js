@@ -16,7 +16,8 @@
   var HW = root.HW, K = HW.kit, B = K.P, ex = HW.ex, F = HW.fmt, t = K.t, ok = K.ok, wrong = K.wrong, form = K.form;
   var LID = 'u6l5';
 
-  HW.addCodes({
+  /* labels for the codes used here (a code another file already labels keeps its label) */
+  var CODES = {
     'd-no-root': 'Distance: forgot the square root (gave d²)', 'd-legs': 'Distance: added the run and rise', 'd-no-square': 'Distance: didn’t square the differences',
     'd-added': 'Distance: added the coordinates instead of subtracting', 'd-sign': 'Distance: sign slip subtracting a negative coordinate', 'd-half': 'Gave half the distance',
     'd-units': 'Distance in grid units, not converted with the scale', 'd-metres': 'Gave metres instead of kilometres', 'd-scale-div': 'Divided by the scale instead of multiplying',
@@ -32,7 +33,8 @@
     'u6l5-same-pt': 'Example: the two endpoints are the same point', 'u6l5-not-axis': 'Example: the midpoint is not on the required axis', 'u6l5-not-origin': 'Example: the midpoint is not the origin',
     'u6l5-cost-one': 'Costed one brace instead of two', 'u6l5-cost-length': 'Gave the length instead of the cost', 'u6l5-route-total': 'Gave a route length instead of the difference',
     'u6l5-radius-diam': 'Gave the diameter for the radius (or reverse)', 'u6l5-k-sign': 'Sign slip solving for k', 'u6l5-k-no-y': 'Gave the point instead of k (or reverse)'
-  });
+  };
+  HW.addCodes(Object.keys(CODES).filter(function (k) { return !HW.CODES[k]; }).reduce(function (o, k) { o[k] = CODES[k]; return o; }, {}));
   HW.addPartial({ 'u6l4-mid-sign': 's', 'u6l4-round-half': 's', 'u6l5-same-pt': 'n', 'u6l5-not-axis': 'n', 'u6l5-not-origin': 'n', 'u6l5-cost-one': 'b', 'u6l5-cost-length': 'b',
     'u6l5-route-total': 'b', 'u6l5-radius-diam': 's', 'u6l5-k-sign': 's', 'u6l5-k-no-y': 's' });
 
@@ -283,6 +285,8 @@
     var span = Math.max(w.x[1] - w.x[0], w.y[1] - w.y[0]);
     return '<div class="fig">' + HW.graph({ x: w.x, y: w.y, grid: 1, labels: span > 16 ? 4 : 2, points: pts.map(function (p, i) { return { x: p[0], y: p[1], label: names[i] }; }), segs: segs, max: o.max || 340 }) + '</div>';
   }
+  /* typical wrong answers (from a diagnosis list [[value, code, hint]]) as the part's bad list */
+  function withBad(p, cands, dp) { p.bad = (p.bad || []).concat((cands || []).filter(function (c) { return isFinite(c[0]) && Math.abs(c[0] - Number(p.key)) > 1e-6; }).map(function (c) { return dp == null ? String(cl(c[0])) : rd(c[0], dp).toFixed(Math.max(dp, 0)); }).filter(function (b) { return Math.abs(Number(b) - Number(p.key)) > 1e-9; })); return p; }
   function mcPart(r, prompt, opts, sol, hints, text, keepOrder) { return B.mc(r, prompt, opts, sol, hints, text, keepOrder); }
 
   /* ======================= lesson-specific helpers ======================= */
@@ -315,8 +319,8 @@
     var sol = dSteps(A, Bq) + '<br>' + t('d=\\sqrt{' + sgp(dx) + '^{2}+' + sgp(dy) + '^{2}}=\\sqrt{' + nT(dx * dx) + '+' + nT(dy * dy) + '}=\\sqrt{' + nT(n) + '}' + (isSq(n) ? '=' + Math.round(u) : '\\approx ' + fx(u, 3))) + ' grid units.<br>' +
       t((isSq(n) ? Math.round(u) : fx(u, 3)) + '\\times ' + F(s) + (isSq(n) ? '=' : '\\approx ') + F(cl(u * s)) ) + (o.su ? '&nbsp;' + o.su : '') + (o.div ? ' ' + t('=' + F(cl(u * s / o.div))) + '&nbsp;' + unit : '') + '.';
     var hints = ['First find the distance in grid units with the distance formula.', 'Then multiply by the scale' + (o.div ? ' and convert metres to kilometres (÷ 1000)' : '') + '.'];
-    if (isInt(cl(D))) return B.number(prompt, cl(D), matchDiag(c), sol, hints, o.text, { after: unit });
-    return B.approx(prompt, D, o.dp == null ? 1 : o.dp, { after: unit, diag: matchDiag(c, o.dp == null ? 1 : o.dp) }, sol, hints, o.text);
+    if (isInt(cl(D))) return withBad(B.number(prompt, cl(D), matchDiag(c), sol, hints, o.text, { after: unit }), c);
+    return withBad(B.approx(prompt, D, o.dp == null ? 1 : o.dp, { after: unit, diag: matchDiag(c, o.dp == null ? 1 : o.dp) }, sol, hints, o.text), c, o.dp == null ? 1 : o.dp);
   }
   /* an exact distance (whole number or simplest radical); dec: also accept a decimal to the nearest tenth */
   function distPart(prompt, A, Bq, text, o) {
@@ -436,8 +440,8 @@
         var o = r.chance(0.2) ? { C: [-2, -4], M: [6, 2] } : pickWhere(function () { return { C: [r.pick(pm(1, 8)), -r.int(1, 9)], M: [r.int(1, 9), r.int(-2, 6)] }; }, function (z) { var y = 2 * z.M[1] - z.C[1]; return y > 0 && y < 100 && z.M[0] !== z.C[0]; });
         var y = 2 * o.M[1] - o.C[1], x = 2 * o.M[0] - o.C[0];
         var c = endNum(o.C[1], o.M[1]).concat([[x, 'end-gave-y', 'That is the ' + t('x') + '-coordinate of ' + t('D') + '. The question asks for the ' + t('y') + '-coordinate.']]);
-        return B.nr('<i>(Numerical Response)</i> ' + t(nm('M', o.M)) + ' is the midpoint of ' + t('\\overline{CD}') + '. If ' + t('C') + ' is ' + t(ptT(o.C)) + ', the ' + t('y') + '-coordinate of ' + t('D') + ' is ______.', y, numDiag(c),
-          t('y_D=2y_M-y_C=2(' + nT(o.M[1]) + ')-' + sgp(o.C[1]) + '=' + nT(y)) + '. (The whole point is ' + t(nm('D', [x, y])) + '.)', HE, 'NR missing endpoint y');
+        return withBad(B.nr('<i>(Numerical Response)</i> ' + t(nm('M', o.M)) + ' is the midpoint of ' + t('\\overline{CD}') + '. If ' + t('C') + ' is ' + t(ptT(o.C)) + ', the ' + t('y') + '-coordinate of ' + t('D') + ' is ______.', y, numDiag(c),
+          t('y_D=2y_M-y_C=2(' + nT(o.M[1]) + ')-' + sgp(o.C[1]) + '=' + nT(y)) + '. (The whole point is ' + t(nm('D', [x, y])) + '.)', HE, 'NR missing endpoint y'), c);
       } }] },
     { num: '16', parts: [
       { id: '16', level: 'BEG', make: function (r) {
@@ -464,7 +468,7 @@
         { id: 'e2b', sub: 'b', level: 'PRG', make: function (r, o) {
           var Bq = sub(scl(o.M, 2), o.A), n = d2(o.A, Bq), c = dCands(o.A, Bq).concat([[dist(o.A, o.M), 'd-half', 'That is ' + t('AM') + ' — half the segment. Use ' + t('A') + ' and ' + t('B') + '.']]);
           return B.fields('Determine the exact length of ' + t('\\overline{AB}') + ' in simplest radical form, then round to the nearest tenth.', [lenField('AB'), decField('AB')], [lenCheck(n, 1, { cands: c }), decCheck(n, 1, { cands: c })], [lenKey(n), fx(Math.sqrt(n), 1)],
-            t('AB=' + lenTex(n) + '\\approx ' + fx(Math.sqrt(n), 1)), dSteps(o.A, Bq) + '<br>' + t(dLine(o.A, Bq, 'AB') + simpTail(n) + '\\approx ' + fx(Math.sqrt(n), 1)) + '.', HD.concat(['To simplify ' + t('\\sqrt{' + n + '}') + ', look for its largest perfect-square factor.']), 'AB exact and decimal');
+            t('AB=' + lenTex(n) + '\\approx ' + fx(Math.sqrt(n), 1)), dSteps(o.A, Bq) + '<br>' + t(dLine(o.A, Bq, 'AB') + simpTail(n) + '\\approx ' + fx(Math.sqrt(n), 1)) + '.', [HD[0], 'To simplify ' + t('\\sqrt{' + n + '}') + ', look for its largest perfect-square factor; round only at the end.'], 'AB exact and decimal');
         } },
         { id: 'e2c', sub: 'c', level: 'EMG', make: function (r, o) {
           var Bq = sub(scl(o.M, 2), o.A);
@@ -582,7 +586,7 @@
         { id: 'e7a', sub: 'a', level: 'EMG', make: function (r, o) {
           var L = cl(Math.hypot(o.w, o.h));
           return B.number('Use the distance formula to determine the exact length of the brace.', L, numDiag([[o.w + o.h, 'd-legs', 'You added the width and the height. The brace is the hypotenuse: ' + t('\\sqrt{' + nT(o.w) + '^{2}+' + nT(o.h) + '^{2}}') + '.'], [cl(o.w * o.w + o.h * o.h), 'd-no-root', 'Take the square root.']]),
-            t('d=\\sqrt{(' + nT(o.w) + '-0)^{2}+(' + nT(o.h) + '-0)^{2}}=\\sqrt{' + nT(o.w * o.w) + '+' + nT(o.h * o.h) + '}=\\sqrt{' + nT(o.w * o.w + o.h * o.h) + '}=' + nT(L)) + '&nbsp;m.', HD.concat(['With decimals: ' + t(nT(o.w) + '^{2}=' + nT(o.w * o.w)) + '.']), 'brace length', { after: 'm' });
+            t('d=\\sqrt{(' + nT(o.w) + '-0)^{2}+(' + nT(o.h) + '-0)^{2}}=\\sqrt{' + nT(o.w * o.w) + '+' + nT(o.h * o.h) + '}=\\sqrt{' + nT(o.w * o.w + o.h * o.h) + '}=' + nT(L)) + '&nbsp;m.', [HD[0], 'With decimals: ' + t(nT(o.w) + '^{2}=' + nT(o.w * o.w)) + '.'], 'brace length', { after: 'm' });
         } },
         { id: 'e7b', sub: 'b', level: 'EMG', make: function (r, o) {
           var L = cl(Math.hypot(o.w, o.h)), v = cl(L * o.c);
@@ -601,14 +605,14 @@
           var v1 = r.pick([[8, 6], [6, 8], [4, 3], [3, 4], [12, 5]]), v2 = sgn(r, r.pick([[4, 3], [3, 4], [6, 8], [5, 12]])), v3 = r.chance(0.5) ? [0, -r.int(4, 10)] : [r.int(3, 9), 0];
           var D = [r.int(-8, -4), r.int(-6, 0)], A = add(D, v1), Bq = add(A, v2), C = add(Bq, v3);
           return { D: D, A: A, B: Bq, C: C, s: r.pick([250, 500, 500, 200]) };
-        }, function (z) { var n = d2(z.D, z.C), P4 = [z.D, z.A, z.B, z.C], distinct = P4.every(function (p, i) { return P4.every(function (q, j) { return i === j || dist(p, q) >= 3; }); }); return distinct && isSq(n) && [z.A, z.B, z.C].every(function (p) { return Math.abs(p[0]) <= 12 && Math.abs(p[1]) <= 12; }) && Math.sqrt(n) < dist(z.D, z.A) + dist(z.A, z.B) + dist(z.B, z.C) - 1; });
+        }, function (z) { var n = d2(z.D, z.C), P4 = [z.D, z.A, z.B, z.C], distinct = P4.every(function (p, i) { return P4.every(function (q, j) { return i === j || dist(p, q) >= 3; }); }); var cr = function (u, v) { return u[0] * v[1] - u[1] * v[0]; }, v1 = sub(z.A, z.D), v2 = sub(z.B, z.A), v3 = sub(z.C, z.B), ints = function (p, q, s, u) { return cr(sub(q, p), sub(s, p)) * cr(sub(q, p), sub(u, p)) < 0 && cr(sub(u, s), sub(p, s)) * cr(sub(u, s), sub(q, s)) < 0; }; return distinct && cr(v1, v2) !== 0 && cr(v2, v3) !== 0 && !ints(z.D, z.A, z.B, z.C) && isSq(n) && [z.A, z.B, z.C].every(function (p) { return Math.abs(p[0]) <= 12 && Math.abs(p[1]) <= 12; }) && Math.sqrt(n) < dist(z.D, z.A) + dist(z.A, z.B) + dist(z.B, z.C) - 1; });
       },
       stem: function (o) { return 'A courier leaves the depot at ' + t(nm('D', o.D)) + ', drives to ' + t(nm('A', o.A)) + ', then to ' + t(nm('B', o.B)) + ', then to ' + t(nm('C', o.C)) + '. Each grid unit represents ' + t(o.s) + '&nbsp;m.' + figPoly([o.D, o.A, o.B, o.C], ['D', 'A', 'B', 'C'], { segs: [[o.D, o.A, o.B, o.C]], max: 300 }); },
       parts: [
         { id: 'e8a', sub: 'a', level: 'EMG', make: function (r, o) {
           var S = [['D', 'A'], ['A', 'B'], ['B', 'C']], n = S.map(function (s) { return d2(o[s[0]], o[s[1]]); });
           return B.fields('Determine the length of each of the three legs, in grid units.', S.map(function (s) { return lenField(s[0] + s[1]); }), S.map(function (s, i) { return lenCheck(n[i], 1, { cands: dCands(o[s[0]], o[s[1]]) }); }), n.map(function (x) { return lenKey(x); }),
-            S.map(function (s, i) { return t(s[0] + s[1] + '=' + lenTex(n[i])); }).join(', '), S.map(function (s, i) { return t(dLine(o[s[0]], o[s[1]], s[0] + s[1]) + simpTail(n[i])); }).join('<br>'), HD.concat(['A leg along a grid line (horizontal or vertical) is just a difference of coordinates.']), 'three legs');
+            S.map(function (s, i) { return t(s[0] + s[1] + '=' + lenTex(n[i])); }).join(', '), S.map(function (s, i) { return t(dLine(o[s[0]], o[s[1]], s[0] + s[1]) + simpTail(n[i])); }).join('<br>'), [HD[0], 'A leg along a grid line (horizontal or vertical) is just a difference of coordinates.'], 'three legs');
         } },
         { id: 'e8b', sub: 'b', level: 'PRG', make: function (r, o) {
           var u = routeU(o), km = cl(u * o.s / 1000);
@@ -760,7 +764,7 @@
           var Q = add(o.P, o.v), D = dist(o.P, Q), R = D / 2;
           return B.fields('Determine the length of the diameter, then the radius.', [{ label: 'Diameter =', name: 'diameter', mode: 'math', keys: 'radical', after: 'units' }, { label: 'Radius =', name: 'radius', mode: 'math', keys: 'radical', after: 'units' }],
             [lenCheck(d2(o.P, Q), 1, { cands: dCands(o.P, Q).concat([[R, 'u6l5-radius-diam', 'That is the radius. The diameter is the whole segment between the two given points.']]) }), lenCheck(d2(o.P, Q), 2, { cands: [[D, 'u6l5-radius-diam', 'That is the diameter. The radius is half of it.']] })], [lenKey(d2(o.P, Q)), lenKey(d2(o.P, Q), 2)],
-            'Diameter ' + t(nT(D)) + ', radius ' + t(lenTex(d2(o.P, Q), 2) + '=' + nT(R)), dSteps(o.P, Q) + '<br>' + t(dLine(o.P, Q, 'd') + '=' + nT(D)) + '. Radius ' + t('=\\tfrac{' + nT(D) + '}{2}=' + nT(R)) + '.', HD.concat(['The radius is half the diameter.']), 'diameter and radius');
+            'Diameter ' + t(nT(D)) + ', radius ' + t(lenTex(d2(o.P, Q), 2) + '=' + nT(R)), dSteps(o.P, Q) + '<br>' + t(dLine(o.P, Q, 'd') + '=' + nT(D)) + '. Radius ' + t('=\\tfrac{' + nT(D) + '}{2}=' + nT(R)) + '.', [HD[0], 'The radius is half the diameter.'], 'diameter and radius');
         } }] },
     /* ---- EP 14: equidistant point on the y-axis (Mastery) ---- */
     { num: '14', section: 'Part D — Stretch, multiple choice, and numerical response', shared: function (r) {
@@ -799,7 +803,7 @@
           return B.fields('Check your answer by computing both distances, ' + t('PA') + ' and ' + t('PB') + ', with ' + t('P' + ptT(P, true)) + ' (exact, or to the nearest tenth).', [lenField('PA'), lenField('PB')], [lenCheck(n4, 2, { dec: true }), lenCheck(n4, 2, { dec: true })], [lenKey(n4, 2), lenKey(n4, 2)],
             t('PA=PB=' + exact + '\\approx ' + dec),
             t('PA=\\sqrt{(0-' + sgp(A[0]) + ')^{2}+(' + cT(k, true) + '-' + sgp(A[1]) + ')^{2}}=\\sqrt{' + nT(d2(P, A)) + '}=' + exact) + '<br>' + t('PB=\\sqrt{(0-' + sgp(Bq[0]) + ')^{2}+(' + cT(k, true) + '-' + sgp(Bq[1]) + ')^{2}}=\\sqrt{' + nT(d2(P, Bq)) + '}=' + exact) + ' ✓ equal.',
-            HD.concat(['With a half: ' + t('\\left(\\tfrac{3}{2}-1\\right)^{2}=\\left(\\tfrac{1}{2}\\right)^{2}=\\tfrac{1}{4}') + '. A decimal answer to the nearest tenth is fine.']), 'check PA = PB');
+            [HD[0], 'With a half: ' + t('\\left(\\tfrac{3}{2}-1\\right)^{2}=\\left(\\tfrac{1}{2}\\right)^{2}=\\tfrac{1}{4}') + '. A decimal answer to the nearest tenth is fine.'], 'check PA = PB');
         } }] },
     /* ---- EP 15–18 ---- */
     { num: '15', parts: [
@@ -826,8 +830,8 @@
         var o = r.chance(0.2) ? { M: [2, 5], C: [-4, -1] } : pickWhere(function () { return { M: [r.int(1, 7), r.int(-3, 7)], C: [-r.int(1, 8), r.int(-6, 8)] }; }, function (z) { return z.M[1] !== z.C[1]; });
         var x = 2 * o.M[0] - o.C[0], y = 2 * o.M[1] - o.C[1];
         var c = endNum(o.C[0], o.M[0]).concat([[y, 'end-gave-y', 'That is the ' + t('y') + '-coordinate of ' + t('D') + '. The question asks for ' + t('x') + '.']]);
-        return B.nr('<i>(Numerical Response)</i> ' + t(nm('M', o.M)) + ' is the midpoint of ' + t('\\overline{CD}') + ' and ' + t('C') + ' is ' + t(ptT(o.C)) + '. The ' + t('x') + '-coordinate of ' + t('D') + ' is ______.', x, numDiag(c),
-          t('x_D=2x_M-x_C=2(' + o.M[0] + ')-' + sgp(o.C[0]) + '=' + nT(x)) + ' (and ' + t('y_D=' + nT(y)) + ').', HE, 'NR missing endpoint x');
+        return withBad(B.nr('<i>(Numerical Response)</i> ' + t(nm('M', o.M)) + ' is the midpoint of ' + t('\\overline{CD}') + ' and ' + t('C') + ' is ' + t(ptT(o.C)) + '. The ' + t('x') + '-coordinate of ' + t('D') + ' is ______.', x, numDiag(c),
+          t('x_D=2x_M-x_C=2(' + o.M[0] + ')-' + sgp(o.C[0]) + '=' + nT(x)) + ' (and ' + t('y_D=' + nT(y)) + ').', HE, 'NR missing endpoint x'), c);
       } }] },
     { num: '18', parts: [
       { id: 'e18', level: 'EMG', make: function (r) {
@@ -883,7 +887,7 @@
   }
   function routeU(o) { return cl(dist(o.D, o.A) + dist(o.A, o.B) + dist(o.B, o.C)); }
   function kmPart(prompt, km, cands, sol, text) {
-    return B.number(prompt, km, matchDiag(cands), sol, ['Find the distances in grid units first.', 'Grid units × the scale gives metres; divide by 1000 for kilometres.'], text, { after: 'km' });
+    return withBad(B.number(prompt, km, matchDiag(cands), sol, ['Find the distances in grid units first.', 'Grid units × the scale gives metres; divide by 1000 for kilometres.'], text, { after: 'km' }), cands);
   }
   function pent(o) { return { P: [-o.a, o.b], Q: [o.a, o.b], R: [o.a, o.c], S: [0, o.c + o.h], T: [-o.a, o.c] }; }
   function perim(o) { return cl(2 * o.a + 2 * (o.c - o.b) + 2 * Math.hypot(o.a, o.h)); }

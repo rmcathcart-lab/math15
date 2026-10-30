@@ -59,7 +59,7 @@ function sqG(stage, x, y, win, unit, o = {}) {
 }
 const dOf = (pts) => 'M' + pts.map((p) => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join('L');
 /** a named point (o.coords: label with its coordinates) */
-const npt = (G, n, x, y, pos, o = {}) => G.point(x, y, Object.assign({ color: INK, r: 6.5, label: o.coords ? T(PTX(n, [x, y])) : T(n), pos }, o));
+const npt = (G, n, x, y, pos, o = {}) => { const { coords, ...rest } = o; return G.point(x, y, Object.assign({ color: INK, r: 6.5, label: coords ? T(PTX(n, [x, y])) : T(n), pos }, rest)); };
 const rmark = (G, V, P, Q, s = 15, color = INK) => rightMark(G.layers.top, G.toPx(...V), G.toPx(...P), G.toPx(...Q), s, { color, width: 2.5 });
 const pstamp = async (c, P, text, ok) => { const s = stamp(P, text, { ok, size: 'sm' }); s.classList.add('u6l10-pstamp'); await stampIn(c, s); };
 /** where line P1Q1 meets line P2Q2 */
@@ -155,7 +155,7 @@ function mountMinis() {
     slope(G) { G.segment([0.5, 0.5], [5.5, 3.5], { color: BLUE, width: 3.5 }); const S = stair(G, { x: 0.5, y: 0.5, run: 5, rise: 3 }, { width: 2.5, labels: false }); S.showNow(); },
     types(G) { G.segment([0.2, 0.2], [2.2, 2], { color: GRN, width: 3 }); G.segment([2.6, 2], [4.4, 0.2], { color: RED, width: 3 }); G.segment([0.3, 3.8], [3, 3.8], { color: INK, width: 3 }); G.segment([5.6, 0.3], [5.6, 4.2], { color: PUR, width: 3 }); },
     col(G) { G.line([0.5, 0.5], [5.5, 3.5], { color: GRN, width: 2, arrows: false, dash: '5 4' }); [[1, 0.8], [3, 2], [5, 3.2]].forEach((p) => G.point(...p, { color: INK, r: 5 })); },
-    par(G) { G.segment([0.3, 0.4], [4, 2.6], { color: BLUE, width: 3.5 }); G.segment([2.2, 1.8], [5.9, 4], { color: BLUE, width: 3.5 }); },
+    par(G) { G.segment([0.3, 0.3], [3.8, 2.2], { color: BLUE, width: 3.5 }); G.segment([2.2, 2.2], [5.9, 4.2], { color: BLUE, width: 3.5 }); },
     perp(G) { G.segment([0.8, 0.6], [4.4, 2.4], { color: BLUE, width: 3.5 }); G.segment([4.4, 2.4], [3.4, 4.4], { color: RED, width: 3.5 }); rightMark(G.layers.top, G.toPx(4.4, 2.4), G.toPx(0.8, 0.6), G.toPx(3.4, 4.4), 8, { color: INK, width: 1.6 }); }
   };
   document.querySelectorAll('[data-mini]').forEach((el) => { const k = el.dataset.mini; if (M[k]) M[k](mini(el)); });
@@ -167,7 +167,7 @@ function mountFigures() {
   if (e6) { const G = sqG(e6, null, null, { xmin: -4, xmax: 10, ymin: -3, ymax: 5 }, 26, { xlabels: 2, ylabels: 2, fontSize: 15 }); npt(G, 'R', -3, -2, 's'); npt(G, 'S', 9, 4, 'n'); }
   const e8 = document.getElementById('u6l10-ex8fig');
   if (e8) {
-    const G = sqG(e8, null, null, { xmin: -6, xmax: 10, ymin: -4, ymax: 20 }, 14, { xlabels: 4, ylabels: 4, fontSize: 15 });
+    const G = sqG(e8, null, null, { xmin: -6, xmax: 10, ymin: -6, ymax: 20 }, 14, { xlabels: 4, ylabels: 4, fontSize: 15 });
     npt(G, 'X', -4, -2, 's', { coords: true }); npt(G, 'Y', 2, 8, 'e', { coords: true }); npt(G, 'Z', 8, 18, 'w', { coords: true });
   }
 }
@@ -363,7 +363,7 @@ const lengths = {
   intro: (k) => (k === 'ex2' ? 'A horizontal segment and a vertical segment. Press <b>Next</b>.' : 'A diagonal segment. Press <b>Next</b>.'),
   make(stage, k, ex) {
     if (k === 'ex2') {
-      const G = sqG(stage, 14, 4, { xmin: -8, xmax: 6, ymin: -7, ymax: 10 }, 25, { xlabels: 2, ylabels: 2, fontSize: 15 });
+      const G = sqG(stage, 14, 10, { xmin: -8, xmax: 6, ymin: -7, ymax: 10 }, 24, { xlabels: 2, ylabels: 2, fontSize: 15 });
       const P = panel(stage, G.W + 34, 14, ex.W - G.W - 48, 440, 'Length = positive difference');
       const count = async (c, n, at) => { const out = []; for (let i = 1; i <= n; i++) { const t = G.label(...at(i), String(i), { cls: 'u6l10-cnt' }); out.push(t); if (c && !c.fast) await pop(c, t, 120); } await sleep(c, 350); G.remove(...out); };
       let EF, GH;
@@ -417,12 +417,12 @@ const midpoint = {
       const P = panel(stage, G.W + 34, 14, ex.W - G.W - 48, 440, 'Working backwards');
       return [
         { cap: `${T('C(-3,\\ 7)')} is one endpoint and ${T('M(5,\\ -1)')} is the midpoint. ${T('D')} is missing.`,
-          run: async (c) => { await G.reveal(npt(G, 'C', -3, 7, 'n', { coords: true }), c); await G.reveal(npt(G, 'M', 5, -1, 'e', { coords: true, color: MID }), c); await G.drawIn(G.segment([-3, 7], [5, -1], { color: BLUE, width: 4.5 }), 500, c); } },
+          run: async (c) => { await G.reveal(npt(G, 'C', -3, 7, 'n', { coords: true }), c); await G.reveal(npt(G, 'M', 5, -1, 'sw', { coords: true, color: MID }), c); await G.drawIn(G.segment([-3, 7], [5, -1], { color: BLUE, width: 4.5 }), 500, c); } },
         { cap: `From ${T('C')} to ${T('M')}: run ${T('5-(-3)=8')}, rise ${T('-1-7=-8')}.`,
           run: async (c) => { await stair(G, { x: -3, y: 7, run: 8, rise: -8 }).show(c); await say(c, P, `${T('C\\to M')}: run 8, rise ${T('-8')}`); } },
         { cap: `${T('M')} is <b>halfway</b>, so ${T('D')} is the <b>same step again</b>: ${T('(5+8,\\ -1-8)=(13,\\ -9)')}.`,
           run: async (c) => {
-            await stair(G, { x: 5, y: -1, run: 8, rise: -8 }).show(c);
+            await stair(G, { x: 5, y: -1, run: 8, rise: -8 }, { risePos: 'w' }).show(c);
             await G.drawIn(G.segment([5, -1], [13, -9], { color: BLUE, width: 4.5 }), 500, c);
             await G.reveal(npt(G, 'D', 13, -9, 'w', { coords: true, color: RED }), c);
             await say(c, P, `${T('M\\to D')}: the same step, so ${T('D(13,\\ -9)')}`);
@@ -440,7 +440,7 @@ const midpoint = {
         { cap: `Trailheads ${T('P(2,\\ 9)')} and ${T('Q(18,\\ -5)')}. Each grid unit is ${T('10')} m.`,
           run: async (c) => { await G.reveal(npt(G, 'P', 2, 9, 'e', { coords: true }), c); await G.reveal(npt(G, 'Q', 18, -5, 'w', { coords: true }), c); await G.drawIn(G.segment([2, 9], [18, -5], { color: BLUE, width: 4, dash: '10 7' }), 600, c); } },
         { cap: `Halfway: walk half the run (${T('16\\div2=8')}) and half the rise (${T('-14\\div2=-7')}). The rest stop is at ${T('(10,\\ 2)')}.`,
-          run: async (c) => { const S = stair(G, { x: 2, y: 9, run: 16, rise: -14 }); await S.show(c, 300); S.dim(0.3); await stair(G, { x: 2, y: 9, run: 8, rise: -7 }, { width: 6 }).show(c); await G.reveal(npt(G, 'M', 10, 2, 'w', { coords: true, color: MID, r: 8 }), c); } },
+          run: async (c) => { const S = stair(G, { x: 2, y: 9, run: 16, rise: -14 }, { risePos: 'w' }); await S.show(c, 300); S.dim(0.3); await stair(G, { x: 2, y: 9, run: 8, rise: -7 }, { width: 6 }).show(c); await G.reveal(npt(G, 'M', 10, 2, 'w', { coords: true, color: MID, r: 8 }), c); } },
         { cap: `The formula agrees: ${T('M=\\left(\\dfrac{2+18}{2},\\ \\dfrac{9+(-5)}{2}\\right)=(10,\\ 2)')}.`,
           run: async (c) => { await say(c, P, T('M=\\left(\\dfrac{2+18}{2},\\ \\dfrac{9+(-5)}{2}\\right)'), 'u6l10-mline'); await say(c, P, T('=\\boldsymbol{(10,\\ 2)}'), 'u6l10-mline u6l10-good'); } },
         { cap: `From ${T('P')}: east ${T('10-2=8')} units ${T('=80')} m, and south ${T('9-2=7')} units ${T('=70')} m.`,
@@ -455,7 +455,7 @@ const midpoint = {
       { cap: `Plot ${T('A(-10,\\ 3)')} and ${T('B(6,\\ -9)')}.`,
         run: async (c) => { await G.reveal(npt(G, 'A', -10, 3, 'n', { coords: true }), c); await G.reveal(npt(G, 'B', 6, -9, 'w', { coords: true }), c); await G.drawIn(G.segment([-10, 3], [6, -9], { color: BLUE, width: 4.5 }), 600, c); } },
       { cap: `From ${T('A')} to ${T('B')}: run ${T('6-(-10)=16')}, rise ${T('-9-3=-12')}.`,
-        run: async (c) => { full = stair(G, { x: -10, y: 3, run: 16, rise: -12 }); await full.show(c); full.dim(0.35); await say(c, P, `${T('A\\to B')}: run 16, rise ${T('-12')}`); } },
+        run: async (c) => { full = stair(G, { x: -10, y: 3, run: 16, rise: -12 }, { risePos: 'w' }); await full.show(c); full.dim(0.35); await say(c, P, `${T('A\\to B')}: run 16, rise ${T('-12')}`); } },
       { cap: `Walk <b>half</b> the run (${T('8')}) and <b>half</b> the rise (${T('-6')}): ${T('(-10+8,\\ 3-6)=(-2,\\ -3)')}.`,
         run: async (c) => { await stair(G, { x: -10, y: 3, run: 8, rise: -6 }, { width: 6 }).show(c); await G.reveal(G.point(-2, -3, { color: MID, r: 8, label: T('M(-2,\\ -3)'), pos: 'e' }), c); await say(c, P, `<b>Half the step</b>: run 8, rise ${T('-6')}`); } },
       { cap: `Same answer by the formula: <b>average</b> the ${T('x')}’s, then average the ${T('y')}’s.`,
@@ -497,12 +497,12 @@ const slopes = {
       ];
     }
     if (v === 'ex7') {
-      const G = sqG(stage, 14, 30, { xmin: -6, xmax: 9, ymin: -5, ymax: 7 }, 29, { xlabels: 2, ylabels: 2, fontSize: 15 });
+      const G = sqG(stage, 14, 30, { xmin: -7, xmax: 9, ymin: -5, ymax: 7 }, 29, { xlabels: 2, ylabels: 2, fontSize: 15 });
       const P = panel(stage, G.W + 34, 14, ex.W - G.W - 48, 440, 'Classify');
       const SEGS = [
-        { n: ['A', 'B'], a: [-5, -3], b: [4, 3], pos: ['w', 'n'], color: GRN, kind: 'positive', why: 'rises left to right' },
-        { n: ['C', 'D'], a: [-2, 6], b: [3, 6], pos: ['w', 'e'], color: INK, kind: 'zero', why: 'same y: horizontal' },
-        { n: ['E', 'F'], a: [7, -4], b: [7, 5], pos: ['e', 'e'], color: PUR, kind: 'undefined', why: 'same x: vertical' }
+        { n: ['A', 'B'], a: [-5, -3], b: [4, 3], pos: ['s', 'n'], color: GRN, kind: 'positive', why: 'rises left to right' },
+        { n: ['C', 'D'], a: [-2, 6], b: [3, 6], pos: ['w', 'e'], color: INK, kind: 'zero', why: 'has the same y, so it is horizontal' },
+        { n: ['E', 'F'], a: [7, -4], b: [7, 5], pos: ['e', 'e'], color: PUR, kind: 'undefined', why: 'has the same x, so it is vertical' }
       ];
       const steps = [{ cap: `${T('AB')}, ${T('CD')} and ${T('EF')}. Before calculating, look: which way does each one go?`,
         run: async (c) => { for (const s of SEGS) { await G.drawIn(G.segment(s.a, s.b, { color: BLUE, width: 4.5 }), 350, c); for (let i = 0; i < 2; i++) await G.reveal(npt(G, s.n[i], ...(i ? s.b : s.a), s.pos[i], { coords: true }), c, 120); } } }];
@@ -520,11 +520,11 @@ const slopes = {
     }
     // Example 6
     const R = [-3, -2], Sp = [9, 4], s = slopeOf(R, Sp);
-    const G = sqG(stage, 14, 60, { xmin: -4, xmax: 10, ymin: -3, ymax: 5 }, 31, { xlabels: 2, ylabels: 2, fontSize: 15 });
+    const G = sqG(stage, 14, 60, { xmin: -6, xmax: 10, ymin: -3, ymax: 5 }, 28, { xlabels: 2, ylabels: 2, fontSize: 15 });
     const P = panel(stage, G.W + 34, 14, ex.W - G.W - 48, 440, 'The slope formula');
     return [
       { cap: `Plot ${T('R(-3,\\ -2)')} and ${T('S(9,\\ 4)')}. It rises left to right, so expect a <b>positive</b> slope.`,
-        run: async (c) => { await G.reveal(npt(G, 'R', -3, -2, 'w', { coords: true }), c); await G.reveal(npt(G, 'S', 9, 4, 'n', { coords: true }), c); await G.drawIn(G.segment(R, Sp, { color: BLUE, width: 4.5 }), 600, c); } },
+        run: async (c) => { await G.reveal(npt(G, 'R', -3, -2, 's', { coords: true }), c); await G.reveal(npt(G, 'S', 9, 4, 'n', { coords: true }), c); await G.drawIn(G.segment(R, Sp, { color: BLUE, width: 4.5 }), 600, c); } },
       { cap: `Run: ${T('9-(-3)=12')}. Rise: ${T('4-(-2)=6')}. Same order top and bottom: ${T('S')} minus ${T('R')}.`,
         run: async (c) => { await stair(G, { x: -3, y: -2, run: 12, rise: 6 }).show(c); } },
       { cap: `${T(`m=${s.all}`)}.`,
@@ -627,7 +627,7 @@ const triangle = {
     const bars = h('div', 'u6l10-bars');
     return [
       { cap: `Plot ${T('P(-5,\\ -3)')}, ${T('Q(3,\\ 1)')} and ${T('R(-1,\\ 9)')} and join them.`,
-        run: async (c) => { for (const [n, p, pos] of [['P', Pp, 'w'], ['Q', Q, 'e'], ['R', R, 'n']]) await G.reveal(npt(G, n, ...p, pos), c, 200); await G.drawIn(G.polyline([Pp, Q, R, Pp], { color: BLUE, width: 4 }), 700, c); } },
+        run: async (c) => { for (const [n, p, pos] of [['P', Pp, 'w'], ['Q', Q, 'e'], ['R', R, 'w']]) await G.reveal(npt(G, n, ...p, pos), c, 200); await G.drawIn(G.polyline([Pp, Q, R, Pp], { color: BLUE, width: 4 }), 700, c); } },
       { cap: `(a) The two sides that meet at ${T('Q')}: ${T('m_{PQ}=\\dfrac{1-(-3)}{3-(-5)}=\\dfrac{4}{8}=\\dfrac12')} and ${T('m_{QR}=\\dfrac{9-1}{-1-3}=\\dfrac{8}{-4}=-2')}.`,
         run: async (c) => {
           t1 = stair(G, { x: -5, y: -3, run: 8, rise: 4 }, { width: 3.5 }); await t1.show(c, 300); await say(c, P, T('m_{PQ}=\\dfrac{4}{8}=\\dfrac12'), 'u6l10-mline');
@@ -678,7 +678,7 @@ const dialQ = {
         run: async (c) => {
           await G.drawIn(G.vline(2, { color: 'gray', width: 2 }), 400, c);
           JK = G.curve(() => ({ subs: [[G.toPx(...J), G.toPx(2, st.q)]] }), { color: RED, width: 4.5 }, 'u6l10-jk', G.layers.data);
-          await G.reveal(npt(G, 'J', ...J, 'w', { coords: true }), c, 150);
+          await G.reveal(npt(G, 'J', ...J, 'n', { coords: true }), c, 150);
           Kp = G.point(2, st.q, { color: RED, r: 8, label: T('K(2,\\ q)'), pos: 'e' }); await G.reveal(Kp, c); await G.drawIn(JK, 400, c);
           setRo(); P.appendChild(ro); await fadeIn(c, ro);
         } },
@@ -688,7 +688,7 @@ const dialQ = {
           await tween(c, 2200, (t) => { st.q = q0 + (TO - q0) * t; JK._bkDraw(); G.moveTo(Kp, 2, st.q); setRo(); });
           st.q = TO; JK._bkDraw(); G.moveTo(Kp, 2, TO); setRo();
           await Promise.all([G.drawIn(G.line(J, [2, TO], { color: RED, width: 2, dash: '8 7' }), 700, c), G.drawIn(G.line(L, M, { color: BLUE, width: 2, dash: '8 7' }), 700, c)]);
-          const s = stamp(stage, 'parallel', { ok: true, x: G.W / 2 + 14, y: 40 }); await stampIn(c, s);
+          const s = stamp(stage, 'parallel', { ok: true, x: G.W / 2 + 40, y: 420 }); await stampIn(c, s);
         } },
       { cap: `With algebra: parallel means equal slopes. ${T('\\dfrac{q+1}{6}=-\\dfrac32')}, so ${T('2(q+1)=-18')}, ${T('q+1=-9')}, ${T('q=-10')}.`,
         run: async (c) => { for (const s of ['\\dfrac{q-(-1)}{2-(-4)}=\\dfrac{q+1}{6}=-\\dfrac{3}{2}', '2(q+1)=-18\\ \\Rightarrow\\ q+1=-9', 'q=-10']) await say(c, P, T(s), s === 'q=-10' ? 'u6l10-mline u6l10-good' : 'u6l10-mline'); } },

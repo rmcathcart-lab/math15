@@ -1,0 +1,98 @@
+/* Math 15 · Unit 6 · Lesson 2 — Measuring the Length of a Line Segment: styles used only on this page (prefix u6l2-).
+ * Colours (as in Math 10C u6): horizontal / run amber, vertical / rise purple, segments blue, the matching coordinate green. */
+.u6l2 { --u6l2-h: #c27a0e; --u6l2-v: #7b4fc4; --u6l2-seg: #1f5bd6; }
+.u6l2 .ex-cap { min-height: 96px; }
+.u6l2 .ex-cap .katex { font-size: 1.04em; }
+.u6l2 .chip .katex { font-size: 1em; }
+.u6l2 .pl .katex { font-size: 1.08em; }
+.u6l2 .ans .katex { font-size: 1.04em; }
+.u6l2 .pill-col { display: flex; flex-direction: column; gap: 6px; }
+.u6l2 .katex { white-space: nowrap; }
+.u6l2 h3 .katex { font-size: .95em; }
+.u6l2-ch { color: var(--u6l2-h); }
+.u6l2-cv { color: var(--u6l2-v); }
+.u6l2-cb { color: var(--u6l2-seg); }
+.u6l2-cr { color: var(--red); }
+.u6l2-today { display: block; margin-top: 6px; font-size: 17px; color: var(--ink2); }
+
+/* ---------------- warm-up ---------------- */
+.u6l2-wmain { display: flex; gap: 16px; align-items: flex-start; }
+.u6l2-bldg { flex: none; }
+.u6l2-bsvg { display: block; }
+.u6l2-fl { font: 800 15px var(--round); fill: var(--ink); }
+.u6l2-pk { font: 800 13px var(--round); fill: #8a6a3a; }
+.u6l2-pk2 { font: 800 13px var(--round); fill: var(--ink2); }
+.u6l2-cnt { font: 800 12px var(--round); fill: #fff; }
+.u6l2-wright { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.u6l2-rides { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 8px; background: #f6f5f0; border-radius: 12px; padding: 10px 12px; }
+.u6l2-rh { grid-column: 1 / -1; font: 800 14px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u6l2-rides .pill { font-size: 16px; }
+.u6l2-rideout { grid-column: 1 / -1; min-height: 30px; font-size: 18px; color: var(--brand); }
+.u6l2-subh { margin-top: 10px; font-size: 16.5px; line-height: 1.3; }
+.u6l2-subway { position: relative; margin-top: 4px; }
+.u6l2-subway svg { position: absolute; left: 0; top: 0; }
+.u6l2-snum { font: 700 13px var(--round); fill: var(--ink); }
+.u6l2-stop { position: absolute; top: 24px; translate: -50% 0; font: 800 13px var(--round); color: var(--ink); background: #fff; border: 1.5px solid #e2c9c6; border-radius: 8px; padding: 1px 5px; cursor: pointer; white-space: nowrap; }
+.u6l2-stop.hi { top: 0; }
+.u6l2-stop.on { background: #fde9e7; border-color: var(--red); color: var(--red); }
+.u6l2-subout { min-height: 30px; font-size: 18px; color: var(--brand); text-align: center; }
+.u6l2-wqs .q-line { margin: 4px 0 0; font-size: 17px; gap: 10px; }
+.u6l2-wqs .q-num { width: 28px; height: 28px; font-size: 15px; }
+.u6l2-wqs .pill.small { padding: 2px 10px; }
+.u6l2-wa { margin: 0 0 4px 38px; }
+.u6l2-wa .bk-ans { font-size: 15.5px; line-height: 1.32; margin-top: 1px; }
+.wf .wf-poll .poll-opts { grid-template-columns: repeat(3, auto); justify-content: start; gap: 8px; }
+.wf .wf-poll .opt { white-space: nowrap; padding: 6px 14px; }
+.u6l2-social { font-style: italic; color: var(--ink2); font-size: 17px; text-align: center; margin: 14px 0 0; line-height: 1.35; }
+
+/* ---------------- notes and figures ---------------- */
+.u6l2-s1row { display: grid; grid-template-columns: 250px 1fr; gap: 20px; align-items: center; margin-bottom: 8px; }
+.u6l2-s1row .def { margin: 0; }
+.u6l2-s1t { font: italic 700 18px "KaTeX_Math", Georgia, serif; fill: var(--ink); }
+.u6l2-s1c { font: 600 14px var(--round); fill: var(--ink2); }
+.u6l2-disp { text-align: center; font-size: 24px; margin: 8px 0 2px; }
+.u6l2-exrow { display: grid; grid-template-columns: 400px 1fr; gap: 20px; align-items: start; margin-bottom: 14px; }
+.u6l2-exrow .parts { margin-bottom: 0; }
+.u6l2-s3row { display: grid; grid-template-columns: 1fr 140px 140px; gap: 14px; align-items: center; margin-bottom: 8px; }
+.u6l2-s3row .def { margin: 0; }
+.u6l2-vdef { border-left-color: #7b4fc4; background: #f3effb; }
+.u6l2-mini { text-align: center; }
+.u6l2-mini svg { display: block; margin: 0 auto; }
+.u6l2-mcap { font-size: 15px; line-height: 1.3; color: var(--ink2); }
+
+/* ---------------- explainers ---------------- */
+.u6l2-svg { overflow: visible; pointer-events: none; }
+.u6l2-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+.u6l2-ph { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u6l2-ph .katex { text-transform: none; font-size: 1.2em; }
+.u6l2-line { font-size: 21px; line-height: 1.4; }
+.u6l2-boxed { align-self: center; margin-top: 8px; font-size: 22px; border: 3px solid var(--brand2); border-radius: 12px; padding: 6px 14px; background: var(--brand-soft); text-align: center; }
+.u6l2-rule { margin-top: auto; background: var(--brand-soft); border-left: 5px solid var(--brand2); border-radius: 10px; padding: 8px 14px; font-size: 22px; line-height: 1.4; }
+.u6l2-hopn { font: 800 15px var(--round); }
+.u6l2-pill { font: 800 17px var(--round); background: #fff; border: 2px solid currentColor; border-radius: 9px; padding: 0 6px; }
+/* count table (lengths) */
+.u6l2-ct { display: grid; grid-template-columns: 58px 74px 1fr; gap: 4px 10px; align-items: baseline; font-size: 21px; }
+.u6l2-cth { font: 800 14px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u6l2-cth .katex { text-transform: none; font-size: 1.25em; }
+.u6l2-ctn { font-weight: 800; }
+/* absVal */
+.u6l2-avl { font-size: 28px; font-weight: 700; white-space: nowrap; }
+.u6l2-avbig { font-size: 30px; color: var(--brand); background: var(--brand-soft); border: 3px solid var(--brand2); border-radius: 12px; padding: 2px 16px; }
+/* slide */
+.u6l2-rnum { font-size: 17px; color: var(--ink2); }
+.u6l2-raxis { font-size: 22px; color: var(--ink); }
+.u6l2-plab { font-size: 19px; font-weight: 700; color: var(--u6l2-seg); background: rgba(255, 255, 255, .9); border-radius: 6px; padding: 0 4px; white-space: nowrap; }
+.u6l2-lenl { font-size: 20px; }
+.u6l2-tt { display: grid; grid-template-columns: 50px 70px 70px 1fr; gap: 6px 12px; align-items: baseline; font-size: 21px; }
+.u6l2-ttc { white-space: nowrap; }
+/* whichWay */
+.u6l2-pcard { font-size: 44px; display: flex; align-items: baseline; gap: 2px; background: #fff; border: 2px solid var(--line2); border-radius: 14px; padding: 4px 18px; white-space: nowrap; }
+.u6l2-pn { margin-right: 4px; color: var(--u6l2-seg); }
+.u6l2-pp { color: var(--muted); }
+.u6l2-px, .u6l2-py { border-radius: 10px; padding: 0 6px; transition: background .3s, box-shadow .3s, color .3s; }
+.u6l2-match { background: #e3f4ea; box-shadow: 0 0 0 3px var(--ok); color: var(--ok); }
+.u6l2-useh { color: var(--u6l2-h); }
+.u6l2-usev { color: var(--u6l2-v); }
+.u6l2-verdict { font: 800 26px var(--round); }
+.u6l2-verdict .katex { font-size: 1.05em; }
+.u6l2-calc { font-size: 32px; background: var(--brand-soft); border: 3px solid var(--brand2); border-radius: 12px; padding: 4px 16px; }
