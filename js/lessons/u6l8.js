@@ -658,7 +658,7 @@
     { num: '12', shared: function (r) {
         return gen(r, function (r) { var q = r.int(2, 5), p = r.int(1, 5); if (gcd(p, q) !== 1) return null; var A = [r.int(-4, -1), r.int(1, 5)], Bp = add(A, [q, -p]), C = add(Bp, [q, -p]); if (!inBox(C, 12) || A[1] - Bp[1] === Bp[0] - A[0] && false) return null; if (Bp[1] >= 0) return null; return { A: A, B: Bp, C: C, s: [-p, q] }; }, { A: [-2, 3], B: [2, -1], C: [6, -5], s: [-1, 1] });
       },
-      stem: function (s) { var dy = s.A[1] - s.B[1], dx = s.B[0] - s.A[0]; return '<b>Error analysis.</b> Testing ' + nP('A', s.A) + ', ' + nP('B', s.B) + ', ' + nP('C', s.C) + ', Jaya writes \\[m_{AB}=\\frac{y_A-y_B}{x_B-x_A}=\\frac{' + s.A[1] + '-' + nb(s.B[1]) + '}{' + s.B[0] + '-' + nb(s.A[0]) + '}=' + sT(red(dy, dx)) + ',\\qquad m_{BC}=\\frac{y_C-y_B}{x_C-x_B}=\\frac{' + s.C[1] + '-' + nb(s.B[1]) + '}{' + s.C[0] + '-' + nb(s.B[0]) + '}=' + sT(s.s) + '\\] and concludes the points are not collinear.'; },
+      stem: function (s) { var dy = s.A[1] - s.B[1], dx = s.B[0] - s.A[0]; return '<b>Error analysis.</b> Testing ' + nP('A', s.A) + ', ' + nP('B', s.B) + ', ' + nP('C', s.C) + ', Jaya writes \\[m_{AB}=\\frac{y_A-y_B}{x_B-x_A}=\\frac{' + s.A[1] + '-' + nb(s.B[1]) + '}{' + s.B[0] + '-' + nb(s.A[0]) + '}=' + sT(red(dy, dx)) + ',\\]\\[m_{BC}=\\frac{y_C-y_B}{x_C-x_B}=\\frac{' + s.C[1] + '-' + nb(s.B[1]) + '}{' + s.C[0] + '-' + nb(s.B[0]) + '}=' + sT(s.s) + '\\] and concludes the points are not collinear.'; },
       parts: [
         { id: 'e12a', level: 'EMG', make: function (r) {
           return B.mc(r, '(a) Look closely at her first fraction. What did she do differently there?', [

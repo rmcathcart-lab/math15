@@ -447,6 +447,7 @@ const verify = {
  * Explainer 5: finding the hypotenuse — square, add, then square root
  * ====================================================================================== */
 const HYP = {
+  demo: { label: 'Demo: legs 6 and 6', a: 6, b: 6 },
   ex3a: { label: '(a) legs 9 and 12', a: 9, b: 12 }, ex3b: { label: '(b) legs 4 and 8', a: 4, b: 8 },
   box: { label: 'Box ①: 60 and 80', a: 60, b: 80, u: 'cm' }, trunk: { label: 'Trunk ③: 50 and 120', a: 50, b: 120, u: 'cm' }
 };
@@ -454,7 +455,7 @@ const hypSteps = {
   title: 'Square, add, then square root',
   height: 440,
   minW: 900,
-  choices: [{ sep: 'Example 3 check:' }, { v: 'ex3a', label: HYP.ex3a.label }, { v: 'ex3b', label: HYP.ex3b.label }, { sep: 'Warm-up:' }, { v: 'box', label: HYP.box.label }, { v: 'trunk', label: HYP.trunk.label }],
+  choices: [{ v: 'demo', label: HYP.demo.label }, { sep: 'Example 3 check:' }, { v: 'ex3a', label: HYP.ex3a.label }, { v: 'ex3b', label: HYP.ex3b.label }, { sep: 'Warm-up:' }, { v: 'box', label: HYP.box.label }, { v: 'trunk', label: HYP.trunk.label }],
   intro: (k) => `Legs <b>${HYP[k].a}</b> and <b>${HYP[k].b}</b>${HYP[k].u ? ' cm' : ''}. How long is the hypotenuse? Press <b>Next</b>.`,
   make(stage, k, ex) {
     const d = HYP[k], { a, b } = d, u = d.u ? `\\text{ ${d.u}}` : '', W = ex.W, H = ex.def.height, svg = fullSvg(stage, W, H), GW = 470;

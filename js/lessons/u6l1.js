@@ -60,6 +60,12 @@
   }
   function legPairs(lo, hi, test) { var out = []; for (var a = lo; a <= hi; a++) for (var b = a; b <= hi; b++) if (test(a * a + b * b, a, b)) out.push([a, b]); return out; }
   function legHyp(cLo, cHi, test) { var out = []; for (var c = cLo; c <= cHi; c++) for (var b = 1; b < c; b++) if (test(c * c - b * b, c, b)) out.push([c, b]); return out; }
+  /* the assignment's pools: a few more basic triples, and never a triple the lesson's examples use (Examples 1-5 and the
+   * theorem picture: 3-4-5, 6-8-10, 9-12-15, 5-12-13, 7-24-25, 8-15-17) */
+  var MORE = BASE.concat([[11, 60, 61], [28, 45, 53], [33, 56, 65], [16, 63, 65]]);
+  var EXT = ['3,4,5', '6,8,10', '9,12,15', '5,12,13', '7,24,25', '8,15,17'];
+  function noEx(x) { var l = [x[0], x[1]].sort(function (p, q) { return p - q; }); return EXT.indexOf(l[0] + ',' + l[1] + ',' + x[2]) < 0; }
+  function asgT(lo, hi, f) { return triples(lo, hi, MORE).filter(function (x) { return noEx(x) && (!f || f(x)); }); }
   function sw(r, p) { return r.chance(0.5) ? [p[0], p[1]] : [p[1], p[0]]; }
 
   /* ---------- diagnoses: v is the student's value, tol the tolerance (exact 1e-6, decimals 0.051) ---------- */
@@ -245,13 +251,13 @@
 
     /* ---------- Part B ---------- */
     { num: '4', section: 'Part B — Verifying the Theorem and Finding the Hypotenuse', stem: 'Show both sides of the equation.', parts: [
-      { id: '4', level: 'BEG', make: function (r) { var T = r.chance(0.25) ? [5, 12, 13] : r.pick(triples(5, 41).filter(function (x) { return x[4] === 1 || x[2] <= 20; })); return verifyPart(r, T); } }] },
+      { id: '4', level: 'BEG', make: function (r) { var T = r.chance(0.25) ? [18, 24, 30] : r.pick(asgT(10, 45)); return verifyPart(r, T); } }] },
     { num: '5', stem: 'Show both sides of the equation.', parts: [
-      { id: '5', level: 'BEG', make: function (r) { var T = r.chance(0.25) ? [9, 12, 15] : r.pick(triples(10, 52).filter(function (x) { return x[4] > 1; })); return verifyPart(r, T); } }] },
+      { id: '5', level: 'BEG', make: function (r) { var T = r.chance(0.25) ? [15, 20, 25] : r.pick(asgT(10, 55, function (x) { return x[4] > 1; })); return verifyPart(r, T); } }] },
     { num: '6', stem: 'Find the hypotenuse of each right triangle from the two legs given.', parts: [
-      { id: '6', level: 'BEG', make: function (r) { var T = r.chance(0.2) ? [6, 8, 10] : r.pick(triples(5, 30)); return hypWhole(r, T); } }] },
+      { id: '6', level: 'BEG', make: function (r) { var T = r.chance(0.2) ? [20, 21, 29] : r.pick(asgT(10, 45)); return hypWhole(r, T); } }] },
     { num: '7', stem: 'Find the hypotenuse of each right triangle from the two legs given.', parts: [
-      { id: '7', level: 'BEG', make: function (r) { var T = r.chance(0.2) ? [10, 24, 26] : r.pick(triples(13, 41).filter(function (x) { return x[2] >= 13; })); return hypWhole(r, T); } }] },
+      { id: '7', level: 'BEG', make: function (r) { var T = r.chance(0.2) ? [12, 35, 37] : r.pick(asgT(13, 55)); return hypWhole(r, T); } }] },
     { num: '8', stem: 'Find the hypotenuse of each right triangle from the two legs given.', parts: [
       { id: '8', level: 'EMG', make: function (r) {
         var L = r.chance(0.2) ? [3, 6] : r.pick(legPairs(2, 12, function (N) { return hasSqF(N) && N <= 200; })), a = L[0], b = L[1], N = a * a + b * b;
@@ -261,29 +267,33 @@
 
     /* ---------- Part C ---------- */
     { num: '9', section: 'Part C — Finding a Missing Leg', stem: '', parts: [
-      { id: '9', level: 'BEG', make: function (r) { var T = r.chance(0.2) ? [6, 8, 10] : r.pick(triples(5, 30)), o = sw(r, T); return legWhole(T[2], o[0], o[1]); } }] },
+      { id: '9', level: 'BEG', make: function (r) { if (r.chance(0.2)) return legWhole(61, 11, 60); var T = r.pick(asgT(10, 45)), o = sw(r, T); return legWhole(T[2], o[0], o[1]); } }] },
     { num: '10', stem: '', parts: [
-      { id: '10', level: 'EMG', make: function (r) { var T = r.chance(0.2) ? [10, 24, 26] : r.pick(triples(13, 52)), lo = Math.min(T[0], T[1]), hi = Math.max(T[0], T[1]); return legWhole(T[2], hi, lo); } }] },
+      { id: '10', level: 'EMG', make: function (r) { var T = r.chance(0.2) ? [16, 30, 34] : r.pick(asgT(13, 65)), lo = Math.min(T[0], T[1]), hi = Math.max(T[0], T[1]); return legWhole(T[2], hi, lo); } }] },
 
     /* ---------- Part D ---------- */
     { num: '11', section: 'Part D — Applications and Extension', stem: '', parts: [
       { id: '11', level: 'PRG', make: function (r) {
-        var T = r.chance(0.2) ? [9, 12, 15] : r.pick(triples(10, 30)), base = Math.min(T[0], T[1]), h = Math.max(T[0], T[1]), c = T[2], u = r.pick(['m', 'm', 'ft']);
-        if (r.chance(0.3)) { var tmp = base; base = h; h = tmp; }
+        var dflt = r.chance(0.2), T = dflt ? [10, 24, 26] : r.pick(asgT(10, 40)), base = Math.min(T[0], T[1]), h = Math.max(T[0], T[1]), c = T[2], u = dflt ? 'ft' : r.pick(['m', 'ft', 'ft']);
+        if (!dflt && r.chance(0.3)) { var tmp = base; base = h; h = tmp; }
         return numPart('A ' + t(c) + '&nbsp;' + u + ' ladder leans against a vertical wall with its base ' + t(base) + '&nbsp;' + u + ' from the wall. How high up the wall does the ladder reach?', h, legDiag(c, base),
           'The wall, the ground and the ladder form a right triangle. The ladder is across from the right angle, so it is the <b>hypotenuse</b> (' + t(c) + ' ' + u + '); the distance from the wall is a leg.<br>' + legSol(c, base) + ' ' + u + '.',
           ['Sketch it: wall, ground and ladder make a right triangle. Which side is across from the right angle?', HINT_LEG[0]], 'ladder ' + c + ',' + base, u, [Math.round(Math.sqrt(c * c + base * base) * 10) / 10, c - base]);
       } }] },
     { num: '12', stem: '', parts: [
       { id: '12', level: 'EMG', make: function (r) {
-        var T = r.chance(0.2) ? [5, 12, 13] : r.pick(triples(5, 30)), o = sw(r, T), u = r.pick(['ft', 'ft', 'm']), thing = r.pick([['gate', 'diagonal support brace', 'brace'], ['door frame', 'diagonal brace', 'brace'], ['window', 'diagonal strip of trim', 'trim'], ['bookshelf back', 'diagonal support wire', 'wire']]);
-        return numPart('A rectangular ' + thing[0] + ' is ' + t(o[0]) + '&nbsp;' + u + ' wide and ' + t(o[1]) + '&nbsp;' + u + ' tall. A ' + thing[1] + ' will be installed corner to corner. Find the length of the ' + thing[2] + '.', T[2], hypDiag(o[0], o[1]),
-          'The ' + thing[2] + ' cuts the rectangle into two right triangles; the width and the height are the legs and the ' + thing[2] + ' is the hypotenuse.<br>' + hypSol(o[0], o[1]) + ' ' + u + '.',
-          ['The corners of a rectangle are right angles, so the diagonal is the hypotenuse of a right triangle.', HINT_HYP[1]], 'brace ' + o.join(','), u, [o[0] + o[1]]);
+        /* screens: width × height → diagonal (wider than tall; 4:3 and 15:8 shapes) */
+        var TV = [[32, 24, 40], [20, 15, 25], [28, 21, 35], [36, 27, 45], [40, 30, 50], [44, 33, 55], [48, 36, 60], [52, 39, 65], [56, 42, 70], [60, 45, 75], [30, 16, 34], [45, 24, 51], [60, 32, 68], [75, 40, 85]];
+        var MON = [[16, 12, 20], [24, 18, 30], [32, 24, 40], [20, 15, 25], [28, 21, 35], [30, 16, 34], [36, 27, 45], [40, 30, 50], [45, 24, 51]];
+        var dflt = r.chance(0.2), mon = !dflt && r.chance(0.3), S = dflt ? TV[0] : r.pick(mon ? MON : TV), w = S[0], ht = S[1], d = S[2];
+        var nm = mon ? ['computer monitor', 'monitor'] : ['TV screen', 'TV'];
+        return numPart('A rectangular ' + nm[0] + ' is ' + t(w) + '&nbsp;in wide and ' + t(ht) + '&nbsp;in tall. A ' + nm[1] + '’s size is the length of the diagonal, corner to corner. Find the size of this ' + nm[1] + '.', d, hypDiag(w, ht),
+          'The diagonal cuts the screen into two right triangles; the width and the height are the legs and the diagonal is the hypotenuse.<br>' + hypSol(w, ht) + ' in — it is a <b>' + d + '-inch</b> ' + nm[1] + '.',
+          ['The corners of a rectangle are right angles, so the diagonal is the hypotenuse of a right triangle.', HINT_HYP[1]], 'screen ' + nm[1] + ' ' + w + ',' + ht, 'in', [w + ht]);
       } }] },
     { num: '13', stem: '<i>(Multiple Choice)</i>', parts: [
       { id: '13', level: 'BEG', make: function (r) {
-        var T = r.chance(0.2) ? [7, 24, 25] : r.pick(triples(5, 41).filter(function (x) { return Math.abs(x[1] - x[0]) > 1 && x[0] * x[1] !== x[2] && x[1] - x[0] !== x[2]; })), o = sw(r, T), a = o[0], b = o[1];
+        var T = r.chance(0.2) ? [28, 45, 53] : r.pick(asgT(10, 55, function (x) { return Math.abs(x[1] - x[0]) > 1 && x[0] * x[1] !== x[2] && x[1] - x[0] !== x[2]; })), o = sw(r, T), a = o[0], b = o[1];
         return mcP(r, 'A right triangle has legs of length ' + legsTex(a, b) + '. What is the length of the hypotenuse?', [
           { html: t(T[2]), right: true },
           { html: t(a + b), why: 'That adds the legs. Square them first: ' + t('\\sqrt{' + a + '^{2}+' + b + '^{2}}') + '.', code: 'add' },
@@ -675,7 +685,7 @@
       { id: 'e18', level: 'PRG', make: function (r) {
         var D = r.chance(0.2) ? [32, 18] : r.pick([[32, 18], [40, 22], [48, 27], [24, 14], [28, 16], [44, 25], [36, 20], [52, 29], [56, 32], [20, 11], [60, 34], [64, 36], [30, 17], [42, 24], [46, 26], [50, 28], [38, 21], [26, 15], [34, 19], [54, 30], [58, 33], [62, 35], [70, 39], [22, 12], [66, 37], [72, 41]].filter(function (q) { return !halfway(Math.hypot(q[0], q[1]), 1); })), N = D[0] * D[0] + D[1] * D[1];
         return eitherPart('Television screens are advertised by the length of their diagonal. A screen measures ' + t(D[0]) + '&nbsp;inches across and ' + t(D[1]) + '&nbsp;inches high. What size would this television be advertised as, to one decimal place?', N, 1, hypDiag(D[0], D[1]),
-          'The width and height are the legs and the diagonal is the hypotenuse.<br>' + hypSol(D[0], D[1], 1) + ' inches.', ['The diagonal is the hypotenuse of a right triangle with the width and height as legs.'], 'TV ' + D.join(','), 'inches', [String(D[0] + D[1])]);
+          'The width and height are the legs and the diagonal is the hypotenuse.<br>' + hypSol(D[0], D[1], 1) + ' inches, so it would be advertised as a <b>' + dec(Math.sqrt(N), 1) + '-inch</b> television.', ['The diagonal is the hypotenuse of a right triangle with the width and height as legs.'], 'TV ' + D.join(','), 'inches', [String(D[0] + D[1])]);
       } }] },
     { num: '19', stem: function (sh) { return '<b>Stretch.</b> A shipping crate measures ' + t(sh.c[0]) + '&nbsp;ft by ' + t(sh.c[1]) + '&nbsp;ft by ' + t(sh.c[2]) + '&nbsp;ft (the ' + t(sh.c[0]) + ' by ' + t(sh.c[1]) + ' face is the base).'; },
       shared: function (r) { var c = r.chance(0.2) ? [3, 4, 12, 5, 13] : r.pick(CRATES), o = sw(r, [c[0], c[1]]); var Dd = c[4], rod = r.pick([Dd + 0.5, Dd + 1.5, Dd - 0.5, Dd - 1.5]); if (c[0] === 3 && c[2] === 12 && r.chance(0.5)) rod = 13.5; if (rod <= Math.max(c[0], c[1], c[2])) rod = Dd + 0.5; return { c: [o[0], o[1], c[2], c[3], c[4]], rod: rod }; }, parts: [
