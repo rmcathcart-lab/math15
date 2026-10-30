@@ -353,43 +353,60 @@ const cancel = {
 const NG = { a: '-4x-12', b: '-5a+15', c: '-3x^2+9x-6' };
 const flipSigns = {
   title: 'Take out a negative: every sign flips',
-  height: 420,
+  height: 470,
   minW: 760,
   choices: [{ v: 'a', label: tex(NG.a) }, { sep: 'Example 4 check:' }, { v: 'b', label: '(b)' }, { v: 'c', label: '(c)' }],
   intro: (k) => `${T(polyT(parsePoly(NG[k])))} starts with a <b>negative</b> term. Factor it so the bracket starts with a <b>positive</b> term.`,
   make(stage, key, ex) {
     const W = ex.W, P = parsePoly(NG[key]), n = P.length, g = gcfOf(P), gT = termT(g, true), Q = P.map((t) => divT(t, g)), pT = polyT(P), qT = polyT(Q);
-    const cw = Math.min(170, (W - 200) / n), x0 = (W - n * (cw + 14) + 14) / 2 + 40, yC = 60, ch = 110;
-    const gBox = add(stage, h('div', 'u4l2-gbox neg', `<div class="u4l2-gbh">÷ GCF</div><div class="u4l2-gbv">${K(gT)}</div>`), 22, yC + ch / 2); gBox.style.translate = '0 -50%'; hide(gBox);
-    const cardHTML = (t, top) => `<div class="u4l2-ctop">${top}</div><div class="u4l2-cval ${t.n < 0 ? 'neg' : 'pos'}">${K(termT(t, true))}</div>`;
-    const cards = P.map((t, i) => add(stage, box(h('div', 'u4l2-card'), cw, ch), x0 + i * (cw + 14), yC));
-    cards.forEach((e, i) => { e.innerHTML = cardHTML(P[i], 'term'); });
-    const rules = add(stage, h('div', 'u4l2-rules', `<span>${K('(-)\\div(-)=(+)')}</span><span>${K('(+)\\div(-)=(-)')}</span>`), W / 2, yC + ch + 34); rules.style.translate = '-50% -50%'; hide(rules);
-    const wr = add(stage, h('div', 'u4l2-pc c', K(`${pT}=\\boldsymbol{${gT}(${qT})}`)), W / 2, yC + ch + 98); hide(wr);
-    const chk = add(stage, h('div', 'u4l2-fixc c', 'check: ' + K(Q.map((q, i) => `${fT(g)}\\cdot ${fT(q)}=${termT(P[i], true)}`).join(',\\ \\ ')) + ' ✓'), W / 2, yC + ch + 148); hide(chk);
+    const lx = 22, x0 = 170, colW = (W - x0 - 14) / n, cx = (i) => x0 + colW * (i + 0.5);
+    const yA = 40, yB = 122, yS = 182, yC = 244, yD = 364, yE = 430;
+    const lab = (y, t) => { const e = add(stage, h('div', 'u4l2-plab', t), lx, y); e.style.translate = '0 -50%'; return e; };
+    lab(yA, 'terms'); const lC = lab(yC, 'write'), lD = lab(yD, 'check'); hide(lC, lD);
+    const tA = P.map((t, i) => add(stage, h('div', 'u4l2-pt c', K(termT(t, i === 0))), cx(i), yA));
+    const gBox = add(stage, h('div', 'u4l2-gbox neg', `<div class="u4l2-gbh">÷ GCF</div><div class="u4l2-gbv">${K(gT)}</div>`), lx, yB + 6); gBox.style.translate = '0 -50%'; hide(gBox);
+    // each term over the negative GCF; the two signs being divided are red, the answer amber
+    const sgnT = (t) => (t.n < 0 ? '\\htmlClass{u4l2-sg}{-}' : '');
+    const tB = P.map((t, i) => { const e = add(stage, h('div', 'u4l2-pf c', K(`\\dfrac{${sgnT(t)}${bodyT(t)}}{\\htmlClass{u4l2-sg}{-}${fT({ n: -g.n, v: g.v })}}\\htmlClass{u4l2-qe}{=}\\htmlClass{u4l2-qv}{${termT(Q[i], true)}}`)), cx(i), yB); fit(e, colW - 12); hide(e); return e; });
+    const qe = tB.map((e) => [...spans(e, 'u4l2-qe'), ...spans(e, 'u4l2-qv')]); qe.flat().forEach((e) => hide(e));
+    // the sign rule used for each term, right under it
+    const S = (t) => (t.n < 0 ? '-' : '+');
+    const chips = P.map((t, i) => { const e = add(stage, h('div', 'u4l2-sgn c ' + (Q[i].n < 0 ? 'neg' : 'pos'), K(`(${S(t)})\\div(\\htmlClass{u4l2-sg}{-})=\\htmlClass{u4l2-sr}{(${S(Q[i])})}`)), cx(i), yS); fit(e, colW - 12); hide(e); return e; });
+    const cSrc = `\\htmlClass{u4l2-ce}{${pT}=}\\,\\htmlClass{u4l2-tg}{${gT}}\\htmlClass{u4l2-cb}{(}` + Q.map((q, i) => (i === 0 ? `\\htmlClass{u4l2-tq0}{${termT(q, true)}}` : `\\mathbin{\\htmlClass{u4l2-tq${i}}{${q.n < 0 ? '-' : '+'}}}\\htmlClass{u4l2-tq${i}}{${bodyT(q)}}`)).join('') + '\\htmlClass{u4l2-cb}{)}';
+    const rowC = add(stage, h('div', 'u4l2-pc', K(cSrc)), x0 - 6, yC); rowC.style.translate = '0 -50%'; fit(rowC, W - x0 - 20);
+    const cParts = { e: spans(rowC, 'u4l2-ce'), g: spans(rowC, 'u4l2-tg'), b: spans(rowC, 'u4l2-cb'), q: Q.map((q, i) => spans(rowC, 'u4l2-tq' + i)) };
+    [...cParts.e, ...cParts.g, ...cParts.b, ...cParts.q.flat()].forEach((e) => hide(e));
+    const dist = distCheck(stage, x0 - 6, yD, W - x0 - 20, g, Q, P);
     const pg = { n: -g.n, v: g.v }, Qp = P.map((t) => divT(t, pg));
-    const alt = add(stage, h('div', 'u4l2-alt c', `<span class="u4l2-altx">not the convention:</span> ${K(`${termT(pg, true)}(${polyT(Qp)})`)} <span class="u4l2-altx">bracket starts with a minus</span>`), W / 2, yC + ch + 196); hide(alt);
-    const flipCard = async (c, e, html, delay) => {
-      await c.sleep(delay);
-      await c.anim(e, [{ transform: 'scaleX(1)' }, { transform: 'scaleX(0)' }], 220);
-      e.innerHTML = html; e.classList.add('done');
-      await c.anim(e, [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], 220);
-    };
+    const alt = add(stage, h('div', 'u4l2-alt c', `<span class="u4l2-altx">not the convention:</span> ${K(`${termT(pg, true)}(${polyT(Qp)})`)} <span class="u4l2-altx">bracket starts with a minus</span>`), W / 2, yE); hide(alt);
     return [{
       cap: `The first term, ${T(termT(P[0], true))}, is <b>negative</b>. The GCF of the numbers is ${Math.abs(g.n)}, so take out <b>${T(gT)}</b> instead of ${T(String(Math.abs(g.n)))}.`,
-      run: (c) => Promise.all([c.pop(gBox, 420), ...cards.map((e) => pulse(c, e, 1.05))])
+      run: (c) => Promise.all([c.pop(gBox, 420), ...tA.map((e) => pulse(c, e, 1.08))])
     }, {
-      cap: `Divide each term by ${T(gT)}. ${listAnd(P.map((t, i) => T(`${termT(t, true)}\\div ${fT(g)}=${termT(Q[i], true)}`)))}. Dividing by a negative <b>flips every sign</b>.`,
+      cap: `<b>Divide every term</b> by ${T(gT)}: ${listAnd(P.map((t, i) => T(`${termT(t, true)}\\div ${fT(g)}=${termT(Q[i], true)}`)))}. Watch the signs: dividing by a negative <b>flips every sign</b>.`,
       run: async (c) => {
-        await c.fadeIn(rules, 300);
-        await Promise.all(cards.map((e, i) => flipCard(c, e, cardHTML(Q[i], `÷ ${K(fT(g))}`), i * 280)));
+        await Promise.all(tB.map((e, i) => c.fadeIn(e, 350, { delay: i * 120 })));
+        for (let i = 0; i < n; i++) {
+          await c.fadeIn(chips[i], 300);
+          await showSpans(c, qe[i], 320);
+        }
       }
     }, {
-      cap: `Write it: ${T(`${pT}=${gT}(${qT})`)}. The bracket starts with a <b>positive</b> term ✓`,
-      run: (c) => c.fadeIn(wr, 400)
+      cap: `<b>Write</b> ${T(gT)} <b>out front</b> and the answers <b>in the bracket</b>: ${T(`${pT}=${gT}(${qT})`)}. The bracket starts with a <b>positive</b> term ✓`,
+      run: async (c) => {
+        await Promise.all([c.fadeIn(lC, 250), showSpans(c, [...cParts.e, ...cParts.b], 300)]);
+        await fly(c, stage, K(gT), stagePos(stage, gBox.lastChild), stagePos(stage, cParts.g[0]), 'u4l2-flyg', 600);
+        cParts.g.forEach((e) => (e.style.opacity = 1));
+        await Promise.all(Q.map(async (q, i) => {
+          await c.sleep(i * 150);
+          await fly(c, stage, K(termT(q, i === 0)), stagePos(stage, spans(tB[i], 'u4l2-qv')[0]), stagePos(stage, cParts.q[i][cParts.q[i].length - 1]), 'u4l2-flyq', 600);
+          cParts.q[i].forEach((e) => (e.style.opacity = 1));
+        }));
+        cParts.q.flat().forEach((e) => (e.style.opacity = 1));
+      }
     }, {
-      cap: `<b>Check by expanding:</b> ${listAnd(Q.map((q, i) => T(`${fT(g)}\\cdot ${fT(q)}=${termT(P[i], true)}`)))}` + (Q.some((q) => q.n < 0) ? '. A negative times a negative is positive ✓' : ' ✓'),
-      run: (c) => c.fadeIn(chk, 400)
+      cap: `<b>Check by distributing:</b> multiply ${T(gT)} by <b>each</b> term in the bracket. ${listAnd(Q.map((q, i) => T(`${fT(g)}\\cdot ${fT(q)}=${termT(P[i], true)}`)))}` + (Q.some((q) => q.n < 0) ? '. A negative times a negative is positive ✓' : '. Those are the original terms ✓'),
+      run: async (c) => { await c.fadeIn(lD, 250); await dist.run(c); }
     }, {
       cap: `Why not take out ${T(termT(pg, true))}? ${T(`${termT(pg, true)}(${polyT(Qp)})`)} also expands back, but the bracket starts with a minus. In this unit we take out the <b>negative</b>.`,
       run: (c) => c.fadeIn(alt, 400)
