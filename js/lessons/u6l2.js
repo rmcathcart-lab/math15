@@ -279,7 +279,7 @@
       { id: '3b', level: 'EMG', make: function (r) { if (r.chance(0.15)) return hvLen('T', [-480, 90], 'U', [365, 90]); var y = 5 * r.int(4, 40); return hvLen('T', [-5 * r.int(40, 120), y], 'U', [5 * r.int(30, 100), y]); } },
       { id: '3c', level: 'EMG', make: function (r) { if (r.chance(0.15)) return hvLen('V', [-1200, -50], 'W', [-1200, 730]); var x = -50 * r.int(10, 40); return hvLen('V', [x, -10 * r.int(2, 20)], 'W', [x, 10 * r.int(30, 99)]); } },
       { id: '3d', level: 'EMG', make: function (r) { if (r.chance(0.15)) return hvLen('X', [2075, 600], 'Y', [-925, 600]); var y = 50 * r.int(4, 20); return hvLen('X', [25 * r.int(40, 120), y], 'Y', [-25 * r.int(10, 60), y]); } }] },
-    varQuestion('4', null, 'Determine whether each line segment is horizontal or vertical, and write an expression for its length.', [[['x', 'y'], ['p', 'q'], ['m', 'n']], [['h', 'k'], ['p', 'q'], ['u', 'v']], [['a', 'b', 'c'], ['p', 'q', 'r'], ['u', 'v', 'w']], [['s', 't', 'w'], ['j', 'k', 'm'], ['r', 'u', 'z']]],
+    varQuestion('4', null, 'Determine whether each line segment is horizontal or vertical, and write an expression for its length.', [[['x', 'y'], ['p', 'q'], ['m', 'n']], [['h', 'k'], ['p', 'q'], ['u', 'v']], [['a', 'b', 'c'], ['p', 'q', 'r'], ['u', 'v', 'w'], ['d', 'f', 'g'], ['g', 'h', 'k'], ['m', 'n', 'p']], [['s', 't', 'w'], ['j', 'k', 'm'], ['r', 'u', 'z'], ['b', 'c', 'd'], ['f', 'g', 'h'], ['p', 'q', 's']]],
       ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], ['4hv', '4a', '4b', '4c', '4d'], ['LIM', 'BEG', 'EMG', 'PRG', 'PRG']),
     { num: '5', stem: function (sh) { return 'Can the length of a line segment be negative? Consider the horizontal segment from ' + t('P' + P2(sh.P)) + ' to ' + t('Q' + P2(sh.Q)) + '.'; },
       shared: function (r) { var y = r.int(-8, 8), a = r.int(-9, 4), b = a + r.int(3, 12); return r.chance(0.5) ? { P: [a, y], Q: [b, y] } : { P: [b, y], Q: [a, y] }; }, parts: [
@@ -539,7 +539,7 @@
       { id: 'e4b', level: 'EMG', make: function (r) { if (r.chance(0.15)) return hvLen('U', [-3.75, 4], 'V', [-3.75, 9.25]); var x = -r.int(1, 39) / 4, a = r.int(-12, 8) + r.pick([0, 0.25, 0.5, 0.75]); return hvLen('U', [x, a], 'V', [x, a + r.int(2, 9) + r.pick([0.25, 0.5, 0.75])]); } },
       { id: 'e4c', level: 'PRG', make: function (r) { return fracLen(r, true, r.chance(0.15) ? [1, -7, 2, -3] : null); } },
       { id: 'e4d', level: 'PRG', make: function (r) { return fracLen(r, false, r.chance(0.15) ? [5, -11, 4, -6] : null); } }] },
-    varQuestion('5', null, 'State whether each segment is horizontal or vertical, and write an expression for its length. Assume every letter stands for a real number.', [[['p', 'q'], ['a', 'b'], ['h', 'k']], [['m', 'n'], ['s', 't'], ['p', 'q']], [['b', 'a', 'c'], ['q', 'p', 'r'], ['v', 'u', 'w']], [['s', 'r', 't'], ['k', 'j', 'm'], ['y', 'x', 'z']]],
+    varQuestion('5', null, 'State whether each segment is horizontal or vertical, and write an expression for its length. Assume every letter stands for a real number.', [[['p', 'q'], ['a', 'b'], ['h', 'k']], [['m', 'n'], ['s', 't'], ['p', 'q']], [['b', 'a', 'c'], ['q', 'p', 'r'], ['v', 'u', 'w'], ['f', 'd', 'g'], ['h', 'g', 'k'], ['n', 'm', 'p']], [['s', 'r', 't'], ['k', 'j', 'm'], ['y', 'x', 'z'], ['c', 'b', 'd'], ['g', 'f', 'h'], ['q', 'p', 's']]],
       ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], ['e5hv', 'e5a', 'e5b', 'e5c', 'e5d'], ['LIM', 'BEG', 'EMG', 'PRG', 'PRG']),
 
     /* ---------- Part B ---------- */

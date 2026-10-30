@@ -341,19 +341,6 @@
   function moneyPart(prompt, v, cands, sol, hints, text) {
     return { prompt: prompt, input: { type: 'number', before: '$' }, check: moneyCheck(v, cands), key: v.toFixed(2), answer: t('\\$' + v.toFixed(2)), solution: sol, hints: hints, text: text, good: [String(cl(v))], bad: (cands || []).map(function (c) { return c[0].toFixed(2); }) };
   }
-  /* two points typed as an example; okf(P, Q) -> null when fine, or {code, hint} */
-  function examplePart(prompt, sample, okf, sol, hints, text) {
-    var chk = function (resp) {
-      var r1 = readPts(resp[0]), r2 = readPts(resp[1]);
-      var e1 = readRes(r1) || (r1.pts.length !== 1 ? form('pt-many', 'Give one point in each box.') : null); if (e1) return { v: e1.v, code: e1.code, hint: 'First point: ' + e1.hint };
-      var e2 = readRes(r2) || (r2.pts.length !== 1 ? form('pt-many', 'Give one point in each box.') : null); if (e2) return { v: e2.v, code: e2.code, hint: 'Second point: ' + e2.hint };
-      var P = [r1.pts[0].x, r1.pts[0].y], Q = [r2.pts[0].x, r2.pts[0].y];
-      if (samePt(P, Q)) return wrong('u6l5-same-pt', 'Your two points are the same point, so there is no segment. Choose two different endpoints.');
-      var h = okf(P, Q); return h ? wrong(h.code, h.hint) : ok();
-    };
-    return { prompt: prompt, input: { type: 'fields', fields: [ptField('Endpoint 1:', 'P1'), ptField('Endpoint 2:', 'P2')] }, check: chk, key: sample.map(ptKey), answer: 'For example ' + t(ptT(sample[0])) + ' and ' + t(ptT(sample[1])) + ' (many answers work).', solution: sol, hints: hints, text: text, bad: [[ptKey(sample[0]), ptKey(sample[0])]] };
-  }
-
   /* ======================= Assignment 5 ======================= */
   var QUESTIONS = [
     { num: '1', section: 'Part A — Finding a missing endpoint', stem: 'In each case, one endpoint and the midpoint of a segment are given. Determine the coordinates of the other endpoint.', parts: [
@@ -548,11 +535,11 @@
     /* ---- EP 5: reasoning ---- */
     { num: '5', stem: '<b>Reasoning.</b> Consider a segment with endpoints ' + t('(x_1,\\ y_1)') + ' and ' + t('(x_2,\\ y_2)') + '.', parts: [
       { id: 'e5a', sub: 'a', level: 'EMG', make: function (r) { return condMC(r, 'x'); } },
-      { id: 'e5a2', sub: 'a, example', level: 'PRG', make: function (r) { var a = r.int(1, 7), b = r.int(1, 8), c = r.int(-6, 6); var Q = [c === a ? c + 1 : c, -b]; return examplePart('Give an example: two endpoints whose midpoint lands on the ' + t('x') + '-axis.', [[a, b], Q], exChk('x'), 'The midpoint is on the ' + t('x') + '-axis when ' + t('\\tfrac{y_1+y_2}{2}=0') + ', i.e. ' + t('y_2=-y_1') + '. For example ' + t(ptT([a, b])) + ' and ' + t(ptT(Q)) + ' have midpoint ' + t(ptT(mid([a, b], Q), true)) + '.', ['Make the two ' + t('y') + '-coordinates opposites; the ' + t('x') + '-coordinates can be anything.'], 'example: midpoint on the x-axis'); } },
+      { id: 'e5a2', sub: 'a, example', level: 'PRG', make: function (r) { return exPart(r, 'x'); } },
       { id: 'e5b', sub: 'b', level: 'EMG', make: function (r) { return condMC(r, 'y'); } },
-      { id: 'e5b2', sub: 'b, example', level: 'PRG', make: function (r) { var a = r.int(1, 7), b = r.int(1, 8), c = r.int(-6, 6); var Q = [-a, c === b ? c + 1 : c]; return examplePart('Give an example: two endpoints whose midpoint lands on the ' + t('y') + '-axis.', [[a, b], Q], exChk('y'), 'The midpoint is on the ' + t('y') + '-axis when ' + t('x_2=-x_1') + '. For example ' + t(ptT([a, b])) + ' and ' + t(ptT(Q)) + ' have midpoint ' + t(ptT(mid([a, b], Q), true)) + '.', ['Make the two ' + t('x') + '-coordinates opposites; the ' + t('y') + '-coordinates can be anything.'], 'example: midpoint on the y-axis'); } },
+      { id: 'e5b2', sub: 'b, example', level: 'PRG', make: function (r) { return exPart(r, 'y'); } },
       { id: 'e5c', sub: 'c', level: 'EMG', make: function (r) { return condMC(r, 'o'); } },
-      { id: 'e5c2', sub: 'c, example', level: 'PRG', make: function (r) { var a = r.pick(pm(1, 7)), b = r.pick(pm(1, 8)); return examplePart('Give an example: two endpoints whose midpoint is the origin.', [[a, b], [-a, -b]], exChk('o'), 'The midpoint is ' + t('(0,\\ 0)') + ' when ' + t('x_2=-x_1') + ' and ' + t('y_2=-y_1') + '. For example ' + t(ptT([a, b])) + ' and ' + t(ptT([-a, -b])) + '.', ['Use a point and its opposite: change the sign of <b>both</b> coordinates.'], 'example: midpoint at the origin'); } }] },
+      { id: 'e5c2', sub: 'c, example', level: 'PRG', make: function (r) { return exPart(r, 'o'); } }] },
     /* ---- EP 6: map ---- */
     { num: '6', section: 'Part B — Maps, routes, and costs', shared: function (r) {
         if (r.chance(0.2)) return { L: [-6, 2], R: [6, 7], G: [2, -6], s: 100 };
@@ -587,8 +574,8 @@
     /* ---- EP 7: gate ---- */
     { num: '7', shared: function (r) {
         if (r.chance(0.2)) return { w: 2.4, h: 1.8, c: 14.5 };
-        var T = r.pick([[4, 3, 5], [3, 4, 5], [12, 5, 13], [8, 6, 10], [15, 8, 17]]), f = T[0] === 12 || T[0] === 15 ? 0.1 : r.pick([0.2, 0.3, 0.4, 0.5, 0.6]);
-        return { w: cl(T[0] * f), h: cl(T[1] * f), c: r.pick([9.5, 11.25, 12.5, 14.5, 16.75, 18, 21.5]) };
+        var D = [[4, 3, 0.2], [4, 3, 0.3], [4, 3, 0.4], [4, 3, 0.5], [4, 3, 0.6], [4, 3, 0.7], [4, 3, 0.8], [3, 4, 0.3], [3, 4, 0.4], [3, 4, 0.5], [3, 4, 0.6], [8, 6, 0.1], [8, 6, 0.2], [8, 6, 0.3], [12, 5, 0.1], [12, 5, 0.2], [15, 8, 0.1], [24, 7, 0.1], [12, 9, 0.1], [12, 9, 0.2]];
+        return pickWhere(function () { var d = r.pick(D); return { w: cl(d[0] * d[2]), h: cl(d[1] * d[2]), c: r.pick([9.5, 11.25, 12.5, 14.5, 16.75, 18, 21.5, 24, 8.75]) }; }, function (z) { return isInt(cl(Math.hypot(z.w, z.h) * z.c * 100)); });
       },
       stem: function (o) { return 'A rectangular gate is ' + t(nT(o.w)) + '&nbsp;m wide and ' + t(nT(o.h)) + '&nbsp;m tall. Place the bottom-left corner at ' + t('(0,\\ 0)') + ', so the top-right corner is at ' + t(ptT([o.w, o.h])) + '. A diagonal brace runs corner to corner.' + gateFig(o); },
       parts: [
@@ -604,7 +591,7 @@
         } },
         { id: 'e7c', sub: 'c', level: 'EMG', make: function (r, o) {
           var L = cl(Math.hypot(o.w, o.h)), v = cl(2 * L * o.c);
-          return moneyPart('The builder adds a second brace from ' + t(ptT([0, o.h])) + ' to ' + t(ptT([o.w, 0])) + ', forming an X. Determine the total cost of both braces.', v, [[cl(L * o.c), 'u6l5-cost-one', 'That is one brace. The second brace is the other diagonal — the same length — so double it.']],
+          return moneyPart('The builder decides to add a second brace running from ' + t(ptT([0, o.h])) + ' to ' + t(ptT([o.w, 0])) + ', forming an X. At ' + t('\\$' + o.c.toFixed(2)) + ' per metre, determine the total cost of both braces.', v, [[cl(L * o.c), 'u6l5-cost-one', 'That is one brace. The second brace is the other diagonal — the same length — so double it.']],
             'The second brace is the other diagonal: ' + t('\\sqrt{(' + nT(o.w) + '-0)^{2}+(0-' + nT(o.h) + ')^{2}}=' + nT(L)) + '&nbsp;m, the same length.<br>' + t('2\\times \\$' + cl(L * o.c).toFixed(2) + '=\\$' + v.toFixed(2)) + '.', ['How long is the second brace?'], 'cost of two braces');
         } }] },
     /* ---- EP 8: courier ---- */
@@ -862,6 +849,25 @@
     var opts = [{ html: R[w].html, right: true }].concat(w === 'x' ? [{ html: R.y.html, why: 'Opposite ' + t('x') + '’s put the midpoint on the <b>' + t('y') + '-axis</b> (' + t('x=0') + ').' }, W[0], W[2]] : w === 'y' ? [{ html: R.x.html, why: 'Opposite ' + t('y') + '’s put the midpoint on the <b>' + t('x') + '-axis</b> (' + t('y=0') + ').' }, W[1], W[2]] :
       [{ html: R.x.html, why: 'That only makes ' + t('y=0') + ' (the ' + t('x') + '-axis). The origin needs ' + t('x=0') + ' as well.' }, { html: R.y.html, why: 'That only makes ' + t('x=0') + '. The origin needs ' + t('y=0') + ' too.' }, { html: 'One endpoint must be the origin.', why: 'If one endpoint is ' + t('(0,\\ 0)') + ', the midpoint is halfway to the other endpoint — not the origin.' }]);
     return mcPart(r, 'What must be true for the midpoint to land ' + R[w].where + '?', opts, R[w].sol, ['The midpoint’s coordinates are ' + t('\\tfrac{x_1+x_2}{2}') + ' and ' + t('\\tfrac{y_1+y_2}{2}') + '. When is each one ' + t('0') + '?'], 'condition: midpoint ' + w);
+  }
+  /* EP 5 examples: one endpoint is given, the student chooses the other (any point that works) */
+  function exPart(r, w) {
+    var P = [r.pick(pm(1, 8)), r.pick(pm(1, 8))], c = r.pick(pm(1, 6)), Q = w === 'x' ? [c, -P[1]] : w === 'y' ? [-P[0], c] : [-P[0], -P[1]];
+    var where = w === 'x' ? 'on the ' + t('x') + '-axis' : w === 'y' ? 'on the ' + t('y') + '-axis' : 'at the origin';
+    var okf = exChk(w);
+    var chk = function (resp) {
+      var L = readPts(resp), rr = readRes(L); if (rr) return rr;
+      if (L.pts.length !== 1) return form('pt-many', 'Give just one point: the other endpoint.');
+      var q = [L.pts[0].x, L.pts[0].y];
+      if (samePt(q, P)) return wrong('u6l5-same-pt', 'That is the endpoint you were given. Choose a <b>different</b> point for the other end.');
+      var h = okf(P, q); if (h) return wrong(h.code, h.hint);
+      return L.noParen ? form('pt-brackets', 'That works — write the point in brackets: ' + t('(x,\\ y)') + '.') : ok();
+    };
+    var rule = w === 'x' ? 'its ' + t('y') + '-coordinate must be ' + t(nT(-P[1])) + ' (the opposite of ' + t(nT(P[1])) + '); its ' + t('x') + '-coordinate can be anything' : w === 'y' ? 'its ' + t('x') + '-coordinate must be ' + t(nT(-P[0])) + ' (the opposite of ' + t(nT(P[0])) + '); its ' + t('y') + '-coordinate can be anything' : 'both coordinates must be opposites: ' + t(ptT(Q));
+    return { prompt: 'Give an example. One endpoint is ' + t(ptT(P)) + '. Choose the other endpoint so that the midpoint lands ' + where + '.' + (w === 'o' ? '' : ' (Many answers work.)'), input: { type: 'math', keys: 'pairs', placeholder: 'e.g. (3, -2)', before: 'Other endpoint:' },
+      check: chk, key: ptKey(Q), answer: (w === 'o' ? '' : 'For example ') + t(ptT(Q)) + (w === 'o' ? '' : ' — any point where ' + rule), solution: 'For the other endpoint, ' + rule + '. E.g. ' + t(mLine(P, Q, 'M', true)) + ' ✓',
+      hints: ['The midpoint’s coordinates are ' + t('\\tfrac{x_1+x_2}{2}') + ' and ' + t('\\tfrac{y_1+y_2}{2}') + '. Which of them has to be ' + t('0') + '?', 'A sum is ' + t('0') + ' when the two numbers are opposites.'], text: 'example: midpoint ' + w,
+      good: w === 'o' ? [] : [ptKey(w === 'x' ? [c + 7, -P[1]] : [-P[0], c + 7])], bad: [ptKey(P), ptKey(w === 'y' ? [P[0], -P[1]] : [-P[0], P[1]])] };
   }
   function exChk(w) {
     return function (P, Q) {

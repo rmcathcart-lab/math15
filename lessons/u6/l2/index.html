@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Measuring the Length of a Line Segment · Math 15 6.2</title>
+<meta name="description" content="Math 15 Unit 6 Lesson 2: lines and line segments on the Cartesian plane, and the length of a horizontal or vertical segment, by counting grid squares or by subtracting coordinates (length = |x₂ − x₁| or |y₂ − y₁|). Why the absolute value, lengths with variables, and perimeter on a grid. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u6l2.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u6l2">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 6 Characteristics of Linear Relations · Lesson 2</div>
+  <h1>Measuring the Length of a Line Segment</h1>
+  <p class="lede">A <b>line segment</b> is the piece of a line between two endpoints, so it has a length we can measure. When a segment is <b class="u6l2-ch">horizontal</b> or <b class="u6l2-cv">vertical</b>, we can count the grid squares, or skip the grid and just <b>subtract the coordinates</b> that change. A length is never negative, so we keep the size and drop the sign.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>tell whether a segment is <b class="u6l2-ch">horizontal</b> (same <span class="tex">y</span>) or <b class="u6l2-cv">vertical</b> (same <span class="tex">x</span>) from its endpoints</li>
+      <li>find the length of a horizontal or vertical segment by <b>counting grid squares</b></li>
+      <li>find the same length by <b>subtracting</b> coordinates: <span class="tex">|x_2-x_1|</span> or <span class="tex">|y_2-y_1|</span></li>
+      <li>explain why a length uses the <b>absolute value</b>, and subtract negative coordinates correctly</li>
+      <li>find the <b>perimeter</b> of a rectangle drawn on a grid</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF3</b> Demonstrate an understanding of slope with respect to: rise and run; line segments and lines; rate of change; parallel lines; perpendicular lines.<br><span class="u6l2-today">Today: the length of a horizontal or vertical segment. These are the <b>run</b> and the <b>rise</b> you’ll need for slope.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Elevator" id="wu" style="--wf-side: 380px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Elevator</h2>
+  <p class="wf-rule">This building has floors <b>above</b> and <b>below</b> the ground. The lobby is floor <b>0</b>. How many floors does the elevator travel?</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u6l2-wmain">
+      <div class="u6l2-bldg" id="u6l2-bldg"></div>
+      <div class="u6l2-wright">
+        <div class="u6l2-rides">
+          <div class="u6l2-rh">Ride the elevator</div>
+          <button type="button" class="pill small" data-ride="7,2">7 → 2</button>
+          <button type="button" class="pill small" data-ride="2,7">2 → 7</button>
+          <button type="button" class="pill small" data-ride="0,-4">0 → −4</button>
+          <button type="button" class="pill small" data-ride="-3,5">−3 → 5</button>
+          <div class="u6l2-rideout" id="u6l2-rideout"></div>
+        </div>
+        <div class="u6l2-subh"><b>The subway runs sideways</b> <span class="muted">(distances in blocks). Tap two stops.</span></div>
+        <div class="u6l2-subway" id="u6l2-subway"></div>
+        <div class="u6l2-subout" id="u6l2-subout"></div>
+      </div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u6l2-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>From floor <b>7</b> down to floor <b>2</b>. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l2-wa"><div class="bk-ans"><b>5 floors:</b> <span class="tex">7-2=5</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>From floor <b>2</b> back up to <b>7</b>. Same? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l2-wa"><div class="bk-ans"><b>Still 5.</b> <span class="tex">2-7=-5</span>, but nobody rides “negative 5 floors”. The direction changed, not the distance.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>From the lobby (<b>0</b>) down to floor <span class="tex">\boldsymbol{-4}</span>. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l2-wa"><div class="bk-ans"><b>4 floors:</b> <span class="tex">0-(-4)=4</span>.</div></div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> You park on floor <span class="tex">\boldsymbol{-3}</span> and ride up to floor <b>5</b>. How many floors did you travel? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 2</div>
+        <div class="opt right"><b>B</b> 8</div>
+        <div class="opt"><b>C</b> 9</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, 8 floors.</b> Up 3 to the lobby, then 5 more: <span class="tex">3+5=8</span>. As a subtraction: <span class="tex">5-(-3)=8</span>.<br>
+        <span class="muted"><b>A</b> is <span class="tex">5-3</span>, forgetting the negative. <b>C</b> counts the floor <b>labels</b> <span class="tex">-3</span> to 5 (there are 9), but distance counts the <b>gaps</b> between floors.</span></div>
+    </div>
+  </div></div>
+  <p class="u6l2-social">Challenge your neighbour: which two subway stops are <b>9 blocks</b> apart?</p>
+</section>
+
+<!-- ================= 1. Lines and segments ================= -->
+<section class="card" data-ink="s1" data-section="1. Lines, Segments, and the Plane">
+  <div class="sec-h"><span class="badge">1</span><h2>Lines, Segments, and the Cartesian Plane</h2></div>
+  <div class="u6l2-s1row">
+    <div class="u6l2-s1fig" id="u6l2-s1fig"></div>
+    <div class="def">Every point on the <b>Cartesian plane</b> is named by an ordered pair <span class="tex">(x,\ y)</span>: the <span class="tex">x</span>-coordinate is the left/right move from the origin, the <span class="tex">y</span>-coordinate the up/down move. A <b>line</b> runs on forever in both directions, but a <b>line segment</b> is only the piece of a line between two <b>endpoints</b>, written segment <span class="tex">AB</span> or <span class="tex">\overline{AB}</span>. Because a segment stops at both ends, it has a definite, measurable <b>length</b>.</div>
+  </div>
+  <div class="explainer" data-explainer="segIntro"></div>
+</section>
+
+<!-- ================= 2. Horizontal ================= -->
+<section class="card" data-ink="s2" data-section="2. Horizontal Segments">
+  <div class="sec-h"><span class="badge">2</span><h2>Length of a Horizontal Segment</h2></div>
+  <div class="def amber">A segment is <b class="u6l2-ch">horizontal</b> when both endpoints share the <b>same <span class="tex">y</span>-coordinate</b>. Find its length by counting grid squares, or by subtracting the <span class="tex">x</span>-coordinates of the endpoints. Subtracting in the wrong order gives a negative, and a length is <b>always positive</b>, so take the <b>absolute value</b> (or simply subtract the smaller <span class="tex">x</span> from the larger):
+    <div class="u6l2-disp">length <span class="tex">=|x_2-x_1|</span></div></div>
+  <div class="explainer" data-explainer="lengthsH"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Two horizontal segments</h3></div>
+  <p class="q">Two horizontal segments are graphed on the grid below.</p>
+  <div class="u6l2-exrow">
+    <div id="u6l2-ex1fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) State which coordinate (<span class="tex">x</span> or <span class="tex">y</span>) is the <b>same</b> for both endpoints of each segment. What does that tell you about the segment?</div><div class="work" style="--h:44px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The <b><span class="tex">y</span>-coordinate</b> matches: <span class="tex">y=3</span> for <span class="tex">\overline{AB}</span>, <span class="tex">y=-3</span> for <span class="tex">\overline{CD}</span>. A shared <span class="tex">y</span> means the segment never rises or falls: it is <b>horizontal</b>, so its length comes from the <span class="tex">x</span>’s.</div></div></div>
+      <div class="part"><div class="pl">(b) State the coordinates of the endpoints of <span class="tex">\overline{AB}</span> and of <span class="tex">\overline{CD}</span>.</div><div class="work" style="--h:36px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">A(-4,\ 3)</span> and <span class="tex">B(3,\ 3)</span>; <span class="tex">C(-5,\ -3)</span> and <span class="tex">D(1,\ -3)</span></div></div></div>
+      <div class="part"><div class="pl">(c) Find the length of each segment by counting grid squares.</div><div class="work" style="--h:36px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\overline{AB}</span>: <b>7</b> squares. <span class="tex">\overline{CD}</span>: <b>6</b> squares.</div></div></div>
+    </div>
+  </div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(d) For each segment, subtract the <span class="tex">x</span>-coordinate of the left endpoint from the <span class="tex">x</span>-coordinate of the right endpoint. Compare your results to part (c).</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\overline{AB}</span>: <span class="tex">3-(-4)=\boldsymbol{7}</span>; <span class="tex">\overline{CD}</span>: <span class="tex">1-(-5)=\boldsymbol{6}</span>. Exactly the same numbers as counting squares.</div></div></div>
+    <div class="part"><div class="pl">(e) Complete the rule: for a horizontal segment, length <span class="tex">=|\underline{\hspace{1.5em}}-\underline{\hspace{1.5em}}|</span>.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">length <span class="tex">=|x_2-x_1|</span>: the two <span class="tex">x</span>-coordinates.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Why the absolute value?">
+  <h3 class="sub">Why the absolute value?</h3>
+  <p>Subtracting in one order or the other gives the same number with a different sign. The sign only tells you <b>which way</b> you walked. A length is a distance, so we keep the size: the <b>absolute value</b> <span class="tex">|-14|=14</span>.</p>
+  <div class="explainer" data-explainer="absVal"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Lengths from coordinates</h3></div>
+  <p class="q">Determine each length. Show the subtraction you use.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Segment <span class="tex">TU</span> has endpoints <span class="tex">T(8,\ -3)</span> and <span class="tex">U(-6,\ -3)</span>. Subtracting one way gives <span class="tex">8-(-6)=14</span>; the other way gives <span class="tex">-6-8=-14</span>. Explain why both may be used for the length, and state the length of <span class="tex">TU</span>.</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The two subtractions differ only in sign: reversing the order measures the same gap in the opposite direction. A length is a distance, so keep the positive value:<br><span class="tex">TU=|8-(-6)|=|-6-8|=|\pm14|</span><br><span class="tex">TU=\boldsymbol{14}</span> units</div></div></div>
+    <div class="part"><div class="pl">(b) Segment <span class="tex">VW</span> has endpoints <span class="tex">V(k-4,\ m)</span> and <span class="tex">W(k+7,\ m)</span>. Determine the length of <span class="tex">VW</span>.</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Both endpoints have <span class="tex">y=m</span>, so <span class="tex">VW</span> is horizontal: subtract the <span class="tex">x</span>’s.<br><span class="tex">VW=|(k+7)-(k-4)|</span><br><span class="tex">=|k+7-k+4|=|11|</span><br><span class="tex">VW=\boldsymbol{11}</span> units. (The <span class="tex">k</span>’s cancel, so the length doesn’t depend on <span class="tex">k</span>.)</div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Minus a negative is plus.</b> <span class="tex">8-(-6)=8+6=14</span>, not 2. Write the brackets around the negative first, then change the two signs into one <span class="tex">+</span>.</div></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Negatives on the calculator.</b> Use the negative key <span class="keys"><kbd>(−)</kbd></span>, not the minus key: <span class="keys"><kbd>8</kbd><kbd>−</kbd><kbd>(−)</kbd><kbd>6</kbd><kbd>ENTER</kbd></span> gives 14. The other order, <span class="keys"><kbd>(−)</kbd><kbd>6</kbd><kbd>−</kbd><kbd>8</kbd><kbd>ENTER</kbd></span>, gives −14: same size, opposite sign.</div>
+    <div class="pill-col"><button class="pill" data-keys="8 − (−) 6 =">8 − (−6)</button><button class="pill" data-keys="(−) 6 − 8 =">−6 − 8</button></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2c" data-section="2. Coordinates with letters">
+  <h3 class="sub">Coordinates with letters: the letters cancel</h3>
+  <p>In Example 2(b) the endpoints contain a letter, <span class="tex">k</span>. Whatever number <span class="tex">k</span> stands for, the segment just slides along: its length never changes.</p>
+  <div class="explainer" data-explainer="slide"></div>
+</section>
+
+<!-- ================= 3. Vertical ================= -->
+<section class="card" data-ink="s3" data-section="3. Vertical Segments">
+  <div class="sec-h"><span class="badge">3</span><h2>Length of a Vertical Segment</h2></div>
+  <div class="u6l2-s3row">
+    <div class="def u6l2-vdef">A segment is <b class="u6l2-cv">vertical</b> when both endpoints share the <b>same <span class="tex">x</span>-coordinate</b>. The method is the same, turned <span class="tex">90^\circ</span>: subtract the <span class="tex">y</span>-coordinates and take the absolute value, since a length can never be negative:
+      <div class="u6l2-disp">length <span class="tex">=|y_2-y_1|</span></div>
+      <div class="eg">Notice the swap: a horizontal segment shares a <span class="tex">y</span> and uses the <span class="tex">x</span>’s; a vertical segment shares an <span class="tex">x</span> and uses the <span class="tex">y</span>’s.</div></div>
+    <div class="u6l2-mini"><div id="u6l2-minih"></div><div class="u6l2-mcap"><b class="u6l2-ch">horizontal</b><br><span class="tex">y</span>’s match, use the <span class="tex">x</span>’s</div></div>
+    <div class="u6l2-mini"><div id="u6l2-miniv"></div><div class="u6l2-mcap"><b class="u6l2-cv">vertical</b><br><span class="tex">x</span>’s match, use the <span class="tex">y</span>’s</div></div>
+  </div>
+  <div class="explainer" data-explainer="lengthsV"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Same x or same y?">
+  <h3 class="sub">Same <span class="tex">x</span> or same <span class="tex">y</span>? Look before you subtract</h3>
+  <p>Before any arithmetic, find the coordinate that <b>matches</b>. It tells you the direction, and the <b>other</b> coordinate gives the length.</p>
+  <div class="explainer" data-explainer="whichWay"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Two vertical segments</h3></div>
+  <p class="q">Two vertical segments are graphed on the grid below.</p>
+  <div class="u6l2-exrow">
+    <div id="u6l2-ex3fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) State which coordinate (<span class="tex">x</span> or <span class="tex">y</span>) is the <b>same</b> for both endpoints of each segment. What does that tell you about the segment?</div><div class="work" style="--h:44px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">This time the <b><span class="tex">x</span>-coordinate</b> matches: <span class="tex">x=-3</span> for <span class="tex">\overline{GH}</span>, <span class="tex">x=2</span> for <span class="tex">\overline{IJ}</span>. A shared <span class="tex">x</span> means the segment goes straight up and down: it is <b>vertical</b>, so its length comes from the <span class="tex">y</span>’s.</div></div></div>
+      <div class="part"><div class="pl">(b) State the coordinates of the endpoints of <span class="tex">\overline{GH}</span> and of <span class="tex">\overline{IJ}</span>.</div><div class="work" style="--h:36px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">G(-3,\ 4)</span> and <span class="tex">H(-3,\ -2)</span>; <span class="tex">I(2,\ 5)</span> and <span class="tex">J(2,\ -3)</span></div></div></div>
+      <div class="part"><div class="pl">(c) Find the length of each segment by counting grid squares.</div><div class="work" style="--h:36px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\overline{GH}</span>: <b>6</b> squares. <span class="tex">\overline{IJ}</span>: <b>8</b> squares.</div></div></div>
+    </div>
+  </div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(d) For each segment, subtract the <span class="tex">y</span>-coordinate of the lower endpoint from the <span class="tex">y</span>-coordinate of the upper endpoint. Compare your results to part (c).</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\overline{GH}</span>: <span class="tex">4-(-2)=\boldsymbol{6}</span>; <span class="tex">\overline{IJ}</span>: <span class="tex">5-(-3)=\boldsymbol{8}</span>. The same as counting squares.</div></div></div>
+    <div class="part"><div class="pl">(e) Complete the rule: for a vertical segment, length <span class="tex">=|\underline{\hspace{1.5em}}-\underline{\hspace{1.5em}}|</span>.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">length <span class="tex">=|y_2-y_1|</span>: the two <span class="tex">y</span>-coordinates.</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Vertical lengths from coordinates</h3></div>
+  <p class="q">Determine each length.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Segment <span class="tex">KL</span> has endpoints <span class="tex">K(5,\ -8)</span> and <span class="tex">L(5,\ 6)</span>. Determine the length of <span class="tex">KL</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Both <span class="tex">x</span>’s are 5, so <span class="tex">KL</span> is vertical: subtract the <span class="tex">y</span>’s.<br><span class="tex">KL=|6-(-8)|=|6+8|=|14|</span><br><span class="tex">KL=\boldsymbol{14}</span> units</div></div></div>
+    <div class="part"><div class="pl">(b) Segment <span class="tex">MN</span> has endpoints <span class="tex">M(h,\ n-5)</span> and <span class="tex">N(h,\ n+9)</span>. Determine the length of <span class="tex">MN</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Both <span class="tex">x</span>’s are <span class="tex">h</span>, so <span class="tex">MN</span> is vertical:<br><span class="tex">MN=|(n+9)-(n-5)|</span><br><span class="tex">=|n+9-n+5|=|14|</span><br><span class="tex">MN=\boldsymbol{14}</span> units</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u6l2"></section>
+
+<!-- ================= 4. Perimeter ================= -->
+<section class="card" data-ink="s4" data-section="4. Perimeter on a Grid">
+  <div class="sec-h"><span class="badge">4</span><h2>Applying Both Skills: Perimeter on a Grid</h2></div>
+  <div class="def">Shapes drawn on a grid often have only horizontal and vertical sides, so the <b>perimeter</b> (the distance around the outside) is just the sum of the side lengths found by the two rules above. In a rectangle opposite sides are equal, so
+    <div class="u6l2-disp"><span class="tex">\text{Perimeter}=2(\text{horizontal})+2(\text{vertical})</span></div>
+    <div class="eg">For example, sides of 6 and 4 give <span class="tex">2(6)+2(4)=20</span> units.</div></div>
+  <div class="explainer" data-explainer="perimeter"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Perimeter of a rectangle</h3></div>
+  <p class="q">Rectangle <span class="tex">ABCD</span> is graphed on the grid below.</p>
+  <div class="u6l2-exrow">
+    <div id="u6l2-ex5fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) State the coordinates of all four vertices.</div><div class="work" style="--h:40px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">A(-4,\ -2)</span>, <span class="tex">B(5,\ -2)</span>, <span class="tex">C(5,\ 4)</span>, <span class="tex">D(-4,\ 4)</span></div></div></div>
+      <div class="part"><div class="pl">(b) Identify which sides are horizontal and which are vertical.</div><div class="work" style="--h:52px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b class="u6l2-ch">Horizontal:</b> <span class="tex">\overline{AB}</span> (both <span class="tex">y=-2</span>) and <span class="tex">\overline{DC}</span> (both <span class="tex">y=4</span>).<br><b class="u6l2-cv">Vertical:</b> <span class="tex">\overline{BC}</span> (both <span class="tex">x=5</span>) and <span class="tex">\overline{AD}</span> (both <span class="tex">x=-4</span>).</div></div></div>
+    </div>
+  </div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(c) Find the length of each of the four sides.</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">AB=|5-(-4)|=\boldsymbol{9}</span>, <span class="tex">DC=|5-(-4)|=\boldsymbol{9}</span><br><span class="tex">BC=|4-(-2)|=\boldsymbol{6}</span>, <span class="tex">AD=|4-(-2)|=\boldsymbol{6}</span><br>Opposite sides are equal, as they must be in a rectangle.</div></div></div>
+    <div class="part"><div class="pl">(d) Calculate the perimeter of rectangle <span class="tex">ABCD</span>.</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">P=2(\text{horizontal})+2(\text{vertical})</span><br><span class="tex">P=2(9)+2(6)=18+12</span><br><span class="tex">P=\boldsymbol{30}</span> units. Check: <span class="tex">9+6+9+6=30</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Segment vs line.</b> A line goes on forever. A <b>segment</b> <span class="tex">\overline{AB}</span> stops at its two endpoints, so it has a length, written <span class="tex">AB</span>.</div>
+    <div><b class="u6l2-ch">Horizontal</b> (same <span class="tex">y</span>): length <span class="tex">=|x_2-x_1|</span>. <b class="u6l2-cv">Vertical</b> (same <span class="tex">x</span>): length <span class="tex">=|y_2-y_1|</span>. The coordinate that matches plays no part.</div>
+    <div><b>Absolute value.</b> Either order gives the same size; the sign is only the direction. A length is <b>never negative</b>. Careful: <span class="tex">3-(-4)=3+4=7</span>.</div>
+    <div><b>Perimeter on a grid:</b> find every side with the two rules and add. A rectangle: <span class="tex">P=2(\text{horizontal})+2(\text{vertical})</span>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u6l2">
+    <div><div class="kicker">Your turn</div><b>Assignment 2 — Measuring the Length of a Line Segment</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l3/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 3 — Measuring the Length of a Line Segment: Diagonal Segments and the Distance Formula</b><div class="muted">A slanted segment hides a right triangle. Its legs are a horizontal and a vertical segment.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u6l2.js';
+  boot({ key: 'u6l2', homeHref: '../../', title: '6.2 Length of a Line Segment' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

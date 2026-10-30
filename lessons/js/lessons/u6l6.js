@@ -24,7 +24,7 @@ const red = (n, d) => { if (d < 0) { n = -n; d = -d; } const g = gcd(n, d); retu
 const fr = (n, d, big = true) => { const [a, b] = red(n, d); if (b === 1) return String(a); return (a < 0 ? '-' : '') + `\\${big ? 'd' : 't'}frac{${Math.abs(a)}}{${b}}`; };
 const rawFr = (r, u) => `\\dfrac{${cR(texNum(r))}}{${cU(texNum(u))}}`;
 /** rise/run, then = reduced when it reduces */
-const slopeTex = (r, u) => { const [a, b] = red(r, u); return a === r && b === u ? rawFr(r, u) : `${rawFr(r, u)}=${fr(r, u)}`; };
+const slopeTex = (r, u) => { const [a, b] = red(r, u); return a === r && b === u && b !== 1 ? rawFr(r, u) : `${rawFr(r, u)}=${fr(r, u)}`; };
 const par = (v) => (v < 0 ? `(${texNum(v)})` : texNum(v));
 const n = (v) => texNum(v).replace('-', '−');
 const show = (c, el) => fadeIn(c, el, 320);
@@ -128,12 +128,12 @@ function drawSlide(svg, html, x0, y0, s, u, o = {}) {
   const badge = L(x0 + 4, y0 - hh - 4, s.k, 'ne', 'u6l6-sbadge' + sm); badge.style.background = INK;
   const runL = L(x0 + w / 2, y0 + 2, `${s.run} m`, 's', 'u6l6-srun' + sm);
   const riseL = L(x0 + w - 3, y0 - hh * 0.36, `↑${s.rise} m`, 'w', 'u6l6-srise' + sm);
-  const div = L(x0 + w * 0.42, y0 - hh * 0.62 - 6, T(`${s.rise}\\div${s.run}=${texNum(s.rise / s.run)}`), 'nw', 'u6l6-sdiv' + sm); div.style.color = s.col; hide(div);
+  const div = L(x0 + w / 2, y0 + (o.small ? 22 : 28), T(`${s.rise}\\div${s.run}=${texNum(s.rise / s.run)}`), 's', 'u6l6-sdiv' + sm); div.style.color = s.col; hide(div);
   return { g, els: [badge, runL, riseL, div], div };
 }
 function mountSlides() {
   const host = document.getElementById('u6l6-slides'); if (!host) return;
-  const W = Math.min(980, host.clientWidth || 980), u = 31, base = 4.8 * u, H = base + 44;
+  const W = Math.min(980, host.clientWidth || 980), u = 31, base = 4.8 * u, H = base + 84;
   const wrap = h('div', 'u6l6-swrap'); box(wrap, W, H); host.appendChild(wrap);
   const view = (slides, uu, gap, small) => {
     const svg = svgEl('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, class: 'u6l6-sview' }, wrap), html = h('div', 'bk-html u6l6-sview'); wrap.appendChild(html);
@@ -144,8 +144,8 @@ function mountSlides() {
   };
   const v1 = view(SLIDES, u, 1.6, false), v2 = view([...SLIDES, SLIDE_E], 18.5, 1.3, true);
   v2.svg.style.opacity = 0; v2.html.style.opacity = 0;
-  const note = h('div', 'bk-lab u6l6-snote', 'All drawn to the same scale: every square is 1 m.'); v1.html.appendChild(note); place(note, W / 2, base + 26, 's', 2);
-  const note2 = h('div', 'bk-lab u6l6-snote', 'Slide E joins the line-up, all five to one (smaller) scale.'); v2.html.appendChild(note2); place(note2, W / 2, base + 26, 's', 2);
+  const note = h('div', 'bk-lab u6l6-snote', 'All drawn to the same scale: every square is 1 m.'); v1.html.appendChild(note); place(note, W / 2, base + 60, 's', 2);
+  const note2 = h('div', 'bk-lab u6l6-snote', 'Slide E joins the line-up, all five to one (smaller) scale.'); v2.html.appendChild(note2); place(note2, W / 2, base + 60, 's', 2);
   const ctx = liveCtx(); let dOn = false, eOn = false;
   const divs = [...v1.divs, ...v2.divs];
   document.getElementById('u6l6-wdiv').addEventListener('click', async () => {
@@ -578,7 +578,7 @@ const grade = {
   const P = (nm, p) => nm + '(' + p[0] + ',\\ ' + p[1] + ')';
   const NAMES = [['A', 'B'], ['C', 'D'], ['P', 'Q'], ['R', 'S'], ['E', 'F'], ['J', 'K'], ['G', 'H'], ['M', 'N']];
   const frS = (a, b) => { const [p, q] = red(a, b); return q === 1 ? String(p) : '\\dfrac{' + p + '}{' + q + '}'; };
-  const slopeS = (a, b) => { const [p, q] = red(a, b); return '\\dfrac{' + a + '}{' + b + '}' + (p === a && q === b ? '' : '=' + frS(a, b)); };
+  const slopeS = (a, b) => { const [p, q] = red(a, b); return '\\dfrac{' + a + '}{' + b + '}' + (p === a && q === b && q !== 1 ? '' : '=' + frS(a, b)); };
   const C = { ink: '#1c2230', grid: '#cdd3dc', num: '#3a4254', blue: '#1f5bd6' };
   function gridSVG(x0, x1, y0, y1, A, B, nA, nB) {
     const u = 30, m = 26, W = (x1 - x0) * u + 2 * m, H = (y1 - y0) * u + 2 * m, X = (x) => m + (x - x0) * u, Y = (y) => m + (y1 - y) * u;

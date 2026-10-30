@@ -518,7 +518,7 @@
         },
         parts: [
           { id: 'e6a', level: 'EMG', make: function (r, sh) {
-            return KP.fields('(a) Determine the five slopes in lowest terms.', sh.segs.map(function (s) { return { label: t('m_{' + s.n + '}'), name: s.n, mode: 'math', keys: 'slope' }; }), sh.segs.map(function (s) { return slChk(s.s, { lowest: true }); }), sh.segs.map(function (s) { return slT(s.s); }),
+            return KP.fields('(a) Determine the five slopes in lowest terms.', sh.segs.map(function (s) { return { label: t('m_{' + s.n + '}'), name: s.n, mode: 'math', keys: 'slope', placeholder: 'e.g. 3/4' }; }), sh.segs.map(function (s) { return slChk(s.s, { lowest: true }); }), sh.segs.map(function (s) { return slT(s.s); }),
               sh.segs.map(function (s) { return t('m_{' + s.n + '}=' + slT(s.s)); }).join(', '), sh.segs.map(function (s) { return t('m_{' + s.n + '}=' + formulaT(s.A, s.B) + '=' + fracSteps(s.B[1] - s.A[1], s.B[0] - s.A[0])); }).join('<br>'), [FHINT, NEGHINT], 'five slopes');
           } },
           { id: 'e6b', level: 'PRG', make: function (r, sh) {
@@ -669,8 +669,8 @@
               { html: 'She forgot to reduce the fraction.', why: 'She did reduce. The fraction is upside down.' }],
               'Her numerator ' + t(subT(sh.B[0], sh.A[0])) + ' is the change in ' + t('x') + ' — the run. Slope is ' + t('\\frac{\\text{rise}}{\\text{run}}=\\frac{y_2-y_1}{x_2-x_1}') + '.', ['Which coordinates did she subtract on the top?'], 'Priya mistake');
           } },
-          { id: 'e12as', level: 'BEG', make: function (r, sh) { return coordSlopePart('(a) State the correct slope.', sh.A, sh.B, { text: 'Priya correct slope' }); } },
-          { id: 'e12b', level: 'PRG', make: function (r, sh) {
+          { id: 'e12as', sub: 'a · slope', level: 'BEG', make: function (r, sh) { return coordSlopePart('(a) State the correct slope.', sh.A, sh.B, { text: 'Priya correct slope' }); } },
+          { id: 'e12b', sub: 'b', level: 'PRG', make: function (r, sh) {
             var rise = sh.B[1] - sh.A[1], run = sh.B[0] - sh.A[0], c = slT(red(rise, run)), w = slT(red(run, rise));
             return KP.mc(r, '(b) Her answer ' + t(w) + ' is steeper than the correct ' + t(c) + '. Why does flipping rise and run always exaggerate a slope that should be less than ' + t('1') + '?', [
               { html: 'A slope less than ' + t('1') + ' has a top smaller than its bottom. Flipping it puts the bigger number on top, so the result is greater than ' + t('1') + ' — steeper than the segment really is.', right: true },
@@ -691,7 +691,7 @@
               'Top: ' + t(subT(sh.B[1], sh.A[1])) + ' (second point first). Bottom: ' + t(subT(sh.A[0], sh.B[0])) + ' (first point first). Mixing the orders flips the sign of only one part, so the sign of the slope comes out wrong.', ['In each subtraction, which point comes first?'], 'Marcus rule');
           } },
           { id: 'e13b', level: 'BEG', make: function (r, sh) { return coordSlopePart('(b) State the correct slope.', sh.A, sh.B, { text: 'Marcus correct', lowest: true }); } },
-          { id: 'e13c', level: 'LIM', make: function (r, sh) {
+          { id: 'e13c', sub: 'b · direction', level: 'LIM', make: function (r, sh) {
             return KP.mc(r, '(b) What does the sign of the correct slope tell you about the segment?', [
               { html: 'It is negative, so the segment <b>falls</b> as you move right.', right: true }, { html: 'It is positive, so the segment rises as you move right.', why: 'The correct slope is ' + t(slT(slopeOf(sh.A, sh.B))) + ' — negative.' },
               { html: 'It is negative, so the segment is vertical.', why: 'A vertical segment has an undefined slope. Negative means falling.' }, { html: 'It is negative, so the segment is below the ' + t('x') + '-axis.', why: 'The sign of the slope is about direction (up or down as you go right), not position.' }],
