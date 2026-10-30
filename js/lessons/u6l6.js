@@ -147,7 +147,7 @@
     var x0 = Math.max(L.xr[0], Math.min(L.xr[1], 0)), y0 = Math.max(L.yr[0], Math.min(L.yr[1], 0)), lx = spec.labels, ly = spec.labels;
     pts.forEach(function (p) { obs.push([X(p.x) - 5, Y(p.y) - 5, X(p.x) + 5, Y(p.y) + 5]); });
     segs.forEach(function (s) { for (var k = 0; k <= 40; k++) { var u = k / 40, px = X(s.A[0] + (s.B[0] - s.A[0]) * u), py = Y(s.A[1] + (s.B[1] - s.A[1]) * u); obs.push([px - 2, py - 2, px + 2, py + 2]); } });
-    obs.push([X(L.xr[0]), Y(y0) - 1.5, X(L.xr[1]) + 8, Y(y0) + 1.5]); obs.push([X(x0) - 1.5, Y(L.yr[1]) - 8, X(x0) + 1.5, Y(L.yr[0])]);
+    obs.push([X(L.xr[0]), Y(y0) - 1.5, X(L.xr[1]) + 8, Y(y0) + 1.5], [X(L.xr[1]) - 12, Y(y0) - 19, X(L.xr[1]) + 6, Y(y0) - 2], [X(x0) + 3, Y(L.yr[1]) - 8, X(x0) + 16, Y(L.yr[1]) + 8]); obs.push([X(x0) - 1.5, Y(L.yr[1]) - 8, X(x0) + 1.5, Y(L.yr[0])]);
     for (var tx = Math.ceil(L.xr[0] / lx) * lx; tx < L.xr[1]; tx += lx) if (tx) obs.push([X(tx) - 9, Y(y0) + 3, X(tx) + 9, Y(y0) + 16]);
     for (var ty = Math.ceil(L.yr[0] / ly) * ly; ty < L.yr[1]; ty += ly) if (ty) obs.push([X(x0) - 19, Y(ty) - 6, X(x0) - 2, Y(ty) + 6]);
     var cand = [[5, -16], [-14, -16], [5, 4], [-14, 4], [7, -6], [-17, -6], [-4, -19], [-4, 7], [10, -20], [-20, -20], [10, 8], [-20, 8]];

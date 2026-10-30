@@ -601,7 +601,7 @@
           var v1 = r.pick([[8, 6], [6, 8], [4, 3], [3, 4], [12, 5]]), v2 = sgn(r, r.pick([[4, 3], [3, 4], [6, 8], [5, 12]])), v3 = r.chance(0.5) ? [0, -r.int(4, 10)] : [r.int(3, 9), 0];
           var D = [r.int(-8, -4), r.int(-6, 0)], A = add(D, v1), Bq = add(A, v2), C = add(Bq, v3);
           return { D: D, A: A, B: Bq, C: C, s: r.pick([250, 500, 500, 200]) };
-        }, function (z) { var n = d2(z.D, z.C); return isSq(n) && n > 0 && [z.A, z.B, z.C].every(function (p) { return Math.abs(p[0]) <= 12 && Math.abs(p[1]) <= 12; }) && Math.sqrt(n) < dist(z.D, z.A) + dist(z.A, z.B) + dist(z.B, z.C) - 1; });
+        }, function (z) { var n = d2(z.D, z.C), P4 = [z.D, z.A, z.B, z.C], distinct = P4.every(function (p, i) { return P4.every(function (q, j) { return i === j || dist(p, q) >= 3; }); }); return distinct && isSq(n) && [z.A, z.B, z.C].every(function (p) { return Math.abs(p[0]) <= 12 && Math.abs(p[1]) <= 12; }) && Math.sqrt(n) < dist(z.D, z.A) + dist(z.A, z.B) + dist(z.B, z.C) - 1; });
       },
       stem: function (o) { return 'A courier leaves the depot at ' + t(nm('D', o.D)) + ', drives to ' + t(nm('A', o.A)) + ', then to ' + t(nm('B', o.B)) + ', then to ' + t(nm('C', o.C)) + '. Each grid unit represents ' + t(o.s) + '&nbsp;m.' + figPoly([o.D, o.A, o.B, o.C], ['D', 'A', 'B', 'C'], { segs: [[o.D, o.A, o.B, o.C]], max: 300 }); },
       parts: [

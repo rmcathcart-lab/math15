@@ -51,7 +51,7 @@
 .u6l6-tab th, .u6l6-tab td { border: 1.5px solid var(--line2); padding: 6px 10px; text-align: center; height: 62px; }
 .u6l6-tab th { font: 800 16px var(--round); text-transform: uppercase; letter-spacing: .04em; height: 36px; background: #f6f5f1; }
 .u6l6-trailfig { display: flex; justify-content: center; margin: 4px 0 10px; }
-.u6l6-trailfig > div, .u6l6-trailfig { position: relative; }
+.u6l6-tin { position: relative; }
 
 /* try it: drag the points */
 .u6l6-try { display: grid; grid-template-columns: 440px 1fr; gap: 20px; align-items: start; }

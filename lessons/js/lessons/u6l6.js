@@ -207,7 +207,8 @@ function mountFigures() {
   const tf = document.getElementById('u6l6-ex5fig');
   if (tf) {
     const W = 640, H = 150, x0 = 40, y0 = 110, k = 1.8; // 1.8 px per metre
-    const svg = svgEl('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}` }, tf), hh = h('div', 'bk-html'); tf.style.position = 'relative'; tf.appendChild(hh);
+    const inner = box(h('div', 'u6l6-tin'), W, H); tf.appendChild(inner);
+    const svg = svgEl('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}` }, inner), hh = h('div', 'bk-html'); inner.appendChild(hh);
     svgEl('path', { d: `M${x0} ${y0} L${x0 + 300 * k} ${y0 - 45 * k} L${x0 + 300 * k} ${y0} Z`, fill: '#e9f2e1' }, svg);
     svgEl('line', { x1: x0, y1: y0, x2: x0 + 300 * k, y2: y0 - 45 * k, stroke: SEG, 'stroke-width': 4, 'stroke-linecap': 'round' }, svg);
     svgEl('path', { d: `M${x0} ${y0} H${x0 + 300 * k} V${y0 - 45 * k}`, fill: 'none', stroke: INK, 'stroke-width': 2, 'stroke-dasharray': '6 5' }, svg);
@@ -225,7 +226,7 @@ function mountDrag() {
   G.el.setAttribute('data-tap', ''); G.el.classList.add('bk-ix');
   const st = { P: [1, 1], Q: [5, 4] };
   const seg = G.segment(st.P, st.Q, { color: SEG, width: 4.5 });
-  const tri = new SlopeTri(G, { x: 1, y: 1, run: 4, rise: 3 }, {});
+  const tri = new SlopeTri(G, { x: 1, y: 1, run: 4, rise: 3 }, { riseSide: 'e', runSide: 's', runFirst: true });
   const hp = G.point(...st.P, { color: INK, r: 10, label: T('P'), pos: 'se' }), hq = G.point(...st.Q, { color: INK, r: 10, label: T('Q'), pos: 'nw' });
   [hp, hq].forEach((p) => { p.style.cursor = 'grab'; });
   const upd = () => {

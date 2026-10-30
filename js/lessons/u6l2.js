@@ -33,11 +33,11 @@
     'u6l2-diff-wrong': 'Wrong difference between the lengths', 'u6l2-other-coord': 'Changed the coordinate that should stay the same', 'u6l2-not-neg': 'Example doesn’t have negative x-coordinates',
     'u6l2-not-hv': 'Example segment isn’t horizontal or vertical', 'u6l2-km': 'Didn’t convert metres to kilometres', 'u6l2-one-lap': 'Counted one lap only', 'u6l2-cost': 'Cost not multiplied by the whole perimeter',
     'u6l2-pairs-count': 'Counted unordered pairs (w, h) instead of ordered ones', 'u6l2-rect-count': 'Left the four corner positions out of the count', 'u6l2-rect-side': 'Rectangle on the wrong side or wrong height',
-    'u6l2-notch': 'Left the notch out of the perimeter', 'u6l2-sum-wh': 'Gave the perimeter instead of w + h'
+    'u6l2-notch': 'Left the notch out of the perimeter', 'u6l2-open': 'Figure not closed (last vertex not joined back to the first)', 'u6l2-sum-wh': 'Gave the perimeter instead of w + h'
   });
   HW.addPartial({ 'u6l2-half-perim': 'b', 'u6l2-area-perim': 'n', 'u6l2-gave-length': 'b', 'u6l2-wrong-dir': 's', 'u6l2-diag-wall': 'n', 'u6l2-extra-side': 'b', 'u6l2-diff-wrong': 'n',
     'u6l2-other-coord': 'n', 'u6l2-not-neg': 'n', 'u6l2-not-hv': 'n', 'u6l2-km': 's', 'u6l2-one-lap': 'b', 'u6l2-cost': 'b', 'u6l2-pairs-count': 'b', 'u6l2-rect-count': 'b',
-    'u6l2-rect-side': 'b', 'u6l2-notch': 'b', 'u6l2-sum-wh': 'b' });
+    'u6l2-rect-side': 'b', 'u6l2-notch': 'b', 'u6l2-sum-wh': 'b', 'u6l2-open': 's' });
 
   /* ---------- helpers ---------- */
   function near(a, b, e) { return Math.abs(a - b) < (e == null ? 1e-7 : e); }
@@ -140,8 +140,8 @@
     var inp = { x: win.x, y: win.y, labels: 2, mode: 'lines', defaultEnd: 'closed' }, key = { pts: [], pieces: [{ v: Vs.concat([Vs[0]]), s: 'closed', e: 'closed' }] };
     var swp = { pts: [], pieces: [{ v: Vs.concat([Vs[0]]).map(function (p) { return [p[1], p[0]]; }), s: 'closed', e: 'closed' }] };
     var open = { pts: [], pieces: [{ v: Vs.slice(), s: 'closed', e: 'closed' }] };
-    var chk = K.graphExact(key, { wrong: [{ is: open, code: 'graph-open', hint: 'Close the shape: join the last vertex back to ' + t(names[0]) + '.' }] });
-    var p = KP.graph(prompt + ' (Use <b>╱ Line</b>: tap the vertices one after another, ending back at the first one.)', inp, chk, key, 'Plot ' + Vs.map(function (v, i) { return t(names[i] + P2(v)); }).join(', ') + ' (across to ' + t('x') + ', then up or down to ' + t('y') + '), then join them in order and back to ' + t(names[0]) + '.',
+    var chk = K.graphExact(key, { wrong: [{ is: open, code: 'u6l2-open', hint: 'Close the shape: join the last vertex back to ' + t(names[0]) + '.' }] });
+    var p = KP.graph(prompt, inp, chk, key, 'Plot ' + Vs.map(function (v, i) { return t(names[i] + P2(v)); }).join(', ') + ' (across to ' + t('x') + ', then up or down to ' + t('y') + '), then join them in order and back to ' + t(names[0]) + '.',
       ['Plot each vertex: start at the origin, go across to the ' + t('x') + '-coordinate, then up or down to the ' + t('y') + '-coordinate.', 'Join the vertices in order with the line tool, and close the shape.'], text);
     p.bad = [swp, open].filter(function (b) { return !HW.draw.same(b, key); });
     return p;
@@ -424,7 +424,7 @@
     else for (var tr = 0; tr < 300; tr++) {
       var ok2 = true; segs = [];
       for (var g = 0; g < 2 && ok2; g++) {
-        var hy = r.int(-5, 5) || 4, hx1 = r.int(-6, 0), hx2 = r.int(hx1 + 3, 6), vx = r.int(-5, 5) || 3, vy1 = r.int(-6, 0), vy2 = r.int(vy1 + 3, 6);
+        var hy = r.int(-5, 5) || 4, hx1 = r.int(-5, 0), hx2 = r.int(hx1 + 3, 5), vx = r.int(-5, 5) || 3, vy1 = r.int(-5, 0), vy2 = r.int(vy1 + 3, 5);
         var crossV = vx >= hx1 - 1 && vx <= hx2 + 1 && hy >= vy1 - 1 && hy <= vy2 + 1;
         if (crossV || hy === 0 || vx === 0) { ok2 = false; break; }
         var hs = [[hx1, hy], [hx2, hy]], vs = [[vx, vy1], [vx, vy2]];
@@ -515,7 +515,7 @@
         return KP.grid('Is each segment horizontal or vertical?', rows, [{ id: 'h', html: 'Horizontal' }, { id: 'v', html: 'Vertical' }], want, { tries: 2, why: function () { return { code: 'row', hint: 'A horizontal segment runs left–right (same ' + t('y') + '); a vertical one runs up–down (same ' + t('x') + ').' }; } },
           sh.segs.map(function (s, i) { return t('\\overline{' + E1N[i].join('') + '}') + ': ' + (s[0][1] === s[1][1] ? 'horizontal (the ' + t('y') + '’s match)' : 'vertical (the ' + t('x') + '’s match)'); }).join('<br>'), ['Look at the grid: does the segment run across or up and down?'], 'H or V on grid');
       } }].concat([0, 1, 2, 3].map(function (i) {
-        return { id: 'e1' + 'abcd'[i], level: 'BEG', make: function (r, sh) {
+        return { id: 'e1' + 'abcd'[i], sub: 'abcd'[i], level: 'BEG', make: function (r, sh) {
           var s = sh.segs[i], n = E1N[i], L = lenOf(s[0], s[1]);
           var p = KP.fields('Segment ' + t('\\overline{' + n.join('') + '}') + ': state its endpoints and find its length.', [ptField(n[0]), ptField(n[1]), numField('Length:', 'length', 'units')],
             [ptChk(s[0]), ptChk(s[1]), K.number(L, hvDiag(s[0], s[1]))], [pt(s[0]), pt(s[1]), String(L)], t(n[0] + P2(s[0])) + ', ' + t(n[1] + P2(s[1])) + ', length ' + t(L) + ' units',
@@ -696,7 +696,7 @@
           if (!near(lr.value, L)) return wrong('value', 'Check the length: subtract the coordinates that change and take the absolute value. (It should be ' + t(L) + ' for your points.)');
           return ok();
         };
-        return { prompt: 'Give a counterexample: two endpoints that both have negative ' + t('x') + '-coordinates (make the segment horizontal or vertical), and the length of the segment.', input: { type: 'fields', fields: [ptField('First endpoint'), ptField('Second endpoint'), numField('Length:', 'length', 'units')] },
+        return { prompt: 'Give a counterexample: two endpoints that both have negative ' + t('x') + '-coordinates (make the segment horizontal or vertical), and the length of the segment.', input: { type: 'fields', fields: [{ label: 'First endpoint:', name: 'first endpoint', mode: 'math', keys: PTK, placeholder: 'e.g. (-4, 2)' }, { label: 'Second endpoint:', name: 'second endpoint', mode: 'math', keys: PTK, placeholder: 'e.g. (-9, 2)' }, numField('Length:', 'length', 'units')] },
           check: chk, key: ['(-11, -4)', '(-3, -4)', '8'], answer: 'Any example, e.g. ' + t(P2(ex1[0])) + ' to ' + t(P2(ex1[1])) + ': length ' + t('|-3-(-11)|=8') + ' units — positive.',
           solution: 'For example, ' + t(P2(ex1[0])) + ' to ' + t(P2(ex1[1])) + ' has length ' + t('|-3-(-11)|=|8|=8') + ' units. Both ' + t('x') + '-coordinates are negative, but the length is positive.', hints: ['Pick two points left of the ' + t('y') + '-axis with the same ' + t('y') + '-coordinate.', 'Then subtract the ' + t('x') + '’s and take the absolute value.'], text: 'counterexample',
           good: [['(-7, 2)', '(-1, 2)', '6'], ['(-4, -3)', '(-4, 5)', '8']], bad: [['(-11, -4)', '(-3, -4)', '-8'], ['(2, 1)', '(5, 1)', '3'], ['(-2, 1)', '(-5, 4)', '3']] };
@@ -759,7 +759,7 @@
   function fracLen(r, hor, fix) {
     var den = hor ? 2 : 4, a, b, k;
     if (fix) { a = fix[0]; b = fix[1]; den = fix[2]; k = fix[3]; }
-    else { k = r.int(-9, 9) || -3; do { a = r.int(-15, 15); b = r.int(-15, 15); } while (a === b || a % den === 0 || b % den === 0 || Math.abs(a - b) < den); }
+    else { k = r.int(-9, 9) || -3; do { a = r.int(-15, 15); b = r.int(-15, 15); } while (a === b || a % den === 0 || b % den === 0 || Math.abs(a - b) < den || a * b > 0); }
     var fa = ex.texRat(ex.norm(a, den)), fb = ex.texRat(ex.norm(b, den)), Lr = ex.norm(Math.abs(a - b), den), Ltex = ex.texRat(Lr);
     var A = hor ? [fa, F(k)] : [F(k), fa], B = hor ? [fb, F(k)] : [F(k), fb], L = Math.abs(a - b) / den;
     var nm = hor ? ['W', 'X'] : ['Y', 'Z'];
