@@ -164,3 +164,6 @@
 .u4l2-claim:not(.sm) { font-size: 38px; }
 .u4l2-claim.sm { font-size: 30px; }
 .u4l2-ptx.big { font-size: 22px; fill: var(--amber); }
+/* the check by distributing (2026-10-30) */
+.u4l2-dist .u4l2-dg { color: var(--brand); font-weight: 700; }
+.u4l2-dist .u4l2-dk { color: var(--ok); }

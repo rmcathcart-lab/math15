@@ -509,6 +509,33 @@ const tileRect = {
   }
 };
 
+/* the check by distributing: GCF(q1 + q2 + …) = the original terms, with an arrow from the GCF to each bracket term
+   (Ryan, 2026-10-30: show the check as re-distributing, not as a rectangle) */
+function distCheck(stage, x, y, maxW, g, Q, P) {
+  const gT = termT(g, true);
+  const src = `\\htmlClass{u4l1-dg}{${gT}}\\htmlClass{u4l1-db}{(}` + Q.map((q, i) => (i === 0 ? `\\htmlClass{u4l1-dq0}{${termT(q, true)}}` : `\\mathbin{\\htmlClass{u4l1-dq${i}}{${q.n < 0 ? '-' : '+'}}}\\htmlClass{u4l1-dq${i}}{${bodyT(q)}}`)).join('') +
+    '\\htmlClass{u4l1-db}{)}\\htmlClass{u4l1-de}{\\;=\\;}' + P.map((t, i) => `\\htmlClass{u4l1-dp${i}}{${tc(PCOL[i % 4], termT(t, i === 0))}}`).join('') + '\\htmlClass{u4l1-dk}{\\;\\checkmark}';
+  const row = add(stage, h('div', 'u4l1-pc u4l1-dist', K(src)), x, y); row.style.translate = '0 -50%'; fit(row, maxW);
+  const S = (cls) => spans(row, cls);
+  const head = [...S('u4l1-dg'), ...S('u4l1-db'), ...Q.flatMap((q, i) => S('u4l1-dq' + i))];
+  [...head, ...S('u4l1-de'), ...P.flatMap((t, i) => S('u4l1-dp' + i)), ...S('u4l1-dk')].forEach((e) => hide(e));
+  const svg = arcLayer(stage);
+  return {
+    async run(c) {
+      await showSpans(c, head, 300);
+      await showSpans(c, S('u4l1-de'), 250);
+      const a = stagePos(stage, S('u4l1-dg')[0]);
+      for (let i = 0; i < Q.length; i++) {
+        const qs = S('u4l1-dq' + i); qs.forEach((e) => (e.style.color = PCOL[i % 4]));
+        const b = stagePos(stage, qs[qs.length - 1]), dx = Math.abs(b.x - a.x);
+        await arrow(svg, a.x, a.t - 2, b.x, b.t - 2, Math.min(62, 30 + dx * 0.22), PCOL[i % 4]).draw(c, 420);
+        await showSpans(c, S('u4l1-dp' + i), 320);
+      }
+      await showSpans(c, S('u4l1-dk'), 300);
+    }
+  };
+}
+
 /* ============ 5. Find the GCF, divide, write, verify ============ */
 const PO = { n: '6x+18', a: '4x+8', b: '9x+12', c: '6x^2+8x' };
 const pull = {
@@ -532,15 +559,7 @@ const pull = {
     const cParts = { e: spans(rowC, 'u4l1-ce'), g: spans(rowC, 'u4l1-tg'), b: spans(rowC, 'u4l1-cb'), q: Q.map((q, i) => spans(rowC, 'u4l1-tq' + i)) };
     [...cParts.e, ...cParts.g, ...cParts.b, ...cParts.q.flat()].forEach((e) => hide(e));
     const stamp = add(stage, h('div', 'u4l1-stamp ok', 'FACTORED<small>completely ✓</small>'), W - 22, yD + 8); stamp.style.translate = '-100% 0'; hide(stamp);
-    // the check: a rectangle whose side is the GCF and whose pieces are the original terms
-    const pw = Math.min(200, (W - x0 - 230) / n), rx = x0 + 36, ry = yD + 22, rh2 = 82;
-    const side = add(stage, h('div', 'u4l1-rsd', K(gT)), rx - 10, ry + rh2 / 2); side.style.translate = '-100% -50%'; hide(side);
-    const pieces = P.map((t, i) => {
-      const e = add(stage, box(h('div', 'u4l1-rp', `<span>${K(termT(t, true))}</span>`), pw, rh2), rx + i * pw, ry); e.style.setProperty('--pc', PCOL[i % 4]);
-      const w = add(stage, h('div', 'u4l1-rw c', K(termT(Q[i], true))), rx + i * pw + pw / 2, ry - 16); w.style.color = PCOL[i % 4];
-      hide(e, w); return { e, w };
-    });
-    pieces.forEach(({ e }) => fit(e.firstChild, pw - 14));
+    const dist = distCheck(stage, x0 - 6, yD + 52, W - x0 - 250, g, Q, P); // the check: distribute the GCF back over the bracket
     const coefs = P.map((t) => Math.abs(t.n)), cg = g.n;
     const vlist = Object.keys(g.v).map((k) => T(g.v[k] > 1 ? `${k}^{${g.v[k]}}` : k));
     const big = coefs.slice().sort((a, b) => a - b)[0];
@@ -567,8 +586,8 @@ const pull = {
         cParts.q.flat().forEach((e) => (e.style.opacity = 1));
       }
     }, {
-      cap: `<b>4. Verify by expanding:</b> the GCF is the <b>side</b> of a rectangle; each bracket term is a <b>width</b>. ${listAnd(Q.map((q, i) => T(`${fT(g)}\\cdot ${fT(q)}=${termT(P[i], true)}`)))} ✓`,
-      run: (c) => Promise.all([c.fadeIn(lD, 250), c.pop(side, 380), ...pieces.map(({ e, w }, i) => Promise.all([c.anim(e, [{ opacity: 0, transform: 'scaleX(.2)' }, { opacity: 1, transform: 'none' }], 420, { delay: 150 + i * 200 }), c.pop(w, 340, { delay: 300 + i * 200 })]))])
+      cap: `<b>4. Verify by distributing:</b> multiply ${T(gT)} by <b>each</b> term in the bracket. ${listAnd(Q.map((q, i) => T(`${fT(g)}\\cdot ${fT(q)}=${termT(P[i], true)}`)))}. Those are the original terms ✓`,
+      run: async (c) => { await c.fadeIn(lD, 250); await dist.run(c); }
     }, {
       cap: `<b>Factored completely?</b> ${listAnd(Q.map((q) => T(termT(q, true))))} have no common factor except 1, so nothing more comes out ✓`,
       run: (c) => stampIn(c, stamp)

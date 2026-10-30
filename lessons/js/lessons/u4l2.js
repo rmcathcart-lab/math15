@@ -141,6 +141,33 @@ const bags = {
   }
 };
 
+/* the check by distributing: GCF(q1 + q2 + …) = the original terms, with an arrow from the GCF to each bracket term
+   (Ryan, 2026-10-30: show the check as re-distributing, not as a rectangle) */
+function distCheck(stage, x, y, maxW, g, Q, P) {
+  const gT = termT(g, true);
+  const src = `\\htmlClass{u4l2-dg}{${gT}}\\htmlClass{u4l2-db}{(}` + Q.map((q, i) => (i === 0 ? `\\htmlClass{u4l2-dq0}{${termT(q, true)}}` : `\\mathbin{\\htmlClass{u4l2-dq${i}}{${q.n < 0 ? '-' : '+'}}}\\htmlClass{u4l2-dq${i}}{${bodyT(q)}}`)).join('') +
+    '\\htmlClass{u4l2-db}{)}\\htmlClass{u4l2-de}{\\;=\\;}' + P.map((t, i) => `\\htmlClass{u4l2-dp${i}}{${tc(PCOL[i % 4], termT(t, i === 0))}}`).join('') + '\\htmlClass{u4l2-dk}{\\;\\checkmark}';
+  const row = add(stage, h('div', 'u4l2-pc u4l2-dist', K(src)), x, y); row.style.translate = '0 -50%'; fit(row, maxW);
+  const S = (cls) => spans(row, cls);
+  const head = [...S('u4l2-dg'), ...S('u4l2-db'), ...Q.flatMap((q, i) => S('u4l2-dq' + i))];
+  [...head, ...S('u4l2-de'), ...P.flatMap((t, i) => S('u4l2-dp' + i)), ...S('u4l2-dk')].forEach((e) => hide(e));
+  const svg = arcLayer(stage);
+  return {
+    async run(c) {
+      await showSpans(c, head, 300);
+      await showSpans(c, S('u4l2-de'), 250);
+      const a = stagePos(stage, S('u4l2-dg')[0]);
+      for (let i = 0; i < Q.length; i++) {
+        const qs = S('u4l2-dq' + i); qs.forEach((e) => (e.style.color = PCOL[i % 4]));
+        const b = stagePos(stage, qs[qs.length - 1]), dx = Math.abs(b.x - a.x);
+        await arrow(svg, a.x, a.t - 2, b.x, b.t - 2, Math.min(62, 30 + dx * 0.22), PCOL[i % 4]).draw(c, 420);
+        await showSpans(c, S('u4l2-dp' + i), 320);
+      }
+      await showSpans(c, S('u4l2-dk'), 300);
+    }
+  };
+}
+
 /* ============ 2 & 5. Find the GCF, divide every term, write, check ============ */
 const PO = {
   n2: '6x^2+12x+18', a2: '3x^2+6x+9', b2: '10a^2-15a-25', c2: '8y^2+12y-4',
@@ -166,14 +193,7 @@ function makePull(title, choices) {
       const cParts = { e: spans(rowC, 'u4l2-ce'), g: spans(rowC, 'u4l2-tg'), b: spans(rowC, 'u4l2-cb'), q: Q.map((q, i) => spans(rowC, 'u4l2-tq' + i)) };
       [...cParts.e, ...cParts.g, ...cParts.b, ...cParts.q.flat()].forEach((e) => hide(e));
       const stamp = add(stage, h('div', 'u4l2-stamp ok', 'FACTORED<small>completely ✓</small>'), W - 20, yD + 18); stamp.style.translate = '-100% 0'; hide(stamp);
-      const pw = Math.min(170, (W - x0 - 220) / n), rx = x0 + 30, ry = yD + 20, rh2 = 76;
-      const side = add(stage, h('div', 'u4l2-rsd', K(gT)), rx - 10, ry + rh2 / 2); side.style.translate = '-100% -50%'; hide(side);
-      const pieces = P.map((t, i) => {
-        const e = add(stage, box(h('div', 'u4l2-rp' + (t.n < 0 ? ' neg' : ''), `<span>${K(termT(t, true))}</span>`), pw, rh2), rx + i * pw, ry); e.style.setProperty('--pc', PCOL[i % 4]);
-        const w = add(stage, h('div', 'u4l2-rw c', K(termT(Q[i], true))), rx + i * pw + pw / 2, ry - 14); w.style.color = PCOL[i % 4];
-        hide(e, w); return { e, w };
-      });
-      pieces.forEach(({ e }) => fit(e.firstChild, pw - 12));
+      const dist = distCheck(stage, x0 - 6, yD + 50, W - x0 - 250, g, Q, P); // the check: distribute the GCF back over the bracket
       const negG = g.n < 0, ones = Q.some(isOne) || Q.some((q) => q.n === -1 && !Object.keys(q.v).length);
       const coefs = P.map((t) => Math.abs(t.n)), cg = Math.abs(g.n);
       const vlist = Object.keys(g.v).map((k) => T(g.v[k] > 1 ? `${k}^{${g.v[k]}}` : k));
@@ -201,8 +221,8 @@ function makePull(title, choices) {
           cParts.q.flat().forEach((e) => (e.style.opacity = 1));
         }
       }, {
-        cap: `<b>Check by expanding:</b> the GCF is the <b>side</b> of a rectangle and each bracket term is a <b>width</b>. ${listAnd(Q.map((q, i) => T(`${fT(g)}\\cdot ${fT(q)}=${termT(P[i], true)}`)))} ✓`,
-        run: (c) => Promise.all([c.fadeIn(lD, 250), c.pop(side, 380), ...pieces.map(({ e, w }, i) => Promise.all([c.anim(e, [{ opacity: 0, transform: 'scaleX(.2)' }, { opacity: 1, transform: 'none' }], 420, { delay: 150 + i * 200 }), c.pop(w, 340, { delay: 300 + i * 200 })]))])
+        cap: `<b>Check by distributing:</b> multiply ${T(gT)} by <b>each</b> term in the bracket. ${listAnd(Q.map((q, i) => T(`${fT(g)}\\cdot ${fT(q)}=${termT(P[i], true)}`)))}. Those are the original terms ✓`,
+        run: async (c) => { await c.fadeIn(lD, 250); await dist.run(c); }
       }, {
         cap: `<b>Factored completely?</b> The terms left in the bracket, ${T(qT)}, have no common factor except 1 ✓` + (negG ? ` And the bracket starts with a <b>positive</b> term.` : ''),
         run: (c) => stampIn(c, stamp)
