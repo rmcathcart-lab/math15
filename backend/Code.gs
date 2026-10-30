@@ -33,11 +33,22 @@ var TZ = 'America/Edmonton';
 
 /* ---------------- plumbing ---------------- */
 function props_() { return PropertiesService.getScriptProperties(); }
-function ss_() {
+/* The ledger spreadsheet. It is only ever CREATED by setup() (create = true). Everywhere else a failed open is retried
+ * and then reported as an error: on 2026-10-30 a few busy moments made openById fail and the old fallback created a
+ * new, empty spreadsheet each time and switched to it, so the class lists seemed to vanish. */
+var SS_ = null;
+function ss_(create) {
+  if (SS_) return SS_;
   var id = props_().getProperty('SHEET_ID');
-  if (id) { try { return SpreadsheetApp.openById(id); } catch (e) {} }
+  if (id) {
+    for (var i = 0; ; i++) {
+      try { return (SS_ = SpreadsheetApp.openById(id)); }
+      catch (e) { if (i >= 3) throw new Error('The ledger spreadsheet could not be opened just now: ' + e); Utilities.sleep(300 + 600 * i); }
+    }
+  }
+  if (!create) throw new Error('No ledger spreadsheet yet: run setup() from the editor.');
   var ss = SpreadsheetApp.create('Math 15 Practice Ledger'); props_().setProperty('SHEET_ID', ss.getId());
-  return ss;
+  return (SS_ = ss);
 }
 var SHEETS_ = {};
 function sheet_(name) {
@@ -70,7 +81,7 @@ function token_(klass, name, pinHash) { return Utilities.base64EncodeWebSafe(Uti
 function day_(ms) { return Utilities.formatDate(new Date(ms), TZ, 'yyyy-MM-dd'); }
 
 function setup() {
-  var ss = ss_(); Object.keys(COLS).forEach(function (n) { sheet_(n); });
+  var ss = ss_(true); Object.keys(COLS).forEach(function (n) { sheet_(n); });
   var s1 = ss.getSheetByName('Sheet1'); if (s1 && ss.getSheets().length > 1) ss.deleteSheet(s1);
   if (!teacherKey_()) props_().setProperty('TEACHER_KEY', Utilities.getUuid().replace(/-/g, '').slice(0, 12));
   secret_();
@@ -833,4 +844,39 @@ function launchRetest_(id, testId) {
 function retestsDone_(sid) {
   var sh = sheet_('Retests');
   retestRows_().forEach(function (x) { if (x.session === sid && x.status === 'open') sh.getRange(x.row, 6, 1, 3).setValues([['done', sid, new Date()]]); });
+}
+
+/* ---------------- recovery (2026-10-30) ----------------
+ * Run once from the editor after the old ss_() fallback made empty replacement spreadsheets: points SHEET_ID back at
+ * the spreadsheet that still has the class lists, then copies the Attempts and Events rows that landed in the
+ * replacements into it. Safe to run again (it only switches if it finds a spreadsheet with a class list). */
+function restoreLedger() {
+  var ids = ['1RFxFQr-9KfcHf9PMgtDx8upxS2I_Qe82v0V1ivcYQk4', '18McPfVwNNoJmHEMy5y4EG2IjQr8kefQmghusiplEieE', '1DElx5HnM5z5ZLLfRkuQwX2sN1PD_U8JOyO376BxH33U',
+    '1ub2WFTmjTl4t_ixXE7GEhqjMdM8VcXoKLFRMpayQvsQ', '1akmxRDWdOEeR3jEoQ8tPTWh6W01deXbNZU9up8ulM-k', '1A-bBQtrhkqoKoury_dLMMX8fM9DTY1usRSJjxcK-4lc',
+    '1-TZBgskrtn_MJrAnOkJInhTYhinuM7_ZtId7QJJqY9k', '1iADuLbFduLcMnH_hQyExEsMgF1BzvYzcMAOISrrGfbc', '1D0cmRffIsEHV4hf1t8VAJT8gpDtZ5fg6y4aFV7wdIrw',
+    '1jhNCH8PyI5tPFXics36aOIOXuY3DPNTuTw-UaKCzNPo', '16aO18Vj7jOhoQkITRl2DLVjHThW9R53qdrf8wy3WMOY', '1cKyHmmRTl8W_ruBkgMScGiw0DJOUy8qyUAwRc_OG-no',
+    '1-iBxvVqSJr9FfrhJ4197cl9vT4gKtzP2DDNtl1oIScg', '1hyHXY6oLMVJb-c035pjs-dOvuV0awncy80CTLghaAWM', '1uzGbrAmUQohG1wuPOE713-zPvaDU0XB7vqZnzHYkHaA',
+    '1bopYMyvchsG_zMl1ogT2GcVK-Eye8h-dzJM1psMfofM', '1wLLZ8FNCdtVCvA4Xe6R_ZJqvv0kyKJcjJ0m746PFVo0', '19QR-zOq35yz6-ItidwyNHNi3_ER9aSd7Eg6Fj4ztOzM',
+    '1pDQFtM6h3I0kq33FDTqAskjVAKmWKSUBNjD4ma091b4', '1rfRnWZnaR8Bp7pNT3Aj-O8LhvnRwM-A4rPboT8kJ724'];
+  var cur = props_().getProperty('SHEET_ID'); if (cur && ids.indexOf(cur) < 0) ids.push(cur);
+  var info = ids.map(function (id) {
+    try { var ss = SpreadsheetApp.openById(id), r = ss.getSheetByName('Roster'); return { id: id, ss: ss, roster: r ? Math.max(0, r.getLastRow() - 1) : 0 }; }
+    catch (e) { return { id: id, roster: -1, err: String(e) }; }
+  });
+  info.forEach(function (x) { Logger.log(x.id + '  roster rows: ' + x.roster + (x.err ? '  ERROR ' + x.err : '') + (x.id === cur ? '  (current)' : '')); });
+  var best = info.filter(function (x) { return x.ss; }).sort(function (a, b) { return b.roster - a.roster; })[0];
+  if (!best || best.roster < 1) { Logger.log('No spreadsheet with a class list was found in the list. Nothing changed.'); return; }
+  props_().setProperty('SHEET_ID', best.id);   // switch first, so new check-ins go to the original from now on
+  Logger.log('SHEET_ID is now ' + best.id + '  ' + best.ss.getUrl());
+  Utilities.sleep(3000);
+  ['Attempts', 'Events'].forEach(function (name) {
+    var dst = best.ss.getSheetByName(name); if (!dst) return;
+    info.forEach(function (x) {
+      if (!x.ss || x.id === best.id) return;
+      var src = x.ss.getSheetByName(name); if (!src || src.getLastRow() < 2) return;
+      var vals = src.getRange(2, 1, src.getLastRow() - 1, src.getLastColumn()).getValues();
+      dst.getRange(dst.getLastRow() + 1, 1, vals.length, vals[0].length).setValues(vals);
+      Logger.log('Copied ' + vals.length + ' ' + name + ' rows from ' + x.id);
+    });
+  });
 }
