@@ -466,7 +466,7 @@ const hypSteps = {
     const B = add(stage, box(h('div', 'u6l1-bars'), GW - 20, 128), 10, 300);
     const mx = a + b, bw = GW - 250, longer = Math.max(a, b);
     const bar = (name, v, html, color) => { const r = hide(h('div', 'u6l1-bar', `<span class="u6l1-bn">${name}</span><i style="width:${(v / mx) * bw}px;background:${color}"></i><b style="color:${color}">${html}</b>`)); B.appendChild(r); return r; };
-    const bars = [bar('longer leg', longer, nH(longer), a > b ? LA : LB), bar('hypotenuse', c, perfect ? nH(c) : '≈ ' + dec, HC), bar('leg + leg', a + b, nH(a + b), '#9aa0ab')];
+    const bars = [bar(a === b ? 'each leg' : 'longer leg', longer, nH(longer), a > b ? LA : LB), bar('hypotenuse', c, perfect ? nH(c) : '≈ ' + dec, HC), bar('leg + leg', a + b, nH(a + b), '#9aa0ab')];
     const P = panel(stage, GW + 16, 10, W - GW - 26, H - 20, 'The steps');
     const Ls = [
       line(P, T('c^2=a^2+b^2')),

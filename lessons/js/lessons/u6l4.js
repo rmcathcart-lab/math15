@@ -357,7 +357,8 @@ const AVG = {
   ex3a: { label: 'Example 3(a) check', A: [2, 8], B: [10, 4], nA: 'P', nB: 'Q', win: { xmin: -1, xmax: 12, ymin: -1, ymax: 10 }, xr: [0, 12], yr: [2, 10] },
   ex3b: { label: 'Example 3(b) check', A: [5, 1], B: [11, 9], nA: 'R', nB: 'S', win: { xmin: -1, xmax: 13, ymin: -1, ymax: 11 }, xr: [3, 13], yr: [0, 10] },
   ex4a: { label: 'Example 4(a) check', A: [-6, 3], B: [2, -7], nA: 'A', nB: 'B', win: { xmin: -8, xmax: 4, ymin: -9, ymax: 5 }, xr: [-8, 4], yr: [-8, 4] },
-  ex4b: { label: 'Example 4(b) check', A: [-9, -4], B: [3, -10], nA: 'C', nB: 'D', win: { xmin: -11, xmax: 5, ymin: -12, ymax: 2 }, xr: [-10, 4], yr: [-11, -2] }
+  ex4b: { label: 'Example 4(b) check', A: [-9, -4], B: [3, -10], nA: 'C', nB: 'D', win: { xmin: -11, xmax: 5, ymin: -12, ymax: 2 }, xr: [-10, 4], yr: [-11, -2] },
+  ex4c: { label: 'Example 4(c) check', A: [-3, 4], B: [2, -1], nA: 'P', nB: 'Q', win: { xmin: -5, xmax: 4, ymin: -3, ymax: 6 }, xr: [-4, 3], yr: [-2, 5] }
 };
 const average = {
   title: 'The midpoint formula: average the x’s, average the y’s',

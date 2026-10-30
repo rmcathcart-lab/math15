@@ -8,8 +8,7 @@
  * pad, checked by rule (any correct lines); "give points / an example" -> any correct answer is accepted;
  * "order" -> drag to order; true/false with a counterexample -> true/false, then the counterexample as an equation.
  * Changed from the booklet: Question 12 no longer asks for written labels — the checker reads each drawn line's
- * type itself. Question 10's chairlift (which loads at the top) is a skier going down the run. Extra 18(b) says
- * "the rise equals the run" (the booklet's "rises 6 for a run of 6" is not 6 units from the origin).
+ * type itself.
  * Slopes: equivalent fractions and exact decimals are accepted; where the booklet asks for lowest terms, an
  * unreduced fraction gets a nudge; "undefined" is the slope of a vertical segment.
  * Levels (Math 15): LIM BEG EMG PRG ADV MAS. Mastery: Extra 19 (added: a point whose segment has a given sign and lies
@@ -312,14 +311,18 @@
     return { num: num, stem: function (sh) { return segStem(nm, sh); }, shared: function (r) { return segQ(r, kind, q[2]); }, parts: parts };
   }
   var NM6 = ['AB', 'CD', 'EF', 'GH'];
+  /* the booklet's version; never one of Example 5's segments (MN, PQ, RS, TU) */
+  var Q6B = [[[-5, -3], [-1, 1]], [[-1, 3], [3, -1]], [[-3, -5], [2, -5]], [[4, 5], [4, 1]]];
+  var EX5 = [[[-5, -1], [1, 3]], [[-3, 1], [3, -1]], [[-5, -4], [4, -4]], [[5, 4], [5, -4]]];
+  function isEx5(sg) { return EX5.some(function (e) { return (e[0][0] === sg[0][0] && e[0][1] === sg[0][1] && e[1][0] === sg[1][0] && e[1][1] === sg[1][1]) || (e[0][0] === sg[1][0] && e[0][1] === sg[1][1] && e[1][0] === sg[0][0] && e[1][1] === sg[0][1]); }); }
   function q6Shared(r) {
-    if (r.chance(0.2)) return { segs: [[[-5, -3], [-1, 1]], [[-1, 3], [3, -1]], [[-4, -4], [4, -4]], [[5, 4], [5, -4]]] };
+    if (r.chance(0.2)) return { segs: Q6B };
     for (var g = 0; g < 50; g++) {
       var ab = r.pick([[4, 4], [2, 4], [3, 3], [4, 2], [3, 6], [4, 6], [6, 4]]), cd = r.pick([[4, 4], [2, 4], [3, 3], [4, 2], [6, 3], [4, 6]]), ef = r.int(4, 8), gh = r.int(4, 8);
       var s = placeApart(r, [{ rise: ab[0], run: ab[1] }, { rise: -cd[0], run: cd[1] }, { rise: 0, run: ef }, { rise: -gh, run: 0 }], 5);
-      if (s) return { segs: s };
+      if (s && !s.some(isEx5)) return { segs: s };
     }
-    return { segs: [[[-5, -3], [-1, 1]], [[-1, 3], [3, -1]], [[-4, -4], [4, -4]], [[5, 4], [5, -4]]] };
+    return { segs: Q6B };
   }
   /* Q12: four lines through P, one of each type */
   function q12Check(P) {
@@ -390,7 +393,7 @@
         var rows = ['a', 'b', 'c', 'd'].map(function (L) { var pr = sh[L]; return { id: L, html: '(' + L + ') ' + t(ptT(pr[0])) + ', ' + t(ptT(pr[1])), sl: slopeOf(pr[0], pr[1]) }; });
         return typeGrid('State the type of the slope for each pair of points.', rows, rows.map(function (rw) { return rw.html + ': ' + (rw.sl == null ? 'undefined' : t(slT(rw.sl))) + ' → ' + KIND[kindOf(rw.sl)].toLowerCase(); }).join('<br>'), null, 'Q9 types', 'Points');
       } }]) },
-      { num: '10', section: 'Part C — Applications, explanations and practice', stem: function (sh) { return 'A ski run is measured against a grid laid over a side-view photo. A skier starts at ' + t(ptT([0, sh.h])) + ' at the top of the run and stops at ' + t(ptT([sh.w, 0])) + ' at the bottom, where each unit is ' + t('1') + ' m.'; },
+      { num: '10', section: 'Part C — Applications, explanations and practice', stem: function (sh) { return 'A ski hill is measured against a grid laid over a side-view photo. A skier starts at ' + t(ptT([0, sh.h])) + ' at the top of the run and stops at ' + t(ptT([sh.w, 0])) + ' at the bottom, where each unit is ' + t('1') + ' m.'; },
         shared: function (r) { var o = r.chance(0.2) ? [10, 40] : r.pick([[10, 40], [12, 48], [15, 60], [20, 60], [8, 40], [9, 36], [10, 50], [12, 36], [16, 48], [20, 80], [14, 56], [18, 54], [15, 45], [25, 100], [12, 60], [30, 90], [24, 72], [16, 64], [18, 72], [21, 84], [11, 44], [13, 52], [9, 45], [14, 42], [20, 100], [27, 81]]); return { h: o[0], w: o[1] }; },
         parts: [
           { id: '10a', level: 'EMG', make: function (r, sh) { var sl = red(-sh.h, sh.w); return slopePart('(a) Calculate the slope of the hill along this line.', sl, t('m=\\frac{0-' + sh.h + '}{' + sh.w + '-0}=\\frac{-' + sh.h + '}{' + sh.w + '}=' + slT(sl)) + '.', [FHINT, 'The skier goes down as she moves right: what sign should the slope have?'], 'ski slope', { good: [rawFr(-sh.h, sh.w)], signHint: 'Check the sign: the skier goes <b>down</b> (from height ' + sh.h + ' to ' + t('0') + ') while moving right, so the slope is negative.' }); } },
@@ -539,7 +542,7 @@
           var rows = [['a', 0, 'AB'], ['a', 1, 'CD'], ['b', 0, 'EF'], ['b', 1, 'GH']].map(function (q) { var s = sh[q[0]][q[1]]; return { id: q[2], html: t(q[2]), sl: slopeOf(s[0], s[1]) }; });
           return typeGrid('State the type of each segment’s slope.', rows, rows.map(function (rw) { return rw.html + ': ' + KIND[kindOf(rw.sl)].toLowerCase(); }).join(', ') + '.', null, 'E2 types');
         } }]) },
-      { num: '3', stem: function (sh) { return '<b>From an equation.</b> Rearrange each equation if you need to, then state the slope and its type: ' + ['a', 'b', 'c', 'd'].map(function (L) { return '(' + L + ') ' + t(sh[L].tex); }).join(',&nbsp; ') + '.'; }, shared: function (r) { return { a: E3(r, 'a'), b: E3(r, 'b'), c: E3(r, 'c'), d: E3(r, 'd') }; },
+      { num: '3', stem: function (sh) { return '<b>From an equation</b> <i>(a preview of Unit 7)</i>. In ' + t('y=mx+b') + ', the number multiplying ' + t('x') + ' is the slope; ' + t('y=k') + ' and ' + t('x=k') + ' are the horizontal and vertical lines. Rearrange each equation if you need to, then state the slope and its type: ' + ['a', 'b', 'c', 'd'].map(function (L) { return '(' + L + ') ' + t(sh[L].tex); }).join(',&nbsp; ') + '.'; }, shared: function (r) { return { a: E3(r, 'a'), b: E3(r, 'b'), c: E3(r, 'c'), d: E3(r, 'd') }; },
         parts: [['a', 'EMG'], ['b', 'PRG'], ['c', 'EMG'], ['d', 'ADV']].map(function (q) {
           return { id: 'e3' + q[0], level: q[1], make: function (r, sh) { var e = sh[q[0]]; return slopePart('(' + q[0] + ') ' + t(e.tex) + ': what is the slope? (Use the <b>undefined</b> key if there is no number.)', e.sl, e.how, ['Get ' + t('y') + ' by itself: in ' + t('y=mx+b') + ' the number multiplying ' + t('x') + ' is the slope.', 'If there is no ' + t('y') + ' at all, the equation is ' + t('x=k') + ': a vertical line. If there is no ' + t('x') + ', it is ' + t('y=k') + ': a horizontal line.'], 'E3 ' + e.tex, { lowest: true }); } };
         }).concat([{ id: 'e3t', sub: 'types', level: 'BEG', make: function (r, sh) {

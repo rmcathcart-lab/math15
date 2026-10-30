@@ -8,7 +8,7 @@
  *   flatWall  (Examples 3 and 4: any two points give 0 / undefined, a sliding point, y = k and x = k)
  *   walk      (a hiker walks four lines left to right; the Runner level sorted into the four types)
  *   dial      (one line turns: zero → positive → undefined → negative → zero; and near-vertical slopes)
- *   ex5       (Example 5 check: the rise / run / slope / type table, and why TU can't be y = mx + b)
+ *   ex5       (Example 5 check: the rise / run / slope / type table, and TU: no slope number, x = 5)
  * Built from Math 10C u6l2 (SlopeTri, countLeg, walker, zeroCase, the four-kinds tiles), trimmed to the Math 15 booklet.
  * Colours: run amber (horizontal), rise purple (vertical), segments blue; positive green, negative red, zero blue,
  * undefined purple. */
@@ -709,8 +709,8 @@ const exFive = {
           for (const j of [1, 2, 3, 4]) await pop(c, cells[j].firstChild, 200);
         } };
     });
-    steps.push({ cap: `(b) ${T('TU')} is vertical: ${T('x=5')}. Its slope doesn’t exist, so there is no number to put in for ${T('m')} in ${T('y=mx+b')}.`,
-      run: async (c) => { const b = h('div', 'u6l7-rulebox', `${T('TU')}: only ${T('x=5')}, never ${T('y=mx+b')}`); P.appendChild(b); await pop(c, b); } });
+    steps.push({ cap: `(b) ${T('TU')} is vertical: its run is ${T('0')}, so its slope is <b>undefined</b>: there is no slope number. Every point on it has ${T('x=5')}.`,
+      run: async (c) => { const b = h('div', 'u6l7-rulebox', `${T('TU')}: slope undefined, equation ${T('x=5')}`); P.appendChild(b); await pop(c, b); } });
     return steps;
   }
 };
@@ -721,8 +721,7 @@ mountFigures();
 export const explainers = mountExplainers({ signs, mirror, zeroCase, divZero, flatWall, walk, dial, ex5: exFive });
 
 /* =============================== Stand Up Break! =============================== */
-// "undefined" is spelled across two \text{} pieces so the shared check (which flags the JS value undefined) passes.
-const UNDT = '\\text{unde}\\text{fined}';
+const UNDT = '\\text{undefined}';
 const suType = (rise, run) => ({ pos: '\\text{positive}', neg: '\\text{negative}', zero: '\\text{zero}', und: UNDT }[typeOf(rise, run)]);
 const suSlope = (P, Q) => {
   const rise = Q[1] - P[1], run = Q[0] - P[0];
@@ -758,11 +757,11 @@ standup('u6l7', {
           a: hz ? ['\\text{horizontal}', 'm=0'] : ['\\text{vertical}', `m\\ \\text{is}\\ ${UNDT}`] };
       }
       const [n1, n2] = r.pick(names), [P, Q] = suSeg(r, r.pick(['pos', 'neg', 'zero', 'und']), 0, 9);
-      return { text: 'Calculate the slope of the segment. Is it positive, negative, zero or unde&shy;fined?', q: `${ptT(n1, P)},\\quad ${ptT(n2, Q)}`, a: suSlope(P, Q) };
+      return { text: 'Calculate the slope of the segment. Is it positive, negative, zero or undefined?', q: `${ptT(n1, P)},\\quad ${ptT(n2, Q)}`, a: suSlope(P, Q) };
     },
     PRG: (r) => { // negative coordinates, all four types
       const [n1, n2] = r.pick(names), [P, Q] = suSeg(r, r.pick(['pos', 'neg', 'neg', 'pos', 'zero', 'und']), -7, 7);
-      return { text: 'Calculate the slope. State its type: positive, negative, zero or unde&shy;fined.', q: `${ptT(n1, P)},\\quad ${ptT(n2, Q)}`, a: suSlope(P, Q) };
+      return { text: 'Calculate the slope. State its type: positive, negative, zero or undefined.', q: `${ptT(n1, P)},\\quad ${ptT(n2, Q)}`, a: suSlope(P, Q) };
     },
     MAS: (r) => { // three points on a horizontal / vertical line: two slopes + the equation; or a missing coordinate
       if (r.chance(0.5)) {
@@ -771,7 +770,7 @@ standup('u6l7', {
         const [A, B, C] = pts;
         return { text: `The points lie on one line. Calculate the slope of ${'JK'} and of ${'KL'}. Then write the equation of the line.`,
           q: `${ptT('J', A)},\\ ${ptT('K', B)},\\ ${ptT('L', C)}`,
-          a: [suSlope(A, B)[0], suSlope(B, C)[0], hz ? `\\text{both } 0:\\ y=${c0}` : `\\text{both ${'unde'}}\\text{fined}:\\ x=${c0}`] };
+          a: [suSlope(A, B)[0], suSlope(B, C)[0], hz ? `\\text{both } 0:\\ y=${c0}` : `\\text{both undefined}:\\ x=${c0}`] };
       }
       const hz = r.chance(0.5), P = suPt(r, -6, 6), other = r.int(-6, 6), n2 = names[r.int(0, 4)];
       if (hz) {
@@ -781,8 +780,8 @@ standup('u6l7', {
       }
       void other;
       const y2 = P[1] + r.pick([-5, -4, -3, 3, 4, 5]);
-      return { text: `The segment joining these points has an unde&shy;fined slope. Find <i>k</i>.`, q: `${ptT(n2[0], P)},\\quad ${n2[1]}(k,\\ ${y2})`,
-        a: [`\\text{${'unde'}}\\text{fined} \\Rightarrow \\text{vertical: same } x`, `k=${P[0]}`] };
+      return { text: `The segment joining these points has an undefined slope. Find <i>k</i>.`, q: `${ptT(n2[0], P)},\\quad ${n2[1]}(k,\\ ${y2})`,
+        a: ['\\text{undefined} \\Rightarrow \\text{vertical: same } x', `k=${P[0]}`] };
     }
   }
 });

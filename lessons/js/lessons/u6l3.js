@@ -266,7 +266,7 @@ const hidden = {
     const G = new Graph(stage, Object.assign({ x: 6, y: 12, width: GW, height: GH }, win0));
     const P = panel(stage, GW + 22, 5, ex.W - GW - 28, GH, 'Run, rise, Pythagoras');
     const exact = rm === 1 ? `\\sqrt{${c2}}=${rk}` : `\\sqrt{${c2}}`;
-    const dec = rm === 1 ? '' : `\\approx${cDec.toFixed(2)}`;
+    const dec = rm === 1 ? '' : `\\approx${cDec.toFixed(1)}`;
     const sq = { a: 0, b: 0, c: 0 }, st = { r: 0, s: 0 }, ends = [];
     let legR, legS, cornerPt, hopsR = [], hopsS = [], labC;
     const PX = (p) => G.toPx(p[0], p[1]);
@@ -399,8 +399,8 @@ const cornerEx = {
 /* =============================== explainer: lifting the triangle into symbols =============================== */
 const LIFT = {
   sym: { label: 'Any two points', sym: true, A: [2, 2], B: [9, 7], win: { xmin: 0, xmax: 10.5, ymin: 0, ymax: 8.5 } },
-  ex2a: { label: 'Example 2(a) check', A: [0, 0], B: [6, 8], nA: 'E', nB: 'F', win: { xmin: -1.5, xmax: 8.5, ymin: -1.5, ymax: 9.5 },
-    run: ['x_2-x_1=6-0=6', '6'], rise: ['y_2-y_1=8-0=8', '8'], slots: ['d^2=', '6^2', '8^2'], after: ['d=\\sqrt{36+64}', '=\\sqrt{100}=10'], stamp: 'EF = 10', riseT: 0.5, runPos: 'n', cpos: 'ne' },
+  ex2a: { label: 'Example 2(a) check', A: [0, 0], B: [6, 8], nA: 'S', nB: 'T', win: { xmin: -1.5, xmax: 8.5, ymin: -1.5, ymax: 9.5 },
+    run: ['x_2-x_1=6-0=6', '6'], rise: ['y_2-y_1=8-0=8', '8'], slots: ['d^2=', '6^2', '8^2'], after: ['d=\\sqrt{36+64}', '=\\sqrt{100}=10'], stamp: 'ST = 10', riseT: 0.5, runPos: 'n', cpos: 'ne' },
   ex2b: { label: 'Example 2(b) check', A: [-3, 4], B: [1, 1], nA: 'G', nB: 'H', win: { xmin: -5, xmax: 3, ymin: -1, ymax: 6 },
     run: ['x_2-x_1=1-(-3)=4', '4'], rise: ['y_2-y_1=1-4=-3', '-3'], slots: ['d^2=', '4^2', '(-3)^2'], after: ['d=\\sqrt{16+9}', '=\\sqrt{25}=5'], stamp: 'GH = 5', down: '3 down', riseT: 0.5 }
 };
@@ -548,7 +548,7 @@ const recipe = {
     const cR = (v) => `\\textcolor{#c27a0e}{${v}}`, cS = (v) => `\\textcolor{#7b4fc4}{${v}}`;
     const ln = (c, tx, cls) => show(c, line(W, T(tx), cls));
     const last = rm === 1 ? `\\sqrt{${N}}=${rk}` : `\\sqrt{${N}}` + (rk > 1 ? `=\\sqrt{${rk * rk}}\\cdot\\sqrt{${rm}}=${rk}\\sqrt{${rm}}` : '');
-    const dec = Math.sqrt(N).toFixed(2);
+    const dec = Math.sqrt(N).toFixed(k === 'ex4' ? 1 : 2); // Example 4(b): to the nearest tenth
     return [
       { cap: `<b>1. Label.</b> Call ${T(nA)} point 1 and ${T(nB)} point 2: ${T(`x_1=${tn(x1)},\\ y_1=${tn(y1)}`)} and ${T(`x_2=${tn(x2)},\\ y_2=${tn(y2)}`)}.`,
         run: async (c) => {
@@ -585,7 +585,7 @@ const recipe = {
 /* ======================================================================================
  * Explainer: simplest radical form (from the 10C twin)
  * ====================================================================================== */
-const SR = { r18: { label: 'Demo: √18', n: 18 }, r45: { label: 'Example 3(b): √45', n: 45 }, r40: { label: 'Example 4(a): √40', n: 40 } };
+const SR = { r18: { label: 'Demo: √18', n: 18, dp: 1 }, r45: { label: 'Example 3(b): √45', n: 45, dp: 2 }, r40: { label: 'Example 4(a): √40', n: 40, dp: 1 } };
 const simplify = {
   title: 'Simplest form: find the biggest perfect square',
   height: 420,
@@ -593,7 +593,7 @@ const simplify = {
   choices: Object.keys(SR).map((k) => ({ v: k, label: SR[k].label })),
   intro: 'Is there a perfect square hiding under the root? Press <b>Next</b>.',
   make(stage, key, ex) {
-    const n = SR[key].n, [k, m] = simpRad(n), ks = [];
+    const n = SR[key].n, dp = SR[key].dp, [k, m] = simpRad(n), ks = [];
     for (let j = 2; j * j <= n; j++) ks.push(j);
     const fits = ks.filter((j) => n % (j * j) === 0), tw = 84, gap = 26, x0 = (ex.W - ks.length * (tw + gap) + gap) / 2, ty = 70;
     const head = lab(stage, ex.W / 2, 28, T(`\\sqrt{${n}}`), 'u6l3-big'); head.style.fontSize = '34px';
@@ -610,8 +610,8 @@ const simplify = {
         run: async (c) => { tiles[ks.indexOf(k)].classList.add('u6l3-best'); await pulse(c, tiles[ks.indexOf(k)], 1.12); e1.innerHTML = T(`\\sqrt{${n}}=\\sqrt{${k * k}}\\cdot\\sqrt{${m}}`); await show(c, e1); } },
       { cap: `${T(`\\sqrt{${k * k}}=${k}`)} comes out front: ${T(`\\sqrt{${n}}=${k}\\sqrt{${m}}`)}. That is the <b>mixed radical</b> in simplest form.`,
         run: async (c) => { e2.innerHTML = T(`=${k}\\times\\sqrt{${m}}=\\boldsymbol{${k}\\sqrt{${m}}}`); await show(c, e2); } },
-      { cap: `Decimal (calculator): ${T(`\\sqrt{${n}}=${sq.toFixed(4)}\\ldots`)}, so ${T(`\\approx${sq.toFixed(2)}`)} to the nearest hundredth. Round only at the end.`,
-        run: async (c) => { e3.innerHTML = T(`\\approx${sq.toFixed(4)}\\ldots\\approx\\boldsymbol{${sq.toFixed(2)}}`); await show(c, e3); } }
+      { cap: `Decimal (calculator): ${T(`\\sqrt{${n}}=${sq.toFixed(4)}\\ldots`)}, so ${T(`\\approx${sq.toFixed(dp)}`)} to the nearest ${dp === 1 ? 'tenth' : 'hundredth'}. Round only at the end.`,
+        run: async (c) => { e3.innerHTML = T(`\\approx${sq.toFixed(4)}\\ldots\\approx\\boldsymbol{${sq.toFixed(dp)}}`); await show(c, e3); } }
     ];
   }
 };

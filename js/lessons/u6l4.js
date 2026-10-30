@@ -296,8 +296,11 @@
   /* a pair with whole-number midpoint: signs sx = [sx1, sy1, sx2, sy2] (+1 / -1), magnitudes in [lo, hi] */
   function signedPair(r, sg, lo, hi) {
     return pickWhere(function () { return { P: [sg[0] * r.int(lo, hi), sg[1] * r.int(lo, hi)], Q: [sg[2] * r.int(lo, hi), sg[3] * r.int(lo, hi)] }; },
-      function (z) { return even(z.P[0] + z.Q[0]) && even(z.P[1] + z.Q[1]) && z.P[0] !== z.Q[0] && z.P[1] !== z.Q[1] && !samePt(mid(z.P, z.Q), [0, 0]); });
+      function (z) { return even(z.P[0] + z.Q[0]) && even(z.P[1] + z.Q[1]) && z.P[0] !== z.Q[0] && z.P[1] !== z.Q[1] && !samePt(mid(z.P, z.Q), [0, 0]) && !isEx4(z); });
   }
+  /* never the lesson's own Example 4 pairs */
+  var EX4 = [[[-6, 3], [2, -7]], [[-9, -4], [3, -10]], [[-3, 4], [2, -1]]];
+  function isEx4(z) { return EX4.some(function (e) { return (samePt(z.P, e[0]) && samePt(z.Q, e[1])) || (samePt(z.P, e[1]) && samePt(z.Q, e[0])); }); }
   function nonnegPair(r, dirX, dirY) {
     return pickWhere(function () { var P = [r.int(0, 12), r.int(0, 12)]; return { P: P, Q: [P[0] + dirX * 2 * r.int(1, 6), P[1] + dirY * 2 * r.int(1, 6)] }; },
       function (z) { return z.Q[0] >= 0 && z.Q[0] <= 14 && z.Q[1] >= 0 && z.Q[1] <= 14; });
@@ -327,7 +330,7 @@
   /* ======================= Assignment 4 ======================= */
   var QUESTIONS = [
     { num: '1', section: 'Part A — Finding midpoints', stem: 'Each segment is horizontal or vertical. Without using the midpoint formula, determine the midpoint by counting squares on the grid.', parts: [
-      { id: '1a', level: 'BEG', make: function (r) { return countPart(r, true, { P: [-6, -2], Q: [2, -2] }, 'A', 'B'); } },
+      { id: '1a', level: 'BEG', make: function (r) { return countPart(r, true, { P: [-7, 3], Q: [1, 3] }, 'A', 'B'); } },
       { id: '1b', level: 'BEG', make: function (r) { return countPart(r, false, { P: [4, 7], Q: [4, -5] }, 'C', 'D'); } }] },
     { num: '2', stem: 'Use the midpoint formula to determine the midpoint of the segment with each pair of endpoints.', parts: [
       { id: '2a', level: 'BEG', make: function (r) { var o = r.chance(0.15) ? { P: [3, 5], Q: [9, 11] } : nonnegPair(r, 1, 1); return midP(pairTex('A', o.P, 'B', o.Q), o.P, o.Q, 'midpoint, whole numbers (a)'); } },
@@ -336,7 +339,7 @@
       { id: '2d', level: 'BEG', make: function (r) { var o = r.chance(0.15) ? { P: [6, 2], Q: [0, 14] } : nonnegPair(r, -1, 1); return midP(pairTex('G', o.P, 'H', o.Q), o.P, o.Q, 'midpoint, whole numbers (d)'); } }] },
     { num: '3', stem: 'Determine the midpoint of the segment with each pair of endpoints. Each pair involves at least one negative coordinate.', parts: [
       { id: '3a', level: 'EMG', make: function (r) { var o = r.chance(0.15) ? { P: [-4, 6], Q: [2, -8] } : signedPair(r, [-1, 1, 1, -1], 1, 12); return midP(pairTex('A', o.P, 'B', o.Q), o.P, o.Q, 'midpoint with negatives (a)'); } },
-      { id: '3b', level: 'EMG', make: function (r) { var o = r.chance(0.15) ? { P: [-10, -3], Q: [4, -11] } : signedPair(r, [-1, -1, 1, -1], 1, 12); return midP(pairTex('C', o.P, 'D', o.Q), o.P, o.Q, 'midpoint with negatives (b)'); } },
+      { id: '3b', level: 'EMG', make: function (r) { var o = r.chance(0.15) ? { P: [-10, -3], Q: [6, -11] } : signedPair(r, [-1, -1, 1, -1], 1, 12); return midP(pairTex('C', o.P, 'D', o.Q), o.P, o.Q, 'midpoint with negatives (b)'); } },
       { id: '3c', level: 'EMG', make: function (r) { var o = r.chance(0.15) ? { P: [-7, 9], Q: [-1, -5] } : signedPair(r, [-1, 1, -1, -1], 1, 12); return midP(pairTex('E', o.P, 'F', o.Q), o.P, o.Q, 'midpoint with negatives (c)'); } },
       { id: '3d', level: 'EMG', make: function (r) { var o = r.chance(0.15) ? { P: [5, -6], Q: [-11, -12] } : signedPair(r, [1, -1, -1, -1], 1, 12); return midP(pairTex('G', o.P, 'H', o.Q), o.P, o.Q, 'midpoint with negatives (d)'); } }] },
     { num: '4', stem: 'Determine the midpoint of the segment with each pair of endpoints.', parts: [
@@ -469,7 +472,7 @@
       } }] },
     { num: '14', parts: [
       { id: '14', level: 'EMG', make: function (r) {
-        /* the booklet's answer is negative (−6); here the y-coordinate is always positive so it fits a numerical-response grid */
+        /* the booklet's version is (6, 17) and (−2, −5), y-coordinate 6; the y-coordinate is always positive so it fits a numerical-response grid */
         var o = pickWhere(function () { return { P: [r.int(1, 12), r.int(5, 20)], Q: [-r.int(1, 10), -r.int(1, 12)] }; }, function (z) { return even(z.P[0] + z.Q[0]) && even(z.P[1] + z.Q[1]) && z.P[1] + z.Q[1] > 0; });
         if (r.chance(0.15)) o = { P: [6, 17], Q: [-2, -5] };
         var M = mid(o.P, o.Q);
@@ -604,7 +607,7 @@
     /* ---- EP 6 ---- */
     { num: '6', stem: 'Determine the other endpoint. The midpoints here are half-integers.', parts: [
       { id: 'e6a', level: 'PRG', make: function (r) { var o = r.chance(0.15) ? { A: [-5, -4], M: [-0.5, 3] } : pickWhere(function () { return { A: [-r.int(1, 8), -r.int(1, 8)], M: [r.pick(pm(0, 4)) + 0.5, r.int(1, 6)] }; }, function () { return true; }); return endPart(o.A, o.M, 'B', 'endpoint with a half midpoint (a)', true, 'A'); } },
-      { id: 'e6b', level: 'PRG', make: function (r) { var o = r.chance(0.15) ? { A: [6, -3], M: [1.5, -5.5] } : pickWhere(function () { return { A: [r.int(1, 8), -r.int(1, 8)], M: [r.pick(pm(0, 3)) + 0.5, -r.int(1, 7) - 0.5] }; }, function () { return true; }); return endPart(o.A, o.M, 'Q', 'endpoint with half midpoints (b)', true, 'P'); } }] },
+      { id: 'e6b', level: 'PRG', make: function (r) { var o = r.chance(0.15) ? { A: [6, -3], M: [1.5, -5.5] } : pickWhere(function () { return { A: [r.int(1, 8), -r.int(1, 8)], M: [r.pick(pm(0, 3)) + 0.5, -r.int(1, 7) - 0.5] }; }, function () { return true; }); return endPart(o.A, o.M, '', 'endpoint with half midpoints (b)', true, 'P'); } }] },
     /* ---- EP 7 ---- */
     { num: '7', shared: function (r) {
         if (r.chance(0.2)) return { A: [-3, 4], M: [2, -1] };
@@ -893,7 +896,7 @@
   function endPart(A, M, nb, text, frac, na, prompt) {
     na = na || 'A';
     var Bp = sub(scl(M, 2), A);
-    return ptPart(prompt || t(nm(na, A) + ',\\ \\text{midpoint }' + nm('M', M, frac)), Bp, { cands: endCands(A, M), before: nb + ' =' }, endSol(A, M, nb, frac), HE, text);
+    return ptPart(prompt || t(nm(na, A) + ',\\ \\text{midpoint }' + nm('M', M, frac)), Bp, { cands: endCands(A, M), before: nb ? nb + ' =' : 'Other endpoint:' }, endSol(A, M, nb, frac), HE, text);
   }
 
   HW.defineLesson({ id: 'u6l4', unit: 6, num: 4, title: 'The Midpoint Formula', outcome: 'RF3', questions: QUESTIONS, extra: EXTRA });

@@ -5,7 +5,7 @@
  *   meet (make them longer: equal slopes never meet; different slopes cross, even far away), rotate (the slope triangle
  *   turned 90° about the shared point: rise and run swap, one sign flips), flipSign (parallel and perpendicular slopes from
  *   one slope), perpTest (multiply the slopes: −1 or not), classify (parallel / perpendicular / neither flowchart),
- *   dialK (a missing number in a slope),
+ *   dialK (Example 6: a missing number in a slope),
  * the Stand Up Break and the Math History box (Recorde's equals sign).
  * Colours: run amber (horizontal), rise purple (vertical); first segment blue, second red; parallel green, perpendicular red.
  * Explainers adapted from Math 10C u6l3 (same engine). */
@@ -527,8 +527,8 @@ const perpTest = {
 const CL = {
   a: { label: 'Example 5(a) check', m1: '\\dfrac{2}{5}', m2: '\\dfrac{2}{5}', eq: '\\dfrac25=\\dfrac25', isEq: true, L: [{ m: 0.4, b: 1.5 }, { m: 0.4, b: -1.5 }], v: 'par',
     caps: ['The slopes are <b>equal</b>.', 'Equal slopes: the lines are <b>parallel</b>.'] },
-  b: { label: 'Example 5(b) check', m1: '\\dfrac{3}{4}', m2: '-\\dfrac{4}{3}', eq: '\\dfrac34\\ne-\\dfrac43', prod: '\\dfrac{3}{4}\\times\\left(-\\dfrac{4}{3}\\right)=-1', L: [{ m: 0.75, b: 0 }, { m: -4 / 3, b: 0 }], v: 'perp',
-    caps: ['Not equal, so not parallel.', 'Multiply: ' + T('\\dfrac{3}{4}\\times\\left(-\\dfrac{4}{3}\\right)=-1') + '. Negative reciprocals: <b>perpendicular</b>.'] },
+  b: { label: 'Example 5(b) check', m1: '-\\dfrac{2}{7}', m2: '\\dfrac{7}{2}', eq: '-\\dfrac27\\ne\\dfrac72', prod: '-\\dfrac{2}{7}\\times\\dfrac{7}{2}=-1', L: [{ m: -2 / 7, b: 0 }, { m: 3.5, b: 0 }], v: 'perp',
+    caps: ['Not equal, so not parallel.', 'Multiply: ' + T('-\\dfrac{2}{7}\\times\\dfrac{7}{2}=-1') + '. Negative reciprocals: <b>perpendicular</b>.'] },
   c: { label: 'Example 5(c) check', m1: '\\dfrac{5}{6}', m2: '\\dfrac{6}{5}', eq: '\\dfrac56\\ne\\dfrac65', prod: '\\dfrac{5}{6}\\times\\dfrac{6}{5}=+1\\ne-1', L: [{ m: 5 / 6, b: 0 }, { m: 1.2, b: 0 }], v: 'nei',
     caps: ['Not equal, so not parallel.', 'The product is ' + T('+1') + ', not ' + T('-1') + '. Flipped, but the sign never changed: <b>neither</b>.'] },
   hv: { label: T('0') + ' and undefined', m1: '0', m2: '\\text{undefined}', eq: '0\\ne\\text{undefined}', prod: '0\\times\\text{undefined}:\\ \\text{can’t multiply}', L: [{ m: 0, b: 1.5 }, { x: 1.5 }], v: 'perp',
@@ -577,10 +577,10 @@ const classify = {
   }
 };
 
-/* =============================== 5. a missing number in a slope: turn the k-line =============================== */
+/* =============================== Example 6: a missing number in a slope: turn the k-line =============================== */
 const KD = {
-  a: { label: 'Parallel', to: -2, v: 'par', alg: ['\\dfrac{k}{4}=-\\dfrac{1}{2}', 'k=4\\times\\left(-\\dfrac{1}{2}\\right)', 'k=-2'] },
-  b: { label: 'Perpendicular', to: 8, v: 'perp', alg: ['-\\dfrac12\\ \\to\\ \\text{flip, change the sign}\\ \\to\\ 2', '\\dfrac{k}{4}=2', 'k=4\\times2=8'] }
+  a: { label: 'Example 6(a): parallel', to: -2, v: 'par', alg: ['\\dfrac{k}{4}=-\\dfrac{1}{2}', 'k=4\\times\\left(-\\dfrac{1}{2}\\right)', 'k=-2'] },
+  b: { label: 'Example 6(b): perpendicular', to: 8, v: 'perp', alg: ['-\\dfrac12\\ \\to\\ \\text{flip, change the sign}\\ \\to\\ 2', '\\dfrac{k}{4}=2', 'k=4\\times2=8'] }
 };
 const dialK = {
   title: 'Turn the dial: find k',

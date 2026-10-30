@@ -584,13 +584,13 @@
           'The rectangle is ' + t(sh.W) + ' by ' + t(sh.H) + ': ' + t('P=2(' + sh.W + ')+2(' + sh.H + ')=' + RP) + ' units.', ['Width ' + t('=|' + F(x1) + '-' + pr(x0) + '|') + ', height ' + t('=|' + F(y1) + '-' + pr(y0) + '|') + '.'], 'enclosing rectangle', 'units', [sh.W + sh.H]);
       } },
       { id: 'e8d', level: 'PRG', make: function (r, sh) {
-        var P = perimOf(sh.V), RP = 2 * (sh.W + sh.H), d = sh.depth;
+        var P = perimOf(sh.V), RP = 2 * (sh.W + sh.H), d = sh.depth, back = lenOf(sh.V[3], sh.V[4]), side = sh.V[2][0] > sh.V[0][0] ? 'right' : 'left';
         return mcP(r, 'The deck’s perimeter is ' + t(P - RP) + ' units more than the rectangle’s. Why does the notch make the two answers differ?', [
-          { html: 'The two sides of the notch that go <b>into</b> the deck (each ' + t(d) + ' units long) are extra; the back of the notch just replaces the piece of the outer side that was cut away. ' + t('2\\times ' + d + '=' + 2 * d) + '.', right: true },
+          { html: 'The notch’s two inward sides, ' + t('CD') + ' and ' + t('EF') + ' (each ' + t(d) + ' units long), are extra; the back of the notch, ' + t('DE') + ', just replaces the piece of the outer side that was cut away. ' + t('2\\times ' + d + '=' + 2 * d) + '.', right: true },
           { html: 'Cutting out the notch removes area, so the perimeter gets smaller.', why: 'Less area doesn’t mean less perimeter: the deck’s perimeter is actually ' + t(P - RP) + ' units <b>more</b>.', code: 'area' },
           { html: 'The back of the notch is counted twice.', why: 'The back of the notch is counted once, and it replaces the piece of the outer side that was removed. The extra length comes from the two sides that run into the deck.', code: 'back' },
           { html: 'Every one of the eight sides is longer than the rectangle’s sides.', why: 'Compare piece by piece: the outer sides add up to the rectangle; only the notch’s two inside sides are extra.', code: 'all' }],
-          'Going around the deck covers the whole outline of the rectangle (the back of the notch fills in the gap it left), <b>plus</b> the two sides that run into the deck, each ' + t(d) + ' units: ' + t(RP + '+2(' + d + ')=' + P) + '.', ['Compare the walk around the deck with the walk around the rectangle. What is extra?'], 'why notch');
+          'Cutting the notch removes no width or height overall: ' + t('DE') + ' (' + t(back) + ') just replaces the piece of the ' + side + ' side that was cut away. The walk around the deck also covers the notch’s two inward sides ' + t('CD') + ' and ' + t('EF') + ' (' + t(d) + ' each), so the perimeter is ' + t(2 * d) + ' more: ' + t(RP + '+2(' + d + ')=' + P) + '.', ['Compare the walk around the deck with the walk around the rectangle. What is extra?'], 'why notch');
       } }] },
     { num: '9', stem: function (sh) { return 'Five segments are described below.<br>' + sh.s.map(function (s, i) { return t('P_{' + (i + 1) + '}') + ': ' + t(P2(s[0])) + ' to ' + t(P2(s[1])); }).join('<br>'); }, shared: e9Shared, parts: [
       { id: 'e9a', level: 'BEG', make: function (r, sh) {

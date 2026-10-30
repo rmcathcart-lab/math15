@@ -295,7 +295,7 @@
   function upRight(r, list, box, fix) { // a segment going right and up, inside box = [xlo, xhi, ylo, yhi]
     if (fix) return fix;
     for (var i = 0; i < 200; i++) { var ab = r.pick(list), A = [r.int(box[0], box[1]), r.int(box[2], box[3])], B = [A[0] + ab[0], A[1] + ab[1]]; if (B[0] <= box[1] + ab[0] && B[0] <= 12 && B[1] <= 12) return [A, B]; }
-    return [[1, 1], [4, 5]];
+    return [[2, -1], [5, 3]];
   }
   function exactSeg(r, prompt, nm, A, B, text) {
     var N = d2(A, B);
@@ -304,7 +304,7 @@
 
   var Q = [
     { num: '1', section: 'Part A — Building the Right Triangle', stem: function (sh) { return t('AB') + ' with ' + t('A' + P2(sh.A)) + ' and ' + t('B' + P2(sh.B)) + '.'; },
-      shared: function (r) { var s = upRight(r, [[3, 4], [4, 3]], [0, 4, 0, 4], r.chance(0.2) ? [[1, 1], [4, 5]] : null); return { A: s[0], B: s[1] }; }, parts: [
+      shared: function (r) { var s = upRight(r, [[3, 4], [4, 3]], [0, 4, -2, 4], r.chance(0.2) ? [[2, -1], [5, 3]] : null); return { A: s[0], B: s[1] }; }, parts: [
         { id: '1tri', sub: 'triangle', level: 'BEG', make: function (r, sh) { return vertexPart('Build a right triangle under ' + t('AB') + ': tap the vertex ' + t('C') + ' of its right angle.', sh.A, sh.B, ['A', 'B', 'C'], 'right-angle vertex AB'); } },
         { id: '1', sub: 'length', level: 'BEG', make: function (r, sh) { return rrPart(r, 'AB', sh.A, sh.B, 'run rise AB'); } }] },
     { num: '2', stem: 'Determine the run, the rise, and the exact length of each segment.', parts: [
@@ -492,7 +492,7 @@
         var opts = ['an <b>isosceles right</b> triangle', 'a <b>scalene right</b> triangle', 'an <b>isosceles</b> triangle that is <b>not</b> right-angled', 'a <b>scalene</b> triangle that is <b>not</b> right-angled'].map(function (h, i) {
           return { html: h.charAt(0).toUpperCase() + h.slice(1), right: i === want, why: i === want ? null : (i % 2 !== want % 2 && want < 2 && i < 2 ? 'Check the side lengths again: are two of them equal?' : 'Put your answers to (b) and (c) together.'), code: 'name' + i };
         });
-        return mcP(r, 'Name the triangle as completely as you can.', opts, 'From (b) it is ' + (kind === 'scaR' ? 'scalene' : 'isosceles') + ', and from (c) it is ' + (kind === 'isoN' ? '<b>not</b> right-angled' : 'right-angled') + ': ' + ['an isosceles right triangle', 'a scalene right triangle', 'an isosceles triangle that is not right-angled (in fact all its angles are acute)'][want] + '.',
+        return mcP(r, 'Name the triangle as completely as you can.', opts, 'From (b) it is ' + (kind === 'scaR' ? 'scalene' : 'isosceles') + ', and from (c) it is ' + (kind === 'isoN' ? '<b>not</b> right-angled' : 'right-angled') + ': ' + ['an isosceles right triangle', 'a scalene right triangle', 'an isosceles triangle that is not right-angled'][want] + '.',
           ['Combine the side type from (b) with the angle result from (c).'], 'name triangle', true);
       } }];
     return parts;

@@ -316,11 +316,14 @@
     { num: '8', parts: [
       { id: '8', level: 'PRG', make: function (r) {
         var g = gen(r, function (r) { var q = r.int(1, 3), p = r.int(1, 4); if (gcd(p, q) !== 1 || p === q) return null; var n = r.int(2, 4) * (q === 1 ? 2 : 1), j = r.int(1, n - 1), P = [r.int(0, 3), r.int(0, 4)], R = add(P, [q, p], n), Q = add(P, [q, p], j); if (R[1] > 20 || R[0] > 14 || j * q < 2) return null; return { P: P, Q: Q, R: R, s: [p, q] }; }, { P: [1, 2], Q: [5, 8], R: [7, 11], s: [3, 2] });
-        var rise = g.Q[1] - g.P[1], run = g.Q[0] - g.P[0], m = sV(g.s);
-        return numAns('The points ' + nP('P', g.P) + ', ' + t('Q(x,\\ ' + g.Q[1] + ')') + ' and ' + nP('R', g.R) + ' are collinear. Find the value of ' + t('x') + '.', g.Q[0],
-          [[g.P[0] + rise * m, 'k-flip', 'Slope is rise ÷ run, so the run is the rise <b>divided</b> by the slope: ' + t(rise + '\\div ' + sT(g.s)) + '.'], [run, 'k-no-start', 'You found the run (' + t(run) + ') — the run is ' + t('x-' + g.P[0]) + ', so add ' + t(g.P[0]) + '.'], [g.P[0] - run, 'k-sign', 'The slope is positive and ' + t('Q') + ' is higher than ' + t('P') + ', so ' + t('Q') + ' is to the <b>right</b> of ' + t('P') + '.']],
-          t(calc(g.P, g.R, 'PR')) + '. ' + t('Q') + ' must give the same slope from ' + t('P') + ':<br>' + t('\\frac{' + g.Q[1] + '-' + g.P[1] + '}{x-' + g.P[0] + '}=' + sT(g.s) + '\\ \\Rightarrow\\ \\frac{' + rise + '}{x-' + g.P[0] + '}=' + sT(g.s) + '\\ \\Rightarrow\\ x-' + g.P[0] + '=' + run + '\\ \\Rightarrow\\ x=' + g.Q[0]) + '.',
-          ['Use the two known points ' + t('P') + ' and ' + t('R') + ' to find the slope of the line.', 'Then ' + t('m_{PQ}') + ' must equal it: the unknown is in the run, ' + t('x-' + g.P[0]) + '. Cross-multiply.'], 'collinear: find x (middle point)', t('x='));
+        var rise = g.Q[1] - g.P[1], run = g.Q[0] - g.P[0], m = sV(g.s), isInt = function (v) { return Math.abs(v - Math.round(v)) < 1e-9; };
+        var list = [[rise, 'k-no-start', 'You found the rise (' + t(rise) + ') — the rise is ' + t('y-' + g.P[1]) + ', so add ' + t(g.P[1]) + '.'], [g.P[1] - rise, 'k-sign', 'The slope is positive and ' + t('Q') + ' is to the right of ' + t('P') + ', so ' + t('Q') + ' is <b>higher</b> than ' + t('P') + ': add the rise.'],
+          [g.P[1] + run / m, 'k-flip', 'Slope is rise ÷ run, so the rise is the slope <b>times</b> the run: ' + t(sT(g.s) + '\\times ' + run + '=' + rise) + '.'], [g.P[1] + m, 'u6l8-slope-once', 'You added the slope once, but the run from ' + t('P') + ' to ' + t('Q') + ' is ' + t(run) + ': the rise is ' + t(sT(g.s) + '\\times ' + run) + '.'],
+          [m * g.Q[0], 'k-no-start', 'Multiplying the slope by the ' + t('x') + '-coordinate only works for a line through the origin. Use the rise from ' + t('P') + '.']].filter(function (x) { return isInt(x[0]); });
+        var p = numAns('The points ' + nP('P', g.P) + ', ' + t('Q(' + g.Q[0] + ',\\ y)') + ' and ' + nP('R', g.R) + ' are collinear. Find the value of ' + t('y') + '.', g.Q[1], list,
+          t(calc(g.P, g.R, 'PR')) + '. ' + t('Q') + ' must give the same slope from ' + t('P') + ':<br>' + t('\\frac{y-' + g.P[1] + '}{' + g.Q[0] + '-' + g.P[0] + '}=' + sT(g.s) + '\\ \\Rightarrow\\ \\frac{y-' + g.P[1] + '}{' + run + '}=' + sT(g.s) + '\\ \\Rightarrow\\ y-' + g.P[1] + '=' + run + '\\times ' + sT(g.s) + '=' + rise + '\\ \\Rightarrow\\ y=' + g.Q[1]) + '.',
+          ['Use the two known points ' + t('P') + ' and ' + t('R') + ' to find the slope of the line.', 'Then ' + t('m_{PQ}') + ' must equal it: the unknown is in the rise, ' + t('y-' + g.P[1]) + '. Multiply both sides by the run.'], 'collinear: find y (middle point)', t('y='));
+        p.good = ['y=' + g.Q[1]]; return p;
       } }] },
     /* ---------------- Q9 ---------------- */
     { num: '9', shared: function (r) {

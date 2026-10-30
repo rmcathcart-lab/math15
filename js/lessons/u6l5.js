@@ -826,7 +826,7 @@
       } }] },
     { num: '17', parts: [
       { id: 'e17', level: 'EMG', make: function (r) {
-        /* the booklet's answer is negative (−8); here the x-coordinate of D is always positive so it fits a numerical-response grid */
+        /* the booklet's version is M(2, 5), C(−4, −1), so x = 8; the x-coordinate of D is always positive so it fits a numerical-response grid */
         var o = r.chance(0.2) ? { M: [2, 5], C: [-4, -1] } : pickWhere(function () { return { M: [r.int(1, 7), r.int(-3, 7)], C: [-r.int(1, 8), r.int(-6, 8)] }; }, function (z) { return z.M[1] !== z.C[1]; });
         var x = 2 * o.M[0] - o.C[0], y = 2 * o.M[1] - o.C[1];
         var c = endNum(o.C[0], o.M[0]).concat([[y, 'end-gave-y', 'That is the ' + t('y') + '-coordinate of ' + t('D') + '. The question asks for ' + t('x') + '.']]);
