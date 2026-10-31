@@ -406,7 +406,7 @@
         return wrong('u8-sys-cross', 'Your line has a different slope from ' + t(nG) + ' (slope ' + t(mT) + '), so the lines cross once: <b>one solution</b>. ' + (want === 'none' ? 'Keep the slope ' + t(mT) + ' and change only the intercept.' : 'Use the same slope and the same intercept.'));
       };
       var none = mbL(m, fv(b) + (fv(b) > 0 ? -4 : 4)), one = mbL(fv(m) === 1 ? -1 : 1, b);
-      var key = want === 'none' ? si(none) : want === 'one' ? si(one) : (opt.general ? eqT([[G.A, 'x'], [G.B, 'y']], -G.C) : si(G));
+      var key = want === 'none' ? si(none) : want === 'one' ? si(one) : (opt.general ? eqT([[G.A, 'x'], [G.B, 'y']], -G.C) : eqT([[2 * G.A, 'x'], [2 * G.B, 'y']], -2 * G.C));
       if (want === 'inf') key = opt.multKey || key;
       var sol = (nG === siG ? t(nG) + ' has' : t(nG) + ' is ' + t(siG) + ':') + ' slope ' + t(mT) + ' and ' + t('y') + '-intercept ' + t(bT) + '.<br>' +
         (want === 'none' ? 'Keep the slope and change the intercept, e.g. ' + t(key) + '. (Any line with slope ' + t(mT) + ' and a different ' + t('y') + '-intercept works.)'
