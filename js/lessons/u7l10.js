@@ -253,7 +253,7 @@
           var tb = HW.valueTable([[t('x')].concat(xs.map(function (x) { return t(x); })), [t('y')].concat(xs.map(function () { return '?'; }))]);
           var p = nums('Complete a table of values for ' + t(siTex(sh.m, sh.b)) + '.' + tb, xs.map(function (x, i) {
             return { label: t('x=' + x) + ':', name: 'y at x=' + x, before: t('y='), ans: ys[i], list: [{ v: -sh.m * x + sh.b, code: 'u7l10-tab-sign', hint: 'Careful with the signs: ' + t(sh.m + '\\times' + sgnP(x) + '=' + (sh.m * x)) + '.' }, { v: sh.m + x + sh.b, code: 'u7l10-tab-add', hint: t(sh.m + 'x') + ' means ' + t(sh.m) + ' <b>times</b> ' + t('x') + '.' }] };
-          }), xs.map(function (x, i) { return t('y=' + sh.m + sgnP(x) + (sh.b < 0 ? '' : '+') + sh.b + '=' + ys[i]); }).join('<br>') + '<br>Ordered pairs: ' + t(xs.map(function (x, i) { return ptT([x, ys[i]]); }).join(',\\ ')),
+          }), xs.map(function (x, i) { return t('y=' + sh.m + '(' + x + ')' + (sh.b < 0 ? '' : '+') + sh.b + '=' + ys[i]); }).join('<br>') + '<br>Ordered pairs: ' + t(xs.map(function (x, i) { return ptT([x, ys[i]]); }).join(',\\ ')),
             ['Substitute each ' + t('x') + '-value into the equation.', 'Multiply first, then add or subtract.'], 'table of values');
           return p;
         } }] },

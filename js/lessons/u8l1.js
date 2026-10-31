@@ -812,10 +812,10 @@
         },
         parts: [].concat.apply([], ['a', 'b'].map(function (k) {
           return [
-            { id: 'e15' + k, sub: k + ' meet', level: 'PRG', make: function (r, sh) { var s = sh[k]; return pointPart('(' + k + ') ' + t(s.n1) + ', \\(\;\\) ' + t(s.n2) + ', \\(\;\\) ' + t(s.n3) + '<br>Where do the first two lines meet?', s.P, [s.L1, s.L2], {}, 'Graph the first two lines (or make a table of values):' + tabSol(s.m1, s.b1, s.m2, s.b2, s.x0) + 'Both give ' + t('y=' + s.y0) + ' at ' + t('x=' + s.x0) + ': they meet at ' + ptt(s.P) + '.', ['Graph the first two lines, or make a table of values for both, and find the point they share.'], 'first two meet'); } },
+            { id: 'e15' + k, sub: k + ' meet', level: 'PRG', make: function (r, sh) { var s = sh[k]; return pointPart('(' + k + ') ' + t(s.n1) + ', ' + t(s.n2) + ', ' + t(s.n3) + '<br>Where do the first two lines meet?', s.P, [s.L1, s.L2], {}, 'Graph the first two lines (or make a table of values):' + tabSol(s.m1, s.b1, s.m2, s.b2, s.x0) + 'Both give ' + t('y=' + s.y0) + ' at ' + t('x=' + s.x0) + ': they meet at ' + ptt(s.P) + '.', ['Graph the first two lines, or make a table of values for both, and find the point they share.'], 'first two meet'); } },
             { id: 'e15' + k + '2', sub: k + ' third', level: 'PRG', make: function (r, sh) {
               var s = sh[k], sub3 = t(subT([[s.m3, 'x'], [s.b3, '']], { x: s.x0 }) + '=' + nT(s.v3));
-              return mc(r, '(' + k + ') ' + t(s.n1) + ', \\(\;\\) ' + t(s.n2) + ', \\(\;\\) ' + t(s.n3) + '<br>The first two lines meet at ' + ptt(s.P) + '. Do all three lines pass through one common point?', [
+              return mc(r, '(' + k + ') ' + t(s.n1) + ', ' + t(s.n2) + ', ' + t(s.n3) + '<br>The first two lines meet at ' + ptt(s.P) + '. Do all three lines pass through one common point?', [
                 { html: '<b>Yes</b> — ' + ptt(s.P) + ' also satisfies ' + t(s.n3) + ': ' + sub3 + ' ✓', right: s.yes, why: 'Substitute again: ' + sub3 + t('\\ne ' + s.y0) + '.', code: 'yes' },
                 { html: '<b>No</b> — ' + ptt(s.P) + ' does not satisfy ' + t(s.n3) + ': ' + sub3 + t('\\ne ' + s.y0), right: !s.yes, why: 'Substitute again: ' + sub3 + ', which equals ' + t('y=' + s.y0) + '.', code: 'no' },
                 { html: '<b>Yes</b> — the first two lines meet, so all three must meet there.', why: 'The third line only goes through that point if the point satisfies its equation. Test it.', code: 'must' },
