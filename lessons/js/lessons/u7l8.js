@@ -190,8 +190,8 @@ function pinDef(keys, title, intro) {
             const ro = pl(P, '', 'u7l8-ro'); await show(c, ro);
             await tween(c, 1600, (t) => { const v = -6 + 12 * t, x = hz ? v : k, y = hz ? k : v; G.moveTo(mv, x, y); ro.innerHTML = `${T(pairTex(hz ? texNum(Math.round(v * 10) / 10) : k, hz ? k : texNum(Math.round(v * 10) / 10)))}: ${T(pin)} is still ${T(String(k))}`; });
           } },
-        { cap: hz ? `<b>Slope:</b> from ${T(pairTex(...A))} to ${T(pairTex(...B))}, the <b>rise</b> is ${T(`${k}-(${k})=0`)}. ${T(`m=\\dfrac{0}{${run}}=0`)}. Every horizontal line has slope ${T('0')}.`
-          : `<b>Slope:</b> from ${T(pairTex(...A))} to ${T(pairTex(...B))}, the <b>run</b> is ${T(`${k}-(${k})=0`)}. ${T(`m=\\dfrac{${rise}}{0}`)} can’t be done: the slope is <b>undefined</b>.`,
+        { cap: hz ? `<b>Slope:</b> from ${T(pairTex(...A))} to ${T(pairTex(...B))}, the <b>rise</b> is ${T(`${k}-${k < 0 ? `(${k})` : k}=0`)}. ${T(`m=\\dfrac{0}{${run}}=0`)}. Every horizontal line has slope ${T('0')}.`
+          : `<b>Slope:</b> from ${T(pairTex(...A))} to ${T(pairTex(...B))}, the <b>run</b> is ${T(`${k}-${k < 0 ? `(${k})` : k}=0`)}. ${T(`m=\\dfrac{${rise}}{0}`)} can’t be done: the slope is <b>undefined</b>.`,
         run: async (c) => {
           if (mv) G.remove(mv);
           const s = hz ? G.segment(A, B, { color: RUN, width: 6 }) : G.segment(A, B, { color: RISE, width: 6 }); await G.drawIn(s, 600, c);
@@ -350,9 +350,9 @@ function graphDef(keys, title, intro) {
       pl(P, T(d.eq), 'u7l8-big');
       const sr = h('div', 'u7l8-strip', [1, 2, 3].map((n) => `<span class="u7l8-sb" data-n="${n}">(${n}) ${n === 1 ? T('y=k') + ' / ' + T('x=k') : n === 2 ? T('y=mx+b') : T('Ax+By+C=0')}</span>`).join('')); P.appendChild(sr);
       const sn = STRAT[d.form];
-      const formWords = { h: `only the letter ${T('y')}: <b>strategy (1)</b>, ${T('y=k')}`, v: `only the letter ${T('x')}: <b>strategy (1)</b>, ${T('x=k')}`,
-        si: `solved for ${T('y')}: <b>strategy (2)</b>, ${T('y=mx+b')}`, gf: `every term on one side: <b>strategy (3)</b>, two intercepts` }[d.form];
-      const steps = [{ cap: `Read the form first. ${T(d.eq)} has ${formWords}.`, run: async (c) => { const b = sr.querySelector(`[data-n="${sn}"]`); b.classList.add('on'); await pulse(c, b, 1.08); } }];
+      const formWords = { h: `has only the letter ${T('y')}: <b>strategy (1)</b>, ${T('y=k')}`, v: `has only the letter ${T('x')}: <b>strategy (1)</b>, ${T('x=k')}`,
+        si: `is solved for ${T('y')}: <b>strategy (2)</b>, ${T('y=mx+b')}`, gf: `has every term on one side: <b>strategy (3)</b>, two intercepts` }[d.form];
+      const steps = [{ cap: `Read the form first. ${T(d.eq)} ${formWords}.`, run: async (c) => { const b = sr.querySelector(`[data-n="${sn}"]`); b.classList.add('on'); await pulse(c, b, 1.08); } }];
       if (d.form === 'h' || d.form === 'v') {
         const hz = d.form === 'h', k = d.k, p0 = hz ? [0, k] : [k, 0];
         steps.push({ cap: `${hz ? 'No ' + T('x') + ': ' + T('y') : 'No ' + T('y') + ': ' + T('x')} is pinned at ${T(String(k))}. Plot ${T(pairTex(...p0))} on the ${hz ? 'y' : 'x'}-axis.`,
@@ -365,7 +365,7 @@ function graphDef(keys, title, intro) {
         const dir = (ri, ru) => `${ru > 0 ? 'right' : 'left'} ${Math.abs(ru)}, ${ri > 0 ? 'up' : 'down'} ${Math.abs(ri)}`;
         steps.push({ cap: `${T('b=' + b)}: plot the y-intercept ${T(pairTex(0, b))}.`,
           run: async (c) => { await G.reveal(G.point(0, b, { color: YI, r: 8, coords: true, pos: 'w' }), c); await pls(c, P, `${T('b=' + b)}: start at ${T(pairTex(0, b))}`); } });
-        steps.push({ cap: `${T('m=' + fr(r, u))}${u === 1 ? ` ${T(`=\\dfrac{${r}}{1}`)}` : ''}: ${dir(r, u)} to ${T(pairTex(...pts[0]))}.${pts.length > 1 ? ` Again: ${pts.slice(1).map((p) => T(pairTex(...p))).join(', ')}.` : ''}`,
+        steps.push({ cap: `${T('m=' + fr(r, u) + (u === 1 ? `=\\dfrac{${r}}{1}` : ''))}: ${dir(r, u)} to ${T(pairTex(...pts[0]))}.${pts.length > 1 ? ` Again: ${pts.slice(1).map((p) => T(pairTex(...p))).join(', ')}.` : ''}`,
           run: async (c) => { await pls(c, P, `${T('m=' + fr(r, u))}: <b>${dir(r, u)}</b>`); for (let i = 0; i < pts.length; i++) await stepSlope(c, G, i * u, b + i * r, r, u, { labels: i === 0, coords: i === 0, pos: r > 0 ? 'nw' : 'ne' }); } });
         steps.push({ cap: `Step <b>backwards</b> too (${dir(-r, -u)}): ${bp.map((p) => T(pairTex(...p))).join(', ')}. Then join the points with a ruler.`,
           run: async (c) => {

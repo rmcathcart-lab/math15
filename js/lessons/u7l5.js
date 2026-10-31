@@ -309,8 +309,8 @@
         shared: function (r) { return { m: r.int(2, 6) * pm(r), k: nz(r, -9, 9), x1: r.int(1, 4) }; },
         parts: [
           { id: '5a', level: 'BEG', make: function (r, sh) {
-            return LP('slope ' + t(sh.m) + ', point ' + t(ptT(0, sh.k)), L(sh.m, sh.k), { form: 'slope-intercept', wrong: [{ is: L(sh.m, -sh.k), code: 'u72-b-solve', hint: 'The point ' + t(ptT(0, sh.k)) + ' is on the ' + t('y') + '-axis, so it <b>is</b> the ' + t('y') + '-intercept: ' + t('b=' + sh.k) + ' exactly, sign and all.' }] },
-              t(ptT(0, sh.k)) + ' has ' + t('x=0') + ': it is on the ' + t('y') + '-axis, so it <b>is</b> the ' + t('y') + '-intercept and ' + t('b=' + sh.k) + ' right away.<br>' + t(SI(sh.m, sh.k)) + '.', ['A point with ' + t('x=0') + ' is on the ' + t('y') + '-axis.'], 'point is y-int');
+            return stopB(LP('slope ' + t(sh.m) + ', point ' + t(ptT(0, sh.k)), L(sh.m, sh.k), { form: 'slope-intercept', wrong: [{ is: L(sh.m, -sh.k), code: 'u72-b-solve', hint: 'The point ' + t(ptT(0, sh.k)) + ' is on the ' + t('y') + '-axis, so it <b>is</b> the ' + t('y') + '-intercept: ' + t('b=' + sh.k) + ' exactly, sign and all.' }] },
+              t(ptT(0, sh.k)) + ' has ' + t('x=0') + ': it is on the ' + t('y') + '-axis, so it <b>is</b> the ' + t('y') + '-intercept and ' + t('b=' + sh.k) + ' right away.<br>' + t(SI(sh.m, sh.k)) + '.', ['A point with ' + t('x=0') + ' is on the ' + t('y') + '-axis.'], 'point is y-int'), [sh.k, 1]);
           } },
           { id: '5b', level: 'EMG', make: function (r, sh) { return spPart([sh.m, 1], sh.x1, sh.k, { pre: t(ptT(sh.x1, sh.k)) + ' has ' + t('x=' + sh.x1 + '\\ne 0') + ', so it is <b>not</b> the ' + t('y') + '-intercept. Substitute and solve:<br>' }); } }] },
       { num: '6', stem: 'Determine the equation of each line, then check it by substituting the given point back into your final equation.', parts: [
