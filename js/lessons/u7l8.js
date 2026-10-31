@@ -598,7 +598,7 @@
         { id: '5c', level: 'EMG', make: function (r) { var ax = r.chance(0.7) ? 'y' : 'x'; return hvGraph(t(ax + '=0'), ax, 0, W8); } },
         { id: '5d', level: 'BEG', make: function (r) { var k = -r.int(1, 7); return hvGraph(t('x=' + k), 'x', k, W8); } }] },
       { num: '6', shared: function (r) {
-          var m = r.pick(pm(2, 5)), c = r.pick(pm(1, 9)), z = r.chance(0.7) ? 'x' : 'y';
+          var m = r.pick(pm(2, 5)), c = r.pick(pm(1, 9)), z = 'y';   // (d) is y = 0: x = 0 is Example 3(d)
           return { a: -r.int(2, 9), m: m, c: c, cc: r.int(2, 9), z: z };
         },
         stem: function (sh) { return 'For each equation, state whether its graph is horizontal, vertical, or neither. If it is horizontal or vertical, give the coordinates of one point that must lie on it.<br>(a) ' + t('x=' + sh.a) + ' &nbsp;&nbsp; (b) ' + t('y=' + sh.m + 'x' + sg(sh.c)) + ' &nbsp;&nbsp; (c) ' + t('y=' + sh.cc) + ' &nbsp;&nbsp; (d) ' + t(sh.z + '=0'); }, parts: [

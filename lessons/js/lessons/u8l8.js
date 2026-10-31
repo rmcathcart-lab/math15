@@ -408,7 +408,7 @@ const classify = {
         } });
     }
     const L1 = () => G.line({ m: m1, b: b1 }, { color: BLUE, width: 3.5 }), L2 = () => G.line({ m: m2, b: b2 }, { color: AMB, width: 3.5, dash: sameB && sameM ? '12 9' : null });
-    const what = !sameM ? (d.pt ? `They cross at ${T(cP(`(${d.pt[0]},\\ ${d.pt[1]})`))}.` : 'They cross once.') : sameB ? 'Every point on the line works.' : (v === 'shop' ? 'Shop B is always $25 more: the two prices are never equal.' : 'Parallel lines never meet.');
+    const what = !sameM ? (d.pt ? `they cross at ${T(cP(`(${d.pt[0]},\\ ${d.pt[1]})`))}.` : 'they cross once.') : sameB ? 'every point on the line works.' : (v === 'shop' ? 'Shop B is always $25 more, so the two prices are never equal.' : 'parallel lines never meet.');
     steps.push({ cap: `<b>${verdict[0].toUpperCase() + verdict.slice(1)}.</b> The graph agrees: ${what}`,
       run: async (c) => {
         await G.drawIn(L1(), 600, c); await G.drawIn(L2(), 600, c);

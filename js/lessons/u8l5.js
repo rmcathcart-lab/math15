@@ -237,9 +237,9 @@
     return mc(r, (o.prompt || 'Would you add or subtract the equations, and which variable is eliminated? (Don’t solve.)') + sysD(o.texs || S.texs), opts, sol,
       ['Look at each variable: are its two coefficients the <b>same</b> (subtract) or <b>opposites</b> (add)?'], o.text || 'add or subtract');
   }
-  function vanishMC(r, kind, stmt) {
+  function vanishMC(r, kind, stmt, texs) {
     var none = kind === 'none';
-    return mc(r, 'Eliminating removes both variables and leaves ' + t(stmt) + '. What does that mean?', [
+    return mc(r, 'Eliminating removes both variables from this system and leaves ' + t(stmt) + '. What does that mean?' + (texs ? sysD(texs) : ''), [
       { html: none ? '<b>No solution</b>: the statement is false for every point, so the lines are parallel and never meet.' : '<b>Infinitely many solutions</b>: the statement is true for every point — the two equations describe the same line.', right: true },
       { html: none ? '<b>Infinitely many solutions</b>: the two equations are the same line.' : '<b>No solution</b>: the lines are parallel and never meet.', code: 'none-inf', why: none ? 'The same line would leave a <b>true</b> statement such as ' + t('0=0') + '. ' + t(stmt) + ' is false.' : 'Parallel lines leave a <b>false</b> statement such as ' + t('0=7') + '. ' + t(stmt) + ' is always true.' },
       { html: '<b>One solution</b>: ' + t('(0,\\ 0)') + '.', code: 'one', why: 'Both variables vanished — nothing is left to solve for. The number statement itself is the answer.' },
@@ -470,9 +470,9 @@
         },
         parts: [
           { id: 'e7a', sub: 'a i', level: 'EMG', make: function (r, sh) { return elimPart('Eliminate. Use the <b>no solution</b> or <b>infinitely many</b> key if there isn’t exactly one solution.', sh.a); } },
-          { id: 'e7ax', sub: 'a ii', level: 'EMG', make: function (r, sh) { return vanishMC(r, 'none', '0=' + qT(qs(sh.a.Es[0].c, sh.a.Es[1].c))); } },
+          { id: 'e7ax', sub: 'a ii', level: 'EMG', make: function (r, sh) { return vanishMC(r, 'none', '0=' + qT(qs(sh.a.Es[0].c, sh.a.Es[1].c)), sh.a.texs); } },
           { id: 'e7b', sub: 'b i', level: 'EMG', make: function (r, sh) { return elimPart('Eliminate. Use the <b>no solution</b> or <b>infinitely many</b> key if there isn’t exactly one solution.', sh.b); } },
-          { id: 'e7bx', sub: 'b ii', level: 'EMG', make: function (r, sh) { return vanishMC(r, 'inf', '0=0'); } },
+          { id: 'e7bx', sub: 'b ii', level: 'EMG', make: function (r, sh) { return vanishMC(r, 'inf', '0=0', sh.b.texs); } },
           { id: 'e7c', sub: 'c', level: 'EMG', make: function (r, sh) { return elimPart('Eliminate. Use the <b>no solution</b> or <b>infinitely many</b> key if there isn’t exactly one solution.', sh.c); } }] },
       { num: '8', stem: 'Error analysis. Each student chose correctly but executed badly.',
         shared: function (r) {
@@ -580,12 +580,12 @@
           } },
           { id: 'e14aii', sub: 'a ii', level: 'PRG', make: function (r, sh) {
             var S = sh.a, xv = Q(S.N, S.A);
-            return B.fraction('Now find ' + t('x') + ' as well (exact value), using ' + t('y=' + S.y0) + '.', xv, { before: t('x=') },
+            return B.fraction('For ' + t(S.texs[0]) + ' and ' + t(S.texs[1]) + ', now find ' + t('x') + ' as well (exact value), using ' + t('y=' + S.y0) + '.', xv, { before: t('x=') },
               'Substitute ' + t('y=' + S.y0) + ' into ' + t(S.texs[0]) + ': ' + t(S.A + 'x+' + S.b1 + '(' + S.y0 + ')=' + qT(S.Es[0].c)) + ', so ' + t(S.A + 'x=' + S.N) + ' and ' + t('x=' + qT(xv)) + '.', ['Substitute ' + t('y=' + S.y0) + ' into either equation and solve for ' + t('x') + '.'], 'x as a fraction');
           } },
           { id: 'e14aiii', sub: 'a iii', level: 'EMG', make: function (r, sh) {
             var S = sh.a;
-            return mc(r, 'Why did answering only the question asked (the value of ' + t('y') + ') save you the ugly part?', [
+            return mc(r, 'For ' + t(S.texs[0]) + ' and ' + t(S.texs[1]) + ': why did answering only the question asked (the value of ' + t('y') + ') save you the ugly part?', [
               { html: 'One subtraction gave ' + t('y') + ' directly as a whole number; the fraction only appears when you go on to find ' + t('x') + '.', right: true },
               { html: 'Because ' + t('y') + ' is always easier to find than ' + t('x') + '.', why: 'It depends on the system: here the ' + t('x') + '-coefficients matched, so ' + t('y') + ' came first.' },
               { html: 'Because ' + t('x') + ' has no value in this system.', why: t('x') + ' has a value — ' + t(qT(Q(S.N, S.A))) + ' — it is just a fraction.' },

@@ -212,7 +212,7 @@ const pinnedV = pinDef(['v2a', 'v2b'], 'Vertical: x is pinned', 'A line with no 
 const MX = {
   x3: { label: T('x=3') + ': the classic error', vert: true, k: 3, test: [-2, 3], pts: [[3, -4], [3, 0], [3, 2]], st: [-4, 1.5] },
   y3: { label: T('y=3'), vert: false, k: 3, test: [3, -2], pts: [[-5, 3], [0, 3], [5, 3]], st: [4.6, 4.6] },
-  xm: { label: T('x=-2'), vert: true, k: -2, test: [3, -2], pts: [[-2, -4], [-2, 1], [-2, 4]], st: [4, -3.8] }
+  xm: { label: T('x=-4'), vert: true, k: -4, test: [3, -4], pts: [[-4, -4], [-4, 1], [-4, 4]], st: [4, -5.6] }   // not x = -2: that graph is assignment Q9
 };
 const mixup = {
   title: 'Which coordinate is held fixed?',

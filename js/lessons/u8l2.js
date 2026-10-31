@@ -209,7 +209,7 @@
     var keys = Ts.map(function (Tg) { return si(Tg, vars); });
     return { prompt: prompt, input: { type: 'fields', fields: labels.map(function (l) { return { label: l, mode: 'math', keys: 'eq', vars: vars, placeholder: ' ' }; }) },
       check: check, key: keys, answer: labels.map(function (l, i) { return l + ' ' + t(keys[i]); }).join('<br>'), solution: sol, hints: hints || [], text: text,
-      bad: [[keys[1], keys[0]]] };
+      bad: sameL(Ts[0], Ts[1]) ? [] : [[keys[1], keys[0]]] };
   }
   /* substitution text: terms [[c, v]], vals { x: 4, y: -1 } -> "4+3(-1)" */
   function subT(terms, vals) {
@@ -406,7 +406,7 @@
         return wrong('u8-sys-cross', 'Your line has a different slope from ' + t(nG) + ' (slope ' + t(mT) + '), so the lines cross once: <b>one solution</b>. ' + (want === 'none' ? 'Keep the slope ' + t(mT) + ' and change only the intercept.' : 'Use the same slope and the same intercept.'));
       };
       var none = mbL(m, fv(b) + (fv(b) > 0 ? -4 : 4)), one = mbL(fv(m) === 1 ? -1 : 1, b);
-      var key = want === 'none' ? si(none) : want === 'one' ? si(one) : (opt.general ? Ln.tex(G, 'general').replace('=0', '') : si(G));
+      var key = want === 'none' ? si(none) : want === 'one' ? si(one) : (opt.general ? eqT([[G.A, 'x'], [G.B, 'y']], -G.C) : si(G));
       if (want === 'inf') key = opt.multKey || key;
       var sol = (nG === siG ? t(nG) + ' has' : t(nG) + ' is ' + t(siG) + ':') + ' slope ' + t(mT) + ' and ' + t('y') + '-intercept ' + t(bT) + '.<br>' +
         (want === 'none' ? 'Keep the slope and change the intercept, e.g. ' + t(key) + '. (Any line with slope ' + t(mT) + ' and a different ' + t('y') + '-intercept works.)'
@@ -432,7 +432,7 @@
           { id: 'e1a', sub: 'a', level: 'BEG', make: function (r) { var q = r.pick([3, 3, 4, 5]), p = r.pick([1, 2, -1, -2, 3].filter(function (v) { return gcd(v, q) === 1; })), bs = r.sample([-4, 1, 2, -3, 5, -1], 2), n1 = yT([p, q], bs[0]), n2 = yT([p, q], bs[1]); return clsPart(r, '(a) ' + t(n1) + ', \\(\;\\) ' + t(n2), mbL([p, q], bs[0]), mbL([p, q], bs[1]), n1, n2, 'EP classify fraction slopes'); } },
           { id: 'e1b', sub: 'b', level: 'EMG', make: function (r) { var n = r.pick([5, 5, 2, 3, 4]), sg = r.pick([-1, -1, 1]), b = r.pick([2, 2, -1, 3, -4]), n1 = yT(sg * n, b), n2 = yT([sg, n], b); return clsPart(r, '(b) ' + t(n1) + ', \\(\;\\) ' + t(n2), mbL(sg * n, b), mbL([sg, n], b), n1, n2, 'EP classify n vs 1/n', '<b>Infinitely many solutions</b> — the slopes use the same number ' + t(n) + ' and the intercepts are equal.'); } },
           { id: 'e1c', sub: 'c', level: 'EMG', make: function (r) { var pq = r.pick([[3, 4], [3, 4], [2, 3], [1, 2], [2, 5], [-3, 4], [-1, 3]]), k = r.pick([2, 2, 3]), b = r.pick([-2, -2, 1, 4, -3]), n1 = yT(pq, b), n2 = yRaw(fracT(k * pq[0], k * pq[1]), b); return clsPart(r, '(c) ' + t(n1) + ', \\(\;\\) ' + t(n2), mbL(pq, b), mbL(pq, b), n1, n2, 'EP classify unsimplified slope', '<b>One solution</b> — the slopes ' + t(fT(pq)) + ' and ' + t(fracT(k * pq[0], k * pq[1])) + ' are different numbers.'); } },
-          { id: 'e1d', sub: 'd', level: 'EMG', make: function (r) { var q = r.pick([2, 2, 4, 5]), sg = r.pick([-1, -1, 1]), b = r.pick([3, 3, -2, 1, 5]); var n1 = yRaw((sg < 0 ? '-' : '') + '\\frac{x}{' + q + '}', b).replace('x' + '', '').replace(/^y=(-?\\frac\{x\}\{\d\})x/, 'y=$1'), n2 = yRaw((sg < 0 ? '-' : '') + dec(1, q), b); return clsPart(r, '(d) ' + t(n1) + ', \\(\;\\) ' + t(n2), mbL([sg, q], b), mbL([sg, q], b), n1, n2, 'EP classify x/q vs decimal', '<b>No solution</b> — one slope is a fraction and the other is a decimal.'); } },
+          { id: 'e1d', sub: 'd', level: 'EMG', make: function (r) { var q = r.pick([2, 2, 4, 5, 10]), sg = r.pick([-1, -1, 1]), b = r.pick([3, 3, -2, 1, 5, -4, 6, -1]); var n1 = yRaw((sg < 0 ? '-' : '') + '\\frac{x}{' + q + '}', b).replace('x' + '', '').replace(/^y=(-?\\frac\{x\}\{\d\})x/, 'y=$1'), n2 = yRaw((sg < 0 ? '-' : '') + dec(1, q), b); return clsPart(r, '(d) ' + t(n1) + ', \\(\;\\) ' + t(n2), mbL([sg, q], b), mbL([sg, q], b), n1, n2, 'EP classify x/q vs decimal', '<b>No solution</b> — one slope is a fraction and the other is a decimal.'); } },
           { id: 'e1e', sub: 'e', level: 'EMG', make: function (r) { var pq = r.pick([[5, 2], [5, 2], [3, 2], [7, 4], [3, 4], [6, 5], [-5, 2], [-3, 2]]), bs = r.sample([1, -1, 2, -3, 4], 2), n1 = yT(pq, bs[0]), n2 = yRaw(dec(pq[0], pq[1]), bs[1]); return clsPart(r, '(e) ' + t(n1) + ', \\(\;\\) ' + t(n2), mbL(pq, bs[0]), mbL(pq, bs[1]), n1, n2, 'EP classify fraction vs decimal slope', '<b>One solution</b> — one slope is a fraction and the other is a decimal, so they are different.'); } },
           { id: 'e1f', sub: 'f', level: 'EMG', make: function (r) { var k = r.pick([7, 7, 5, -3, 4, -6, 9]), h = r.pick([7, 7, 2, -4, 5, -1, 8]); return pointPart('(f) ' + t('y=' + k) + ', \\(\;\\) ' + t('x=' + h) + '<br>How many solutions does the system have? If there is exactly one, give it as an ordered pair; otherwise use the <b>no solution</b> or <b>infinitely many</b> key.', [h, k], [line(0, 1, -k), line(1, 0, -h)], {},
             t('y=' + k) + ' is a horizontal line and ' + t('x=' + h) + ' is a vertical line. A horizontal and a vertical line always cross exactly once: <b>one solution</b>, ' + ptt([h, k]) + ' (every point on the first has ' + t('y=' + k) + ', every point on the second has ' + t('x=' + h) + ').', ['One line is horizontal and the other vertical. Where do they cross?'], 'horizontal meets vertical'); } }] },
@@ -445,10 +445,10 @@
       { num: '3', section: 'Extra practice B — Standard form: rearrange first',
         stem: 'Each equation is in the form ' + t('Ax+By=C') + '. Rewrite <b>both</b> equations as ' + t('y=mx+b') + ', then classify the system. In parts (a) and (b) the two equations are very nearly the same — look carefully at the constant.',
         shared: function (r) {
-          var base = r.pick([[1, 2, 5], [1, 2, 5], [1, 3, 4], [2, 3, 6], [1, 4, 6], [3, 2, 4]]), k = r.pick([2, 2, 3]), d = r.pick([2, 2, 1, 3, -1]);
+          var base = r.pick([[1, 2, 5], [1, 2, 5], [1, 3, 4], [2, 3, 6], [1, 4, 6], [3, 2, 4], [1, 2, 3], [2, 5, 4], [3, 4, 5], [1, 3, 7], [2, 1, 3], [1, 5, 2]]), k = r.pick([2, 2, 3, 4]), d = r.pick([2, 2, 1, 3, -1, -2]);
           var a = { e: [[k * base[0], k * base[1], k * base[2]], base] }, b = { e: [[k * base[0], k * base[1], k * base[2]], [base[0], base[1], base[2] + d]] };
           var c = { e: [[r.pick([4, 4, 3, 2]), -1, r.pick([7, 7, 5, 3, -2])], [1, 2, r.pick([4, 4, 6, -2, 8])]] };
-          var dd = r.pick([[2, 3, 4, 5], [2, 3, 4, 5], [1, 2, 3, 5], [3, 4, 2, 3], [2, 5, 3, 7]]);   // [p, q, r, s]: 3p x − 3q y = 3r, p x − q y = s
+          var dd = [r.pick([2, 2, 1, 3, 4]), r.pick([3, 3, 2, 5])]; if (gcd(dd[0], dd[1]) > 1 || dd[0] === dd[1]) dd = [2, 3]; dd.push(r.pick([4, 4, 1, 2, 5, -1, -2]), 0); dd[3] = dd[2] + r.pick([1, 1, -1, 2, 3]);   // [p, q, r, s]: 3p x − 3q y = 3r, p x − q y = s
           var e4 = { e: [[3 * dd[0], -3 * dd[1], 3 * dd[2]], [dd[0], -dd[1], dd[3]]] };
           [a, b, c, e4].forEach(function (s) { s.L = s.e.map(function (q) { return line(q[0], q[1], -q[2]); }); s.g = s.e.map(function (q) { return eqT([[q[0], 'x'], [q[1], 'y']], q[2]); }); });
           return { a: a, b: b, c: c, d: e4 };
@@ -461,7 +461,7 @@
       { num: '4', stem: 'Clear the fractions first, then rewrite each equation as ' + t('y=mx+b') + ' and classify the system.',
         parts: [
           { id: 'e4a', sub: 'a', level: 'PRG', make: function (r) {
-            var pqr = r.pick([[3, 2, 6], [3, 2, 6], [2, 5, 10], [4, 3, 12], [2, 3, 6], [5, 2, 10], [3, 4, 12]]), p = pqr[0], q = pqr[1], R = pqr[2];
+            var pqr = r.pick([[3, 2, 6], [3, 2, 6], [2, 5, 10], [4, 3, 12], [2, 3, 6], [5, 2, 10], [3, 4, 12], [5, 3, 15], [3, 5, 15], [4, 5, 20], [5, 4, 20], [2, 7, 14], [7, 2, 14], [6, 5, 30], [5, 6, 30], [4, 7, 28], [7, 3, 21], [3, 7, 21], [2, 9, 18], [9, 2, 18]]), p = pqr[0], q = pqr[1], R = pqr[2];
             var g1 = T([[[p, R], 'x'], [[q, R], 'y']]) + '=1', g2 = eqT([[p, 'x'], [q, 'y']], R), L = line(p, q, -R);
             return clsPart(r, '(a) ' + t(g1) + ' and ' + t(g2), L, L, g1, g2, 'EP clear fractions (inf)', null,
               'Multiply ' + t(g1) + ' by ' + t(R) + ': ' + t(g2) + ' — exactly the second equation.<br>Both are ' + t(si(L)) + '.<br>' + verdictT('inf'));
@@ -479,7 +479,7 @@
               'Multiply ' + t(g1) + ' by ' + t(s.b) + ': ' + t(eqT([[s.a, 'x'], [s.b, 'y']], s.b * s.c)) + ', so ' + t(si(L1)) + '.<br>' + t(g2) + ' is ' + t(si(L2)) + '.<br>' + verdictT('one'));
           } },
           { id: 'e4d', sub: 'd', level: 'EMG', make: function (r) {
-            var b = r.pick([[1, 2, 5], [3, 2, 6], [2, 5, 10], [1, 3, 4]]), k = r.pick([2, 3, 4, 6]), g = eqT([[b[0], 'x'], [b[1], 'y']], b[2]), gk = eqT([[k * b[0], 'x'], [k * b[1], 'y']], k * b[2]), L = line(b[0], b[1], -b[2]);
+            var b = r.pick([[1, 2, 5], [3, 2, 6], [2, 5, 10], [1, 3, 4], [2, 3, 7], [4, 1, 3], [1, -2, 4], [3, -1, 2]]), k = r.pick([2, 3, 4, 5, 6]), g = eqT([[b[0], 'x'], [b[1], 'y']], b[2]), gk = eqT([[k * b[0], 'x'], [k * b[1], 'y']], k * b[2]), L = line(b[0], b[1], -b[2]);
             return mc(r, 'Multiplying ' + t(g) + ' by ' + t(k) + ' gives ' + t(gk) + '. What does multiplying <b>every</b> term of an equation by a non-zero constant do to ' + t('m') + ' and ' + t('b') + '?', [
               { html: 'It changes neither ' + t('m') + ' nor ' + t('b') + ': both equations are ' + t(si(L)) + ', the same line.', right: true },
               { html: 'It multiplies the slope by ' + t(k) + ' but keeps ' + t('b') + '.', why: 'Rewrite ' + t(gk) + ': dividing by ' + t(k * b[1]) + ' gives ' + t(si(L)) + ' again.', code: 'm' },
@@ -494,7 +494,7 @@
         shared: function (r) {
           var a = ysys(r, [1, 2, [1, 2], -1], [-1, -2, 1, 3], { xlo: -3, xhi: 4 });
           var m = r.pick([[1, 2], [1, 2], 1, -1, 2, [-1, 2]]), bs = r.sample([3, -2, 1, -4, 4, 0], 2);
-          var cm = r.pick([-1, 2, [1, 2], 1, -2]), cb = r.pick([1, -2, 3, 0, -1]);
+          var cm = r.pick([-1, 2, [1, 2], 1, -2, [-1, 2], 3]), cb = r.pick([1, -2, 3, 0, -1, 2, -3]);
           return { a: a, b: { L1: mbL(m, bs[0]), L2: mbL(m, bs[1]), m: m, bs: bs }, c: { L: mbL(cm, cb), m: cm, b: cb } };
         },
         parts: [
@@ -513,7 +513,7 @@
             { html: 'No solution is impossible because the intercepts are different.', why: 'Different intercepts are exactly what no solution needs (with equal slopes).', code: 'none' },
             { html: 'One solution is impossible because ' + t('k') + ' can be any number.', why: 'Any ' + t('k\\ne ' + s.m) + ' gives different slopes — one solution.', code: 'one' }], 'Infinitely many solutions needs the same slope <b>and</b> the same intercept. The intercepts are ' + t(s.b1) + ' and ' + t(s.b2) + ' no matter what ' + t('k') + ' is, so it can never happen.', 'why impossible (slope k)'); } }] },
       { num: '7', stem: function (s) { return 'Consider the system ' + t(s.n1) + ' and ' + t(s.n2) + '. For each case, choose the value(s) of ' + t('k') + ' that make it happen — one case is impossible.'; },
-        shared: function (r) { var m = r.pick([5, 5, 2, -3, 4, -2]), b = r.pick([-3, -3, 2, 4, -1, 6]); return { m: m, b: b, n1: 'y=' + T([[m, 'x']]) + '+k', n2: yT(m, b) }; },
+        shared: function (r) { var m = r.pick([5, 5, 2, -3, 4, -2, 3]), b = r.pick([-3, -3, 2, 4, -1, 6, -5]); return { m: m, b: b, n1: 'y=' + T([[m, 'x']]) + '+k', n2: yT(m, b) }; },
         parts: [
           { id: 'e7', sub: 'cases', level: 'PRG', make: function (r, s) { return kGrid('Choose for each case.', s.b, { none: 'ne', inf: 'eq', one: 'imp' }, 'Both lines have slope ' + t(s.m) + ', whatever ' + t('k') + ' is; ' + t('k') + ' is the first line’s ' + t('y') + '-intercept.<br>(a) No solution: different intercepts, every ' + t('k\\ne ' + s.b) + '.<br>(b) Infinitely many: ' + t('k=' + s.b) + ' (the same line).<br>(c) One solution: impossible — the slopes are always equal.', ['Here ' + t('k') + ' is the ' + t('y') + '-intercept of the first line.'], 'k cases: intercept'); } },
           { id: 'e7w', sub: 'why', level: 'ADV', make: function (r, s) { return whyMC(r, 'Why is that case impossible?', [
@@ -556,7 +556,7 @@
       /* ---------- EP Part E: error analysis ---------- */
       { num: '11', section: 'Extra practice E — Error analysis and reasoning', parts: [
         { id: 'e11', level: 'EMG', make: function (r) {
-          var b = r.pick([[3, -2, 5], [3, -2, 5], [2, -3, 4], [4, -1, 3], [1, -2, 3], [5, 2, 7]]), k = r.pick([2, 2, 3]), g1 = eqT([[k * b[0], 'x'], [k * b[1], 'y']], k * b[2]), g2 = eqT([[b[0], 'x'], [b[1], 'y']], b[2]), L = line(b[0], b[1], -b[2]);
+          var b = r.pick([[3, -2, 5], [3, -2, 5], [2, -3, 4], [4, -1, 3], [1, -2, 3], [5, 2, 7], [2, 5, 3], [4, 3, -2], [1, 4, 6], [3, 4, 1], [5, -3, 2]]), k = r.pick([2, 2, 3, 4]), g1 = eqT([[k * b[0], 'x'], [k * b[1], 'y']], k * b[2]), g2 = eqT([[b[0], 'x'], [b[1], 'y']], b[2]), L = line(b[0], b[1], -b[2]);
           return mc(r, 'Marcus is given the system ' + t(g1) + ' and ' + t(g2) + '. He writes: “The two equations have different numbers in them, so they must be different lines. Different lines cross once, so the system has one solution.” What is the flaw, and what is the correct classification?', [
             { html: 'Different-looking is not the same as different: dividing ' + t(g1) + ' by ' + t(k) + ' gives ' + t(g2) + '. It is one line written twice — <b>infinitely many solutions</b>.', right: true },
             { html: 'His reasoning is fine: different numbers mean different lines, so there is one solution.', why: 'Divide the first equation by ' + t(k) + ': it becomes the second equation exactly.', code: 'fine' },
@@ -584,7 +584,7 @@
             { html: 'It depends on the ' + t('y') + '-intercepts, so you can’t tell.', why: 'You can tell from the slopes alone: different slopes → one solution.', code: 'depends' }],
             'Different slopes → the lines are not parallel, so they cross exactly once: one solution, never zero. You only check the ' + t('y') + '-intercepts when the slopes are equal.', ['When do two lines never meet?'], 'different slopes, zero solutions?');
         } }] },
-      { num: '14', shared: function (r) { var b = r.pick([[3, -6, 12], [3, -6, 12], [2, -4, 8], [4, 2, 8], [3, 9, 6], [5, -10, 15]]); return { G: line(b[0], b[1], -b[2]), n: eqT([[b[0], 'x'], [b[1], 'y']], b[2]) }; },
+      { num: '14', shared: function (r) { var b = r.pick([[3, -6, 12], [3, -6, 12], [2, -4, 8], [4, 2, 8], [3, 9, 6], [5, -10, 15], [2, 6, -4], [4, -8, 12], [6, 3, 9], [3, -3, 6], [2, 4, 10], [6, -2, 8], [5, 5, -10], [4, 6, 2], [3, 12, -6], [8, -4, 12], [2, -10, 6], [9, 3, -6], [6, 9, 12], [10, 5, 15], [4, -12, 8], [3, 6, -9]]); return { G: line(b[0], b[1], -b[2]), n: eqT([[b[0], 'x'], [b[1], 'y']], b[2]) }; },
         stem: function (s) { return 'The equation ' + t(s.n) + ' is given. Write a <b>second</b> equation that pairs with it to make a system with:'; },
         parts: [writePartS('e14a', 'none', 'PRG', 'a'), writePartS('e14b', 'one', 'EMG', 'b'), writePartS('e14c', 'inf', 'PRG', 'c', { general: true })] },
       /* ---------- EP Part F: words ---------- */
@@ -707,14 +707,14 @@
         parts: [
           { id: '4a', sub: 'a', level: 'BEG', make: function (r) { var m = r.pick([-3, -3, 2, -2, 4, 3, -4]), bs = r.sample([7, 1, -2, 5, 3, -4, 6, -1], 2), L1 = mbL(m, bs[0]), L2 = mbL(m, bs[1]); return clsPart(r, '(a) ' + t(yT(m, bs[0])) + ', \\(\;\\) ' + t(yT(m, bs[1])), L1, L2, yT(m, bs[0]), yT(m, bs[1]), 'classify parallel'); } },
           { id: '4b', sub: 'b', level: 'BEG', make: function (r) { var ms = r.sample([6, -2, 3, -4, 5, -1], 2), b1 = r.pick([-5, -3, 2, 4]), b2 = r.pick([11, 7, -6, 9, 3]), L1 = mbL(ms[0], b1), L2 = mbL(ms[1], b2); return clsPart(r, '(b) ' + t(yT(ms[0], b1)) + ', \\(\;\\) ' + t(yT(ms[1], b2)), L1, L2, yT(ms[0], b1), yT(ms[1], b2), 'classify crossing'); } },
-          { id: '4c', sub: 'c', level: 'BEG', make: function (r) { var m = r.pick([-5, -5, 2, -3, 4, 3]), b = r.pick([3, 3, -1, 6, -4, 7]), L = mbL(m, b); return clsPart(r, '(c) ' + t(yT(m, b)) + ', \\(\;\\) ' + t(yT(m, b)), L, L, yT(m, b), yT(m, b), 'classify identical', '<b>No solution</b> — the two equations are identical, so there is nothing to solve.'); } },
+          { id: '4c', sub: 'c', level: 'BEG', make: function (r) { var m = r.pick([-5, -5, 2, -3, 4, 3, -2, 5, 6]), b = r.pick([3, 3, -1, 6, -4, 7, 2, -5, 8]), L = mbL(m, b); return clsPart(r, '(c) ' + t(yT(m, b)) + ', \\(\;\\) ' + t(yT(m, b)), L, L, yT(m, b), yT(m, b), 'classify identical', '<b>No solution</b> — the two equations are identical, so there is nothing to solve.'); } },
           { id: '4d', sub: 'd', level: 'EMG', make: function (r) { var hs = r.sample([4, -2, 3, -5, 1, 6, -3], 2), L1 = line(0, 1, -hs[0]), L2 = line(0, 1, -hs[1]); return clsPart(r, '(d) ' + t('y=' + hs[0]) + ', \\(\;\\) ' + t('y=' + hs[1]), L1, L2, 'y=' + hs[0], 'y=' + hs[1], 'classify horizontal lines', null,
             t('y=' + hs[0]) + ' and ' + t('y=' + hs[1]) + ' are horizontal lines: both have slope ' + t('0') + ' (' + t('y=0x+' + hs[0]).replace('+-', '-') + '), with different ' + t('y') + '-intercepts.<br>' + verdictT('none')); } }] },
       { num: '5', stem: 'Rearrange each system into slope–intercept form, then state whether it has one solution, no solution, or infinitely many solutions.',
         shared: function (r) {
           var a = { A: r.pick([3, 3, 2, 4, 5]), c1: r.pick([5, 5, 2, -1, 4, -3]), c2: r.pick([9, 9, 1, -2, 6, 7]) }; if (a.c1 === a.c2) a.c2 = a.c1 + 4;
           a.L1 = line(a.A, 1, -a.c1); a.L2 = mbL(-a.A, a.c2); a.g1 = eqT([[a.A, 'x'], [1, 'y']], a.c1); a.n2 = yT(-a.A, a.c2);
-          var b = { c: r.pick([6, 6, 2, 3, -4, 5, -1]), k: r.pick([2, 2, 3]) }; b.L = line(1, -1, -b.c); b.g1 = eqT([[1, 'x'], [-1, 'y']], b.c); b.g2 = eqT([[b.k, 'x'], [-b.k, 'y']], b.k * b.c);
+          var b = { c: r.pick([6, 6, 2, 3, -4, 5, -1, 4, -3, 1, -2, -5]), k: r.pick([2, 2, 3, 4]) }; b.L = line(1, -1, -b.c); b.g1 = eqT([[1, 'x'], [-1, 'y']], b.c); b.g2 = eqT([[b.k, 'x'], [-b.k, 'y']], b.k * b.c);
           var c = { A: r.pick([4, 4, 2, 3, 5]), c1: r.pick([1, 1, 2, 3, -2]), c2: r.pick([9, 9, 4, 6, 7]) }; c.L1 = line(c.A, -1, -c.c1); c.L2 = line(1, 1, -c.c2); c.g1 = eqT([[c.A, 'x'], [-1, 'y']], c.c1); c.g2 = eqT([[1, 'x'], [1, 'y']], c.c2);
           return { a: a, b: b, c: c };
         },

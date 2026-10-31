@@ -198,3 +198,4 @@
 .u8l8-subpan .u8l8-line.u8l8-big { font-size: 24px; }
 .u8l8-piece.u8l8-ep { font-size: 32px; }
 .u8l8-etag .u8l8-eqtag { font-size: 15px; }
+.u8l8-sys { display: inline-flex; flex-direction: column; vertical-align: top; gap: 2px; }
