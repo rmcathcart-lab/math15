@@ -627,7 +627,7 @@
   var QUESTIONS = [
     /* ---------- 1 ---------- */
     { num: '1', section: 'Part A — Graphing and Classifying', shared: function (r) { return r.chance(0.06) ? Object.assign({ m1: -1, b1: 6, m2: 3, b2: -2, P: [2, 4] }, { L1: mbL(-1, 6), L2: mbL(3, -2), e1: yT(-1, 6), e2: yT(3, -2) }) : crossGen(r, {}); },
-      stem: function (s) { return 'The system ' + both(s.e1, s.e2) + ' has been graphed on the grid below, and the lines cross at integer coordinates.' + sysFig([s.L1, s.L2], W6); },
+      stem: function (s) { return 'The system ' + t(s.e1) + ' (solid) and ' + t(s.e2) + ' (dashed) has been graphed on the grid below, and the lines cross at integer coordinates.' + sysFig([s.L1, s.L2], W6); },
       parts: [
         { id: '1a', sub: 'a', level: 'BEG', make: function (r, s) {
           var key = T([[s.m1, 'x'], [s.b1, '']]) + '=' + T([[s.m2, 'x'], [s.b2, '']]);

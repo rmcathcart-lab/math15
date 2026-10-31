@@ -119,13 +119,13 @@
       if (Tl.B === 0) {   // a vertical line x = k
         var k = -Tl.C / Tl.A;
         if (S.B === 0) return wrong('line-x', 'Your line for ' + name + ' is vertical — right — but it should cross the ' + t('x') + '-axis at ' + t(nT(k)) + ': every point on it has ' + t('x=' + nT(k)) + '.');
-        if (S.A === 0) return wrong('line-vh', name + ' means ' + t('x=' + nT(k)) + ': every point has the same <b>' + t('x') + '</b>-value, so the line is <b>vertical</b>, not horizontal.');
+        if (S.A === 0) return wrong('line-vh', (name === t('x=' + nT(k)) ? 'In ' + name : name + ' means ' + t('x=' + nT(k)) + ':') + ' every point has the same <b>' + t('x') + '</b>-value, so the line is <b>vertical</b>, not horizontal.');
         return wrong('u8-gr-line', name + ' is a vertical line: every point on it has ' + t('x=' + nT(k)) + '.');
       }
       if (Tl.A === 0) {   // a horizontal line y = k
         var h = -Tl.C / Tl.B;
         if (S.A === 0) return wrong('u8-gr-shift', 'Your line for ' + name + ' is horizontal — right — but it should cross the ' + t('y') + '-axis at ' + t(nT(h)) + ': every point on it has ' + t('y=' + nT(h)) + '.');
-        if (S.B === 0) return wrong('line-vh', name + ' means ' + t('y=' + nT(h)) + ': every point has the same <b>' + t('y') + '</b>-value, so the line is <b>horizontal</b>, not vertical.');
+        if (S.B === 0) return wrong('line-vh', (name === t('y=' + nT(h)) ? 'In ' + name : name + ' means ' + t('y=' + nT(h)) + ':') + ' every point has the same <b>' + t('y') + '</b>-value, so the line is <b>horizontal</b>, not vertical.');
         return wrong('u8-gr-line', name + ' is a horizontal line: every point on it has ' + t('y=' + nT(h)) + '.');
       }
       var sm = S.B === 0 ? null : -S.A / S.B, tm = -Tl.A / Tl.B, sb = S.B === 0 ? null : -S.C / S.B, tb = -Tl.C / Tl.B;
@@ -397,13 +397,14 @@
   function numsOf(S) { return S.P.map(function (z) { return fv(z); }); }
 
   HW.addCodes({
+    'u8-gr-shift': 'Graph: right slope, wrong place', 'u8-gr-sign': 'Graph: slope sign wrong', 'u8-gr-flip': 'Graph: run over rise', 'u8-gr-slope': 'Graph: right intercept, wrong slope', 'u8-gr-line': 'Graph: a line wrong', 'u8-point-off': 'Plotted a point not on the line', 'u8-points-only': 'Plotted points but no lines', 'u8-line-missing': 'A line of the system missing', 'u8-line-extra': 'Extra line drawn', 'u8-graph': 'Graph of the system wrong', 'u8-eq-swap': 'Equations in the wrong boxes', 'u8-price-swap': 'Prices matched to the wrong tickets',
     'u8-neg': 'Sign slip dividing by −1 (or a negative)', 'u8-nodiv': 'Didn’t divide every term', 'sub-swap': 'Substituted the point’s coordinates into the wrong letters', 'sub-wrong': 'Substitution arithmetic slip',
     'dropped-bracket': 'Dropped the bracket when substituting', 'not-subst': 'Substitution slip', 'no-back-sub': 'Left the substitution letter in the answer', 'pt-fraction': 'Exact answer given as a decimal', 'nr-one': 'Gave one unknown instead of the combination', 'pq-swap': 'Values of the two unknowns swapped', 'xy-right-z': 'Three unknowns: x and y right, z wrong',
     'u8l1-back-sign': 'Working backwards: sign slip solving for the unknown coefficient', 'u8l1-back-move': 'Working backwards: moved a term without changing its sign',
     'u8l3-same-eq': 'Substituted back into the equation the expression came from', 'u8l3-still-v': 'Substituted equation still has the replaced variable', 'u8l3-solved': 'Gave the solved value, not the substituted equation',
     'u8l3-word-eq': 'Word problem: equation doesn’t match the sentence', 'u8l3-perim': 'Perimeter: used L + w instead of 2L + 2w', 'u8l3-z': 'Substitution chain: wrong value for z', 'u8l3-gave-y': 'Gave y instead of the asked value'
   });
-  HW.addPartial({ 'u8l3-same-eq': 'n', 'u8l3-still-v': 'b', 'u8l3-word-eq': 'n', 'u8l3-perim': 'b', 'u8l3-z': 's', 'u8l3-gave-y': 'b' });
+  HW.addPartial({ 'u8-point-off': 's', 'u8-points-only': 'b', 'u8-graph': 'n', 'u8l3-same-eq': 'n', 'u8l3-still-v': 'b', 'u8l3-word-eq': 'n', 'u8l3-perim': 'b', 'u8l3-z': 's', 'u8l3-gave-y': 'b' });
 
   function solveSub(k, lv, o, extra) { return { id: o.id, sub: k, level: lv, make: function (r) { var S = o.frac ? genFrac(r, o) : gen(r, o); return solvePart('(' + k + ')', S, extra); } }; }
   function wordEq(prompt, vars, Ts, labels, wrongs, sol, hints, text, keysT) {   // two equation boxes, any equivalent form, either order

@@ -120,13 +120,13 @@
       if (Tl.B === 0) {   // a vertical line x = k
         var k = -Tl.C / Tl.A;
         if (S.B === 0) return wrong('line-x', 'Your line for ' + name + ' is vertical — right — but it should cross the ' + t('x') + '-axis at ' + t(nT(k)) + ': every point on it has ' + t('x=' + nT(k)) + '.');
-        if (S.A === 0) return wrong('line-vh', name + ' means ' + t('x=' + nT(k)) + ': every point has the same <b>' + t('x') + '</b>-value, so the line is <b>vertical</b>, not horizontal.');
+        if (S.A === 0) return wrong('line-vh', (name === t('x=' + nT(k)) ? 'In ' + name : name + ' means ' + t('x=' + nT(k)) + ':') + ' every point has the same <b>' + t('x') + '</b>-value, so the line is <b>vertical</b>, not horizontal.');
         return wrong('u8-gr-line', name + ' is a vertical line: every point on it has ' + t('x=' + nT(k)) + '.');
       }
       if (Tl.A === 0) {   // a horizontal line y = k
         var h = -Tl.C / Tl.B;
         if (S.A === 0) return wrong('u8-gr-shift', 'Your line for ' + name + ' is horizontal — right — but it should cross the ' + t('y') + '-axis at ' + t(nT(h)) + ': every point on it has ' + t('y=' + nT(h)) + '.');
-        if (S.B === 0) return wrong('line-vh', name + ' means ' + t('y=' + nT(h)) + ': every point has the same <b>' + t('y') + '</b>-value, so the line is <b>horizontal</b>, not vertical.');
+        if (S.B === 0) return wrong('line-vh', (name === t('y=' + nT(h)) ? 'In ' + name : name + ' means ' + t('y=' + nT(h)) + ':') + ' every point has the same <b>' + t('y') + '</b>-value, so the line is <b>horizontal</b>, not vertical.');
         return wrong('u8-gr-line', name + ' is a horizontal line: every point on it has ' + t('y=' + nT(h)) + '.');
       }
       var sm = S.B === 0 ? null : -S.A / S.B, tm = -Tl.A / Tl.B, sb = S.B === 0 ? null : -S.C / S.B, tb = -Tl.C / Tl.B;
