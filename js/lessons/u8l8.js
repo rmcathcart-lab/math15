@@ -889,10 +889,10 @@
   ];
 
   /* ---------- assignment helpers used above ---------- */
-  function isoPart(s, which) {
+  function isoPart(s, which, pre) {
     var E = s.E, k0 = which === 'x' ? 'x=' + T([[E[0].c, ''], [-E[0].b, 'y']]) : 'y=' + T([[E[0].c, ''], [-E[0].a, 'x']]);
     var alt = Math.abs(E[1].b) === 1 ? 'y=' + T([[-E[1].a / E[1].b, 'x'], [E[1].c / E[1].b, '']]) : Math.abs(E[1].a) === 1 ? 'x=' + T([[-E[1].b / E[1].a, 'y'], [E[1].c / E[1].a, '']]) : null;
-    var p = K.P.math('Isolate a variable that has coefficient ' + t('1') + ' or ' + t('-1') + '. Type it as “variable = expression”.', isoChk(E), k0,
+    var p = K.P.math((pre || '') + 'Isolate a variable that has coefficient ' + t('1') + ' or ' + t('-1') + '. Type it as “variable = expression”.', isoChk(E), k0,
       'In ' + t(s.e1) + ', ' + t(which) + ' has coefficient ' + t('1') + ': ' + t(k0) + '.' + (alt ? ' (Or, from ' + t(s.e2) + ': ' + t(alt) + '.) Either one avoids fractions.' : ' Isolating a variable in ' + t(s.e2) + ' would bring in fractions.'),
       ['Which variable has coefficient ' + t('1') + ' or ' + t('-1') + '? Move the other terms to the other side.'], 'isolate a variable', { keys: 'eq', vars: ['x', 'y'], placeholder: 'e.g. y = 3x - 15' });
     p.good = alt ? [alt] : [];
@@ -900,24 +900,24 @@
     p.bad = [badS];
     return p;
   }
-  function isoSolve(s, which) {
+  function isoSolve(s, which, pre) {
     var E = s.E, P = s.P, txt;
     if (which === 'x') { var ex = T([[E[0].c, ''], [-E[0].b, 'y']]), ky = E[1].a * -E[0].b + E[1].b; txt = t('x=' + ex) + '. Substitute into ' + t(s.e2) + ': ' + t((E[1].a === 1 ? '' : E[1].a === -1 ? '-' : E[1].a) + '(' + ex + ')' + (E[1].b < 0 ? '-' : '+') + T([[Math.abs(E[1].b), 'y']]) + '=' + nT(E[1].c)) + ' ⟹ ' + t(T([[ky, 'y']]) + '=' + nT(E[1].c - E[1].a * E[0].c)) + ' ⟹ ' + t('y=' + nT(P[1])) + '; ' + t('x=' + subT([[E[0].c, ''], [-E[0].b, 'y']], { y: P[1] }) + '=' + nT(P[0])) + '.'; }
     else { var ey = T([[E[0].c, ''], [-E[0].a, 'x']]), kx = E[1].a + E[1].b * -E[0].a; txt = t('y=' + ey) + '. Substitute into ' + t(s.e2) + ': ' + t(T([[E[1].a, 'x']]) + (E[1].b < 0 ? '-' : '+') + (Math.abs(E[1].b) === 1 ? '' : Math.abs(E[1].b)) + '(' + ey + ')=' + nT(E[1].c)) + ' ⟹ ' + t(T([[kx, 'x']]) + '=' + nT(E[1].c - E[1].b * E[0].c)) + ' ⟹ ' + t('x=' + nT(P[0])) + '; ' + t('y=' + subT([[E[0].c, ''], [-E[0].a, 'x']], { x: P[0] }) + '=' + nT(P[1])) + '.'; }
-    return pointPart('Solve the system. Give the solution as an ordered pair.', P, [s.L1, s.L2], {}, txt + '<br>' + chkPt(E, P), ['Substitute your expression from (a) into the <b>other</b> equation.'], 'isolate and solve');
+    return pointPart((pre || '') + 'Solve the system. Give the solution as an ordered pair.', P, [s.L1, s.L2], {}, txt + '<br>' + chkPt(E, P), ['Substitute your expression from (a) into the <b>other</b> equation.'], 'isolate and solve');
   }
   function elimSolve(s, ex, hint) {
     var et = elimText(s, ex);
     return pointPart('Solve the system. Give the solution as an ordered pair.', s.P, [s.L1, s.L2], {}, et.text, [hint], 'elimination solve');
   }
-  function bothStep(s) {
+  function bothStep(s, pre) {
     var et = elimText(s, 'y'), ex = elimText(s, 'x');
-    return elimStepP('Multiply each equation by a suitable number so that one variable’s coefficients match (or are opposites). Then add or subtract, and type the one-variable equation you get.', s, { key: et.step },
+    return elimStepP((pre || '') + 'Multiply each equation by a suitable number so that one variable’s coefficients match (or are opposites). Then add or subtract, and type the one-variable equation you get.', s, { key: et.step },
       et.text.split('<br>').slice(0, 3).join('<br>') + '<br>(Eliminating ' + t('x') + ' instead gives ' + t(ex.step) + ' — also fine.)', ['Use the lowest common multiple of the two ' + t('y') + '-coefficients (or the two ' + t('x') + '-coefficients).'], 'multiply both and eliminate');
   }
 
   /* ======================= EXTRA PRACTICE ======================= */
-  function e1Gen(r) { return r.chance(0.06) ? { x0: 2, y0: 3, k: 1, c: 8 } : gen(function () { var x0 = r.pick([-4, -2, 2, 4]), k = nz(r, -3, 3), y0 = x0 + k, c = x0 + 2 * y0; if (Math.abs(c / 2) > 6 || Math.abs(y0) > 6 || c === 0) return null; return { x0: x0, y0: y0, k: k, c: c }; }, null); }
+  function e1Gen(r) { return r.chance(0.06) ? { x0: 2, y0: 3, k: 1, c: 8 } : gen(function () { var x0 = r.pick([-6, -4, -2, 2, 4, 6]), k = nz(r, -5, 5), y0 = x0 + k, c = x0 + 2 * y0; if (Math.abs(c / 2) > 6 || Math.abs(y0) > 6 || c === 0) return null; return { x0: x0, y0: y0, k: k, c: c }; }, null); }
   /* E2 systems by kind */
   function chooseGen(r, kind) {
     return gen(function () {
@@ -1038,10 +1038,10 @@
         { id: 'e4a2', sub: 'a solve', level: 'BEG', make: function (r, sh) { var s = sh.a; return pointPart(both(s.e1, s.e2) + '<br>Solve.', s.P, [s.L1, s.L2], {}, t(subKey(s.a, 'x', s.c, T([[s.m, 'x'], [s.b, '']]), s.d)) + ' ⟹ ' + t(T([[s.a + s.c * s.m, 'x']]) + '=' + (s.d - s.c * s.b)) + ' ⟹ ' + t('x=' + s.P[0]) + ', ' + t('y=' + s.P[1]) + '.<br>' + chkPt([{ a: -s.m, b: 1, c: s.b }, { a: s.a, b: s.c, c: s.d }], s.P), ['Solve the equation from the step, then find ' + t('y') + '.'], 'E4a solve'); } },
         { id: 'e4b1', sub: 'b substitute', level: 'BEG', make: function (r, sh) { var s = sh.b, inner = T([[s.p, 'y'], [s.q, '']]), key = (s.a === 1 ? '' : s.a) + '(' + inner + ')' + (s.c > 0 ? '+' : '') + T([[s.c, 'y']]) + '=' + s.d; return stepP(both(s.e1, s.e2) + '<br>Substitute and type the equation you get (only ' + t('y') + ' left).', key, [{ v: 'y', root: s.P[1] }], { wrong: s.a === 1 ? [] : [{ v: 'y', root: (s.d - s.q) / (s.a * s.p + s.c), code: 'u8l8-dist', hint: 'Multiply the bracket out to every term.' }] }, t(key) + '.', ['Put ' + t('(' + inner + ')') + ' in place of ' + t('x') + '.'], 'E4b step'); } },
         { id: 'e4b2', sub: 'b solve', level: 'BEG', make: function (r, sh) { var s = sh.b; return pointPart(both(s.e1, s.e2) + '<br>Solve.', s.P, [s.L1, s.L2], {}, t(T([[s.a * s.p + s.c, 'y']]) + '=' + (s.d - s.a * s.q)) + ' ⟹ ' + t('y=' + s.P[1]) + ', then ' + t('x=' + subT([[s.p, 'y'], [s.q, '']], { y: s.P[1] }) + '=' + s.P[0]) + '.<br>' + chkPt([{ a: 1, b: -s.p, c: s.q }, { a: s.a, b: s.c, c: s.d }], s.P), ['Solve the step equation, then find ' + t('x') + '.'], 'E4b solve'); } },
-        { id: 'e4c1', sub: 'c isolate', level: 'EMG', make: function (r, sh) { var s = isoS(sh.c); return isoPart(s, 'x'); } },
-        { id: 'e4c2', sub: 'c solve', level: 'EMG', make: function (r, sh) { return isoSolve(isoS(sh.c), 'x'); } },
-        { id: 'e4d1', sub: 'd isolate', level: 'EMG', make: function (r, sh) { return isoPart(isoS(sh.d), 'y'); } },
-        { id: 'e4d2', sub: 'd solve', level: 'PRG', make: function (r, sh) { return isoSolve(isoS(sh.d), 'y'); } }] },
+        { id: 'e4c1', sub: 'c isolate', level: 'EMG', make: function (r, sh) { var s = isoS(sh.c); return isoPart(s, 'x', sysD(s.e1, s.e2)); } },
+        { id: 'e4c2', sub: 'c solve', level: 'EMG', make: function (r, sh) { var s = isoS(sh.c); return isoSolve(s, 'x', sysD(s.e1, s.e2)); } },
+        { id: 'e4d1', sub: 'd isolate', level: 'EMG', make: function (r, sh) { var s = isoS(sh.d); return isoPart(s, 'y', sysD(s.e1, s.e2)); } },
+        { id: 'e4d2', sub: 'd solve', level: 'PRG', make: function (r, sh) { var s = isoS(sh.d); return isoSolve(s, 'y', sysD(s.e1, s.e2)); } }] },
     /* ---------- 5 (elimination) ---------- */
     { num: '5', stem: 'Solve each system by <b>elimination</b>. Leave a fractional coordinate as an exact fraction.',
       shared: function (r) {
@@ -1051,9 +1051,9 @@
       parts: [
         { id: 'e5a1', sub: 'a eliminate', level: 'EMG', make: function (r, sh) { var s = sh.a, E = s.E, key = T([[E[0].b - E[1].b, 'y']]) + '=' + nT(E[0].c - E[1].c); return elimStepP(sysD(s.e1, s.e2) + 'Subtract the equations. Type the equation you get.', s, { only: 'y', key: key }, 'The ' + t('x') + '-coefficients match: subtract. ' + t(key) + '.', ['Subtract every term of the second equation.'], 'E5a step'); } },
         { id: 'e5a2', sub: 'a solve', level: 'PRG', make: function (r, sh) { var s = sh.a; return pointPart(sysD(s.e1, s.e2) + 'Solve. Give an exact answer.', s.P, [s.L1, s.L2], {}, fracText(s, 'y'), ['Find ' + t('y') + ' first, then substitute and solve for ' + t('x') + ' — it is a fraction.'], 'E5a solve'); } },
-        { id: 'e5b1', sub: 'b eliminate', level: 'PRG', make: function (r, sh) { return bothStep(sh.b); } },
+        { id: 'e5b1', sub: 'b eliminate', level: 'PRG', make: function (r, sh) { return bothStep(sh.b, sysD(sh.b.e1, sh.b.e2)); } },
         { id: 'e5b2', sub: 'b solve', level: 'PRG', make: function (r, sh) { var s = sh.b; return pointPart(sysD(s.e1, s.e2) + 'Solve.', s.P, [s.L1, s.L2], {}, elimText(s, 'y').text, ['Multiply both equations so one pair of coefficients is opposite, then add.'], 'E5b solve'); } },
-        { id: 'e5c1', sub: 'c eliminate', level: 'PRG', make: function (r, sh) { return bothStep(sh.c); } },
+        { id: 'e5c1', sub: 'c eliminate', level: 'PRG', make: function (r, sh) { return bothStep(sh.c, sysD(sh.c.e1, sh.c.e2)); } },
         { id: 'e5c2', sub: 'c solve', level: 'ADV', make: function (r, sh) { var s = sh.c; return pointPart(sysD(s.e1, s.e2) + 'Solve.', s.P, [s.L1, s.L2], {}, elimText(s, 'y').text, ['Multiply both equations so one pair of coefficients is opposite, then add.'], 'E5c solve'); } },
         { id: 'e5d1', sub: 'd eliminate', level: 'EMG', make: function (r, sh) { var s = sh.d, E = s.E, key = T([[E[0].a + E[1].a, 'x']]) + '=' + nT(E[0].c + E[1].c); return elimStepP(sysD(s.e1, s.e2) + 'Add the equations. Type the equation you get.', s, { only: 'x', key: key }, 'The ' + t('y') + '-coefficients are opposites: add. ' + t(key) + '.', ['Add the matching terms.'], 'E5d step'); } },
         { id: 'e5d2', sub: 'd solve', level: 'PRG', make: function (r, sh) { var s = sh.d; return pointPart(sysD(s.e1, s.e2) + 'Solve. Give an exact answer.', s.P, [s.L1, s.L2], {}, fracText(s, 'x'), ['Find ' + t('x') + ' first; ' + t('y') + ' turns out to be a fraction.'], 'E5d solve'); } }] },
