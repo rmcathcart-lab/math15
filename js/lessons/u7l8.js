@@ -394,7 +394,13 @@
           ['When do two lines never meet?'], 'all share a point');
       } },
       { id: 'e10b', sub: 'b', level: 'EMG', make: function (r, sh) {
-        var p = KP.math('Three of the lines pass through one common point. Which point?', K.pairs([[0, sh.k]]), pK([0, sh.k]), t('y=' + sh.k) + ' crosses the ' + t('y') + '-axis at ' + ptt([0, sh.k]) + ', and both slanted lines have ' + t('y') + '-intercept ' + t(sh.k) + '. So ' + t('y=' + sh.k) + ' and the two slanted lines all pass through ' + ptt([0, sh.k]) + '.',
+        var base = K.pairs([[0, sh.k]]), chk = function (resp) {
+          var r0 = base(resp); if (r0.v !== 'wrong') return r0;
+          var q = readPt(resp); if (q && near(q[0], sh.k) && near(q[1], sh.k)) return wrong('u7l8-pt-off', 'That’s where ' + t('y=' + sh.k) + ' and ' + t('x=' + sh.k) + ' cross — but the slanted lines don’t pass through it. Where do the slanted lines cross the ' + t('y') + '-axis?');
+          if (q && near(q[0], sh.k) && near(q[1], 0)) return wrong('l5-pair-axes', 'Check the order: the common point is on the ' + t('y') + '-axis, so its ' + t('x') + '-coordinate is ' + t('0') + '.');
+          return r0;
+        };
+        var p = KP.math('Three of the lines pass through one common point. Which point?', chk, pK([0, sh.k]), t('y=' + sh.k) + ' crosses the ' + t('y') + '-axis at ' + ptt([0, sh.k]) + ', and both slanted lines have ' + t('y') + '-intercept ' + t(sh.k) + '. So ' + t('y=' + sh.k) + ' and the two slanted lines all pass through ' + ptt([0, sh.k]) + '.',
           ['What is the ' + t('y') + '-intercept of each slanted line?'], 'common point', { keys: 'u7val', placeholder: 'e.g. (0, 4)' });
         p.answer = ptt([0, sh.k]); p.bad = [pK([sh.k, 0]), pK([sh.k, sh.k])]; return p;
       } }] },
@@ -508,6 +514,8 @@
         var p = KP.pairs('(a) Find the three vertices by solving the lines in pairs.', V, {},
           t('x=' + sh.a) + ' with ' + t('y=' + sh.b) + ': ' + ptt(V[0]) + '.<br>' + t('x=' + sh.a) + ' with ' + t(gen(L3)) + ': substitute ' + t('x=' + sh.a) + ' and solve: ' + t('y=' + V[1][1]) + ', so ' + ptt(V[1]) + '.<br>' + t('y=' + sh.b) + ' with ' + t(gen(L3)) + ': substitute ' + t('y=' + sh.b) + ' and solve: ' + t('x=' + V[2][0]) + ', so ' + ptt(V[2]) + '.',
           ['The two constant lines meet where both coordinates are fixed.', 'For the slanted line, substitute the fixed coordinate of the other line and solve for the missing one.'], 'triangle vertices');
+        var base18 = p.check, swV = [V[0], [V[1][1], V[1][0]], V[2]], swc = K.pairs(swV), sw2 = K.pairs([V[0], V[1], [V[2][1], V[2][0]]]);
+        p.check = function (resp) { var r0 = base18(resp); if (r0.v !== 'wrong') return r0; if (swc(resp).v === 'correct' || sw2(resp).v === 'correct') return wrong('pt-swap', 'One of your vertices has its coordinates the wrong way round: an ordered pair is ' + t('(x,\\ y)') + '.'); return r0; };
         p.bad = ['\\{' + V.slice(0, 2).map(pK).join(', ') + '\\}'];
         if (V[1][0] !== V[1][1]) p.bad.push('\\{' + [V[0], [V[1][1], V[1][0]], V[2]].map(pK).join(', ') + '\\}');
         return p;

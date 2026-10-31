@@ -400,9 +400,9 @@ const general = {
         { cap: `Move ${T('y')} to the right (subtract ${T('y')} from both sides), so the ${T('x')}-term stays positive: ${T('0=5x-y-2')}.`,
           run: async (c) => { const l = line(P, `${T('0=5x\\textcolor{' + ORNG + '}{-y}-2')} <span class="u7l10-enote">${T('-y')} both sides</span>`, 'u7l10-mline'); await show(c, l); } },
         { cap: `Flip it around: ${T('5x-y-2=0')}. Check: ${T('A=5')} is positive, and ${T('A')}, ${T('B')}, ${T('C')} are integers ✓.`,
-          run: async (c) => { const e = h('div', 'u7l10-bigeq', T('5x-y-2=0')); P.appendChild(e); await pop(c, e); await show(c, line(P, `${T('A=5,\\ B=-1,\\ C=-2')} ✓`, 'u7l10-ok')); await stampP(c, P, 'general form'); } },
+          run: async (c) => { const e = h('div', 'u7l10-bigeq', T('5x-y-2=0')); P.appendChild(e); await pop(c, e); await show(c, line(P, `${T('A=5,\\ B=-1,\\ C=-2')} ✓`, 'u7l10-ok')); } },
         { cap: `Same line, new outfit: the graph did not move. Any point that works in one form works in the other, e.g. ${T('(1,\\ 3)')}: ${T('5(1)-3-2=0')} ✓.`,
-          run: async (c) => { await G.reveal(G.point(1, 3, { color: RED, r: 7, label: T('(1,\\ 3)'), pos: 'e' }), c); await show(c, line(P, `${T('(1,\\ 3)')}: ${T('5(1)-3-2=0')} ✓`, 'u7l10-mline')); } }
+          run: async (c) => { await G.reveal(G.point(1, 3, { color: RED, r: 7, label: T('(1,\\ 3)'), pos: 'e' }), c); await show(c, line(P, `${T('(1,\\ 3)')}: ${T('5(1)-3-2=0')} ✓`, 'u7l10-mline')); await stampP(c, P, 'same line'); } }
       ];
     }
     const { A, B, C } = d, xi = -C / A, yi = -C / B;
