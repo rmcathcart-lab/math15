@@ -28,6 +28,7 @@
   function Dh(v) { return t(D(v)); }
   function co(p) { return near(p, 1) ? '' : mon(p); }                       // a price as a coefficient: 1 -> '', 0.10 -> 0.10
   function pdec(p) { return (p / 100).toFixed(2); }                         // 12 -> 0.12
+  function art(n) { var s = String(n); return s[0] === '8' || s === '11' || s === '18' ? 'an' : 'a'; }
   function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
   var TIMES = { 2: 'twice', 3: 'three times', 4: 'four times', 5: 'five times' };
   var NW = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
@@ -142,14 +143,14 @@
     'sys-one-eq': 'Values fit only one of the two equations', 'rounded-count': 'Rounded the solution before checking it', 'rev-direction': '“More / less” reversed in the digit equation', 'digits-diff': 'Reversal changes the number by 9 × (difference), not the difference',
     'rate-fixed': 'Fixed fee and rate mixed up', 'sign-count': 'Sign of a negative count',
     'u8l7-facts-swap': 'Put a number from one fact into the other equation', 'u8l7-sum-perim': 'Used 2l + 2w when the problem gave the sum of the length and width',
-    'u8l7-not-halved': 'Stopped at 2x = … (did not divide by 2)', 'u8l7-current-sign': 'Current added (or subtracted) both ways', 'u8l7-current-swap': 'Downstream and upstream speeds swapped',
+    'u8l7-not-halved': 'Stopped at 2x = … (did not divide by 2)', 'u8l7-current-sign': 'Current added (or subtracted) both ways',
     'u8l7-drt': 'Distance, rate and time combined the wrong way', 'u8l7-pct-total': 'Value equation: used the percent instead of the amount in the mixture',
     'u8l7-age-now': 'Used today’s ages for the “years ago” fact', 'u8l7-age-bracket': 'Took only one age back in time', 'u8l7-average': 'Used the average price of the mixture',
     'u8l7-not-divided': 'Found the cost of the part but did not divide by its mass', 'u8l7-wrong-mass': 'Divided by the wrong mass', 'u8l7-whole-sat': 'Doubled every ticket, not just the adult tickets',
     'u8l7-one-day': 'Counted only one day', 'u8l7-nadia-copied': 'Kept the reversed equation'
   });
   HW.addPartial({
-    'u8l7-facts-swap': 'n', 'u8l7-sum-perim': 'n', 'u8l7-not-halved': 'b', 'u8l7-current-sign': 'n', 'u8l7-current-swap': 'n', 'u8l7-drt': 'n', 'u8l7-pct-total': 'b',
+    'u8l7-facts-swap': 'n', 'u8l7-sum-perim': 'n', 'u8l7-not-halved': 'b', 'u8l7-current-sign': 'n', 'u8l7-drt': 'n', 'u8l7-pct-total': 'b',
     'u8l7-age-now': 'n', 'u8l7-age-bracket': 'b', 'u8l7-average': 'n', 'u8l7-not-divided': 'b', 'u8l7-wrong-mass': 'b', 'u8l7-whole-sat': 'b', 'u8l7-one-day': 'b', 'u8l7-nadia-copied': 'n'
   });
 
@@ -163,6 +164,7 @@
     var wr = [{ eq: co(s.p2) + s.X + '+' + co(s.p1) + s.Y + '=' + mon(s.T), code: 'value-swap', hint: 'Each price goes with its own item: ' + s.n1 + ' are ' + Dh(s.p1) + ' ' + s.each + ', so they bring in ' + t(co(s.p1) + s.X) + ' dollars.' },
       { eq: s.X + '+' + s.Y + '=' + mon(s.T), code: 'count-value', hint: t(s.X + '+' + s.Y) + ' adds ' + (s.unit ? 'kilograms' : 'numbers of ' + s.what) + ', so it equals the ' + cnt + ', ' + t(N(s.N)) + (s.unit ? ' kg' : '') + ' — not the money.' },
       { eq: co(s.p1) + s.X + '+' + co(s.p2) + s.Y + '=' + s.N, code: 'count-value', hint: 'Price × amount gives <b>dollars</b>, so the value equation equals the money, ' + Dh(s.T) + '.' }];
+    (s.extraWrong || []).forEach(function (w) { wr.push(w); });
     if (s.dec) wr.push({ eq: [c1, c2, -s.T], code: 'units-mix', hint: 'Mixed units: ' + t(c1 + s.X + '+' + c2 + s.Y) + ' is in <b>cents</b> but ' + t(mon(s.T)) + ' is in dollars. Use ' + t(k[1]) + ' (or ' + t(c1 + s.X + '+' + c2 + s.Y + '=' + Tc) + ' cents).' });
     return sysP(prompt, [[1, 1, -s.N], [s.p1, s.p2, -s.T]],
       { vars: [s.X, s.Y], keyTex: k, names: ['the ' + cnt, 'the ' + val],
@@ -171,13 +173,16 @@
       '<b>' + cap(s.unit ? 'mass' : 'count') + ':</b> ' + t(k[0]) + '<br><b>Value:</b> ' + t(k[1]) + (s.dec ? ' (or ' + t(c1 + s.X + '+' + c2 + s.Y + '=' + Tc) + ' in cents)' : ''),
       ['One equation adds the ' + (s.unit ? 'kilograms' : s.what) + '; the other adds the money (price × ' + (s.unit ? 'mass' : 'number') + ' for each).'], 'count and value system');
   }
+  function term(p, v) { return near(p, 1) ? N(v) : co(p) + '(' + N(v) + ')'; }
   function cvSolveText(s) {
-    var k = cvKeys(s), lo = s.p2, hi = s.p1, txt = '';
-    if (s.dec) { var f = 100; txt += 'Multiply the value equation by ' + t(f) + ' to clear the decimals: ' + t(Math.round(100 * s.p1) + s.X + '+' + Math.round(100 * s.p2) + s.Y + '=' + Math.round(100 * s.T)) + '.<br>'; }
-    var M = s.dec ? Math.round(100 * lo) : lo, A = s.dec ? Math.round(100 * hi) : hi, TT = s.dec ? Math.round(100 * s.T) : s.T;
-    txt += 'Multiply the count equation by ' + t(M) + ': ' + t(M + s.X + '+' + M + s.Y + '=' + N(M * s.N)) + '.<br>Subtract it from the value equation: ' + t(co(A - M) + s.X + '=' + N(TT - M * s.N)) + ' ⟹ ' + t(s.X + '=' + N(s.x)) + '.<br>' +
-      'Then ' + t(s.Y + '=' + N(s.N) + '-' + N(s.x) + '=' + N(s.y)) + '.<br>' +
-      chk('Check: ' + t(N(s.x) + '+' + N(s.y) + '=' + N(s.N))) + ', ' + chk(t(co(s.p1) + (near(s.p1, 1) ? '' : '(') + N(s.x) + (near(s.p1, 1) ? '' : ')') + '+' + co(s.p2) + '(' + N(s.y) + ')=' + m2s(s.p1 * s.x) + '+' + m2s(s.p2 * s.y) + '=' + mon(s.T)));
+    var k = cvKeys(s), txt = '', sc = s.dec ? 100 : 1;
+    var A = Math.round(sc * s.p1), M = Math.round(sc * s.p2), TT = Math.round(sc * s.T);
+    if (s.dec) txt += 'Multiply the value equation by ' + t(100) + ' to clear the decimals: ' + t(A + s.X + '+' + M + s.Y + '=' + TT) + '.<br>';
+    var mult = M === 1 ? '' : 'Multiply the count equation by ' + t(M) + ': ' + t(M + s.X + '+' + M + s.Y + '=' + N(M * s.N)) + '.<br>';
+    if (A > M) txt += mult + 'Subtract ' + (M === 1 ? 'the count equation' : 'it') + ' from the value equation (the ' + t(s.Y) + '-terms cancel): ' + t(co(A - M) + s.X + '=' + N(TT - M * s.N)) + (A - M === 1 ? '' : ' ⟹ ' + t(s.X + '=' + N(s.x))) + '.<br>';
+    else txt += mult + 'Subtract the value equation from it (the ' + t(s.Y) + '-terms cancel): ' + t(co(M - A) + s.X + '=' + N(M * s.N - TT)) + (M - A === 1 ? '' : ' ⟹ ' + t(s.X + '=' + N(s.x))) + '.<br>';
+    txt += 'Then ' + t(s.Y + '=' + N(s.N) + '-' + N(s.x) + '=' + N(s.y)) + '.<br>' +
+      chk('Check: ' + t(N(s.x) + '+' + N(s.y) + '=' + N(s.N))) + ', ' + chk(t(term(s.p1, s.x) + '+' + term(s.p2, s.y) + '=' + m2s(s.p1 * s.x) + '+' + m2s(s.p2 * s.y) + '=' + mon(s.T)));
     return t(k[0]) + ' and ' + t(k[1]) + '.<br>' + txt;
   }
   function m2s(v) { return Number.isInteger(rnd(v)) ? N(v) : m2(v); }
@@ -379,7 +384,7 @@
     { num: '1', section: 'Extra Practice A — Translating Only: Define, Then Write Two Equations', stem: 'Write a system of two equations that models each situation. <b>Do not solve.</b>', parts: [
       { id: 'e1a', sub: 'a', level: 'BEG', make: function (r) {
         var o = r.chance(0.05) ? { k: 3, p: 24 } : { k: r.pick([2, 3, 4]), p: r.int(10, 40) }, T = (o.k + 1) * o.p;
-        return sysP('A food truck at the Calgary Stampede sells poutine and mini-donuts. On Saturday it sold ' + TIMES[o.k] + ' as many orders of mini-donuts as orders of poutine, ' + t(T) + ' orders in all.<br>Let ' + t('p') + ' = the number of orders of poutine and ' + t('d') + ' = the number of orders of mini-donuts.', [[0, 1, 0].map(function (v, i) { return [-o.k, 1, 0][i]; }), [1, 1, -T]],
+        return sysP('A food truck at the Calgary Stampede sells poutine and mini-donuts. On Saturday it sold ' + TIMES[o.k] + ' as many orders of mini-donuts as orders of poutine, ' + t(T) + ' orders in all.<br>Let ' + t('p') + ' = the number of orders of poutine and ' + t('d') + ' = the number of orders of mini-donuts.', [[-o.k, 1, 0], [1, 1, -T]],
           { vars: ['p', 'd'], keyTex: ['d=' + o.k + 'p', 'p+d=' + T], names: ['the “' + TIMES[o.k] + ' as many” fact', 'the total'],
             factHints: ['test it: with ' + t('p=10') + ' poutine orders there are ' + t(10 * o.k) + ' mini-donut orders, so ' + t('d=' + o.k + 'p') + '.', 'all the orders add to ' + t(T) + '.'],
             wrong: [{ eq: 'p=' + o.k + 'd', code: 'ratio-flip', hint: 'Test your equation: with ' + t('p=10') + ' poutine orders there should be ' + t(10 * o.k) + ' mini-donut orders. The ' + t(o.k) + ' multiplies the <b>smaller</b> amount: ' + t('d=' + o.k + 'p') + '.' }, { eq: 'd=p+' + o.k, code: 'times-more', hint: '“' + cap(TIMES[o.k]) + ' as many” means multiply by ' + t(o.k) + '.' }] },
@@ -428,7 +433,6 @@
           { vars: ['b', 'c'], keyTex: [(o.td === 1 ? '' : o.td) + '(b+c)=' + o.D, o.tu + '(b-c)=' + o.D], names: ['the downstream trip', 'the upstream trip'],
             factHints: ['downstream: speed ' + t('b+c') + ' for ' + o.td + ' h covers ' + o.D + ' km, so ' + t(o.td + '(b+c)=' + o.D) + '.', 'upstream: speed ' + t('b-c') + ' for ' + o.tu + ' h covers ' + o.D + ' km.'],
             wrong: [{ eq: o.tu + '(b+c)=' + o.D, code: 'u8l7-current-sign', hint: 'Going <b>upstream</b> the current slows the canoe: its speed is ' + t('b-c') + '.' }, { eq: o.td + '(b-c)=' + o.D, code: 'u8l7-current-sign', hint: 'Going <b>downstream</b> the current helps: the speed is ' + t('b+c') + '.' },
-              { eq: o.td + '(b-c)=' + o.D + '+0b', code: 'u8l7-current-swap', hint: 'Downstream (' + o.td + ' h, the faster trip) uses ' + t('b+c') + '; upstream (' + o.tu + ' h) uses ' + t('b-c') + '.' },
               { eq: 'b+c=' + o.D * o.td, code: 'u8l7-drt', hint: 'Distance = speed × time, so ' + t('(b+c)\\times ' + o.td + '=' + o.D) + '. (Speed = distance ÷ time.)' }],
             alts: [['b+c=' + o.D / o.td], ['b-c=' + o.D / o.tu]], good: [['b+c=' + o.D / o.td, 'b-c=' + o.D / o.tu]], bad: [[o.tu + '(b+c)=' + o.D, o.td + '(b-c)=' + o.D]] },
           'Distance = speed × time.<br>Downstream: ' + t(o.td + '(b+c)=' + o.D) + ' (so ' + t('b+c=' + o.D / o.td) + ').<br>Upstream: ' + t(o.tu + '(b-c)=' + o.D) + ' (so ' + t('b-c=' + o.D / o.tu) + ').', ['Distance = speed × time, for each direction.'], 'translate: river current');
@@ -436,7 +440,7 @@
       { id: 'e2b', sub: 'b', level: 'PRG', make: function (r) {
         var o = r.chance(0.08) ? { p1: 12, p2: 20, M: 400, x: 150, y: 250, pm: 17 } : pctGen(r, [10, 12, 14, 15, 16], [18, 20, 22, 24, 25, 30], [200, 400, 500, 600, 800, 1000]);
         var P = o.pm * o.M / 100;
-        return sysP('A feed supplier blends a ' + t(o.p1 + '\\%') + ' protein ration with a ' + t(o.p2 + '\\%') + ' protein ration to make ' + t(o.M + '\\text{ kg}') + ' of a ' + t(o.pm + '\\%') + ' protein ration.<br>Let ' + t('x') + ' = kg of the ' + t(o.p1 + '\\%') + ' ration and ' + t('y') + ' = kg of the ' + t(o.p2 + '\\%') + ' ration.', [[1, 1, -o.M], [o.p1, o.p2, -o.pm * o.M]],
+        return sysP('A feed supplier blends a ' + t(o.p1 + '\\%') + ' protein ration with a ' + t(o.p2 + '\\%') + ' protein ration to make ' + t(o.M + '\\text{ kg}') + ' of ' + art(o.pm) + ' ' + t(o.pm + '\\%') + ' protein ration.<br>Let ' + t('x') + ' = kg of the ' + t(o.p1 + '\\%') + ' ration and ' + t('y') + ' = kg of the ' + t(o.p2 + '\\%') + ' ration.', [[1, 1, -o.M], [o.p1, o.p2, -o.pm * o.M]],
           { vars: ['x', 'y'], keyTex: ['x+y=' + o.M, pdec(o.p1) + 'x+' + pdec(o.p2) + 'y=' + N(P)], showTex: ['x+y=' + o.M, pdec(o.p1) + 'x+' + pdec(o.p2) + 'y=' + pdec(o.pm) + '(' + o.M + ')=' + N(P)], names: ['the total mass', 'the protein'],
             factHints: ['the two rations add to ' + t(o.M) + ' kg.', 'the protein: ' + t(pdec(o.p1) + 'x') + ' kg from the first ration plus ' + t(pdec(o.p2) + 'y') + ' from the second equals ' + t(o.pm + '\\%') + ' of ' + t(o.M) + ' kg.'],
             wrong: [{ eq: pdec(o.p1) + 'x+' + pdec(o.p2) + 'y=' + pdec(o.pm), code: 'u8l7-pct-total', hint: 'The right side should be the <b>kilograms of protein</b> in the mix: ' + t(o.pm + '\\%') + ' of ' + t(o.M) + ' kg is ' + t(pdec(o.pm) + '(' + o.M + ')=' + N(P)) + '.' },
@@ -589,7 +593,7 @@
         } }] },
     /* ---------- 11 ---------- */
     { num: '11', section: 'Extra Practice D — Mixture and Percent Problems', shared: function (r) { return r.chance(0.06) ? { p1: 20, p2: 50, M: 500, x: 300, y: 200, pm: 32 } : pctGen(r, [10, 15, 20, 25], [40, 50, 60], [200, 300, 400, 500, 600, 1000]); },
-      stem: function (o) { return 'A lab technician needs ' + t(o.M + '\\text{ mL}') + ' of a ' + t(o.pm + '\\%') + ' antifreeze mixture. She has a ' + t(o.p1 + '\\%') + ' stock solution and a ' + t(o.p2 + '\\%') + ' stock solution on hand. Let ' + t('x') + ' = mL of the ' + t(o.p1 + '\\%') + ' solution and ' + t('y') + ' = mL of the ' + t(o.p2 + '\\%') + ' solution.'; },
+      stem: function (o) { return 'A lab technician needs ' + t(o.M + '\\text{ mL}') + ' of ' + art(o.pm) + ' ' + t(o.pm + '\\%') + ' antifreeze mixture. She has a ' + t(o.p1 + '\\%') + ' stock solution and a ' + t(o.p2 + '\\%') + ' stock solution on hand. Let ' + t('x') + ' = mL of the ' + t(o.p1 + '\\%') + ' solution and ' + t('y') + ' = mL of the ' + t(o.p2 + '\\%') + ' solution.'; },
       parts: [
         { id: 'e11sys', sub: 'system', level: 'PRG', make: function (r, o) {
           var P = o.pm * o.M / 100;
@@ -609,7 +613,7 @@
         } }] },
     /* ---------- 12 ---------- */
     { num: '12', shared: function (r) { return r.chance(0.06) ? { p1: 14, p2: 26, M: 900, x: 600, y: 300, pm: 18 } : pctGen(r, [10, 12, 14, 15], [20, 22, 24, 26, 30], [300, 400, 500, 600, 900, 1000]); },
-      stem: function (o) { return 'A feedlot near Brooks mixes a ' + t(o.p1 + '\\%') + ' protein barley ration with a ' + t(o.p2 + '\\%') + ' protein canola ration to produce ' + t(o.M + '\\text{ kg}') + ' of an ' + t(o.pm + '\\%') + ' protein ration.'.replace(/an (\\\(\d)/, function (m, a) { return /^\\\((8|11|18)/.test(a + o.pm) ? m : 'a ' + a; }); },
+      stem: function (o) { return 'A feedlot near Brooks mixes a ' + t(o.p1 + '\\%') + ' protein barley ration with a ' + t(o.p2 + '\\%') + ' protein canola ration to produce ' + t(o.M + '\\text{ kg}') + ' of ' + art(o.pm) + ' ' + t(o.pm + '\\%') + ' protein ration.'; },
       parts: [
         { id: 'e12', sub: '', level: 'ADV', make: function (r, o) {
           var P = o.pm * o.M / 100;
@@ -673,7 +677,7 @@
             { vars: ['l', 'w'], keyTex: ['2l+2w=' + o.P, 'l=2w' + sg + o.c], names: ['the perimeter', 'the length–width fact'], factHints: ['the perimeter adds all four sides.', 'start from twice the width, ' + t('2w') + ', then ' + (o.less ? 'subtract' : 'add') + ' ' + t(o.c) + '.'],
               wrong: [{ eq: 'l+w=' + o.P, code: 'perim-half', hint: 'The perimeter adds <b>all four</b> sides: ' + t('2l+2w=' + o.P) + '.' }, { eq: 'l=2w' + (o.less ? '+' : '-') + o.c, code: 'more-than-side', hint: '“' + o.c + ' m ' + (o.less ? 'less' : 'more') + ' than twice the width” is ' + t('2w' + sg + o.c) + '.' }, { eq: 'w=2l' + sg + o.c, code: 'ratio-flip', hint: 'The <b>length</b> is built from twice the width: ' + t('l=2w' + sg + o.c) + '.' }],
               good: [['l+w=' + o.P / 2, 'l=2w' + sg + o.c]] },
-            t('2l+2w=' + o.P) + ' (or ' + t('l+w=' + o.P / 2) + ') and ' + t('l=2w' + sg + o.c) + '.', ['“' + o.c + ' less than twice the width”: twice the width first, then subtract.'.replace('less', o.less ? 'less' : 'more').replace('subtract', o.less ? 'subtract' : 'add')], 'rink system');
+            t('2l+2w=' + o.P) + ' (or ' + t('l+w=' + o.P / 2) + ') and ' + t('l=2w' + sg + o.c) + '.', ['“' + o.c + ' ' + (o.less ? 'less' : 'more') + ' than twice the width”: twice the width first, then ' + (o.less ? 'subtract' : 'add') + '.'], 'rink system');
         } },
         { id: 'e15dim', sub: 'dimensions', level: 'PRG', make: function (r, o) {
           var sg = o.less ? '-' : '+';
@@ -788,8 +792,7 @@
             t('a') + ' counts adult tickets. A count of ' + t(o.an) + ' is impossible, so something in her setup is wrong.', ['What does ' + t('a') + ' stand for?'], 'Nadia impossible');
         } },
         { id: 'e19b1', sub: 'b equation', level: 'MAS', make: function (r, o) {
-          var T = [-o.pa, o.py, -o.R].map(function (v) { return -v; });
-          T = [o.pa, -o.py, -o.R];
+          var T = [o.pa, -o.py, -o.R];
           return { prompt: 'Nadia reversed one quantity. Write the <b>corrected second equation</b> (in ' + t('a') + ' and ' + t('y') + ').', input: { type: 'math', keys: 'eq', vars: ['a', 'y'], placeholder: ' ' },
             check: eqCheck(T, { vars: ['a', 'y'], wrong: [{ eq: o.py + 'y-' + o.pa + 'a=' + o.R, code: 'u8l7-nadia-copied', hint: 'That’s Nadia’s equation. Which revenue is bigger — adults’ or youths’?' }, { eq: o.pa + 'a+' + o.py + 'y=' + o.R, code: 'sum-diff', hint: '“' + Dh(o.R) + ' <b>more than</b>” compares the two revenues: subtract the smaller from the larger.' }, { eq: o.py + 'a-' + o.pa + 'y=' + o.R, code: 'value-swap', hint: 'Adults pay ' + Dh(o.pa) + ', so adult revenue is ' + t(o.pa + 'a') + '.' }, { eq: 'a-y=' + o.R, code: 'count-value', hint: 'The fact compares <b>revenue</b> (dollars), so use ' + t(o.pa + 'a') + ' and ' + t(o.py + 'y') + '.' }],
               hint: 'Adult revenue is ' + t(o.pa + 'a') + ' and youth revenue is ' + t(o.py + 'y') + '. Which one is ' + Dh(o.R) + ' more?' }),
@@ -865,11 +868,8 @@
         } },
         { id: 'e22b', sub: 'b system', level: 'PRG', make: function (r, o) {
           var s = { X: 'c', Y: 'b', n1: 'cans', n2: 'bottles', p1: 0.1, p2: 0.25, x: o.c, y: o.b, N: o.c + o.b, T: (10 * o.c + 25 * o.b) / 100, what: 'containers', each: 'each', dec: true };
-          var p = cvSys('Let ' + t('c') + ' be the number of cans and ' + t('b') + ' the number of bottles collected over the two days. Write the system.', s);
-          var wr = sysCheck([[1, 1, -s.N], [10, 25, -Math.round(100 * s.T)]], { vars: ['c', 'b'], wrong: [{ eq: 'c+b=' + o.d1, code: 'u8l7-one-day', hint: t(o.d1) + ' is only Day 1. The count equation uses the <b>two-day</b> total, ' + t(N(s.N)) + '.' }] });
-          p.check = (function (c0) { return function (resp) { var res = c0(resp); if (res.v === 'wrong' && res.code !== 'value-swap') { var r2 = wr(resp); if (r2.code === 'u8l7-one-day') return r2; } return res; }; })(p.check);
-          p.bad.push(['c+b=' + o.d1, '0.10c+0.25b=' + m2(s.T)]);
-          return p;
+          s.extraWrong = [{ eq: 'c+b=' + o.d1, code: 'u8l7-one-day', hint: t(o.d1) + ' is only Day 1. The count equation uses the <b>two-day</b> total, ' + t(N(s.N)) + '.' }];
+          return cvSys('Let ' + t('c') + ' be the number of cans and ' + t('b') + ' the number of bottles collected over the two days. Write the system.', s);
         } },
         { id: 'e22c', sub: 'b solve', level: 'ADV', make: function (r, o) {
           var T = (10 * o.c + 25 * o.b) / 100, Nn = o.c + o.b;

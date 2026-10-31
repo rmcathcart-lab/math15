@@ -380,7 +380,7 @@
         } }] },
       { num: '15', parts: [
         { id: '15', level: 'PRG', make: function (r) {
-          var o = pickWhere(function () { return { m: r.int(2, 5), k: r.int(1, 9), c: r.pick(nz(-6, 9)) }; }, function (o) { var Y = o.m * o.k + o.c; return Y > 0 && Y <= 60; });
+          var o = pickWhere(function () { return { m: r.int(2, 5), k: r.int(1, 9), c: r.pick(nz(-6, 9)) }; }, function (o) { var Y = o.m * o.k + o.c; return Y > 0 && Y <= 60 && !(o.m === 3 && o.c === 2 && o.k === 3); });   // (3, 11) on y = 3x + 2 is Q13's next point: never asked here
           var m = o.m, k = o.k, c = o.c, Y = m * k + c, eq = siT(m, c);
           return nrPart('<i>(Numerical Response)</i> The point ' + t('(k,\\ ' + Y + ')') + ' lies on the line ' + t(eq) + '. The value of ' + t('k') + ' is ____.', k,
             [[m * Y + c, 'sub-swap', t(Y) + ' is the <b>' + t('y') + '-coordinate</b>: substitute it for ' + t('y') + ', not for ' + t('x') + ': ' + t(Y + '=' + m + 'k' + (c < 0 ? '' : '+') + c) + '.'], [(Y + c) / m, 'u7l1-undo-sign', 'To undo ' + t((c > 0 ? '+' : '') + c) + ', ' + (c > 0 ? 'subtract' : 'add') + ' ' + t(Math.abs(c)) + ' on both sides.'], [Y - c, 'no-divide', 'You have ' + t(m + 'k=' + (Y - c)) + ' — now divide by ' + t(m) + '.'], [Y / m - c, 'u7l1-div-first', 'Undo the constant first, then divide by ' + t(m) + '.']],
