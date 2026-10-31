@@ -1,0 +1,159 @@
+/* Math 15 · Unit 7 · Lesson 1 — Review: Graphing Linear Equations from a Table of Values: styles used only on this page
+ * (prefix u7l1-). Colours: x-values amber, y-values purple, lines blue, wrong / non-linear red, "on the line" green. */
+:root { --u7l1-x: #c27a0e; --u7l1-y: #7b4fc4; --u7l1-line: #1f5bd6; }
+
+.u7l1 .ex-cap .katex { font-size: 1.04em; }
+.u7l1 .chip .katex { font-size: 1em; }
+.u7l1 .pl .katex { font-size: 1.1em; }
+.u7l1 .ans .katex { font-size: 1.04em; }
+.u7l1 .katex { white-space: nowrap; }
+.u7l1 h2 .katex, .u7l1 h3 .katex { font-size: .95em; }
+.u7l1-cx { color: var(--u7l1-x); }
+.u7l1-cy { color: var(--u7l1-y); }
+.u7l1-red { color: var(--red); }
+.u7l1-okc { color: var(--ok); }
+.u7l1-badc { color: var(--red); }
+
+/* ---------------- warm-up ---------------- */
+.u7l1-wtop { display: flex; gap: 14px; align-items: flex-start; }
+.u7l1-cards { position: relative; display: flex; gap: 10px; }
+.u7l1-card { background: #ffecb3; border: 2px solid #c88c14; border-radius: 12px; padding: 6px 8px 8px; box-shadow: 2px 3px 0 rgba(0, 0, 0, .08); }
+.u7l1-card-h { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.u7l1-card-h i { font-size: 15px; color: #8a5c08; }
+.u7l1-ball { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #1e2d46; color: #fff; font: 800 17px var(--round); }
+.u7l1-ctab { display: grid; grid-template-columns: 40px 46px 34px; grid-auto-rows: 33px; background: transparent; }
+.u7l1-ctab > div { display: grid; place-items: center; font-size: 19px; }
+.u7l1-ctab > div:nth-child(3n+1), .u7l1-ctab > div:nth-child(3n+2) { background: #fff; border: 1px solid #1e2d46; margin: -1px 0 0 -1px; }
+.u7l1-ctab > .u7l1-cth { background: #e8f0fc !important; font-weight: 700; }
+.u7l1-cd { position: relative; }
+.u7l1-step { position: absolute; top: -10px; left: 2px; font: 800 15px var(--round); color: #fff; background: var(--u7l1-x); border-radius: 9px; padding: 0 6px; visibility: hidden; }
+.u7l1-steps-on .u7l1-step { visibility: visible; }
+.u7l1-rules { display: flex; flex-direction: column; gap: 8px; }
+.u7l1-rules-h { font: 800 19px var(--round); }
+.u7l1-tag { background: #fff; border: 2px solid var(--red); border-radius: 4px 10px 10px 4px; padding: 3px 10px 3px 22px; font-size: 19px; white-space: nowrap; position: relative; }
+.u7l1-tag::before { content: ''; position: absolute; left: 7px; top: 50%; width: 7px; height: 7px; margin-top: -4px; border: 2px solid var(--red); border-radius: 50%; }
+.u7l1-wplot { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background: #fffdf7; border: 1px solid var(--line2); border-radius: 12px; overflow: hidden; }
+.u7l1-wpl { font: 700 17px var(--round); background: rgba(255, 255, 255, .92); border-radius: 6px; padding: 0 5px; }
+.u7l1-wbtns { display: flex; gap: 8px; margin: 8px 0 2px; }
+.wf .u7l1-wqs .q-line { font-size: 17px; margin: 4px 0 2px; gap: 10px; }
+.wf .u7l1-wqs .q-num { width: 30px; height: 30px; font-size: 16px; }
+.wf .u7l1-wqs .q-line .pill.small { padding: 2px 10px; }
+.u7l1-wa { margin: 0 0 4px 40px; }
+.wf .u7l1-wqs .bk-ans { font-size: 15.5px; line-height: 1.32; margin-top: 0; }
+.wf .wf-poll { margin-top: 0; padding: 2px 14px 12px; }
+.wf .wf-poll > .q-line { font-size: 17px; margin: 8px 0 8px; }
+.wf .wf-poll .opt { padding: 5px 9px; font-size: 17px; }
+.u7l1-social { font-style: italic; color: var(--ink2); font-size: 18px; text-align: center; margin: 10px 0 0; }
+
+/* ---------------- section 1 ---------------- */
+.u7l1-nots { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 0 0 16px; }
+.u7l1-not { background: #fff6f5; border: 2px solid #f1cdca; border-radius: 12px; padding: 8px 6px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 21px; text-align: center; }
+.u7l1-nt { font-size: 16px; color: var(--ink2); line-height: 1.25; }
+
+/* Example 1 sort (from Math 10C u7l1) */
+.u7l1-sort { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 8px; }
+.u7l1-pool, .u7l1-binb { display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; }
+.u7l1-pool { height: 128px; padding: 4px 0; }
+.u7l1-bin { display: grid; grid-template-columns: 150px 1fr; align-items: stretch; border-radius: 12px; border: 2px solid; overflow: hidden; }
+.u7l1-bin-lin { border-color: #b8cdf2; background: #f3f7fe; }
+.u7l1-bin-non { border-color: #f1cdca; background: #fff6f5; }
+.u7l1-binh { font: 800 17px var(--round); letter-spacing: .05em; display: grid; place-items: center; text-align: center; }
+.u7l1-bin-lin .u7l1-binh { color: #1f5bd6; background: #e3ecfc; }
+.u7l1-bin-non .u7l1-binh { color: #c93a33; background: #fbe7e5; }
+.u7l1-binb { height: 128px; padding: 8px 10px; box-sizing: border-box; }
+.u7l1-tile { font: inherit; font-size: 20px; background: #fff; border: 2px solid #cfc7b5; border-radius: 10px; padding: 4px 12px; height: 54px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; color: var(--ink); }
+.u7l1-tile.u7l1-ok { border-color: var(--ok); background: #e9f6ef; }
+.u7l1-tile.u7l1-no { border-color: var(--red); background: #fbe7e5; }
+.u7l1-sortbtns { display: flex; gap: 10px; }
+
+/* ---------------- sections 2 and 3, examples ---------------- */
+.u7l1-s2row { display: flex; gap: 24px; align-items: center; font-size: 20px; margin-bottom: 14px; }
+.u7l1-s2row > div:first-child { flex: 1; }
+.u7l1-ex2 { display: grid; grid-template-columns: 1fr 470px; gap: 22px; align-items: start; }
+.u7l1-ex2 .pl { margin-bottom: 4px; }
+.u7l1-htab-wrap { padding-top: 34px; }
+.u7l1-htab { border-collapse: collapse; font-size: 22px; margin: 4px 0 8px; }
+.u7l1-htab th, .u7l1-htab td { border: 2px solid #3a4254; width: 66px; height: 54px; text-align: center; }
+.u7l1-htab th { background: #f6f5f1; width: 52px; }
+.u7l1-taphint { font-size: 15px; }
+.u7l1-subs { line-height: 1.7; }
+.u7l1-flow4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 0 0 16px; }
+.u7l1-f4 { background: var(--brand-soft); border-radius: 12px; padding: 8px 12px; font-size: 18px; line-height: 1.3; display: flex; gap: 10px; align-items: flex-start; }
+.u7l1-f4n { flex: none; display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--brand2); color: #fff; font: 800 16px var(--round); }
+.u7l1-gparts .part { display: flex; flex-direction: column; }
+.u7l1-gparts .ansrow { margin-top: auto; }
+.u7l1-exg { display: flex; justify-content: center; margin: 6px 0; }
+.u7l1-ansfig { display: flex; justify-content: center; margin-top: 8px; }
+.u7l1-glab { font-size: 18px !important; }
+
+/* try it */
+.u7l1-try { display: grid; grid-template-columns: 410px 1fr; gap: 22px; align-items: start; }
+.u7l1-tapg { cursor: crosshair; }
+.u7l1-tryside { display: flex; flex-direction: column; gap: 14px; }
+.u7l1-tryrow { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.u7l1 .pill.small.u7l1-eqbtn { font-size: 21px; padding: 4px 14px; }
+.u7l1-eqbtn.on { background: var(--brand2); color: #fff; }
+.u7l1-tryro { background: #f6f5f1; border-radius: 14px; padding: 12px 18px; min-height: 290px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; }
+.u7l1-ro-eq { font-size: 30px; color: var(--u7l1-line); }
+.u7l1-ro-hint { font-size: 19px; color: var(--muted); }
+.u7l1-ro-l { font-size: 25px; }
+.u7l1-ro-v { font-size: 21px; border-radius: 10px; padding: 6px 12px; }
+.u7l1-ro-v.ok { background: #e9f6ef; color: #0d5c3f; }
+.u7l1-ro-v.no { background: #fbe7e5; color: #8e231d; }
+.u7l1-ro-s { display: block; font-size: 18px; color: var(--ink2); margin-top: 2px; }
+
+/* ---------------- explainer pieces ---------------- */
+.u7l1-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+.u7l1-ph { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u7l1-ph:empty { display: none; }
+.u7l1-ph .katex { text-transform: none; font-size: 1.15em; }
+.u7l1-line { font-size: 20px; line-height: 1.4; }
+.u7l1-soft { color: var(--ink2); font-size: 17px; }
+.u7l1-wrong { color: var(--red); text-decoration: line-through; text-decoration-thickness: 2px; }
+.u7l1-right { color: var(--ok); }
+
+/* linTest (from Math 10C u7l1) */
+.u7l1-lt-eq { font-size: 34px; text-align: center; background: #f6f5f1; border-radius: 12px; padding: 10px; min-height: 76px; display: grid; place-items: center; }
+.u7l1-lt-why { font-size: 19px; line-height: 1.35; min-height: 52px; }
+.u7l1-bins { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+.u7l1-xbin { border-radius: 10px; border: 2px solid; padding: 4px 10px; min-height: 92px; box-sizing: border-box; }
+.u7l1-xbin-h { font: 800 14px var(--round); letter-spacing: .05em; }
+.u7l1-xbin-lin { border-color: #b8cdf2; background: #f3f7fe; } .u7l1-xbin-lin .u7l1-xbin-h { color: #1f5bd6; }
+.u7l1-xbin-non { border-color: #f1cdca; background: #fff6f5; } .u7l1-xbin-non .u7l1-xbin-h { color: #c93a33; }
+.u7l1-xbin-b { display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 18px; margin-top: 2px; }
+.u7l1-xchip { background: #fff; border-radius: 8px; padding: 1px 8px; border: 1px solid var(--line2); }
+.u7l1-verdict { font: 800 22px var(--round); text-align: center; border-radius: 10px; padding: 4px 8px; }
+.u7l1-v-lin { color: #1f5bd6; background: #e3ecfc; } .u7l1-v-non { color: #c93a33; background: #fbe7e5; }
+
+/* steps */
+.u7l1-sthead { font: 800 20px var(--round); }
+.u7l1-strule { font-size: 23px; }
+
+/* buildTable */
+.u7l1-eqbox { font-size: 32px; background: #f6f5f1; border-radius: 12px; display: grid; place-items: center; box-sizing: border-box; }
+.u7l1-work { font-size: 23px; white-space: nowrap; }
+.u7l1-pairs { display: flex; flex-wrap: wrap; gap: 10px 16px; font-size: 24px; }
+.u7l1-pr { background: #f6f5f1; border-radius: 10px; padding: 2px 10px; }
+
+/* plotLine / fixIt */
+.u7l1-pleq { font-size: 24px; color: var(--ink); }
+.u7l1-flowl { display: flex; flex-direction: column; gap: 8px; }
+.u7l1-fli { display: flex; align-items: center; gap: 10px; font-size: 20px; color: var(--muted); background: #f6f5f1; border-radius: 10px; padding: 5px 12px; width: 300px; }
+.u7l1-fli .u7l1-f4n { background: #b9bec8; }
+.u7l1-fli.on { color: var(--ink); background: var(--brand-soft); font-weight: 700; }
+.u7l1-fli.on .u7l1-f4n { background: var(--brand2); }
+.u7l1-plnote { font-size: 21px; background: #eef8f2; border-left: 5px solid var(--ok); border-radius: 10px; padding: 10px 14px; box-sizing: border-box; line-height: 1.5; }
+
+/* onLine */
+.u7l1-olpt { font-size: 30px; background: #f6f5f1; border-radius: 12px; padding: 4px 16px; }
+.u7l1-oltags { display: flex; gap: 22px; font-size: 26px; }
+.u7l1-oleq { font-size: 34px; white-space: nowrap; }
+.u7l1-slot { display: inline-block; }
+.u7l1-olv { font-size: 26px; border-radius: 12px; padding: 4px 14px; }
+.u7l1-olv.ok { background: #e9f6ef; color: #0d5c3f; }
+.u7l1-olv.no { background: #fbe7e5; color: #8e231d; }
+.u7l1-fly { position: absolute; font-size: 34px; z-index: 5; pointer-events: none; background: rgba(255, 255, 255, .85); border-radius: 8px; padding: 0 4px; }
+
+/* zoomOut */
+.u7l1-zrow { font-size: 21px; }
+.u7l1-zfin { margin-top: auto; background: var(--brand-soft); border-left: 5px solid var(--brand2); border-radius: 10px; padding: 8px 12px; font-size: 20px; }

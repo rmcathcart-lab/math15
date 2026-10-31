@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Graphing a Line Using Slope–Intercept Form · Math 15 7.3</title>
+<meta name="description" content="Math 15 Unit 7 Lesson 3: graphing a line from y = mx + b with no table of values. Read m and b, plot the y-intercept (0, b) first, write the slope as rise over run and step to a second point, then draw the line through both, extended both ways. Negative slopes step down; fractional slopes step right by the denominator. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u7l3.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u7l3">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 7 Equations of Linear Relations · Lesson 3</div>
+  <h1>Graphing a Line Using Slope–Intercept Form</h1>
+  <p class="lede">Turning the two numbers <b class="u7l3-cm">m</b> and <b class="u7l3-cb">b</b> into a drawn line, with <b>no table of values</b>. <b class="u7l3-cb">b</b> tells you where to <b>start</b>; <b class="u7l3-cm">m</b> tells you how to <b>step</b>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>read the <b class="u7l3-cm">slope <span class="tex">m</span></b> and the <b class="u7l3-cb"><span class="tex">y</span>-intercept <span class="tex">b</span></b> straight from <span class="tex">y=mx+b</span></li>
+      <li><b>Step 1:</b> plot the <span class="tex">y</span>-intercept <span class="tex">(0,\,b)</span> first</li>
+      <li><b>Step 2:</b> write <span class="tex">m</span> as <span class="tex">\dfrac{\textcolor{#7b4fc4}{\text{rise}}}{\textcolor{#c27a0e}{\text{run}}}</span> and step to a second point</li>
+      <li><b>Step 3:</b> draw a straight line through both points, extended across the grid</li>
+      <li>graph lines with <b>negative</b> slopes (step down) and <b>fractional</b> slopes (step right by the bottom number)</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF6</b> Relate linear relations expressed in: slope–intercept form <span class="tex">(y=mx+b)</span>; general form <span class="tex">(Ax+By+C=0)</span>; slope–point form <span class="tex">(y-y_1=m(x-x_1))</span> to their graphs.<br><span class="muted">Today: from <span class="tex">y=mx+b</span> to its graph, using the slope and the <span class="tex">y</span>-intercept.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Frog Hops" id="wu" style="--wf-side: 360px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Frog Hops</h2>
+  <p class="wf-rule">Each frog starts on the <span class="tex">y</span>-axis and <b>always</b> makes the <b>same hop</b>. <span class="u7l3-green"><b>Green frog</b></span> hop: <b>up 2, right 3</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u7l3-pond" id="u7l3-pond"></div>
+    <div class="u7l3-wbtns">
+      <button type="button" class="pill" id="u7l3-hopG">Green hops</button>
+      <button type="button" class="pill" id="u7l3-hopB">Blue hops</button>
+      <button type="button" class="pill" id="u7l3-ruler">Ruler</button>
+      <button type="button" class="pill" id="u7l3-wreset">Start over</button>
+    </div>
+  </div><div class="wf-side">
+    <div class="u7l3-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Green starts at what height on the <span class="tex">y</span>-axis? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l3-wa"><div class="bk-ans">Height <b>1</b>: Green sits on <span class="tex">(0,1)</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which pad does Green land on after <b>1 hop</b>? After <b>3 hops</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l3-wa"><div class="bk-ans">1 hop: <b>pad B</b> <span class="tex">(3,3)</span>. Then F <span class="tex">(6,5)</span>, then <b>pad H</b> <span class="tex">(9,7)</span> after 3 hops.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Green says, “I’ll land on pad C.” True or false? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l3-wa"><div class="bk-ans"><b>False.</b> C <span class="tex">(4,4)</span> looks close, but from B <span class="tex">(3,3)</span> the next hop goes to <span class="tex">(6,5)</span>: it jumps right over C. Close is not <em>on</em>.</div></div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> <span class="u7l3-blue"><b>Blue frog</b></span> starts at <b>8</b> and hops <b>down 1, right 2</b>. Is there a pad <b>both</b> frogs land on? <b>Guess first.</b></div></div>
+      <div class="poll-opts c2">
+        <div class="opt"><b>A</b> Pad E</div>
+        <div class="opt right"><b>B</b> Pad F</div>
+        <div class="opt"><b>C</b> Pad H</div>
+        <div class="opt"><b>D</b> Never!</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, pad F <span class="tex">(6,5)</span>.</b> Blue: <span class="tex">(0,8)\to</span> A <span class="tex">(2,7)\to</span> D <span class="tex">(4,6)\to</span> <b>F</b> <span class="tex">(6,5)\to</span> G <span class="tex">(8,4)</span>. Green reaches F on its <b>2nd</b> hop, Blue on its <b>3rd</b>: same pad, different hop counts.<br>
+        <span class="muted"><b>A</b>: pad E <span class="tex">(5,5)</span> sits in the gap where the eye guesses the paths cross, but neither frog lands there. Blue’s 5th hop is <span class="tex">(10,3)</span>: no pad, <em>splash!</em></span></div>
+    </div>
+  </div></div>
+  <p class="u7l3-social">Challenge your neighbour: invent a frog (start + hop) that lands on <b>pad E</b>.</p>
+</section>
+
+<!-- ================= 1. Reading m and b ================= -->
+<section class="card" data-ink="s1" data-section="1. Reading m and b">
+  <div class="sec-h"><span class="badge">1</span><h2>Reading <span class="tex">m</span> and <span class="tex">b</span> from the Equation</h2></div>
+  <div class="u7l3-defrow">
+    <div class="def">Any equation written as <span class="tex">y=mx+b</span> is in <b>slope–intercept form</b>: <b class="u7l3-cm"><span class="tex">m</span> is the slope</b> and <b class="u7l3-cb"><span class="tex">b</span> is the <span class="tex">y</span>-intercept</b>, the height at which the line crosses the <span class="tex">y</span>-axis. In <span class="tex">y=4x+7</span>, <span class="tex">m=4</span> and <span class="tex">b=7</span>. Those two numbers are all you need to graph the line.</div>
+    <div class="u7l3-anat">
+      <div class="u7l3-anat-eq"><span class="tex">y=\textcolor{#1f5bd6}{4}x+\textcolor{#12805a}{7}</span></div>
+      <div class="u7l3-anat-tags"><div class="u7l3-tag-m"><b>slope</b> <span class="tex">m=4</span><br><span class="muted">the hop</span></div><div class="u7l3-tag-b"><b><span class="tex">y</span>-intercept</b> <span class="tex">b=7</span><br><span class="muted">the start</span></div></div>
+    </div>
+  </div>
+  <h3 class="sub">Remember the frogs?</h3>
+  <p>Each frog <b>is</b> a line. Where it starts is <span class="tex">b</span>; its hop is the slope <span class="tex">m</span>.</p>
+  <div class="explainer" data-explainer="frogLine"></div>
+  <h3 class="sub">Spot <span class="tex">m</span> and <span class="tex">b</span></h3>
+  <p><span class="tex">m</span> is the number <b>in front of <span class="tex">x</span></b>. <span class="tex">b</span> is the number <b>on its own</b>. Each one keeps its <b>sign</b>.</p>
+  <div class="explainer" data-explainer="readMB"></div>
+</section>
+
+<!-- ================= 2. Step 1 ================= -->
+<section class="card" data-ink="s2" data-section="2. Step 1: Plot the y-Intercept">
+  <div class="sec-h"><span class="badge">2</span><h2>Step 1 — Plot the <span class="tex">y</span>-Intercept</h2></div>
+  <div class="def">Every graph starts the same way: plot <span class="tex">\textcolor{#12805a}{(0,\,b)}</span>. It sits on the <span class="tex">y</span>-axis (since <span class="tex">x=0</span>), it is guaranteed to be on the line, and it needs <b>no calculation</b>: just read <span class="tex">b</span> off the equation.</div>
+  <div class="explainer" data-explainer="start"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Step 1 only</h3></div>
+  <p class="q">Consider the equation <span class="tex">y=2x+5</span>.</p>
+  <div class="u7l3-exg">
+    <div class="u7l3-fig" id="u7l3-ex1fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) State the slope <span class="tex">m</span> and the <span class="tex">y</span>-intercept <span class="tex">b</span>.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=2x+5</span> is already in the form <span class="tex">y=mx+b</span>, so read the two numbers off directly:<br><span class="tex">m=\boldsymbol{2}\qquad b=\boldsymbol{5}</span></div></div></div>
+      <div class="part"><div class="pl">(b) Plot the <span class="tex">y</span>-intercept on the grid. This is Step 1: do not plot anything else yet.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The <span class="tex">y</span>-intercept is the point <span class="tex">(0,b)=\boldsymbol{(0,5)}</span>: go 5 units up the <span class="tex">y</span>-axis and mark it.<div class="u7l3-ansfig" id="u7l3-ex1ans"></div></div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Step 2 ================= -->
+<section class="card" data-ink="s3" data-section="3. Step 2: Use the Slope">
+  <div class="sec-h"><span class="badge">3</span><h2>Step 2 — Use the Slope to Find a Second Point</h2></div>
+  <div class="def">One point will not determine a line; you need two. Write <span class="tex">m</span> as <span class="tex">\dfrac{\textcolor{#7b4fc4}{\text{rise}}}{\textcolor{#c27a0e}{\text{run}}}</span>, then from the <span class="tex">y</span>-intercept move <b class="u7l3-c-run">right</b> by the run and <b class="u7l3-c-rise">up or down</b> by the rise (up if the rise is positive, down if it is negative). Where you land is a second point.</div>
+  <div class="tip u7l3-info"><div class="tip-ic">i</div><div><b>A whole number is itself over 1.</b> <span class="tex">3=\dfrac{3}{1}</span>: rise <span class="tex">3</span>, run <span class="tex">1</span>. So <b>right 1, up 3</b>.</div></div>
+  <div class="explainer" data-explainer="overOne"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Step 2: a second point</h3></div>
+  <p class="q">Consider <span class="tex">y=3x+1</span>. The <span class="tex">y</span>-intercept <span class="tex">(0,1)</span> is already plotted as your Step 1 starting point.</p>
+  <div class="u7l3-exg">
+    <div class="u7l3-fig" id="u7l3-ex2fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Write the slope <span class="tex">m=3</span> as a fraction <span class="tex">\dfrac{\text{rise}}{\text{run}}</span>.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Any whole number is itself over 1:<br><span class="tex">m=3=\boldsymbol{\dfrac{3}{1}}=\dfrac{\text{rise }3}{\text{run }1}</span>: run right 1, rise up 3.</div></div></div>
+      <div class="part"><div class="pl">(b) Starting at <span class="tex">(0,1)</span>, use your fraction from (a) to move to a second point. Plot that point and state its coordinates.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">From <span class="tex">(0,1)</span>: right 1 takes <span class="tex">x</span> from 0 to 1; up 3 takes <span class="tex">y</span> from 1 to 4.<br>Second point: <span class="tex">\boldsymbol{(1,4)}</span><div class="u7l3-ansfig" id="u7l3-ex2ans"></div></div></div></div>
+    </div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t swap them.</b> The <b class="u7l3-c-rise">rise</b> (top) goes <b>up or down</b>; the <b class="u7l3-c-run">run</b> (bottom) goes <b>right</b>. <span class="tex">\tfrac{3}{1}</span> is up 3, right 1, not up 1, right 3.</div></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Putting it together ================= -->
+<section class="card" data-ink="s4" data-section="4. Putting It Together">
+  <div class="sec-h"><span class="badge">4</span><h2>Putting It Together</h2></div>
+  <div class="u7l3-steps">
+    <div class="u7l3-step u7l3-st1"><div class="u7l3-stn">Step 1</div>Plot <span class="tex">\textcolor{#12805a}{(0,\,b)}</span>.</div>
+    <div class="u7l3-step u7l3-st2"><div class="u7l3-stn">Step 2</div>Write <span class="tex">m</span> as <span class="tex">\dfrac{\textcolor{#7b4fc4}{\text{rise}}}{\textcolor{#c27a0e}{\text{run}}}</span>. Step <b class="u7l3-c-run">right</b> by the run, <b class="u7l3-c-rise">up or down</b> by the rise. Plot that second point.</div>
+    <div class="u7l3-step u7l3-st3"><div class="u7l3-stn">Step 3</div>Draw a straight line through the two points, extending it across the grid in <b>both directions</b>.</div>
+  </div>
+  <div class="explainer" data-explainer="stepGraph"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>All three steps</h3></div>
+  <p class="q">Graph the line <span class="tex">y=2x-4</span>.</p>
+  <div class="u7l3-exg u7l3-exgB">
+    <div class="u7l3-fig" id="u7l3-ex3fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) State the slope and the <span class="tex">y</span>-intercept.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=2x-4</span>: <span class="tex">m=\boldsymbol{2}=\dfrac{2}{1}\qquad b=\boldsymbol{-4}</span></div></div></div>
+      <div class="part"><div class="pl">(b) Plot the <span class="tex">y</span>-intercept, use the slope to plot a second point, then draw the line through both points, extending it across the grid.</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Step 1: plot <span class="tex">(0,-4)</span>.<br>Step 2: right 1, up 2 <span class="tex">\Rightarrow\ \boldsymbol{(1,-2)}</span>.<br>Step 3: rule a line through both and extend it both ways.<br><span class="muted">Check: at <span class="tex">x=3</span>, <span class="tex">y=2(3)-4=2</span>, and the line does pass through <span class="tex">(3,2)</span> ✓</span><div class="u7l3-ansfig" id="u7l3-ex3ans"></div></div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>A steeper line</h3></div>
+  <p class="q">Graph the line <span class="tex">y=4x-3</span>.</p>
+  <div class="u7l3-exg u7l3-exgB">
+    <div class="u7l3-fig" id="u7l3-ex4fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) State the slope and the <span class="tex">y</span>-intercept.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=4x-3</span>: <span class="tex">m=\boldsymbol{4}=\dfrac{4}{1}\qquad b=\boldsymbol{-3}</span></div></div></div>
+      <div class="part"><div class="pl">(b) Plot the <span class="tex">y</span>-intercept, use the slope to plot a second point, then draw the line through both points, extending it across the grid.</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Step 1: plot <span class="tex">(0,-3)</span>.<br>Step 2: right 1, up 4 <span class="tex">\Rightarrow\ \boldsymbol{(1,1)}</span>.<br>Step 3: draw the line through both points. It is <b>steeper</b> than Example 3 because <span class="tex">4&gt;2</span>.<div class="u7l3-ansfig" id="u7l3-ex4ans"></div></div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Three ways it goes wrong">
+  <h3 class="sub">Three ways it goes wrong (and how to catch them)</h3>
+  <p>After you draw a line, <b>check one more point</b>: read a point off your line and put its <span class="tex">x</span> into the equation. If the <span class="tex">y</span> doesn’t match, something slipped.</p>
+  <div class="explainer" data-explainer="traps"></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u7l3"></section>
+
+<!-- ================= 5. Negative and fractional slopes ================= -->
+<section class="card" data-ink="s5" data-section="5. Negative and Fractional Slopes">
+  <div class="sec-h"><span class="badge">5</span><h2>Negative and Fractional Slopes</h2></div>
+  <div class="def">The same three steps work for every slope. If <span class="tex">m</span> is <b>negative</b>, write it as <span class="tex">\dfrac{-\text{rise}}{\text{run}}</span> and step right and <b>down</b>. If <span class="tex">m</span> is already a <b>fraction</b> such as <span class="tex">\tfrac{2}{3}</span>, nothing needs converting: step right by the <b>denominator</b> and up (or down) by the <b>numerator</b>.</div>
+  <div class="u7l3-twobox">
+    <div class="u7l3-tbox u7l3-tb-neg"><div class="u7l3-tbig"><span class="tex">-2=\dfrac{\textcolor{#7b4fc4}{-2}}{\textcolor{#c27a0e}{1}}</span></div><div>The minus sign rides on the <b class="u7l3-c-rise">rise</b>: <b>right 1, down 2</b>. The line <b>falls</b> from left to right.</div></div>
+    <div class="u7l3-tbox u7l3-tb-frac"><div class="u7l3-tbig"><span class="tex">\dfrac{\textcolor{#7b4fc4}{2}}{\textcolor{#c27a0e}{3}}</span></div><div>Top is the <b class="u7l3-c-rise">rise</b>, bottom is the <b class="u7l3-c-run">run</b>: <b>right 3, up 2</b>. No decimals needed.</div></div>
+  </div>
+  <h3 class="sub">Negative slopes go downhill</h3>
+  <div class="explainer" data-explainer="negStep"></div>
+  <h3 class="sub">Fraction slopes: the bottom number is the run</h3>
+  <div class="explainer" data-explainer="fracStep"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>A negative slope and a fractional slope</h3></div>
+  <p class="q">Graph each line using the three steps.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">y=-2x+4</span></div><div class="work" style="--h:70px"></div><div class="u7l3-fig u7l3-fig5" id="u7l3-ex5afig"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=-2=\dfrac{-2}{1}</span>, <span class="tex">b=4</span>. From <span class="tex">(0,4)</span> go right 1, <b>down</b> 2 to <span class="tex">(1,2)</span>. Draw the line through both.<div class="u7l3-ansfig" id="u7l3-ex5aans"></div></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">y=\dfrac{2}{3}x-3</span></div><div class="work" style="--h:70px"></div><div class="u7l3-fig u7l3-fig5" id="u7l3-ex5bfig"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=\dfrac{2}{3}</span>, <span class="tex">b=-3</span>. From <span class="tex">(0,-3)</span> go right 3, up 2 to <span class="tex">(3,-1)</span>. Draw the line through both.<div class="u7l3-ansfig" id="u7l3-ex5bans"></div></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s5b" data-section="Make your own line">
+  <h3 class="sub">Make your own line</h3>
+  <p>Choose a <b class="u7l3-c-rise">rise</b>, a <b class="u7l3-c-run">run</b> and a <b class="u7l3-cb">start</b>. Graph it by hand first, then press <b>Graph it</b> to check.</p>
+  <div class="u7l3-build" id="u7l3-build"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Read the two numbers.</b> In <span class="tex">y=\textcolor{#1f5bd6}{m}x+\textcolor{#12805a}{b}</span>, <span class="tex">m</span> (in front of <span class="tex">x</span>) is the <b>slope</b> and <span class="tex">b</span> (on its own) is the <b><span class="tex">y</span>-intercept</b>. Each keeps its sign.</div>
+    <div><b>Step 1: start at <span class="tex">(0,\,b)</span>.</b> It is on the <span class="tex">y</span>-axis, it is on the line, and it needs no calculation.</div>
+    <div><b>Step 2: step the slope.</b> Write <span class="tex">m</span> as <span class="tex">\tfrac{\text{rise}}{\text{run}}</span> (a whole number is over 1). Go <b>right</b> by the run, <b>up</b> by a positive rise or <b>down</b> by a negative rise.</div>
+    <div><b>Step 3: join and extend.</b> Rule a line through the points, across the whole grid. Check: a point on your line must fit the equation.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u7l3">
+    <div><div class="kicker">Your turn</div><b>Assignment 3 — Graphing a Line Using Slope–Intercept Form</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l4/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 4 — Writing the Equation of a Line Given Slope and y-Intercept</b><div class="muted">Run it backwards: read <span class="tex">m</span> and <span class="tex">b</span> off a graph or a table and write <span class="tex">y=mx+b</span>.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u7l3.js';
+  boot({ key: 'u7l3', homeHref: '../../', title: '7.3 Graphing From y = mx + b' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

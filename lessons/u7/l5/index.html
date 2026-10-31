@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Equation From Slope and a Point · Math 15 7.5</title>
+<meta name="description" content="Math 15 Unit 7 Lesson 5: writing the equation of a line given its slope and a point that is not the y-intercept. Substitute the point into y = mx + b, solve for b, then write the final equation. Negative slopes and coordinates in brackets, fractional slopes, a hot air balloon, and checking by walking back to the y-axis. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u7l5.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u7l5">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 7 Equations of Linear Relations · Lesson 5</div>
+  <h1>Writing the Equation of a Line Given Slope and a Point</h1>
+  <p class="lede">Last lesson the <span class="tex">y</span>-intercept was handed to you. Today you get the <b class="u7l5-c-m">slope</b> and <b class="u7l5-c-p">some other point</b>. Every point on a line makes <span class="tex">y=mx+b</span> true, so put the point in and <span class="tex">b</span> is the only thing left to find. Today’s big idea: <b>substitute, solve for <span class="tex">b</span>, then write the equation.</b></p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>substitute a point into <span class="tex">y=mx+b</span> (<span class="tex">x</span> with <span class="tex">x</span>, <span class="tex">y</span> with <span class="tex">y</span>) and solve for <span class="tex">b</span></li>
+      <li>finish the job: write the final equation, not just <span class="tex">b</span></li>
+      <li>handle <b>negative</b> slopes and coordinates (in brackets) and <b>fraction</b> slopes</li>
+      <li>check my equation by putting the point back in</li>
+      <li>write an equation for a real situation from a rate and one data point, and explain <span class="tex">b</span> as the <b>starting value</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF7</b> Determine the equation of a linear relation, given: a graph; a point and the slope; two points; a point and the equation of a parallel or perpendicular line, to solve problems.<br><span class="muted">Today: a point and the slope.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Piggy Bank" id="wu" style="--wf-side: 360px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Piggy Bank</h2>
+  <p class="wf-rule">Maya saves in a glass jar. She adds <b>$5 every week</b> and never takes any money out. You only get to <b>peek</b> in <b>week 6</b>: the jar holds <b>$47</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div id="u7l5-jars" class="u7l5-jars"></div>
+    <div class="u7l5-jbtns">
+      <button type="button" class="pill small" id="u7l5-back">◀◀ Rewind 1 week</button>
+      <button type="button" class="pill small" id="u7l5-fwd">Forward 1 week ▶</button>
+      <button type="button" class="pill small" id="u7l5-all">Rewind to the start</button>
+      <button type="button" class="pill small" id="u7l5-jreset">Start over</button>
+    </div>
+    <div class="u7l5-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How much is in the jar at <b>week 7</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l5-wa"><div class="bk-ans"><b>$52</b>: one more week adds $5, <span class="tex">47+5=52</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How much was in it at <b>week 5</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l5-wa"><div class="bk-ans"><b>$42</b>: rewinding one week takes the $5 back out, <span class="tex">47-5=42</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>By week 6, how many times has Maya <b>added $5</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l5-wa"><div class="bk-ans"><b>6 times</b> (weeks 1 to 6).</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> How much was in the jar at the <b>start</b> (week 0)? <b>Guess first.</b></div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b> $0</div>
+        <div class="opt right"><b>B</b> $17</div>
+        <div class="opt"><b>C</b> $42</div>
+        <div class="opt"><b>D</b> $47</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, $17.</b> Rewind 6 weeks, taking $5 out each time: <span class="tex">47\to42\to37\to32\to27\to22\to17</span>. All at once: <span class="tex">47-6\times5=17</span>.<br>
+        <span class="muted"><b>C</b> rewinds only <em>one</em> week. <b>D</b> forgets Maya was adding money at all. <b>A</b> assumes the jar must have started empty.</span></div>
+    </div>
+  </div></div>
+  <div class="bk-wq u7l5-social"><div class="q-line"><div class="q-num bonus">+</div><div><i>Ask your neighbour:</i> in what <b>week</b> can Maya buy <b>$97</b> headphones? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="u7l5-wa"><div class="bk-ans"><b>Week 16.</b> She needs <span class="tex">97-47=50</span> more dollars, which is <span class="tex">50\div5=10</span> more weeks after week 6.</div></div></div>
+</section>
+
+<!-- ================= 1. The method ================= -->
+<section class="card" data-ink="s1" data-section="1. The Substitute-and-Solve Method">
+  <div class="sec-h"><span class="badge">1</span><h2>The Substitute-and-Solve Method</h2></div>
+  <p>Sometimes we are given the slope and <b>some other point</b>, not the <span class="tex">y</span>-intercept. Every point on a line makes <span class="tex">y=mx+b</span> true. So when we substitute the point, <span class="tex">b</span> is the <b>only unknown</b> left.</p>
+  <div class="u7l5-method">
+    <div class="u7l5-mh">The method</div>
+    <ol class="u7l5-steps">
+      <li><span class="u7l5-sn">1</span><div>Write <span class="tex">y=mx+b</span> with the given <b class="u7l5-c-m">slope</b> in place of <span class="tex">m</span>.</div></li>
+      <li><span class="u7l5-sn">2</span><div>Substitute the <b class="u7l5-c-p">point</b>: its <span class="tex">x</span>-coordinate for <span class="tex">x</span>, its <span class="tex">y</span>-coordinate for <span class="tex">y</span>.</div></li>
+      <li><span class="u7l5-sn">3</span><div>Solve for <span class="tex">\textcolor{#12805a}{b}</span>.</div></li>
+      <li><span class="u7l5-sn">4</span><div><b>Rewrite</b> the equation using <span class="tex">m</span> and that <span class="tex">b</span>.</div></li>
+    </ol>
+  </div>
+  <div class="u7l5-walk"><span class="u7l5-wk">Walkthrough</span> <span class="tex">m=3</span> through <span class="tex">(2,5)</span>:&ensp;<span class="tex">y=3x+b\ \Rightarrow\ 5=3(2)+b\ \Rightarrow\ 5=6+b\ \Rightarrow\ b=-1</span>,&ensp;so&ensp;<span class="tex">\boldsymbol{y=3x-1}</span></div>
+  <div class="explainer" data-explainer="family"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Two classic slips.</b> Stopping at <span class="tex">b=-1</span> instead of writing the final equation <span class="tex">y=3x-1</span>. And putting the coordinates into the wrong variables: in <span class="tex">(2,5)</span> the <b>first</b> number is <span class="tex">x</span> and the <b>second</b> is <span class="tex">y</span>.</div></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Substitute and solve, step by step">
+  <h3 class="sub">Substitute and solve, step by step</h3>
+  <p>Watch the slope and the point drop into <span class="tex">y=mx+b</span>. Then solve for <span class="tex">b</span> and <b>write the equation</b>.</p>
+  <div class="explainer" data-explainer="drop"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Slope and a point</h3></div>
+  <p class="q">Determine the equation of each line from its slope and the given point.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) slope <span class="tex">4</span>, point <span class="tex">(1,9)</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l5-ans"><span class="tex">y=4x+b</span><br><span class="tex">9=4(1)+b\ \Rightarrow\ 9=4+b</span><br><span class="tex">b=5</span><br><span class="tex">\boldsymbol{y=4x+5}</span></div></div></div>
+    <div class="part"><div class="pl">(b) slope <span class="tex">2</span>, point <span class="tex">(5,7)</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l5-ans"><span class="tex">y=2x+b</span><br><span class="tex">7=2(5)+b\ \Rightarrow\ 7=10+b</span><br><span class="tex">b=-3</span><br><span class="tex">\boldsymbol{y=2x-3}</span></div></div></div>
+  </div>
+  <div class="explainer u7l5-exgap" data-explainer="drop1"></div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s1c" data-section="1. Check it on the graph">
+  <h3 class="sub">Check it on the graph: walk back to the <span class="tex">y</span>-axis</h3>
+  <p>Remember rewinding the piggy bank? Each step <b>back</b> along a line goes <b class="u7l5-c-run">left 1</b> and changes <span class="tex">y</span> by the slope. Walk back to <span class="tex">x=0</span> and you land on <span class="tex">\textcolor{#12805a}{b}</span>, the same <span class="tex">b</span> the algebra gave.</p>
+  <div class="explainer" data-explainer="rewind"></div>
+</section>
+
+<section class="card" data-ink="s1d" data-section="1. Two classic slips">
+  <h3 class="sub">Two classic slips, and how a check catches them</h3>
+  <p>The last step of every question: <b>put the point back into your final equation</b>. If it doesn’t come out right, something slipped.</p>
+  <div class="explainer" data-explainer="slips"></div>
+</section>
+
+<!-- ================= 2. Negatives ================= -->
+<section class="card" data-ink="s2" data-section="2. Negative Slopes and Coordinates">
+  <div class="sec-h"><span class="badge">2</span><h2>Negative Slopes and Negative Coordinates</h2></div>
+  <p>The method does not change when signs go negative: only the arithmetic does. Substitute each coordinate <b>with its sign, in brackets</b>: <span class="tex">m=-3</span> through <span class="tex">(2,9)</span> gives <span class="tex">9=-3(2)+b</span>.</p>
+  <div class="u7l5-signs">
+    <div class="u7l5-sg"><span class="tex">-3(2)=-6</span><span class="u7l5-sgt">different signs: <b>negative</b></span></div>
+    <div class="u7l5-sg"><span class="tex">2(-4)=-8</span><span class="u7l5-sgt">different signs: <b>negative</b></span></div>
+    <div class="u7l5-sg u7l5-sg-p"><span class="tex">-3(-2)=+6</span><span class="u7l5-sgt">same signs: <b>positive</b></span></div>
+  </div>
+  <p>Then <span class="tex">b</span> is the jump from <span class="tex">mx</span> to <span class="tex">y</span>. A number line makes the jump easy to see.</p>
+  <div class="explainer" data-explainer="hop"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Undo with the opposite.</b> In <span class="tex">9=-6+b</span>, the <span class="tex">-6</span> is subtracted from <span class="tex">b</span>, so <b>add</b> <span class="tex">6</span> to both sides: <span class="tex">b=9+6=15</span>. In <span class="tex">-2=5+b</span>, <b>subtract</b> <span class="tex">5</span>: <span class="tex">b=-2-5=-7</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>A negative slope, a negative coordinate</h3></div>
+  <p class="q">Determine the equation of each line.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) slope <span class="tex">-3</span>, point <span class="tex">(2,9)</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l5-ans"><span class="tex">y=-3x+b</span><br><span class="tex">9=-3(2)+b\ \Rightarrow\ 9=-6+b</span><br><span class="tex">b=15</span><br><span class="tex">\boldsymbol{y=-3x+15}</span></div></div></div>
+    <div class="part"><div class="pl">(b) slope <span class="tex">5</span>, point <span class="tex">(1,-2)</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l5-ans"><span class="tex">y=5x+b</span><br><span class="tex">-2=5(1)+b\ \Rightarrow\ -2=5+b</span><br><span class="tex">b=-7</span><br><span class="tex">\boldsymbol{y=5x-7}</span></div></div></div>
+  </div>
+  <div class="explainer u7l5-exgap" data-explainer="drop2"></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Both coordinates negative</h3></div>
+  <p class="q">Determine the equation of each line. Both coordinates are negative.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) slope <span class="tex">2</span>, point <span class="tex">(-4,-5)</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l5-ans"><span class="tex">y=2x+b</span><br><span class="tex">-5=2(-4)+b\ \Rightarrow\ -5=-8+b</span><br><span class="tex">b=3</span><br><span class="tex">\boldsymbol{y=2x+3}</span></div></div></div>
+    <div class="part"><div class="pl">(b) slope <span class="tex">-3</span>, point <span class="tex">(-2,-1)</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l5-ans"><span class="tex">y=-3x+b</span><br><span class="tex">-1=-3(-2)+b\ \Rightarrow\ -1=6+b</span><br><span class="tex">b=-7</span><br><span class="tex">\boldsymbol{y=-3x-7}</span></div></div></div>
+  </div>
+  <div class="explainer u7l5-exgap" data-explainer="drop3"></div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u7l5"></section>
+
+<!-- ================= 3. Fractional slopes ================= -->
+<section class="card" data-ink="s3" data-section="3. Fractional Slopes">
+  <div class="sec-h"><span class="badge">3</span><h2>Fractional Slopes</h2></div>
+  <p>A fraction slope is no harder. The point is chosen so that <span class="tex">m\cdot x</span> comes out whole: <span class="tex">\tfrac{1}{2}(8)=4</span>. To find a fraction <b>of</b> a number, <b>divide by the bottom</b>, then <b>multiply by the top</b>.</p>
+  <div class="explainer" data-explainer="half"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Keep the fraction.</b> Write <span class="tex">y=\tfrac{1}{2}x+3</span>, not <span class="tex">y=0.5x+3</span>. Don’t round the slope to a decimal.</div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>A fraction for the slope</h3></div>
+  <p class="q">Determine the equation of each line. Leave the slope as a fraction.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) slope <span class="tex">\dfrac{1}{2}</span>, point <span class="tex">(8,7)</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l5-ans"><span class="tex">y=\tfrac{1}{2}x+b</span><br><span class="tex">7=\tfrac{1}{2}(8)+b\ \Rightarrow\ 7=4+b</span><br><span class="tex">b=3</span><br><span class="tex">\boldsymbol{y=\tfrac{1}{2}x+3}</span></div></div></div>
+    <div class="part"><div class="pl">(b) slope <span class="tex">-\dfrac{3}{4}</span>, point <span class="tex">(4,-1)</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l5-ans"><span class="tex">y=-\tfrac{3}{4}x+b</span><br><span class="tex">-1=-\tfrac{3}{4}(4)+b\ \Rightarrow\ -1=-3+b</span><br><span class="tex">b=2</span><br><span class="tex">\boldsymbol{y=-\tfrac{3}{4}x+2}</span></div></div></div>
+  </div>
+  <div class="explainer u7l5-exgap" data-explainer="drop4"></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Application ================= -->
+<section class="card" data-ink="s4" data-section="4. A Real-World Application">
+  <div class="sec-h"><span class="badge">4</span><h2>A Real-World Application</h2></div>
+  <p>Many situations give a <b>constant rate of change</b> (that’s the slope) plus <b>one data point</b> that is <em>not</em> the starting value. The starting value is exactly the <span class="tex">b</span> we solve for.</p>
+  <div class="u7l5-ctx">
+    <div class="u7l5-cbox u7l5-cb-m"><b>Rate of change → slope <span class="tex">m</span></b><span>“$5 every week”, “20 m per minute”. Going <b>down</b> (descending, cooling, shrinking)? The slope is <b>negative</b>.</span></div>
+    <div class="u7l5-cbox u7l5-cb-p"><b>One data point → <span class="tex">(x,\ y)</span></b><span>“After 5 minutes it is at 350 m” is the point <span class="tex">(5,\ 350)</span>: time first.</span></div>
+    <div class="u7l5-cbox u7l5-cb-b"><b>Starting value → <span class="tex">b</span></b><span>The value at time <span class="tex">0</span>. This is what we solve for.</span></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>A hot air balloon</h3></div>
+  <p class="q">A hot air balloon descends at a constant rate. After <span class="tex">5</span> minutes of descent it is at a height of <span class="tex">350</span> m, and it continues descending at <span class="tex">20</span> m per minute. Let <span class="tex">h</span> be the height (in metres) after <span class="tex">t</span> minutes.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Identify the slope and the known point, then write an equation for <span class="tex">h</span> in terms of <span class="tex">t</span>.</div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l5-ans">Descending, so <span class="tex">m=-20</span>; the point is <span class="tex">(5,\ 350)</span>.<br><span class="tex">350=-20(5)+b</span><br><span class="tex">350=-100+b</span><br><span class="tex">b=450</span><br><span class="tex">\boldsymbol{h=-20t+450}</span></div></div></div>
+    <div class="part"><div class="pl">(b) What was the balloon’s height at <span class="tex">t=0</span>?</div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l5-ans"><span class="tex">h=-20(0)+450=450</span><br>The balloon started at a height of <b>450 m</b>.</div></div></div>
+    <div class="part"><div class="pl">(c) Predict the height after <span class="tex">12</span> minutes.</div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l5-ans"><span class="tex">h=-20(12)+450</span><br><span class="tex">=-240+450</span><br>After 12 min it is at <b>210 m</b>.</div></div></div>
+  </div>
+  <div class="explainer u7l5-exgap" data-explainer="balloon"></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Substitute, solve, rewrite.</b> Put the slope into <span class="tex">y=mx+b</span>, put the point in (<span class="tex">x</span> with <span class="tex">x</span>, <span class="tex">y</span> with <span class="tex">y</span>), solve for <span class="tex">b</span>, then <b>write the equation</b>. Don’t stop at <span class="tex">b</span>.</div>
+    <div><b>Signs go in brackets.</b> <span class="tex">-3(2)=-6</span>, <span class="tex">2(-4)=-8</span>, <span class="tex">-3(-2)=6</span>. Then undo <span class="tex">mx</span> with the opposite to get <span class="tex">b</span>.</div>
+    <div><b>Fractions stay fractions.</b> <span class="tex">\tfrac{1}{2}(8)=4</span>: divide by the bottom, multiply by the top. The answer is <span class="tex">y=\tfrac{1}{2}x+3</span>, not a decimal.</div>
+    <div><b><span class="tex">b</span> is the start.</b> Walk back to <span class="tex">x=0</span> and you land on <span class="tex">b</span>. In a story it is the value at time <span class="tex">0</span>: the balloon started at <b>450 m</b>. Always check by putting the point back in.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u7l5">
+    <div><div class="kicker">Your turn</div><b>Assignment 5 — Writing the Equation of a Line Given Slope and a Point</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l6/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 6 — Writing the Equation of a Line Given Two Points</b><div class="muted">No slope given? Find it from the two points first, then substitute and solve for <i>b</i>, just like today.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u7l5.js';
+  boot({ key: 'u7l5', homeHref: '../../', title: '7.5 Equation From Slope and a Point' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

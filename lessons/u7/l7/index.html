@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>General Form · Math 15 7.7</title>
+<meta name="description" content="Math 15 Unit 7 Lesson 7: the general form of a linear equation, Ax + By + C = 0. The same line in a different outfit: move every term to one side (A positive, integers only, clear fractions first), go back to y = mx + b by isolating y and dividing by B, and find both intercepts straight from general form. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u7l7.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u7l7">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 7 Equations of Linear Relations · Lesson 7</div>
+  <h1>The General Form of a Linear Equation</h1>
+  <p class="lede">A second way to write the same line: <b>collect every term on one side, leaving zero</b>. It is not a new kind of line. It is the same line in a different <b>outfit</b>, and you can always change it back to <span class="tex">y=mx+b</span>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>tell when an equation is in <b>general form</b> <span class="tex">Ax+By+C=0</span>: <span class="tex">A</span>, <span class="tex">B</span>, <span class="tex">C</span> are <b>integers</b> and <span class="tex">A</span> is <b>positive</b></li>
+      <li>change <span class="tex">y=mx+b</span> into general form by moving every term to the left (and multiplying by <span class="tex">-1</span> if <span class="tex">A</span> is negative)</li>
+      <li><b>clear fractions first</b> by multiplying <b>every</b> term by the common denominator</li>
+      <li>change general form back into <span class="tex">y=mx+b</span>: isolate <span class="tex">y</span>, then divide every term by <span class="tex">B</span>, and read off the slope and y-intercept</li>
+      <li>find the <b>x-intercept</b> (put <span class="tex">y=0</span>) and the <b>y-intercept</b> (put <span class="tex">x=0</span>) straight from general form</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF6</b> Relate linear relations expressed in: slope–intercept form (<span class="tex">y=mx+b</span>); general form (<span class="tex">Ax+By+C=0</span>); slope–point form (<span class="tex">y-y_1=m(x-x_1)</span>) to their graphs.<br><span class="muted">Today: changing between slope–intercept form and general form.</span></div>
+  <div class="outcome"><b>RF5</b> Determine the characteristics of the graphs of linear relations, including the: intercepts; slope; domain; range.<br><span class="muted">Today: the x- and y-intercepts straight from general form.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Same Line, Different Outfit" id="wu" style="--wf-side: 360px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Same Line, Different Outfit</h2>
+  <p class="wf-rule">One line on the grid. Six name tags. <b>Which ones are telling the truth?</b> <span class="muted">After the big one: tap a tag to test it.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u7l7-tags" id="u7l7-tags"></div>
+    <div class="u7l7-wqs">
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">1</div><div>Write the coordinates of the two dots. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l7-wa"><div class="bk-ans"><span class="tex">(0,-3)</span> and <span class="tex">(2,1)</span>. Up 4, right 2: slope <span class="tex">2</span>, so the line is <span class="tex">y=2x-3</span>.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">2</div><div>Put the dot <span class="tex">(2,1)</span> into tag <b>B</b>. True? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l7-wa"><div class="bk-ans"><span class="tex">1=2(2)-3=4-3=1</span>. <b>True</b>, so <span class="tex">(2,1)</span> fits tag B.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">3</div><div>Put <span class="tex">(2,1)</span> into tag <b>F</b>. What does the left side equal? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l7-wa"><div class="bk-ans"><span class="tex">2(2)-1-3=0</span>. Exactly <span class="tex">0</span>: a point on the line makes it balance.</div></div>
+      </div>
+    </div>
+  </div><div class="wf-side">
+    <div id="u7l7-wgraph" class="u7l7-wgraph"></div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> How many of the six tags are secretly <em>this same line</em> in disguise? <b>Guess first.</b></div></div>
+      <div class="poll-opts u7l7-c4">
+        <div class="opt"><b>A</b> just 1</div>
+        <div class="opt"><b>B</b> 2</div>
+        <div class="opt right"><b>C</b> 5</div>
+        <div class="opt"><b>D</b> all 6</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: five tags.</b> A, B, D, E and F all turn into <span class="tex">y=2x-3</span>. Only <b>C</b> is an impostor: <span class="tex">2x-y+3=0</span> is <span class="tex">y=2x+3</span>, a <b>parallel</b> line. Tap the tags to see why.</div>
+    </div>
+  </div></div>
+  <div class="bk-wq u7l7-early">
+    <div class="q-line"><div class="q-num bonus">+</div><div><b>Challenge:</b> dress the line in a <b>7th</b> outfit that nobody else in the room thought of. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="u7l7-wa"><div class="bk-ans">Anything equivalent works: <span class="tex">6x-3y=9</span>, <span class="tex">y-1=2x-4</span>, <span class="tex">2x=y+3</span>, … There are infinitely many outfits.</div></div>
+  </div>
+</section>
+
+<!-- ================= 1. Introducing general form ================= -->
+<section class="card" data-ink="s1" data-section="1. Introducing General Form">
+  <div class="sec-h"><span class="badge">1</span><h2>Introducing General Form</h2></div>
+  <div class="def">A linear equation is in <b>general form</b> when every term has been collected on one side, leaving <span class="tex">0</span> on the other side.</div>
+  <div class="u7l7-gfbox"><span>General form</span> <span class="u7l7-arr">→</span> <span class="tex">Ax+By+C=0</span></div>
+  <div class="u7l7-rules">
+    <div class="u7l7-rl"><span class="u7l7-rn">1</span><div>One side is <span class="tex">0</span>.</div></div>
+    <div class="u7l7-rl"><span class="u7l7-rn">2</span><div><span class="tex">A</span>, <span class="tex">B</span> and <span class="tex">C</span> are <b>integers</b> (no fractions, no decimals).</div></div>
+    <div class="u7l7-rl"><span class="u7l7-rn">3</span><div><span class="tex">A</span> (the number in front of <span class="tex">x</span>) is <b>positive</b>.</div></div>
+  </div>
+  <p>It is <b>not</b> a new kind of line: <span class="tex">y=2x-5</span> and <span class="tex">2x-y-5=0</span> describe the <b>exact same line</b>. Every point on the line makes the left side come out to exactly <span class="tex">0</span>.</p>
+  <div class="explainer" data-explainer="zeroMeter"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. One line, many outfits">
+  <h3 class="sub">One line, many outfits</h3>
+  <p>A line can be written with lots of different equations. Test two points to see which ones are the same line. Then the three rules pick out the <b>one</b> that is proper general form.</p>
+  <div class="explainer" data-explainer="costumes"></div>
+</section>
+
+<!-- ================= 2. SI -> GF ================= -->
+<section class="card" data-ink="s2" data-section="2. Slope–Intercept Form → General Form">
+  <div class="sec-h"><span class="badge">2</span><h2>Slope–Intercept Form <span class="u7l7-arr">→</span> General Form</h2></div>
+  <p><b>Move every term to the left side</b> so the right side becomes <span class="tex">0</span>. A term that crosses the <span class="tex">=</span> sign <b>changes its sign</b>. If the result has <span class="tex">A&lt;0</span>, <b>multiply the whole equation by <span class="tex">-1</span></b>.</p>
+  <div class="u7l7-walk"><b>Walkthrough:</b> <span class="tex">y=3x-5\;\Rightarrow\;-3x+y+5=0\;\Rightarrow\;3x-y-5=0</span></div>
+  <div class="explainer" data-explainer="tidyUp"></div>
+  <div class="tip u7l7-info"><div class="tip-ic">i</div><div><b>Shortcut.</b> Move the terms to the <b>right</b> side instead, so the <span class="tex">x</span>-term stays positive: <span class="tex">y=3x-5</span> becomes <span class="tex">0=3x-y-5</span>. Read it right to left: <span class="tex">3x-y-5=0</span>. Same answer, no sign fix needed.</div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Slope–intercept form to general form</h3></div>
+  <p class="q">Convert to general form <span class="tex">Ax+By+C=0</span>, with <span class="tex">A</span>, <span class="tex">B</span>, <span class="tex">C</span> integers and <span class="tex">A</span> positive.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">y=2x+5</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Move every term to the left: <span class="tex">-2x+y-5=0</span><br><span class="tex">A=-2</span> is negative, so multiply by <span class="tex">-1</span>:<br><span class="tex">\boldsymbol{2x-y+5=0}</span><br><span class="muted">(Shortcut: move terms right, <span class="tex">0=2x-y+5</span>.)</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">y=-4x+1</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Move every term to the left:<br><span class="tex">4x+y-1=0</span><br><span class="tex">A=4</span> is already positive, so<br><span class="tex">\boldsymbol{4x+y-1=0}</span></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Fractions first">
+  <h3 class="sub">When <span class="tex">m</span> or <span class="tex">b</span> is a fraction</h3>
+  <p>General form has <b>no fractions</b>. So first <b>multiply every term by the common denominator</b>, so that all the numbers become integers. <em>Then</em> move the terms across.</p>
+  <div class="u7l7-walk"><b>Walkthrough:</b> <span class="tex">y=\dfrac{1}{2}x+4\;\xrightarrow{\times 2}\;2y=x+8\;\Rightarrow\;x-2y+8=0</span></div>
+  <div class="explainer" data-explainer="everyTerm"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Multiply <em>every</em> term, on both sides.</b> <span class="tex">y=\tfrac13x+2</span> times 3 is <span class="tex">3y=x+6</span>, not <span class="tex">3y=x+2</span>. The constant needs the 3 too.</div></div>
+</section>
+
+<section class="card" data-ink="s2c" data-section="2. Fractions: the tidy-up machine">
+  <h3 class="sub">Clear the fraction, then tidy up</h3>
+  <p>The same machine, with one more station at the start. Check Example 2 here after you try it.</p>
+  <div class="explainer" data-explainer="tidyFrac"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Clear the fraction first</h3></div>
+  <p class="q">Convert each equation to general form, clearing any fractions first.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">y=\dfrac{1}{2}x+3</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Clear the fraction, <span class="tex">\times2</span>:<br><span class="tex">2y=x+6</span><br>Move terms left: <span class="tex">-x+2y-6=0</span><br><span class="tex">\times(-1)</span>: <span class="tex">\boldsymbol{x-2y+6=0}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">y=-\dfrac{3}{4}x+2</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Clear the fraction, <span class="tex">\times4</span>:<br><span class="tex">4y=-3x+8</span><br>Move terms left:<br><span class="tex">\boldsymbol{3x+4y-8=0}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. GF -> SI ================= -->
+<section class="card" data-ink="s3" data-section="3. General Form → Slope–Intercept Form">
+  <div class="sec-h"><span class="badge">3</span><h2>General Form <span class="u7l7-arr">→</span> Slope–Intercept Form</h2></div>
+  <p>Start with <span class="tex">Ax+By+C=0</span> and <b>isolate <span class="tex">y</span></b>: move the <span class="tex">Ax</span> and <span class="tex">C</span> terms to the right side, then <b>divide every term by <span class="tex">B</span></b>. The result is <span class="tex">y=mx+b</span>, so the <b>slope</b> and the <b>y-intercept</b> can be read off directly.</p>
+  <div class="u7l7-walk"><b>Walkthrough:</b> <span class="tex">4x-y-1=0\;\Rightarrow\;-y=-4x+1\;\xrightarrow{\div(-1)}\;y=4x-1</span></div>
+  <div class="explainer" data-explainer="solveY"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>General form to slope–intercept form</h3></div>
+  <p class="q">Convert each equation from general form to slope–intercept form.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">2x-y-7=0</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Isolate the <span class="tex">y</span> term:<br><span class="tex">-y=-2x+7</span><br><span class="tex">\div(-1)</span>: <span class="tex">\boldsymbol{y=2x-7}</span><br><span class="muted">slope <span class="tex">2</span>, y-intercept <span class="tex">-7</span></span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">3x+y-9=0</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Isolate <span class="tex">y</span>: move <span class="tex">3x</span> and <span class="tex">-9</span> across:<br><span class="tex">\boldsymbol{y=-3x+9}</span><br><span class="muted">slope <span class="tex">-3</span>, y-intercept <span class="tex">9</span></span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. When B is not 1 or −1">
+  <h3 class="sub">When the number in front of <span class="tex">y</span> is not <span class="tex">1</span> or <span class="tex">-1</span></h3>
+  <p>Dividing by <span class="tex">B</span> can leave a <b>fraction</b> for the slope. That is expected: just <b>simplify it fully</b>.</p>
+  <div class="u7l7-walk"><b>Walkthrough:</b> <span class="tex">3x-4y+8=0\;\Rightarrow\;-4y=-3x-8\;\xrightarrow{\div(-4)}\;y=\dfrac{3}{4}x+2</span></div>
+  <div class="explainer" data-explainer="solveYFrac"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Divide <em>every</em> term by <span class="tex">B</span>, signs included.</b> Dividing by a negative number flips the sign of <b>every</b> term: <span class="tex">-4y=-3x-8</span> divided by <span class="tex">-4</span> is <span class="tex">y=\tfrac34x+2</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>A fraction for the slope</h3></div>
+  <p class="q">Convert each equation to slope–intercept form. Simplify the slope fully.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">5x-2y-6=0</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">-2y=-5x+6</span><br><span class="tex">\div(-2)</span> on every term:<br><span class="tex">\boldsymbol{y=\tfrac{5}{2}x-3}</span><br><span class="muted">Check <span class="tex">x=2</span>: <span class="tex">y=2</span>; <span class="tex">5(2)-2(2)-6=0</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">4x+3y-12=0</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3y=-4x+12</span><br><span class="tex">\div3</span> on every term:<br><span class="tex">\boldsymbol{y=-\tfrac{4}{3}x+4}</span><br><span class="muted">Check <span class="tex">x=3</span>: <span class="tex">y=0</span>; <span class="tex">4(3)+3(0)-12=0</span> ✓</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u7l7"></section>
+
+<!-- ================= 4. Intercepts ================= -->
+<section class="card" data-ink="s4" data-section="4. Intercepts from General Form">
+  <div class="sec-h"><span class="badge">4</span><h2>Finding Intercepts Directly from General Form</h2></div>
+  <div class="def-grid">
+    <div class="def">The <b>x-intercept</b> is where the line crosses the x-axis. There, <span class="tex">y=0</span>.</div>
+    <div class="def amber">The <b>y-intercept</b> is where the line crosses the y-axis. There, <span class="tex">x=0</span>.</div>
+  </div>
+  <p>Substitute straight into the general-form equation. <b>No converting needed.</b></p>
+  <div class="u7l7-walk"><b>Walkthrough:</b> for <span class="tex">2x+y-8=0</span>: <span class="tex">y=0</span> gives <span class="tex">2x-8=0</span>, so <span class="tex">x=4</span> and the x-intercept is <span class="tex">(4,0)</span>. <span class="tex">x=0</span> gives <span class="tex">y-8=0</span>, so the y-intercept is <span class="tex">(0,8)</span>.</div>
+  <div class="explainer" data-explainer="cover"></div>
+  <div class="tip u7l7-info"><div class="tip-ic">i</div><div><b>Two intercepts are two points.</b> Plot them and join them with a ruler, and you have graphed the line. This is often the fastest way to graph a line in general form.</div></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Both intercepts, no converting</h3></div>
+  <p class="q">Find the x-intercept and the y-intercept without converting to slope–intercept form.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">3x+2y-12=0</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=0</span>: <span class="tex">3x-12=0\Rightarrow x=4</span><br>x-intercept <span class="tex">\boldsymbol{(4,0)}</span><br><span class="tex">x=0</span>: <span class="tex">2y-12=0\Rightarrow y=6</span><br>y-intercept <span class="tex">\boldsymbol{(0,6)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">4x-y-8=0</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=0</span>: <span class="tex">4x-8=0\Rightarrow x=2</span><br>x-intercept <span class="tex">\boldsymbol{(2,0)}</span><br><span class="tex">x=0</span>: <span class="tex">-y-8=0\Rightarrow y=-8</span><br>y-intercept <span class="tex">\boldsymbol{(0,-8)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>General form <span class="tex">Ax+By+C=0</span>.</b> Every term on one side, <span class="tex">0</span> on the other. <span class="tex">A</span>, <span class="tex">B</span>, <span class="tex">C</span> are integers and <span class="tex">A</span> is positive. Same line, different outfit.</div>
+    <div><b>To general form.</b> Fractions? Multiply <b>every</b> term by the common denominator. Move every term to the left (each one changes sign). <span class="tex">A</span> negative? Multiply by <span class="tex">-1</span>.</div>
+    <div><b>Back to <span class="tex">y=mx+b</span>.</b> Move the <span class="tex">x</span>-term and the constant to the right, then divide <b>every</b> term by the number in front of <span class="tex">y</span>. Simplify the slope fully.</div>
+    <div><b>Intercepts.</b> x-intercept: put <span class="tex">y=0</span> and solve. y-intercept: put <span class="tex">x=0</span> and solve. Write them as points, <span class="tex">(x,0)</span> and <span class="tex">(0,y)</span>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u7l7">
+    <div><div class="kicker">Your turn</div><b>Assignment 7 — The General Form of a Linear Equation</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l8/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 8 — Graphing Horizontal Lines, Vertical Lines, and Any Form</b><div class="muted">Lines like <span class="tex">y=3</span> and <span class="tex">x=-2</span>, and a plan for graphing a line given in any form.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u7l7.js';
+  boot({ key: 'u7l7', homeHref: '../../', title: '7.7 General Form' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

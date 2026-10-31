@@ -5,7 +5,7 @@ prints the same numbers for the old site."""
 import asyncio, os, re
 from playwright.async_api import async_playwright
 BASE = 'http://localhost:8821/'
-IDS = ['u4/l%d' % n for n in range(1, 11)] + ['u5/l%d' % n for n in range(1, 13)] + ['u6/l%d' % n for n in range(1, 11)]
+IDS = ['u4/l%d' % n for n in range(1, 11)] + ['u5/l%d' % n for n in range(1, 13)] + ['u6/l%d' % n for n in range(1, 11)] + ['u7/l%d' % n for n in range(1, 11)] + ['u8/l%d' % n for n in range(1, 9)]
 async def probe(ctx, url):
     page = await ctx.new_page(); errs, bad = [], []
     page.on('pageerror', lambda e: errs.append(str(e)))

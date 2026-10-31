@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Slope–Intercept Form: y = mx + b · Math 15 7.2</title>
+<meta name="description" content="Math 15 Unit 7 Lesson 2: slope–intercept form y = mx + b. Read the slope m and the y-intercept b straight off an equation (including y = x, y = −x, y = 7x and y = −9), rearrange an equation into y = mx + b first, divide every term when y has a coefficient, check a table against an equation, and explain m and b in a real situation. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u7l2.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u7l2">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 7 Equations of Linear Relations · Lesson 2</div>
+  <h1>Slope–Intercept Form: <span class="tex">y=mx+b</span></h1>
+  <p class="lede">When a linear equation is written <span class="tex">y=\textcolor{#1f5bd6}{m}x+\textcolor{#12805a}{b}</span>, it tells you two things right away: <b class="u7l2-cm">m</b>, how much <span class="tex">y</span> changes every step, and <b class="u7l2-cb">b</b>, where the line starts on the <span class="tex">y</span>-axis.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>read the <b class="u7l2-cm">slope</b> <span class="tex">m</span> and the <b class="u7l2-cb">y-intercept</b> <span class="tex">b</span> straight off <span class="tex">y=mx+b</span>, including <span class="tex">y=x</span>, <span class="tex">y=-x</span>, <span class="tex">y=7x</span> and <span class="tex">y=-9</span></li>
+      <li>say what <span class="tex">m</span> and <span class="tex">b</span> mean: “every time <span class="tex">x</span> goes up by 1, <span class="tex">y</span> …” and “the line crosses the <span class="tex">y</span>-axis at …”</li>
+      <li><b>rearrange</b> an equation into <span class="tex">y=mx+b</span>, dividing <b>every term</b> when <span class="tex">y</span> has a coefficient</li>
+      <li>check whether a table matches an equation, and explain <span class="tex">m</span> and <span class="tex">b</span> in a real situation</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF6</b> Relate linear relations expressed in: slope–intercept form <span class="tex">(y=mx+b)</span>; general form <span class="tex">(Ax+By+C=0)</span>; slope–point form <span class="tex">(y-y_1=m(x-x_1))</span> to their graphs.<br><span class="muted">Today: slope–intercept form, the most useful way to write a line.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Pick a Phone Plan" id="wu" style="--wf-side: 330px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Pick a Phone Plan</h2>
+  <p class="wf-rule">Three made-up plans. <span class="tex">C</span> = cost for the month ($), <span class="tex">g</span> = GB of data used.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u7l2-phones" id="u7l2-phones"></div>
+    <div class="u7l2-gbrow" id="u7l2-gbrow"><span class="u7l2-gbl">Try a month:</span></div>
+    <div class="u7l2-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What does Plan A cost for <b>2 GB</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l2-wa"><div class="bk-ans"><b>$30</b>: <span class="tex">5(2)+20=10+20=30</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which plan costs the most <b>per GB</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l2-wa"><div class="bk-ans"><b>Plan C (Pixel)</b>: $10 for every GB.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>In each equation, which number is the <b>monthly fee</b>? The <b>cost per GB</b>? How can you tell? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l2-wa"><div class="bk-ans">The number <b>multiplied by <span class="tex">g</span></b> is the cost per GB (it is charged again for every GB). The number <b>on its own</b> is the monthly fee (you pay it even at 0 GB). B is written in a different order, <span class="tex">35+2g</span>: fee $35, $2 per GB. C has no number on its own: fee $0.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> You use <b>6 GB</b> of data a month. Which plan is the <b>cheapest</b>? <b>Guess first</b>, then check with the equations.</div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Spark</div>
+        <div class="opt right"><b>B</b> Orbit</div>
+        <div class="opt"><b>C</b> Pixel</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, Orbit ($47).</b><br>A: <span class="tex">5(6)+20=50</span><br>B: <span class="tex">35+2(6)=47</span><br>C: <span class="tex">10(6)=60</span><br><span class="muted">The plan with the <b>biggest</b> fee wins, because its cost per GB is the smallest.</span></div>
+    </div>
+  </div></div>
+  <div class="bk-wq u7l2-pollq"><div class="q-line"><div class="q-num bonus">+</div><div><b>Poll the room:</b> is there one plan that is cheapest for <b>everybody</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="u7l2-wa"><div class="bk-ans"><b>No.</b> Pixel is cheapest up to 3 GB, Spark ties Pixel at 4 GB ($40) and ties Orbit at 5 GB ($45), and Orbit is cheapest from 6 GB up. Light users want a small fee; heavy users want a small cost per GB.</div></div></div>
+</section>
+
+<!-- ================= 1. Slope–intercept form ================= -->
+<section class="card" data-ink="s1" data-section="1. Slope–Intercept Form">
+  <div class="sec-h"><span class="badge">1</span><h2>Slope–Intercept Form</h2></div>
+  <div class="def u7l2-sif">
+    <div class="u7l2-sif-h">A linear equation solved for <span class="tex">y</span> can be written <span class="u7l2-sif-f"><span class="tex">y=\textcolor{#1f5bd6}{m}x+\textcolor{#12805a}{b}</span></span> called <b>slope–intercept form</b>.</div>
+    <div class="u7l2-sif-g">
+      <div><b class="u7l2-cm"><span class="tex">m</span> is the slope:</b> the constant change in <span class="tex">y</span> each time <span class="tex">x</span> increases by 1.</div>
+      <div><b class="u7l2-cb"><span class="tex">b</span> is the y-intercept:</b> the <span class="tex">y</span>-value where the line crosses the <span class="tex">y</span>-axis, the point <span class="tex">(0,\ b)</span>.</div>
+    </div>
+  </div>
+  <p>So for <span class="tex">y=\textcolor{#1f5bd6}{2}x+\textcolor{#12805a}{3}</span>: <span class="tex">m=2</span>, so <span class="tex">y</span> increases by 2 each time <span class="tex">x</span> increases by 1. And <span class="tex">b=3</span>, so the line passes through <span class="tex">(0,\ 3)</span>.</p>
+  <div class="explainer" data-explainer="meaning"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. The phone plans are lines">
+  <h3 class="sub">The warm-up again: each plan is a line</h3>
+  <p>Call the cost <span class="tex">y</span> and the GB <span class="tex">x</span>. Then every plan is <span class="tex">y=mx+b</span>: the <b class="u7l2-cb">fee</b> is <span class="tex">b</span>, where the line starts, and the <b class="u7l2-cm">cost per GB</b> is <span class="tex">m</span>, how steeply it climbs.</p>
+  <div class="explainer" data-explainer="phones"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>What <span class="tex">m</span> and <span class="tex">b</span> tell you</h3></div>
+  <p class="q">State <span class="tex">m</span> and <span class="tex">b</span>, then complete each sentence.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">y=4x+7</span></div>
+      <div class="u7l2-fill">
+        <div><span class="tex">m=</span> <span class="u7l2-blank" data-reveal><span class="tex">4</span></span> <span class="u7l2-gap"></span> <span class="tex">b=</span> <span class="u7l2-blank" data-reveal><span class="tex">7</span></span></div>
+        <div>Every time <span class="tex">x</span> increases by 1, <span class="tex">y</span> <span class="u7l2-blank u7l2-wide" data-reveal>increases by 4</span>.</div>
+        <div>The line crosses the <span class="tex">y</span>-axis at <span class="u7l2-blank" data-reveal><span class="tex">(0,\ 7)</span></span>.</div>
+      </div>
+      <div class="work" style="--h:80px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=\boldsymbol{4}</span>, <span class="tex">b=\boldsymbol{7}</span>. <span class="tex">y</span> <b>increases by 4</b>; the line crosses at <span class="tex">\boldsymbol{(0,\ 7)}</span>.<br>The coefficient of <span class="tex">x</span> is the slope; the constant term is the <span class="tex">y</span>-intercept.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">y=-5x+1</span></div>
+      <div class="u7l2-fill">
+        <div><span class="tex">m=</span> <span class="u7l2-blank" data-reveal><span class="tex">-5</span></span> <span class="u7l2-gap"></span> <span class="tex">b=</span> <span class="u7l2-blank" data-reveal><span class="tex">1</span></span></div>
+        <div>Every time <span class="tex">x</span> increases by 1, <span class="tex">y</span> <span class="u7l2-blank u7l2-wide" data-reveal>decreases by 5</span>.</div>
+        <div>The line crosses the <span class="tex">y</span>-axis at <span class="u7l2-blank" data-reveal><span class="tex">(0,\ 1)</span></span>.</div>
+      </div>
+      <div class="work" style="--h:80px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=\boldsymbol{-5}</span>, <span class="tex">b=\boldsymbol{1}</span>. <span class="tex">y</span> <b>decreases by 5</b>; the line crosses at <span class="tex">\boldsymbol{(0,\ 1)}</span>.<br>A negative slope means <span class="tex">y</span> goes <b>down</b> as <span class="tex">x</span> goes up.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Reading m and b ================= -->
+<section class="card" data-ink="s2" data-section="2. Reading m and b Off an Equation">
+  <div class="sec-h"><span class="badge">2</span><h2>Reading <span class="tex">m</span> and <span class="tex">b</span> Off an Equation</h2></div>
+  <p>If the equation is already <span class="tex">y=mx+b</span>, the <b class="u7l2-cm">coefficient of <span class="tex">x</span></b> is <span class="tex">m</span> and the <b class="u7l2-cb">constant term</b> is <span class="tex">b</span>. Each one keeps its <b>sign</b>. Three special cases:</p>
+  <div class="u7l2-cases">
+    <div class="u7l2-case"><div class="u7l2-case-eq"><span class="tex">y=x-8</span> <span class="u7l2-or">and</span> <span class="tex">y=-x+4</span></div><div>A bare <span class="tex">x</span> means <span class="tex">m=1</span>. A bare <span class="tex">-x</span> means <span class="tex">m=-1</span>.</div></div>
+    <div class="u7l2-case"><div class="u7l2-case-eq"><span class="tex">y=7x</span></div><div>No constant term means <span class="tex">b=0</span>: the line goes through the origin.</div></div>
+    <div class="u7l2-case"><div class="u7l2-case-eq"><span class="tex">y=-9</span></div><div>A number alone means <span class="tex">m=0</span>: a <b>horizontal</b> line.</div></div>
+  </div>
+  <div class="explainer" data-explainer="sliders"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>The sign belongs to the number.</b> In <span class="tex">y=-3x+2</span>, <span class="tex">m=-3</span>, not <span class="tex">3</span>. In <span class="tex">y=x\mathbin{\textcolor{#12805a}{-}}\textcolor{#12805a}{8}</span>, <span class="tex">b=-8</span>, not <span class="tex">8</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Read the slope and the <span class="tex">y</span>-intercept</h3></div>
+  <p class="q">State the slope and <span class="tex">y</span>-intercept of each linear equation.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">y=5x+6</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Coefficient of <span class="tex">x</span>: <span class="tex">\boldsymbol{m=5}</span><br>Constant term: <span class="tex">\boldsymbol{b=6}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">y=-3x+2</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The sign belongs to <span class="tex">m</span>: <span class="tex">\boldsymbol{m=-3}</span><br><span class="tex">\boldsymbol{b=2}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">y=x-8</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">A bare <span class="tex">x</span> means <span class="tex">\boldsymbol{m=1}</span><br>The term <span class="tex">-8</span> gives <span class="tex">\boldsymbol{b=-8}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">y=-x+4</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">“<span class="tex">-x</span>” means <span class="tex">\boldsymbol{m=-1}</span><br><span class="tex">\boldsymbol{b=4}</span></div></div></div>
+    <div class="part"><div class="pl">(e) <span class="tex">y=7x</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{m=7}</span><br>No constant term, so <span class="tex">\boldsymbol{b=0}</span>: through the origin.</div></div></div>
+    <div class="part"><div class="pl">(f) <span class="tex">y=-9</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">No <span class="tex">x</span>-term, so <span class="tex">\boldsymbol{m=0}</span> (horizontal line)<br><span class="tex">\boldsymbol{b=-9}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Rearranging ================= -->
+<section class="card" data-ink="s3" data-section="3. Rearranging Into y = mx + b">
+  <div class="sec-h"><span class="badge">3</span><h2>Rearranging Into Slope–Intercept Form</h2></div>
+  <p>You can’t read <span class="tex">m</span> and <span class="tex">b</span> until the equation is <b>solved for <span class="tex">y</span></b>: <span class="tex">2x+y=7</span> is not yet in slope–intercept form. Get <span class="tex">y</span> alone with <b>inverse operations</b>, then write the <span class="tex">x</span>-term first:</p>
+  <div class="u7l2-disp"><span class="tex">2x+y=7\ \Rightarrow\ y=7-2x\ \Rightarrow\ y=\textcolor{#1f5bd6}{-2}x+\textcolor{#12805a}{7}</span>, so <span class="tex">m=-2</span> and <span class="tex">b=7</span>.</div>
+  <div class="explainer" data-explainer="rearrange"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Each term keeps its own sign when it moves to the front.</b> <span class="tex">y=7-2x</span> becomes <span class="tex">y=-2x+7</span>, not <span class="tex">y=2x+7</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Get <span class="tex">y</span> alone first</h3></div>
+  <p class="q">Rearrange each equation into slope–intercept form, then state <span class="tex">m</span> and <span class="tex">b</span>.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">x+y=9</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x+y=9</span><br><span class="tex">y=9-x</span> (subtract <span class="tex">x</span>)<br><span class="tex">\boldsymbol{y=-x+9}</span><br><span class="tex">\boldsymbol{m=-1}</span>, <span class="tex">\boldsymbol{b=9}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">5x+y=2</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">5x+y=2</span><br><span class="tex">y=2-5x</span> (subtract <span class="tex">5x</span>)<br><span class="tex">\boldsymbol{y=-5x+2}</span><br><span class="tex">\boldsymbol{m=-5}</span>, <span class="tex">\boldsymbol{b=2}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">-3x+y=6</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">-3x+y=6</span><br><span class="tex">y=6+3x</span> (add <span class="tex">3x</span>)<br><span class="tex">\boldsymbol{y=3x+6}</span><br><span class="tex">\boldsymbol{m=3}</span>, <span class="tex">\boldsymbol{b=6}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. y with a coefficient ================= -->
+<section class="card" data-ink="s4" data-section="4. When y Has a Coefficient">
+  <div class="sec-h"><span class="badge">4</span><h2>When <span class="tex">y</span> Has a Coefficient</h2></div>
+  <p>If <span class="tex">y</span> has a coefficient other than 1, move the <span class="tex">x</span>-term first, then <b>divide every term</b> (not just the first one) by that coefficient:</p>
+  <div class="u7l2-disp"><span class="tex">2y=6x+10\ \Rightarrow\ \dfrac{2y}{2}=\dfrac{6x}{2}+\dfrac{10}{2}\ \Rightarrow\ y=\textcolor{#1f5bd6}{3}x+\textcolor{#12805a}{5}</span>, so <span class="tex">m=3</span> and <span class="tex">b=5</span>.</div>
+  <div class="explainer" data-explainer="balance"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Divide every term</h3></div>
+  <p class="q">Rearrange each equation into slope–intercept form, then state <span class="tex">m</span> and <span class="tex">b</span>.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">3y=9x+12</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Divide <b>every</b> term by 3:<br><span class="tex">\dfrac{3y}{3}=\dfrac{9x}{3}+\dfrac{12}{3}</span><br><span class="tex">\boldsymbol{y=3x+4}</span><br><span class="tex">\boldsymbol{m=3}</span>, <span class="tex">\boldsymbol{b=4}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">4x+2y=10</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2y=-4x+10</span> (subtract <span class="tex">4x</span>)<br>Divide every term by 2:<br><span class="tex">\boldsymbol{y=-2x+5}</span><br><span class="tex">\boldsymbol{m=-2}</span>, <span class="tex">\boldsymbol{b=5}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">9x+3y=21</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3y=-9x+21</span> (subtract <span class="tex">9x</span>)<br>Divide every term by 3:<br><span class="tex">\boldsymbol{y=-3x+7}</span><br><span class="tex">\boldsymbol{m=-3}</span>, <span class="tex">\boldsymbol{b=7}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u7l2"></section>
+
+<!-- ================= 5. Tables and meaning ================= -->
+<section class="card" data-ink="s5" data-section="5. Checking Tables, Interpreting m and b">
+  <div class="sec-h"><span class="badge">5</span><h2>Checking Tables and Interpreting <span class="tex">m</span> and <span class="tex">b</span></h2></div>
+  <p>To test a table against <span class="tex">y=mx+b</span>, substitute each <span class="tex">x</span>-value and compare with the table’s <span class="tex">y</span>. <b>One row that fails</b> means the table does not match.</p>
+  <div class="explainer" data-explainer="tableCheck"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Does the table match?</h3></div>
+  <p class="q">Does each table match the given equation? Check every ordered pair.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">y=3x+2</span></div>
+      <table class="u7l2-htab"><tr><th><span class="tex">x</span></th><td><span class="tex">-1</span></td><td><span class="tex">0</span></td><td><span class="tex">1</span></td><td><span class="tex">2</span></td></tr><tr><th><span class="tex">y</span></th><td><span class="tex">-1</span></td><td><span class="tex">2</span></td><td><span class="tex">5</span></td><td><span class="tex">8</span></td></tr></table>
+      <div class="work" style="--h:150px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x=-1</span>: <span class="tex">3(-1)+2=-1</span> ✓ <span class="tex">x=0</span>: <span class="tex">2</span> ✓<br><span class="tex">x=1</span>: <span class="tex">3(1)+2=5</span> ✓ <span class="tex">x=2</span>: <span class="tex">3(2)+2=8</span> ✓<br><b>Yes</b>: every ordered pair satisfies <span class="tex">y=3x+2</span>.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">y=4x-1</span></div>
+      <table class="u7l2-htab"><tr><th><span class="tex">x</span></th><td><span class="tex">0</span></td><td><span class="tex">1</span></td><td><span class="tex">2</span></td><td><span class="tex">3</span></td></tr><tr><th><span class="tex">y</span></th><td><span class="tex">-1</span></td><td><span class="tex">3</span></td><td><span class="tex">7</span></td><td><span class="tex">12</span></td></tr></table>
+      <div class="work" style="--h:150px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x=0</span>: <span class="tex">-1</span> ✓ <span class="tex">x=1</span>: <span class="tex">3</span> ✓ <span class="tex">x=2</span>: <span class="tex">7</span> ✓<br><span class="tex">x=3</span>: <span class="tex">4(3)-1=11</span>, but the table shows <span class="tex">12</span> ✗<br><b>No</b>: one failing pair is enough to reject the table.</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s5b" data-section="5. m and b in a real situation">
+  <h3 class="sub">In a real situation: <span class="tex">b</span> is the start, <span class="tex">m</span> is the rate</h3>
+  <p>In a real situation, <b class="u7l2-cb"><span class="tex">b</span> is usually the starting amount</b> and <b class="u7l2-cm"><span class="tex">m</span> is the rate</b>: the change for each additional unit.</p>
+  <div class="explainer" data-explainer="context"></div>
+</section>
+
+<section class="card example" data-ink="ex6" data-section="Example 6">
+  <div class="ex-head"><span class="ex-tag">Example 6</span><h3>The landscaping company</h3></div>
+  <p class="q">A landscaping company charges <span class="tex">\text{cost}=35+20h</span>, where <span class="tex">h</span> is hours worked and cost is in dollars.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Identify the starting cost (<span class="tex">b</span>) and explain what it represents.</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{b=35}</span>. It is the flat call-out fee of $35, charged before any hours are worked (<span class="tex">h=0</span>).</div></div></div>
+    <div class="part"><div class="pl">(b) Identify the cost per hour (<span class="tex">m</span>) and explain what it represents.</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{m=20}</span>. The cost rises by $20 for each extra hour of work.</div></div></div>
+    <div class="part"><div class="pl">(c) Determine the total cost of a 4-hour job.</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\text{cost}=35+20(4)</span><br><span class="tex">=35+80</span><br><span class="tex">=\boldsymbol{\$115}</span></div></div></div>
+  </div>
+  <div class="space" id="ex6-space"></div>
+  <button class="more" data-more="ex6-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Slope–intercept form <span class="tex">y=\textcolor{#1f5bd6}{m}x+\textcolor{#12805a}{b}</span>.</b> <span class="tex">m</span> is the slope: the change in <span class="tex">y</span> each time <span class="tex">x</span> goes up by 1. <span class="tex">b</span> is the <span class="tex">y</span>-intercept: the line crosses at <span class="tex">(0,\ b)</span>.</div>
+    <div><b>Read it off.</b> Each number keeps its sign: <span class="tex">y=-3x+2</span> has <span class="tex">m=-3</span>, <span class="tex">b=2</span>. Special cases: <span class="tex">y=x</span> (<span class="tex">m=1</span>), <span class="tex">y=-x</span> (<span class="tex">m=-1</span>), <span class="tex">y=7x</span> (<span class="tex">b=0</span>), <span class="tex">y=-9</span> (<span class="tex">m=0</span>).</div>
+    <div><b>Solve for <span class="tex">y</span> first.</b> <span class="tex">5x+y=2\Rightarrow y=-5x+2</span>. If <span class="tex">y</span> has a coefficient, divide <b>every term</b>: <span class="tex">2y=6x+10\Rightarrow y=3x+5</span>.</div>
+    <div><b>Tables and real life.</b> One row that fails means the table doesn’t match. In <span class="tex">\text{cost}=35+20h</span>, <span class="tex">b=35</span> is the <b>start</b> (the fee) and <span class="tex">m=20</span> is the <b>rate</b> ($20 per hour).</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u7l2">
+    <div><div class="kicker">Your turn</div><b>Assignment 2 — Slope–Intercept Form: <span class="tex">y=mx+b</span></b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l3/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 3 — Graphing a Line Using Slope–Intercept Form</b><div class="muted">No table needed: plot <span class="tex">b</span> on the <span class="tex">y</span>-axis, then step the slope, rise over run.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u7l2.js';
+  boot({ key: 'u7l2', homeHref: '../../', title: '7.2 Slope–Intercept Form' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

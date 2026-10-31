@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Review: Graphing Linear Equations from a Table of Values · Math 15 7.1</title>
+<meta name="description" content="Math 15 Unit 7 Lesson 1: a review of linear equations. Tell a linear equation from a non-linear one, build a table of values by substituting x-values, plot the ordered pairs and join them with one straight line, and test whether a point lies on a line by substituting its coordinates. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u7l1.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u7l1">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 7 Equations of Linear Relations · Lesson 1</div>
+  <h1>Review: Graphing Linear Equations from a Table of Values</h1>
+  <p class="lede">A <b>linear</b> equation always makes a <b>straight line</b>. Pick some <b class="u7l1-cx">x-values</b>, work out their <b class="u7l1-cy">y-values</b>, plot the points and join them. And to check if a point is on a line, you don’t even need the graph.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>tell a <b>linear</b> equation from a <b>non-linear</b> one by looking at what happens to <span class="tex">x</span></li>
+      <li>build a <b>table of values</b> by substituting <span class="tex">x</span>-values into an equation</li>
+      <li>plot the ordered pairs from a table and join them with <b>one straight line</b>, all the way to the edges of the grid</li>
+      <li>decide whether a point <b>lies on a line</b> by substituting its coordinates</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF4</b> Describe and represent linear relations, using: words; ordered pairs; tables of values; graphs; equations.<br><span class="muted">Today: a review of equations, tables and graphs from Unit 5, to get ready for <span class="tex">y=mx+b</span>.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Which Rule Made This?" id="wu" style="--wf-side: 330px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Which Rule Made This?</h2>
+  <p class="wf-rule">Each pattern card was made by one rule… but one card is an <b>imposter</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u7l1-wtop">
+      <div class="u7l1-cards" id="u7l1-cards"></div>
+      <div class="u7l1-rules">
+        <div class="u7l1-rules-h">The rules:</div>
+        <div class="u7l1-tag"><span class="tex">y=x^{2}+2</span></div>
+        <div class="u7l1-tag"><span class="tex">y=-2x+8</span></div>
+        <div class="u7l1-tag"><span class="tex">y=2x+3</span></div>
+        <div class="u7l1-tag"><span class="tex">y=3x+2</span></div>
+      </div>
+    </div>
+    <div class="u7l1-wbtns">
+      <button type="button" class="pill small" id="u7l1-wsteps">Show the steps</button>
+      <button type="button" class="pill small" id="u7l1-wplot">Plot A and B</button>
+    </div>
+    <div class="u7l1-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Fill in the <b class="u7l1-red">?</b> on Card C. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l1-wa"><div class="bk-ans"><b>0.</b> Card C drops by 2 each step: <span class="tex">8,\ 6,\ 4,\ 2,\ \mathbf{0}</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Match each card to its rule. (One rule is a spare.) <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l1-wa"><div class="bk-ans">A <span class="tex">\to y=3x+2</span>, B <span class="tex">\to y=x^2+2</span>, C <span class="tex">\to y=-2x+8</span>. Spare: <span class="tex">y=2x+3</span>. <span class="muted">Careful: A and B both have <span class="tex">(0,\ 2)</span> and <span class="tex">(3,\ 11)</span>, so check more than one row.</span></div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>One card’s points do <b>not</b> make a straight line. Which card? How can you tell? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l1-wa"><div class="bk-ans"><b>Card B.</b> A goes up <b>+3</b> every step and C goes down <b>−2</b> every step. B goes <b>+1, +3, +5, +7</b>: the step keeps growing, so its points bend. Its rule has <span class="tex">x^2</span>.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Card A’s line goes on <em>forever</em>. Three far-away points were added to it… but <b>one is a fake</b>. Which one? <b>Guess first</b>, then prove it with no graph!</div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> <span class="tex">(10,\ 32)</span></div>
+        <div class="opt"><b>B</b> <span class="tex">(20,\ 62)</span></div>
+        <div class="opt right"><b>C</b> <span class="tex">(30,\ 90)</span></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C is the fake.</b> Put each <span class="tex">x</span> into Card A’s rule <span class="tex">y=3x+2</span>:<br><span class="tex">3(10)+2=32</span> ✓ <span class="tex">3(20)+2=62</span> ✓<br><span class="tex">3(30)+2=92\neq90</span> ✗<br><span class="muted">The neatest-looking point is the fake. Substituting settles it in seconds, far off any grid you could draw.</span></div>
+    </div>
+  </div></div>
+  <p class="u7l1-social">Your turn: make up a point on Card C’s line with <span class="tex">x=10</span>, plus a fake. Can a neighbour spot it?</p>
+</section>
+
+<!-- ================= 1. Linear and non-linear ================= -->
+<section class="card" data-ink="s1" data-section="1. Linear and Non-Linear Equations">
+  <div class="sec-h"><span class="badge">1</span><h2>Linear and Non-Linear Equations</h2></div>
+  <div class="def">An <b>ordered pair</b> <span class="tex">(x,\ y)</span> locates a point. A <b>relation</b> is a set of such pairs, and its <b>graph</b> is the picture of those points. An equation is <b>linear</b> when its graph is a <b>straight line</b>. So <span class="tex">y=2x+3</span> is linear, while <span class="tex">y=x^2</span> is <b>non-linear</b> (its graph is a curve called a parabola).</div>
+  <p>In a linear equation, <span class="tex">x</span> appears only to the <b>first power</b>. It is never…</p>
+  <div class="u7l1-nots">
+    <div class="u7l1-not"><span class="tex">y=x^{\textcolor{#c93a33}{2}}</span><span class="u7l1-nt">squared or cubed</span></div>
+    <div class="u7l1-not"><span class="tex">\textcolor{#c93a33}{x}y=6</span><span class="u7l1-nt">multiplied by another variable</span></div>
+    <div class="u7l1-not"><span class="tex">y=\sqrt{\textcolor{#c93a33}{x}}</span><span class="u7l1-nt">under a root</span></div>
+    <div class="u7l1-not"><span class="tex">y=\dfrac{1}{\textcolor{#c93a33}{x}}</span><span class="u7l1-nt">in a denominator</span></div>
+    <div class="u7l1-not"><span class="tex">y=2^{\textcolor{#c93a33}{x}}</span><span class="u7l1-nt">an exponent</span></div>
+  </div>
+  <div class="explainer" data-explainer="linTest"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Linear or non-linear?</h3></div>
+  <p class="q">Without graphing, sort each equation into the LINEAR row or the NON-LINEAR row. <span class="muted">(Tap an equation to move it: once for LINEAR, twice for NON-LINEAR, again to send it back.)</span></p>
+  <div class="parts c1">
+    <div class="part">
+      <div class="u7l1-sort" id="u7l1-sort">
+        <div class="u7l1-pool" data-bin="pool">
+          <button type="button" class="u7l1-tile" data-k="a" data-lin="1">(a) <span class="tex">y=4x-1</span></button>
+          <button type="button" class="u7l1-tile" data-k="b" data-lin="0">(b) <span class="tex">y=x^{2}+2</span></button>
+          <button type="button" class="u7l1-tile" data-k="c" data-lin="1">(c) <span class="tex">y=-x+5</span></button>
+          <button type="button" class="u7l1-tile" data-k="d" data-lin="0">(d) <span class="tex">y=x^{3}</span></button>
+          <button type="button" class="u7l1-tile" data-k="e" data-lin="1">(e) <span class="tex">y=6</span></button>
+          <button type="button" class="u7l1-tile" data-k="f" data-lin="0">(f) <span class="tex">y=\dfrac{2}{x}</span></button>
+          <button type="button" class="u7l1-tile" data-k="g" data-lin="1">(g) <span class="tex">y=-3x</span></button>
+          <button type="button" class="u7l1-tile" data-k="h" data-lin="0">(h) <span class="tex">y=2^{x}</span></button>
+        </div>
+        <div class="u7l1-bin u7l1-bin-lin"><div class="u7l1-binh">LINEAR</div><div class="u7l1-binb" data-bin="lin"></div></div>
+        <div class="u7l1-bin u7l1-bin-non"><div class="u7l1-binh">NON-LINEAR</div><div class="u7l1-binb" data-bin="non"></div></div>
+        <div class="u7l1-sortbtns"><button type="button" class="pill small" id="u7l1-sortchk">Check the sort</button><button type="button" class="pill small" id="u7l1-sortreset">Start over</button></div>
+      </div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">LINEAR: <b>(a) <span class="tex">y=4x-1</span>, (c) <span class="tex">y=-x+5</span>, (e) <span class="tex">y=6</span>, (g) <span class="tex">y=-3x</span></b>. None of them does anything to <span class="tex">x</span> except multiply it by a number. ((e) has no <span class="tex">x</span> at all: its graph is a flat line.)<br>NON-LINEAR: <b>(b)</b> <span class="tex">x</span> squared, <b>(d)</b> <span class="tex">x</span> cubed, <b>(f)</b> <span class="tex">x</span> in a denominator, <b>(h)</b> <span class="tex">x</span> as an exponent.</div></div>
+    </div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Same step, straight line">
+  <h3 class="sub">The warm-up again: same step every time, straight line</h3>
+  <p>A table tells you too. When <span class="tex">x</span> goes up by 1 each time, a <b>linear</b> equation’s <span class="tex">y</span>-values change by the <b>same step</b> every time, so the points line up. A non-linear one’s steps keep changing, so its points bend.</p>
+  <div class="explainer" data-explainer="steps"></div>
+</section>
+
+<!-- ================= 2. Table of values ================= -->
+<section class="card" data-ink="s2" data-section="2. Building a Table of Values">
+  <div class="sec-h"><span class="badge">2</span><h2>Building a Table of Values from an Equation</h2></div>
+  <div class="def">A <b>table of values</b> lists ordered pairs that make an equation true. Pick several <b class="u7l1-cx">x-values</b> (usually <span class="tex">-2,\ -1,\ 0,\ 1,\ 2</span>), <b>substitute</b> each one into the equation, and simplify to get its <b class="u7l1-cy">y-value</b>. Each column of the table is one ordered pair.</div>
+  <div class="u7l1-s2row">
+    <div>For <span class="tex">y=x+3</span>, this gives <span class="tex">y=1,\ 2,\ 3,\ 4,\ 5</span>: the pairs <span class="tex">(-2,\ 1)</span>, <span class="tex">(-1,\ 2)</span>, <span class="tex">(0,\ 3)</span>, <span class="tex">(1,\ 4)</span> and <span class="tex">(2,\ 5)</span>.</div>
+    <div data-bk-table='{"headers":["x","y"],"rows":[[-2,1],[-1,2],[0,3],[1,4],[2,5]],"layout":"h","cellW":66,"cellH":48,"headW":50,"tap":false}'></div>
+  </div>
+  <div class="explainer" data-explainer="buildTable"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Brackets around every substituted value.</b> For <span class="tex">x=-2</span>, write <span class="tex">2(-2)-3</span>, not <span class="tex">2-2-3</span>. The brackets keep the negative sign with the number: <span class="tex">2(-2)=-4</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Build a table of values</h3></div>
+  <p class="q">Build a table of values for <span class="tex">y=2x-3</span>, using <span class="tex">x=-2,\ -1,\ 0,\ 1,\ 2</span>. Show your substitution work, then fill in the table.</p>
+  <div class="parts c1">
+    <div class="part">
+      <div class="u7l1-ex2">
+        <div><div class="pl">Substitution work:</div><div class="work" style="--h:250px"></div></div>
+        <div class="u7l1-htab-wrap">
+          <table class="u7l1-htab">
+            <tr><th class="u7l1-cx"><span class="tex">x</span></th><td><span class="tex">-2</span></td><td><span class="tex">-1</span></td><td><span class="tex">0</span></td><td><span class="tex">1</span></td><td><span class="tex">2</span></td></tr>
+            <tr><th class="u7l1-cy"><span class="tex">y</span></th><td><span data-reveal><span class="tex">-7</span></span></td><td><span data-reveal><span class="tex">-5</span></span></td><td><span data-reveal><span class="tex">-3</span></span></td><td><span data-reveal><span class="tex">-1</span></span></td><td><span data-reveal><span class="tex">1</span></span></td></tr>
+          </table>
+          <div class="muted small u7l1-taphint">Tap a <b>?</b> to show one value.</div>
+        </div>
+      </div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l1-subs">
+        <span class="tex">x=-2:\ \ y=2(-2)-3=-4-3=\boldsymbol{-7}</span><br>
+        <span class="tex">x=-1:\ \ y=2(-1)-3=-2-3=\boldsymbol{-5}</span><br>
+        <span class="tex">x=0:\ \ \ \ y=2(0)-3=0-3=\boldsymbol{-3}</span><br>
+        <span class="tex">x=1:\ \ \ \ y=2(1)-3=2-3=\boldsymbol{-1}</span><br>
+        <span class="tex">x=2:\ \ \ \ y=2(2)-3=4-3=\boldsymbol{1}</span></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Graphing from a table ================= -->
+<section class="card" data-ink="s3" data-section="3. Graphing a Line from a Table">
+  <div class="sec-h"><span class="badge">3</span><h2>Graphing a Line from a Table of Values</h2></div>
+  <p>The workflow is always the same four steps:</p>
+  <div class="u7l1-flow4">
+    <div class="u7l1-f4"><span class="u7l1-f4n">1</span><b>Pick</b> <span class="tex">x</span>-values</div>
+    <div class="u7l1-f4"><span class="u7l1-f4n">2</span><b>Substitute</b> to get the <span class="tex">y</span>-values</div>
+    <div class="u7l1-f4"><span class="u7l1-f4n">3</span><b>Plot</b> the ordered pairs</div>
+    <div class="u7l1-f4"><span class="u7l1-f4n">4</span><b>Join</b> them with one straight line, out to the <b>edges</b> of the grid</div>
+  </div>
+  <div class="explainer" data-explainer="plotLine"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Draw the whole line.</b> Use a ruler, go all the way to the edges of the grid in <b>both</b> directions, and put arrows on the ends. The line keeps going: the five points are only a few of its points.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Table, then line: <span class="tex">y=x-1</span></h3></div>
+  <p class="q">Consider <span class="tex">y=x-1</span>. <b>(a)</b> Complete the table for <span class="tex">x=-2,\ -1,\ 0,\ 1,\ 2</span>. <b>(b)</b> Plot the points and draw a straight line through them across the whole grid.</p>
+  <div class="parts c2 u7l1-gparts">
+    <div class="part"><div class="pl">(a)</div>
+      <table class="u7l1-htab">
+        <tr><th class="u7l1-cx"><span class="tex">x</span></th><td><span class="tex">-2</span></td><td><span class="tex">-1</span></td><td><span class="tex">0</span></td><td><span class="tex">1</span></td><td><span class="tex">2</span></td></tr>
+        <tr><th class="u7l1-cy"><span class="tex">y</span></th><td><span data-reveal><span class="tex">-3</span></span></td><td><span data-reveal><span class="tex">-2</span></span></td><td><span data-reveal><span class="tex">-1</span></span></td><td><span data-reveal><span class="tex">0</span></span></td><td><span data-reveal><span class="tex">1</span></span></td></tr>
+      </table>
+      <div class="work" style="--h:250px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=-2-1=\boldsymbol{-3}</span>, <span class="tex">y=-1-1=\boldsymbol{-2}</span>, <span class="tex">y=0-1=\boldsymbol{-1}</span>, <span class="tex">y=1-1=\boldsymbol{0}</span>, <span class="tex">y=2-1=\boldsymbol{1}</span>.<br>Pairs: <span class="tex">(-2,\ -3)</span>, <span class="tex">(-1,\ -2)</span>, <span class="tex">(0,\ -1)</span>, <span class="tex">(1,\ 0)</span>, <span class="tex">(2,\ 1)</span>.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="muted small">Tap the grid to plot points (tap a point again to remove it).</span></div>
+      <div class="u7l1-exg" id="u7l1-ex3g"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The five points line up. Join them and extend the line to both edges of the grid (shown in red on the grid).</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Table, then line: <span class="tex">y=-2x+3</span></h3></div>
+  <p class="q">Consider <span class="tex">y=-2x+3</span>. <b>(a)</b> Complete the table for <span class="tex">x=-2,\ -1,\ 0,\ 1,\ 2</span>. <b>(b)</b> Plot the points and draw a straight line through them across the whole grid.</p>
+  <div class="parts c2 u7l1-gparts">
+    <div class="part"><div class="pl">(a)</div>
+      <table class="u7l1-htab">
+        <tr><th class="u7l1-cx"><span class="tex">x</span></th><td><span class="tex">-2</span></td><td><span class="tex">-1</span></td><td><span class="tex">0</span></td><td><span class="tex">1</span></td><td><span class="tex">2</span></td></tr>
+        <tr><th class="u7l1-cy"><span class="tex">y</span></th><td><span data-reveal><span class="tex">7</span></span></td><td><span data-reveal><span class="tex">5</span></span></td><td><span data-reveal><span class="tex">3</span></span></td><td><span data-reveal><span class="tex">1</span></span></td><td><span data-reveal><span class="tex">-1</span></span></td></tr>
+      </table>
+      <div class="work" style="--h:250px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">-2(-2)+3=4+3=\boldsymbol{7}</span><br><span class="tex">-2(-1)+3=2+3=\boldsymbol{5}</span><br><span class="tex">-2(0)+3=\boldsymbol{3}</span>, <span class="tex">-2(1)+3=\boldsymbol{1}</span>, <span class="tex">-2(2)+3=\boldsymbol{-1}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="muted small">Tap the grid to plot points (tap a point again to remove it).</span></div>
+      <div class="u7l1-exg" id="u7l1-ex4g"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The line goes <b>down</b> to the right: <span class="tex">y</span> drops by 2 every time <span class="tex">x</span> goes up by 1 (shown in red on the grid).</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. One point off the line?">
+  <h3 class="sub">One point off the line? Check it again</h3>
+  <p>Points from a linear equation <b>always</b> line up. If one of yours doesn’t, it isn’t the line’s fault: re-check that point’s <b>arithmetic</b>, then how you <b>plotted</b> it.</p>
+  <div class="explainer" data-explainer="fixIt"></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u7l1"></section>
+
+<!-- ================= 4. Is a point on the line? ================= -->
+<section class="card" data-ink="s4" data-section="4. Is a Point on the Line?">
+  <div class="sec-h"><span class="badge">4</span><h2>Checking Whether a Point Lies on a Line</h2></div>
+  <div class="def">No graph is needed. <b>Substitute</b> the point’s <b class="u7l1-cx">x-coordinate</b> for <span class="tex">x</span> and its <b class="u7l1-cy">y-coordinate</b> for <span class="tex">y</span>. If the statement is <b>true</b>, the point lies on the line. If it is <b>false</b>, the point does not.</div>
+  <div class="explainer" data-explainer="onLine"></div>
+</section>
+
+<section class="card" data-ink="try" data-section="4. Try it: on the line or not?">
+  <h3 class="sub">Try it: on the line or not?</h3>
+  <p>Pick a line, then tap any grid point. The substitution check tells you whether that point is on the line.</p>
+  <div class="u7l1-try">
+    <div id="u7l1-tryg"></div>
+    <div class="u7l1-tryside">
+      <div class="u7l1-trybtns" id="u7l1-trybtns"></div>
+      <div class="u7l1-tryro" id="u7l1-tryro"></div>
+    </div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>On the line or not?</h3></div>
+  <p class="q">Determine whether each point lies on the given line.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Does <span class="tex">(3,\ 5)</span> lie on <span class="tex">y=x+2</span>?</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Substitute <span class="tex">x=3</span>, <span class="tex">y=5</span>:<br><span class="tex">5\overset{?}{=}3+2</span><br><span class="tex">5=5</span> ✓ true<br><b>Yes</b>: <span class="tex">(3,\ 5)</span> lies on the line.</div></div></div>
+    <div class="part"><div class="pl">(b) Does <span class="tex">(-2,\ 1)</span> lie on <span class="tex">y=3x+4</span>?</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Substitute <span class="tex">x=-2</span>, <span class="tex">y=1</span>:<br><span class="tex">1\overset{?}{=}3(-2)+4</span><br><span class="tex">1\overset{?}{=}-6+4=-2</span> ✗ false<br><b>No</b>: <span class="tex">(-2,\ 1)</span> is not on the line.</div></div></div>
+    <div class="part"><div class="pl">(c) Does <span class="tex">(-4,\ 1)</span> lie on <span class="tex">y=-2x-7</span>?</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Substitute <span class="tex">x=-4</span>, <span class="tex">y=1</span>:<br><span class="tex">1\overset{?}{=}-2(-4)-7</span><br><span class="tex">1\overset{?}{=}8-7=1</span> ✓ true<br><b>Yes</b>: <span class="tex">(-4,\ 1)</span> lies on the line.</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Far away: the big one">
+  <h3 class="sub">The warm-up’s big one: far, far away</h3>
+  <p>A graph can’t tell <span class="tex">(30,\ 90)</span> from <span class="tex">(30,\ 92)</span>: they are almost the same dot. Substitution can, in one line.</p>
+  <div class="explainer" data-explainer="zoomOut"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Linear or not?</b> In a linear equation, <span class="tex">x</span> is only to the first power: never squared, under a root, in a denominator or an exponent. Its graph is a <b>straight line</b>, and its <span class="tex">y</span>-values change by the <b>same step</b> each time.</div>
+    <div><b>Table of values.</b> Pick <span class="tex">x=-2,\ -1,\ 0,\ 1,\ 2</span>, substitute each one <b>in brackets</b>, and simplify: <span class="tex">y=2(-2)-3=-7</span>. Each column is an ordered pair.</div>
+    <div><b>Graph it.</b> Plot each pair (across by <span class="tex">x</span>, up or down by <span class="tex">y</span>), then join them with one straight line out to the edges, with arrows. A point off the line means a mistake.</div>
+    <div><b>On the line?</b> Substitute both coordinates. <span class="tex">5\overset{?}{=}3+2</span> is true, so <span class="tex">(3,\ 5)</span> is on <span class="tex">y=x+2</span>. False means the point is not on the line.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u7l1">
+    <div><div class="kicker">Your turn</div><b>Assignment 1 — Review: Graphing Linear Equations from a Table of Values</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l2/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 2 — Slope–Intercept Form: <span class="tex">y=mx+b</span></b><div class="muted">The number in front of <span class="tex">x</span> is the slope, and the number on its own is where the line crosses the <span class="tex">y</span>-axis.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u7l1.js';
+  boot({ key: 'u7l1', homeHref: '../../', title: '7.1 Graphing From a Table' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

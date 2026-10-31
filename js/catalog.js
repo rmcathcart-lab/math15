@@ -88,9 +88,9 @@
     { unit: 8, title: 'Systems of Linear Equations', outcomes: 'RF9', lessons: [
       { id: 'u8l1', num: '1', title: 'What Is a System of Linear Equations? Solving by Graphing' },
       { id: 'u8l2', num: '2', title: 'Classifying Systems: One Solution, No Solution, or Infinite Solutions' },
-      { id: 'u8l3', num: '3', title: 'Solving Systems by Substitution, Part 1: A Variable Already Isolated' },
+      { id: 'u8l3', num: '3', title: 'Solving Systems by Substitution, Part 1: When a Variable Is Already Isolated' },
       { id: 'u8l4', num: '4', title: 'Solving Systems by Substitution, Part 2: Isolating a Variable First' },
-      { id: 'u8l5', num: '5', title: 'Solving Systems by Elimination, Part 1: Coefficients Already Match' },
+      { id: 'u8l5', num: '5', title: 'Solving Systems by Elimination, Part 1: When Coefficients Already Match' },
       { id: 'u8l6', num: '6', title: 'Solving Systems by Elimination, Part 2: Multiplying First' },
       { id: 'u8l7', num: '7', title: 'Solving Word Problems with Systems of Equations' },
       { id: 'u8l8', num: '8', title: 'Unit Review: Systems of Linear Equations' }] }

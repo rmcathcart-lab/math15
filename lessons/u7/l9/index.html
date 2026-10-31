@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Slope in Context · Math 15 7.9</title>
+<meta name="description" content="Math 15 Unit 7 Lesson 9: slope in context. The slope is a rate of change with units, the y-intercept is the starting value, writing and using a real-world equation, finding the rate from two data points, and comparing two situations with a break-even point. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u7l9.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u7l9">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 7 Equations of Linear Relations · Lesson 9</div>
+  <h1>Slope in Context: Interpreting Rates of Change</h1>
+  <p class="lede">In a real situation, every number in <span class="tex">y=mx+b</span> has a job. The <b class="u7l9-c-m">slope</b> is a <b>rate of change</b> with units: km per hour, dollars per lock, cm per minute. The <b class="u7l9-c-b">y-intercept</b> is the <b>starting value</b>. Today we read them, write them, use them, and compare two plans.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>state the <b class="u7l9-c-m">slope</b> as a <b>rate of change</b> with units (<b>units of <span class="tex">y</span> per unit of <span class="tex">x</span></b>) and say whether the quantity is increasing or decreasing</li>
+      <li>explain the <b class="u7l9-c-b">y-intercept</b> as the <b>starting value</b> (the value when <span class="tex">x=0</span>), with units</li>
+      <li>write an equation from a story (the rate is <span class="tex">m</span>, the start is <span class="tex">b</span>) and use it to find <span class="tex">y</span>, or to find <span class="tex">x</span></li>
+      <li>find the rate from two data points, then solve for <span class="tex">b</span></li>
+      <li>compare two situations and find the <b>break-even point</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF3</b> Demonstrate an understanding of slope with respect to: rise and run; line segments and lines; rate of change; parallel lines; perpendicular lines.</div>
+  <div class="outcome"><b>RF4</b> Describe and represent linear relations, using: words; ordered pairs; tables of values; graphs; equations.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Great Race" id="wu" style="--wf-side: 392px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Great Race</h2>
+  <p class="wf-rule">A made-up <b>60 m</b> race. The rabbit is so fast, it gives the others a <b>head start</b>. The graph shows the first 2 minutes; the rest is in the fog.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u7l9-wfig">
+      <div id="u7l9-race"></div>
+      <div class="u7l9-wbtns">
+        <button type="button" class="pill" id="u7l9-wfog">Lift the fog</button>
+        <button type="button" class="pill" id="u7l9-weq">Write the equations</button>
+        <button type="button" class="pill" id="u7l9-wreset">Reset</button>
+      </div>
+      <div class="u7l9-weqs" id="u7l9-weqs"></div>
+      <div class="u7l9-wnote muted" id="u7l9-wnote">Nobody changes speed. Guess first, then lift the fog.</div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u7l9-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How big is each racer’s <b>head start</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l9-wa"><div class="bk-ans">Rabbit <b>0 m</b>, turtle <b>30 m</b>, snail <b>50 m</b>: where each line starts on the <span class="tex">d</span>-axis.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How many metres does the rabbit run <b>each minute</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l9-wa"><div class="bk-ans"><b>10 m</b> each minute (20 m in 2 min).</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Whose line is <b>steepest</b>? Why? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l9-wa"><div class="bk-ans">The <b>rabbit’s</b>: it covers the most metres each minute. Steeper line = faster racer.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>The turtle’s speed: ___ metres per ___. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l9-wa"><div class="bk-ans"><b>5 metres per minute</b> (10 m in 2 min). The snail: 2.5 m per minute.</div></div></div>
+    </div>
+    <div class="poll wf-poll u7l9-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Nobody changes speed. Who crosses the finish line <b>first</b>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Rabbit</div>
+        <div class="opt"><b>B</b> Turtle</div>
+        <div class="opt right"><b>C</b> Snail</div>
+        <div class="opt"><b>D</b> A tie</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: the snail!</b> It needs only 10 more metres at 2.5 m per minute: <span class="tex">50+2.5t=60</span> gives <span class="tex">t=4</span> min. Rabbit: <span class="tex">10t=60</span>, <span class="tex">t=6</span>. Turtle: <span class="tex">30+5t=60</span>, <span class="tex">t=6</span>.</div>
+    </div>
+  </div></div>
+  <div class="bk-wq u7l9-photo">
+    <div class="q-line"><div class="q-num bonus">+</div><div><b>Photo finish!</b> Grab a ruler with your neighbour: who comes in <b>second</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="u7l9-wa"><div class="bk-ans">The rabbit and the turtle <b>tie for second</b>: both reach 60 m at exactly 6 minutes (<span class="tex">10t=5t+30</span> gives <span class="tex">t=6</span>). A big head start wins early; a big speed wins later.</div></div>
+  </div>
+</section>
+
+<!-- ================= 1. Slope as a rate of change ================= -->
+<section class="card" data-ink="s1" data-section="1. Slope as a Rate of Change">
+  <div class="sec-h"><span class="badge">1</span><h2>Slope as a Rate of Change</h2></div>
+  <div class="def">In <span class="tex">y=mx+b</span> the slope <span class="tex">m</span> tells how much <span class="tex">y</span> changes each time <span class="tex">x</span> increases by <span class="tex">1</span>, so it is a <b>rate of change</b>. It must be stated with units: <b>units of <span class="tex">y</span> per unit of <span class="tex">x</span></b>. Dollars against hours gives <b>dollars per hour</b>.</div>
+  <div class="u7l9-signs">
+    <div class="u7l9-sign u7l9-sg-pos"><b>Positive slope</b><div>the quantity is <b>increasing</b></div></div>
+    <div class="u7l9-sign u7l9-sg-neg"><b>Negative slope</b><div>the quantity is <b>decreasing</b></div></div>
+    <div class="u7l9-sign u7l9-sg-unit"><b>Name all three</b><div>the <b>quantity</b>, the <b>rate</b> and the <b>units</b>, not just the number</div></div>
+  </div>
+  <p>Watch a story and its graph together: each step of <b>1</b> along the horizontal axis changes the quantity by the <b>same</b> amount. That amount is the slope.</p>
+  <div class="explainer" data-explainer="rate"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Answer with a sentence that has units.</b> “The distance increases by 70 km per hour”, not just “70”. A bare number doesn’t say <em>what</em> is changing, which <em>way</em>, or how <em>fast</em>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>State the slope as a rate</h3></div>
+  <p class="q">State the slope, say what it represents with units, and say whether the quantity rises or falls.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) A courier’s distance is <span class="tex">d=70t</span>, where <span class="tex">d</span> is in kilometres and <span class="tex">t</span> is in hours.</div>
+      <div class="u7l9-fill"><span class="tex">m=</span> <span class="u7l9-blank u7l9-bs" data-reveal><b>70</b></span> &nbsp;The distance is <span class="u7l9-blank" data-reveal><b>increasing</b></span> by <span class="u7l9-blank u7l9-bs" data-reveal><b>70</b></span> km per <span class="u7l9-blank u7l9-bs" data-reveal><b>hour</b></span>.</div>
+      <div class="work" style="--h:120px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=70</span> (and <span class="tex">b=0</span>).<br>The distance grows by 70 km for every extra hour, so the slope is the courier’s speed: <b>70 kilometres per hour</b>.<br><span class="tex">m&gt;0</span>, so the distance is <b>increasing</b>.</div></div></div>
+    <div class="part"><div class="pl">(b) A propane tank holds <span class="tex">V=-6t+40</span>, where <span class="tex">V</span> is in litres and <span class="tex">t</span> is in minutes since lighting.</div>
+      <div class="u7l9-fill"><span class="tex">m=</span> <span class="u7l9-blank u7l9-bs" data-reveal><b>−6</b></span> &nbsp;The propane is <span class="u7l9-blank" data-reveal><b>decreasing</b></span> by <span class="u7l9-blank u7l9-bs" data-reveal><b>6</b></span> L per <span class="u7l9-blank u7l9-bs" data-reveal><b>minute</b></span>.</div>
+      <div class="work" style="--h:120px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=-6</span>.<br>The tank loses 6 litres each minute: <b>−6 litres per minute</b>.<br><span class="tex">m&lt;0</span>, so the volume of propane is <b>decreasing</b>.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Say it as a sentence">
+  <h3 class="sub">Say it as a sentence</h3>
+  <p>A rate sentence has four blanks, and the equation with its units fills all of them: the <b>sign</b> of <span class="tex">m</span> gives the direction, its <b>size</b> gives the number, and the units of <span class="tex">y</span> and <span class="tex">x</span> finish it.</p>
+  <div class="explainer" data-explainer="sentence"></div>
+</section>
+
+<!-- ================= 2. The y-intercept as a starting value ================= -->
+<section class="card" data-ink="s2" data-section="2. The y-Intercept as a Starting Value">
+  <div class="sec-h"><span class="badge">2</span><h2>The <span class="tex">y</span>-Intercept as a Starting Value</h2></div>
+  <div class="def u7l9-def-b">The <span class="tex">y</span>-intercept <span class="tex">b</span> is the value of <span class="tex">y</span> when <span class="tex">x=0</span>: the amount <b>before anything has happened</b>. It is a starting amount, an initial value, or a flat fee charged no matter what. Unlike the slope it has <b>no “per”</b> in its units, only the ordinary unit of <span class="tex">y</span>.</div>
+  <div class="def-grid u7l9-mb">
+    <div class="def u7l9-def-m"><b class="u7l9-c-m">Slope <span class="tex">m</span></b>: the <b>rate</b>. Units: <b>units of <span class="tex">y</span> per unit of <span class="tex">x</span></b> (dollars per coffee).</div>
+    <div class="def u7l9-def-b"><b class="u7l9-c-b"><span class="tex">y</span>-intercept <span class="tex">b</span></b>: the <b>start</b>. Units: just the <b>units of <span class="tex">y</span></b> (dollars).</div>
+  </div>
+  <p>To find the starting value, <b>rewind</b> the story to <span class="tex">x=0</span>, and watch where the graph meets the vertical axis.</p>
+  <div class="explainer" data-explainer="start"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>What does the <span class="tex">y</span>-intercept mean?</h3></div>
+  <p class="q">State the <span class="tex">y</span>-intercept, with units, and explain what it represents in the situation.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) A coffee card’s balance is <span class="tex">B=-4n+60</span>, where <span class="tex">B</span> is in dollars and <span class="tex">n</span> is the number of coffees purchased.</div>
+      <div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">b=60</span>, so the <span class="tex">y</span>-intercept is <b>$60</b>.<br>When <span class="tex">n=0</span> no coffees have been bought yet, so $60 is the <b>starting balance on the card</b>.</div></div></div>
+    <div class="part"><div class="pl">(b) A tree’s height is <span class="tex">H=20t+150</span>, where <span class="tex">H</span> is in cm and <span class="tex">t</span> is the number of years since planting.</div>
+      <div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">b=150</span>, so the <span class="tex">y</span>-intercept is <b>150 cm</b>.<br>At <span class="tex">t=0</span> the tree was 150 cm tall: its <b>height at the moment it was planted</b>.</div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>No “per” for <span class="tex">b</span>.</b> The coffee card starts with <b>$60</b>, not “$60 per coffee”. Only the slope is a “per” number.</div></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Writing and using a real-world equation ================= -->
+<section class="card" data-ink="s3" data-section="3. Writing and Using a Real-World Equation">
+  <div class="sec-h"><span class="badge">3</span><h2>Writing and Using a Real-World Equation</h2></div>
+  <div class="u7l9-recipe">
+    <div class="u7l9-rstep"><span class="u7l9-rn">1</span><div>Find the <b class="u7l9-c-m">rate</b>: that is <span class="tex">m</span>. It is usually signalled by <b>“per”</b> or <b>“for every”</b>.</div></div>
+    <div class="u7l9-rstep"><span class="u7l9-rn">2</span><div>Find the <b class="u7l9-c-b">starting value</b>: that is <span class="tex">b</span>, often a <b>flat fee</b> or base amount.</div></div>
+    <div class="u7l9-rstep"><span class="u7l9-rn">3</span><div>Write <span class="tex">y=mx+b</span> with <b>letters that match</b> the situation (<span class="tex">C</span> for cost, <span class="tex">n</span> for number…).</div></div>
+    <div class="u7l9-rstep"><span class="u7l9-rn">4</span><div>To answer a question, <b>substitute <span class="tex">x</span></b> to get <span class="tex">y</span>, or <b>substitute <span class="tex">y</span> and solve</b> for <span class="tex">x</span>.</div></div>
+  </div>
+  <div class="def amber">If no starting value is given but <b>two data points</b> are, find <span class="tex">m</span> from the two points first, then substitute one point and solve for <span class="tex">b</span> (the same method as Lesson 6).</div>
+  <div class="explainer" data-explainer="build"></div>
+</section>
+
+<section class="card" data-ink="s3sort" data-section="3. Rate or start?">
+  <h3 class="sub">Rate or start?</h3>
+  <p>Read each phrase. Is it the <b class="u7l9-c-m">rate</b> (<span class="tex">m</span>) or the <b class="u7l9-c-b">starting value</b> (<span class="tex">b</span>)? <span class="muted">Tap a card to check.</span></p>
+  <div class="bk-flips u7l9-flips" style="--bk-cols:3">
+    <div class="bk-flip"><div class="bk-front">“$20 for every lock changed”</div><div class="bk-back"><b class="u7l9-c-m">rate, <span class="tex">m=20</span></b><br>“for every” means per</div></div>
+    <div class="bk-flip"><div class="bk-front">“a $35 service call fee”</div><div class="bk-back"><b class="u7l9-c-b">start, <span class="tex">b=35</span></b><br>paid even for 0 locks</div></div>
+    <div class="bk-flip"><div class="bk-front">“earns $12 per hour”</div><div class="bk-back"><b class="u7l9-c-m">rate, <span class="tex">m=12</span></b><br>dollars per hour</div></div>
+    <div class="bk-flip"><div class="bk-front">“a $25 sign-up fee”</div><div class="bk-back"><b class="u7l9-c-b">start, <span class="tex">b=25</span></b><br>paid once, at the start</div></div>
+    <div class="bk-flip"><div class="bk-front">“the pool already holds 200 L”</div><div class="bk-back"><b class="u7l9-c-b">start, <span class="tex">b=200</span></b><br>the amount at time 0</div></div>
+    <div class="bk-flip"><div class="bk-front">“burns down 2 cm each hour”</div><div class="bk-back"><b class="u7l9-c-m">rate, <span class="tex">m=-2</span></b><br>going down, so negative</div></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>The locksmith</h3></div>
+  <p class="q">A locksmith charges a <b>$35 service call fee</b>, plus <b>$20 for every lock</b> changed.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Write an equation for the total cost <span class="tex">C</span> in terms of the number of locks changed, <span class="tex">n</span>.</div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Rate: $20 per lock, so <span class="tex">m=20</span>.<br>Flat fee: $35, so <span class="tex">b=35</span>.<br><span class="tex">\boldsymbol{C=20n+35}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Use your equation to determine the cost of changing <span class="tex">5</span> locks.</div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">C=20(5)+35</span><br><span class="tex">=100+35</span><br><span class="tex">=\boldsymbol{\$135}</span></div></div></div>
+    <div class="part"><div class="pl">(c) A customer’s bill came to $175. How many locks were changed?</div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">175=20n+35</span><br><span class="tex">140=20n</span><br><span class="tex">n=\boldsymbol{7}</span> <b>locks</b><br><span class="muted">Check: <span class="tex">20(7)+35=175</span> ✓</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Forwards and backwards">
+  <h3 class="sub">Use the equation forwards and backwards</h3>
+  <p><b>Forwards</b>, the equation turns a number of locks into a cost: substitute and calculate. <b>Backwards</b>, it answers “how many locks gave this bill?”: substitute the cost and undo the steps in reverse order.</p>
+  <div class="explainer" data-explainer="machine"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>The burning candle: two data points</h3></div>
+  <p class="q">A candle burns at a constant rate. After <b>10 minutes</b> it is <b>14 cm</b> tall; after <b>25 minutes</b> it is <b>8 cm</b> tall.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Determine the rate at which the candle is burning (the slope), including units.</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Points <span class="tex">(10,\ 14)</span> and <span class="tex">(25,\ 8)</span>:<br><span class="tex">m=\dfrac{8-14}{25-10}=\dfrac{-6}{15}=\boldsymbol{-0.4}</span><br>The candle burns down <b>0.4 cm per minute</b>.</div></div></div>
+    <div class="part"><div class="pl">(b) Write an equation for the height <span class="tex">H</span> (in cm) in terms of the number of minutes, <span class="tex">m</span>, it has been burning.</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">H=-0.4m+b</span>, and <span class="tex">(10,\ 14)</span> is on the line:<br><span class="tex">14=-0.4(10)+b</span><br><span class="tex">14=-4+b</span><br><span class="tex">b=18</span>, so <span class="tex">\boldsymbol{H=-0.4m+18}</span></div></div></div>
+    <div class="part"><div class="pl">(c) What was the height of the candle before it was lit?</div><div class="work" style="--h:150px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Before lighting, <span class="tex">m=0</span>:<br><span class="tex">H=-0.4(0)+18=\boldsymbol{18}</span> <b>cm</b><br>(that is the <span class="tex">y</span>-intercept).</div></div></div>
+    <div class="part"><div class="pl">(d) How many minutes until the candle burns out completely (<span class="tex">H=0</span>)?</div><div class="work" style="--h:150px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">0=-0.4m+18</span><br><span class="tex">0.4m=18</span><br><span class="tex">m=\boldsymbol{45}</span> <b>minutes</b></div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Careful: here <span class="tex">m</span> means minutes.</b> The letters match the story, so in <span class="tex">H=-0.4m+18</span> the slope is <span class="tex">-0.4</span> and <span class="tex">m</span> is the number of minutes.</div></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Dividing by a decimal, no calculator.</b> <span class="tex">0.4m=18</span>: multiply both sides by 10 to get <span class="tex">4m=180</span>, then <span class="tex">m=45</span>.</div></div>
+  <div class="explainer" data-explainer="candle"></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u7l9"></section>
+
+<!-- ================= 4. Comparing two linear situations ================= -->
+<section class="card" data-ink="s4" data-section="4. Comparing Two Linear Situations">
+  <div class="sec-h"><span class="badge">4</span><h2>Comparing Two Linear Situations</h2></div>
+  <div class="def-grid u7l9-mb">
+    <div class="def u7l9-def-b">The situation with the <b>smaller <span class="tex">y</span>-intercept</b> starts out cheaper…</div>
+    <div class="def u7l9-def-m">…but the one with the <b>smaller slope</b> grows more slowly. So one option can win at first, and the other can win later.</div>
+  </div>
+  <div class="def amber">Set the two equations <b>equal</b> and solve: that gives the <b>break-even point</b>, the <span class="tex">x</span>-value where both cost the same. On the graph it is where the two lines <b>cross</b>.</div>
+  <div class="explainer" data-explainer="compare"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Two rental companies</h3></div>
+  <p class="q">Two rental companies charge as below for a one-day rental, where <span class="tex">d</span> is kilometres driven:</p>
+  <div class="u7l9-coeqs"><span><b class="u7l9-cA">Company A:</b> <span class="tex">C=0.20d+30</span></span><span><b class="u7l9-cB">Company B:</b> <span class="tex">C=0.10d+50</span></span></div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">(a) State the slope and <span class="tex">y</span>-intercept of each equation, and explain what each means here.</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Company A:</b> <span class="tex">m=0.20</span>: it charges <b>$0.20 for every kilometre driven</b>; <span class="tex">b=30</span>: a <b>$30 flat fee</b> charged before any driving (<span class="tex">d=0</span>).<br><b>Company B:</b> <span class="tex">m=0.10</span>: <b>$0.10 per kilometre</b>; <span class="tex">b=50</span>: a <b>$50 flat fee</b>.<br>B costs less per kilometre, but it starts $20 higher.</div></div></div>
+  </div>
+  <div class="u7l9-ex5">
+    <div class="part"><div class="pl">(b) On the grid, plot the <span class="tex">y</span>-intercept of each line, then use the slope to plot one more point for each company and sketch both lines.</div>
+      <div class="u7l9-fig" id="u7l9-ex5fig"></div>
+      <div class="muted small u7l9-tapnote">Tap the grid to plot a point (drag to adjust, tap it again to remove it).</div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u7l9-ans5"><div id="u7l9-ex5ans"></div><div>A: start at <span class="tex">(0,\ 30)</span>, then up $20 for each 100 km, e.g. <span class="tex">(400,\ 110)</span>.<br>B: start at <span class="tex">(0,\ 50)</span>, then up $10 for each 100 km, e.g. <span class="tex">(400,\ 90)</span>.<br>The two lines cross at <span class="tex">(200,\ 70)</span>.</div></div></div></div></div>
+    <div class="part"><div class="pl">(c) Solve algebraically to determine the distance at which both companies charge the same amount.</div><div class="work" style="--h:330px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">0.20d+30=0.10d+50</span><br><span class="tex">0.10d+30=50</span><br><span class="tex">0.10d=20</span><br><span class="tex">d=\boldsymbol{200}</span> <b>km</b> (both cost $70 there)</div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">(d) For a 100 km trip, which company is cheaper? For a 300 km trip, which company is cheaper?</div><div class="work" style="--h:150px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">100 km: A <span class="tex">=0.20(100)+30=\$50</span>; B <span class="tex">=0.10(100)+50=\$60</span>, so <b>Company A is cheaper</b>.<br>300 km: A <span class="tex">=0.20(300)+30=\$90</span>; B <span class="tex">=0.10(300)+50=\$80</span>, so <b>Company B is cheaper</b>.<br>A wins below 200 km, B wins above it: exactly what the graph shows.</div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Decimals without a calculator.</b> <span class="tex">0.20(100)</span> is one fifth of 100, so 20. And <span class="tex">0.10d=20</span> means one tenth of <span class="tex">d</span> is 20: multiply both sides by 10 to get <span class="tex">d=200</span>.</div></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Solving for the break-even point">
+  <h3 class="sub">Solving for the break-even point</h3>
+  <p>Setting the two costs equal makes an equation with the variable on <b>both sides</b>. Keep it balanced: whatever you do to one side, do to the other.</p>
+  <div class="explainer" data-explainer="even"></div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Company C charges <span class="tex">C=0.20d+50</span>. Is Company C ever cheaper than Company A? How do their graphs compare?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Never.</b> Both charge $0.20 per km (same slope), so the lines are <b>parallel</b> and never cross. C starts $20 higher and stays $20 higher at every distance: there is no break-even point.</div></div></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b class="u7l9-c-m">Slope = rate of change</b>, with units: <b>units of <span class="tex">y</span> per unit of <span class="tex">x</span></b>. Positive: increasing; negative: decreasing. <span class="tex">d=70t</span>: the distance increases by 70 km per hour.</div>
+    <div><b class="u7l9-c-b"><span class="tex">y</span>-intercept = starting value</b>, the value when <span class="tex">x=0</span>. Units of <span class="tex">y</span> only, no “per”. <span class="tex">B=-4n+60</span>: the card starts with $60.</div>
+    <div><b>Write it and use it.</b> Rate → <span class="tex">m</span>, start → <span class="tex">b</span>: <span class="tex">C=20n+35</span>. Substitute <span class="tex">x</span> to get <span class="tex">y</span> (5 locks: $135), or substitute <span class="tex">y</span> and solve (a $175 bill: 7 locks). Two data points? Find <span class="tex">m</span> first, then <span class="tex">b</span>.</div>
+    <div><b>Compare two plans.</b> The smaller <span class="tex">b</span> wins at first; the smaller <span class="tex">m</span> wins later. Set them equal for the <b>break-even point</b>: <span class="tex">0.20d+30=0.10d+50</span> gives <span class="tex">d=200</span> km.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u7l9">
+    <div><div class="kicker">Your turn</div><b>Assignment 9 — Slope in Context: Interpreting Rates of Change</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l10/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 10 — Unit Review: Equations of Lines</b><div class="muted">Every line comes down to <span class="tex">m</span> and <span class="tex">b</span>: write, graph and use them all together to get ready for the unit test.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u7l9.js';
+  boot({ key: 'u7l9', homeHref: '../../', title: '7.9 Slope in Context' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

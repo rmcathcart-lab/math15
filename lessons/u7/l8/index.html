@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Horizontal, Vertical, Any Form · Math 15 7.8</title>
+<meta name="description" content="Math 15 Unit 7 Lesson 8: graphing horizontal lines y = k (slope 0) and vertical lines x = k (slope undefined), telling them apart by asking which coordinate is held fixed, and a three-question strategy for graphing a line given in any form: y = k or x = k, y = mx + b, or general form with the two-intercept method. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u7l8.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u7l8">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 7 Equations of Linear Relations · Lesson 8</div>
+  <h1>Graphing Horizontal Lines, Vertical Lines, and Any Form</h1>
+  <p class="lede">Two special cases, <span class="tex">y=k</span> and <span class="tex">x=k</span>, then <b>one strategy</b> for whatever form arrives. The key question for the special cases: <b>which coordinate is held fixed?</b></p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>graph a <b>horizontal</b> line <span class="tex">y=k</span> and explain why its slope is <span class="tex">0</span></li>
+      <li>graph a <b>vertical</b> line <span class="tex">x=k</span> and explain why its slope is <b>undefined</b></li>
+      <li>tell <span class="tex">y=k</span> and <span class="tex">x=k</span> apart by asking <b>which coordinate is held fixed</b></li>
+      <li>read the form of an equation and choose a strategy: graph <span class="tex">y=k</span> or <span class="tex">x=k</span> directly, use <span class="tex">(0,b)</span> and the slope for <span class="tex">y=mx+b</span>, or use the <b>two intercepts</b> for <span class="tex">Ax+By+C=0</span></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF6</b> Relate linear relations expressed in: slope–intercept form (<span class="tex">y=mx+b</span>); general form (<span class="tex">Ax+By+C=0</span>); slope–point form (<span class="tex">y-y_1=m(x-x_1)</span>) to their graphs.<br><span class="muted">Today: horizontal and vertical lines, and graphing a line from any form.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Tic-Tac-Toe on a Grid" id="wu" style="--wf-side: 430px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Tic-Tac-Toe on a Grid</h2>
+  <p class="wf-rule">Every line of this board goes <b>straight across</b> or <b>straight up</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div id="u7l8-board" class="u7l8-board"></div>
+    <div class="u7l8-wbtns"><button type="button" class="pill small" id="u7l8-xwin">X’s move</button><button type="button" class="pill small" id="u7l8-wreset">Reset</button><span class="muted u7l8-whint">After the big one, tap a card to draw its line.</span></div>
+  </div><div class="wf-side">
+    <div class="u7l8-wqs">
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">1</div><div>It’s X’s turn. Where should X go to win? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l8-wa"><div class="bk-ans">The <b>bottom-right</b> square: it finishes X’s diagonal.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">2</div><div>Line <b>P</b> goes straight up. Name three points on it. What stays the <b>same</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l8-wa"><div class="bk-ans">e.g. <span class="tex">(4,1)</span>, <span class="tex">(4,5)</span>, <span class="tex">(4,8)</span>. The <span class="tex">x</span>-coordinate is always <span class="tex">4</span>.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">3</div><div>So line P is <span class="tex">x=4</span>. Name lines <b>Q</b>, <b>R</b> and <b>S</b> the same way. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l8-wa"><div class="bk-ans">Q: <span class="tex">x=7</span> · R: <span class="tex">y=3</span> · S: <span class="tex">y=6</span>. (Not “R is <span class="tex">x=3</span>”!)</div></div>
+      </div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> How many of these cards draw a line of <b>this</b> board? <b>Guess first.</b></div></div>
+      <div class="u7l8-cards" id="u7l8-cards"></div>
+      <div class="poll-opts u7l8-c4">
+        <div class="opt"><b>A</b> 1</div>
+        <div class="opt"><b>B</b> 2</div>
+        <div class="opt right"><b>C</b> 3</div>
+        <div class="opt"><b>D</b> 4</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: three cards.</b> <span class="tex">y-6=0</span> is <span class="tex">y=6</span> (S). <span class="tex">2x=14</span> is <span class="tex">x=7</span> (Q). <span class="tex">3=y</span> is <span class="tex">y=3</span> (R). But <span class="tex">x+y=7</span> has <b>both</b> letters, so it is slanted.</div>
+    </div>
+  </div></div>
+  <div class="bk-wq u7l8-early">
+    <div class="q-line"><div class="q-num bonus">+</div><div><b>Your turn:</b> write the missing board line P on a card in <b>disguise</b>. Can your neighbour unmask it? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="u7l8-wa"><div class="bk-ans">P is <span class="tex">x=4</span>. Disguises: <span class="tex">x-4=0</span>, <span class="tex">3x=12</span>, <span class="tex">4=x</span>, <span class="tex">2x-8=0</span>, <span class="tex">x+1=5</span>, …</div></div>
+  </div>
+</section>
+
+<!-- ================= 1. Horizontal ================= -->
+<section class="card" data-ink="s1" data-section="1. Horizontal Lines: y = k">
+  <div class="sec-h"><span class="badge">1</span><h2>Horizontal Lines: <span class="tex">y=k</span></h2></div>
+  <div class="def">Every point on a horizontal line shares the <b>same <span class="tex">y</span>-coordinate</b>, so its equation is <span class="tex">y=k</span> and <span class="tex">x</span> never appears. <span class="tex">(-3,4)</span>, <span class="tex">(0,4)</span> and <span class="tex">(2,4)</span> all lie on <span class="tex">y=4</span>, whatever the <span class="tex">x</span>-coordinate is.</div>
+  <p>Because <span class="tex">y</span> never changes as <span class="tex">x</span> changes, the <b class="u7l8-crise">rise</b> is always <span class="tex">0</span>: every horizontal line has <b>slope <span class="tex">0</span></b>.</p>
+  <div class="explainer" data-explainer="pinnedH"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Horizontal lines from a table</h3></div>
+  <p class="q">Complete each table of values, then graph the horizontal line.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">y=4</span></div>
+      <table class="u7l8-tab"><tr><th><span class="tex">x</span></th><td><span class="tex">-4</span></td><td><span class="tex">0</span></td><td><span class="tex">3</span></td></tr>
+        <tr><th><span class="tex">y</span></th><td><span data-reveal><span class="tex">4</span></span></td><td><span data-reveal><span class="tex">4</span></span></td><td><span data-reveal><span class="tex">4</span></span></td></tr></table>
+      <div class="u7l8-pgrid" data-grid="1"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u7l8-afig" data-afig="1a"></div><span class="tex">y</span> is always <span class="tex">4</span>, whatever <span class="tex">x</span> is: <span class="tex">(-4,4)</span>, <span class="tex">(0,4)</span>, <span class="tex">(3,4)</span>. Join them: a horizontal line.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">y=-3</span></div>
+      <table class="u7l8-tab"><tr><th><span class="tex">x</span></th><td><span class="tex">-5</span></td><td><span class="tex">0</span></td><td><span class="tex">4</span></td></tr>
+        <tr><th><span class="tex">y</span></th><td><span data-reveal><span class="tex">-3</span></span></td><td><span data-reveal><span class="tex">-3</span></span></td><td><span data-reveal><span class="tex">-3</span></span></td></tr></table>
+      <div class="u7l8-pgrid" data-grid="1"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u7l8-afig" data-afig="1b"></div><span class="tex">x</span> never appears, so <span class="tex">y=-3</span> every time: <span class="tex">(-5,-3)</span>, <span class="tex">(0,-3)</span>, <span class="tex">(4,-3)</span>.</div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">(c) What is the slope of every horizontal line? <span class="u7l8-blank" data-reveal><span class="tex">0</span></span></div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The rise between any two points is <span class="tex">0</span> (the <span class="tex">y</span>-values never change), so <span class="tex">m=\dfrac{\text{rise}}{\text{run}}=\dfrac{0}{\text{run}}=\boldsymbol{0}</span>.</div></div></div>
+  </div>
+  <div class="muted small u7l8-taphint">Tap a grid to plot points (tap a point again to remove it).</div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Vertical ================= -->
+<section class="card" data-ink="s2" data-section="2. Vertical Lines: x = k">
+  <div class="sec-h"><span class="badge">2</span><h2>Vertical Lines: <span class="tex">x=k</span></h2></div>
+  <div class="def amber">Every point on a vertical line shares the <b>same <span class="tex">x</span>-coordinate</b>, so its equation is <span class="tex">x=k</span> and <span class="tex">y</span> never appears. <span class="tex">(-2,-5)</span>, <span class="tex">(-2,0)</span> and <span class="tex">(-2,6)</span> all lie on <span class="tex">x=-2</span>.</div>
+  <p>Here <span class="tex">x</span> never changes while <span class="tex">y</span> does, so the <b class="u7l8-crun">run</b> is <span class="tex">0</span>, and rise over run would divide by zero: every vertical line has an <b>undefined</b> slope.</p>
+  <div class="explainer" data-explainer="pinnedV"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Vertical lines from a table</h3></div>
+  <p class="q">Complete each table of values, then graph the vertical line.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">x=2</span></div>
+      <table class="u7l8-tab"><tr><th><span class="tex">x</span></th><td><span data-reveal><span class="tex">2</span></span></td><td><span data-reveal><span class="tex">2</span></span></td><td><span data-reveal><span class="tex">2</span></span></td></tr>
+        <tr><th><span class="tex">y</span></th><td><span class="tex">-4</span></td><td><span class="tex">0</span></td><td><span class="tex">3</span></td></tr></table>
+      <div class="u7l8-pgrid" data-grid="1"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u7l8-afig" data-afig="2a"></div><span class="tex">x</span> is pinned at <span class="tex">2</span>; <span class="tex">y</span> is free: <span class="tex">(2,-4)</span>, <span class="tex">(2,0)</span>, <span class="tex">(2,3)</span>.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x=-5</span></div>
+      <table class="u7l8-tab"><tr><th><span class="tex">x</span></th><td><span data-reveal><span class="tex">-5</span></span></td><td><span data-reveal><span class="tex">-5</span></span></td><td><span data-reveal><span class="tex">-5</span></span></td></tr>
+        <tr><th><span class="tex">y</span></th><td><span class="tex">-3</span></td><td><span class="tex">0</span></td><td><span class="tex">4</span></td></tr></table>
+      <div class="u7l8-pgrid" data-grid="1"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u7l8-afig" data-afig="2b"></div>Every point on the line has <span class="tex">x=-5</span>: <span class="tex">(-5,-3)</span>, <span class="tex">(-5,0)</span>, <span class="tex">(-5,4)</span>.</div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">(c) What is the slope of every vertical line? <span class="u7l8-blank" data-reveal>undefined</span></div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The run between any two points is <span class="tex">0</span>, and <span class="tex">\dfrac{\text{rise}}{0}</span> is not a number (division by zero), so the slope is <b>undefined</b>, not zero.</div></div></div>
+  </div>
+  <div class="muted small u7l8-taphint">Tap a grid to plot points (tap a point again to remove it).</div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Telling them apart ================= -->
+<section class="card" data-ink="s3" data-section="3. Telling y = k and x = k Apart">
+  <div class="sec-h"><span class="badge">3</span><h2>Telling <span class="tex">y=k</span> and <span class="tex">x=k</span> Apart</h2></div>
+  <div class="u7l8-apart">
+    <div class="u7l8-afig2" id="u7l8-apartfig"></div>
+    <div>
+      <p>The letter <b>missing</b> from the equation is the direction the line is free to travel.</p>
+      <p><span class="tex">\boldsymbol{y=k}</span> mentions no <span class="tex">x</span>, so <span class="tex">x</span> roams and <span class="tex">y</span> is pinned: the line is <b class="u7l8-ch">horizontal</b>, slope <span class="tex">0</span>.<br>
+      <span class="tex">\boldsymbol{x=k}</span> mentions no <span class="tex">y</span>, so <span class="tex">y</span> roams and <span class="tex">x</span> is pinned: the line is <b class="u7l8-cv">vertical</b>, slope undefined.</p>
+      <div class="u7l8-ask">Before graphing, ask: <b>“Which coordinate is held fixed?”</b> If the fixed letter is <span class="tex">x</span>, the line is <b>vertical</b>, always.</div>
+    </div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>The classic error</b> is drawing <span class="tex">x=3</span> as a flat line through <span class="tex">3</span> on the <span class="tex">y</span>-axis. Compare the two lines in the picture: both go through the number <span class="tex">3</span>, but on <b>different axes</b>.</div></div>
+  <div class="explainer" data-explainer="mixup"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Drag the point">
+  <h3 class="sub">One point, two lines</h3>
+  <p>Drag the point. The <b class="u7l8-ch">horizontal</b> line through it keeps its <span class="tex">y</span>; the <b class="u7l8-cv">vertical</b> line keeps its <span class="tex">x</span>.</p>
+  <div class="u7l8-cross">
+    <div id="u7l8-crossfig" class="u7l8-crossfig"></div>
+    <div class="u7l8-crossro">
+      <div class="u7l8-xr u7l8-xr-p">point <b id="u7l8-xp"></b></div>
+      <div class="u7l8-xr u7l8-xr-h"><span class="u7l8-xk">horizontal line</span><b id="u7l8-xh"></b><span class="u7l8-xs">slope <span class="tex">0</span></span></div>
+      <div class="u7l8-xr u7l8-xr-v"><span class="u7l8-xk">vertical line</span><b id="u7l8-xv"></b><span class="u7l8-xs">slope undefined</span></div>
+      <div class="u7l8-xbtns"><button type="button" class="pill small" id="u7l8-xpts">Show points on each</button><button type="button" class="pill small" id="u7l8-xaxes">Put it on an axis</button></div>
+      <div class="muted small" id="u7l8-xnote">On the y-axis the vertical line is <span class="tex">x=0</span>, the y-axis itself; on the x-axis the horizontal line is <span class="tex">y=0</span>.</div>
+    </div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Horizontal, vertical, or neither?</h3></div>
+  <p class="q">State whether each graph is a horizontal line, a vertical line, or neither; if horizontal or vertical, give one point that must lie on it.</p>
+  <div class="parts c1">
+    <div class="part">
+      <table class="u7l8-tab3">
+        <thead><tr><th>Equation</th><th>Horizontal, Vertical, or Neither?</th><th>One Point on the Line</th></tr></thead>
+        <tbody>
+          <tr><td>(a) <span class="tex">y=-2</span></td><td><span data-reveal><b>Horizontal</b>: no <span class="tex">x</span> in the equation</span></td><td><span data-reveal>e.g. <span class="tex">(0,-2)</span></span></td></tr>
+          <tr><td>(b) <span class="tex">x=7</span></td><td><span data-reveal><b>Vertical</b>: no <span class="tex">y</span> in the equation</span></td><td><span data-reveal>e.g. <span class="tex">(7,0)</span></span></td></tr>
+          <tr><td>(c) <span class="tex">y=4x-1</span></td><td><span data-reveal><b>Neither</b>: both letters appear; slope <span class="tex">4</span></span></td><td><span data-reveal>none needed</span></td></tr>
+          <tr><td>(d) <span class="tex">x=0</span></td><td><span data-reveal><b>Vertical</b>: it <em>is</em> the <span class="tex">y</span>-axis</span></td><td><span data-reveal>e.g. <span class="tex">(0,5)</span></span></td></tr>
+        </tbody>
+      </table>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">(a) horizontal, e.g. <span class="tex">(0,-2)</span> · (b) vertical, e.g. <span class="tex">(7,0)</span> · (c) neither (slope <span class="tex">4</span>) · (d) vertical: the <span class="tex">y</span>-axis, e.g. <span class="tex">(0,5)</span>. Any point with the fixed coordinate works, like <span class="tex">(3,-2)</span> for (a).</div></div>
+    </div>
+  </div>
+  <div class="explainer u7l8-exgap" data-explainer="sorter"></div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Strategy ================= -->
+<section class="card" data-ink="s4" data-section="4. A Strategy for Any Linear Equation">
+  <div class="sec-h"><span class="badge">4</span><h2>A Strategy for Graphing Any Linear Equation</h2></div>
+  <p>Work through <b>three questions</b>, in order.</p>
+  <div class="u7l8-strat">
+    <div class="u7l8-sq u7l8-sq1"><span class="u7l8-sn">1</span><div><b>Is it <span class="tex">y=k</span> or <span class="tex">x=k</span>?</b><br>Graph it directly. No calculation.</div></div>
+    <div class="u7l8-sq u7l8-sq2"><span class="u7l8-sn">2</span><div><b>Is it <span class="tex">y=mx+b</span>?</b><br>Plot <span class="tex">(0,b)</span>, then count out the slope <span class="tex">m</span> as rise over run.</div></div>
+    <div class="u7l8-sq u7l8-sq3"><span class="u7l8-sn">3</span><div><b>Is it <span class="tex">Ax+By+C=0</span>?</b><br>Rearrange into <span class="tex">y=mx+b</span>, or (usually faster) use the <b>two-intercept method</b>.</div></div>
+  </div>
+  <div class="u7l8-walk"><b>Two-intercept method</b> for <span class="tex">2x+y-4=0</span>: set <span class="tex">y=0</span>: <span class="tex">2x-4=0</span>, so <span class="tex">x=2</span> and the x-intercept is <span class="tex">(2,0)</span>. Set <span class="tex">x=0</span>: <span class="tex">y-4=0</span>, so <span class="tex">y=4</span> and the y-intercept is <span class="tex">(0,4)</span>. Plot both and join them.</div>
+  <div class="explainer" data-explainer="flow"></div>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Graph it">
+  <h3 class="sub">Now graph it</h3>
+  <p>Each route ends the same way: <b>two or more points</b>, joined with a ruler, arrows on both ends.</p>
+  <div class="explainer" data-explainer="graphAny"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Name the strategy, then graph</h3></div>
+  <p class="q">State which strategy from above you will use, then graph the line on the grid.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">y=2x-1</span></div>
+      <div class="u7l8-strl">Strategy: <span class="u7l8-blank" data-reveal><b>(2)</b> <span class="tex">y=mx+b</span></span></div>
+      <div class="u7l8-pgrid" data-grid="s"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u7l8-afig" data-afig="4a"></div><span class="tex">b=-1</span>: plot <span class="tex">(0,-1)</span>. <span class="tex">m=2</span>: right <span class="tex">1</span>, up <span class="tex">2</span> to <span class="tex">(1,1)</span>.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">4x+2y-8=0</span></div>
+      <div class="u7l8-strl muted">(two-intercept method)</div>
+      <div class="u7l8-pgrid" data-grid="s"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u7l8-afig" data-afig="4b"></div><span class="tex">y=0</span>: <span class="tex">4x=8</span>, <span class="tex">x=2\Rightarrow(2,0)</span>.<br><span class="tex">x=0</span>: <span class="tex">2y=8</span>, <span class="tex">y=4\Rightarrow(0,4)</span>. Join them.</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x=-3</span></div>
+      <div class="u7l8-strl">Strategy: <span class="u7l8-blank" data-reveal><b>(1)</b> <span class="tex">x=k</span></span></div>
+      <div class="u7l8-pgrid" data-grid="s"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u7l8-afig" data-afig="4c"></div><span class="tex">x</span> is pinned at <span class="tex">-3</span>: a vertical line, no table needed.</div></div></div>
+  </div>
+  <div class="muted small u7l8-taphint">Tap a grid to plot points (tap a point again to remove it).</div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u7l8"></section>
+
+<!-- ================= 5. Mixed practice ================= -->
+<section class="card" data-ink="s5" data-section="5. Mixed Practice">
+  <div class="sec-h"><span class="badge">5</span><h2>Mixed Practice</h2></div>
+  <p>Now the form is not announced: <b>read the equation first</b>, decide which of the three routes is cheapest, then graph. Constant-only equations (<span class="tex">y=k</span>, <span class="tex">x=k</span>) are the quickest of all: no table needed.</p>
+  <div class="explainer" data-explainer="graphMix"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Read the form, then graph</h3></div>
+  <p class="q">Graph each equation, choosing whichever strategy is most efficient for its form.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">y=-x+3</span></div>
+      <div class="u7l8-pgrid" data-grid="1"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u7l8-afig" data-afig="5a"></div>Slope–intercept: <span class="tex">(0,3)</span>, then right <span class="tex">1</span>, down <span class="tex">1</span>.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">y=5</span></div>
+      <div class="u7l8-pgrid" data-grid="1"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u7l8-afig" data-afig="5b"></div>Horizontal through <span class="tex">(0,5)</span>; slope <span class="tex">0</span>.</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x=-4</span></div>
+      <div class="u7l8-pgrid" data-grid="1"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u7l8-afig" data-afig="5c"></div>Vertical through <span class="tex">(-4,0)</span>; slope undefined.</div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">2x-y-2=0</span></div>
+      <div class="u7l8-pgrid" data-grid="1"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u7l8-afig" data-afig="5d"></div>Two-intercept: <span class="tex">y=0\Rightarrow 2x-2=0\Rightarrow(1,0)</span>; <span class="tex">x=0\Rightarrow -y-2=0\Rightarrow(0,-2)</span>.</div></div></div>
+  </div>
+  <div class="muted small u7l8-taphint">Tap a grid to plot points (tap a point again to remove it).</div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Horizontal: <span class="tex">y=k</span>.</b> No <span class="tex">x</span> in the equation. Every point has <span class="tex">y=k</span>; it crosses the y-axis at <span class="tex">(0,k)</span>. Rise is always <span class="tex">0</span>, so the slope is <span class="tex">0</span>.</div>
+    <div><b>Vertical: <span class="tex">x=k</span>.</b> No <span class="tex">y</span> in the equation. Every point has <span class="tex">x=k</span>; it crosses the x-axis at <span class="tex">(k,0)</span>. Run is always <span class="tex">0</span>, so the slope is <b>undefined</b>.</div>
+    <div><b>Which coordinate is held fixed?</b> The missing letter is the direction the line travels. <span class="tex">x=3</span> is <b>vertical</b>, never a flat line through 3 on the y-axis.</div>
+    <div><b>Any form, three questions.</b> (1) <span class="tex">y=k</span> or <span class="tex">x=k</span>: graph directly. (2) <span class="tex">y=mx+b</span>: plot <span class="tex">(0,b)</span>, count the slope. (3) <span class="tex">Ax+By+C=0</span>: two intercepts, join them.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u7l8">
+    <div><div class="kicker">Your turn</div><b>Assignment 8 — Graphing Horizontal Lines, Vertical Lines, and Any Form</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l9/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 9 — Slope in Context: Interpreting Rates of Change</b><div class="muted">Slope becomes a rate with units, and <span class="tex">b</span> becomes the starting value.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u7l8.js';
+  boot({ key: 'u7l8', homeHref: '../../', title: '7.8 Horizontal, Vertical, Any Form' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

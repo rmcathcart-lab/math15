@@ -1,0 +1,96 @@
+/* Math 15 · Unit 7 · Lesson 4 — Writing the Equation of a Line Given Slope and y-Intercept: styles used only on this
+ * page (prefix u7l4-). Colours: m / lines blue, b / y-intercept green, run amber, rise purple; mistakes red. */
+
+.u7l4 .ex-cap { min-height: 128px; }
+.u7l4 .ex-cap .katex { font-size: 1.04em; }
+.u7l4 .chip .katex { font-size: 1em; }
+.u7l4 .pl .katex { font-size: 1.1em; }
+.u7l4 .ans .katex { font-size: 1.04em; }
+.u7l4 .katex { white-space: nowrap; }
+.u7l4 h1 .katex, .u7l4 h2 .katex, .u7l4 h3 .katex { font-size: .95em; }
+.u7l4-cm { color: #1f5bd6; }
+.u7l4-cb { color: #12805a; }
+.u7l4-red { color: #c93a33; }
+.u7l4-blue { color: #1f6fd6; }
+.u7l4-exgap { margin-top: 18px; }
+
+/* ---------------- warm-up: Name That Line ---------------- */
+.u7l4-wfig { width: 470px; }
+.u7l4-wtag { font: 800 15px var(--round); color: #fff; border-radius: 5px; padding: 1px 7px; }
+.u7l4-wbtns { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 2px; }
+.u7l4-wbtns .pill { font-size: 15px; padding: 6px 14px; }
+.u7l4-wbtn { border-left: 6px solid var(--wc) !important; }
+.u7l4-wbtn.on { background: var(--wc); color: #fff; }
+.u7l4-recipe { background: #ffecb3; border: 2px solid #c88c14; border-radius: 12px; padding: 6px 12px; text-align: center; font-size: 16px; line-height: 1.35; }
+.u7l4-rec-eq { font-size: 30px; }
+.u7l4-name { margin: 10px 0 4px; display: flex; flex-direction: column; }
+.u7l4-nr { display: grid; grid-template-columns: 92px 70px 74px 1fr; align-items: center; min-height: 40px; border-bottom: 1px solid var(--line2); font-size: 19px; text-align: center; }
+.u7l4-nr.u7l4-nh { min-height: 30px; font: 800 14px var(--round); color: var(--muted); border-bottom: 2px solid #cfc7b5; }
+.u7l4-chip { display: inline-block; color: #fff; font: 800 15px var(--round); border-radius: 6px; padding: 2px 10px; }
+.u7l4-ch-red { background: #d72d28; } .u7l4-ch-blue { background: #1e64d2; } .u7l4-ch-green { background: #14913c; } .u7l4-ch-purple { background: #873caf; }
+.wf .u7l4-wqs .q-line { font-size: 17px; margin: 6px 0 2px; gap: 10px; }
+.wf .u7l4-wqs .q-line .pill.small { padding: 2px 10px; }
+.u7l4-wa { margin: 0 0 4px 40px; }
+.wf .u7l4-wqs .bk-ans { font-size: 15.5px; line-height: 1.32; margin-top: 2px; }
+.wf .wf-poll { margin-top: 6px; }
+.wf .wf-poll .poll-ans { font-size: 15.5px; line-height: 1.35; }
+.u7l4-social { font-style: italic; color: var(--ink2); font-size: 19px; text-align: center; margin: 12px 0 0; }
+
+/* ---------------- notes and examples ---------------- */
+.u7l4-exg { display: grid; grid-template-columns: 380px 1fr; gap: 20px; align-items: start; margin-bottom: 10px; }
+.u7l4-exg .parts { margin: 0; }
+.u7l4-fill { font-size: 20px; line-height: 2.1; margin: 4px 0; }
+.u7l4-blank { display: inline-block; min-width: 86px; border-bottom: 2px solid var(--ink2); text-align: center; color: var(--red); }
+.u7l4-blank.u7l4-wide { min-width: 190px; }
+.u7l4-gap { display: inline-block; width: 18px; }
+.u7l4-tab { margin: 4px 0 6px; }
+.u7l4-words { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+.u7l4-wd { background: #fff; border-radius: 12px; padding: 10px 14px; font-size: 18.5px; line-height: 1.45; border-left: 6px solid; }
+.u7l4-wd-b { border-color: #12805a; } .u7l4-wd-m { border-color: #1f5bd6; }
+.u7l4-lname { font-size: 24px !important; font-weight: 700; }
+
+/* ---------------- explainer pieces ---------------- */
+.u7l4-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+.u7l4-ph { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u7l4-line { font-size: 20px; line-height: 1.4; }
+.u7l4-big { font-size: 26px; }
+.u7l4-soft { color: var(--ink2); }
+.u7l4-good { color: #12805a; }
+.u7l4-bad { color: #c93a33; }
+.u7l4-eqbox { font-size: 30px; text-align: center; background: #f6f5f1; border-radius: 12px; padding: 8px 10px; min-height: 66px; display: grid; place-items: center; box-sizing: border-box; }
+.u7l4-eqbox.u7l4-small { font-size: 22px; min-height: 56px; }
+.u7l4-alg { font-size: 22px; line-height: 1.45; display: flex; flex-direction: column; gap: 6px; }
+.u7l4-ro { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.u7l4-ro-r { display: flex; align-items: center; gap: 12px; font-size: 26px; background: #f6f5f1; border-radius: 12px; padding: 4px 14px; border-left: 6px solid; min-height: 64px; box-sizing: border-box; }
+.u7l4-ro-m { border-color: #1f5bd6; } .u7l4-ro-b { border-color: #12805a; }
+.u7l4-ro-k { font: 800 20px var(--round); color: var(--ink2); font-style: italic; }
+.u7l4-rulebox { margin-top: auto; background: var(--brand-soft, #eef3fd); border-left: 5px solid var(--brand2, #2b55a0); border-radius: 10px; padding: 8px 14px; font-size: 20px; line-height: 1.45; }
+.u7l4-tlab { font: 700 18px var(--round); background: rgba(255, 255, 255, .9); border-radius: 7px; padding: 0 5px; white-space: nowrap; }
+.u7l4-trun { color: #c27a0e; } .u7l4-trise { color: #7b4fc4; }
+.u7l4-bint { font: 800 16px var(--round); color: #12805a; }
+.u7l4-plab { font: 700 16px var(--round); }
+.u7l4-eqlab { font-size: 20px; background: rgba(255, 255, 255, .9); border-radius: 6px; padding: 0 4px; }
+.u7l4-redl { color: #c93a33 !important; }
+.u7l4-okl { color: #12805a !important; }
+.u7l4-arrow { font-weight: 800; color: var(--muted); margin: 0 6px; }
+
+/* sub */
+.u7l4-given { font-size: 24px; background: #f6f5f1; border-radius: 12px; padding: 0 16px; display: flex; align-items: center; gap: 14px; box-sizing: border-box; }
+.u7l4-gk { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u7l4-tpl { font-size: 44px; display: grid; place-items: center; }
+.u7l4-res { font-size: 34px; display: grid; place-items: center; }
+.u7l4-res > * { white-space: nowrap; }
+.u7l4-done { display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; justify-content: center; }
+.u7l4-dchip { font-size: 22px; background: #e9f6ef; border: 2px solid #12805a; border-radius: 10px; padding: 2px 12px; }
+
+/* twoNumbers */
+.u7l4-tncard { font-size: 21px; border-left: 6px solid; background: #f6f5f1; border-radius: 10px; padding: 6px 12px; }
+
+/* fromTable */
+.u7l4-xup { position: absolute; font: 800 17px var(--round); color: #c27a0e; }
+.u7l4-hl0 { background: #e9f6ef !important; box-shadow: inset 0 0 0 3px #12805a; }
+.u7l4-tinfo { display: flex; flex-direction: column; gap: 6px; }
+
+/* where */
+.u7l4 .bk-fc-node { font-size: 16.5px; line-height: 1.35; }
+.u7l4-whex { font-size: 20px; background: #f6f5f1; border-radius: 12px; padding: 10px 14px; box-sizing: border-box; display: flex; align-items: center; line-height: 1.4; }

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Equation From Two Points · Math 15 7.6</title>
+<meta name="description" content="Math 15 Unit 7 Lesson 6: writing the equation of a line given two points. Find the slope first with the slope formula, then substitute the slope and one point into y = mx + b and solve for b, then write the equation and check it with the other point. Negative coordinates, fraction slopes, and a growing sunflower. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u7l6.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u7l6">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 7 Equations of Linear Relations · Lesson 6</div>
+  <h1>Writing the Equation of a Line Given Two Points</h1>
+  <p class="lede">No slope given? <b>Two points</b> are enough. There is one extra step at the front: find the <b class="u7l6-c-m">slope</b> with the slope formula. After that it is Lesson 5 all over again: substitute one point, solve for <span class="tex">b</span>, write the equation. Today’s big idea: <b>slope first, then <span class="tex">b</span>, then write it.</b></p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>find the slope of the line through two points with <span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}</span></li>
+      <li>substitute that slope and <b>one</b> of the points into <span class="tex">y=mx+b</span> and solve for <span class="tex">b</span></li>
+      <li>explain why <b>either point</b> gives the same <span class="tex">b</span>, and check my equation with the <b>other</b> point</li>
+      <li>keep a <b>fraction</b> slope exact, in lowest terms</li>
+      <li>write an equation from two readings in a real situation, and explain what the slope and <span class="tex">b</span> mean</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF7</b> Determine the equation of a linear relation, given: a graph; a point and the slope; two points; a point and the equation of a parallel or perpendicular line, to solve problems.<br><span class="muted">Today: two points.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Candle Clues" id="wu" style="--wf-side: 360px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Candle Clues</h2>
+  <p class="wf-rule">A candle burns down at a <b>steady rate</b>. Someone snapped two photos of it: <b>20 cm</b> tall after <b>2 hours</b>, and <b>14 cm</b> tall after <b>5 hours</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div id="u7l6-candles" class="u7l6-candles"></div>
+    <div class="u7l6-cbtns">
+      <button type="button" class="pill small" id="u7l6-lit">◀◀ Rewind to “just lit”</button>
+      <button type="button" class="pill small" id="u7l6-gone">Burn to the end ▶▶</button>
+      <button type="button" class="pill small" id="u7l6-creset">Start over</button>
+    </div>
+    <div class="u7l6-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many cm did the candle lose between Photo 1 and Photo 2? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l6-wa"><div class="bk-ans"><span class="tex">20-14=6</span> cm.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How many hours passed? So how many cm does it burn <b>each hour</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l6-wa"><div class="bk-ans"><span class="tex">5-2=3</span> hours, so <span class="tex">6\div3=2</span> cm <b>each hour</b>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>How tall will it be after <b>6</b> hours? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l6-wa"><div class="bk-ans"><span class="tex">14-2=12</span> cm (one more hour after Photo 2).</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> How tall was it when <b>first lit</b>? <b>Guess first.</b> Then: when is it <b>all gone</b>?</div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b> 20 cm</div>
+        <div class="opt"><b>B</b> 22 cm</div>
+        <div class="opt right"><b>C</b> 24 cm</div>
+        <div class="opt"><b>D</b> 26 cm</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C, 24 cm.</b> Rewind Photo 1 by 2 hours: <span class="tex">20+2+2=24</span> cm. From Photo 2: <span class="tex">14+5\times2=24</span> cm. Same answer!<br>
+        <b>All gone after 12 hours:</b> <span class="tex">24\div2=12</span>. (Not 7: <span class="tex">14\div2=7</span> is 7 <em>more</em> hours after Photo 2, so hour <span class="tex">5+7=12</span>.)<br>
+        <span class="muted"><b>A</b> copied Photo 1 and forgot it had already burned 2 hours. <b>B</b> rewound only 1 hour. <b>D</b> added the whole 6 cm drop instead of 2 hours’ worth.</span></div>
+    </div>
+  </div></div>
+  <div class="bk-wq u7l6-social"><div class="q-line"><div class="q-num bonus">+</div><div><i>Partner check:</i> one of you works back from Photo 1, the other from Photo 2. Same answer? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="u7l6-wa"><div class="bk-ans">Both give <b>24 cm</b>. Any point on the line leads back to the same start. Today you’ll see that either point gives the same <span class="tex">b</span>.</div></div></div>
+</section>
+
+<!-- ================= 1. Two points to an equation ================= -->
+<section class="card" data-ink="s1" data-section="1. From Two Points to an Equation">
+  <div class="sec-h"><span class="badge">1</span><h2>From Two Points to an Equation</h2></div>
+  <p>Lesson 5’s method needs a slope to start, but many problems give only <b>two points</b>. The fix is one extra step at the front: use the slope formula from Unit 6 to turn the two points into a slope.</p>
+  <div class="u7l6-stagebox">
+    <div class="u7l6-stg u7l6-stg1"><span class="u7l6-stn">Stage 1</span><b>Find the slope</b><span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}</span></div>
+    <div class="u7l6-arr">→</div>
+    <div class="u7l6-stg u7l6-stg2"><span class="u7l6-stn">Stage 2</span><b>Find <span class="tex">b</span></b><span>Substitute <span class="tex">m</span> and <b>one</b> point into <span class="tex">y=mx+b</span>; solve for <span class="tex">b</span>.</span></div>
+    <div class="u7l6-arr">→</div>
+    <div class="u7l6-stg u7l6-stg3"><span class="u7l6-stn">Stage 3</span><b>Write it</b><span>Write <span class="tex">y=mx+b</span>, then check with the <b>other</b> point.</span></div>
+  </div>
+  <div class="u7l6-walk"><span class="u7l6-wk">Walkthrough</span> through <span class="tex">(1,3)</span> and <span class="tex">(4,9)</span>:&ensp;<span class="tex">m=\tfrac{9-3}{4-1}=\tfrac{6}{3}=2</span>,&ensp;then <span class="tex">3=2(1)+b\Rightarrow b=1</span>,&ensp;so <span class="tex">\boldsymbol{y=2x+1}</span>.&ensp;Check with the other point: <span class="tex">2(4)+1=9</span> ✓</div>
+  <div class="explainer" data-explainer="stages"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Either point works">
+  <h3 class="sub">Either point works</h3>
+  <p>Either point may be used for the substitution: the value of <span class="tex">b</span> comes out the <b>same</b>, so there is no “right” one to pick. Both points are on the same line, and walking back from either one lands on the same <span class="tex">y</span>-intercept. Pick the point with the friendlier numbers.</p>
+  <div class="explainer" data-explainer="either"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>One stage at a time</h3></div>
+  <p class="q">Determine the equation of the line through <span class="tex">(2,5)</span> and <span class="tex">(5,14)</span>, one stage at a time.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <b>Step 1:</b> find the slope.</div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l6-ans"><span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}=\dfrac{14-5}{5-2}</span><br><span class="tex">=\dfrac{9}{3}=\boldsymbol{3}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <b>Step 2:</b> substitute <span class="tex">m</span> and one point into <span class="tex">y=mx+b</span>; solve for <span class="tex">b</span>.</div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l6-ans">Use <span class="tex">(2,5)</span>: <span class="tex">y=3x+b</span><br><span class="tex">5=3(2)+b\Rightarrow 5=6+b</span><br><span class="tex">b=\boldsymbol{-1}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Write the final equation.</div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l6-ans"><span class="tex">\boldsymbol{y=3x-1}</span><br><span class="u7l6-small">Check with the other point <span class="tex">(5,14)</span>: <span class="tex">3(5)-1=14</span> ✓</span></div></div></div>
+  </div>
+  <div class="explainer u7l6-exgap" data-explainer="stages1"></div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Practising ================= -->
+<section class="card" data-ink="s2" data-section="2. Practising the Process">
+  <div class="sec-h"><span class="badge">2</span><h2>Practising the Process</h2></div>
+  <p>Run the same three stages every time, and keep asking: <b>which stage am I in?</b> Negative coordinates change only the arithmetic: substitute each coordinate <b>with its sign, in brackets</b>.</p>
+  <div class="u7l6-sub">
+    <div class="u7l6-sb"><span class="tex">6-(-6)=6+6=12</span><span class="u7l6-sbt">subtracting a negative is <b>adding</b></span></div>
+    <div class="u7l6-sb"><span class="tex">2-(-4)=2+4=6</span><span class="u7l6-sbt">brackets keep the sign safe</span></div>
+    <div class="u7l6-sb"><span class="tex">-8-4=-12</span><span class="u7l6-sbt">going down: a <b>negative</b> rise</span></div>
+  </div>
+  <p>The rise is how far you travel from <span class="tex">y_1</span> to <span class="tex">y_2</span>; the run is how far from <span class="tex">x_1</span> to <span class="tex">x_2</span>. A number line shows both.</p>
+  <div class="explainer" data-explainer="travel"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Which stage am I in?">
+  <h3 class="sub">Which stage am I in? Finish with the other point</h3>
+  <p>A good habit is to finish by substituting the point you did <b>not</b> use. Both given points must make the final equation true. If one doesn’t, go back and find the slip.</p>
+  <div class="explainer" data-explainer="flow"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>A negative slope</h3></div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">Determine the equation, in the form <span class="tex">y=mx+b</span>, of the line through <span class="tex">(-1,4)</span> and <span class="tex">(3,-8)</span>.</div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l6-ans"><span class="tex">m=\dfrac{-8-4}{3-(-1)}=\dfrac{-12}{4}=-3</span><br>Use <span class="tex">(-1,4)</span>: <span class="tex">4=-3(-1)+b\Rightarrow 4=3+b</span>, so <span class="tex">b=1</span>.<br><span class="tex">\boldsymbol{y=-3x+1}</span><br><span class="u7l6-small">Check with <span class="tex">(3,-8)</span>: <span class="tex">-3(3)+1=-8</span> ✓</span></div></div></div>
+  </div>
+  <div class="explainer u7l6-exgap" data-explainer="stages2"></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Use one point, check with the other</h3></div>
+  <p class="q">Determine the equation of the line through <span class="tex">(-4,-6)</span> and <span class="tex">(2,6)</span>.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Use the point <span class="tex">(-4,-6)</span> to find the equation, in the form <span class="tex">y=mx+b</span>.</div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l6-ans"><span class="tex">m=\dfrac{6-(-6)}{2-(-4)}=\dfrac{12}{6}=2</span><br><span class="tex">-6=2(-4)+b\Rightarrow -6=-8+b</span><br><span class="tex">b=2</span><br><span class="tex">\boldsymbol{y=2x+2}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Check your equation by substituting the <em>other</em> point, <span class="tex">(2,6)</span>, into it.</div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l6-ans"><span class="tex">y=2(2)+2</span><br><span class="tex">=4+2=6</span> ✓<br>The point <span class="tex">(2,6)</span> satisfies the equation, so <span class="tex">y=2x+2</span> is correct.</div></div></div>
+  </div>
+  <div class="explainer u7l6-exgap" data-explainer="stages3"></div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u7l6"></section>
+
+<!-- ================= 3. Fraction slopes ================= -->
+<section class="card" data-ink="s3" data-section="3. When the Slope Is a Fraction">
+  <div class="sec-h"><span class="badge">3</span><h2>When the Slope Is a Fraction</h2></div>
+  <p>Nothing in the method changes when <span class="tex">\dfrac{y_2-y_1}{x_2-x_1}</span> does not divide evenly. <b>Reduce</b> the fraction and keep it <b>exact</b> in both the substitution and the final equation. Do not round it to a decimal.</p>
+  <div class="explainer" data-explainer="reduce"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>A fraction times a number:</b> divide by the bottom, multiply by the top. <span class="tex">-\tfrac{1}{2}(-2)</span>: half of 2 is 1, and negative times negative is positive, so <span class="tex">-\tfrac{1}{2}(-2)=+1</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>A fraction slope</h3></div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">Determine the equation, in the form <span class="tex">y=mx+b</span>, of the line through <span class="tex">(-2,5)</span> and <span class="tex">(4,2)</span>.</div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l6-ans"><span class="tex">m=\dfrac{2-5}{4-(-2)}=\dfrac{-3}{6}=-\tfrac{1}{2}</span><br>Use <span class="tex">(-2,5)</span>: <span class="tex">5=-\tfrac{1}{2}(-2)+b\Rightarrow 5=1+b</span>, so <span class="tex">b=4</span>.<br><span class="tex">\boldsymbol{y=-\tfrac{1}{2}x+4}</span><br><span class="u7l6-small">Check with <span class="tex">(4,2)</span>: <span class="tex">-\tfrac{1}{2}(4)+4=-2+4=2</span> ✓</span></div></div></div>
+  </div>
+  <div class="explainer u7l6-exgap" data-explainer="stages4"></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Application ================= -->
+<section class="card" data-ink="s4" data-section="4. A Real-World Application">
+  <div class="sec-h"><span class="badge">4</span><h2>A Real-World Application</h2></div>
+  <p>Two points often arrive as two <b>readings</b> of the same quantity taken at different times. If the quantity changes at a constant rate, those two readings are enough.</p>
+  <div class="u7l6-ctx">
+    <div class="u7l6-cbox u7l6-cb-p"><b>Two readings → two points</b><span>“10 cm on day 3” is the point <span class="tex">(3,\ 10)</span>: time first.</span></div>
+    <div class="u7l6-cbox u7l6-cb-m"><b>Slope → rate of change</b><span>How much the quantity changes <b>per unit</b> of time, e.g. cm per day.</span></div>
+    <div class="u7l6-cbox u7l6-cb-b"><b><span class="tex">b</span> → starting value</b><span>The value at time zero.</span></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>A sunflower seedling</h3></div>
+  <p class="q">A sunflower seedling was <span class="tex">10</span> cm tall on day <span class="tex">3</span> and <span class="tex">25</span> cm tall on day <span class="tex">8</span> after planting. Assume constant growth; let <span class="tex">h</span> be the height (cm) after <span class="tex">d</span> days.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Determine an equation for <span class="tex">h</span> in terms of <span class="tex">d</span>.</div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l6-ans">Points <span class="tex">(3,10)</span> and <span class="tex">(8,25)</span>.<br><span class="tex">m=\dfrac{25-10}{8-3}=\dfrac{15}{5}=3</span><br><span class="tex">10=3(3)+b\Rightarrow b=1</span><br><span class="tex">\boldsymbol{h=3d+1}</span></div></div></div>
+    <div class="part"><div class="pl">(b) What do the slope and the <span class="tex">h</span>-intercept represent here?</div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l6-ans">Slope <b>3</b>: the seedling grows <b>3 cm taller each day</b>, its growth rate.<br><span class="tex">h</span>-intercept <b>1</b>: it was <b>1 cm</b> tall on day 0, when it was planted.</div></div></div>
+    <div class="part"><div class="pl">(c) Predict the height on day <span class="tex">15</span>.</div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u7l6-ans"><span class="tex">h=3(15)+1</span><br><span class="tex">=45+1</span><br>On day 15 it is about <b>46 cm</b> tall.</div></div></div>
+  </div>
+  <div class="explainer u7l6-exgap" data-explainer="sunflower"></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Slope first.</b> Two points give the slope: <span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}</span>. Same order on top and bottom, and brackets around negatives.</div>
+    <div><b>Then <span class="tex">b</span>, then write it.</b> Substitute <span class="tex">m</span> and one point into <span class="tex">y=mx+b</span>, solve for <span class="tex">b</span>, and write the equation. Don’t stop at <span class="tex">b</span>.</div>
+    <div><b>Either point works.</b> Both points give the same <span class="tex">b</span>. Use one, then <b>check with the other</b>: it must fit the equation too.</div>
+    <div><b>Fractions stay exact; stories have meaning.</b> Reduce <span class="tex">\tfrac{-3}{6}=-\tfrac{1}{2}</span>, no decimals. In a story the slope is the <b>rate</b> (3 cm per day) and <span class="tex">b</span> is the <b>start</b> (1 cm on day 0).</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u7l6">
+    <div><div class="kicker">Your turn</div><b>Assignment 6 — Writing the Equation of a Line Given Two Points</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l7/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 7 — The General Form of a Linear Equation</b><div class="muted">The same line in a new outfit: <i>Ax</i> + <i>By</i> + <i>C</i> = 0, and how to switch back and forth.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u7l6.js';
+  boot({ key: 'u7l6', homeHref: '../../', title: '7.6 Equation From Two Points' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>
