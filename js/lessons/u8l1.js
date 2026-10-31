@@ -425,7 +425,7 @@
           } }] },
       { num: '8', shared: function (r) {
           var s = pick2(r, function (r) { return { a: r.pick([2, 2, 3, 1]), b: r.pick([1, 1, 2]), x0: r.int(1, 5), y0: r.pick([-1, -1, -2, -3, 1, 2]), c: r.pick([-4, -4, -3, -2, -5, -1]) }; },
-            function (s) { var C = s.a * s.x0 + s.b * s.y0; s.C = C; return s.x0 + s.c === s.y0 && C > 0 && !(s.a === 1 && s.b === 1); });
+            function (s) { var C = s.a * s.x0 + s.b * s.y0; s.C = C; return s.x0 + s.c === s.y0 && C > 0 && !(s.a === 1 && s.b === 1) && gcd(s.a, s.b) === 1; });
           s.P = [s.x0, s.y0]; s.eqs = [eqG([[s.a, 'x'], [s.b, 'y']], s.C), eqY(1, s.c)];
           return s;
         },
@@ -804,9 +804,8 @@
         shared: function (r) {
           var a = ysys(r, [2, 2, 3, 1], [-1, -1, -2], { xlo: 1, xhi: 3, ylo: 1, yhi: 4 }), b = ysys(r, [-2, -2, -1], [1, 1, 2], { xlo: 1, xhi: 4, ylo: -2, yhi: 2 });
           [a, b].forEach(function (s, i) {
-            s.m3 = r.pick([1, 3, -3, [1, 2]].filter(function (m) { return fv(m) !== fv(s.m1) && fv(m) !== fv(s.m2); }));
+            s.m3 = r.pick([1, 3, -3, 2, -1, [1, 2]].filter(function (m) { return fv(m) !== fv(s.m1) && fv(m) !== fv(s.m2) && Number.isInteger(r6(fv(m) * s.x0)); }));
             s.yes = i === 0; s.b3 = r6(s.y0 - fv(s.m3) * s.x0 + (s.yes ? 0 : r.pick([-1, -1, 1, 2])));
-            if (!Number.isInteger(s.b3)) { s.m3 = 1; s.b3 = s.y0 - s.x0 + (s.yes ? 0 : -1); }
             s.n3 = yT(s.m3, s.b3); s.v3 = r6(fv(s.m3) * s.x0 + s.b3);
           });
           return { a: a, b: b };
@@ -869,7 +868,7 @@
             var fields = pairs.map(function (q) { return { label: t(s.n[q[0]]) + ' and ' + t(s.n[q[1]]) + ':', mode: 'math', keys: 'point', placeholder: ' ' }; });
             var checkers = pairs.map(function (q) { return K.point(q[2], { system: [arr(s.L[q[0]]), arr(s.L[q[1]])] }); });
             var p = K.P.fields('State the three points of intersection.', fields, checkers, pairs.map(function (q) { return pt(q[2]); }), pairs.map(function (q, i) { return fields[i].label + ' ' + ptt(q[2]); }).join('<br>'),
-              t(s.n[0]) + ' and ' + t(s.n[1]) + ' cross at ' + ptt(s.A) + ' (check: ' + t(s.xa + '+' + '(' + s.b1 + ')').replace('+(', '+(') + ' … both give ' + t('y=' + s.ya) + ').<br>On ' + t(s.n[2]) + ' every point has ' + t('y=' + s.h) + ': ' + t(s.n[0]) + ' reaches it at ' + t('x=' + s.Bl[0]) + ' and ' + t(s.n[1]) + ' at ' + t('x=' + s.Br[0]) + '.<br>Corners: ' + ptt(s.A) + ', ' + ptt(s.Bl) + ', ' + ptt(s.Br) + '.',
+              t(s.n[0]) + ' and ' + t(s.n[1]) + ' cross at ' + ptt(s.A) + ' (check: ' + t(subT([[1, 'x'], [s.b1, '']], { x: s.xa }) + '=' + s.ya) + ' ✓ and ' + t(subT([[-1, 'x'], [s.b2, '']], { x: s.xa }) + '=' + s.ya) + ' ✓).<br>On ' + t(s.n[2]) + ' every point has ' + t('y=' + s.h) + ': ' + t(s.n[0]) + ' reaches it at ' + t('x=' + s.Bl[0]) + ' and ' + t(s.n[1]) + ' at ' + t('x=' + s.Br[0]) + '.<br>Corners: ' + ptt(s.A) + ', ' + ptt(s.Bl) + ', ' + ptt(s.Br) + '.',
               ['Read each crossing point off your graph, and check it in both of its equations.'], 'three intersection points');
             p.bad = [[pt(s.Bl), pt(s.A), pt(s.Br)]];
             return p;

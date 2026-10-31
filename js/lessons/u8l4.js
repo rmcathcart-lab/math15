@@ -383,7 +383,7 @@
             var e = S.Es[0], O = S.Es[1], cv = qv(e.a), b1 = qv(e.b), c1 = qv(e.c), ov = qv(O.a), ow = qv(O.b), oc = qv(O.c), s0 = solve2(e, O), x0 = qv(s0[0]), y0 = qv(s0[1]);
             var N = pol([[c1, ''], [-b1, 'y']]), frac = '\\frac{' + N + '}{' + cv + '}';
             var right = ov + '(' + N + ')' + term(ow * cv, 'y', false) + '=' + oc * cv;
-            return mc(r, 'Isolating ' + t('x') + ' in ' + t(S.texs[0]) + ' gives ' + t('x=' + frac) + '. You substitute it into ' + t(S.texs[1]) + ' and multiply <b>every</b> term by ' + t(cv) + ' to clear the fraction. Which equation do you get?' + sysD(S.texs), [
+            return mc(r, 'Isolating ' + t('x') + ' in ' + t(S.texs[0]) + ' gives ' + t('x=' + frac.replace('\\frac', '\\dfrac')) + '. You substitute it into ' + t(S.texs[1]) + ' and multiply <b>every</b> term by ' + t(cv) + ' to clear the fraction. Which equation do you get?' + sysD(S.texs), [
               { html: t(right), right: true },
               { html: t(ov + '(' + N + ')' + term(ow, 'y', false) + '=' + oc * cv), why: 'Every term is multiplied by ' + t(cv) + ' — the ' + t(term(ow, 'y', true)) + ' term too.', code: 'u8-clear-frac' },
               { html: t(ov + '(' + N + ')' + term(ow * cv, 'y', false) + '=' + oc), why: 'The right side must be multiplied by ' + t(cv) + ' as well.', code: 'clear-one-side' },
@@ -653,7 +653,7 @@
         },
         parts: [
           { id: 'e8a', level: 'EMG', make: function (r, sh) {
-            var right = 'x=\\frac{' + sh.c1 + '-' + sh.b1 + 'y}{' + sh.k + '}';
+            var right = 'x=\\dfrac{' + sh.c1 + '-' + sh.b1 + 'y}{' + sh.k + '}';
             return mc(r, 'Name Devon’s error, and give the correct isolation of ' + t('x') + ' from ' + t(sh.texs[0]) + '.', [
               { html: 'He divided only the left side by ' + t(sh.k) + '. Every term must be divided: ' + t(right) + '.', right: true },
               { html: 'He should have moved ' + t(sh.k + 'x') + ' instead: ' + t(sh.b1 + 'y=' + sh.c1 + '-' + sh.k + 'x') + ' is the only correct start.', why: 'Moving ' + t(sh.b1 + 'y') + ' was fine. The mistake is in the division.' },
@@ -835,7 +835,7 @@
       { num: '16', section: 'Mastery challenge', stem: '<b>Stretch.</b>', parts: [
         { id: 'e16', level: 'MAS', make: function (r) {
           var p, q, s, D, ny, nx;
-          for (var g = 0; g < 400; g++) { p = r.int(1, 3); q = r.int(2, 4); s = r.int(1, 3); D = q * p + 1; ny = q - s; nx = 1 + p * s; if (ny > 0 && D !== ny && nx !== ny) break; }
+          for (var g = 0; g < 400; g++) { p = r.int(1, 4); q = r.int(2, 5); s = r.int(1, 4); D = q * p + 1; ny = q - s; nx = 1 + p * s; if (ny > 0 && D !== ny && nx !== ny) break; }
           var fA = function (n, d) { var gg = gcd(n, d); n /= gg; d /= gg; return d === 1 ? (n === 1 ? 'a' : n + 'a') : '\\frac{' + (n === 1 ? '' : n) + 'a}{' + d + '}'; };
           var X = fA(nx, D), Y = fA(ny, D), texs = [pol([[1, 'x'], [p, 'y']]) + '=a', q + 'x-y=' + (s === 1 ? '' : s) + 'a'];
           var chk1 = function (f, nm) { return function (resp) {

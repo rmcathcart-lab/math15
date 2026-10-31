@@ -181,7 +181,7 @@ const IS = {
 };
 const isolate = {
   title: 'Isolate in one step',
-  height: 440,
+  height: 470,
   choices: [{ v: 's1x', label: IS.s1x.label }, { v: 's1y', label: IS.s1y.label + ' (−1)' }, { sep: 'Example checks' }, ...['e1', 'e2', 'e4'].map((k) => ({ v: k, label: IS[k].label }))],
   intro: (k) => `Get ${T(IS[k].fin[0])} alone in ${T(IS[k].parts.join(''))}. Press <b>Next</b>.`,
   make(stage, k, ex) {
@@ -191,9 +191,9 @@ const isolate = {
       const ts = parts.map((t, i) => { const e = h('span', 'u8l4-tile' + (t === '=' ? ' u8l4-plain' : ''), T((i && parts[i - 1] !== '=' && t !== '=' ? '{}' : '') + t)); R.appendChild(e); return e; });
       R.ts = ts; return R;
     };
-    const R1 = tiles(26, d.parts, 40), R2 = tiles(170, d.r2, 38); R2.style.opacity = 0;
-    const R3 = neg ? tiles(268, d.r3, 38) : null; if (R3) R3.style.opacity = 0;
-    const fin = add(stage, box(h('div', 'u8l4-mrow u8l4-fin'), W, 60), 0, neg ? 360 : 272); fin.innerHTML = T(tc(PU, d.fin)); fin.style.opacity = 0;
+    const R1 = tiles(20, d.parts, 40), R2 = tiles(176, d.r2, 38); R2.style.opacity = 0;
+    const R3 = neg ? tiles(304, d.r3, 38) : null; if (R3) R3.style.opacity = 0;
+    const fin = add(stage, box(h('div', 'u8l4-mrow u8l4-fin'), W, 60), 0, neg ? 392 : 296); fin.innerHTML = T(tc(PU, d.fin)); fin.style.opacity = 0;
     const badge = (tile, txt, cls = '') => { const m = h('span', 'u8l4-mult u8l4-below ' + cls, txt); m.style.opacity = 0; tile.appendChild(m); return m; };
     const b1 = [badge(R1.ts[d.mi], T(d.op)), badge(R1.ts[3], T(d.op))];
     const coef = d.parts[d.vi].startsWith('-') ? '-1' : '1';
@@ -245,7 +245,7 @@ const SUB = {
     chain: 'x+5y=17\\ \\Rightarrow', lhs: 'x=', expr: '17-5y', v: 'x', pre: '4', post: '{}-y=5',
     why: `${T('x')} has coefficient ${T('1')} in ${T('x+5y=17')}: subtract ${T('5y')} from both sides.`,
     solve: ['68-20y-y=5', '68-21y=5', '21y=63', 'y=3'], sv: 'y', back: 'x=17-5(3)=2', sol: [2, 3], solTex: '(2,\\ 3)', solPos: 'e',
-    lines: [{ m: -0.2, b: 3.4 }, { m: 4, b: -5 }], labs: [[6, 'n'], [3, 'e']], g: { xmin: -2, xmax: 9, ymin: -4, ymax: 7, xlabels: 2, ylabels: 2 } },
+    lines: [{ m: -0.2, b: 3.4 }, { m: 4, b: -5 }], labs: [[-1.2, 'n'], [3, 'e']], g: { xmin: -2, xmax: 9, ymin: -4, ymax: 7, xlabels: 2, ylabels: 2 } },
   e3: { label: 'Example 3', eq: ['5x+y=21', '2x-3y=5'], iso: 0,
     chain: '5x+y=21\\ \\Rightarrow', lhs: 'y=', expr: '21-5x', v: 'y', pre: '2x-3', post: '{}=5',
     why: `${T('y')} is the only variable with coefficient ${T('1')}: subtract ${T('5x')} from both sides.`,
@@ -261,7 +261,7 @@ const SUB = {
     why: `No coefficient is ${T('1')} or ${T('-1')}. Solve ${T('2x+3y=14')} for ${T('x')}: ${T('2x=14-3y')}, so ${T('x=\\dfrac{14-3y}{2}')}.`,
     solve: [{ t: '5(14-3y)-8y=24', note: 'every term × 2' }, '70-15y-8y=24', '70-23y=24\\ \\Rightarrow\\ 23y=46', 'y=2'], sv: 'y',
     back: 'x=\\dfrac{14-3(2)}{2}=\\dfrac{8}{2}=4', sol: [4, 2], solTex: '(4,\\ 2)', solPos: 'n',
-    lines: [{ m: -2 / 3, b: 14 / 3 }, { m: 1.25, b: -3 }], labs: [[-1, 'n'], [6.4, 'e']], g: { xmin: -2, xmax: 9, ymin: -4, ymax: 7, xlabels: 2, ylabels: 2 } }
+    lines: [{ m: -2 / 3, b: 14 / 3 }, { m: 1.25, b: -3 }], labs: [[-1, 'n'], [0.8, 'e']], g: { xmin: -2, xmax: 9, ymin: -4, ymax: 7, xlabels: 2, ylabels: 2 } }
 };
 const xvOf = (d) => (d.g.xtitle || 'x');
 
@@ -462,6 +462,7 @@ export const _test = { CH, IS, SUB, FR, CK };
   const half = (s, col) => { const i = s.indexOf('='); return `\\textcolor{${col}}{${s.slice(0, i)}}&\\textcolor{${col}}{${s.slice(i)}}`; };
   const sysT = (s1, s2) => `\\begin{aligned}${half(s1, BL)}\\\\${half(s2, AM)}\\end{aligned}`;
   const par = (n) => (n < 0 ? `(${n})` : String(n));
+  const gcd = (a, b) => (b ? gcd(b, a % b) : Math.abs(a));
   /* p·(value) as written in a back-substitution, first or after a constant */
   const pv = (p, val, first) => (p < 0 ? '-' : first ? '' : '+') + (Math.abs(p) === 1 ? par(val) : `${Math.abs(p)}(${val})`);
   /** isolate v in e, substitute into f, solve, back-substitute. Returns the answer lines, or null. */
@@ -502,7 +503,7 @@ export const _test = { CH, IS, SUB, FR, CK };
       const e = v === 'y' ? { a: cuv, b: cvv } : { a: cvv, b: cuv }; e.c = e.a * x0 + e.b * y0;
       if (e.a < 0) continue;
       const f = { a: r.pick(o.fa), b: r.pick(o.fb) }; f.c = f.a * x0 + f.b * y0;
-      if (e.a * f.b === e.b * f.a) continue;
+      if (e.a * f.b === e.b * f.a || gcd(e.a, e.b) !== 1 || gcd(f.a, f.b) !== 1) continue;
       if (o.noOne && [e.a, e.b, f.a, f.b].some((c) => Math.abs(c) === 1)) continue;
       const a = work(e, f, v, x0, y0); if (!a) continue;
       const first = r.chance(0.65);

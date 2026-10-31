@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unit Review: Systems of Linear Equations · Math 15 8.8</title>
+<meta name="description" content="Math 15 Unit 8 Lesson 8: unit review of systems of linear equations. The three solving methods (graphing, substitution, elimination) and when to use each, classifying a system by its slopes and intercepts (one solution, no solution, infinitely many), and mixed examples: graphing, classifying, substitution, elimination, a ticket word problem, choosing a method, a perimeter problem and two parallel price lines. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u8l8.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u8l8">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 8 Systems of Linear Equations · Lesson 8</div>
+  <h1>Unit Review: Systems of Linear Equations</h1>
+  <p class="lede">Every Unit 8 method on one page: <b>graphing</b>, <b>substitution</b> and <b>elimination</b>, how to tell <b>how many solutions</b> a system has, and <b>word problems</b>. Then mixed practice for the test.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>solve a system by <b>graphing</b>, <b>substitution</b> or <b>elimination</b>, and check the answer in <b>both</b> equations</li>
+      <li><b>choose</b> the fastest method for a system, and say why</li>
+      <li>tell whether a system has <b>one solution</b>, <b>no solution</b> or <b>infinitely many</b> by comparing slopes and intercepts</li>
+      <li>turn a <b>word problem</b> into a system, solve it, and answer in words</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF9</b> Solve problems that involve systems of linear equations in two variables, graphically and algebraically.<br><span class="u8l8-today">Today: all of it together. No calculator on the Unit 8 test, so the numbers stay friendly.</span></div>
+  <div class="u8l8-key"><span class="u8l8-k1">Eq. 1</span> blue <span class="u8l8-k2">Eq. 2</span> amber <span class="u8l8-ks">solution</span> purple, all through the lesson.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Pick Your Power-Up" id="wu" style="--wf-side: 420px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Pick Your Power-Up</h2>
+  <p class="wf-rule">Four monsters, three power-ups. Which power-up beats each monster <b>fastest</b>? Tap a power-up on each card to record the class’s pick.</p></div>
+  <div class="u8l8-pups">
+    <div class="u8l8-pup"><svg viewBox="-1 -1 2 2" aria-hidden="true"><path d="M-.7 -.6 V.6 M-.35 -.6 V.6 M0 -.6 V.6 M.35 -.6 V.6 M.7 -.6 V.6 M-.7 -.6 H.7 M-.7 -.25 H.7 M-.7 .1 H.7 M-.7 .45 H.7" stroke="#9aa0ab" stroke-width=".04" fill="none"/><path d="M-.7 .55 L.7 -.55 M-.7 -.55 L.7 .55" stroke="#d23c32" stroke-width=".13" stroke-linecap="round"/></svg><b>Graph it</b></div>
+    <div class="u8l8-pup"><svg viewBox="-1 -1 2 2" aria-hidden="true"><path d="M-.7 -.15 Q0 -.85 .62 -.2" stroke="#d23c32" stroke-width=".13" fill="none" stroke-linecap="round"/><path d="M.68 -.05 L.65 -.45 L.32 -.28 Z" fill="#d23c32"/><path d="M.7 .15 Q0 .85 -.62 .2" stroke="#1e2d46" stroke-width=".13" fill="none" stroke-linecap="round"/><path d="M-.68 .05 L-.65 .45 L-.32 .28 Z" fill="#1e2d46"/></svg><b>Swap in</b></div>
+    <div class="u8l8-pup"><svg viewBox="-1 -1 2 2" aria-hidden="true"><g transform="rotate(-30)"><rect x="-.75" y="-.3" width=".8" height=".6" rx=".08" fill="#d23c32"/><rect x=".05" y="-.3" width=".7" height=".6" rx=".08" fill="#e8f0fc" stroke="#1e2d46" stroke-width=".05"/><rect x="-.75" y="-.3" width="1.5" height=".6" rx=".08" fill="none" stroke="#1e2d46" stroke-width=".05"/></g></svg><b>Wipe out</b></div>
+  </div>
+  <div class="u8l8-mons">
+    <div class="u8l8-mon" data-best="g"><div class="u8l8-mh"><b>A</b><span>already drawn</span></div>
+      <div class="u8l8-mfig" data-bk-graph='{"width":210,"height":170,"xmin":-0.5,"xmax":6.5,"ymin":-0.5,"ymax":6.5,"xlabels":2,"ylabels":2,"fontSize":14,"items":[{"segment":[[0,1],[5,6],{"color":"#d23c32","width":3}]},{"segment":[[0,5],[5,0],{"color":"#1e2d46","width":3,"dash":"7 5"}]}]}'></div>
+      <div class="u8l8-pk"><button type="button" data-p="g">Graph</button><button type="button" data-p="s">Swap</button><button type="button" data-p="e">Wipe</button></div>
+      <div class="u8l8-why">Graph it: the lines are already drawn and cross on the grid.</div></div>
+    <div class="u8l8-mon" data-best="s"><div class="u8l8-mh"><b>B</b></div>
+      <div class="u8l8-meq"><span class="tex">y=2x</span><span class="tex">x+y=12</span></div>
+      <div class="u8l8-pk"><button type="button" data-p="g">Graph</button><button type="button" data-p="s">Swap</button><button type="button" data-p="e">Wipe</button></div>
+      <div class="u8l8-why">Swap in: <span class="tex">y</span> is already alone, so put <span class="tex">2x</span> in its place.</div></div>
+    <div class="u8l8-mon" data-best="e"><div class="u8l8-mh"><b>C</b></div>
+      <div class="u8l8-meq"><span class="tex">x+y=10</span><span class="tex">x-y=4</span></div>
+      <div class="u8l8-pk"><button type="button" data-p="g">Graph</button><button type="button" data-p="s">Swap</button><button type="button" data-p="e">Wipe</button></div>
+      <div class="u8l8-why">Wipe out: <span class="tex">+y</span> and <span class="tex">-y</span> are opposites, so add.</div></div>
+    <div class="u8l8-mon u8l8-boss" data-best="e"><div class="u8l8-mh"><b>D</b><span class="u8l8-bossl">BOSS</span></div>
+      <div class="u8l8-meq"><span class="tex">6x+4y=15</span><span class="tex">3x+2y=9</span></div>
+      <div class="u8l8-pk"><button type="button" data-p="g">Graph</button><button type="button" data-p="s">Swap</button><button type="button" data-p="e">Wipe</button></div>
+      <div class="u8l8-why">Multiply, then wipe out: double the second equation first.</div></div>
+  </div>
+  <div class="u8l8-reveal-row"><button type="button" class="pill" id="u8l8-best">Show the best power-ups</button><button type="button" class="pill" id="u8l8-clear">Clear picks</button></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u8l8-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>A: where do the two lines cross?</div></div>
+        <div class="u8l8-wa"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b><span class="tex">(2,\ 3)</span></b>. The lines are <span class="tex">y=x+1</span> (solid) and <span class="tex">y=-x+5</span> (dashed). Check: <span class="tex">2+1=3</span> and <span class="tex">-2+5=3</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>B: swap <span class="tex">2x</span> in for <span class="tex">y</span>. Find <span class="tex">x</span> and <span class="tex">y</span>.</div></div>
+        <div class="u8l8-wa"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b><span class="tex">(4,\ 8)</span></b>. <span class="tex">x+2x=12</span>, so <span class="tex">3x=12</span>, <span class="tex">x=4</span> and <span class="tex">y=8</span>. Check: <span class="tex">4+8=12</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>C: add the two equations together. What happens to <span class="tex">y</span>? Finish it off.</div></div>
+        <div class="u8l8-wa"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b><span class="tex">(7,\ 3)</span></b>. <span class="tex">+y</span> and <span class="tex">-y</span> cancel: <span class="tex">2x=14</span>, <span class="tex">x=7</span>, then <span class="tex">7+y=10</span> gives <span class="tex">y=3</span>. Check: <span class="tex">7-3=4</span>.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll u8l8-poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> The Boss looks like it needs a <b>double</b> power-up. How many solutions does it have? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> one</div>
+        <div class="opt right"><b>B</b> none</div>
+        <div class="opt"><b>C</b> infinitely many</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: no solution.</b> Double the second equation: <span class="tex">6x+4y=18</span>. Subtract it from <span class="tex">6x+4y=15</span>: <span class="tex">0=-3</span>, a <b>false</b> statement. The same amount <span class="tex">6x+4y</span> can’t be 15 <b>and</b> 18. Both lines have slope <span class="tex">-\tfrac32</span> but different intercepts: <b>parallel</b>.</div>
+    </div>
+  </div></div>
+  <p class="u8l8-social">Hands up: pick a power-up for each monster. Then race a neighbour on C!</p>
+</section>
+
+<!-- ================= 1. The three methods ================= -->
+<section class="card" data-ink="s1" data-section="1. The Three Solving Methods">
+  <div class="sec-h"><span class="badge">1</span><h2>The Three Solving Methods</h2></div>
+  <p>A <b>solution</b> to a system is the ordered pair <span class="tex">(x,\ y)</span> that satisfies <b>both</b> equations at once. Three methods find it; all three must agree.</p>
+  <div class="u8l8-mtab">
+    <div class="u8l8-mth">Method</div><div class="u8l8-mth">When to use it</div><div class="u8l8-mth">Watch out for</div>
+    <div class="u8l8-mh1"><b>Graphing</b><small>Lesson 1</small></div><div>Both equations are already <span class="tex">y=mx+b</span>, or rewrite easily; you want to <b>see</b> the answer.</div><div>A graph only estimates: it is unreliable unless the lines cross at <b>integer</b> coordinates.</div>
+    <div class="u8l8-mh2"><b>Substitution</b><small>Lessons 3, 4</small></div><div>One equation is solved for a variable, or some variable has coefficient <span class="tex">1</span> or <span class="tex">-1</span> so you can isolate it cleanly.</div><div>Substitute into the <b>other</b> equation (using the same one gives <span class="tex">0=0</span>); back-substitute and check in <b>both</b> originals.</div>
+    <div class="u8l8-mh3"><b>Elimination</b><small>Lessons 5, 6</small></div><div>Both equations are in <span class="tex">Ax+By=C</span> form and no coefficient is <span class="tex">1</span> or <span class="tex">-1</span>.</div><div>Opposite coefficients: <b>add</b>. Matching coefficients: <b>subtract</b>, which flips the sign of every term, the constant too. If nothing matches, <b>multiply</b> one or both equations first.</div>
+  </div>
+  <div class="explainer" data-explainer="methods"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Choosing a Method">
+  <h3 class="sub">Choosing a method: the fastest road</h3>
+  <p>Ask the questions in order. The first “yes” tells you the fastest method. Every road leads to the same answer; some just get there faster.</p>
+  <div class="explainer" data-explainer="choose"></div>
+</section>
+
+<!-- ================= 2. Classifying ================= -->
+<section class="card" data-ink="s2" data-section="2. Classifying a System">
+  <div class="sec-h"><span class="badge">2</span><h2>Classifying a System (Lesson 2)</h2></div>
+  <p>Put both equations in slope-intercept form and compare <span class="tex">m</span>, then <span class="tex">b</span>.</p>
+  <div class="u8l8-ctab">
+    <div class="u8l8-mth">Outcome</div><div class="u8l8-mth">Slopes / intercepts</div><div class="u8l8-mth">Graph</div><div class="u8l8-mth">Algebra ends with</div>
+    <div class="u8l8-c1"><b>One solution</b></div><div>Different slopes</div><div>Lines cross once</div><div><span class="tex">x=</span> a number</div>
+    <div class="u8l8-c2"><b>No solution</b></div><div>Same <span class="tex">m</span>, different <span class="tex">b</span></div><div>Parallel lines</div><div>A false statement, e.g. <span class="tex">0=8</span></div>
+    <div class="u8l8-c3"><b>Infinitely many</b></div><div>Same <span class="tex">m</span>, same <span class="tex">b</span></div><div>One line drawn twice</div><div>A true statement, e.g. <span class="tex">0=0</span></div>
+  </div>
+  <div class="explainer" data-explainer="howMany"></div>
+</section>
+
+<!-- ================= 3. Word problems ================= -->
+<section class="card" data-ink="s3" data-section="3. Word Problems">
+  <div class="sec-h"><span class="badge">3</span><h2>Word Problems (Lesson 7)</h2></div>
+  <p>Name the two unknowns with variables, turn each sentence of given information into one equation, solve by whichever method above is quickest, then answer the question <b>in words</b>.</p>
+  <div class="u8l8-steps">
+    <div><b>1</b> Define the two variables</div><div><b>2</b> Two equations, one per fact</div><div><b>3</b> Solve: quickest method</div><div><b>4</b> Answer in words, and check</div>
+  </div>
+</section>
+
+<!-- ================= examples ================= -->
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Graphing</h3></div>
+  <p class="q">The system <span class="tex">y=x+1</span> and <span class="tex">y=-2x+7</span> is graphed below; the lines cross at integer coordinates.</p>
+  <div class="u8l8-ex1row">
+    <div class="u8l8-ex1fig" data-bk-graph='{"width":330,"height":330,"xmin":-6,"xmax":6,"ymin":-6,"ymax":6,"xlabels":2,"ylabels":2,"fontSize":15,"items":[{"line":[[-6,-5],[5,6],{"color":"#1c2230","width":3}]},{"line":[[0,7],[6,-5],{"color":"#1c2230","width":3,"dash":"8 6"}]}]}'></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) State the solution: <span class="tex">x=</span> ____, <span class="tex">y=</span> ____</div><div class="work" style="--h:70px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x=\boldsymbol2</span>, <span class="tex">y=\boldsymbol3</span>. The two lines meet at the grid point 2 right and 3 up.</div></div></div>
+      <div class="part"><div class="pl">(b) Write the solution as an ordered pair, and check it in <b>both</b> original equations.</div><div class="work" style="--h:150px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Solution: <span class="tex">\textcolor{#7b4fc4}{(2,\ 3)}</span><br>Check in <span class="tex">y=x+1</span>: <span class="tex">2+1=3</span> ✓<br>Check in <span class="tex">y=-2x+7</span>: <span class="tex">-2(2)+7=-4+7=3</span> ✓<br>It satisfies <b>both</b> equations, so it is the solution.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex1c" data-section="Example 1 check">
+  <h3 class="sub">Example 1 check: draw each line from <span class="tex">b</span> and <span class="tex">m</span></h3>
+  <div class="explainer" data-explainer="graphChk"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Classifying</h3></div>
+  <p class="q">Without graphing, state whether each system has one solution, no solution, or infinitely many.</p>
+  <div class="parts u8l8-c4">
+    <div class="part"><div class="pl">(a) <span class="tex">y=6x-1</span><br><span class="tex">y=6x+5</span></div><div class="work" style="--h:120px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Both slopes <span class="tex">m=6</span>; intercepts <span class="tex">-1</span> and <span class="tex">5</span> differ. Parallel lines: <b>no solution</b>.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">y=2x+7</span><br><span class="tex">y=-4x+1</span></div><div class="work" style="--h:120px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Slopes <span class="tex">2</span> and <span class="tex">-4</span> are different. Lines cross once: <b>one solution</b>.</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">y=-3x+6</span><br><span class="tex">y=-3x+6</span></div><div class="work" style="--h:120px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Same <span class="tex">m=-3</span> <b>and</b> same <span class="tex">b=6</span>. One line drawn twice: <b>infinitely many</b>.</div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">y=x-9</span><br><span class="tex">y=-x-9</span></div><div class="work" style="--h:120px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Slopes <span class="tex">1</span> and <span class="tex">-1</span> are different. <b>One solution</b> (they cross at <span class="tex">(0,\ -9)</span>).</div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex2c" data-section="Example 2 check">
+  <h3 class="sub">Example 2 check: compare <span class="tex">m</span>, then <span class="tex">b</span></h3>
+  <div class="explainer" data-explainer="classify"></div>
+</section>
+
+<section class="card example" data-ink="ex34" data-section="Examples 3 and 4">
+  <div class="ex-head"><span class="ex-tag">Examples 3 and 4</span><h3>Substitution</h3></div>
+  <p class="q">Solve each system using substitution. In (4), isolate a variable first.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl"><b>3.</b> <span class="tex">y=4x-3</span> &nbsp;&nbsp; <span class="tex">2x+y=15</span></div><div class="work" style="--h:290px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Substitute <span class="tex">4x-3</span> for <span class="tex">y</span> in <span class="tex">2x+y=15</span>:<br><span class="tex">2x+(\textcolor{#1f5bd6}{4x-3})=15</span><br><span class="tex">6x-3=15\ \Rightarrow\ 6x=18\ \Rightarrow\ x=3</span><br><span class="tex">y=4(3)-3=9</span><br>Solution: <span class="tex">\textcolor{#7b4fc4}{\boldsymbol{(3,\ 9)}}</span><br><span class="muted">Check: <span class="tex">2(3)+9=15</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl"><b>4.</b> <span class="tex">x+3y=19</span> &nbsp;&nbsp; <span class="tex">2x-y=3</span></div><div class="work" style="--h:290px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Isolate <span class="tex">y</span> in <span class="tex">2x-y=3</span>: <span class="tex">y=2x-3</span>.<br><span class="tex">x+3(\textcolor{#c27a0e}{2x-3})=19</span><br><span class="tex">x+6x-9=19\ \Rightarrow\ 7x=28\ \Rightarrow\ x=4</span><br><span class="tex">y=2(4)-3=5</span><br>Solution: <span class="tex">\textcolor{#7b4fc4}{\boldsymbol{(4,\ 5)}}</span><br><span class="muted">Check: <span class="tex">4+3(5)=19</span> ✓</span></div></div></div>
+  </div>
+  <div class="space" id="ex34-space"></div>
+  <button class="more" data-more="ex34-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex34c" data-section="Examples 3 and 4 check">
+  <h3 class="sub">Examples 3 and 4 check: the expression swaps in</h3>
+  <div class="explainer" data-explainer="subst"></div>
+</section>
+
+<section class="card example" data-ink="ex56" data-section="Examples 5 and 6">
+  <div class="ex-head"><span class="ex-tag">Examples 5 and 6</span><h3>Elimination</h3></div>
+  <p class="q">Solve each system using elimination. In (6), multiply each equation by a suitable constant to eliminate <span class="tex">y</span>.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl"><b>5.</b> <span class="tex">3x+2y=18</span> &nbsp;&nbsp; <span class="tex">x-2y=-2</span></div><div class="work" style="--h:300px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The <span class="tex">y</span>-terms are opposites (<span class="tex">+2y</span>, <span class="tex">-2y</span>), so <b>add</b>:<br><span class="tex">(3x+x)+(2y-2y)=18+(-2)</span><br><span class="tex">4x=16\ \Rightarrow\ x=4</span><br>Back-substitute in <span class="tex">x-2y=-2</span>: <span class="tex">4-2y=-2</span><br><span class="tex">-2y=-6\ \Rightarrow\ y=3</span><br>Solution: <span class="tex">\textcolor{#7b4fc4}{\boldsymbol{(4,\ 3)}}</span><br><span class="muted">Check: <span class="tex">3(4)+2(3)=18</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl"><b>6.</b> <span class="tex">4x+3y=23</span> &nbsp;&nbsp; <span class="tex">3x+2y=16</span></div><div class="work" style="--h:300px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">To eliminate <span class="tex">y</span>, make both <span class="tex">y</span>-terms <span class="tex">6y</span>: <span class="tex">\times2</span> and <span class="tex">\times3</span>.<br><span class="tex">8x+6y=46</span><br><span class="tex">9x+6y=48</span><br>Matching coefficients, so <b>subtract</b>: <span class="tex">-x=-2\ \Rightarrow\ x=2</span><br><span class="tex">3(2)+2y=16\ \Rightarrow\ 2y=10\ \Rightarrow\ y=5</span><br>Solution: <span class="tex">\textcolor{#7b4fc4}{\boldsymbol{(2,\ 5)}}</span><br><span class="muted">Check: <span class="tex">4(2)+3(5)=23</span> ✓</span></div></div></div>
+  </div>
+  <div class="space" id="ex56-space"></div>
+  <button class="more" data-more="ex56-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex56c" data-section="Examples 5 and 6 check">
+  <h3 class="sub">Examples 5 and 6 check: line up the columns, then add or subtract</h3>
+  <div class="explainer" data-explainer="elim"></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u8l8"></section>
+
+<section class="card example" data-ink="ex7" data-section="Example 7">
+  <div class="ex-head"><span class="ex-tag">Example 7</span><h3>Word problem: tournament tickets</h3></div>
+  <p class="q">A youth soccer tournament sold <span class="tex">150</span> tickets, some at the student price of $6 and some at the adult price of $10. Total ticket sales were $1&#8239;220.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Let <span class="tex">x</span> be the number of student tickets and <span class="tex">y</span> the number of adult tickets. Write a system of two equations that models this situation.</div><div class="work" style="--h:280px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Tickets counted: <span class="tex">\textcolor{#1f5bd6}{x+y=150}</span><br>Money collected: <span class="tex">\textcolor{#c27a0e}{6x+10y=1\,220}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Solve the system to find the number of student tickets and the number of adult tickets sold.</div><div class="work" style="--h:280px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">From the first equation <span class="tex">y=150-x</span>:<br><span class="tex">6x+10(150-x)=1\,220</span><br><span class="tex">6x+1\,500-10x=1\,220</span><br><span class="tex">-4x=-280\ \Rightarrow\ x=70</span>, so <span class="tex">y=150-70=80</span>.<br><b><span class="tex">\textcolor{#7b4fc4}{70}</span> student tickets and <span class="tex">\textcolor{#7b4fc4}{80}</span> adult tickets</b> were sold.<br><span class="muted">Check: <span class="tex">6(70)+10(80)=420+800=1\,220</span> ✓</span></div></div></div>
+  </div>
+  <div class="space" id="ex7-space"></div>
+  <button class="more" data-more="ex7-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex7c" data-section="Example 7 check">
+  <h3 class="sub">Example 7 check: the four stages</h3>
+  <div class="explainer" data-explainer="pipeline"></div>
+</section>
+
+<section class="card example" data-ink="ch1" data-section="Challenge 1">
+  <div class="ex-head"><span class="ex-tag">Challenge 1</span><h3>Choosing a method</h3></div>
+  <p class="q">Consider the system &nbsp;<span class="tex">5x-3y=19</span> &nbsp;&nbsp; <span class="tex">2x+y=12</span>.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Decide whether substitution or elimination is faster here, and explain your choice in one sentence.</div><div class="work" style="--h:250px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Substitution.</b> In <span class="tex">2x+y=12</span> the variable <span class="tex">y</span> has coefficient <span class="tex">1</span>, so it isolates in one step as <span class="tex">y=12-2x</span> with no fractions.<br><span class="muted">(Elimination also works well here: <span class="tex">3\times</span> the second equation gives <span class="tex">+3y</span>, the opposite of <span class="tex">-3y</span>.)</span></div></div></div>
+    <div class="part"><div class="pl">(b) Solve the system using the method you chose.</div><div class="work" style="--h:250px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=12-2x</span>, substitute into <span class="tex">5x-3y=19</span>:<br><span class="tex">5x-3(12-2x)=19</span><br><span class="tex">5x-36+6x=19</span><br><span class="tex">11x=55\ \Rightarrow\ x=5</span><br><span class="tex">y=12-2(5)=2</span><br>Solution: <span class="tex">\textcolor{#7b4fc4}{\boldsymbol{(5,\ 2)}}</span><br><span class="muted">Check: <span class="tex">5(5)-3(2)=25-6=19</span> ✓</span></div></div></div>
+  </div>
+  <div class="space" id="ch1-space"></div>
+  <button class="more" data-more="ch1-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ch23" data-section="Challenges 2 and 3">
+  <div class="ex-head"><span class="ex-tag">Challenges 2 and 3</span><h3>Mixed skills</h3></div>
+  <div class="parts c2">
+    <div class="part"><div class="pl"><b>2.</b> A rectangular deck has a perimeter of 60 m. Its length is 6 m more than twice its width.<br>(a) Let <span class="tex">L</span> be the length and <span class="tex">W</span> the width. Write a system of two equations that models this situation.</div><div class="work" style="--h:110px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Perimeter: <span class="tex">\textcolor{#1f5bd6}{2L+2W=60}</span><br>Length description: <span class="tex">\textcolor{#c27a0e}{L=2W+6}</span></div></div></div>
+    <div class="part"><div class="pl"><b>3.</b> Shop A charges a $30 diagnostic fee plus $45 per hour of labour; Shop B charges a $55 diagnostic fee plus $45 per hour of labour.<br>(a) Write an equation for the total cost at each shop in terms of the hours <span class="tex">h</span> of labour.</div><div class="work" style="--h:110px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Shop A: <span class="tex">\textcolor{#1f5bd6}{C=45h+30}</span><br>Shop B: <span class="tex">\textcolor{#c27a0e}{C=45h+55}</span></div></div></div>
+    <div class="part"><div class="pl">2(b) Solve the system to find the length and width of the deck.</div><div class="work" style="--h:230px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Substitute <span class="tex">L=2W+6</span> into <span class="tex">2L+2W=60</span>:<br><span class="tex">2(\textcolor{#c27a0e}{2W+6})+2W=60</span><br><span class="tex">4W+12+2W=60</span><br><span class="tex">6W=48\ \Rightarrow\ W=8</span><br><span class="tex">L=2(8)+6=22</span><br><b>Length <span class="tex">=\textcolor{#7b4fc4}{22}</span> m, width <span class="tex">=\textcolor{#7b4fc4}{8}</span> m.</b><br><span class="muted">Check: <span class="tex">2(22)+2(8)=44+16=60</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl">3(b) Without solving, classify the system and explain using the slopes and intercepts.<br>(c) What does your answer to (b) mean about the two shops’ pricing?</div><div class="work" style="--h:230px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">(b) Both lines have slope <span class="tex">45</span> but intercepts <span class="tex">30</span> and <span class="tex">55</span>, so they are parallel and never meet: the system has <b>no solution</b>.<br>(c) The two shops never charge the same amount for a job. Their hourly rates are identical, so Shop B is <b>always $25 more expensive</b>, no matter how many hours the repair takes.</div></div></div>
+  </div>
+  <div class="space" id="ch23-space"></div>
+  <button class="more" data-more="ch23-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ch2c" data-section="Challenge 2 check">
+  <h3 class="sub">Challenge 2 check: walk around the deck</h3>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Perimeter</b> is the distance all the way around: two lengths and two widths, so <span class="tex">2L+2W=P</span>. Don’t write <span class="tex">L+W=60</span>: that is only <b>half</b> the fence.</div></div>
+  <div class="explainer" data-explainer="fence"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>The solution</b> is the one point on <b>both</b> lines: where the graphs cross. Whatever method you use, check it in <b>both</b> original equations.</div>
+    <div><b>Pick the fastest road.</b> Lines already drawn: read the crossing. A variable alone or with coefficient <span class="tex">\pm1</span>: <b>substitute</b>. Matching or opposite coefficients: <b>eliminate</b> (subtract or add). Nothing matches: multiply first.</div>
+    <div><b>How many solutions?</b> Different slopes: one. Same slope, different <span class="tex">b</span>: none (parallel; algebra ends false, like <span class="tex">0=8</span>). Same slope, same <span class="tex">b</span>: infinitely many (<span class="tex">0=0</span>).</div>
+    <div><b>Word problems.</b> Define two variables, write one equation per fact (count and value, sum and comparison, perimeter <span class="tex">2L+2W=P</span>), solve, and answer in words.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u8l8">
+    <div><div class="kicker">Your turn</div><b>Assignment 8 — Unit Review: Systems of Linear Equations</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <div class="u8l8-review">
+    <div class="u8l8-review-h"><span class="kicker">Up next</span><b>Unit 8 test.</b> <span class="muted">Shaky on an idea today? Go back to its lesson.</span></div>
+    <div class="u8l8-review-grid">
+      <a href="../l1/"><span class="rn">8.1</span>What a system is; solving by graphing <small>Example 1</small></a>
+      <a href="../l2/"><span class="rn">8.2</span>Classifying: one, none or infinitely many <small>Example 2, Challenge 3</small></a>
+      <a href="../l3/"><span class="rn">8.3</span>Substitution: a variable already isolated <small>Example 3</small></a>
+      <a href="../l4/"><span class="rn">8.4</span>Substitution: isolate a variable first <small>Example 4, Challenge 1</small></a>
+      <a href="../l5/"><span class="rn">8.5</span>Elimination: add or subtract <small>Example 5</small></a>
+      <a href="../l6/"><span class="rn">8.6</span>Elimination: multiply first <small>Example 6</small></a>
+      <a href="../l7/"><span class="rn">8.7</span>Word problems with systems <small>Example 7, Challenge 2</small></a>
+      <div class="test"><span class="rn">Test</span>Unit 8 test: RF9 <small>no calculator · every idea from today’s review</small></div>
+    </div>
+  </div>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u8l8.js';
+  boot({ key: 'u8l8', homeHref: '../../', title: '8.8 Unit 8 Review' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

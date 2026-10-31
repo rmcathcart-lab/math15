@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elimination, Part 2: Multiplying First · Math 15 8.6</title>
+<meta name="description" content="Math 15 Unit 8 Lesson 6: solving a system by elimination when no coefficients match yet. Copying a stack of books, scaling a whole equation (every term, the constant too), multiplying one equation when one coefficient is a factor of the other, multiplying both equations to the lowest common multiple, choosing the easier variable, and a bake-sale problem. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u8l6.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u8l6">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 8 Systems of Linear Equations · Lesson 6</div>
+  <h1>Solving Systems by Elimination, Part 2: Multiplying First</h1>
+  <p class="lede">In Lesson 5 a pair of coefficients always matched. Usually they don’t. The fix is one extra step: <b>multiply</b> a whole equation (every term, the constant too) so that a pair <b>finally matches</b>. Then add or subtract exactly as before.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>tell when adding or subtracting a system <b>as written</b> eliminates nothing</li>
+      <li>multiply <b>one</b> equation (every term on <b>both</b> sides) when one coefficient is a <b>factor</b> of the other</li>
+      <li>multiply <b>both</b> equations, using the <b>lowest common multiple</b> of the coefficients</li>
+      <li>scan both variables first and choose the <b>easier</b> one to eliminate</li>
+      <li>solve, back-substitute into an <b>original</b> equation, and check the pair in <b>both</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF9</b> Solve problems that involve systems of linear equations in two variables, graphically and algebraically.<br><span class="u8l6-today">Today: elimination when an equation has to be multiplied first.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Stack the Books" id="wu" style="--wf-side: 420px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Stack the Books</h2>
+  <p class="wf-rule">All <span class="u8l6-bk u8l6-bkt"></span> <b class="u8l6-cthick">thick</b> books are the same. All <span class="u8l6-bk u8l6-bkn"></span> <b class="u8l6-cthin">thin</b> books are the same.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div id="u8l6-stacks" class="u8l6-stacks"></div>
+  </div><div class="wf-side">
+    <div class="u8l6-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How tall is the pile of <b>3 copies</b> of Stack A? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>27 cm</b>: three copies of a 9 cm stack, <span class="tex">3\times9=27</span>.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>The pile and Stack B have the <b>same</b> thick books. Which books stick up above the dashed line? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">The pile has 3 thick + 6 thin; Stack B has 3 thick + 1 thin. The thick books line up, so <b>5 thin books</b> stick up.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>How thick is <b>one</b> book of each kind? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">The 5 thin books make the extra <span class="tex">27-17=10</span> cm, so a thin book is <span class="tex">10\div5=2</span> cm. Stack A: thick <span class="tex">+\,2+2=9</span>, so a thick book is <b>5 cm</b>. Check B: <span class="tex">5+5+5+2=17</span> ✓</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Stack P <span class="tex">=</span> 2 <span class="u8l6-bk u8l6-bkt"></span> + 3 <span class="u8l6-bk u8l6-bkn"></span>, Stack Q <span class="tex">=</span> 3 <span class="u8l6-bk u8l6-bkt"></span> + 2 <span class="u8l6-bk u8l6-bkn"></span>. How many copies of each make the <b class="u8l6-cthin">thin</b> books match? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> 2 of P, 3 of Q</div>
+        <div class="opt"><b>B</b> 3 of P, 2 of Q</div>
+        <div class="opt"><b>C</b> It can’t be done</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A: 2 of P and 3 of Q.</b> 2 copies of P have <b>6 thin</b> books; 3 copies of Q have <b>6 thin</b> books. They match! (B gives 9 thin and 4 thin.) Neither stack alone can be copied to match, so you copy <b>both</b>, each by the <b>other</b> stack’s thin-book count.</div>
+    </div>
+  </div></div>
+  <p class="u8l6-social">Try it with real books: find one notebook’s thickness by measuring only piles.</p>
+</section>
+
+<section class="card" data-ink="warm2" data-section="Warm-up: the books, solved">
+  <h3 class="sub">The books, solved: copy a stack until something matches</h3>
+  <p>Copying a whole stack copies its books <b>and</b> its height. Once one kind of book matches, compare the piles and that kind <b>cancels</b>.</p>
+  <div class="explainer" data-explainer="books"></div>
+</section>
+
+<!-- ================= 1. Neither matches ================= -->
+<section class="card" data-ink="s1" data-section="1. When Neither Coefficient Matches">
+  <div class="sec-h"><span class="badge">1</span><h2>When Neither Coefficient Matches</h2></div>
+  <p>In Lesson 5 one variable always arrived with matching or opposite coefficients. In <span class="tex u8l6-e1">x+2y=9</span> and <span class="tex u8l6-e2">3x-y=13</span> the <span class="tex">x</span>-coefficients are <span class="tex">1</span> and <span class="tex">3</span>, and the <span class="tex">y</span>-coefficients are <span class="tex">2</span> and <span class="tex">-1</span>. Neither pair matches and neither pair is opposite, so adding or subtracting as written eliminates <b>nothing</b>.</p>
+  <div class="def">Elimination still works. It just needs one extra step first: <b>multiply</b> an equation by a constant.</div>
+  <div class="explainer" data-explainer="stuck"></div>
+</section>
+
+<!-- ================= 2. Multiply one ================= -->
+<section class="card" data-ink="s2" data-section="2. Multiplying One Equation">
+  <div class="sec-h"><span class="badge">2</span><h2>Multiplying One Equation</h2></div>
+  <div class="u8l6-s2row">
+    <div>
+      <p>Look for a coefficient that is already a <b>factor</b> of the other. Here <span class="tex">1</span> divides into <span class="tex">2</span>: multiplying Equation 2 by <span class="tex">2</span> turns <span class="tex">-y</span> into <span class="tex">-2y</span>, the exact <b>opposite</b> of the <span class="tex">2y</span> above it.</p>
+      <p>Then solve, back-substitute into an <b>original</b> equation, and check the pair in both.</p>
+    </div>
+    <div class="u8l6-stack"><span class="tex">\begin{array}{rrcr} &amp; \textcolor{#1f5bd6}{x+2y} &amp; = &amp; \textcolor{#1f5bd6}{9}\\ +) &amp; \textcolor{#c27a0e}{6x-2y} &amp; = &amp; \textcolor{#c27a0e}{26}\\[1pt] \hline &amp; \textcolor{#12805a}{7x} &amp; = &amp; \textcolor{#12805a}{35} \end{array}</span></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Multiply every term on both sides.</b> The commonest error is scaling the left side and forgetting the constant: <span class="tex">2(3x-y)=2(13)</span> gives <span class="tex">6x-2y=26</span>, not <span class="tex">6x-2y=13</span>.</div></div>
+  <div class="explainer" data-explainer="scale"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Build the match one step at a time</h3></div>
+  <p class="q">For the system <span class="u8l6-sys"><span class="u8l6-tg u8l6-t1">Eq. 1</span><span class="tex u8l6-e1">x+2y=9</span> <span class="u8l6-tg u8l6-t2">Eq. 2</span><span class="tex u8l6-e2">3x-y=13</span></span> build the match one step at a time.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Does adding or subtracting the equations as written eliminate either variable? Explain.</div>
+      <div class="work" style="--h:130px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> The <span class="tex">x</span>-coefficients are <span class="tex">1</span> and <span class="tex">3</span>; the <span class="tex">y</span>-coefficients are <span class="tex">2</span> and <span class="tex">-1</span>. Neither pair is equal or opposite.<br>Adding gives <span class="tex">4x+y=22</span>; subtracting gives <span class="tex">-2x+3y=-4</span>. Both still have two variables.</div></div></div>
+    <div class="part"><div class="pl">(b) The <span class="tex">y</span>-coefficient of Equation 2 is <span class="tex">-1</span>. By what constant should you multiply Equation 2 to make it the opposite of <span class="tex">2y</span>? Write the new Equation 2.</div>
+      <div class="work" style="--h:130px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Multiply Equation 2 by <b>2</b>, so <span class="tex">-y</span> becomes <span class="tex">-2y</span>.<br><span class="tex">2(3x-y)=2(13)</span><br>New Equation 2: <span class="tex">\boldsymbol{6x-2y=26}</span> (every term scaled, the 26 too)</div></div></div>
+    <div class="part"><div class="pl">(c) Add Equation 1 to your new Equation 2 from part (b). Solve the resulting equation for <span class="tex">x</span>.</div>
+      <div class="work" style="--h:140px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(x+2y)+(6x-2y)=9+26</span><br><span class="tex">7x=35</span><br><span class="tex">x=\dfrac{35}{7}=\boldsymbol{5}</span></div></div></div>
+    <div class="part"><div class="pl">(d) Substitute your <span class="tex">x</span> into either <b>original</b> equation to find <span class="tex">y</span>, then verify in both originals.</div>
+      <div class="work" style="--h:140px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Into <span class="tex">x+2y=9</span>: <span class="tex">5+2y=9\Rightarrow 2y=4\Rightarrow \boldsymbol{y=2}</span><br>Check: <span class="tex">5+2(2)=9</span> ✓ &nbsp; <span class="tex">3(5)-2=13</span> ✓<br>Solution: <span class="tex">\boldsymbol{(5,\ 2)}</span></div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> Could you eliminate <span class="tex">x</span> instead? What would you multiply, and would you add or subtract?</div><div class="work" style="--h:80px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> <span class="tex">1</span> is a factor of <span class="tex">3</span>, so multiply Equation 1 by <span class="tex">3</span>: <span class="tex">3x+6y=27</span>. Now both have <span class="tex">3x</span> (same sign), so <b>subtract</b>: <span class="tex">(3x+6y)-(3x-y)=27-13</span>, <span class="tex">7y=14</span>, <span class="tex">y=2</span>. Same answer.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Multiply both ================= -->
+<section class="card" data-ink="s3" data-section="3. Multiplying Both Equations">
+  <div class="sec-h"><span class="badge">3</span><h2>Multiplying Both Equations</h2></div>
+  <p>When neither coefficient divides the other (say <span class="tex">3</span> and <span class="tex">-2</span>), <b>both</b> equations must be multiplied.</p>
+  <div class="def">Take the <b>lowest common multiple</b> (LCM) of the two coefficients: <span class="tex">3</span> and <span class="tex">2</span> give <span class="tex">6</span>. Then scale each equation so that variable becomes <span class="tex">+6y</span> in one and <span class="tex">-6y</span> in the other. Using the LCM, rather than any common multiple, keeps the numbers as <b>small</b> as possible.</div>
+  <div class="explainer" data-explainer="lcm"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Multiply both equations</h3></div>
+  <p class="q">For the system <span class="u8l6-sys"><span class="u8l6-tg u8l6-t1">Eq. 1</span><span class="tex u8l6-e1">2x+3y=17</span> <span class="u8l6-tg u8l6-t2">Eq. 2</span><span class="tex u8l6-e2">3x-2y=6</span></span> eliminate <span class="tex">y</span> by multiplying both equations.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) The <span class="tex">y</span>-coefficients are <span class="tex">3</span> and <span class="tex">-2</span>. Neither is a factor of the other; find the lowest common multiple of <span class="tex">3</span> and <span class="tex">2</span>.</div>
+      <div class="work" style="--h:130px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Multiples of 3: <span class="tex">3,\ 6,\ 9,\ \ldots</span> Multiples of 2: <span class="tex">2,\ 4,\ 6,\ \ldots</span><br>The LCM is <b>6</b>, so aim for <span class="tex">+6y</span> in one equation and <span class="tex">-6y</span> in the other.</div></div></div>
+    <div class="part"><div class="pl">(b) Multiply Equation 1 by the constant that turns its <span class="tex">y</span>-coefficient into your answer to (a), and Equation 2 by the constant giving the <b>opposite</b> of it. Write both new equations.</div>
+      <div class="work" style="--h:130px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Equation 1 <span class="tex">\times\,2</span>: <span class="tex">\boldsymbol{4x+6y=34}</span><br>Equation 2 <span class="tex">\times\,3</span>: <span class="tex">\boldsymbol{9x-6y=18}</span><br>The <span class="tex">y</span>-terms are now <span class="tex">+6y</span> and <span class="tex">-6y</span>.</div></div></div>
+    <div class="part"><div class="pl">(c) Add your two new equations from part (b). Solve the resulting equation for <span class="tex">x</span>.</div>
+      <div class="work" style="--h:140px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(4x+6y)+(9x-6y)=34+18</span><br><span class="tex">13x=52</span><br><span class="tex">x=\dfrac{52}{13}=\boldsymbol{4}</span></div></div></div>
+    <div class="part"><div class="pl">(d) Substitute your <span class="tex">x</span> into either original equation to find <span class="tex">y</span>, then verify in both originals.</div>
+      <div class="work" style="--h:140px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Into <span class="tex">2x+3y=17</span>: <span class="tex">8+3y=17\Rightarrow 3y=9\Rightarrow \boldsymbol{y=3}</span><br>Check: <span class="tex">2(4)+3(3)=17</span> ✓ &nbsp; <span class="tex">3(4)-2(3)=6</span> ✓<br>Solution: <span class="tex">\boldsymbol{(4,\ 3)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- sources: https://en.wikipedia.org/wiki/Fangcheng_(mathematics) (Chapter 8, Problem 1: 3, 2, 1 bundles → 39; 2, 3, 1 → 34; 1, 2, 3 → 26; answers 9 1/4, 4 1/4, 2 3/4; the earliest recorded fangcheng procedure is similar to Gaussian elimination)
+     https://legacy-www.math.harvard.edu/~knill/teaching/math22a2018/exhibits/gaussjordan/SchwarzNineChapters.pdf (R. K. Schwartz, MAA: "Yield: 39 dou of grain"; probably written shortly after 200 BC; columns multiplied and subtracted)
+     https://www.nationalacademies.org/read/11540/chapter/14 (Derbyshire, Unknown Quantity: existed by the 1st century CE; multiply the second equation by 3 and subtract the first twice; now called Gaussian elimination)
+     https://old.maa.org/node/1635497 (coefficients of each equation stored in one column, columns filled right to left)
+     Adapted from the Math 10C twin (u8/l3); the arithmetic (2,3,1,34)×3 = (6,9,3,102), −(3,2,1,39) twice → (0,5,1,24) re-checked. -->
+<!-- ================= Math History box (brown) ================= -->
+<section class="card history" data-ink="hist" data-section="Math History: the Nine Chapters">
+  <div class="hist-head"><span class="hist-tag">Math History</span><span class="hist-dates">China · about 2000 years ago</span></div>
+  <div class="hist-grid">
+    <div class="hist-text">
+      <h3 class="hist-title">Multiply first, then subtract: with counting rods</h3>
+      <p><i>The Nine Chapters on the Mathematical Art</i> is a Chinese book about 2000 years old. One problem: 3 bundles of top-grade grain, 2 of medium and 1 of low yield <b>39 dou</b>; 2, 3 and 1 bundles yield <b>34</b>; 1, 2 and 3 yield <b>26</b>.</p>
+      <p>Each equation became a column of counting rods. To make the top numbers match, they <b>multiplied a whole column by 3</b>, then <b>subtracted</b> another column until the top number was <b>0</b>. That is today’s lesson!</p>
+      <div class="part hist-q"><div class="pl">With <span class="tex">x</span>, <span class="tex">y</span>, <span class="tex">z</span> the grain per bundle, multiply <span class="tex">2x+3y+z=34</span> by <span class="tex">3</span>. Then subtract <span class="tex">3x+2y+z=39</span>.</div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">6x+9y+3z=102</span>, then <span class="tex">\boldsymbol{3x+7y+2z=63}</span>. Subtract <span class="tex">3x+2y+z=39</span> once more and the <span class="tex">x</span> is gone: <span class="tex">5y+z=24</span>.</div></div></div>
+    </div>
+    <figure class="hist-anim">
+      <svg id="u8l6-hist" viewBox="0 0 600 300" role="img" aria-label="A counting board with three columns of rods, one equation per column, right to left. The middle column is multiplied by 3, then the right column is subtracted from it twice, until its top number is 0: the top-grade variable is eliminated, leaving 5y plus z equals 24."></svg>
+      <figcaption><button class="hist-play" type="button">Replay</button><span>Tap the picture to play it again.</span></figcaption>
+      <p class="hist-note">The book’s answers: <span class="tex">9\tfrac14</span>, <span class="tex">4\tfrac14</span> and <span class="tex">2\tfrac34</span> dou. Europeans named this method after Carl Friedrich Gauss (1777–1855), about 1700 years later.</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= 4. Choosing ================= -->
+<section class="card" data-ink="s4" data-section="4. Choosing the Easier Variable">
+  <div class="sec-h"><span class="badge">4</span><h2>Choosing the Easier Variable</h2></div>
+  <p>Scan <b>both</b> variables before you multiply anything. If one variable can be eliminated by multiplying just <b>one</b> equation, that route is faster and far less error-prone than one needing <b>both</b>.</p>
+  <div class="u8l6-steps">
+    <div><b class="n">1</b><b>Choose</b> a variable</div>
+    <div><b class="n">2</b><b>Multiply</b> one or both equations</div>
+    <div><b class="n">3</b><b>Add</b> or <b>subtract</b></div>
+    <div><b class="n">4</b><b>Solve</b></div>
+    <div><b class="n">5</b><b>Back-substitute</b></div>
+    <div><b class="n">6</b>State the <b>ordered pair</b></div>
+  </div>
+  <div class="explainer" data-explainer="route"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Compare the two routes first</h3></div>
+  <p class="q">For the system <span class="u8l6-sys"><span class="u8l6-tg u8l6-t1">Eq. 1</span><span class="tex u8l6-e1">5x-2y=14</span> <span class="u8l6-tg u8l6-t2">Eq. 2</span><span class="tex u8l6-e2">3x+4y=24</span></span> compare the two routes before committing.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) For each variable, decide whether you would multiply just one equation or both. Which variable is easier to eliminate?</div>
+      <div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x</span>: <span class="tex">5</span> and <span class="tex">3</span> share no factor: multiply <b>both</b> (Eq. 1 by 3, Eq. 2 by 5) to get <span class="tex">15x</span>.<br><span class="tex">y</span>: <span class="tex">-2</span> and <span class="tex">4</span>; 2 divides 4, so multiply <b>one</b> (Eq. 1 by 2), and the signs are already opposite, so <b>add</b>.<br><span class="tex">\boldsymbol{y}</span> <b>is easier.</b></div></div></div>
+    <div class="part"><div class="pl">(b) Eliminate the easier variable (multiply, then add or subtract) and solve for <span class="tex">x</span>.</div>
+      <div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Equation 1 <span class="tex">\times2</span>: <span class="tex">10x-4y=28</span><br><span class="tex">(10x-4y)+(3x+4y)=28+24</span><br><span class="tex">13x=52</span>, so <span class="tex">\boldsymbol{x=4}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Substitute to find <span class="tex">y</span>, then verify the solution in both original equations.</div>
+      <div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Into <span class="tex">3x+4y=24</span>: <span class="tex">3(4)+4y=24</span><br><span class="tex">\Rightarrow 4y=12\Rightarrow \boldsymbol{y=3}</span><br>Check: <span class="tex">5(4)-2(3)=14</span> ✓<br><span class="tex">3(4)+4(3)=24</span> ✓<br>Solution: <span class="tex">\boldsymbol{(4,\ 3)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Both equations need multiplying</h3></div>
+  <p class="q">For the system <span class="u8l6-sys"><span class="u8l6-tg u8l6-t1">Eq. 1</span><span class="tex u8l6-e1">3x+4y=29</span> <span class="u8l6-tg u8l6-t2">Eq. 2</span><span class="tex u8l6-e2">5x-6y=-15</span></span> both equations will need multiplying.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) The <span class="tex">y</span>-coefficients are <span class="tex">4</span> and <span class="tex">-6</span>. Find their lowest common multiple, and state the constant you would multiply <b>each</b> equation by to reach it.</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">LCM of 4 and 6 is <b>12</b>.<br>Equation 1 <span class="tex">\times\,\boldsymbol{3}</span> gives <span class="tex">+12y</span>; Equation 2 <span class="tex">\times\,\boldsymbol{2}</span> gives <span class="tex">-12y</span>.</div></div></div>
+    <div class="part"><div class="pl">(b) Multiply both equations as in part (a), then add or subtract to eliminate <span class="tex">y</span>. Solve for <span class="tex">x</span>.</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">9x+12y=87</span> and <span class="tex">10x-12y=-30</span><br>Opposites, so add:<br><span class="tex">19x=57</span>, so <span class="tex">x=\dfrac{57}{19}=\boldsymbol{3}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Substitute to find <span class="tex">y</span>, then verify the solution in both original equations.</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Into <span class="tex">3x+4y=29</span>: <span class="tex">9+4y=29</span><br><span class="tex">\Rightarrow 4y=20\Rightarrow \boldsymbol{y=5}</span><br>Check: <span class="tex">3(3)+4(5)=29</span> ✓<br><span class="tex">5(3)-6(5)=15-30=-15</span> ✓<br>Solution: <span class="tex">\boldsymbol{(3,\ 5)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u8l6"></section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>The bake sale</h3></div>
+  <p class="q">A bake sale sells cookies and cupcakes. <b>Friday:</b> 3 cookies and 5 cupcakes sold for $19. <b>Saturday:</b> 4 cookies and 2 cupcakes sold for $16.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Let <span class="tex">x</span> be the price of a cookie and <span class="tex">y</span> the price of a cupcake, both in dollars. Write a system of two equations describing Friday’s and Saturday’s sales.</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Friday: <span class="tex">\boldsymbol{3x+5y=19}</span><br>Saturday: <span class="tex">\boldsymbol{4x+2y=16}</span><br>(number of cookies)<span class="tex">\times</span>(cookie price) + (number of cupcakes)<span class="tex">\times</span>(cupcake price) = the day’s total.</div></div></div>
+    <div class="part"><div class="pl">(b) Solve your system by elimination. (Both equations will need to be multiplied.)</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Eliminate <span class="tex">y</span>: LCM of 5 and 2 is 10. Eq. 1 <span class="tex">\times2</span>, Eq. 2 <span class="tex">\times5</span>:<br><span class="tex">6x+10y=38</span>, <span class="tex">20x+10y=80</span><br>Same sign, so subtract: <span class="tex">-14x=-42</span>, <span class="tex">\boldsymbol{x=3}</span><br><span class="tex">4(3)+2y=16\Rightarrow 2y=4\Rightarrow \boldsymbol{y=2}</span></div></div></div>
+    <div class="part"><div class="pl">(c) State the price of a cookie and the price of a cupcake, then verify your solution in both original equations.</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">A cookie costs <b>$3</b> and a cupcake costs <b>$2</b>.<br>Check: <span class="tex">3(3)+5(2)=9+10=19</span> ✓<br><span class="tex">4(3)+2(2)=12+4=16</span> ✓</div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Bigger minus smaller.</b> In (b), subtracting the other way, <span class="tex">(20x+10y)-(6x+10y)=80-38</span>, gives <span class="tex">14x=42</span>: the same <span class="tex">x=3</span> with no negatives to carry.</div></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Examples check">
+  <h3 class="sub">Examples 1 to 5 check: choose, multiply, eliminate, solve, back-substitute, check</h3>
+  <p>Step through a full solution, one line at a time, to check the class’s work.</p>
+  <div class="explainer" data-explainer="walk"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Nothing matches?</b> If no pair of coefficients is equal or opposite, adding or subtracting leaves both variables. <b>Multiply first</b> to make a pair match.</div>
+    <div><b>Multiply every term.</b> Scaling an equation multiplies <b>both</b> sides, the constant too: <span class="tex">2(3x-y)=2(13)</span> gives <span class="tex">6x-2y=26</span>. Same line, same solutions.</div>
+    <div><b>One or both?</b> If one coefficient is a <b>factor</b> of the other, multiply one equation. If not, multiply both to the <b>lowest common multiple</b>: <span class="tex">3</span> and <span class="tex">2</span> → <span class="tex">6</span>.</div>
+    <div><b>Choose the easier variable,</b> then add (opposite signs) or subtract (same sign), solve, back-substitute into an <b>original</b> equation, and check in <b>both</b>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u8l6">
+    <div><div class="kicker">Your turn</div><b>Assignment 6 — Solving Systems by Elimination, Part 2: Multiplying First</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l7/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 7 — Solving Word Problems with Systems of Equations</b><div class="muted">The bake sale was just the start: name the two unknowns, write two equations, and solve.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u8l6.js';
+  boot({ key: 'u8l6', homeHref: '../../', title: '8.6 Elimination, Part 2' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

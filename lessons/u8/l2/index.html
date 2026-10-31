@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Classifying Systems: One Solution, No Solution, or Infinite Solutions · Math 15 8.2</title>
+<meta name="description" content="Math 15 Unit 8 Lesson 2: how many solutions can a system of two linear equations have? Different slopes cross exactly once (one solution); the same slope with different y-intercepts gives parallel lines (no solution); the same slope and y-intercept is the same line in disguise (infinitely many solutions). Classifying a system without graphing by comparing slopes, then y-intercepts. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u8l2.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u8l2">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 8 Systems of Linear Equations · Lesson 2</div>
+  <h1>Classifying Systems: One Solution, No Solution, or Infinite Solutions</h1>
+  <p class="lede">Two lines don’t always cross once. They can cross <b>once</b>, <b>never</b> (parallel lines), or lie <b>exactly on top of each other</b>. The <b>slopes</b> and <b><span class="tex">y</span>-intercepts</b> tell you which, without drawing a thing.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>explain why two lines with <b>different slopes</b> cross exactly once: <b>one solution</b></li>
+      <li>recognize <b>parallel lines</b> (same slope, different <span class="tex">y</span>-intercepts): <b>no solution</b></li>
+      <li>recognize the <b>same line in disguise</b> (same slope, same <span class="tex">y</span>-intercept): <b>infinitely many solutions</b></li>
+      <li>rewrite an equation like <span class="tex">2x+2y=8</span> as <span class="tex">y=mx+b</span>, dividing <b>every term</b> when needed</li>
+      <li><b>classify a system without graphing</b>: compare the slopes first, then the <span class="tex">y</span>-intercepts</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF9</b> Solve problems that involve systems of linear equations in two variables, graphically and algebraically.<br><span class="u8l2-today">Today: how many solutions a system has, from its graph or from its slopes and <span class="tex">y</span>-intercepts.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Will the Trains Meet?" id="wu" style="--wf-side: 446px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Will the Trains Meet?</h2>
+  <p class="wf-rule">A <b class="u8l2-cr">red</b> train and a <b class="u8l2-cb">blue</b> train. The tracks are straight and <b>go on forever</b>.</p></div>
+  <div class="u8l2-maps">
+    <div class="u8l2-map"><div class="u8l2-mt">Map A</div><div id="u8l2-mapA"></div></div>
+    <div class="u8l2-map"><div class="u8l2-mt">Map B</div><div id="u8l2-mapB"></div></div>
+    <div class="u8l2-map"><div class="u8l2-mt">Map C</div><div id="u8l2-mapC"></div></div>
+  </div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u8l2-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Map A: where do the tracks cross? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l2-wa"><div class="bk-ans"><span class="tex">(3,\ 4)</span>. Red: <span class="tex">2(3)-2=4</span> ✓, blue: <span class="tex">-3+7=4</span> ✓. One crossing, only one.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Map B: how far <b>above</b> blue is red at <span class="tex">x=2</span>? At <span class="tex">x=5</span>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l2-wa"><div class="bk-ans"><b>5 units</b> both times (red 5, blue 0; then red 8, blue 3). The gap never changes.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Map B: will they <b>ever</b> meet? Why? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l2-wa"><div class="bk-ans"><b>Never.</b> Both climb <b>1 up for every 1 across</b>, so they stay 5 apart forever, like the two rails of a railway: <b>parallel</b>.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll u8l2-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Map C’s two equations look different. How many points do the red and blue tracks <b>share</b>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 0</div>
+        <div class="opt"><b>B</b> 1</div>
+        <div class="opt"><b>C</b> 2</div>
+        <div class="opt right"><b>D</b> infinitely many</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D: infinitely many.</b> <span class="tex">4x-2y=-2\Rightarrow-2y=-4x-2\Rightarrow y=2x+1</span>: the red track again! Both trains run on the <b>same track</b>. Tap the note on Map C to draw it.</div>
+    </div>
+  </div></div>
+  <p class="u8l2-social">With a partner: lay two pencils flat as tracks. Can two straight tracks cross <b>exactly twice</b>?</p>
+</section>
+
+<!-- ================= 1. One solution ================= -->
+<section class="card" data-ink="s1" data-section="1. One Solution: Different Slopes">
+  <div class="sec-h"><span class="badge">1</span><h2>One Solution: Different Slopes</h2></div>
+  <p>Two lines with <b>different slopes</b> are tilted by different amounts. Wherever they start, the gap between them closes, so they <b>must cross</b>, and after that the gap only grows: they cross <b>only once</b>. The system has exactly <b>one solution</b>: the crossing point. This is by far the most common case.</p>
+  <div class="explainer" data-explainer="gap"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Different slopes</h3></div>
+  <p class="q">Consider the system <span class="tex u8l2-c1">y=2x-1</span> and <span class="tex u8l2-c2">y=-x+5</span>.</p>
+  <div class="u8l2-exg">
+    <div class="part u8l2-gpart"><div class="pl">(b) Graph both lines on the grid.</div>
+      <div class="u8l2-gfig" data-u8l2-grid="ex1"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex u8l2-c1">y=2x-1</span>: start at <span class="tex">(0,\ -1)</span>, then up 2, right 1.<br><span class="tex u8l2-c2">y=-x+5</span>: start at <span class="tex">(0,\ 5)</span>, then down 1, right 1.</div></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) State the slope of each line. Are the slopes the same or different?</div>
+        <div class="work" style="--h:130px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=2x-1</span>: <span class="tex">m_1=\boldsymbol{2}</span>. <span class="tex">y=-x+5</span>: <span class="tex">m_2=\boldsymbol{-1}</span>.<br>The slopes are <b>different</b>, so the lines must cross exactly once.</div></div></div>
+      <div class="part"><div class="pl">(c) State the point where the lines cross. This is the solution to the system.</div>
+        <div class="work" style="--h:150px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The lines cross at <span class="tex">\boldsymbol{(2,\ 3)}</span>: <b>one solution</b>.<br>Check: <span class="tex">2(2)-1=3</span> ✓ and <span class="tex">-(2)+5=3</span> ✓</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex1c" data-section="Example 1 check">
+  <h3 class="sub">Example 1 check: graph both, then count the crossings</h3>
+  <p>Plot each <span class="tex">y</span>-intercept, step out the slope, draw the line. Then <b>count</b> the points that are on <b>both</b> lines.</p>
+  <div class="explainer" data-explainer="count1"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Even off the grid">
+  <h3 class="sub">Even when the crossing is off the grid</h3>
+  <p>Some lines with different slopes <b>look</b> parallel on a small grid. They still cross: the crossing is just far away. Compare the <b>slopes</b>, not the picture.</p>
+  <div class="explainer" data-explainer="zoom"></div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> The warm-up’s pencil question: can two different straight lines cross at exactly <b>two</b> points?</div><div class="work" style="--h:80px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> After two straight lines cross, the gap between them only grows. If two lines shared two points, they would be the <b>same line</b>, and then they share <b>every</b> point. So the only possible counts are <b>1</b>, <b>0</b>, or <b>infinitely many</b>.</div></div></div>
+  </div>
+</section>
+
+<!-- ================= 2. No solution ================= -->
+<section class="card" data-ink="s2" data-section="2. No Solution: Parallel Lines">
+  <div class="sec-h"><span class="badge">2</span><h2>No Solution: Parallel Lines</h2></div>
+  <p>Two lines are <b>parallel</b> exactly when they have the <b>same slope</b>. Equations with the <b>same slope</b> but <b>different <span class="tex">y</span>-intercepts</b> graph as parallel lines that stay the same distance apart forever and never meet: the system has <b>no solution</b>.</p>
+  <div class="explainer" data-explainer="gapB"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Same slope, different intercepts</h3></div>
+  <p class="q">Consider the system <span class="tex u8l2-c1">y=3x+2</span> and <span class="tex u8l2-c2">y=3x-3</span>.</p>
+  <div class="u8l2-exg">
+    <div class="part u8l2-gpart"><div class="pl">(b) Graph both lines on the grid. What do you notice?</div>
+      <div class="u8l2-gfig" data-u8l2-grid="ex2"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Both lines climb at the same steepness (up 3, right 1), so they stay the same distance apart forever: they are <b>parallel</b> and never touch.</div></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) State the slope and <span class="tex">y</span>-intercept of each equation.</div>
+        <div class="work" style="--h:150px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=3x+2</span>: <span class="tex">m=\boldsymbol{3}</span>, <span class="tex">b=\boldsymbol{2}</span><br><span class="tex">y=3x-3</span>: <span class="tex">m=\boldsymbol{3}</span>, <span class="tex">b=\boldsymbol{-3}</span><br>Same slope, different <span class="tex">y</span>-intercepts.</div></div></div>
+      <div class="part"><div class="pl">(c) How many solutions does this system have?</div>
+        <div class="work" style="--h:130px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">A solution is a point on <b>both</b> lines, and there is no such point. The system has <b>no solution</b>.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex2c" data-section="Example 2 check">
+  <h3 class="sub">Example 2 check: parallel lines</h3>
+  <p>Same slope means the same steps: up 3, right 1 for <b>both</b> lines. Measure the gap between them anywhere.</p>
+  <div class="explainer" data-explainer="count2"></div>
+</section>
+
+<!-- ================= 3. Infinitely many ================= -->
+<section class="card" data-ink="s3" data-section="3. Infinitely Many: The Same Line">
+  <div class="sec-h"><span class="badge">3</span><h2>Infinitely Many Solutions: The Same Line in Disguise</h2></div>
+  <p>Two equations that look different can be the <b>exact same line</b>: one is just a multiple of the other, so the slopes <b>and</b> the <span class="tex">y</span>-intercepts match. One graph lands on top of the other, so <b>every</b> point on the line is a solution: <b>infinitely many solutions</b>.</p>
+  <div class="def gray"><b>When <span class="tex">y</span> has a number in front</b> (like <span class="tex">2y</span> or <span class="tex">-2y</span>): after moving the <span class="tex">x</span>-term, <b>divide every term</b> by that number. <span class="tex">2y=-2x+8\ \Rightarrow\ y=-x+4</span>.</div>
+  <div class="explainer" data-explainer="disguise"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Two equations, one line</h3></div>
+  <p class="q">Consider the system <span class="tex u8l2-c1">x+y=4</span> and <span class="tex u8l2-c2">2x+2y=8</span>. Notice that <span class="tex">2x+2y=8</span> is exactly <span class="tex">2\times(x+y=4)</span>.</p>
+  <div class="u8l2-exg">
+    <div class="part u8l2-gpart"><div class="pl">(b) Graph both lines on the grid.</div>
+      <div class="u8l2-gfig" data-u8l2-grid="ex3"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Both have <span class="tex">m=-1</span> and <span class="tex">b=4</span>, so the second graph lands <b>exactly on top</b> of the first (drawn dashed over it).</div></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Rewrite both equations in slope <span class="tex">y</span>-intercept form.</div>
+        <div class="work" style="--h:160px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x+y=4\ \Rightarrow\ \boldsymbol{y=-x+4}</span><br><span class="tex">2x+2y=8\ \Rightarrow\ 2y=-2x+8\ \Rightarrow\ \boldsymbol{y=-x+4}</span> (divide every term by 2)</div></div></div>
+      <div class="part"><div class="pl">(c) How many solutions does the system have? Explain.</div>
+        <div class="work" style="--h:130px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">They are the <b>same line</b>, so <b>every</b> point on it makes both equations true: <b>infinitely many solutions</b>.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex3c" data-section="Example 3 check">
+  <h3 class="sub">Example 3 check: one line, drawn twice</h3>
+  <p>Rewrite the second equation first. Then graph both and look for the points they share.</p>
+  <div class="explainer" data-explainer="count3"></div>
+</section>
+
+<!-- ================= the three ways together ================= -->
+<section class="card" data-ink="s3b" data-section="Turn it, slide it">
+  <h3 class="sub">All three at once: turn a line, slide a line</h3>
+  <div class="u8l2-ways">
+    <div class="u8l2-way u8l2-w1">
+      <svg viewBox="0 0 160 100"><line x1="18" y1="86" x2="142" y2="14" class="u8l2-sl1"/><line x1="18" y1="20" x2="142" y2="84" class="u8l2-sl2"/><circle cx="80" cy="51" r="7" class="u8l2-sdot"/></svg>
+      <div class="u8l2-wh">The lines cross once</div><div class="u8l2-wn"><b>one solution</b></div>
+    </div>
+    <div class="u8l2-way u8l2-w0">
+      <svg viewBox="0 0 160 100"><line x1="18" y1="72" x2="142" y2="14" class="u8l2-sl1"/><line x1="18" y1="94" x2="142" y2="36" class="u8l2-sl2"/></svg>
+      <div class="u8l2-wh">The lines never touch (parallel)</div><div class="u8l2-wn"><b>no solution</b></div>
+    </div>
+    <div class="u8l2-way u8l2-wi">
+      <svg viewBox="0 0 160 100"><line x1="18" y1="84" x2="142" y2="16" class="u8l2-sl1 u8l2-fat"/><line x1="18" y1="84" x2="142" y2="16" class="u8l2-sl2 u8l2-dash"/></svg>
+      <div class="u8l2-wh">One line on top of the other</div><div class="u8l2-wn"><b>infinitely many solutions</b></div>
+    </div>
+  </div>
+  <p>Watch the amber line <b>turn</b> until it is parallel to the blue one, then <b>slide</b> until it lies on top. Keep an eye on the solution count and the slopes and <span class="tex">y</span>-intercepts.</p>
+  <div class="explainer" data-explainer="turnSlide"></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u8l2"></section>
+
+<!-- ================= 4. Without graphing ================= -->
+<section class="card" data-ink="s4" data-section="4. Classifying Without Graphing">
+  <div class="sec-h"><span class="badge">4</span><h2>Classifying a System Without Graphing</h2></div>
+  <div class="u8l2-steps">
+    <div><b class="n">1</b>Write <b>both</b> equations in slope <span class="tex">y</span>-intercept form, <span class="tex">y=mx+b</span>.</div>
+    <div><b class="n">2</b>Compare the <b>slopes</b>. <b>Different</b> slopes: <b>one solution</b>, and you can stop.</div>
+    <div><b class="n">3</b>Same slopes? Compare the <span class="tex">y</span>-<b>intercepts</b>. <b>Different</b>: <b>no solution</b>. <b>Same</b>: <b>infinitely many</b>.</div>
+  </div>
+  <p>Far faster than graphing!</p>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Rewrite before you compare.</b> <span class="tex">4x-2y=-2</span> and <span class="tex">y=2x+1</span> look nothing alike, but they are the same line. Comparing numbers from two different forms (the 4 and the 2) gives the wrong answer.</div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>The classification chart</h3></div>
+  <p class="q">Use what you noticed in Examples 1–3 to complete the chart below.</p>
+  <div class="parts c1">
+    <div class="part">
+      <div class="u8l2-chart">
+        <div class="u8l2-chh">One Solution</div><div class="u8l2-chh">No Solution</div><div class="u8l2-chh">Infinitely Many</div>
+        <div class="u8l2-chp"><svg viewBox="0 0 160 90"><line x1="30" y1="76" x2="130" y2="14" class="u8l2-sl1"/><line x1="30" y1="14" x2="130" y2="76" class="u8l2-sl2"/><circle cx="80" cy="45" r="6" class="u8l2-sdot"/></svg></div>
+        <div class="u8l2-chp"><svg viewBox="0 0 160 90"><line x1="30" y1="80" x2="130" y2="34" class="u8l2-sl1"/><line x1="30" y1="56" x2="130" y2="10" class="u8l2-sl2"/></svg></div>
+        <div class="u8l2-chp"><svg viewBox="0 0 160 90"><line x1="30" y1="76" x2="130" y2="14" class="u8l2-sl1 u8l2-fat"/><line x1="30" y1="76" x2="130" y2="14" class="u8l2-sl2 u8l2-dash"/></svg></div>
+        <div class="u8l2-chr"><div>Slopes: <span class="u8l2-blank" data-reveal><b>different</b></span></div><div>Intercepts: <span class="u8l2-blank" data-reveal><b>any values</b></span></div></div>
+        <div class="u8l2-chr"><div>Slopes: <span class="u8l2-blank" data-reveal><b>same</b></span></div><div>Intercepts: <span class="u8l2-blank" data-reveal><b>different</b></span></div></div>
+        <div class="u8l2-chr"><div>Slopes: <span class="u8l2-blank" data-reveal><b>same</b></span></div><div>Intercepts: <span class="u8l2-blank" data-reveal><b>same</b></span></div></div>
+      </div>
+      <div class="work" style="--h:60px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Example 1: slopes 2 and −1, <b>different</b>: one solution (the intercepts can be anything). Example 2: slopes 3 and 3, intercepts 2 and −3: <b>same</b> slope, <b>different</b> intercepts: no solution. Example 3: <span class="tex">m=-1</span> and <span class="tex">b=4</span> for both: <b>same</b> and <b>same</b>: infinitely many.</div></div>
+    </div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Classify without graphing</h3></div>
+  <p class="q">Without graphing, determine whether each system has one solution, no solution, or infinitely many solutions.</p>
+  <div class="parts u8l2-c4">
+    <div class="part"><div class="pl">(a) <span class="tex u8l2-c1">y=4x+3</span><br><span class="u8l2-pl2"><span class="tex u8l2-c2">y=4x-1</span></span></div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=4</span> and <span class="tex">m=4</span>: same.<br><span class="tex">b=3</span> and <span class="tex">b=-1</span>: different.<br>Parallel: <b>no solution</b>.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex u8l2-c1">y=5x+2</span><br><span class="u8l2-pl2"><span class="tex u8l2-c2">y=-3x+2</span></span></div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=5</span> and <span class="tex">m=-3</span>: different slopes.<br>They must cross once: <b>one solution</b>.</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex u8l2-c1">y=2x-6</span><br><span class="u8l2-pl2"><span class="tex u8l2-c2">y=2x-6</span></span></div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Same <span class="tex">m=2</span> <b>and</b> same <span class="tex">b=-6</span>: one line written twice.<br><b>Infinitely many</b>.</div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex u8l2-c1">y=-x+8</span><br><span class="u8l2-pl2"><span class="tex u8l2-c2">y=x+8</span></span></div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=-1</span> and <span class="tex">m=1</span>: different slopes (the equal <span class="tex">b</span> does not matter).<br><b>One solution</b>.</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex5c" data-section="Example 5 check">
+  <h3 class="sub">Example 5 check: two questions decide it</h3>
+  <p>Get both equations into <span class="tex">y=mx+b</span>, then ask: <b>same slope?</b> If not, one solution. If so, <b>same <span class="tex">y</span>-intercept?</b></p>
+  <div class="explainer" data-explainer="classify"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>One solution.</b> <b>Different slopes</b>: the lines must cross, and only once. The intercepts can be anything.</div>
+    <div><b>No solution.</b> <b>Same slope, different <span class="tex">y</span>-intercepts</b>: parallel lines, always the same distance apart, never meeting.</div>
+    <div><b>Infinitely many.</b> <b>Same slope and same <span class="tex">y</span>-intercept</b>: the same line in disguise. Every point on it is a solution.</div>
+    <div><b>Without graphing:</b> rewrite <b>both</b> as <span class="tex">y=mx+b</span> (divide every term if <span class="tex">y</span> has a number in front). Compare slopes first, then intercepts. Never exactly two solutions.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u8l2">
+    <div><div class="kicker">Your turn</div><b>Assignment 2 — Classifying Systems: One Solution, No Solution, or Infinite Solutions</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l3/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 3 — Solving Systems by Substitution, Part 1: When a Variable Is Already Isolated</b><div class="muted">No graph paper: swap one variable for what it equals, and get an exact answer.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u8l2.js';
+  boot({ key: 'u8l2', homeHref: '../../', title: '8.2 Classifying Systems' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>
