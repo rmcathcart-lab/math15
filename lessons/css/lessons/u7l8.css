@@ -51,6 +51,7 @@
 .u7l8-afig { float: right; margin: 0 0 6px 8px; }
 .parts.c3 .u7l8-afig { float: none; display: flex; justify-content: center; margin: 4px 0 8px; }
 .u7l8-strl { font-size: 18px; margin: 2px 0 4px; }
+.u7l8-strl-sm { font-size: 15px; white-space: nowrap; }   /* Example 4(b): the longer strategy name stays on one line */
 .u7l8-tab3 { width: 100%; border-collapse: collapse; font-size: 19px; margin: 0 0 10px; }
 .u7l8-tab3 th, .u7l8-tab3 td { border: 2px solid #9aa0ab; padding: 8px 12px; height: 46px; text-align: left; }
 .u7l8-tab3 th { background: #eef2fa; font: 800 17px var(--round); }

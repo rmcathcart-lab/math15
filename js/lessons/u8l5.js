@@ -19,9 +19,9 @@
     'pt-fraction': 'Exact answer given as a decimal', 'swap-answer': 'Right numbers in the wrong boxes', 'one-value': 'One value right, the other wrong', 'diff-order': 'Difference subtracted in the wrong order',
     'boat-swap': 'Current: downstream and upstream swapped', 'z-wrong': 'Three unknowns: a value wrong', 'xy-right-z': 'Three unknowns: one value wrong', 'u8-count-swap': 'Ticket counts swapped', 'u8-price-swap': 'Prices matched to the wrong tickets',
     'coef-swap': 'Coefficients attached to the wrong variables', 'perim-half': 'Perimeter: used l + w instead of 2l + 2w', 'sub-swap': 'Substituted the point’s coordinates into the wrong letters',
-    'u8l5-order': 'Equation not lined up as ax + by = c', 'eq': 'Wrong equation', 'rearr-sign': 'Sign not changed when moving a term across =', 'u8l5-back-sign': 'Sign slip finding the unknown coefficient', 'u8l5-frac': 'Value of the other variable wrong (fraction)'
+    'u8l5-order': 'Equation not lined up as ax + by = c', 'eq': 'Wrong equation', 'rearr-sign': 'Sign not changed when moving a term across =', 'u8l5-back-sign': 'Sign slip finding the unknown coefficient'
   });
-  HW.addPartial({ 'addsub': 'n', 'u8l5-back-sign': 's', 'u8l5-frac': 'b' });
+  HW.addPartial({ 'u8l5-back-sign': 's' });
 
   /* ---------------- rational numbers [p, q] ---------------- */
   function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var c = a % b; a = b; b = c; } return a; }
@@ -329,7 +329,7 @@
       }) },
       { num: '7', stem: 'Decide whether to add or subtract, then solve each system. Check your solution.', parts: ['a', 'b', 'c'].map(function (L, i) {
         var book = [[9, 2, -21, 9, -5, 21], [3, 7, 31, 6, -7, 41], [4, -6, 64, 7, -6, 94]][i];
-        return { id: '7' + L, level: 'EMG', make: function (r) { return elimPart('Decide whether to add or subtract, then solve. Give the solution as an ordered pair.', elimGen(r, { xr: [-6, 10], yr: [-6, 6], sgnE: 0 }, book)); } };
+        return { id: '7' + L, level: 'PRG', make: function (r) { return elimPart('Decide whether to add or subtract, then solve. Give the solution as an ordered pair.', elimGen(r, { xr: [-6, 10], yr: [-6, 6], sgnE: 0 }, book)); } };
       }) },
       /* ---------- Part D ---------- */
       { num: '8', section: 'Part D — Applications', stem: function (sh) { return 'The sum of ' + eWord(sh.k).toLowerCase() + ' a number ' + t('a') + ' and a number ' + t('b') + ' is ' + sh.s + '. ' + eWord(sh.k) + ' ' + t('a') + ' minus ' + t('b') + ' is ' + sh.d + '.'; },

@@ -317,7 +317,18 @@
     return p;
   }
 
-  HW.defineLesson({
+  /* a prompt that starts "(a) …" in a part labelled "a graph" gets the full label, so the page doesn't print both */
+  function fullLabels(def) {
+    (def.questions || []).concat(def.extra || []).forEach(function (q) {
+      q.parts.forEach(function (p) {
+        if (!p.sub || p.sub.indexOf(' ') < 0) return;
+        var mk = p.make, k = p.sub.split(' ')[0];
+        p.make = function (r, sh) { var o = mk(r, sh); if (typeof o.prompt === 'string' && o.prompt.indexOf('(' + k + ')') === 0) o.prompt = '(' + p.sub + ')' + o.prompt.slice(k.length + 2); return o; };
+      });
+    });
+    return def;
+  }
+  HW.defineLesson(fullLabels({
     id: 'u8l1', unit: 8, num: '1', title: 'What Is a System of Linear Equations? Solving by Graphing', outcome: 'RF9',
     blurb: 'Read the solution of a system off a graph, graph both lines by hand and find where they cross, and check a solution by substituting it into both equations.',
     questions: [
@@ -887,5 +898,5 @@
               t('A=\\frac{1}{2}bh=\\frac{1}{2}(' + base + ')(' + s.H + ')=' + A) + ' square units.', ['Area of a triangle: ' + t('A=\\frac{1}{2}bh') + ', with the base and height from part (b).'], 'triangle area', { after: 'square units' });
           } }] }
     ]
-  });
+  }));
 })(window);

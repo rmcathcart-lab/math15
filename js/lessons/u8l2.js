@@ -659,7 +659,18 @@
           } }] }
   ];
 
-  HW.defineLesson({
+  /* a prompt that starts "(a) …" in a part labelled "a graph" gets the full label, so the page doesn't print both */
+  function fullLabels(def) {
+    (def.questions || []).concat(def.extra || []).forEach(function (q) {
+      q.parts.forEach(function (p) {
+        if (!p.sub || p.sub.indexOf(' ') < 0) return;
+        var mk = p.make, k = p.sub.split(' ')[0];
+        p.make = function (r, sh) { var o = mk(r, sh); if (typeof o.prompt === 'string' && o.prompt.indexOf('(' + k + ')') === 0) o.prompt = '(' + p.sub + ')' + o.prompt.slice(k.length + 2); return o; };
+      });
+    });
+    return def;
+  }
+  HW.defineLesson(fullLabels({
     id: 'u8l2', unit: 8, num: '2', title: 'Classifying Systems: One Solution, No Solution, or Infinite Solutions', outcome: 'RF9',
     blurb: 'Tell from a graph, or from the slopes and y-intercepts, whether a system has one solution, no solution, or infinitely many — and build systems of each kind.',
     questions: [
@@ -843,5 +854,5 @@
         } }] }
     ],
     extra: L2EXTRA
-  });
+  }));
 })(window);

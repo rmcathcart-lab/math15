@@ -25,9 +25,9 @@
     'value-swap': 'Values attached to the wrong items', 'mix-total': 'Mixture: total not used', 'mix-swap': 'Mixture: amounts swapped', 'mix-pct': 'Mixture: percent not used correctly',
     'u8l4-iso': 'Isolated the variable incorrectly', 'u8l4-iso-form': 'Isolation not written as “variable = expression”', 'u8l4-iso-choice': 'Isolated a variable that makes a fraction',
     'u8l4-back-sign': 'Sign slip solving for the unknown constant', 'u8l4-dist': 'Bracket not multiplied out to every term', 'u8l4-param': 'Conditions on k and c wrong', 'u8l4-a-expr': 'Expression in a wrong',
-    'u8l4-not-cleared': 'Fractions or decimals not fully cleared', 'u8l4-devon-sum': 'Value of the left side wrong'
+    'u8l4-not-cleared': 'Fractions or decimals not fully cleared'
   });
-  HW.addPartial({ 'u8l4-iso': 'n', 'u8l4-back-sign': 's', 'u8l4-dist': 'b', 'u8l4-param': 'n', 'u8l4-a-expr': 'n', 'u8l4-devon-sum': 'b' });
+  HW.addPartial({ 'u8l4-iso': 'n', 'u8l4-back-sign': 's', 'u8l4-dist': 'b', 'u8l4-param': 'n', 'u8l4-a-expr': 'n' });
 
   /* ---------------- rational numbers [p, q] ---------------- */
   function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var c = a % b; a = b; b = c; } return a; }
@@ -832,7 +832,7 @@
             return numFields('Solve by substitution. How many of each coin are there?', [{ label: 'nickels' }, { label: 'quarters' }], [sh.n, sh.q], { sol: res.html + '<br><b>' + sh.n + ' nickels</b> and <b>' + sh.q + ' quarters</b>.', answer: sh.n + ' nickels, ' + sh.q + ' quarters',
               hints: ['Isolate ' + t('n') + ' in ' + t('n+q=' + sh.N) + ' and substitute into the value equation.'], text: 'coins' });
           } }] },
-      { num: '16', section: 'Mastery challenge', stem: '<b>Stretch.</b>', parts: [
+      { num: '16', stem: '<b>Stretch.</b>', parts: [
         { id: 'e16', level: 'MAS', make: function (r) {
           var p, q, s, D, ny, nx;
           for (var g = 0; g < 400; g++) { p = r.int(1, 4); q = r.int(2, 5); s = r.int(1, 4); D = q * p + 1; ny = q - s; nx = 1 + p * s; if (ny > 0 && D !== ny && nx !== ny) break; }

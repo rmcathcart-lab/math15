@@ -589,7 +589,7 @@
       { num: '3', stem: function (sh) { return 'Graph ' + t('x=' + sh.k) + ', and state the slope of the line.'; }, shared: function (r) { return { k: r.int(1, 7) }; }, parts: [
         { id: '3a', sub: 'graph', level: 'BEG', make: function (r, sh) { return hvGraph('Graph ' + t('x=' + sh.k) + '.', 'x', sh.k, W8); } },
         { id: '3b', sub: 'slope', level: 'BEG', make: function (r, sh) { return hvSlope('State the slope of ' + t('x=' + sh.k) + '.', 'x', sh.k); } }] },
-      { num: '4', stem: function (sh) { return 'Graph ' + t('x=' + sh.k) + ', and state the slope of the line.'; }, shared: function (r) { return { k: -r.int(1, 7) }; }, parts: [
+      { num: '4', stem: function (sh) { return 'Graph ' + t('x=' + sh.k) + ', and state the slope of the line.'; }, shared: function (r) { return { k: -r.pick([1, 3, 4, 6, 7]) }; }, parts: [
         { id: '4a', sub: 'graph', level: 'BEG', make: function (r, sh) { return hvGraph('Graph ' + t('x=' + sh.k) + '.', 'x', sh.k, W8); } },
         { id: '4b', sub: 'slope', level: 'BEG', make: function (r, sh) { return hvSlope('State the slope of ' + t('x=' + sh.k) + '.', 'x', sh.k); } }] },
       { num: '5', stem: 'Graph the line.', parts: [
