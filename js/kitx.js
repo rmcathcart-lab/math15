@@ -378,6 +378,7 @@
   /* labels for the error codes above (teacher dashboard → Questions). Lessons add their own with HW.addCodes({...}) */
   HW.CODES = HW.CODES || {};
   HW.addCodes = function (o) { Object.keys(o).forEach(function (k) { HW.CODES[k] = o[k]; }); };
+  HW.addCodes({ eq: 'Wrong equation', value: 'Wrong value', 'swap-answer': 'Right numbers in the wrong boxes', 'amt-swap': 'Answers in each other’s boxes', 'amt-one': 'Only one of the two amounts right' });
   HW.addCodes({
     'mixed-num': 'Wrote a mixed number', sign: 'Wrong sign', flip: 'Fraction upside down', lowest: 'Not in lowest terms', decimal: 'Gave a decimal instead of exact form', 'decimal-rounded': 'Rounded decimal instead of exact fraction',
     simplify: 'Right value, not simplified', 'one-radical': 'Not written as one radical', 'not-simplest': 'Radical not in simplest form', unchanged: 'Gave the expression back unchanged', 'not-simplest-var': 'Variable left under the radical',

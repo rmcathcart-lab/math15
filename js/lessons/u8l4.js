@@ -320,28 +320,36 @@
       return Es.every(okEq) ? mkS(Es, [spec[0], spec[1]]) : null;
     }, function () { return bookS(book, [spec[0], spec[1]]); });
   }
-  function nrSys(r, kind) {   // Q11: a x + y = c, p x − q y = d, ask x + y.   Q12: x − p y = c, q x + y = d, ask x − y.
+  function nrSys(r, kind) {   // Q11: a x + y = c, p x − q y = d, ask x + y.   Q12: x − p y = c, q x + y = d, ask x − y.  Built from a whole-number solution (no calculator, no rounding).
     for (var g = 0; g < 900; g++) {
-      var Es;
-      if (kind === 11) Es = [E(r.int(2, 4), 1, r.int(2, 12)), E(r.int(2, 5), -r.int(2, 5), rnz(r, -6, 9))];
-      else Es = [E(1, -r.int(2, 4), rnz(r, -6, 6)), E(r.int(2, 5), 1, r.int(5, 24))];
-      var s = solve2(Es[0], Es[1]); if (!s || !Es.every(okEq) || isInt(s[0]) || isInt(s[1]) || Q(s[0])[1] > 17) continue;
-      var v = kind === 11 ? qv(qa(s[0], s[1])) : qv(qs(s[0], s[1])), f = v * 10 - Math.floor(v * 10);
-      if (v < 0.2 || v > 99 || Math.abs(f - 0.5) < 0.1 || f < 0.06 || f > 0.94) continue;
-      return { Es: Es, s: s, v: v, texs: Es.map(function (e) { return eqT(e); }) };
+      var Es, x0, y0;
+      if (kind === 11) {
+        x0 = r.int(1, 6); y0 = rnz(r, -2, 6);
+        var a = r.int(2, 4), p = r.int(2, 5), q = r.int(2, 5);
+        Es = [E(a, 1, a * x0 + y0), E(p, -q, p * x0 - q * y0)];
+        if (x0 + y0 < 1 || a * x0 + y0 > 20 || Math.abs(p * x0 - q * y0) > 30) continue;
+      } else {
+        x0 = r.int(2, 9); y0 = r.int(1, 6);
+        var p2 = r.int(2, 4), q2 = r.int(2, 5);
+        Es = [E(1, -p2, x0 - p2 * y0), E(q2, 1, q2 * x0 + y0)];
+        if (x0 - y0 < 1 || q2 * x0 + y0 > 40 || Math.abs(x0 - p2 * y0) > 12) continue;
+      }
+      if (x0 === Math.abs(y0) || !Es.every(okEq)) continue;
+      var s = solve2(Es[0], Es[1]); if (!s || qv(s[0]) !== x0 || qv(s[1]) !== y0) continue;
+      return { Es: Es, x0: x0, y0: y0, texs: Es.map(function (e) { return eqT(e); }) };
     }
-    return kind === 11 ? { Es: [E(2, 1, 9), E(3, -4, 1)], s: [Q(37, 11), Q(25, 11)], v: 62 / 11, texs: ['2x+y=9', '3x-4y=1'] } : { Es: [E(1, -3, -2), E(4, 1, 21)], s: [Q(61, 13), Q(29, 13)], v: 32 / 13, texs: ['x-3y=-2', '4x+y=21'] };
+    return kind === 11 ? { Es: [E(2, 1, 9), E(3, -4, 8)], x0: 4, y0: 1, texs: ['2x+y=9', '3x-4y=8'] } : { Es: [E(1, -3, -2), E(4, 1, 31)], x0: 7, y0: 3, texs: ['x-3y=-2', '4x+y=31'] };
   }
   function nrPart(kind) {
     return function (r) {
-      var S = nrSys(r, kind), plus = kind === 11, want = K.roundTo(S.v, 1), x = qv(S.s[0]), y = qv(S.s[1]), what = plus ? 'x+y' : 'x-y';
+      var S = nrSys(r, kind), plus = kind === 11, x = S.x0, y = S.y0, what = plus ? 'x+y' : 'x-y', ans = plus ? x + y : x - y, other = plus ? x - y : x + y;
       var res = subSol(S.Es, {});
-      return B.approx('If ' + t(S.texs[0]) + ' and ' + t(S.texs[1]) + ', then ' + t(what) + ', to the nearest tenth, is ________.', S.v, 1, { nr: true, diag: function (z) {
-        if (near(z, K.roundTo(plus ? x - y : x + y, 1))) return { code: 'nr-sum', hint: 'That’s ' + t(plus ? 'x-y' : 'x+y') + '. The question asks for ' + t(what) + '.' };
-        if (near(z, K.roundTo(x, 1)) || near(z, K.roundTo(y, 1))) return { code: 'nr-one', hint: 'That’s just one of the values. Find both ' + t('x') + ' and ' + t('y') + ', then ' + (plus ? 'add' : 'subtract') + '.' };
+      return B.nr('If ' + t(S.texs[0]) + ' and ' + t(S.texs[1]) + ', then the value of ' + t(what) + ' is ________.', ans, function (z) {
+        if (z === other) return { code: 'nr-sum', hint: 'That’s ' + t(plus ? 'x-y' : 'x+y') + '. The question asks for ' + t(what) + '.' };
+        if (z === x || z === y) return { code: 'nr-one', hint: 'That’s just one of the values. Find both ' + t('x') + ' and ' + t('y') + ', then ' + (plus ? 'add' : 'subtract') + '.' };
         return null;
-      } }, res.html + '<br>' + t(what + '=' + qT(plus ? qa(S.s[0], S.s[1]) : qs(S.s[0], S.s[1])) + '\\approx ' + dc(Math.round(S.v * 1000) / 1000)) + ', which rounds to <b>' + want.toFixed(1) + '</b>.',
-        ['Isolate the variable with coefficient ' + t('1') + ', substitute and solve. The values are fractions — keep them as fractions.', (plus ? 'Add' : 'Subtract') + ' the fractions, then divide to round to the nearest tenth.'], 'NR ' + what);
+      }, res.html + '<br>' + t(what + '=' + x + (plus ? '+' : '-') + nb(y) + '=' + ans) + '.',
+        ['Isolate the variable with coefficient ' + t('1') + ', substitute and solve.', 'Find both ' + t('x') + ' and ' + t('y') + ', then ' + (plus ? 'add' : 'subtract') + ' them.'], 'NR ' + what);
     };
   }
 
@@ -520,7 +528,7 @@
           return { a: one([0, 0, 1], [1, 5, 13, 4, -3, 7]), b: one([0, 1, -1], [3, -1, 8, 5, 2, 1]), c: none([6, 5, 2, 4, -3, 9]), d: one([1, 0, 1], [7, 2, 15, 1, -9, 4]), e: one([1, 1, 1], [2, -7, 5, 8, 1, 11]), f: none([4, 3, 10, 9, -2, 7]) };
         },
         parts: ['a', 'b', 'c', 'd', 'e', 'f'].map(function (L) { return { id: 'e1' + L, level: L === 'c' || L === 'f' ? 'EMG' : 'LIM', make: function (r, sh) { return isoMC(r, sh[L], sh[L].iso, { prompt: 'Which variable, in which equation, would you isolate? (If no coefficient is ' + t('1') + ' or ' + t('-1') + ', pick the choice that keeps the fraction simplest.)' }); } }; }) },
-      { num: '2', stem: 'Isolate a variable, then complete all five steps. Solutions here may be negative or fractional — leave fractions exact.', parts: [
+      { num: '2', stem: 'Isolate the best variable (as in Question 1), then complete all five steps. Solutions here may be negative or fractional — leave fractions exact.', parts: [
         { id: 'e2a', level: 'EMG', make: function (r) { return solvePart('Solve. Give the solution as an ordered pair.', sysGen(r, [[0, 0, 1]], { xr: [-4, 4], yr: [-4, 4], mag: [2, 6] }, [1, 3, 5, 4, -5, -14])); } },
         { id: 'e2b', level: 'EMG', make: function (r) { return solvePart('Solve. Give the solution as an ordered pair.', sysGen(r, [[0, 1, -1]], { xr: [-4, 4], yr: [-4, 4], mag: [2, 6] }, [5, -1, -13, 2, 3, 5])); } },
         { id: 'e2c', level: 'EMG', make: function (r) { return solvePart('Solve. Give the solution as an ordered pair.', sysGen(r, [[0, 0, 1]], { xr: [-4, 4], yr: [-4, 4], mag: [2, 6] }, [1, -4, -7, 6, 5, -13])); } },

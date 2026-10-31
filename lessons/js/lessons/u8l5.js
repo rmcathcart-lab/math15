@@ -327,7 +327,7 @@ async function negate(c, els) {
 
 /* =============================== explainer: two balances, combined =============================== */
 const BAL = {
-  idea: { e1: E(5, 2, 19), e2: E(5, -3, 4), op: 'sub', el: 'x', stop: true },
+  idea: { e1: E(5, 2, 16), e2: E(5, -3, 1), op: 'sub', el: 'x', stop: true },
   ex1: { e1: E(3, 4, 23), e2: E(3, -2, 11), op: 'sub', el: 'x', back: 1 },
   ex2: { e1: E(2, 5, 23), e2: E(6, -5, 9), op: 'add', el: 'y', back: 1 }
 };

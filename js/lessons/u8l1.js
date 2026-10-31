@@ -508,7 +508,7 @@
         { id: '13', level: 'PRG', make: function (r) {
           var s = pick2(r, function (r) { return { m1: r.pick([5, 5, 3, 4]), m2: r.pick([-2, -2, -1, -3]), x0: r.int(1, 4), y0: r.int(1, 9) }; }, function (s) { var b1 = s.y0 - s.m1 * s.x0, b2 = s.y0 - s.m2 * s.x0; return b1 < 0 && b1 >= -12 && b2 <= 15 && s.x0 !== s.y0; });
           var b1 = s.y0 - s.m1 * s.x0, b2 = s.y0 - s.m2 * s.x0, ans = s.x0 + s.y0;
-          return K.P.nr('The system ' + t(yT(s.m1, b1)) + ' and ' + t(yT(s.m2, b2)) + ' has solution ' + t('(x,\\ y)') + '. The value of ' + t('x+y') + ' is ____.', ans,
+          return K.P.nr('The system ' + t(yT(s.m1, b1)) + ' and ' + t(yT(s.m2, b2)) + ' has solution ' + t('(x,\\ y)') + '. (Make a table of values for both equations and find where the ' + t('y') + '-values match.) The value of ' + t('x+y') + ' is ____.', ans,
             function (v) { if (v === s.x0) return { code: 'u8-pq-one', hint: 'That is ' + t('x') + ' alone — add ' + t('y') + ' as well.' }; if (v === s.y0) return { code: 'u8-pq-one', hint: 'That is ' + t('y') + ' alone — add ' + t('x') + ' as well.' }; if (v === Math.abs(s.x0 - s.y0)) return { code: 'u8-pq-diff', hint: 'The question asks for the <b>sum</b> ' + t('x+y') + '.' }; return null; },
             'Make a table of values for both equations and look for the ' + t('x') + ' where they give the same ' + t('y') + ':' + tabSol(s.m1, b1, s.m2, b2, s.x0) + 'At ' + t('x=' + s.x0) + ' both give ' + t('y=' + s.y0) + ', so the solution is ' + ptt([s.x0, s.y0]) + ' (check: ' + t(subT([[s.m1, 'x'], [b1, '']], { x: s.x0 }) + '=' + s.y0) + ' ✓, ' + t(subT([[s.m2, 'x'], [b2, '']], { x: s.x0 }) + '=' + s.y0) + ' ✓).<br>' + t('x+y=' + s.x0 + '+' + s.y0 + '=' + ans) + '.',
             ['The intercepts are off the usual grid: make a table of values for both lines (' + t('x=0,\\ 1,\\ 2,\\ \\ldots') + ') and find where they match.', 'Then add the two coordinates.'], 'NR x+y');
@@ -517,7 +517,7 @@
         { id: '14', level: 'PRG', make: function (r) {
           var s = pick2(r, function (r) { return { m1: r.pick([-4, -4, -3, -2]), m2: r.pick([1, 1, 2]), x0: r.int(1, 4), y0: r.int(1, 7) }; }, function (s) { var b1 = s.y0 - s.m1 * s.x0, b2 = s.y0 - s.m2 * s.x0; return b1 >= 4 && b1 <= 15 && b2 !== 0 && Math.abs(b2) <= 8 && s.x0 !== s.y0; });
           var b1 = s.y0 - s.m1 * s.x0, b2 = s.y0 - s.m2 * s.x0;
-          return K.P.nr('A system’s two equations are ' + t(yT(s.m1, b1)) + ' and ' + t(yT(s.m2, b2)) + '. The value of ' + t('y') + ' at the solution is ____.', s.y0,
+          return K.P.nr('A system’s two equations are ' + t(yT(s.m1, b1)) + ' and ' + t(yT(s.m2, b2)) + '. Using a table of values, the value of ' + t('y') + ' at the solution is ____.', s.y0,
             function (v) { if (v === s.x0) return { code: 'u8l1-gave-x', hint: 'That is the ' + t('x') + '-coordinate of the solution. Substitute it into either equation to find ' + t('y') + '.' }; return null; },
             'Make a table of values for both equations:' + tabSol(s.m1, b1, s.m2, b2, s.x0) + 'At ' + t('x=' + s.x0) + ' both give ' + t('y=' + s.y0) + ', so the solution is ' + ptt([s.x0, s.y0]) + '.<br>Check: ' + t(subT([[s.m1, 'x'], [b1, '']], { x: s.x0 }) + '=' + s.y0) + ' ✓, ' + t(subT([[s.m2, 'x'], [b2, '']], { x: s.x0 }) + '=' + s.y0) + ' ✓. The value of ' + t('y') + ' is ' + t(s.y0) + '.',
             ['Make a table of values for both lines and find the ' + t('x') + ' where they give the same ' + t('y') + '.', 'The question asks for ' + t('y') + ', not ' + t('x') + '.'], 'NR y at solution');

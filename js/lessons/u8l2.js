@@ -836,9 +836,11 @@
               'Slopes ' + t(s.a) + ' and ' + t(s.b) + ' are different, so the lines cross once: there is exactly one number of hours with equal costs.', ['Compare the slopes.'], 'parking: one solution?');
           } },
           { id: '14b', sub: 'b', level: 'PRG', make: function (r, s) {
-            var p = numFields('Find the number of hours, and the cost then.', ['Hours:', 'Cost ($):'], [s.x0, s.y0], [function (v) { if (v === s.y0) return { code: 'u8l2-hours', hint: 'That is the cost. The hours are the ' + t('x') + '-value where ' + t(s.a + 'x+' + s.F + '=' + s.b + 'x') + '.' }; return null; }, function (v) { if (v === s.a * s.x0) return { code: 'u8l2-cost', hint: 'Include the garage’s $' + s.F + ': ' + t(s.a + '(' + s.x0 + ')+' + s.F) + '.' }; return null; }],
-              'Both costs are ' + t('y') + ', so set them equal: ' + t(s.a + 'x+' + s.F + '=' + s.b + 'x') + '.<br>Subtract ' + t(s.a + 'x') + ': ' + t(s.F + '=' + (s.b - s.a) + 'x') + ', so ' + t('x=' + s.x0) + '.<br>Cost: ' + t(s.b + '(' + s.x0 + ')=' + s.y0) + ' (check: ' + t(s.a + '(' + s.x0 + ')+' + s.F + '=' + s.y0) + ' ✓).<br>After ' + s.x0 + ' h both cost $' + s.y0 + '.',
-              ['Both expressions equal ' + t('y') + ': set ' + t(s.a + 'x+' + s.F + '=' + s.b + 'x') + ' and solve for ' + t('x') + '. (Or make a table of values for both.)'], 'parking: hours and cost');
+            var xs = []; for (var x = Math.max(0, s.x0 - 3); x <= s.x0 + 1; x++) xs.push(x);
+            var tab = HW.valueTable([['hours \\(x\\)'].concat(xs), ['\\(' + s.n1 + '\\)'].concat(xs.map(function (x) { return s.a * x + s.F; })), ['\\(' + s.n2 + '\\)'].concat(xs.map(function (x) { return s.b * x; }))]);
+            var p = numFields('By graphing both lines (or with a table of values), find the number of hours for which the two costs are the same, and the cost then.', ['Hours:', 'Cost ($):'], [s.x0, s.y0], [function (v) { if (v === s.y0) return { code: 'u8l2-hours', hint: 'That is the cost. The hours are the ' + t('x') + '-value where the two costs match.' }; return null; }, function (v) { if (v === s.a * s.x0) return { code: 'u8l2-cost', hint: 'Include the garage’s $' + s.F + ': ' + t(s.a + '(' + s.x0 + ')+' + s.F) + '.' }; return null; }],
+              'Make a table of values for both (or graph both lines):' + tab + 'At ' + t('x=' + s.x0) + ' both give ' + t('y=' + s.y0) + ', so the lines cross at ' + ptt([s.x0, s.y0]) + '.<br>Check: ' + t(s.a + '(' + s.x0 + ')+' + s.F + '=' + s.y0) + ' ✓ and ' + t(s.b + '(' + s.x0 + ')=' + s.y0) + ' ✓.<br>After ' + s.x0 + ' h both cost $' + s.y0 + '.',
+              ['Make a table of values for both costs (' + t('x=0,\\ 1,\\ 2,\\ \\ldots') + ') and find the hours where they match — or graph both lines and read the crossing.'], 'parking: hours and cost');
             p.bad = [[String(s.y0), String(s.x0)]];
             return p;
           } }] },

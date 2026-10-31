@@ -494,6 +494,8 @@ export const _test = { CH, IS, SUB, FR, CK };
     return [iso, sub, mult, chain.slice(0, 2).join('\\ \\Rightarrow\\ '), chain.slice(2).join('\\ \\Rightarrow\\ '), `${back}\\qquad(${x0},\\ ${y0})`].filter(Boolean);
   }
   const SOLVE = 'Isolate a variable first, then solve by substitution. Check in both equations.';
+  /* Assignment 4 Q11 and Q12 (whole-number NR systems) stay for homework */
+  const SKIP = ['2x+y=9|3x-4y=8', 'x-3y=-2|4x+y=31'];
   /** o: { lo, hi, oneNeg, needNeg, cv: [coefficients of the isolated variable], cu, fa, fb, yOnly (−1 only works on y) } */
   function build(r, o) {
     for (;;) {
@@ -505,6 +507,7 @@ export const _test = { CH, IS, SUB, FR, CK };
       const f = { a: r.pick(o.fa), b: r.pick(o.fb) }; f.c = f.a * x0 + f.b * y0;
       if (e.a * f.b === e.b * f.a || gcd(e.a, e.b) !== 1 || gcd(f.a, f.b) !== 1) continue;
       if (o.noOne && [e.a, e.b, f.a, f.b].some((c) => Math.abs(c) === 1)) continue;
+      if (SKIP.includes(`${eqT(e)}|${eqT(f)}`) || SKIP.includes(`${eqT(f)}|${eqT(e)}`)) continue;
       const a = work(e, f, v, x0, y0); if (!a) continue;
       const first = r.chance(0.65);
       return { text: SOLVE, q: first ? sysT(eqT(e), eqT(f)) : sysT(eqT(f), eqT(e)), a };
