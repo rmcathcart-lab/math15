@@ -448,15 +448,15 @@
       { num: '12', stem: '<i>(Numerical Response)</i>', parts: [
         { id: '12', level: 'PRG', make: function (r) {
           var o = until(function () { var m = r.int(2, 5), b = -r.int(2, 9), x1 = r.int(1, 2), run = r.int(2, 3); return { m: m, b: b, A: [x1, m * x1 + b], Bp: [x1 + run, m * (x1 + run) + b] }; }, function (o) { return o.A[1] < 0 && o.Bp[1] > 0 && o.m + o.b !== 0; });
-          var ans = o.m + o.b, slip = fv(fAdd([o.A[1], 1], fMul([o.m, 1], o.A[0])));
-          return nrPart('The line through ' + t(ptT(o.A[0], o.A[1])) + ' and ' + t(ptT(o.Bp[0], o.Bp[1])) + ' has equation ' + t('y=mx+b') + '. The value of ' + t('m+b') + ' is ________.', ans, [[o.m - o.b, 'sign', 'Add ' + t('m') + ' and ' + t('b') + ': ' + t('b') + ' is negative.'], [o.m + slip, 'u72-b-solve', 'Check how you solved for ' + t('b') + ': subtract ' + t('mx') + '.'], [-o.m + o.b, 'u7l6-order', 'Check the sign of the slope.']],
-            '<b>Step 1.</b> ' + slopeSol(o.A, o.Bp) + '.<br><b>Step 2.</b> ' + subSol([o.m, 1], o.A[0], o.A[1]) + '<br>So ' + t('m+b=' + o.m + '+' + pT(o.b) + '=' + ans) + '.', H_2P, 'NR m+b');
+          var ans = o.m - o.b, slip = fv(fAdd([o.A[1], 1], fMul([o.m, 1], o.A[0])));
+          return nrPart('The line through ' + t(ptT(o.A[0], o.A[1])) + ' and ' + t(ptT(o.Bp[0], o.Bp[1])) + ' has equation ' + t('y=mx+b') + '. The value of ' + t('m-b') + ' is ________.', ans, [[o.m + o.b, 'sign', 'Subtract: ' + t('m-b=' + o.m + '-' + pT(o.b)) + '. Subtracting a negative adds.'], [o.m - slip, 'u72-b-solve', 'Check how you solved for ' + t('b') + ': subtract ' + t('mx') + '.'], [-o.m - o.b, 'u7l6-order', 'Check the sign of the slope.'], [o.b - o.m, 'u7l6-order', 'It is ' + t('m-b') + ', not ' + t('b-m') + '.']],
+            '<b>Step 1.</b> ' + slopeSol(o.A, o.Bp) + '.<br><b>Step 2.</b> ' + subSol([o.m, 1], o.A[0], o.A[1]) + '<br>So ' + t('m-b=' + o.m + '-' + pT(o.b) + '=' + ans) + '.', H_2P, 'NR m-b');
         } }] },
       { num: '13', stem: '<i>(Numerical Response)</i>', parts: [
         { id: '13', level: 'PRG', make: function (r) {
-          var m = r.int(2, 5), b = -r.int(2, 9), x2 = r.int(2, 3), ans = m * b;
-          return nrPart('A line passes through ' + t(ptT(0, b)) + ' and ' + t(ptT(x2, m * x2 + b)) + '. Written as ' + t('y=mx+b') + ', the value of ' + t('mb') + ' is ________.', ans, [[-ans, 'sign', 'Multiply with the sign: ' + t('b') + ' is negative.'], [m + b, 'u7l6-run', t('mb') + ' means ' + t('m\\times b') + '.']],
-            t(ptT(0, b)) + ' is on the ' + t('y') + '-axis, so ' + t('b=' + b) + '. ' + slopeSol([0, b], [x2, m * x2 + b]) + '. So ' + t('mb=' + m + '\\times' + pT(b) + '=' + ans) + '.', ['One point is on the ' + t('y') + '-axis: it gives ' + t('b') + ' directly.', H_2P[0]], 'NR mb');
+          var m = r.int(2, 5), b = r.int(2, 9), x2 = r.int(2, 3), ans = m * b;   // NR: b positive so the answer is positive
+          return nrPart('A line passes through ' + t(ptT(0, b)) + ' and ' + t(ptT(x2, m * x2 + b)) + '. Written as ' + t('y=mx+b') + ', the value of ' + t('m\\times b') + ' is ________.', ans, [[m + b, 'u7l6-run', t('m\\times b') + ' means multiply ' + t('m') + ' by ' + t('b') + '.'], [(m * x2 + b) * m, 'u7l6-run', 'The ' + t('y') + '-intercept is the ' + t('y') + '-value at ' + t('x=0') + ': ' + t('b=' + b) + '.']],
+            t(ptT(0, b)) + ' is on the ' + t('y') + '-axis, so ' + t('b=' + b) + '. ' + slopeSol([0, b], [x2, m * x2 + b]) + '. So ' + t('m\\times b=' + m + '\\times ' + pT(b) + '=' + ans) + '.', ['One point is on the ' + t('y') + '-axis: it gives ' + t('b') + ' directly.', H_2P[0]], 'NR m×b');
         } }] },
       { num: '14', stem: '', parts: [
         { id: '14', level: 'ADV', make: function (r) {

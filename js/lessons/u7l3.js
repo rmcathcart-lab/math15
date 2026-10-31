@@ -364,7 +364,15 @@
         },
         stem: function (s) { return s.C[0] + ' charges according to the equation ' + t(siT(s.m, s.b)) + ', where ' + t('x') + ' is the number of hours rented and ' + t('y') + ' is the total cost in dollars.'; }, parts: [
         { id: '9a', level: 'BEG', make: function (r, s) { return mbPart('(a) State the slope and ' + t('y') + '-intercept.', s.m, s.b, {}, t('m=' + s.m) + ' (dollars per hour), ' + t('b=' + s.b) + ' (dollars).', null, '9a'); } },
-        { id: '9b', level: 'EMG', make: function (r, s) {
+        { id: '9b', level: 'BEG', make: function (r, s) {
+          return mc(r, '(b) What does the ' + t('y') + '-intercept represent in this situation?', [
+            { html: 'A flat $' + s.b + ' starting fee, charged before any hours — the cost at ' + t('0') + ' hours.', right: true },
+            { html: 'The cost of each hour, $' + s.b + '.', why: 'The cost per hour is the slope, ' + t(s.m) + '. The intercept is the cost at ' + t('0') + ' hours.' },
+            { html: 'The number of hours you can rent for $' + s.b + '.', why: 'The ' + t('y') + '-axis is the cost, not the hours.' },
+            { html: 'The total cost of a full day.', why: 'The ' + t('y') + '-intercept is where ' + t('x=0') + ' — no hours at all.' }],
+            'At ' + t('x=0') + ' hours, ' + t('y=' + s.b) + ': a starting fee of $' + s.b + ' you pay even before riding.', ['The ' + t('y') + '-intercept is the value of ' + t('y') + ' when ' + t('x=0') + '.'], '9b meaning of b');
+        } },
+        { id: '9c', level: 'EMG', make: function (r, s) {
           var inp = { x: [0, 10], y: [0, s.ym], grid: 1, gridY: 5, snapY: 5, labelsX: 2, labelsY: 10, unitX: 30, unitY: 280 / s.ym, firstQuadrant: true, xTitle: 'Hours', yTitle: 'Cost ($)', defaultEnd: 'arrow', max: 380 };
           var key = gv([], [{ v: [[0, s.b], [10, s.m * 10 + s.b]], s: 'closed', e: 'closed' }]);
           var chk = function (resp) {
@@ -385,20 +393,12 @@
             if (!(lo <= 0.01) || !(hi >= 5)) return wrong('u7l3-ctx-graph', 'Right line — draw it from ' + t(ptT([0, s.b])) + ' across the grid.');
             return ok();
           };
-          var p = B.graph('(b) Graph the line using the slope and ' + t('y') + '-intercept method.' + PADHELP, inp, chk, key,
+          var p = B.graph('(c) Graph the line using the slope and ' + t('y') + '-intercept method.' + PADHELP, inp, chk, key,
             'Start at ' + t(ptT([0, s.b])) + '. The slope ' + t(s.m) + ' means ' + t(s.m) + ' dollars per hour: right ' + t('5') + ' hours, up ' + t(5 * s.m) + ' dollars to ' + t(ptT([5, s.b + 5 * s.m])) + '. Draw the line from ' + t(ptT([0, s.b])) + ' across the grid (time can’t be negative, so it starts at ' + t('x=0') + ').',
-            ['The grid’s cost axis goes up by ' + t('5') + ' per line: use a run of ' + t('5') + ' hours.', 'At ' + t('0') + ' hours the cost is ' + t('b') + '.'], '9b context graph');
+            ['The grid’s cost axis goes up by ' + t('5') + ' per line: use a run of ' + t('5') + ' hours.', 'At ' + t('0') + ' hours the cost is ' + t('b') + '.'], '9c context graph');
           p.good = [lineV([0, s.b], [5, s.b + 5 * s.m]), gv([], [{ v: [[0, s.b], [5, s.b + 5 * s.m]], s: 'closed', e: 'arrow' }])];
           p.bad = [lineV([0, s.b], [5, s.b + 5]), gv([[0, s.b], [5, s.b + 5 * s.m]], [])];
           return p;
-        } },
-        { id: '9c', level: 'BEG', make: function (r, s) {
-          return mc(r, '(c) What does the ' + t('y') + '-intercept represent in this situation?', [
-            { html: 'A flat $' + s.b + ' starting fee, charged before any hours — the cost at ' + t('0') + ' hours.', right: true },
-            { html: 'The cost of each hour, $' + s.b + '.', why: 'The cost per hour is the slope, ' + t(s.m) + '. The intercept is the cost at ' + t('0') + ' hours.' },
-            { html: 'The number of hours you can rent for $' + s.b + '.', why: 'The ' + t('y') + '-axis is the cost, not the hours.' },
-            { html: 'The total cost of a full day.', why: 'The ' + t('y') + '-intercept is where ' + t('x=0') + ' — no hours at all.' }],
-            'At ' + t('x=0') + ' hours, ' + t('y=' + s.b) + ': a starting fee of $' + s.b + ' you pay even before riding.', ['The ' + t('y') + '-intercept is the value of ' + t('y') + ' when ' + t('x=0') + '.'], '9c meaning of b');
         } }] },
       /* ================= Part D ================= */
       { num: '10', section: 'Part D — Multiple Choice and Numerical Response', parts: [
@@ -428,20 +428,20 @@
           return mc(r, '<i>(Multiple Choice)</i> Which statement is <b>false</b> for the line ' + t(eq) + '?', ['A', 'B', 'C', 'D'].map(function (k) { return S[k]; }),
             'Check each: ' + ['A', 'B', 'C', 'D'].map(function (k) { return k === F ? '<b>' + why[k] + ' — false.</b>' : S[k].why; }).join('<br>'), ['Test every statement against ' + t(eq) + '.'], '12 false statement', true);
         } }] },
-      { num: '13', shared: function (r) { return pickWhere(function () { return { a: r.pick([1, 2, 3, 4, 5, 6]), x0: r.int(1, 6) }; }, function (o) { return o.a * o.x0 <= 18 && (o.a * o.x0 * o.x0) % 2 === 0; }); },
-        stem: function (s) { var c = s.a * s.x0; return 'Consider the line with equation ' + t(siT(-s.a, c)) + '. The line intersects the ' + t('x') + '-axis at ' + t('P') + ' and the ' + t('y') + '-axis at ' + t('Q') + '. Triangle ' + t('POQ') + ' is formed, where ' + t('O') + ' is the origin.'; }, parts: [
+      { num: '13', shared: function (r) { return pickWhere(function () { return { p: r.int(1, 6), q: r.int(2, 9) }; }, function (o) { return (o.p * o.q) % 2 === 0 && o.p * o.q <= 36; }); },
+        stem: function (s) { return 'Consider the line with equation ' + t(siT(Q(-s.q, s.p), s.q)) + '. The line intersects the ' + t('x') + '-axis at ' + t('P') + ' and the ' + t('y') + '-axis at ' + t('Q') + '. Triangle ' + t('POQ') + ' is formed, where ' + t('O') + ' is the origin. (Graph the line first: ' + t('P') + ' is where it crosses the ' + t('x') + '-axis.)'; }, parts: [
         { id: '13', level: 'PRG', make: function (r, s) {
-          var c = s.a * s.x0, A = s.x0 * c / 2;
-          return B.nr('<i>(Numerical Response)</i> The area of ' + t('\\triangle POQ') + ', in square units, is ____.', A, dl([[2 * A, 'tri-half', 'Area of a triangle is ' + t('\\frac{1}{2}\\times\\text{base}\\times\\text{height}') + '.'], [s.x0 + c, 'tri-area', 'That’s the sum of the legs. The area is half their product.']], A),
-            t('Q=' + ptT([0, c])) + '. For ' + t('P') + ' set ' + t('y=0') + ': ' + t('0=-' + s.a + 'x+' + c) + ', ' + t('x=' + s.x0) + ', so ' + t('P=' + ptT([s.x0, 0])) + '.<br>Legs ' + t(s.x0) + ' and ' + t(c) + ': ' + t('A=\\frac{1}{2}(' + s.x0 + ')(' + c + ')=' + A) + ' square units.',
-            ['Find both intercepts: they are the corners of a right triangle with the origin.', 'Area = ' + t('\\frac{1}{2}\\times\\text{base}\\times\\text{height}') + '.'], '13 area');
+          var A = s.p * s.q / 2, m = Q(-s.q, s.p);
+          return B.nr('<i>(Numerical Response)</i> The area of ' + t('\\triangle POQ') + ', in square units, is ____.', A, dl([[2 * A, 'tri-half', 'Area of a triangle is ' + t('\\frac{1}{2}\\times\\text{base}\\times\\text{height}') + '.'], [s.p + s.q, 'tri-area', 'That’s the sum of the legs. The area is half their product.']], A),
+            t('y') + '-intercept: ' + t('b=' + s.q) + ', so ' + t('Q' + ptT([0, s.q])) + '.<br>Slope ' + t(qT(m) + (m[1] === s.p ? '' : '=\\frac{-' + s.q + '}{' + s.p + '}')) + ': from ' + t(ptT([0, s.q])) + ' step right ' + t(s.p) + ', down ' + t(s.q) + ' to ' + t(ptT([s.p, 0])) + ', which is on the ' + t('x') + '-axis, so ' + t('P' + ptT([s.p, 0])) + '.<br>The legs ' + t('OP=' + s.p) + ' and ' + t('OQ=' + s.q) + ' meet at the origin at a right angle: ' + t('A=\\frac{1}{2}(' + s.p + ')(' + s.q + ')=' + A) + ' square units.',
+            ['Graph the line: start at the ' + t('y') + '-intercept and use the slope until you reach the ' + t('x') + '-axis.', 'Area = ' + t('\\frac{1}{2}\\times\\text{base}\\times\\text{height}') + '.'], '13 area');
         } }] },
       { num: '14', shared: function (r) { var T = r.pick([[3, 4, 5], [4, 3, 5], [6, 8, 10], [8, 6, 10], [5, 12, 13], [12, 5, 13], [9, 12, 15], [12, 9, 15], [8, 15, 17], [15, 8, 17]]); return { p: T[0] * (r.chance(0.3) ? -1 : 1), q: T[1], h: T[2] }; },
-        stem: function (s) { var m = Q(-s.q, s.p); return 'Consider the line with equation ' + t(siT(m, s.q)) + '. The line intersects the ' + t('x') + '-axis at ' + t('P') + ' and the ' + t('y') + '-axis at ' + t('Q') + '. Triangle ' + t('POQ') + ' is formed, where ' + t('O') + ' is the origin.'; }, parts: [
+        stem: function (s) { var m = Q(-s.q, s.p); return 'Consider the line with equation ' + t(siT(m, s.q)) + '. The line intersects the ' + t('x') + '-axis at ' + t('P') + ' and the ' + t('y') + '-axis at ' + t('Q') + '. Triangle ' + t('POQ') + ' is formed, where ' + t('O') + ' is the origin. (Graph the line first: ' + t('P') + ' is where it crosses the ' + t('x') + '-axis.)'; }, parts: [
         { id: '14', level: 'ADV', make: function (r, s) {
           var P = Math.abs(s.p) + s.q + s.h, m = Q(-s.q, s.p);
           return B.nr('<i>(Numerical Response)</i> The perimeter of ' + t('\\triangle POQ') + ', in units, is ____.', P, dl([[Math.abs(s.p) + s.q, 'tri-hyp', 'The perimeter goes all the way round: add the third side ' + t('PQ') + ' (Pythagorean theorem).'], [Math.abs(s.p) * s.q / 2, 'tri-area', 'That’s the area. The perimeter is the sum of the three sides.'], [s.h, 'tri-hyp', 'That’s only the side ' + t('PQ') + '. Add the two legs.']], P),
-            t('Q=' + ptT([0, s.q])) + '. Set ' + t('y=0') + ': ' + t('0=' + lin([[m, 'x'], [s.q, '']])) + ' gives ' + t('x=' + s.p) + ', so ' + t('P=' + ptT([s.p, 0])) + '.<br>Legs ' + t(Math.abs(s.p)) + ' and ' + t(s.q) + '; ' + t('PQ=\\sqrt{' + s.p * s.p + '+' + s.q * s.q + '}=\\sqrt{' + s.h * s.h + '}=' + s.h) + '.<br>Perimeter ' + t('=' + Math.abs(s.p) + '+' + s.q + '+' + s.h + '=' + P) + ' units.',
+            t('Q=' + ptT([0, s.q])) + '. Slope ' + t(qT(m)) + ': from ' + t(ptT([0, s.q])) + ' step ' + (s.p > 0 ? 'right' : 'left') + ' ' + t(Math.abs(s.p)) + ', down ' + t(s.q) + ' to ' + t(ptT([s.p, 0])) + ', on the ' + t('x') + '-axis, so ' + t('P=' + ptT([s.p, 0])) + '.<br>Legs ' + t(Math.abs(s.p)) + ' and ' + t(s.q) + '; ' + t('PQ=\\sqrt{' + s.p * s.p + '+' + s.q * s.q + '}=\\sqrt{' + s.h * s.h + '}=' + s.h) + '.<br>Perimeter ' + t('=' + Math.abs(s.p) + '+' + s.q + '+' + s.h + '=' + P) + ' units.',
             ['Find both intercepts, then the three sides of the right triangle.', 'The hypotenuse: ' + t('c=\\sqrt{a^{2}+b^{2}}') + '.'], '14 perimeter');
         } }] }
     ],

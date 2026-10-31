@@ -127,7 +127,7 @@
   function numP(prompt, ans, diag, sol, hints, text, inp) {
     var p = K.P.number(prompt, ans, diag, sol, hints, text, inp);
     p.check = (function (c) { return function (resp) { return c(String(resp == null ? '' : resp).replace(/\\\$|\$/g, '')); }; })(p.check);
-    if (inp && inp.money) { p.answer = t(D(ans)); p.key = Number.isInteger(ans) ? String(ans) : m2(ans); }
+    if (inp && inp.money) { p.answer = t(D(ans)) + (inp.after ? inp.after : ''); p.key = Number.isInteger(ans) ? String(ans) : m2(ans); }
     else p.answer = (inp && inp.before ? inp.before : '') + t(N(ans)) + (inp && inp.after ? ' ' + inp.after : '');
     return p;
   }
@@ -251,9 +251,9 @@
   /* ======================= questions ======================= */
   var QUESTIONS = [
     /* ---------- 1 ---------- */
-    { num: '1', section: 'Part A — Translating Only', stem: 'Assign variables and write a system of two equations that models each situation. <b>Do not solve the system.</b>', parts: [
-      { id: '1a', sub: 'a', level: 'BEG', make: function (r) {
-        var o = q1a(r), A = 'l', B = 'w', k = o.k;
+    { num: '1', section: 'Part A — Translating Only', shared: function (r) { return { a: q1a(r), b: q1b(r) }; }, stem: 'Assign variables and write a system of two equations that models each situation. <b>Do not solve the system.</b>', parts: [
+      { id: '1a', sub: 'a', level: 'BEG', make: function (r, sh) {
+        var o = sh.a, A = 'l', B = 'w', k = o.k;
         return sysP('The length of a ' + o.ob.n + ' is ' + TIMES[k] + ' its width. The sum of the length and width is ' + t(o.S + '\\text{ ' + o.ob.u + '}') + '.<br>Let ' + t('l') + ' be the length and ' + t('w') + ' the width, in metres. Write the system.', [[1, -k, 0], [1, 1, -o.S]],
           { vars: [A, B], keyTex: ['l=' + k + 'w', 'l+w=' + o.S], names: ['the “' + TIMES[k] + '” fact', 'the sum'],
             factHints: ['the length is ' + TIMES[k] + ' the width: ' + t('l=' + k + 'w') + '.', 'length plus width is ' + t(o.S) + ': ' + t('l+w=' + o.S) + '.'],
@@ -264,8 +264,8 @@
           t('l=' + k + 'w') + ' (the length is ' + TIMES[k] + ' the width)<br>' + t('l+w=' + o.S) + ' (the sum is ' + o.S + ' m)<br>(Not asked: this gives ' + t('w=' + o.w) + ', ' + t('l=' + o.l) + '.)',
           ['One equation comes from each sentence.', '“' + cap(TIMES[k]) + '” means multiply; “sum” means add.'], 'translate length and width');
       } },
-      { id: '1b1', sub: 'b let', level: 'BEG', make: function (r) {
-        var o = q1b(r), c = o.c;
+      { id: '1b1', sub: 'b let', level: 'BEG', make: function (r, sh) {
+        var o = sh.b, c = o.c;
         return mc(r, 'A ' + o.holder + ' contains ' + c.c1 + ' and ' + c.c2 + ' only. There are ' + t(o.N) + ' coins in total, worth ' + Dh(o.V) + '.<br>Which let statements define the two unknowns correctly?', [
           { html: 'Let ' + t(c.X) + ' = the <b>number</b> of ' + c.c1 + ' and ' + t(c.Y) + ' = the <b>number</b> of ' + c.c2 + '.', right: true },
           { html: 'Let ' + t(c.X) + ' = ' + c.c1 + ' and ' + t(c.Y) + ' = ' + c.c2 + '.', why: 'Too vague: is ' + t(c.X) + ' the <b>number</b> of ' + c.c1 + ' or their <b>value</b>? Say exactly what each letter counts.' },
@@ -273,8 +273,8 @@
           { html: 'Let ' + t(c.X) + ' = the number of coins and ' + t(c.Y) + ' = the value of the coins.', why: 'Both of those are given (' + o.N + ' coins, ' + Dh(o.V) + '). The unknowns are how many ' + c.c1 + ' and how many ' + c.c2 + '.' }],
           'The unknowns are <b>how many</b> of each coin: ' + t(c.X) + ' = the number of ' + c.c1 + ', ' + t(c.Y) + ' = the number of ' + c.c2 + '. (The total count and the total value are given.)', ['What don’t you know yet: the value of one coin, or how many of each coin there are?'], 'let statements for coins');
       } },
-      { id: '1b2', sub: 'b system', level: 'EMG', make: function (r) {
-        var o = q1b(r), c = o.c;
+      { id: '1b2', sub: 'b system', level: 'EMG', make: function (r, sh) {
+        var o = sh.b, c = o.c;
         var s = { X: c.X, Y: c.Y, n1: c.c1, n2: c.c2, p1: c.v1 / 100, p2: c.v2 / 100, x: o.x, y: o.y, N: o.N, T: o.V, what: 'coins', each: 'each', dec: true };
         var p = cvSys('A ' + o.holder + ' contains ' + c.c1 + ' and ' + c.c2 + ' only. There are ' + t(o.N) + ' coins in total, worth ' + Dh(o.V) + '.<br>Let ' + t(c.X) + ' be the number of ' + c.c1 + ' and ' + t(c.Y) + ' the number of ' + c.c2 + '. Write the system.', s);
         p.solution += '<br>Every term of the value equation is in dollars, so a ' + c.s1 + ' is ' + t(pdec(c.v1)) + ' and a ' + c.s2 + ' is ' + t(pdec(c.v2)) + '.';
@@ -300,7 +300,7 @@
         { id: '4sol', sub: 'solve', level: 'BEG', make: function (r, o) { return relSolve('Solve the system. How old is each person?', o, [o.p.A, o.p.B], [o.p.a + '’s age', o.p.b + '’s age'], [o.p.a + '’s age', o.p.b + '’s age'], o.p.a + ' is ' + o.x + ' and ' + o.p.b + ' is ' + o.y + '.', 'years'); } }] },
     /* ---------- 5 ---------- */
     { num: '5', shared: function (r) { return bookOr(r, 0.05, { kind: 'times', k: 3, y: 13, x: 39, S: 52, who: PARENTS[0] }, q5); },
-      stem: function (o) { return 'A ' + o.who.p + ' is ' + TIMES[o.k] + ' as old as ' + o.who.pr + ' ' + o.who.c + '. The sum of their ages is ' + t(o.S) + '. Find both ages.'; },
+      stem: function (o) { return (o.who.p === 'aunt' ? 'An ' : 'A ') + o.who.p + ' is ' + TIMES[o.k] + ' as old as ' + o.who.pr + ' ' + o.who.c + '. The sum of their ages is ' + t(o.S) + '. Find both ages.'; },
       parts: [
         { id: '5sys', sub: 'system', level: 'BEG', make: function (r, o) { return relSys('Let ' + t(o.who.P) + ' be the ' + o.who.p + '’s age and ' + t(o.who.C) + ' the ' + o.who.c + '’s age. Write a system of two equations.', o, [o.who.P, o.who.C], { sum: 'the sum of the ages', rel: 'the “' + TIMES[o.k] + ' as old” fact' }); } },
         { id: '5sol', sub: 'solve', level: 'BEG', make: function (r, o) { return relSolve('Solve the system. How old is each person?', o, [o.who.P, o.who.C], [cap(o.who.p) + '’s age', cap(o.who.c) + '’s age'], [o.who.p + '’s age', o.who.c + '’s age'], 'The ' + o.who.p + ' is ' + o.x + ' and the ' + o.who.c + ' is ' + o.y + '.', 'years'); } }] },
@@ -381,7 +381,7 @@
   /* ======================= EXTRA PRACTICE ======================= */
   var EXTRA = [
     /* ---------- 1 ---------- */
-    { num: '1', section: 'Extra Practice A — Translating Only: Define, Then Write Two Equations', stem: 'Write a system of two equations that models each situation. <b>Do not solve.</b>', parts: [
+    { num: '1', section: 'Extra Practice A — Translating Only: Define, Then Write Two Equations', shared: function (r) { return { c: r.chance(0.05) ? { d: 4, w: 15 } : { d: r.int(2, 10), w: r.int(6, 25) } }; }, stem: 'Write a system of two equations that models each situation. <b>Do not solve.</b>', parts: [
       { id: 'e1a', sub: 'a', level: 'BEG', make: function (r) {
         var o = r.chance(0.05) ? { k: 3, p: 24 } : { k: r.pick([2, 3, 4]), p: r.int(10, 40) }, T = (o.k + 1) * o.p;
         return sysP('A food truck at the Calgary Stampede sells poutine and mini-donuts. On Saturday it sold ' + TIMES[o.k] + ' as many orders of mini-donuts as orders of poutine, ' + t(T) + ' orders in all.<br>Let ' + t('p') + ' = the number of orders of poutine and ' + t('d') + ' = the number of orders of mini-donuts.', [[-o.k, 1, 0], [1, 1, -T]],
@@ -395,8 +395,8 @@
         var s = { X: 'L', Y: 'T', n1: 'loonies', n2: 'toonies', p1: 1, p2: 2, x: o.x, y: o.y, N: o.x + o.y, T: o.x + 2 * o.y, what: 'coins', each: 'each' };
         return cvSys('A cash box at a Lethbridge car wash holds only loonies ($1 coins) and toonies ($2 coins). There are ' + t(s.N) + ' coins, worth ' + Dh(s.T) + ' altogether.<br>Let ' + t('L') + ' = the number of loonies and ' + t('T') + ' = the number of toonies.', s);
       } },
-      { id: 'e1c1', sub: 'c let', level: 'BEG', make: function (r) {
-        var d = r.int(2, 10), w = r.int(6, 25), P = 2 * (2 * w + d);
+      { id: 'e1c1', sub: 'c let', level: 'BEG', make: function (r, sh) {
+        var d = sh.c.d, w = sh.c.w, P = 2 * (2 * w + d);
         return mc(r, 'A rectangular plot in an Edmonton community garden is ' + t(d + '\\text{ m}') + ' longer than it is wide. Its perimeter is ' + t(P + '\\text{ m}') + '.<br>Which let statements define the unknowns completely?', [
           { html: 'Let ' + t('l') + ' = the length of the plot in metres and ' + t('w') + ' = the width of the plot in metres.', right: true },
           { html: 'Let ' + t('l') + ' = the perimeter in metres and ' + t('w') + ' = the width in metres.', why: 'The perimeter is given (' + P + ' m). The unknowns are the length and the width.' },
@@ -404,8 +404,8 @@
           { html: 'Let ' + t('l') + ' = the area of the plot in square metres and ' + t('w') + ' = the width in metres.', why: 'The area isn’t mentioned. The two facts are about the <b>length</b> and the width.' }],
           'The two unknowns are the length and the width, each in metres: ' + t('l') + ' = length (m), ' + t('w') + ' = width (m). (This gives ' + t('l=w+' + d) + ' and ' + t('2l+2w=' + P) + '.)', ['Which two measurements don’t you know yet? Give their units.'], 'let statements with units');
       } },
-      { id: 'e1c2', sub: 'c system', level: 'EMG', make: function (r) {
-        var o = r.chance(0.05) ? { d: 4, w: 15 } : { d: r.int(2, 10), w: r.int(6, 25) }, l = o.w + o.d, P = 2 * (l + o.w);
+      { id: 'e1c2', sub: 'c system', level: 'EMG', make: function (r, sh) {
+        var o = sh.c, l = o.w + o.d, P = 2 * (l + o.w);
         return sysP('A rectangular plot in an Edmonton community garden is ' + t(o.d + '\\text{ m}') + ' longer than it is wide. Its perimeter is ' + t(P + '\\text{ m}') + '.<br>Let ' + t('l') + ' = the length in metres and ' + t('w') + ' = the width in metres.', [[1, -1, -o.d], [2, 2, -P]],
           { vars: ['l', 'w'], keyTex: ['l=w+' + o.d, '2l+2w=' + P], names: ['the length–width fact', 'the perimeter'],
             factHints: ['the length is ' + o.d + ' m more than the width: ' + t('l=w+' + o.d) + '.', 'the perimeter adds all four sides: ' + t('2l+2w') + '.'],
@@ -481,29 +481,29 @@
           ['Which group is bigger? Then match each price to its own letter.'], 'which system: more youth passes');
       } }] },
     /* ---------- 4 ---------- */
-    { num: '4', section: 'Extra Practice B — Numbers, Ages, and Relationships', stem: 'Define the variables, write a system, solve it, and answer in a sentence.', parts: [
-      { id: 'e4a1', sub: 'a system', level: 'BEG', make: function (r) {
-        var o = e4a(r);
+    { num: '4', section: 'Extra Practice B — Numbers, Ages, and Relationships', shared: function (r) { return { a: e4a(r), b: e4b(r) }; }, stem: 'Define the variables, write a system, solve it, and answer in a sentence.', parts: [
+      { id: 'e4a1', sub: 'a system', level: 'BEG', make: function (r, sh) {
+        var o = sh.a;
         return sysP('The sum of two numbers is ' + t(o.S) + ' and their difference is ' + t(o.D) + '. Let ' + t('x') + ' be the larger number and ' + t('y') + ' the smaller. Write the system.', [[1, 1, -o.S], [1, -1, -o.D]],
           { vars: ['x', 'y'], keyTex: ['x+y=' + o.S, 'x-y=' + o.D], names: ['the sum', 'the difference'], factHints: ['the sum adds: ' + t('x+y=' + o.S) + '.', 'the difference subtracts the smaller from the larger: ' + t('x-y=' + o.D) + '.'],
             wrong: [{ eq: 'y-x=' + o.D, code: 'diff-order', hint: t('x') + ' is the larger number, so the (positive) difference is ' + t('x-y=' + o.D) + '.' }, { eq: 'x+y=' + o.D, code: 'sum-diff', hint: 'A <b>difference</b> subtracts: ' + t('x-y=' + o.D) + '.' }] },
           t('x+y=' + o.S) + ' and ' + t('x-y=' + o.D) + '.', ['Sum → add. Difference → larger minus smaller.'], 'sum and difference system');
       } },
-      { id: 'e4a2', sub: 'a solve', level: 'BEG', make: function (r) {
-        var o = e4a(r);
+      { id: 'e4a2', sub: 'a solve', level: 'BEG', make: function (r, sh) {
+        var o = sh.a;
         return numsP('The sum of two numbers is ' + t(o.S) + ' and their difference is ' + t(o.D) + '. Solve the system ' + t('x+y=' + o.S) + ', ' + t('x-y=' + o.D) + ' to find the two numbers.', [{ label: 'Larger number' }, { label: 'Smaller number' }], [o.x, o.y],
           { names: ['larger number', 'smaller number'], sys: [[1, 1, -o.S], [1, -1, -o.D]], sysNames: ['the sum', 'the difference'], wrong: [{ v: [o.S + o.D, (o.S - o.D)], code: 'u8l7-not-halved', hint: 'Adding the equations gives ' + t('2x=' + (o.S + o.D)) + ' — divide by ' + t(2) + '.' }] },
           'Add the equations (the ' + t('y') + '-terms cancel): ' + t('2x=' + (o.S + o.D)) + ' ⟹ ' + t('x=' + o.x) + '. Then ' + t('y=' + o.S + '-' + o.x + '=' + o.y) + '.<br>' + chk('Check: ' + t(o.x + '+' + o.y + '=' + o.S)) + ', ' + chk(t(o.x + '-' + o.y + '=' + o.D)) + '<br><b>The numbers are ' + o.x + ' and ' + o.y + '.</b>', ['Add the two equations: ' + t('y') + ' drops out.'], 'sum and difference solve');
       } },
-      { id: 'e4b1', sub: 'b system', level: 'EMG', make: function (r) {
-        var o = e4b(r);
+      { id: 'e4b1', sub: 'b system', level: 'EMG', make: function (r, sh) {
+        var o = sh.b;
         return sysP('One number is ' + t(o.c) + ' more than ' + TIMES[o.k] + ' the other. Their sum is ' + t(o.S) + '. Let ' + t('x') + ' be the larger number and ' + t('y') + ' the other. Write the system.', [[1, -o.k, -o.c], [1, 1, -o.S]],
           { vars: ['x', 'y'], keyTex: ['x=' + o.k + 'y+' + o.c, 'x+y=' + o.S], names: ['the comparison', 'the sum'], factHints: ['start from ' + TIMES[o.k] + ' the other number, ' + t(o.k + 'y') + ', and add ' + t(o.c) + '.', 'the numbers add to ' + t(o.S) + '.'],
             wrong: [{ eq: 'x+' + o.c + '=' + o.k + 'y', code: 'more-than-side', hint: '“' + o.c + ' more than ' + TIMES[o.k] + ' the other” is ' + t(o.k + 'y+' + o.c) + ', so ' + t('x=' + o.k + 'y+' + o.c) + '.' }, { eq: 'y=' + o.k + 'x+' + o.c, code: 'ratio-flip', hint: t('x') + ' is the larger number, so ' + t('x') + ' is the one built from ' + TIMES[o.k] + ' ' + t('y') + '.' }, { eq: 'x=' + o.k + '(y+' + o.c + ')', code: 'more-than-side', hint: 'Multiply first, then add: ' + t(o.k + 'y+' + o.c) + '.' }] },
           t('x=' + o.k + 'y+' + o.c) + ' and ' + t('x+y=' + o.S) + '.', ['Build the comparison in order: ' + TIMES[o.k] + ' the other (' + t(o.k + 'y') + '), then ' + t(o.c) + ' more.'], 'more than k times system');
       } },
-      { id: 'e4b2', sub: 'b solve', level: 'EMG', make: function (r) {
-        var o = e4b(r);
+      { id: 'e4b2', sub: 'b solve', level: 'EMG', make: function (r, sh) {
+        var o = sh.b;
         return numsP('Solve the system ' + t('x=' + o.k + 'y+' + o.c) + ', ' + t('x+y=' + o.S) + ' to find the two numbers.', [{ label: 'Larger number' }, { label: 'Other number' }], [o.x, o.y],
           { names: ['larger number', 'other number'], sys: [[1, -o.k, -o.c], [1, 1, -o.S]], sysNames: ['the comparison', 'the sum'] },
           'Substitute: ' + t('(' + o.k + 'y+' + o.c + ')+y=' + o.S) + ' ⟹ ' + t((o.k + 1) + 'y=' + (o.S - o.c)) + ' ⟹ ' + t('y=' + o.y) + '. Then ' + t('x=' + o.k + '(' + o.y + ')+' + o.c + '=' + o.x) + '.<br>' + chk('Check: ' + t(o.x + '+' + o.y + '=' + o.S)) + '<br><b>The numbers are ' + o.x + ' and ' + o.y + '.</b>', ['Substitute the first equation into the second.'], 'more than k times solve');

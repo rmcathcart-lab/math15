@@ -324,12 +324,12 @@
           { id: '7a', level: 'PRG', make: function (r, sh) { return storyEq('Write an equation for ' + t('E') + ' in terms of ' + t('t') + '.', [-sh.k, 1], sh.t1, sh.v1, ['t', 'E'], 'hiker equation'); } },
           { id: '7b', level: 'EMG', make: function (r, sh) { return storyStart('What was her elevation at ' + t('t=0') + '?', [-sh.k, 1], sh.t1, sh.v1, { after: 'm' }, 'hiker start'); } },
           { id: '7c', level: 'EMG', make: function (r, sh) { return storyPredict('Predict her elevation after ' + t(sh.t2) + ' hours.', [-sh.k, 1], sh.t1, sh.v1, sh.t2, { after: 'm' }, 'hiker predict', 't'); } }] },
-      { num: '8', stem: function (sh) { return 'A gym’s membership grows at a constant rate. After ' + t(sh.t1) + ' months the gym has ' + t(sh.v1) + ' members, and membership grows by ' + t(sh.k) + ' members every month. Let ' + t('M') + ' be the number of members after ' + t('m') + ' months.'; },
+      { num: '8', stem: function (sh) { return 'A gym’s membership grows at a constant rate. After ' + t(sh.t1) + ' months the gym has ' + t(sh.v1) + ' members, and membership grows by ' + t(sh.k) + ' members every month. Let ' + t('M') + ' be the number of members after ' + t('t') + ' months.'; },
         shared: function (r) { var k = r.pick([5, 8, 10, 12, 15, 20]), t1 = r.int(2, 6), M0 = r.int(6, 30) * 10; return { k: k, t1: t1, v1: M0 + k * t1, t2: t1 + r.int(2, 8) }; },
         parts: [
-          { id: '8a', level: 'EMG', make: function (r, sh) { return storyEq('Write an equation for ' + t('M') + ' in terms of ' + t('m') + '.', [sh.k, 1], sh.t1, sh.v1, ['m', 'M'], 'gym equation'); } },
-          { id: '8b', level: 'EMG', make: function (r, sh) { return storyStart('How many members were there at ' + t('m=0') + '?', [sh.k, 1], sh.t1, sh.v1, { after: 'members' }, 'gym start'); } },
-          { id: '8c', level: 'EMG', make: function (r, sh) { return storyPredict('Predict the membership after ' + t(sh.t2) + ' months.', [sh.k, 1], sh.t1, sh.v1, sh.t2, { after: 'members' }, 'gym predict', 'm'); } }] },
+          { id: '8a', level: 'EMG', make: function (r, sh) { return storyEq('Write an equation for ' + t('M') + ' in terms of ' + t('t') + '.', [sh.k, 1], sh.t1, sh.v1, ['t', 'M'], 'gym equation'); } },
+          { id: '8b', level: 'EMG', make: function (r, sh) { return storyStart('How many members were there at ' + t('t=0') + '?', [sh.k, 1], sh.t1, sh.v1, { after: 'members' }, 'gym start'); } },
+          { id: '8c', level: 'EMG', make: function (r, sh) { return storyPredict('Predict the membership after ' + t(sh.t2) + ' months.', [sh.k, 1], sh.t1, sh.v1, sh.t2, { after: 'members' }, 'gym predict', 't'); } }] },
       { num: '9', stem: function (sh) { return 'A young tree grows at a constant rate. At age ' + t(sh.t1) + ' years it is ' + t(sh.v1) + ' ft tall, and it grows ' + t(sh.k) + ' ft every year. Let ' + t('h') + ' be the height (in feet) at age ' + t('w') + ' years.'; },
         shared: function (r) { var k = r.int(2, 4), t1 = r.int(5, 14), h0 = r.int(3, 15); return { k: k, t1: t1, v1: h0 + k * t1, t2: t1 + r.int(4, 10) }; },
         parts: [
@@ -377,14 +377,14 @@
         } }] },
       { num: '14', stem: '<i>(Numerical Response)</i>', parts: [
         { id: '14', level: 'EMG', make: function (r) {
-          var o = until(function () { var m = -r.int(2, 5), x0 = -r.int(1, 4), y0 = r.int(1, 9); return { m: m, x0: x0, y0: y0, b: y0 - m * x0 }; }, function (o) { return o.b !== 0 && Math.abs(o.b) < 10; });
+          var o = until(function () { var m = -r.int(2, 5), x0 = -r.int(1, 4), y0 = r.int(1, 15); return { m: m, x0: x0, y0: y0, b: y0 - m * x0 }; }, function (o) { return o.b > 0 && o.b < 10; });   // NR: b stays positive
           return nrPart('A line has slope ' + t(o.m) + ' and passes through ' + t(ptT(o.x0, o.y0)) + '. Written as ' + t('y=' + o.m + 'x+b') + ', the value of ' + t('b') + ' is ________.', o.b, [[o.y0 + o.m * o.x0, 'u72-b-solve', 'A negative times a negative is positive: ' + t(o.m + '(' + o.x0 + ')=' + (o.m * o.x0)) + '. Then subtract it.'], [o.y0 - o.m * -o.x0, 'sign', 'Keep the sign of ' + t('x=' + o.x0) + ': ' + t(o.m + '(' + o.x0 + ')=' + (o.m * o.x0)) + '.'], [o.y0, 'u72-b-y0', t(o.y0) + ' is the point’s ' + t('y') + '-coordinate.']],
             subSol([o.m, 1], o.x0, o.y0) + '.', [H_PT[0], H_NEG], 'NR b negatives');
         } }] },
       { num: '15', stem: '<i>(Numerical Response)</i>', parts: [
         { id: '15', level: 'EMG', make: function (r) {
           var k = r.int(2, 4), a1 = r.int(4, 9), h0 = r.int(1, 9), H = h0 + k * a1;
-          return nrPart('A tree is ' + t(H) + ' ft tall at age ' + t(a1) + ' and grows ' + t(k) + ' ft per year; its height is ' + t('h=' + k + 'a+b') + ', where ' + t('a') + ' is its age in years. The value of ' + t('b') + ' is ________.', h0, [[H + k * a1, 'u72-b-solve', 'Subtract ' + t(k * a1) + ' — the tree was <b>shorter</b> when it was younger.'], [H, 'u72-b-y0', 'That’s its height at age ' + t(a1) + '. ' + t('b') + ' is the height at age ' + t(0) + '.'], [H - k, 'u7l5-solve', 'Multiply the rate by the age first: ' + t(k + '(' + a1 + ')=' + (k * a1)) + '.']],
+          return nrPart('A tree is ' + t(H) + ' ft tall at age ' + t(a1) + ' and grows ' + t(k) + ' ft per year; its height at age ' + t('a') + ' is ' + t('h=' + k + 'a+b') + '. The value of ' + t('b') + ' is ________.', h0, [[H + k * a1, 'u72-b-solve', 'Subtract ' + t(k * a1) + ' — the tree was <b>shorter</b> when it was younger.'], [H, 'u72-b-y0', 'That’s its height at age ' + t(a1) + '. ' + t('b') + ' is the height at age ' + t(0) + '.'], [H - k, 'u7l5-solve', 'Multiply the rate by the age first: ' + t(k + '(' + a1 + ')=' + (k * a1)) + '.']],
             t(H + '=' + k + '(' + a1 + ')+b\\ \\Rightarrow\\ ' + H + '=' + (k * a1) + '+b\\ \\Rightarrow\\ b=' + h0) + '.', ['Substitute ' + t('a=' + a1) + ' and ' + t('h=' + H) + ', then solve for ' + t('b') + '.'], 'NR tree b');
         } }] }
     ],
@@ -468,14 +468,14 @@
             if (term) p.good = [String(dec)];
             return p;
           } }] },
-      { num: '11', stem: function (sh) { return 'A gym charges a one-time joining fee plus a fixed monthly rate of ' + t('\\$' + sh.k) + '. A member who has belonged for ' + t(sh.t1) + ' months has paid ' + t('\\$' + sh.v1) + ' in total. Let ' + t('C') + ' be the total paid after ' + t('m') + ' months.'; },
+      { num: '11', stem: function (sh) { return 'A gym charges a one-time joining fee plus a fixed monthly rate of ' + t('\\$' + sh.k) + '. A member who has belonged for ' + t(sh.t1) + ' months has paid ' + t('\\$' + sh.v1) + ' in total. Let ' + t('C') + ' be the total paid after ' + t('t') + ' months.'; },
         shared: function (r) { var k = r.pick([25, 30, 35, 40, 45, 50]), t1 = r.int(3, 9), F = r.pick([45, 50, 55, 60, 65, 75, 80]); return { k: k, t1: t1, F: F, v1: k * t1 + F, Y: r.pick([1, 2, 2, 3]) }; },
         parts: [
-          { id: 'e11a', level: 'PRG', make: function (r, sh) { return storyEq('Write an equation for ' + t('C') + ' in terms of ' + t('m') + '.', [sh.k, 1], sh.t1, sh.v1, ['m', 'C'], 'gym fee equation'); } },
+          { id: 'e11a', level: 'PRG', make: function (r, sh) { return storyEq('Write an equation for ' + t('C') + ' in terms of ' + t('t') + '.', [sh.k, 1], sh.t1, sh.v1, ['t', 'C'], 'gym fee equation'); } },
           { id: 'e11b', level: 'EMG', make: function (r, sh) { return storyStart('Determine the joining fee.', [sh.k, 1], sh.t1, sh.v1, { before: '\\$' }, 'joining fee'); } },
           { id: 'e11c', level: 'PRG', make: function (r, sh) {
             var n = 12 * sh.Y, v = sh.k * n + sh.F;
-            return numPart('Determine the total paid after ' + t(sh.Y) + ' year' + (sh.Y > 1 ? 's' : '') + '.', v, [[sh.k * sh.Y + sh.F, 'u7l5-years', t('m') + ' counts <b>months</b>: ' + t(sh.Y) + ' year' + (sh.Y > 1 ? 's' : '') + ' is ' + t(n) + ' months.'], [sh.k * n, 'u72-fee', 'Add the joining fee ' + t('\\$' + sh.F) + ' too.'], [sh.k * n + sh.v1, 'u7l5-pred-b', 'Use the joining fee ' + t('\\$' + sh.F) + ' as ' + t('b') + ', not the total paid after ' + t(sh.t1) + ' months.']],
+            return numPart('Determine the total paid after ' + t(sh.Y) + ' year' + (sh.Y > 1 ? 's' : '') + '.', v, [[sh.k * sh.Y + sh.F, 'u7l5-years', t('t') + ' counts <b>months</b>: ' + t(sh.Y) + ' year' + (sh.Y > 1 ? 's' : '') + ' is ' + t(n) + ' months.'], [sh.k * n, 'u72-fee', 'Add the joining fee ' + t('\\$' + sh.F) + ' too.'], [sh.k * n + sh.v1, 'u7l5-pred-b', 'Use the joining fee ' + t('\\$' + sh.F) + ' as ' + t('b') + ', not the total paid after ' + t(sh.t1) + ' months.']],
               t(sh.Y) + ' year' + (sh.Y > 1 ? 's' : '') + ' = ' + t(n) + ' months: ' + t('C=' + sh.k + '(' + n + ')+' + sh.F + '=' + (sh.k * n) + '+' + sh.F + '=' + v) + ', so ' + t('\\$' + v) + '.', ['Change years to months first.', 'Then substitute into your equation.'], 'gym after years', { before: '\\$' });
           } }] },
 
@@ -545,7 +545,7 @@
         } }] },
       { num: '17', stem: '<i>(Numerical Response)</i>', parts: [
         { id: 'e17', level: 'ADV', make: function (r) {
-          var o = until(function () { var g = r.pick([[-5, 2], [-3, 2], [-5, 3], [-4, 3], [5, 2], [3, 2]]), m = nrec(g), x0 = m[1] * r.int(1, 3), y0 = nz(r, -9, 9); return { g: g, m: m, x0: x0, y0: y0, b: fv(bOf(m, x0, y0)), c: nz(r, -5, 5) }; }, function (o) { return o.b !== 0 && Math.abs(o.b) < 100; });
+          var o = until(function () { var g = r.pick([[-5, 2], [-3, 2], [-5, 3], [-4, 3], [5, 2], [3, 2]]), m = nrec(g), x0 = m[1] * r.int(1, 3), y0 = nz(r, -9, 9); return { g: g, m: m, x0: x0, y0: y0, b: fv(bOf(m, x0, y0)), c: nz(r, -5, 5) }; }, function (o) { return o.b > 0 && o.b < 100; });   // NR: b stays positive
           var gb = fv(bOf(o.g, o.x0, o.y0)), sb = fv(bOf(fNeg(o.g), o.x0, o.y0)), fb = fv(bOf(fInv(o.g), o.x0, o.y0));
           return nrPart('A line perpendicular to ' + t(SI(o.g, o.c)) + ' passes through ' + t(ptT(o.x0, o.y0)) + '. Written in the form ' + t('y=mx+b') + ', the value of ' + t('b') + ' is ________.', o.b,
             [[gb, 'u72-perp-same', 'That uses the given slope — a parallel line. Use the negative reciprocal.'], [fb, 'u72-perp-nosign', 'You flipped the slope but kept its sign.'], [sb, 'u72-perp-noflip', 'You changed the sign but didn’t flip the slope.'], [o.y0, 'u72-b-y0', t(o.y0) + ' is the point’s ' + t('y') + '-coordinate.']].filter(function (d) { return isFinite(d[0]) && Math.abs(d[0] * 100 - Math.round(d[0] * 100)) < 1e-9; }),

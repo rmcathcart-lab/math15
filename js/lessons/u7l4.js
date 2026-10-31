@@ -356,8 +356,8 @@
       { num: '5', section: 'Part C — Applications', stem: function (sh) { return 'A gym charges a ' + t('\\$' + sh.F) + ' sign-up fee plus ' + t('\\$' + sh.R) + ' per month for a membership.'; },
         shared: feeCtx,
         parts: [
-          { id: '5a', level: 'BEG', make: function (r, sh) { return ctxEq('Write an equation for the total cost ' + t('C') + ' after ' + t('m') + ' months.', sh.R, sh.F, ['m', 'C'], 'monthly rate', 'sign-up fee', 'gym equation'); } },
-          { id: '5b', level: 'BEG', make: function (r, sh) { return ctxVal('Find the cost of a ' + t(sh.k) + '-month membership.', sh.R, sh.F, sh.k, ['m', 'C'], { before: '\\$' }, 'gym cost'); } }] },
+          { id: '5a', level: 'BEG', make: function (r, sh) { return ctxEq('Write an equation for the total cost ' + t('C') + ' after ' + t('t') + ' months.', sh.R, sh.F, ['t', 'C'], 'monthly rate', 'sign-up fee', 'gym equation'); } },
+          { id: '5b', level: 'BEG', make: function (r, sh) { return ctxVal('Find the cost of a ' + t(sh.k) + '-month membership.', sh.R, sh.F, sh.k, ['t', 'C'], { before: '\\$' }, 'gym cost'); } }] },
       { num: '6', stem: function (sh) { return 'A candle is ' + t(sh.H) + ' cm tall and burns down at a constant rate of ' + t(sh.k) + ' cm per hour.'; },
         shared: function (r) { return until(function () { return { H: r.int(18, 36), k: r.int(2, 4), n: r.int(3, 7) }; }, function (o) { return o.H - o.k * o.n >= 2; }); },
         parts: [
@@ -382,7 +382,7 @@
       { num: '9', stem: '', parts: [
         { id: '9', level: 'EMG', make: function (r) {
           var c = r.pick([['plumber’s house call', 'cost per hour of labour', 'flat call-out fee'], ['electrician’s visit', 'cost per hour of work', 'flat call-out fee'], ['furnace repair visit', 'cost per hour of labour', 'flat service-call fee']]);
-          var o = until(function () { return { R: r.pick([6, 40, 45, 55, 60, 75, 80]), F: r.pick([35, 40, 50, 60, 75, 90]) }; }, function (o) { return o.R !== o.F; });
+          var o = until(function () { return { R: r.pick([40, 45, 55, 60, 75, 80]), F: r.pick([35, 40, 50, 60, 75, 90]) }; }, function (o) { return o.R !== o.F; });
           return mc(r, 'The equation ' + t('y=' + o.R + 'x+' + o.F) + ' models the total charge ' + t('y') + ' (in dollars) for a ' + c[0] + ' that takes ' + t('x') + ' hours. In this situation, what does the number ' + t(o.R) + ' represent? What does the number ' + t(o.F) + ' represent?', [
             { html: t(o.R) + ' is the ' + c[1] + '; ' + t(o.F) + ' is a ' + c[2] + ', charged even before any work is done.', right: true },
             { html: t(o.R) + ' is the ' + c[2] + '; ' + t(o.F) + ' is the ' + c[1] + '.', why: 'The number that multiplies ' + t('x') + ' (the hours) is the amount charged <b>per hour</b>. The number added on its own is charged once.' },
@@ -440,11 +440,11 @@
         } }] },
       { num: '15', stem: '<i>(Numerical Response)</i>', parts: [
         { id: '15', level: 'PRG', make: function (r) {
-          var o = until(function () { return { H: r.int(20, 36), k: r.int(2, 5), n: r.int(2, 4) }; }, function (o) { return o.H - o.k * o.n >= 6; });
-          var H2 = o.H - o.k * o.n;
-          return nrPart('A candle is ' + t(o.H) + ' cm tall and burns at a constant rate. After ' + t(o.n) + ' hours, it is ' + t(H2) + ' cm tall. If ' + t('h=mt+b') + ' models the height after ' + t('t') + ' hours, the value of ' + t('m') + ' is ________.', -o.k,
-            [[o.k, 'slope-sign', 'The candle gets shorter, so its height <b>decreases</b>: the rate is negative.'], [-o.k * o.n, 'u7l4-drop', 'That’s the total drop in ' + t(o.n) + ' hours. The slope is the change <b>per hour</b>: divide by ' + t(o.n) + '.'], [o.k * o.n, 'u7l4-drop', 'That’s the total drop in ' + t(o.n) + ' hours. The slope is the change per hour, and it is negative.'], [o.H, 'u72-swap-mb', 'That’s ' + t('b') + ', the starting height. ' + t('m') + ' is the rate of change.']],
-            'The height changes from ' + t(o.H) + ' cm to ' + t(H2) + ' cm in ' + t(o.n) + ' hours: ' + t('m=\\frac{' + H2 + '-' + o.H + '}{' + o.n + '-0}=\\frac{' + (H2 - o.H) + '}{' + o.n + '}=' + (-o.k)) + ' cm per hour.', ['Slope = change in height ÷ change in time.', 'The candle gets shorter, so the slope is negative.'], 'NR candle slope');
+          var o = until(function () { return { H: r.int(20, 36), k: r.int(2, 5), n: r.int(2, 8) }; }, function (o) { return o.H - o.k * o.n >= 2; });
+          var ans = o.H - o.k * o.n;
+          return nrPart('A candle is ' + t(o.H) + ' cm tall and burns down ' + t(o.k) + ' cm every hour. Using ' + t('h=mt+b') + ' for its height after ' + t('t') + ' hours, the candle’s height after ' + t(o.n) + ' hours, in cm, is ________.', ans,
+            [[o.H + o.k * o.n, 'slope-sign', 'The candle gets shorter, so its height <b>decreases</b>: ' + t('m=-' + o.k) + '.'], [o.k * o.n, 'u7l4-drop', 'That’s how much it burned in ' + t(o.n) + ' hours. Subtract it from the starting height, ' + t(o.H) + ' cm.'], [o.H - o.k, 'u7l4-drop', 'That’s the height after ' + t('1') + ' hour. Substitute ' + t('t=' + o.n) + '.'], [-o.k * o.n, 'u72-fee', 'Add the starting height ' + t('b=' + o.H) + ' too.']],
+            'Start ' + t('b=' + o.H) + '; it shrinks, so ' + t('m=-' + o.k) + ': ' + t('h=-' + o.k + 't+' + o.H) + '.<br>' + t('h=-' + o.k + '(' + o.n + ')+' + o.H + '=' + (-o.k * o.n) + '+' + o.H + '=' + ans) + ' cm.', ['The starting height is ' + t('b') + '; the candle loses ' + t(o.k) + ' cm per hour, so ' + t('m') + ' is negative.', 'Write the equation, then substitute ' + t('t=' + o.n) + '.'], 'NR candle height');
         } }] }
     ],
 
@@ -689,7 +689,7 @@
         } }] },
       { num: '17', stem: '<i>(Numerical Response)</i>', parts: [
         { id: 'e17', level: 'EMG', make: function (r) {
-          var q = r.pick([3, 4, 5]), p = until(function () { return r.int(1, q - 1); }, function (v) { return gcd(v, q) === 1; }), b = r.int(2, 9), x = 2 * q, ans = -p * 2 + b;
+          var q = r.pick([3, 4, 5]), p = until(function () { return r.int(1, q - 1); }, function (v) { return gcd(v, q) === 1; }), b = until(function () { return r.int(2, 9); }, function (v) { return v > 2 * p; }), x = 2 * q, ans = -p * 2 + b;   // NR answers stay positive (no minus sign in the boxes)
           return nrPart('A line has slope ' + t(nT([-p, q])) + ' and ' + t('y') + '-intercept ' + t(b) + '. Its ' + t('y') + '-value when ' + t('x=' + x) + ' is ________.', ans,
             [[p * 2 + b, 'slope-sign', 'The slope is negative: ' + t(nT([-p, q]) + '\\times ' + x + '=' + (-2 * p)) + '.'], [-p * 2, 'u72-fee', 'Add the ' + t('y') + '-intercept ' + t(b) + ' too.'], [-p * 2 - b, 'sign', 'The ' + t('y') + '-intercept is ' + t('+' + b) + '.']],
             t('y=' + nT([-p, q]) + '(' + x + ')+' + b + '=' + (-2 * p) + '+' + b + '=' + ans) + '.', ['Write the equation, then substitute ' + t('x=' + x) + '.'], 'NR value at x');
