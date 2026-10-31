@@ -140,7 +140,7 @@
     pool: { Y: 'V', X: 't', what: 'the volume of water in the pool', yu: 'L', ya: 'L', each: 'minute', xs: 'minutes', xa: 'min', who: 'The water in a pool being filled is', up: 'increases', down: 'decreases', m: steps(15, 60, 5), b: steps(100, 500, 50), start: function (v) { return v + ' of water was already in the pool when the hose was turned on.'; } },
     bucket: { Y: 'W', X: 't', what: 'the water in the bucket', yu: 'mL', ya: 'mL', each: 'minute', xs: 'minutes', xa: 'min', who: 'A leaking bucket holds', up: 'increases', down: 'decreases', neg: true, m: [20, 25, 30, 40, 50, 60], b: [500, 600, 750, 800, 900, 1000], start: function (v) { return 'the bucket held ' + v + ' of water when the leak began.'; } },
     tank: { Y: 'V', X: 't', what: 'the water in the tank', yu: 'L', ya: 'L', each: 'minute', xs: 'minutes', xa: 'min', who: 'A tank holds', up: 'increases', down: 'decreases', neg: true, m: [12, 15, 20, 24, 25, 30, 40], b: [600, 720, 800, 900, 960, 1200], start: function (v) { return 'the tank held ' + v + ' of water when the valve was opened.'; } },
-    candle: { Y: 'H', X: 'm', what: 'the candle’s height', yu: 'cm', ya: 'cm', each: 'minute', xs: 'minutes', xa: 'min', who: 'A candle’s height is', up: 'increases', down: 'decreases', neg: true, m: [0.1, 0.2, 0.3, 0.4, 0.5], b: [12, 15, 18, 20, 24, 25], start: function (v) { return 'the candle was ' + v + ' tall before it was lit.'; } },
+    candle: { Y: 'H', X: 't', what: 'the candle’s height', yu: 'cm', ya: 'cm', each: 'minute', xs: 'minutes', xa: 'min', who: 'A candle’s height is', up: 'increases', down: 'decreases', neg: true, m: [0.1, 0.2, 0.3, 0.4, 0.5], b: [12, 15, 18, 20, 24, 25], start: function (v) { return 'the candle was ' + v + ' tall before it was lit.'; } },
     coffee: { Y: 'B', X: 'c', what: 'the card’s balance', yu: 'dollars', ya: '$', money: true, each: 'coffee bought', xs: 'coffees', xa: 'coffee', who: 'A coffee card’s balance is', up: 'increases', down: 'decreases', neg: true, m: [3, 3.25, 3.5, 4, 4.25, 4.5, 5], b: [40, 50, 60, 75, 80, 91, 100], start: function (v) { return 'the card held ' + v + ' before any coffee was bought.'; } },
     temp: { Y: 'T', X: 'a', what: 'the air temperature', yu: '°C', ya: '°C', each: 'kilometre of altitude gained', xs: 'kilometres', xa: 'km', who: 'Air temperature is', up: 'rises', down: 'falls', neg: true, m: [5.5, 6, 6.2, 6.5, 7], b: [12, 15, 16, 18, 20, 22], start: function (v) { return 'the temperature is ' + v + ' at sea level (an altitude of 0 km).'; } },
     savings: { Y: 'S', X: 'w', what: 'the savings balance', yu: 'dollars', ya: '$', money: true, each: 'week', xs: 'weeks', xa: 'week', who: 'A savings balance is', up: 'increases', down: 'decreases', m: [15, 20, 25, 30, 40, 45, 50], b: [100, 150, 200, 250, 300, 380, 400], start: function (v) { return v + ' was already saved before any weeks of saving (the starting balance).'; } },
@@ -420,16 +420,16 @@
         stem: function (sh) { return 'Gym A charges a ' + $(sh.F) + ' sign-up fee plus ' + $(sh.a) + ' per month. Gym B charges no sign-up fee, but ' + $(sh.b) + ' per month.'; },
         parts: [
           { id: '10a', level: 'PRG', outcome: 'RF4', make: function (r, sh) {
-            return lines2('(a) Write an equation for the total cost ' + t('C') + ' at each gym after ' + t('m') + ' months.', [{ label: 'Gym A:', m: sh.a, b: sh.F, X: 'm', Y: 'C' }, { label: 'Gym B:', m: sh.b, b: 0, X: 'm', Y: 'C', wrong: [{ m: sh.b, b: sh.F, code: 'ctx-b-point', hint: 'Gym B has <b>no</b> sign-up fee, so its starting value is 0.' }] }],
-              'A: ' + t(eqTex('C', 'm', sh.a, sh.F)) + '<br>B: no fee, so ' + t('b=0') + ': ' + t(eqTex('C', 'm', sh.b, 0)), ['The monthly price is the rate; the sign-up fee is the starting value (Gym B has none).'], 'two gym equations');
+            return lines2('(a) Write an equation for the total cost ' + t('C') + ' at each gym after ' + t('t') + ' months.', [{ label: 'Gym A:', m: sh.a, b: sh.F, X: 't', Y: 'C' }, { label: 'Gym B:', m: sh.b, b: 0, X: 't', Y: 'C', wrong: [{ m: sh.b, b: sh.F, code: 'ctx-b-point', hint: 'Gym B has <b>no</b> sign-up fee, so its starting value is 0.' }] }],
+              'A: ' + t(eqTex('C', 't', sh.a, sh.F)) + '<br>B: no fee, so ' + t('b=0') + ': ' + t(eqTex('C', 't', sh.b, 0)), ['The monthly price is the rate; the sign-up fee is the starting value (Gym B has none).'], 'two gym equations');
           } },
           { id: '10b', level: 'PRG', outcome: 'RF4', make: function (r, sh) {
             return num('(b) Find the break-even number of months.', sh.ms, [
               { v: sh.a * sh.ms + sh.F, code: 'u7l9-breakeven-cost', hint: 'That’s the cost at break-even. The question asks for the number of <b>months</b>.' },
-              { v: sh.F / sh.a, code: 'value', hint: 'Set the costs equal: ' + t(sh.a + 'm+' + sh.F + '=' + sh.b + 'm') + ', then collect the ' + t('m') + '-terms.' },
-              { v: sh.F / (sh.a + sh.b), code: 'value', hint: 'Subtract ' + t(sh.a + 'm') + ' from both sides: ' + t(sh.F + '=' + sh.b + 'm-' + sh.a + 'm') + '.' }],
-              t(sh.a + 'm+' + sh.F + '=' + sh.b + 'm\\Rightarrow ' + sh.F + '=' + (sh.b - sh.a) + 'm\\Rightarrow m=' + sh.ms) + ' months. (Both cost ' + $(sh.b * sh.ms) + '.)',
-              ['Set the two costs equal and solve for ' + t('m') + '.'], 'break-even months', { after: 'months' });
+              { v: sh.F / sh.a, code: 'value', hint: 'Set the costs equal: ' + t(sh.a + 't+' + sh.F + '=' + sh.b + 't') + ', then collect the ' + t('t') + '-terms.' },
+              { v: sh.F / (sh.a + sh.b), code: 'value', hint: 'Subtract ' + t(sh.a + 't') + ' from both sides: ' + t(sh.F + '=' + sh.b + 't-' + sh.a + 't') + '.' }],
+              t(sh.a + 't+' + sh.F + '=' + sh.b + 't\\Rightarrow ' + sh.F + '=' + (sh.b - sh.a) + 't\\Rightarrow t=' + sh.ms) + ' months. (Both cost ' + $(sh.b * sh.ms) + '.)',
+              ['Set the two costs equal and solve for ' + t('t') + '.'], 'break-even months', { after: 'months' });
           } },
           { id: '10c', level: 'PRG', outcome: 'RF4', make: function (r, sh) {
             var A1 = sh.a * sh.m1 + sh.F, B1 = sh.b * sh.m1, A2 = sh.a * sh.m2 + sh.F, B2 = sh.b * sh.m2;
@@ -620,7 +620,7 @@
             t('0=-' + sh.rate + 't+' + nf(sh.A0) + '\\Rightarrow t=\\dfrac{' + nf(sh.A0) + '}{' + sh.rate + '}=' + sh.T) + ' min', ['Empty means ' + t('A=0') + '.'], 'time to empty', { after: 'min' });
         } }] },
     { num: '6', shared: function (r) {
-        return gen(r, function (r) { var fee = r.pick([40, 45, 50, 54, 55, 60, 65]), rate = r.pick([0.2, 0.25, 0.4, 0.5]), d1 = r.pick(steps(100, 400, 50)), D = r.pick(steps(200, 600, 10)), budget = cl(fee + rate * D); if (!isI(budget) || budget % 5) return null; return { fee: fee, rate: rate, d1: d1, D: D, budget: budget }; });
+        return gen(r, function (r) { var fee = r.pick([40, 45, 50, 54, 55, 60, 65]), rate = r.pick([0.2, 0.25, 0.4, 0.5]), d1 = r.pick(steps(100, 400, 50)), D = r.pick(steps(200, 600, 2)), budget = cl(fee + rate * D); if (!isI(budget) || budget % 5) return null; return { fee: fee, rate: rate, d1: d1, D: D, budget: budget }; });
       },
       stem: function (sh) { return 'A van rental costs a flat ' + $(sh.fee) + ', plus ' + $(sh.rate) + ' for every kilometre driven.'; },
       parts: [
@@ -642,7 +642,7 @@
       parts: [
         { id: 'e7a', level: 'PRG', outcome: 'RF3', make: function (r, sh) {
           var A1 = sh.A0 - sh.v * sh.t1, A2 = sh.A0 - sh.v * sh.t2, dA = A2 - A1, dt = sh.t2 - sh.t1;
-          return num('(a) Determine the rate of change of the altitude.', -sh.v, [{ v: sh.v, code: 'ctx-rate-sign', hint: 'The balloon is going <b>down</b>, so the rate of change is negative.' }, { v: dA, code: 'ctx-total', hint: 'That’s the total change. Divide by the ' + t(dt) + ' minutes it took.' }, { v: dt / dA, code: 'ctx-flip', hint: 'Upside down: metres (vertical) per minute (horizontal).' }],
+          return num('(a) Determine the rate of change of the balloon’s altitude.', -sh.v, [{ v: sh.v, code: 'ctx-rate-sign', hint: 'The balloon is going <b>down</b>, so the rate of change is negative.' }, { v: dA, code: 'ctx-total', hint: 'That’s the total change. Divide by the ' + t(dt) + ' minutes it took.' }, { v: dt / dA, code: 'ctx-flip', hint: 'Upside down: metres (vertical) per minute (horizontal).' }],
             t('m=\\dfrac{' + nf(A2) + '-' + nf(A1) + '}{' + sh.t2 + '-' + sh.t1 + '}=\\dfrac{' + nf(dA) + '}{' + dt + '}=' + (-sh.v)) + ' m/min: the balloon falls ' + t(sh.v) + ' m each minute.', ['Rate = (change in altitude) ÷ (change in time).'], 'balloon rate', { before: t('m='), after: 'm/min' });
         } },
         { id: 'e7b', level: 'PRG', outcome: 'RF4', make: function (r, sh) {

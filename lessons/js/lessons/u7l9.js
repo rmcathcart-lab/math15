@@ -463,7 +463,7 @@ const build = {
 const MC = {
   ex3: { label: 'Example 3(b) and (c) check', eq: 'C=20n+35', inV: 'n', outV: 'C', ops: [{ f: '\\times20', b: '\\div20', fn: (x) => 20 * x, inv: (y) => y / 20 }, { f: '+35', b: '-35', fn: (x) => x + 35, inv: (y) => y - 35 }],
     fwd: 5, back: 175, fwdCap: '(b) 5 locks go in.', backCap: '(c) The bill was <b>$175</b>. How many locks?', ansCap: (v) => `<b>${n(v)} locks</b> were changed.` },
-  ex4d: { label: 'Example 4(d) check', eq: 'H=-0.4m+18', inV: 'm', outV: 'H', ops: [{ f: '\\times(-0.4)', b: '\\div(-0.4)', fn: (x) => -0.4 * x, inv: (y) => y / -0.4 }, { f: '+18', b: '-18', fn: (x) => x + 18, inv: (y) => y - 18 }],
+  ex4d: { label: 'Example 4(d) check', eq: 'H=-0.4t+18', inV: 't', outV: 'H', ops: [{ f: '\\times(-0.4)', b: '\\div(-0.4)', fn: (x) => -0.4 * x, inv: (y) => y / -0.4 }, { f: '+18', b: '-18', fn: (x) => x + 18, inv: (y) => y - 18 }],
     fwd: 10, back: 0, fwdCap: 'Forwards: 10 minutes go in (the first data point).', backCap: '(d) When is the height <b>0 cm</b>?', ansCap: (v) => `It burns out after <b>${n(v)} minutes</b>.` },
   bowl: { label: 'Bowling: C = 5g + 6', eq: 'C=5g+6', inV: 'g', outV: 'C', ops: [{ f: '\\times5', b: '\\div5', fn: (x) => 5 * x, inv: (y) => y / 5 }, { f: '+6', b: '-6', fn: (x) => x + 6, inv: (y) => y - 6 }],
     fwd: 3, back: 41, fwdCap: 'Forwards: 3 games.', backCap: 'Backwards: you paid <b>$41</b>. How many games?', ansCap: (v) => `You played <b>${n(v)} games</b>.` }
@@ -520,7 +520,7 @@ const candle = {
   make(stage, k, ex) {
     const G = new Graph(stage, { x: 146, y: 14, width: 450, height: 450, xmin: 0, xmax: 50, ymin: 0, ymax: 20, xstep: 5, ystep: 1, xlabels: 10, ylabels: 2,
       xtitle: '', ytitle: 'H\\text{ (cm)}', origin: true, pad: [18, 18, 52, 42] });
-    G.label(25, 0, T('m\\text{ (minutes)}'), { pos: 's', gap: 24, clip: false, cls: 'u7l9-axt2' });
+    G.label(25, 0, T('t\\text{ (minutes)}'), { pos: 's', gap: 24, clip: false, cls: 'u7l9-axt2' });
     const col = new Column(stage, G, 14, 14, 'candle', { read: (v) => `${n(r1(v))} cm`, start: 14 });
     const P = panel(stage, 610, 14, ex.W - 624, 450, 'Height of the candle');
     const clk = pill(P, 'time: <b>10 min</b>', 'u7l9-clock');
@@ -537,24 +537,24 @@ const candle = {
         run: async (c) => { tr.guides(false); tr.hideDot(); Tr = new SlopeTri(G, { x: 10, y: 14, run: 15, rise: -6 }, { runSide: 'n', runText: () => '<b>run</b> 15 min', riseText: () => '<b>rise</b> −6 cm' }); await Tr.drawIn(c, 550); } },
       { cap: `${T(`m=\\dfrac{8-14}{25-10}=\\dfrac{-6}{15}=${cM('-0.4')}`)}. The candle burns down <b>0.4 cm per minute</b>.`,
         run: async (c) => { await show(c, line(P, T(`m=\\dfrac{-6}{15}=${cM('-0.4')}`), 'u7l9-mline')); await show(c, line(P, '<b>0.4 cm per minute</b>, decreasing', 'u7l9-soft')); } },
-      { cap: `Write ${T('H=-0.4m+b')}. (Careful: here ${T('m')} is the number of <b>minutes</b>.) Substitute ${T('(10,\\ 14)')}: ${T('14=-0.4(10)+b')}, so ${T('14=-4+b')} and ${T('b=18')}.`,
+      { cap: `Write ${T('H=-0.4t+b')}, where ${T('t')} is the number of <b>minutes</b>. Substitute ${T('(10,\\ 14)')}: ${T('14=-0.4(10)+b')}, so ${T('14=-4+b')} and ${T('b=18')}.`,
         run: async (c) => {
           await show(c, line(P, T('14=-0.4(10)+b'), 'u7l9-mline'));
           await show(c, line(P, T(`14=-4+b\\ \\Rightarrow\\ ${cB('b=18')}`), 'u7l9-mline'));
         } },
-      { cap: `${T('b')} is the height at ${T('m=0')}, <b>before it was lit</b>. Rewind: the candle grows back to ${T('18')} cm. ${T(`H=${cM('-0.4')}m+${cB('18')}`)}.`,
+      { cap: `${T('b')} is the height at ${T('t=0')}, <b>before it was lit</b>. Rewind: the candle grows back to ${T('18')} cm. ${T(`H=${cM('-0.4')}t+${cB('18')}`)}.`,
         run: async (c) => {
           Tr.ghost();
           const t2 = tracer(G, candleF, { from: 10, onMove: sync }); await t2.go(c, 0, 1800); t2.guides(false); t2.hideDot();
           await G.reveal(G.point(0, 18, { color: BCOL, r: 9, label: T(cB('18')), pos: 'e' }), c);
-          const e = h('div', 'u7l9-bigeq', T(`H=${cM('-0.4')}m+${cB('18')}`)); P.appendChild(e); await pop(c, e);
+          const e = h('div', 'u7l9-bigeq', T(`H=${cM('-0.4')}t+${cB('18')}`)); P.appendChild(e); await pop(c, e);
         } },
-      { cap: `When does it burn out? Set ${T('H=0')}: ${T('0=-0.4m+18')}, so ${T('0.4m=18')}. Times 10: ${T('4m=180')}, so ${T('m=45')} minutes.`,
+      { cap: `When does it burn out? Set ${T('H=0')}: ${T('0=-0.4t+18')}, so ${T('0.4t=18')}. Times 10: ${T('4t=180')}, so ${T('t=45')} minutes.`,
         run: async (c) => {
           const t3 = tracer(G, candleF, { from: 25, onMove: sync }); await t3.go(c, 45, 2000); t3.guides(false);
           col.out = true; col.set(0);
           await G.reveal(G.point(45, 0, { color: RED, r: 8, label: T('(45,\\ 0)'), pos: 'nw' }), c);
-          await show(c, line(P, `${T('0.4m=18')} → ${T('m=45')}: out after <b>45 min</b>`, 'u7l9-line u7l9-ok'));
+          await show(c, line(P, `${T('0.4t=18')} → ${T('t=45')}: out after <b>45 min</b>`, 'u7l9-line u7l9-ok'));
         } }
     ];
   }
