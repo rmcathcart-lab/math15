@@ -284,37 +284,37 @@
     /* ---------- Part A ---------- */
     { num: '1', section: 'Extra practice A — Horizontal and vertical lines on a grid', shared: function (r) { return { a: -r.int(1, 7), b: r.int(1, 7) }; },
       stem: function (sh) { return 'Graph each line, then give its slope and both intercepts. If a line has no intercept of the kind asked for, press <b>none</b>.'; }, parts: [
-      { id: 'e1a', sub: 'a graph', level: 'BEG', make: function (r, sh) { return hvGraph('(a) Graph ' + t('y=' + sh.a) + '.', 'y', sh.a, W8); } },
-      { id: 'e1a2', sub: 'a slope', level: 'EMG', make: function (r, sh) { return slopeIntFields('(a) ' + t('y=' + sh.a), 'y', sh.a); } },
-      { id: 'e1b', sub: 'b graph', level: 'BEG', make: function (r, sh) { return hvGraph('(b) Graph ' + t('x=' + sh.b) + '.', 'x', sh.b, W8); } },
-      { id: 'e1b2', sub: 'b slope', level: 'EMG', make: function (r, sh) { return slopeIntFields('(b) ' + t('x=' + sh.b), 'x', sh.b); } }] },
+      { id: 'e1a', sub: 'a graph', level: 'BEG', make: function (r, sh) { return hvGraph('Graph ' + t('y=' + sh.a) + '.', 'y', sh.a, W8); } },
+      { id: 'e1a2', sub: 'a slope', level: 'EMG', make: function (r, sh) { return slopeIntFields(t('y=' + sh.a), 'y', sh.a); } },
+      { id: 'e1b', sub: 'b graph', level: 'BEG', make: function (r, sh) { return hvGraph('Graph ' + t('x=' + sh.b) + '.', 'x', sh.b, W8); } },
+      { id: 'e1b2', sub: 'b slope', level: 'EMG', make: function (r, sh) { return slopeIntFields(t('x=' + sh.b), 'x', sh.b); } }] },
     { num: '2', stem: 'You are given a point instead of an equation. Write the equation of the line described, then graph it.',
       shared: function (r) { return { h: [r.pick(pm(1, 6)), -r.int(1, 7)], v: [-r.int(1, 7), r.pick(pm(1, 6))] }; }, parts: [
       { id: 'e2a', sub: 'a eq', level: 'BEG', make: function (r, sh) { return hvEq('(a) The <b>horizontal</b> line through ' + ptt(sh.h) + '.', 'y', sh.h); } },
-      { id: 'e2a2', sub: 'a graph', level: 'BEG', make: function (r, sh) { return hvGraph('(a) Graph the horizontal line through ' + ptt(sh.h) + '.', 'y', sh.h[1], W8); } },
+      { id: 'e2a2', sub: 'a graph', level: 'BEG', make: function (r, sh) { return hvGraph('Graph the horizontal line through ' + ptt(sh.h) + '.', 'y', sh.h[1], W8); } },
       { id: 'e2b', sub: 'b eq', level: 'BEG', make: function (r, sh) { return hvEq('(b) The <b>vertical</b> line through ' + ptt(sh.v) + '.', 'x', sh.v); } },
-      { id: 'e2b2', sub: 'b graph', level: 'BEG', make: function (r, sh) { return hvGraph('(b) Graph the vertical line through ' + ptt(sh.v) + '.', 'x', sh.v[0], W8); } }] },
+      { id: 'e2b2', sub: 'b graph', level: 'BEG', make: function (r, sh) { return hvGraph('Graph the vertical line through ' + ptt(sh.v) + '.', 'x', sh.v[0], W8); } }] },
     { num: '3', stem: function (sh) { return 'Each grid already shows a line. Write its equation and state its slope.' + '<div style="display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center">' + '<div style="text-align:center"><b>(a)</b>' + labFig([{ L: hz(sh.a), color: BLUE }], W8, { max: 220 }) + '</div><div style="text-align:center"><b>(b)</b>' + labFig([{ L: vt(sh.b), color: RED }], W8, { max: 220 }) + '</div></div>'; },
       shared: function (r) { return { a: r.pick(pm(1, 7)), b: r.pick(pm(1, 7)) }; }, parts: [
-      { id: 'e3a', sub: 'a eq', level: 'BEG', make: function (r, sh) { return hvEq('(a) Write the equation of the line on grid (a).', 'y', [0, sh.a], true); } },
-      { id: 'e3a2', sub: 'a slope', level: 'LIM', make: function (r, sh) { return hvSlope('(a) State the slope of the line on grid (a).', 'y', sh.a); } },
-      { id: 'e3b', sub: 'b eq', level: 'BEG', make: function (r, sh) { return hvEq('(b) Write the equation of the line on grid (b).', 'x', [sh.b, 0], true); } },
-      { id: 'e3b2', sub: 'b slope', level: 'LIM', make: function (r, sh) { return hvSlope('(b) State the slope of the line on grid (b).', 'x', sh.b); } }] },
+      { id: 'e3a', sub: 'a eq', level: 'BEG', make: function (r, sh) { return hvEq('Write the equation of the line on grid (a).', 'y', [0, sh.a], true); } },
+      { id: 'e3a2', sub: 'a slope', level: 'LIM', make: function (r, sh) { return hvSlope('State the slope of the line on grid (a).', 'y', sh.a); } },
+      { id: 'e3b', sub: 'b eq', level: 'BEG', make: function (r, sh) { return hvEq('Write the equation of the line on grid (b).', 'x', [sh.b, 0], true); } },
+      { id: 'e3b2', sub: 'b slope', level: 'LIM', make: function (r, sh) { return hvSlope('State the slope of the line on grid (b).', 'x', sh.b); } }] },
     { num: '4', shared: function (r) { return { a: r.pick(pm(1, 6)), b: r.pick(pm(1, 6)) }; },
       stem: function (sh) { return 'The grid shows two lines.' + labFig([{ L: hz(sh.a), color: BLUE, label: 'ℓ₁', at: [sh.b > 0 ? -7 : 5, sh.a] }, { L: vt(sh.b), color: RED, label: 'ℓ₂', at: [sh.b, sh.a > 0 ? -6 : 6] }], W8, { max: 300 }); }, parts: [
       { id: 'e4a', sub: 'a', level: 'BEG', make: function (r, sh) {
-        var p = eqFields('(a) Write the equation of each line.', [t('\\ell_1') + ':', t('\\ell_2') + ':'], [{ y: sh.a }, { x: sh.b }], [{ wrong: [{ is: { x: sh.a }, code: 'l5-gr-hv', hint: t('\\ell_1') + ' is horizontal: ' + t('y') + ' is fixed.' }] }, { wrong: [{ is: { y: sh.b }, code: 'l5-gr-hv', hint: t('\\ell_2') + ' is vertical: ' + t('x') + ' is fixed.' }] }],
+        var p = eqFields('Write the equation of each line.', [t('\\ell_1') + ':', t('\\ell_2') + ':'], [{ y: sh.a }, { x: sh.b }], [{ wrong: [{ is: { x: sh.a }, code: 'l5-gr-hv', hint: t('\\ell_1') + ' is horizontal: ' + t('y') + ' is fixed.' }] }, { wrong: [{ is: { y: sh.b }, code: 'l5-gr-hv', hint: t('\\ell_2') + ' is vertical: ' + t('x') + ' is fixed.' }] }],
           t('\\ell_1') + ' is horizontal: every point on it has ' + t('y') + '-coordinate ' + t(sh.a) + ', so ' + t('y=' + sh.a) + '.<br>' + t('\\ell_2') + ' is vertical: every point has ' + t('x') + '-coordinate ' + t(sh.b) + ', so ' + t('x=' + sh.b) + '.', ['For each line, which coordinate stays the same?'], 'two hv equations');
         p.bad = [['x=' + sh.a, 'y=' + sh.b]].filter(function () { return sh.a !== sh.b; }); return p;
       } },
       { id: 'e4b', sub: 'b', level: 'BEG', make: function (r, sh) {
-        return KP.fields('(b) State the slope of each line.', [{ label: t('\\ell_1') + ':', name: 'ℓ₁ slope', mode: 'math', keys: 'slope', before: t('m='), placeholder: ' ' }, { label: t('\\ell_2') + ':', name: 'ℓ₂ slope', mode: 'math', keys: 'slope', before: t('m='), placeholder: ' ' }],
+        return KP.fields('State the slope of each line.', [{ label: t('\\ell_1') + ':', name: 'ℓ₁ slope', mode: 'math', keys: 'slope', before: t('m='), placeholder: ' ' }, { label: t('\\ell_2') + ':', name: 'ℓ₂ slope', mode: 'math', keys: 'slope', before: t('m='), placeholder: ' ' }],
           [K.slope(0), K.slope(null)], ['0', '\\text{undefined}'], t('\\ell_1') + ': ' + t('0') + '; ' + t('\\ell_2') + ': undefined',
           t('\\ell_1') + ' is horizontal: rise ' + t('0') + ', slope ' + t('0') + '. ' + t('\\ell_2') + ' is vertical: run ' + t('0') + ', so the slope is <b>undefined</b>.', ['Horizontal: no rise. Vertical: no run.'], 'two hv slopes');
       } },
       { id: 'e4c', sub: 'c', level: 'EMG', make: function (r, sh) {
         var P0 = [sh.b, sh.a];
-        var p = KP.math('(c) Give the coordinates of the point where the two lines cross.', K.pairs([P0]), pK(P0), 'Each equation pins one coordinate: ' + t('\\ell_2') + ' makes ' + t('x=' + sh.b) + ' and ' + t('\\ell_1') + ' makes ' + t('y=' + sh.a) + '. Together they name exactly one point, ' + ptt(P0) + ' — no graph needed.',
+        var p = KP.math('Give the coordinates of the point where the two lines cross.', K.pairs([P0]), pK(P0), 'Each equation pins one coordinate: ' + t('\\ell_2') + ' makes ' + t('x=' + sh.b) + ' and ' + t('\\ell_1') + ' makes ' + t('y=' + sh.a) + '. Together they name exactly one point, ' + ptt(P0) + ' — no graph needed.',
           ['On ' + t('\\ell_1') + ', what is ' + t('y') + ' always? On ' + t('\\ell_2') + ', what is ' + t('x') + ' always?'], 'hv crossing', { keys: 'u7val', placeholder: 'e.g. (2, -4)' });
         p.answer = ptt(P0); p.bad = sh.a !== sh.b ? [pK([sh.a, sh.b])] : []; return p;
       } }] },
@@ -348,34 +348,34 @@
           { why: function (row) { return row === 'a' ? '(a): its ' + t('x') + '-intercept is ' + t(fT(xi)) + ' — a fraction, awkward to plot. But ' + t('b') + ' and the slope are handed to you.' : '(b): its intercepts ' + ptt([sh.b.p, 0]) + ' and ' + ptt([0, sh.b.q]) + ' are whole numbers.'; } },
           '(a) Slope–intercept: its ' + t('x') + '-intercept is ' + t(fT(xi)) + ', but ' + t('(0,\\ ' + sh.a.b + ')') + ' and the slope are easy.<br>(b) Two-intercept: ' + ptt([sh.b.p, 0]) + ' and ' + ptt([0, sh.b.q]) + '.', ['Which line has whole-number intercepts? Which one hands you ' + t('b') + ' and ' + t('m') + '?'], 'name methods');
       } },
-      { id: 'e7a', sub: 'a', level: 'EMG', make: function (r, sh) { return siGraph('(a) Graph ' + t(si(mb(sh.a.m, sh.a.b))) + '.', sh.a.m, sh.a.b, W8, 'graph y=mx+b, fraction slope'); } },
-      { id: 'e7b', sub: 'b', level: 'PRG', make: function (r, sh) { return intGraph('(b) Graph ' + t(gT(sh.b.L)) + '.', sh.b.p, sh.b.q, W8, 'graph general by intercepts'); } }] },
+      { id: 'e7a', sub: 'a', level: 'EMG', make: function (r, sh) { return siGraph('Graph ' + t(si(mb(sh.a.m, sh.a.b))) + '.', sh.a.m, sh.a.b, W8, 'graph y=mx+b, fraction slope'); } },
+      { id: 'e7b', sub: 'b', level: 'PRG', make: function (r, sh) { return intGraph('Graph ' + t(gT(sh.b.L)) + '.', sh.b.p, sh.b.q, W8, 'graph general by intercepts'); } }] },
     { num: '8', stem: 'Graph each line using the two-intercept method. Find both intercepts before you draw.',
       shared: function (r) { return { a: intLine(r, [2, 3, 4, 5, 6, 7], [-2, -3, -4, -5, -6, -7, -8]), b: intLine(r, [-2, -3, -4, -5, -6], [-2, -3, -4, -5, -6, -7, -8]) }; }, parts: [
-      { id: 'e8a', sub: 'a ints', level: 'EMG', outcome: 'RF5', make: function (r, sh) { return intFields('(a) ' + t(gT(sh.a.L)), sh.a.L, sh.a.p, sh.a.q); } },
-      { id: 'e8a2', sub: 'a graph', level: 'EMG', make: function (r, sh) { return intGraph('(a) Graph ' + t(gT(sh.a.L)) + '.', sh.a.p, sh.a.q, W8); } },
-      { id: 'e8b', sub: 'b ints', level: 'EMG', outcome: 'RF5', make: function (r, sh) { return intFields('(b) ' + t(gT(sh.b.L)), sh.b.L, sh.b.p, sh.b.q); } },
-      { id: 'e8b2', sub: 'b graph', level: 'EMG', make: function (r, sh) { return intGraph('(b) Graph ' + t(gT(sh.b.L)) + '.', sh.b.p, sh.b.q, W8); } }] },
+      { id: 'e8a', sub: 'a ints', level: 'EMG', outcome: 'RF5', make: function (r, sh) { return intFields(t(gT(sh.a.L)), sh.a.L, sh.a.p, sh.a.q); } },
+      { id: 'e8a2', sub: 'a graph', level: 'EMG', make: function (r, sh) { return intGraph('Graph ' + t(gT(sh.a.L)) + '.', sh.a.p, sh.a.q, W8); } },
+      { id: 'e8b', sub: 'b ints', level: 'EMG', outcome: 'RF5', make: function (r, sh) { return intFields(t(gT(sh.b.L)), sh.b.L, sh.b.p, sh.b.q); } },
+      { id: 'e8b2', sub: 'b graph', level: 'EMG', make: function (r, sh) { return intGraph('Graph ' + t(gT(sh.b.L)) + '.', sh.b.p, sh.b.q, W8); } }] },
     { num: '9', shared: function (r) {
         var a = pickWhere(function () { var m = r.pick([-1, -2, 1, 2, -3]), x1 = r.int(-5, -2), b = r.pick(pm(1, 4)); return { m: m, b: b, P1: [x1, m * x1 + b], P2: [x1 + 6 / (Math.abs(m) > 1 ? 2 : 1), m * (x1 + 6 / (Math.abs(m) > 1 ? 2 : 1)) + b] }; }, function (o) { return [o.P1, o.P2].every(function (p) { return Math.abs(p[0]) <= 7 && Math.abs(p[1]) <= 7; }); });
         var k = -r.int(1, 5), h = r.pick(pm(1, 4)), s = r.pick([-1, 1]), c = pickWhere(function () { return r.int(-3, 5); }, function (c) { var y = s * k + c, x = (h - c) / s; return c !== h && Math.abs(y) <= 7 && Math.abs(x) <= 7 && y !== h; });
         return { a: a, b: { k: k, h: h, s: s, c: c } };
       }, stem: '', parts: [
-      { id: 'e9a', sub: 'a graph', level: 'EMG', make: function (r, sh) { var Lo = thru(sh.a.P1, sh.a.P2); return gpart('(a) Graph the line through ' + ptt(sh.a.P1) + ' and ' + ptt(sh.a.P2) + '.', Lo, W8, { wrong: [{ L: thru([sh.a.P1[1], sh.a.P1[0]], [sh.a.P2[1], sh.a.P2[0]]), code: 'graph-swap', hint: 'Plot ' + t('(x,\\ y)') + ' across first, then up or down.' }] }, 'Plot both points and draw the line through them, with arrows on both ends.', ['Plot the two points, then join them.'], 'graph through two points'); } },
+      { id: 'e9a', sub: 'a graph', level: 'EMG', make: function (r, sh) { var Lo = thru(sh.a.P1, sh.a.P2); return gpart('Graph the line through ' + ptt(sh.a.P1) + ' and ' + ptt(sh.a.P2) + '.', Lo, W8, { wrong: [{ L: thru([sh.a.P1[1], sh.a.P1[0]], [sh.a.P2[1], sh.a.P2[0]]), code: 'graph-swap', hint: 'Plot ' + t('(x,\\ y)') + ' across first, then up or down.' }] }, 'Plot both points and draw the line through them, with arrows on both ends.', ['Plot the two points, then join them.'], 'graph through two points'); } },
       { id: 'e9a2', sub: 'a eqs', level: 'PRG', outcome: 'RF7', make: function (r, sh) {
         var Lo = thru(sh.a.P1, sh.a.P2), m = sh.a.m, b = sh.a.b, P1 = sh.a.P1, P2 = sh.a.P2;
-        return eqFields('(a) Write the equation of the line through ' + ptt(P1) + ' and ' + ptt(P2) + ' in slope–intercept form <b>and</b> in general form.', ['Slope–intercept:', 'General:'], [Lo, Lo], [{ form: 'slope-intercept', wrong: [{ is: { m: -m, b: b }, code: 'line-slope-sign', hint: 'Check the sign of the slope: ' + t('m=\\frac{' + P2[1] + '-' + (P1[1] < 0 ? '(' + P1[1] + ')' : P1[1]) + '}{' + P2[0] + '-(' + P1[0] + ')}') + '.' }] }, { form: 'general' }],
+        return eqFields('Write the equation of the line through ' + ptt(P1) + ' and ' + ptt(P2) + ' in slope–intercept form <b>and</b> in general form.', ['Slope–intercept:', 'General:'], [Lo, Lo], [{ form: 'slope-intercept', wrong: [{ is: { m: -m, b: b }, code: 'line-slope-sign', hint: 'Check the sign of the slope: ' + t('m=\\frac{' + P2[1] + '-' + (P1[1] < 0 ? '(' + P1[1] + ')' : P1[1]) + '}{' + P2[0] + '-(' + P1[0] + ')}') + '.' }] }, { form: 'general' }],
           t('m=\\frac{' + (P2[1] - P1[1]) + '}{' + (P2[0] - P1[0]) + '}=' + m) + '. Substitute ' + ptt(P1) + ' into ' + t('y=' + m + 'x+b') + ': ' + t(P1[1] + '=' + m + '(' + P1[0] + ')+b') + ', so ' + t('b=' + b) + ': ' + t(si(Lo)) + '.<br>General form: move every term to one side, ' + t('x') + '-term positive: ' + t(gen(Lo)) + '.',
           ['Find the slope from the two points, then ' + t('b') + ' by substituting one point.', 'For general form, move every term to the left with the ' + t('x') + '-term positive.'], 'two forms through two points');
       } },
       { id: 'e9b', sub: 'b graph', level: 'PRG', make: function (r, sh) {
         var o = sh.b, L1 = vt(o.k), L2 = hz(o.h), L3 = mb(o.s, o.c);
-        return gpart('(b) On one grid, draw ' + t('x=' + o.k) + ', ' + t('y=' + o.h) + ' and ' + t(si(L3)) + '.', [L1, L2, L3], W8, { names: [t('x=' + o.k), t('y=' + o.h), t(si(L3))] },
+        return gpart('On one grid, draw ' + t('x=' + o.k) + ', ' + t('y=' + o.h) + ' and ' + t(si(L3)) + '.', [L1, L2, L3], W8, { names: [t('x=' + o.k), t('y=' + o.h), t(si(L3))] },
           t('x=' + o.k) + ': vertical through ' + ptt([o.k, 0]) + '. ' + t('y=' + o.h) + ': horizontal through ' + ptt([0, o.h]) + '. ' + t(si(L3)) + ': start at ' + ptt([0, o.c]) + ', slope ' + t(o.s) + '.', ['Draw the two constant lines first, then the slanted one.'], 'three lines');
       } },
       { id: 'e9b2', sub: 'b points', level: 'ADV', make: function (r, sh) {
         var o = sh.b, L3 = mb(o.s, o.c), A = [o.k, o.h], B = [o.k, o.s * o.k + o.c], C = [(o.h - o.c) / o.s, o.h];
-        var p = KP.pairs('(b) State the three points where the lines ' + t('x=' + o.k) + ', ' + t('y=' + o.h) + ' and ' + t(si(L3)) + ' cross one another.', [A, B, C], {},
+        var p = KP.pairs('State the three points where the lines ' + t('x=' + o.k) + ', ' + t('y=' + o.h) + ' and ' + t(si(L3)) + ' cross one another.', [A, B, C], {},
           t('x=' + o.k) + ' and ' + t('y=' + o.h) + ': ' + ptt(A) + '.<br>' + t('x=' + o.k) + ' and ' + t(si(L3)) + ': substitute ' + t('x=' + o.k) + ': ' + t('y=' + o.s + '(' + o.k + ')' + sg(o.c) + '=' + B[1]) + ', so ' + ptt(B) + '.<br>' + t('y=' + o.h) + ' and ' + t(si(L3)) + ': ' + t(o.h + '=' + (o.s === 1 ? '' : '-') + 'x' + sg(o.c)) + ', so ' + t('x=' + C[0]) + ' and ' + ptt(C) + '.',
           ['Two constant lines cross where both coordinates are fixed. For the slanted line, substitute the fixed coordinate into its equation.'], 'three crossing points');
         p.bad = ['\\{' + [A, B].map(pK).join(', ') + '\\}'];
@@ -408,19 +408,19 @@
     { num: '11', section: 'Extra practice C — Figures, errors, reasoning and working backwards', shared: function (r) { return pickWhere(function () { return { x1: -r.int(1, 6), x2: r.int(1, 6), y1: -r.int(1, 6), y2: r.int(1, 6) }; }, function (o) { return o.x2 - o.x1 !== o.y2 - o.y1; }); },
       stem: function (sh) { return 'The rectangle is bounded by two horizontal lines and two vertical lines.' + labFig([{ L: vt(sh.x1), color: RED }, { L: vt(sh.x2), color: RED }, { L: hz(sh.y1), color: BLUE }, { L: hz(sh.y2), color: BLUE }], W8, { max: 300, fill: [sh.x1, sh.y1, sh.x2, sh.y2] }); }, parts: [
       { id: 'e11a', sub: 'a', level: 'EMG', make: function (r, sh) {
-        return eqFields('(a) Write the equations of all four lines.', ['Left side:', 'Right side:', 'Bottom:', 'Top:'], [{ x: sh.x1 }, { x: sh.x2 }, { y: sh.y1 }, { y: sh.y2 }], [{}, {}, {}, {}],
+        return eqFields('Write the equations of all four lines.', ['Left side:', 'Right side:', 'Bottom:', 'Top:'], [{ x: sh.x1 }, { x: sh.x2 }, { y: sh.y1 }, { y: sh.y2 }], [{}, {}, {}, {}],
           'Vertical sides: ' + t('x=' + sh.x1) + ' and ' + t('x=' + sh.x2) + '. Horizontal sides: ' + t('y=' + sh.y1) + ' and ' + t('y=' + sh.y2) + '.', ['A vertical side keeps ' + t('x') + ' fixed; a horizontal side keeps ' + t('y') + ' fixed.'], 'rectangle sides');
       } },
       { id: 'e11b', sub: 'b', level: 'EMG', make: function (r, sh) {
         var cs = [[sh.x1, sh.y1], [sh.x2, sh.y1], [sh.x2, sh.y2], [sh.x1, sh.y2]];
-        var p = KP.pairs('(b) Give the coordinates of all four corners.', cs, {}, 'Each corner is where a vertical side meets a horizontal side: ' + cs.map(ptt).join(', ') + '.', ['A corner takes its ' + t('x') + ' from a vertical side and its ' + t('y') + ' from a horizontal side.'], 'rectangle corners');
+        var p = KP.pairs('Give the coordinates of all four corners.', cs, {}, 'Each corner is where a vertical side meets a horizontal side: ' + cs.map(ptt).join(', ') + '.', ['A corner takes its ' + t('x') + ' from a vertical side and its ' + t('y') + ' from a horizontal side.'], 'rectangle corners');
         p.bad = ['\\{' + cs.slice(0, 3).map(pK).join(', ') + '\\}']; return p;
       } },
       { id: 'e11c', sub: 'c', level: 'PRG', make: function (r, sh) {
         var w = sh.x2 - sh.x1, h = sh.y2 - sh.y1, A = w * h, Pm = 2 * (w + h);
         var dA = function (v) { if (v === Pm && Pm !== A) return { code: 'u7l8-area-perim', hint: 'That’s the perimeter. Area = width × height.' }; if (v === sh.x2 * sh.y2 || v === Math.abs(sh.x1 * sh.y1)) return { code: 'u7l8-side', hint: 'A side length is the <b>difference</b> of two coordinates: width ' + t(sh.x2 + '-(' + sh.x1 + ')') + '.' }; return null; };
         var dP = function (v) { if (v === A && Pm !== A) return { code: 'u7l8-area-perim', hint: 'That’s the area. Perimeter = the distance all the way around.' }; if (v === w + h) return { code: 'u7l8-perim-half', hint: 'That’s two sides. The perimeter goes all the way around: ' + t('2(w+h)') + '.' }; return null; };
-        var p = KP.fields('(c) Find the area and the perimeter of the rectangle.', [{ label: 'Area:', name: 'Area', after: 'square units' }, { label: 'Perimeter:', name: 'Perimeter', after: 'units' }], [K.number(A, dA), K.number(Pm, dP)], [String(A), String(Pm)], 'Area ' + t(A) + ' square units, perimeter ' + t(Pm) + ' units',
+        var p = KP.fields('Find the area and the perimeter of the rectangle.', [{ label: 'Area:', name: 'Area', after: 'square units' }, { label: 'Perimeter:', name: 'Perimeter', after: 'units' }], [K.number(A, dA), K.number(Pm, dP)], [String(A), String(Pm)], 'Area ' + t(A) + ' square units, perimeter ' + t(Pm) + ' units',
           'Width ' + t(sh.x2 + '-(' + sh.x1 + ')=' + w) + ', height ' + t(sh.y2 + '-(' + sh.y1 + ')=' + h) + '.<br>Area ' + t('=' + w + '\\times ' + h + '=' + A) + ' square units; perimeter ' + t('=2(' + w + '+' + h + ')=' + Pm) + ' units.', ['Width = the difference of the two ' + t('x') + '-values; height = the difference of the two ' + t('y') + '-values.'], 'rectangle area/perimeter');
         p.bad = [[String(Pm), String(A)], [String(A), String(w + h)]].filter(function (b) { return !(b[0] === String(A) && b[1] === String(Pm)); }); return p;
       } }] },
@@ -511,7 +511,7 @@
       stem: function (sh) { var h = sh.v * sh.s[1] / sh.s[0], L3 = thru([sh.a, sh.b + sh.v], [sh.a + h, sh.b]); return '<b>Stretch.</b> The three lines ' + t('x=' + sh.a) + ', ' + t('y=' + sh.b) + ' and ' + t(gen(L3)) + ' enclose a triangle.'; }, parts: [
       { id: 'e18a', sub: 'a', level: 'ADV', make: function (r, sh) {
         var h = sh.v * sh.s[1] / sh.s[0], L3 = thru([sh.a, sh.b + sh.v], [sh.a + h, sh.b]), V = [[sh.a, sh.b], [sh.a, sh.b + sh.v], [sh.a + h, sh.b]];
-        var p = KP.pairs('(a) Find the three vertices by solving the lines in pairs.', V, {},
+        var p = KP.pairs('Find the three vertices by solving the lines in pairs.', V, {},
           t('x=' + sh.a) + ' with ' + t('y=' + sh.b) + ': ' + ptt(V[0]) + '.<br>' + t('x=' + sh.a) + ' with ' + t(gen(L3)) + ': substitute ' + t('x=' + sh.a) + ' and solve: ' + t('y=' + V[1][1]) + ', so ' + ptt(V[1]) + '.<br>' + t('y=' + sh.b) + ' with ' + t(gen(L3)) + ': substitute ' + t('y=' + sh.b) + ' and solve: ' + t('x=' + V[2][0]) + ', so ' + ptt(V[2]) + '.',
           ['The two constant lines meet where both coordinates are fixed.', 'For the slanted line, substitute the fixed coordinate of the other line and solve for the missing one.'], 'triangle vertices');
         var base18 = p.check, swV = [V[0], [V[1][1], V[1][0]], V[2]], swc = K.pairs(swV), sw2 = K.pairs([V[0], V[1], [V[2][1], V[2][0]]]);
@@ -530,7 +530,7 @@
       } },
       { id: 'e18c', sub: 'c', level: 'MAS', make: function (r, sh) {
         var h = sh.v * sh.s[1] / sh.s[0], A = sh.v * h / 2;
-        return KP.number('(c) Find the area of the triangle.', A, function (x) {
+        return KP.number('Find the area of the triangle.', A, function (x) {
           if (x === sh.v * h) return { code: 'l5-half-area', hint: 'A triangle is half of a rectangle: ' + t('A=\\frac{1}{2}bh') + '.' };
           if (x === sh.v + h || x === 2 * (sh.v + h)) return { code: 'u7l8-area-perim', hint: 'Area means the space inside: ' + t('\\frac{1}{2}\\times\\text{base}\\times\\text{height}') + '.' };
           return null;
@@ -593,10 +593,10 @@
         { id: '4a', sub: 'graph', level: 'BEG', make: function (r, sh) { return hvGraph('Graph ' + t('x=' + sh.k) + '.', 'x', sh.k, W8); } },
         { id: '4b', sub: 'slope', level: 'BEG', make: function (r, sh) { return hvSlope('State the slope of ' + t('x=' + sh.k) + '.', 'x', sh.k); } }] },
       { num: '5', stem: 'Graph the line.', parts: [
-        { id: '5a', level: 'BEG', make: function (r) { var k = -r.int(1, 7); return hvGraph('(a) ' + t('y=' + k), 'y', k, W8); } },
-        { id: '5b', level: 'BEG', make: function (r) { var k = r.int(1, 7); return hvGraph('(b) ' + t('x=' + k), 'x', k, W8); } },
-        { id: '5c', level: 'EMG', make: function (r) { var ax = r.chance(0.7) ? 'y' : 'x'; return hvGraph('(c) ' + t(ax + '=0'), ax, 0, W8); } },
-        { id: '5d', level: 'BEG', make: function (r) { var k = -r.int(1, 7); return hvGraph('(d) ' + t('x=' + k), 'x', k, W8); } }] },
+        { id: '5a', level: 'BEG', make: function (r) { var k = -r.int(1, 7); return hvGraph(t('y=' + k), 'y', k, W8); } },
+        { id: '5b', level: 'BEG', make: function (r) { var k = r.int(1, 7); return hvGraph(t('x=' + k), 'x', k, W8); } },
+        { id: '5c', level: 'EMG', make: function (r) { var ax = r.chance(0.7) ? 'y' : 'x'; return hvGraph(t(ax + '=0'), ax, 0, W8); } },
+        { id: '5d', level: 'BEG', make: function (r) { var k = -r.int(1, 7); return hvGraph(t('x=' + k), 'x', k, W8); } }] },
       { num: '6', shared: function (r) {
           var m = r.pick(pm(2, 5)), c = r.pick(pm(1, 9)), z = r.chance(0.7) ? 'x' : 'y';
           return { a: -r.int(2, 9), m: m, c: c, cc: r.int(2, 9), z: z };
@@ -646,12 +646,12 @@
         { id: '10a', sub: 'intercepts', level: 'EMG', outcome: 'RF5', make: function (r, sh) { return intFields('Find both intercepts.', sh.S, sh.p, sh.q); } },
         { id: '10b', sub: 'graph', level: 'EMG', make: function (r, sh) { return intGraph('Graph the line.', sh.p, sh.q, W8, 'graph general by intercepts', sh.S); } }] },
       { num: '11', stem: 'Graph each equation, choosing whichever strategy is most efficient for its form.', parts: [
-        { id: '11a', level: 'BEG', make: function (r) { var m = r.pick(pm(1, 3)), b = r.pick(pm(1, 5)); return siGraph('(a) ' + t(si(mb(m, b))), m, b, W8, 'graph y=mx+b'); } },
-        { id: '11b', level: 'BEG', make: function (r) { var k = -r.int(1, 7); return hvGraph('(b) ' + t('y=' + k), 'y', k, W8); } },
-        { id: '11c', level: 'BEG', make: function (r) { var k = r.int(1, 7); return hvGraph('(c) ' + t('x=' + k), 'x', k, W8); } },
+        { id: '11a', level: 'BEG', make: function (r) { var m = r.pick(pm(1, 3)), b = r.pick(pm(1, 5)); return siGraph(t(si(mb(m, b))), m, b, W8, 'graph y=mx+b'); } },
+        { id: '11b', level: 'BEG', make: function (r) { var k = -r.int(1, 7); return hvGraph(t('y=' + k), 'y', k, W8); } },
+        { id: '11c', level: 'BEG', make: function (r) { var k = r.int(1, 7); return hvGraph(t('x=' + k), 'x', k, W8); } },
         { id: '11d', level: 'PRG', make: function (r) {
           var s = intLine(r, [1, 2, -1, -2], pm(2, 8), function (L) { return Math.abs(L.B) === 1; });
-          return intGraph('(d) ' + t(gT(s.L)), s.p, s.q, W8, 'graph general (any strategy)');
+          return intGraph(t(gT(s.L)), s.p, s.q, W8, 'graph general (any strategy)');
         } }] },
       /* ---------- Part C ---------- */
       { num: '12', section: 'Part C — Multiple choice and numerical response', parts: [

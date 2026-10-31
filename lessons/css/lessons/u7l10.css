@@ -16,8 +16,8 @@ h2 .katex, h3 .katex { font-size: .95em; }
 .u7l10-def-b { background: #e7f4ec; border-left-color: #12805a; }
 
 /* ---------------- warm-up: dominoes ---------------- */
-.u7l10-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 12px; margin: 4px 0 10px; }
-.u7l10-tile { position: relative; display: grid; grid-template-columns: 1fr 1fr; height: 150px; background: #fff3cf; border: 2.5px solid #c88c14; border-radius: 12px; box-shadow: 0 2px 0 #e2c27a; }
+.u7l10-tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 18px; margin: 4px 0 10px; }
+.u7l10-tile { position: relative; display: grid; grid-template-columns: 1fr 1fr; height: 136px; background: #fff3cf; border: 2.5px solid #c88c14; border-radius: 12px; box-shadow: 0 2px 0 #e2c27a; }
 .u7l10-tile:nth-child(odd) { transform: rotate(-1deg); } .u7l10-tile:nth-child(even) { transform: rotate(1deg); }
 .u7l10-half { display: grid; place-items: center; text-align: center; font-size: 17px; line-height: 1.35; padding: 4px; overflow: hidden; }
 .u7l10-half + .u7l10-half { border-left: 2px solid #c88c14; }
@@ -69,7 +69,7 @@ h2 .katex, h3 .katex { font-size: .95em; }
 .u7l10-fig { margin: 4px 0; }
 .u7l10-figcol { display: flex; flex-direction: column; }
 .u7l10-tapnote { margin-top: 4px; font-size: 15px; }
-.u7l10-ansg { display: flex; gap: 14px; align-items: flex-start; }
+.u7l10-ansg { display: flex; flex-direction: column; gap: 6px; }
 #u7l10-ex3ans { margin-top: 8px; }
 
 /* ---------------- summary: back to the lessons ---------------- */

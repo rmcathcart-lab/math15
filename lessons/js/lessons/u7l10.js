@@ -78,7 +78,7 @@ const MINI = {
   R: { seg: [[-4, 3], [4, 3]], pts: [[-2, 3], [0, 3], [2, 3]] },
   T: { seg: [[-1, 4], [4, -1]], pts: [[0, 3], [1, 2], [2, 1], [3, 0]] }
 };
-const mini = (host, k, size = 132) => {
+const mini = (host, k, size = 120) => {
   const d = MINI[k], G = new Graph(host, { width: size, height: size, xmin: -4, xmax: 4, ymin: -4, ymax: 4, numbers: false, xtitle: '', ytitle: '', arrows: false, pad: 6 });
   G.segment(d.seg[0], d.seg[1], { color: RED, width: 3 }); d.pts.forEach((p) => G.point(p[0], p[1], { color: RED, r: 3.6 }));
   return G;

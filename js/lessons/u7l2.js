@@ -101,8 +101,8 @@
       return base(s);
     };
   }
-  function slopeField(keys) { return { label: 'Slope', name: 'Slope', before: t('m='), mode: 'math', keys: keys || 'fraction' }; }
-  function yField(keys) { return { label: t('y') + '-intercept', name: t('y') + '-intercept', before: t('b='), mode: 'math', keys: keys || 'fraction' }; }
+  function slopeField(keys) { return { label: 'Slope', name: 'Slope', before: t('m='), mode: 'math', keys: keys || 'fraction', placeholder: 'e.g. -2 or 3/4' }; }
+  function yField(keys) { return { label: t('y') + '-intercept', name: t('y') + '-intercept', before: t('b='), mode: 'math', keys: keys || 'fraction', placeholder: 'e.g. 5' }; }
   function mbHints() { return ['Get ' + t('y') + ' by itself first: ' + t('y=mx+b') + '. Then ' + t('m') + ' is the number multiplying ' + t('x') + ' and ' + t('b') + ' is the constant term.', 'Keep the sign that is in front of each term.']; }
   function mbPart(prompt, m, b, o, sol, hints, text) {
     o = o || {};
@@ -325,8 +325,8 @@
             { id: 'iv', html: '(iv) Rises only ' + t('1') + ' unit for every ' + t(a) + ' units right.', want: 'C', why: 'Rise ' + t('1') + ', run ' + t(a) + ': slope ' + t('\\frac{1}{' + a + '}') + ': ' + t(E.C) + '.' },
             { id: 'v', html: '(v) Exactly as steep as A, but crosses the ' + t('y') + '-axis ' + t(2 * c) + ' units higher.', want: 'E', why: 'Same slope ' + t(a) + ', intercept ' + t('-' + c + '+' + 2 * c + '=' + c) + ': ' + t(E.E) + '.' }];
           var want = {}; D.forEach(function (d) { want[d.id] = d.want; });
-          var cols = ['A', 'B', 'C', 'D', 'E'].map(function (k) { return { id: k, html: k + '. ' + t(E[k]) }; });
-          return B.grid('Match each description to exactly one equation. Every equation is used once.', D.map(function (d) { return { id: d.id, html: d.html }; }), cols, want, {
+          var cols = ['A', 'B', 'C', 'D', 'E'].map(function (k) { return { id: k, html: k }; });
+          return B.grid('Match each description to exactly one equation. Every equation is used once.<div style="margin:6px 0 2px">' + ['A', 'B', 'C', 'D', 'E'].map(function (k) { return '<b>' + k + '.</b> ' + t(E[k]); }).join(' &nbsp;&nbsp; ') + '</div>', D.map(function (d) { return { id: d.id, html: d.html }; }), cols, want, {
             why: function (row) { var d = D.filter(function (x) { return x.id === row; })[0]; return { code: 'u7l2-match', hint: 'Look again at ' + d.html.replace(/^\(([iv]+)\).*/, '($1)') + ': find the slope and the ' + t('y') + '-intercept it describes.' }; } },
             D.map(function (d) { return d.html.replace(/^(\([iv]+\)).*$/, '$1') + ' → <b>' + d.want + '</b>: ' + d.why; }).join('<br>'), ['Turn each description into a slope and a ' + t('y') + '-intercept.', '“Falls” means a negative slope; “below the origin” means a negative ' + t('b') + '.'], 'EP4 matching');
         } }] },
@@ -433,9 +433,9 @@
         stem: function (s) { return 'Start with the line ' + t(siT(s.m, s.b)) + '. Describe what happens to its graph under each change.'; }, parts: [
         { id: 'e13', level: 'EMG', make: function (r, s) {
           var rows = [{ id: 'a', html: '(a) ' + t('b') + ' changes from ' + t(s.b) + ' to ' + t(s.b2) }, { id: 'b', html: '(b) ' + t('m') + ' changes from ' + t(s.m) + ' to ' + t(s.m2) }, { id: 'c', html: '(c) ' + t('m') + ' changes from ' + t(s.m) + ' to ' + t(-s.m) }, { id: 'd', html: '(d) ' + t('m') + ' changes from ' + t(s.m) + ' to ' + t('\\frac{1}{' + s.m + '}') }];
-          var cols = [{ id: 'up', html: 'Slides up' }, { id: 'dn', html: 'Slides down' }, { id: 'st', html: 'Tilts steeper' }, { id: 'fl', html: 'Tilts flatter' }, { id: 'fa', html: 'Same steepness, now falls' }];
+          var cols = [{ id: 'up', html: 'Slides up' }, { id: 'dn', html: 'Slides down' }, { id: 'st', html: 'Steeper' }, { id: 'fl', html: 'Flatter' }, { id: 'fa', html: 'Flips to fall' }];
           var want = { a: s.b2 > s.b ? 'up' : 'dn', b: 'st', c: 'fa', d: 'fl' };
-          var why = { a: 'Only ' + t('b') + ' changes: same tilt, the crossing point moves ' + (s.b2 > s.b ? 'up' : 'down') + ' ' + t(Math.abs(s.b2 - s.b)) + ' to ' + t(ptT([0, s.b2])) + '.', b: 'A larger slope climbs faster: steeper, same crossing ' + t(ptT([0, s.b])) + '.', c: 'Opposite sign, same size: it falls to the right just as steeply.', d: 'A slope between ' + t('0') + ' and ' + t('1') + ': it still rises, but more gently.' };
+          var why = { a: 'Only ' + t('b') + ' changes: same tilt, the crossing point moves ' + (s.b2 > s.b ? 'up' : 'down') + ' ' + t(Math.abs(s.b2 - s.b)) + ' to ' + t(ptT([0, s.b2])) + '.', b: 'A larger slope climbs faster: steeper, same crossing ' + t(ptT([0, s.b])) + '.', c: 'Opposite sign, same size: it flips to fall to the right, just as steeply.', d: 'A slope between ' + t('0') + ' and ' + t('1') + ': it still rises, but more gently.' };
           return B.grid('For each change, how does the line move?', rows, cols, want, { why: function (row) { return { code: 'u7l2-change', hint: '(' + row + ') ' + why[row] }; } },
             ['a', 'b', 'c', 'd'].map(function (k) { return '(' + k + ') ' + why[k]; }).join('<br>'), ['Changing ' + t('b') + ' slides the line up or down; changing ' + t('m') + ' tilts it around ' + t(ptT([0, s.b])) + '.'], 'EP13 changes');
         } }] },
@@ -489,7 +489,7 @@
           tg[odd] = sw;
           return { m: m, b: b, eqs: eqs, tg: tg, odd: odd };
         },
-        stem: function (s) { return '<b>Stretch.</b> Three equations are given. Two of them describe the <i>same</i> line and one does not.<br>(i) ' + t(s.eqs[0]) + ' &nbsp; (ii) ' + t(s.eqs[1]) + ' &nbsp; (iii) ' + t(s.eqs[2]); }, parts: [
+        stem: function (s) { return '<b>Stretch.</b> Three equations are given. Two of them describe the <i>same</i> line and one does not.<br>(i) ' + t(s.eqs[0]) + '<br>(ii) ' + t(s.eqs[1]) + '<br>(iii) ' + t(s.eqs[2]); }, parts: [
         { id: 'e17a', sub: 'a', level: 'PRG', make: function (r, s) {
           var f = ['(i)', '(ii)', '(iii)'].map(function (n) { return { label: n, name: n, mode: 'math', keys: 'eq', placeholder: 'y = mx + b' }; });
           var p = B.fields('(a) Rearrange all three into slope–intercept form.', f, s.tg.map(function (T) { return K.line(T, { form: 'slope-intercept' }); }), s.tg.map(function (T) { return siT(T.m, T.b); }), s.tg.map(function (T, i) { return ['(i)', '(ii)', '(iii)'][i] + ' ' + t(siT(T.m, T.b)); }).join('; '),

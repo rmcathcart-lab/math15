@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What Is a System of Linear Equations? Solving by Graphing · Math 15 8.1</title>
+<meta name="description" content="Math 15 Unit 8 Lesson 1: what a system of linear equations is, and why its solution is the one point on both lines (the point of intersection). Reading a solution off a graph, rewriting an equation as y = mx + b, graphing both lines by hand from the y-intercept and slope, and checking a solution in both original equations. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u8l1.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u8l1">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 8 Systems of Linear Equations · Lesson 1</div>
+  <h1>What Is a System of Linear Equations? Solving by Graphing</h1>
+  <p class="lede">Two equations at once. Each line is full of points that make <b>its own</b> equation true, but only <b>one</b> point is on <b>both</b> lines: the point where they <b>cross</b>. That point is the solution to the system.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>explain what a <b>system of linear equations</b> is and what its <b>solution</b> means</li>
+      <li>read the solution off a graph and write it as an <b>ordered pair</b> <span class="tex">(x,\ y)</span>, <span class="tex">x</span> first</li>
+      <li>rewrite an equation like <span class="tex">2x+y=1</span> in slope-intercept form, <span class="tex">y=mx+b</span></li>
+      <li>graph both lines <b>by hand</b> from the <span class="tex">y</span>-intercept and the slope, and find where they cross</li>
+      <li><b>check</b> a solution by substituting it into <b>both original</b> equations</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF9</b> Solve problems that involve systems of linear equations in two variables, graphically and algebraically.<br><span class="u8l1-today">Today: graphically. The solution is where the two lines cross.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Two Mystery Numbers" id="wu" style="--wf-side: 392px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Two Mystery Numbers</h2>
+  <p class="wf-rule">“I’m thinking of two numbers. Can you work out <b>both</b> of them?”</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u8l1-clues">
+      <div class="u8l1-clue u8l1-clue1">
+        <div class="u8l1-clh"><span class="u8l1-ball">1</span>Clue 1: They add to <b>10</b>.</div>
+        <div class="u8l1-ct"><b>smaller</b><i>1</i><i>2</i><i>3</i><i>4</i><b class="u8l1-cr">bigger</b><i>9</i><i><span data-reveal>8</span></i><i><span data-reveal>7</span></i><i><span data-reveal>6</span></i></div>
+      </div>
+      <div class="u8l1-clue u8l1-clue2">
+        <div class="u8l1-clh"><span class="u8l1-ball">2</span>Clue 2: The bigger one is <b>4 more</b>.</div>
+        <div class="u8l1-ct"><b>smaller</b><i>1</i><i>2</i><i>3</i><i>4</i><b class="u8l1-cb">bigger</b><i>5</i><i><span data-reveal>6</span></i><i><span data-reveal>7</span></i><i><span data-reveal>8</span></i></div>
+      </div>
+    </div>
+    <div class="u8l1-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Fill in the <b>?</b>s in both tables. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l1-wa"><div class="bk-ans">Clue 1: bigger <span class="tex">=9,\ 8,\ 7,\ 6</span> (they add to 10). Clue 2: bigger <span class="tex">=5,\ 6,\ 7,\ 8</span> (4 more). Tap the <b>?</b>s.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which pair is in <b>both</b> tables? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l1-wa"><div class="bk-ans"><b>3 and 7.</b> <span class="tex">3+7=10</span> ✓ and <span class="tex">7=3+4</span> ✓. Careful: 6 is in both bottom rows, but with <b>different partners</b> (4 and 2). The whole <b>pair</b> has to match.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>What is hiding under the sticky note? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l1-wa"><div class="bk-ans">The point <span class="tex">(3,\ 7)</span>, where the two lines <b>cross</b>. Tap the sticky note to lift it.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u8l1-wgraph" id="u8l1-wgraph"></div>
+  </div></div>
+  <div class="poll wf-poll u8l1-poll">
+    <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> New riddle: “My two numbers add to <b>10</b>. Double them both, and the doubles add to <b>30</b>.” <b>Guess first.</b></div></div>
+    <div class="poll-opts">
+      <div class="opt"><b>A</b> exactly one pair works</div>
+      <div class="opt right"><b>B</b> no pair works</div>
+      <div class="opt"><b>C</b> lots of pairs work</div>
+    </div>
+    <button class="pill" type="button" data-poll-reveal>Reveal</button>
+    <div class="poll-ans"><b>B: no pair works.</b> If two numbers add to 10, their doubles <b>always</b> add to 20: <span class="tex">(1,\ 9)\to2+18=20</span>, <span class="tex">(3,\ 7)\to6+14=20</span>. Never 30. On a graph the two clues are <b>parallel lines</b> that never cross: no crossing, no answer. (More on that in Lesson 2.)</div>
+  </div>
+  <p class="u8l1-social">Your turn: write a two-clue riddle for your neighbour. Can they find your numbers?</p>
+</section>
+
+<!-- ================= 1. What is a system? ================= -->
+<section class="card" data-ink="s1" data-section="1. What Is a System?">
+  <div class="sec-h"><span class="badge">1</span><h2>What Is a System of Linear Equations?</h2></div>
+  <p>The equation <span class="tex u8l1-c1">y=x+2</span> is true for many pairs: <span class="tex">(0,\ 2)</span>, <span class="tex">(1,\ 3)</span>, <span class="tex">(4,\ 6)</span>. A second equation, <span class="tex u8l1-c2">y=-x+6</span>, has many pairs of its own: <span class="tex">(0,\ 6)</span>, <span class="tex">(1,\ 5)</span>, <span class="tex">(6,\ 0)</span>. Only <b>one</b> pair makes <b>both</b> true at once: <span class="tex">x=2,\ y=4</span>, since <span class="tex">4=2+2</span> ✓ and <span class="tex">4=-2+6</span> ✓.</p>
+  <div class="def">Two linear equations considered <b>together</b> form a <b>system of linear equations</b>. The ordered pair <span class="tex">(x,\ y)</span> that makes <b>every</b> equation in the system true is the <b>solution to the system</b>.</div>
+  <div class="explainer" data-explainer="pairs"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. On one line, or on both?">
+  <h3 class="sub">On one line, or on both?</h3>
+  <p>Every point on a line makes <b>that line’s</b> equation true. Drag the point around the grid (or press <b>Next</b> for a tour): each equation gets a ✓ or a ✗. Only <b>one</b> point gets <b>✓ ✓</b>.</p>
+  <div class="explainer" data-explainer="dragLab"></div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> Is <span class="tex">(1,\ 3)</span> the solution to the system <span class="tex u8l1-c1">y=x+2</span> and <span class="tex u8l1-c2">y=-x+6</span>?</div><div class="work" style="--h:90px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> <span class="tex">3=1+2</span> ✓, but <span class="tex">-1+6=5\neq3</span> ✗. The point is on the first line only. The solution to a <b>system</b> has to work in <b>both</b> equations.</div></div></div>
+  </div>
+</section>
+
+<!-- ================= 2. The point of intersection ================= -->
+<section class="card" data-ink="s2" data-section="2. The Point of Intersection">
+  <div class="sec-h"><span class="badge">2</span><h2>The Solution Is the Point of Intersection</h2></div>
+  <p>Every point on a line makes that line’s equation true. So a point that lies on <b>both</b> lines makes <b>both</b> equations true.</p>
+  <div class="def">Graph the two equations on the <b>same grid</b>. The <b>point of intersection</b> (where the lines cross) is the <b>solution to the system</b>.</div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Read the solution off the graph</h3></div>
+  <p class="q">The system <span class="tex u8l1-c1">y=2x+2</span> and <span class="tex u8l1-c2">y=-x+5</span> is graphed below. The lines cross at whole-number coordinates.</p>
+  <div class="u8l1-ex1">
+    <div class="u8l1-gfig" id="u8l1-ex1fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) State the solution: <span class="tex">x=</span> <span class="u8l1-blank" data-reveal><span class="tex">1</span></span>, <span class="tex">y=</span> <span class="u8l1-blank" data-reveal><span class="tex">4</span></span></div>
+        <div class="work" style="--h:110px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The lines cross <b>1 unit right</b> and <b>4 units up</b> from the origin: <span class="tex">x=1,\ y=4</span>.<br>Check: <span class="tex">2(1)+2=4</span> ✓ and <span class="tex">-(1)+5=4</span> ✓</div></div></div>
+      <div class="part"><div class="pl">(b) Write the solution as an ordered pair.</div>
+        <div class="work" style="--h:90px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{(1,\ 4)}</span>: always <span class="tex">x</span> first, then <span class="tex">y</span>.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Example 1 check">
+  <h3 class="sub">Example 1 check: read it, then check it</h3>
+  <p>Drop from the crossing straight down to the <span class="tex">x</span>-axis and straight across to the <span class="tex">y</span>-axis. Then substitute into <b>both</b> equations.</p>
+  <div class="explainer" data-explainer="readGraph"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b><span class="tex">x</span> first.</b> <span class="tex">(1,\ 4)</span> and <span class="tex">(4,\ 1)</span> are different points. The check catches a swap: <span class="tex">(4,\ 1)</span> fails <span class="tex u8l1-c1">y=2x+2</span>.</div></div>
+</section>
+
+<!-- ================= 3. Solving by graphing ================= -->
+<section class="card" data-ink="s3" data-section="3. Solving by Graphing">
+  <div class="sec-h"><span class="badge">3</span><h2>Solving a System by Graphing</h2></div>
+  <div class="u8l1-steps">
+    <div><b class="n">1</b>If an equation is not already <span class="tex">y=mx+b</span>, <b>rewrite</b> it in slope-intercept form.</div>
+    <div><b class="n">2</b><b>Graph</b> both lines on the same grid, using each <span class="tex">y</span>-intercept and slope.</div>
+    <div><b class="n">3</b><b>Find</b> where the lines cross.</div>
+    <div><b class="n">4</b><b>State</b> that point as an ordered pair <span class="tex">(x,\ y)</span>.</div>
+  </div>
+  <div class="u8l1-oneline">
+    <div class="def gray">
+      <b>Graphing one line from <span class="tex">y=mx+b</span></b> (from Unit 7). To graph <span class="tex">y=-2x+3</span>:
+      <ol class="u8l1-ol">
+        <li>The <span class="tex">y</span>-intercept is <span class="tex">b=3</span>: plot <span class="tex">(0,\ 3)</span>.</li>
+        <li>The slope is <span class="tex">m=-2=\dfrac{-2}{1}</span>: from <span class="tex">(0,\ 3)</span> go <b>down 2, right 1</b> to <span class="tex">(1,\ 1)</span>, then again to <span class="tex">(2,\ -1)</span>.</li>
+        <li>Draw a straight line through the points, with arrows on both ends.</li>
+      </ol>
+    </div>
+    <div id="u8l1-onefig"></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Graph both lines, find the crossing</h3></div>
+  <p class="q">Consider the system <span class="tex u8l1-c1">y=x-3</span> and <span class="tex u8l1-c2">y=-2x+3</span>.</p>
+  <div class="u8l1-exg">
+    <div class="part u8l1-gpart"><div class="pl">(a) Graph both equations on the grid, without using technology.</div>
+      <div class="u8l1-gfig" data-u8l1-grid="ex2"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex u8l1-c1">y=x-3</span>: start at <span class="tex">(0,\ -3)</span>, then up 1, right 1.<br><span class="tex u8l1-c2">y=-2x+3</span>: start at <span class="tex">(0,\ 3)</span>, then down 2, right 1.</div></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(b) State the solution to the system as an ordered pair.</div>
+        <div class="work" style="--h:170px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The lines cross at <span class="tex">\boldsymbol{(2,\ -1)}</span>.<br>Check: <span class="tex">2-3=-1</span> ✓ and <span class="tex">-2(2)+3=-1</span> ✓</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Example 2 check">
+  <h3 class="sub">Example 2 check: the four steps</h3>
+  <p>Start each line at its <span class="tex">y</span>-intercept, step out the slope, draw the line. The crossing is the solution.</p>
+  <div class="explainer" data-explainer="byHand"></div>
+</section>
+
+<section class="card" data-ink="s3c" data-section="3. Step 1: get y alone">
+  <h3 class="sub">Step 1: getting <span class="tex">y</span> alone</h3>
+  <p>An equation like <span class="tex">2x+y=1</span> has the <span class="tex">x</span>-term on the same side as <span class="tex">y</span>. To get <span class="tex">y</span> alone, <b>do the same thing to both sides</b>: subtract <span class="tex">2x</span> from each side. Then write the <span class="tex">x</span>-term first, so it looks like <span class="tex">y=mx+b</span>.</p>
+  <div class="explainer" data-explainer="rearrange"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>The sign goes with the term.</b> <span class="tex">y=1-2x</span> means <span class="tex">y=-2x+1</span>: the slope is <span class="tex">-2</span>, <b>not</b> <span class="tex">2</span>. And if the equation has <span class="tex">-y</span>, finish by changing <b>every</b> sign so you get <span class="tex">y</span>, not <span class="tex">-y</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Rewrite first, then graph</h3></div>
+  <p class="q">Consider the system <span class="tex u8l1-c1">2x+y=1</span> and <span class="tex u8l1-c2">y=x-5</span>.</p>
+  <div class="u8l1-exg">
+    <div class="part u8l1-gpart"><div class="pl">(b) Graph both equations on the grid, without using technology.</div>
+      <div class="u8l1-gfig" data-u8l1-grid="ex3"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex u8l1-c1">y=-2x+1</span>: from <span class="tex">(0,\ 1)</span> go down 2, right 1.<br><span class="tex u8l1-c2">y=x-5</span>: from <span class="tex">(0,\ -5)</span> go up 1, right 1.</div></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Rewrite <span class="tex">2x+y=1</span> in slope-intercept form.</div>
+        <div class="work" style="--h:150px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2x+y=1</span><br>Subtract <span class="tex">2x</span> from each side: <span class="tex">\boldsymbol{y=-2x+1}</span></div></div></div>
+      <div class="part"><div class="pl">(c) State the solution as an ordered pair.</div>
+        <div class="work" style="--h:120px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{(2,\ -3)}</span><br>Check: <span class="tex">2(2)+(-3)=1</span> ✓ and <span class="tex">2-5=-3</span> ✓</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3d" data-section="3. Example 3 check">
+  <h3 class="sub">Example 3 check: rewrite, graph, cross</h3>
+  <p>Step 1 matters this time: <span class="tex">2x+y=1</span> becomes <span class="tex">y=-2x+1</span> before it can be graphed.</p>
+  <div class="explainer" data-explainer="byHand3"></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u8l1"></section>
+
+<!-- ================= 4. Checking a solution ================= -->
+<section class="card" data-ink="s4" data-section="4. Checking a Solution">
+  <div class="sec-h"><span class="badge">4</span><h2>Checking a Solution</h2></div>
+  <p>A point read off a hand-drawn graph is easy to get slightly wrong. So <b>substitute</b> it into <b>both original equations</b>.</p>
+  <div class="u8l1-verdicts">
+    <div class="u8l1-vd u8l1-vok"><b>Both true ✓ ✓</b>The solution is confirmed.</div>
+    <div class="u8l1-vd u8l1-vno"><b>Either one false ✗</b>It is <b>not</b> the solution: the graph, or the reading of it, went wrong.</div>
+  </div>
+  <div class="explainer" data-explainer="check"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Is it the solution?</h3></div>
+  <p class="q">Determine whether the given ordered pair is the solution to the system.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">(3,\ 1)</span> for <span class="tex u8l1-c1">y=2x-5</span> and <span class="tex u8l1-c2">y=-x+4</span>.</div><div class="work" style="--h:250px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Substitute <span class="tex">x=3</span>, <span class="tex">y=1</span> into each equation.<br><span class="tex">y=2x-5</span>: <span class="tex">2(3)-5=6-5=1</span> ✓<br><span class="tex">y=-x+4</span>: <span class="tex">-(3)+4=1</span> ✓<br>Both are true, so <span class="tex">(3,\ 1)</span> <b>is</b> the solution.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(2,\ 3)</span> for <span class="tex u8l1-c1">y=3x-4</span> and <span class="tex u8l1-c2">y=-2x+9</span>.</div><div class="work" style="--h:250px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Substitute <span class="tex">x=2</span>, <span class="tex">y=3</span> into each equation.<br><span class="tex">y=3x-4</span>: <span class="tex">3(2)-4=2\neq3</span> ✗<br><span class="tex">y=-2x+9</span>: <span class="tex">-2(2)+9=5\neq3</span> ✗<br>Neither is true, so <span class="tex">(2,\ 3)</span> is <b>not</b> the solution.</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. When the check fails">
+  <h3 class="sub">When the check fails: find the mistake</h3>
+  <p>A failed check is <b>good news</b>: it tells you something went wrong <b>before</b> you hand in a wrong answer. Look for the slip, fix the line, and check again.</p>
+  <div class="explainer" data-explainer="oops"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>The whole process: rewrite, graph, state, check</h3></div>
+  <p class="q">Consider the system <span class="tex u8l1-c1">x+y=3</span> and <span class="tex u8l1-c2">y=2x-3</span>.</p>
+  <div class="u8l1-exg">
+    <div class="part u8l1-gpart"><div class="pl">(b) Graph both equations on the grid.</div>
+      <div class="u8l1-gfig" data-u8l1-grid="ex5"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex u8l1-c1">y=-x+3</span>: from <span class="tex">(0,\ 3)</span> go down 1, right 1.<br><span class="tex u8l1-c2">y=2x-3</span>: from <span class="tex">(0,\ -3)</span> go up 2, right 1.</div></div></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Rewrite <span class="tex">x+y=3</span> in slope-intercept form.</div>
+        <div class="work" style="--h:110px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x+y=3</span><br>Subtract <span class="tex">x</span> from each side: <span class="tex">\boldsymbol{y=-x+3}</span></div></div></div>
+      <div class="part"><div class="pl">(c) State the solution as an ordered pair.</div>
+        <div class="work" style="--h:70px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{(2,\ 1)}</span></div></div></div>
+      <div class="part"><div class="pl">(d) Check the solution in <b>both original</b> equations, <span class="tex">x+y=3</span> and <span class="tex">y=2x-3</span>.</div>
+        <div class="work" style="--h:130px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x+y=3</span>: <span class="tex">2+1=3</span> ✓<br><span class="tex">y=2x-3</span>: <span class="tex">2(2)-3=4-3=1</span> ✓<br>Both <b>original</b> equations are true, so <span class="tex">(2,\ 1)</span> is confirmed.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s4c" data-section="4. Example 5 check">
+  <h3 class="sub">Example 5 check: all four steps, then the check</h3>
+  <p>Check in the <b>original</b> equations, <span class="tex">x+y=3</span> and <span class="tex">y=2x-3</span>, not only in the rewritten one: a slip in Step 1 would hide in the rewritten equation.</p>
+  <div class="explainer" data-explainer="byHand5"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>A system</b> is two equations taken <b>together</b>. Its <b>solution</b> is the one ordered pair <span class="tex">(x,\ y)</span> that makes <b>both</b> equations true.</div>
+    <div><b>On the graph</b>, every point on a line fits that line’s equation, so the solution is the <b>point of intersection</b>: where the lines cross. Write it <span class="tex">x</span> first.</div>
+    <div><b>Solve by graphing:</b> (1) rewrite as <span class="tex">y=mx+b</span>, (2) graph both lines from <span class="tex">b</span> and the slope, (3) find the crossing, (4) state it as <span class="tex">(x,\ y)</span>.</div>
+    <div><b>Always check</b> in <b>both original</b> equations. Both true ✓ ✓: confirmed. One false ✗: not the solution, so find the mistake.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u8l1">
+    <div><div class="kicker">Your turn</div><b>Assignment 1 — What Is a System of Linear Equations? Solving by Graphing</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l2/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 2 — Classifying Systems: One Solution, No Solution, or Infinite Solutions</b><div class="muted">Do two lines always cross? Remember the big one: doubles that add to 30.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u8l1.js';
+  boot({ key: 'u8l1', homeHref: '../../', title: '8.1 Systems: Solving by Graphing' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>
