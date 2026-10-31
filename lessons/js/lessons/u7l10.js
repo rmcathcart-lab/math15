@@ -437,7 +437,8 @@ const hv = {
   make(stage, k, ex) {
     const d = HV[k], H = d.kind === 'h', eq = H ? `y=${d.k}` : `x=${d.k}`;
     const G = new Graph(stage, { x: 14, y: 14, width: 420, height: 412, xmin: -6, xmax: 6, ymin: -6, ymax: 6 });
-    const P = panel(stage, 450, 14, ex.W - 464, 412, T(eq), 'u7l10-big');
+    const P = panel(stage, 450, 14, ex.W - 464, 412, '', 'u7l10-big');
+    P.appendChild(h('div', 'u7l10-bigeq', T(eq)));
     const tb = h('table', 'u7l10-tt u7l10-tt2', `<tr><th>${T('x')}</th><th>${T('y')}</th></tr>`); P.appendChild(tb);
     return [
       { cap: `${T(eq)} says: ${H ? T('y') : T('x')} is <b>always</b> ${T(String(d.k))}, and ${H ? T('x') : T('y')} can be anything. Make a few points.`,
@@ -445,7 +446,7 @@ const hv = {
       { cap: `They line up ${H ? '<b>across</b>: a horizontal line' : '<b>up and down</b>: a vertical line'} through ${H ? T(`(0,\\ ${d.k})`) : T(`(${d.k},\\ 0)`)}.`,
         run: async (c) => { await G.drawIn(H ? G.line({ m: 0, b: d.k }, { color: LINE, width: 4 }) : G.line({ x: d.k }, { color: LINE, width: 4 }), 700, c); await show(c, line(P, `<b>${H ? 'horizontal' : 'vertical'}</b>`, 'u7l10-mline')); } },
       { cap: H ? `Slope: between any two points the rise is ${T('0')}, so ${T('m=\\dfrac{0}{\\text{run}}=0')}.` : `Slope: between any two points the run is ${T('0')}, and we can’t divide by 0: the slope is <b>undefined</b>.`,
-        run: async (c) => { const t = H ? tri(G, -4, 3, 6, 0.0001, { runText: 'run 6', riseText: 'rise 0', riseSide: 'n' }) : tri(G, -4, -3, 0.0001, 5, { runText: 'run 0', riseText: 'rise 5', runSide: 's' }); await t.draw(c, 400); await show(c, line(P, H ? T('m=0') : `${T('m')} undefined`, 'u7l10-mline')); await stampP(c, P, H ? 'slope 0' : 'undefined'); } }
+        run: async (c) => { const t = H ? tri(G, -4, 3, 6, 0.0001, { runText: 'run 6', riseText: 'rise 0', riseSide: 'n' }) : tri(G, -4, -3, 0.0001, 5, { runText: 'run 0', riseText: 'rise 5', runSide: 's', riseSide: 'w' }); await t.draw(c, 400); await show(c, line(P, H ? T('m=0') : `${T('m')} undefined`, 'u7l10-mline')); await stampP(c, P, H ? 'slope 0' : 'undefined'); } }
     ];
   }
 };
@@ -479,13 +480,14 @@ const whichTool = {
         w2: { x: col4[1], y: 214, w: 205, h: 70, html: '<b>substitute a point</b>solve for <i>b</i>', color: 'purple' },
         w3: { x: col4[2], y: 214, w: 205, h: 70, html: `<b>slope first</b>${T('m=\\tfrac{y_2-y_1}{x_2-x_1}')}`, color: 'purple' },
         w4: { x: col4[3], y: 214, w: 205, h: 70, html: `<b>isolate ${T('y')}</b>then read ${T('m')}, ${T('b')}`, color: 'purple' },
-        ans: { x: cx - 120, y: 316, w: 290, h: 52, html: `<b>${T('y=mx+b')}</b>`, cls: 'bk-round', color: 'green' },
-        gen: { x: cx + 230, y: 316, w: 250, h: 52, html: '<b>general form</b> if asked', cls: 'bk-dashed', color: 'amber' }
+        ans: { x: col4[1] + 40, y: 328, w: 260, h: 48, html: `<b>${T('y=mx+b')}</b>`, cls: 'bk-round', color: 'green' },
+        gen: { x: col4[3], y: 328, w: 230, h: 48, html: '<b>general form</b> if asked', cls: 'bk-dashed', color: 'amber' }
       },
       edges: [
         { from: 'start', to: 'mb', route: 'vhv' }, { from: 'start', to: 'mp', route: 'vhv' }, { from: 'start', to: 'tp', route: 'vhv' }, { from: 'start', to: 'gf', route: 'vhv' },
         { from: 'mb', to: 'w1' }, { from: 'mp', to: 'w2' }, { from: 'tp', to: 'w3' }, { from: 'gf', to: 'w4' }, { from: 'w3', to: 'w2', label: 'then' },
-        { from: 'w1', to: 'ans', route: 'vh' }, { from: 'w2', to: 'ans' }, { from: 'w4', to: 'ans', route: 'vh' }, { from: 'ans', to: 'gen' }
+        { from: 'w1', to: 'ans', pts: [[col4[0], 252], [col4[0], 328], [col4[1] - 93, 328]] }, { from: 'w2', to: 'ans', pts: [[col4[1], 252], [col4[1], 301]] },
+        { from: 'w4', to: 'ans', pts: [[col4[3], 252], [col4[3], 280], [col4[1] + 110, 280], [col4[1] + 110, 301]] }, { from: 'ans', to: 'gen' }
       ] });
     const A = panel(stage, 14, 372, W - 28, 116, '', 'u7l10-wtp');
     const row = h('div', 'u7l10-wtrow'); A.appendChild(row);
@@ -505,7 +507,7 @@ const parperp = {
   choices: [{ v: 'ch3', label: 'Challenge 3 check' }],
   intro: `${T('A(-2,\\ -3)')}, ${T('B(1,\\ 3)')}, ${T('P(3,\\ -1)')}, ${T('Q(-4,\\ 5)')}. Press <b>Next</b>.`,
   make(stage, k, ex) {
-    const G = new Graph(stage, { x: 14, y: 14, width: 450, height: 452, xmin: -7, xmax: 7, ymin: -8, ymax: 8, ylabels: 2, xlabels: 2 });
+    const G = new Graph(stage, { x: 14, y: 14, width: 450, height: 452, xmin: -8, xmax: 8, ymin: -8, ymax: 8, ylabels: 2, xlabels: 2 });
     const P = panel(stage, 480, 14, ex.W - 494, 452, 'Challenge 3', 'u7l10-big');
     let t1 = null;
     return [

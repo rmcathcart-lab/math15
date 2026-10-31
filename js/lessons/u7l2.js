@@ -70,6 +70,7 @@
   function valPart(prompt, ans, list, sol, hints, text, inp) { // a value that may be a fraction
     var p = B.math(prompt, K.value(ans, { only: 'fraction', diag: dl(list, qv(ans)) }), qT(ans), sol, hints, text, Object.assign({ keys: 'fraction' }, inp || {}));
     p.bad = (list || []).filter(function (d) { return d && !near(qv(d[0]), qv(ans)); }).map(function (d) { return qT(d[0]); });
+    if (inp && inp.before === '$') { p.key = nT(qv(ans)); p.answer = '$' + qv(ans).toFixed(2); p.good = [qT(ans)]; }
     return p;
   }
 
@@ -286,7 +287,7 @@
         { id: 'e1e', sub: 'e', level: 'EMG', make: function (r) {
           var m = r.pick([0.2, 0.4, 0.6, 0.8, 1.2, 1.5, 2.5, 0.5]), c = r.pick([-1.5, -2.5, -0.5, 1.5, 3.5, -4.5, 0.25, -0.75]);
           var p = mbPart('(e) ' + t('y=' + m + 'x' + (c < 0 ? '' : '+') + c) + ' &nbsp;(decimals or fractions are both fine)', LN.toFr(m), LN.toFr(c), {}, t('m=' + m) + ', ' + t('b=' + c) + '. Decimals are fine: the slope and intercept can be any real numbers.', null, 'EP1e');
-          p.good = [[String(m), String(c)]];
+          p.good = [[p.key[0], p.key[1]]]; p.key = [String(m), String(c)]; p.answer = t('m=' + m) + ', &nbsp;' + t('b=' + c);
           return p;
         } },
         { id: 'e1f', sub: 'f', level: 'PRG', make: function (r) {
@@ -468,17 +469,17 @@
           return p;
         } },
         { id: 'e16b', sub: 'b', level: 'EMG', make: function (r, s) {
-          return numPart('(b) State the cost per kilometre.', s.a / s.k, [[s.a, 'not-divided', 'Divide by ' + t(s.k) + ' first: ' + t('C=\\frac{' + s.a + '}{' + s.k + '}d+\\ldots') + '.'], [s.c / s.k, 'mb-swap', 'That’s the flat fee. The cost per km multiplies ' + t('d') + '.']],
-            'In ' + t('C=' + nT(s.a / s.k) + 'd+' + nT(s.c / s.k)) + ' the slope is ' + t(nT(s.a / s.k)) + ': each extra kilometre adds $' + (s.a / s.k).toFixed(2) + '.', ['The cost per km is the slope, once ' + t('C') + ' is alone.'], 'EP16 per km', { before: '$', after: 'per km' });
+          return valPart('(b) State the cost per kilometre.', Q(s.a, s.k), [[s.a, 'not-divided', 'Divide by ' + t(s.k) + ' first: ' + t('C=\\frac{' + s.a + '}{' + s.k + '}d+\\ldots') + '.'], [s.c / s.k, 'mb-swap', 'That’s the flat fee. The cost per km multiplies ' + t('d') + '.']],
+            'In ' + t('C=' + nT(s.a / s.k) + 'd+' + nT(s.c / s.k)) + ' the slope is ' + t(nT(s.a / s.k)) + ': each extra kilometre adds $' + (s.a / s.k).toFixed(2) + '.', ['The cost per km is the slope, once ' + t('C') + ' is alone.'], 'EP16 per km', { before: '$', after: 'per km', placeholder: 'decimal or fraction' });
         } },
         { id: 'e16c', sub: 'c', level: 'EMG', make: function (r, s) {
-          return numPart('(c) State the flat fee charged before any distance is driven.', s.c / s.k, [[s.c, 'not-divided', 'Divide by ' + t(s.k) + ' first.'], [s.a / s.k, 'mb-swap', 'That’s the cost per km. The flat fee is the fare when ' + t('d=0') + '.']],
-            'At ' + t('d=0') + ': ' + t('C=' + nT(s.c / s.k)) + ' — a flat fee of $' + (s.c / s.k).toFixed(2) + '.', ['The flat fee is ' + t('b') + ': the fare when ' + t('d=0') + '.'], 'EP16 fee', { before: '$' });
+          return valPart('(c) State the flat fee charged before any distance is driven.', Q(s.c, s.k), [[s.c, 'not-divided', 'Divide by ' + t(s.k) + ' first.'], [s.a / s.k, 'mb-swap', 'That’s the cost per km. The flat fee is the fare when ' + t('d=0') + '.']],
+            'At ' + t('d=0') + ': ' + t('C=' + nT(s.c / s.k)) + ' — a flat fee of $' + (s.c / s.k).toFixed(2) + '.', ['The flat fee is ' + t('b') + ': the fare when ' + t('d=0') + '.'], 'EP16 fee', { before: '$', placeholder: 'decimal or fraction' });
         } },
         { id: 'e16d', sub: 'd', level: 'PRG', make: function (r, s) {
           var D = s.k * r.int(2, 6), fare = (s.a * D + s.c) / s.k;
-          return numPart('(d) Determine the fare for a ' + t(D) + ' km trip.', fare, [[s.a * D + s.c, 'not-divided', 'That’s ' + t(s.k + 'C') + '. Divide by ' + t(s.k) + '.'], [s.a / s.k * D, 'u7l2-ctx-nofee', 'Add the flat fee.']],
-            t('C=' + nT(s.a / s.k) + '(' + D + ')+' + nT(s.c / s.k) + '=' + nT(fare)) + ': $' + fare.toFixed(2) + '.', ['Substitute ' + t('d=' + D) + ' into your equation from (a).'], 'EP16 fare', { before: '$' });
+          return valPart('(d) Determine the fare for a ' + t(D) + ' km trip.', Q(s.a * D + s.c, s.k), [[s.a * D + s.c, 'not-divided', 'That’s ' + t(s.k + 'C') + '. Divide by ' + t(s.k) + '.'], [s.a / s.k * D, 'u7l2-ctx-nofee', 'Add the flat fee.']],
+            t('C=' + nT(s.a / s.k) + '(' + D + ')+' + nT(s.c / s.k) + '=' + nT(fare)) + ': $' + fare.toFixed(2) + '.', ['Substitute ' + t('d=' + D) + ' into your equation from (a).'], 'EP16 fare', { before: '$', placeholder: 'decimal or fraction' });
         } }] },
       { num: '17', shared: function (r) {
           var m = -r.pick([1, 2, 3, 4]), b = r.int(2, 7), k = r.pick([2, 3]), odd = r.pick([0, 1, 2]);

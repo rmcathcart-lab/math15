@@ -415,7 +415,7 @@
           { id: 'e4c', level: 'BEG', make: function (r, sh) { return horizPart(sh.Q, 'slope ' + t(0) + ', through ' + t(ptT(sh.Q[0], sh.Q[1]))); } },
           { id: 'e4d', level: 'EMG', make: function (r, sh) { return vertPart(sh.D, 'undefined slope, through ' + t(ptT(sh.D[0], sh.D[1]))); } },
           { id: 'e4e', sub: 'd (why)', level: 'EMG', make: function (r, sh) {
-            return mc(r, 'Why does the line in (d) have no ' + t('y=mx+b') + ' form?', [
+            return mc(r, 'Why does the line in (d) — undefined slope, through ' + t(ptT(sh.D[0], sh.D[1])) + ' — have no ' + t('y=mx+b') + ' form?', [
               { html: 'Its slope is undefined, so there is no number to put in for ' + t('m') + ' — every point shares one ' + t('x') + '-value, not one ' + t('y') + '-value.', right: true },
               { html: 'Its slope is ' + t(0) + ', so the ' + t('x') + '-term disappears.', why: 'A slope of ' + t(0) + ' is a horizontal line, which <i>does</i> fit ' + t('y=0x+b') + '. This line is vertical.' },
               { html: 'The point ' + t(ptT(sh.D[0], sh.D[1])) + ' has negative coordinates.', why: 'Negative coordinates are no problem — most lines through such points have a ' + t('y=mx+b') + ' form.' },

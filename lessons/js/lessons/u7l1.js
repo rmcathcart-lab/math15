@@ -200,7 +200,7 @@ const LT = {
     { k: T('\\tfrac{4}{x}'), tex: `y=\\dfrac{4}{${cR('x')}}`, f: (x) => 4 / x, breaks: [0], lin: false, why: `${T('x')} is <b>in a denominator</b>` },
     { k: T('2^x'), tex: `y=2^{${cR('x')}}`, f: (x) => 2 ** x, lin: false, why: `${T('x')} is an <b>exponent</b>` },
     { k: T('xy'), tex: `${cR('x')}y=4`, f: (x) => 4 / x, breaks: [0], lin: false, why: `${T('x')} is <b>times another variable</b>` },
-    { k: T('2x-1'), tex: 'y=2x-1', f: (x) => 2 * x - 1, lin: true, why: `${T('x')} to the first power, times a number, plus a number` }] },
+    { k: T('2x-1'), tex: 'y=2x-1', f: (x) => 2 * x - 1, lin: true, why: `${T('x')} to the first power, times a number, minus a number` }] },
   ex1: { label: 'Example 1 check', ex: true, items: [
     { k: '(a)', tex: 'y=4x-1', f: (x) => 4 * x - 1, lin: true, why: `${T('x')} to the first power only` },
     { k: '(b)', tex: `y=x^{${cR('2')}}+2`, f: (x) => x * x + 2, lin: false, why: `${T('x')} is <b>squared</b>` },
