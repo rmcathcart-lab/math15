@@ -200,7 +200,7 @@ const receipts = {
       [xa, xb].forEach((x) => x.classList.add('u8l5-xed'));
       await Promise.all([xa, xb].map((x) => anim(c, x, [{ opacity: 0 }, { opacity: 0.3 }], 300)));
     };
-    const finRow = (html) => { const d = h('div', 'u8l5-rf', html); fin.appendChild(d); return d; };
+    const finRow = (html) => { const d = h('div', 'u8l5-rf', html); fin.appendChild(d); fin.style.opacity = 1; return d; };
     if (!big) {
       return [
         { cap: 'Both receipts have <b>2 burgers</b>. Line them up and <b>subtract</b>: Jay’s receipt minus Mia’s, item by item and total by total.',
@@ -239,7 +239,7 @@ const receipts = {
           await show(c, finRow(`${icons('taco', 1)}<b>$3</b><span>$12 ÷ 4</span>`)); await show(c, finRow(`${icons('juice', 1)}<b>$2</b><span>($13 − $9) ÷ 2</span>`));
           await show(c, lineEl(P, `${T(kr('t=3'))}, then ${T('9+2j=13\\Rightarrow j=2')}`));
         } },
-      { cap: 'Why not A? Subtracting gives (3t + 2j) − (t − 2j) = 2t + 4j: <b>nothing vanished</b>. Opposites cancel when you <b>add</b>.',
+      { cap: `Why not A? Subtracting gives ${T('(3t+2j)-(t-2j)=2t+4j')}: <b>nothing vanished</b>. Opposites cancel when you <b>add</b>.`,
         run: async (c) => {
           const b2 = h('div', 'u8l5-slip', `<div class="u8l5-sliph">Subtract instead?</div><div>${T('(3t+2j)-(t-2j)')}</div><div>${T('=2t+4j=14')}</div>`);
           P.appendChild(b2); await show(c, b2); await stampIn(c, stamp(b2, '✗', { ok: false, size: 'sm' }));
@@ -397,8 +397,8 @@ const SG = {
     slip: { cap: `Watch out: subtract the constants too, ${T('23-11=12')}. Adding them gives ${T('6y=34')}, and ${T('y')} is not even a whole number.`, l1: '23-11=12', l2: '\\text{not } 23+11=34' } },
   ex3: { label: 'Example 3: Eq. 2 − Eq. 1', vars: ['x', 'y'], r1: [7, 3, 36], r2: [4, 3, 18], n1: 'Eq. 2', n2: 'Eq. 1', swap: true },
   ex5: { label: 'Example 5: negatives', vars: ['x', 'y'], r1: [-2, 5, -34], r2: [-2, -3, -2], n1: 'Eq. 1', n2: 'Eq. 2',
-    slip: { cap: `Watch out: subtracting ${T('-2')} <b>adds</b> 2. ${T('-34-(-2)=-32')}, not ${T('-36')}; with ${T('-36')}, ${T('y')} is not a whole number.`, l1: '-34-(-2)=-34+2=-32', l2: '\\text{not } -34-2=-36' } },
-  warm: { label: 'Warm-up: Jay − Mia', vars: ['b', 'd'], r1: [2, 3, 18], r2: [2, 1, 14], n1: 'Jay', n2: 'Mia' }
+    slip: { cap: `Watch out: subtracting ${T('-2')} <b>adds</b> 2. ${T('-34-(-2)=-32')}, not ${T('-36')}; with ${T('-36')}, ${T('y')} is not a whole number.`, l1: '-34-(-2)=-32', l2: '\\text{not } -34-2=-36' } },
+  warm: { label: 'Warm-up: Jay − Mia', vars: ['b', 'd'], r1: [2, 3, 18], r2: [2, 1, 14], n1: 'Jay', n2: 'Mia', w1: 'Jay’s receipt', w2: 'Mia’s receipt' }
 };
 const columns = {
   title: 'Subtract in columns: every sign flips',
@@ -406,7 +406,7 @@ const columns = {
   minW: 966, // drawn this wide and scaled to fit beside the sidebar
   choices: [{ sep: 'Check' }, ...Object.keys(SG).map((k) => ({ v: k, label: SG[k].label }))],
   value: 'ex1',
-  intro: (k) => `${SG[k].n1} minus ${SG[k].n2}. Line the equations up in columns. Press <b>Next</b>.`,
+  intro: (k) => `${SG[k].w1 || SG[k].n1} minus ${SG[k].w2 || SG[k].n2}. Line the equations up in columns. Press <b>Next</b>.`,
   make(stage, k, ex) {
     const d = SG[k], vs = d.vars, n = vs.length, W = ex.W;
     const C1 = d.swap ? A2 : B1, C2 = d.swap ? B1 : A2, t1 = d.swap ? 2 : 1, t2 = d.swap ? 1 : 2;
@@ -438,7 +438,7 @@ const columns = {
     const P = panel(stage, W - 304, 14, 292, 400, 'Result');
     const val = leftK.length === 1 ? rs[n] / leftK[0][0] : null;
     const steps = [
-      { cap: `Write the whole of ${d.n2} in brackets with a minus sign in front: ${T('(\\;\\cdots)-(\\;\\cdots)')}. The minus belongs to <b>every</b> term inside.`,
+      { cap: `Write the whole of ${d.w2 || d.n2} in brackets with a minus sign in front: ${T('(\\;\\cdots)-(\\;\\cdots)')}. The minus belongs to <b>every</b> term inside.`,
         run: async (c) => { await Promise.all([pop(c, minus), pop(c, close)]); } },
       { cap: 'Taking away is the same as adding the <b>opposite</b>. Flip the sign of <b>every</b> term in the bracket, the constant too.',
         run: async (c) => {
@@ -446,7 +446,7 @@ const columns = {
           for (let i = 0; i < n; i++) { if (!r2[i]) continue; r2c[i].classList.add('u8l5-hl'); await pop(c, flc[i], 360); r2c[i].classList.remove('u8l5-hl'); }
           await appear(c, fle); r2k.classList.add('u8l5-hl'); await pop(c, flk, 360); r2k.classList.remove('u8l5-hl');
         } },
-      { cap: `Now <b>add</b> down each column. ${elimI >= 0 ? `${T(term(r1[elimI], vs[elimI], true) + term(rn[elimI], vs[elimI], false))} ${T('=0')}: ${T(vs[elimI])} is eliminated.` : ''}`,
+      { cap: `Now <b>add</b> down each column. ${elimI >= 0 ? `${T(term(r1[elimI], vs[elimI], true) + term(rn[elimI], vs[elimI], false) + '=0')}: ${T(vs[elimI])} is eliminated.` : ''}`,
         run: async (c) => {
           await anim(c, rule, [{ opacity: 0, transform: 'scaleX(0)' }, { opacity: 1, transform: 'none' }], 400);
           for (let i = 0; i < n; i++) { if (!(r1[i] || r2[i])) continue; await pop(c, sumc[i], 380); }
@@ -576,6 +576,7 @@ const zero = {
     const sumT = d.idea ? '5y+(-5y)=0' : `${k1(`(${lhs(e1)})`)}+${k2(`(${lhs(e2)})`)}=${k1(texNum(e1.c))}${k2(plusC(e2.c))}`;
     const oneT = `${term(K, kv, true)}=${texNum(sumC)}`;
     const loops = [], zeros = [];
+    let oneL = null;
     const steps = [
       { cap: d.idea ? `Each tile is one ${T('y')}; a dashed red tile is a <b>negative</b> ${T('y')}. <b>Add</b> them: line up each ${T('+y')} above a ${T('-y')}.`
         : `Each tile is one ${T('x')} or one ${T('y')}; dashed red tiles are <b>negative</b>. <b>Add</b> the equations: each ${T('+' + d.el)} lines up above a ${T('-' + d.el)}.`,
@@ -608,15 +609,16 @@ const zero = {
     steps.push({ cap: `What is left: ${T(`${term(kc1, kv, true)}${term(kc2, kv, false)}=${term(K, kv, true)}`)}, worth ${T(`${texNum(e1.c)}${plusC(e2.c)}=${texNum(sumC)}`)}. So ${T(kr(oneT))}.`,
       run: async (c) => {
         await Promise.all(zeros.map((z) => anim(c, z, [{ opacity: 1 }, { opacity: 0.25 }], 300)));
+        keep.forEach((t) => { const g = t.cloneNode(true); g.classList.add('u8l5-tghost'); stage.insertBefore(g, t); });
         await Promise.all(keep.map((t, i) => slide(c, t, X0 + i * ST, Y3, 650, i * 40)));
         await appear(c, resEq); await pop(c, resC);
-        await show(c, lineEl(P, T(kr(oneT)), 'u8l5-lnb'));
+        oneL = lineEl(P, T(kr(oneT)), 'u8l5-lnb'); await show(c, oneL);
       } });
     steps.push({ cap: `Share ${texNum(sumC)} equally among the ${K} tiles: ${texNum(sumC)} ÷ ${K} = ${texNum(val)}. Each ${T(kv)} is worth ${texNum(val)}, so ${T(kr(`${kv}=${texNum(val)}`))}.`,
       run: async (c) => {
         keep.forEach((t) => { t.innerHTML = T(texNum(val)); t.classList.add('u8l5-tval'); });
         await Promise.all(keep.map((t, i) => pulse(c, t, 1.15, 420 + i * 30)));
-        await show(c, lineEl(P, T(kr(`${kv}=${texNum(val)}`)), 'u8l5-lnb'));
+        oneL.innerHTML = T(kr(`${oneT}\\ \\Rightarrow\\ ${kv}=${texNum(val)}`)); await pulse(c, oneL, 1.04);
       } });
     const B = backLines(e1, kv, val), sol = kv === 'x' ? [val, B.sol] : [B.sol, val];
     steps.push({ cap: `Back-substitute into Eq. 1: ${T(B.sub)}, so ${T(B.fin)}. The solution is ${T(ks(pairTex(...sol)))}.`,
@@ -726,7 +728,7 @@ const decide = {
           run: async (c) => { await F.visit(c, 'start'); l1.innerHTML = `${TAG1} ${T(eqHL(e1, 'x', B1))}`; l2.innerHTML = `${TAG2} ${T(eqHL(e2, 'x', A2))}`; await Promise.all([pulse(c, l1, 1.05), pulse(c, l2, 1.05)]); } },
         { cap: `Same number? ${T('1')} and ${T('2')}: no. ${T('3')} and ${T('1')}: no. Adding or subtracting now leaves <b>both</b> variables.`,
           run: async (c) => { await F.go(c, 'start', 'q1'); await F.visit(c, 'q1'); await F.go(c, 'q1', 'no'); await F.visit(c, 'no'); await show(c, lineEl(P, `add: ${T('3x+4y=15')}<br>subtract: ${T('-x+2y=5')}`, 'u8l5-lnsm')); } },
-        { cap: 'Nothing matches <b>yet</b>. Next lesson: multiply a whole equation first to make a pair match. (Doubling Eq. 1 gives <b>2x</b>.)',
+        { cap: `Nothing matches <b>yet</b>. Next lesson: multiply a whole equation first to make a pair match. (Doubling Eq. 1 gives ${T('2x')}.)`,
           run: (c) => show(c, lineEl(P, `<span class="u8l5-muted">Lesson 6:</span> ${TAG1} × 2: ${T(k1('2x+6y=20'))}`)) }
       ];
     }
@@ -753,7 +755,7 @@ const decide = {
           await show(c, lineEl(P, `<b>${same ? 'Subtract' : 'Add'}</b>${d.rev ? ' (Eq. 2 − Eq. 1 keeps it positive)' : ''}`, 'u8l5-lnsm'));
         } },
       { cap: `${same ? 'Subtract' : 'Add'}: ${T(combT)}, so ${T(kr(resT))}. The ${T(v)}-terms are gone!`,
-        run: async (c) => { await show(c, lineEl(P, T(combT))); await show(c, lineEl(P, T(kr(resT)), 'u8l5-lnb')); } }
+        run: async (c) => { await show(c, lineEl(P, T(combT), 'u8l5-lnsm')); await show(c, lineEl(P, T(kr(resT)), 'u8l5-lnb')); } }
     ];
   }
 };
@@ -832,7 +834,7 @@ export const explainers = mountExplainers({ receipts, balance, columns, either, 
   const tm = (k, v, first) => (k === 0 ? '' : (k < 0 ? '-' : first ? '' : '+') + (Math.abs(k) === 1 && v ? '' : Math.abs(k)) + v);
   const lhsS = (e) => tm(e.a, 'x', true) + tm(e.b, 'y', !e.a);
   const eqS = (e) => lhsS(e) + '=' + e.c;
-  const half = (s, col) => { const i = s.indexOf('='); return `\\textcolor{${col}}{${s.slice(0, i)}}&\\textcolor{${col}}{${s.slice(i)}}`; };
+  const half = (s, col) => { const i = s.indexOf('='), l = s.slice(0, i).replace(/^-/, '{-}'); return `\\textcolor{${col}}{${l}}&\\textcolor{${col}}{${s.slice(i)}}`; };
   const sysE = (s1, s2) => `\\begin{aligned}{\\small\\text{Eq. 1}}\\quad ${half(s1, BL)}\\\\{\\small\\text{Eq. 2}}\\quad ${half(s2, AM)}\\end{aligned}`;
   const par = (v) => (v < 0 ? `(${v})` : String(v));
   const kn = (k, v, first) => (k === 1 ? (first ? '' : '+') + par(v) : k === -1 ? `-${par(v)}` : (k < 0 ? '-' : first ? '' : '+') + Math.abs(k) + `(${v})`);
@@ -841,14 +843,19 @@ export const explainers = mountExplainers({ receipts, balance, columns, either, 
   /** e1, e2 with variable v matching or opposite: the worked answer */
   function work(e1, e2, v, x0, y0) {
     const c1 = v === 'x' ? e1.a : e1.b, c2 = v === 'x' ? e2.a : e2.b, u = v === 'x' ? 'y' : 'x', same = c1 === c2;
-    const sg = same ? -1 : 1, r = { a: e1.a + sg * e2.a, b: e1.b + sg * e2.b, c: e1.c + sg * e2.c }, K = u === 'x' ? r.a : r.b, u0 = r.c / K;
+    const sg = same ? -1 : 1;
+    let r = { a: e1.a + sg * e2.a, b: e1.b + sg * e2.b, c: e1.c + sg * e2.c };
+    let f = e1, g = e2;
+    if (same && (u === 'x' ? r.a : r.b) < 0) { r = { a: -r.a, b: -r.b, c: -r.c }; f = e2; g = e1; }   // bigger minus smaller keeps it positive
+    const K = u === 'x' ? r.a : r.b, u0 = r.c / K;
     const dec = `${tm(c1, v, true)},\\ ${tm(c2, v, true)}:\\ \\text{${same ? 'same sign} \\Rightarrow \\text{subtract' : 'opposite signs} \\Rightarrow \\text{add'}}`;
-    const comb = `(${lhsS(e1)})${same ? '-' : '+'}(${lhsS(e2)})=${e1.c}${same ? '-' : '+'}${par(e2.c)}\\ \\Rightarrow\\ ${tm(K, u, true)}=${r.c}` + (K === 1 ? '' : `\\ \\Rightarrow\\ ${u}=${u0}`);
+    const comb = `(${lhsS(f)})${same ? '-' : '+'}(${lhsS(g)})=${f.c}${same ? '-' : '+'}${par(g.c)}`;
+    const one = `${tm(K, u, true)}=${r.c}` + (K === 1 ? '' : `\\ \\Rightarrow\\ ${u}=${u0}`);
     const size = (e) => Math.abs(e.a) + Math.abs(e.b) + Math.abs(e.c) / 10;
     const e = size(e1) <= size(e2) ? e1 : e2, cu = u === 'x' ? e.a : e.b, cv = v === 'x' ? e.a : e.b, rest = e.c - cu * u0, v0 = rest / cv;
     const into = u === 'x' ? kn(cu, u0, true) + tm(cv, v, false) : tm(cv, v, true) + kn(cu, u0, false);
-    const back = `${into}=${e.c}\\ \\Rightarrow\\ ${tm(cv, v, true)}=${rest}` + (cv === 1 ? '' : `\\ \\Rightarrow\\ ${v}=${v0}`) + `\\qquad (${x0},\\ ${y0})`;
-    return [dec, comb, back];
+    const back = `${into}=${e.c}\\ \\Rightarrow\\ ${tm(cv, v, true)}=${rest}` + (cv === 1 ? '' : `\\ \\Rightarrow\\ ${v}=${v0}`);
+    return [dec, comb, one, back, `\\text{Solution: } (${x0},\\ ${y0})`];
   }
   const nz = (r, lo, hi) => r.int(lo, hi) * r.sign();
   function gen(r, kind) {

@@ -16,12 +16,12 @@ h2 .katex, h3 .katex { font-size: .95em; }
 .u8l1-c2 { color: #c27a0e; }
 
 /* ---------------- warm-up ---------------- */
-.u8l1-clues { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.u8l1-clue { border: 2px solid; border-radius: 12px; padding: 8px 10px 10px; }
+.u8l1-clues { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.u8l1-clue { border: 2px solid; border-radius: 12px; padding: 6px 8px 8px; }
 .u8l1-clue1 { background: #fdf0ee; border-color: #c93a33; }
 .u8l1-clue2 { background: #eef3fd; border-color: #1f5bd6; }
-.u8l1-clh { font: 800 17px/1.2 var(--round); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; min-height: 30px; }
-.u8l1-ball { flex: none; display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; color: #fff; font-size: 16px; }
+.u8l1-clh { font: 800 16.5px/1.2 var(--round); white-space: nowrap; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; min-height: 30px; }
+.u8l1-ball { flex: none; display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; color: #fff; font-size: 16px; }
 .u8l1-clue1 .u8l1-ball { background: #c93a33; }
 .u8l1-clue2 .u8l1-ball { background: #1f5bd6; }
 .u8l1-ct { display: grid; grid-template-columns: 84px repeat(4, 1fr); border: 1.5px solid #3a4254; background: #fff; font-size: 19px; }
@@ -69,9 +69,9 @@ h2 .katex, h3 .katex { font-size: .95em; }
 .u8l1-glab { font-size: 18px; }
 .u8l1-verdicts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 14px; }
 .u8l1-vd { border-radius: 12px; padding: 8px 14px; font-size: 18px; border: 2px solid; display: flex; flex-direction: column; gap: 2px; }
-.u8l1-vd > b:first-child { font: 800 20px var(--round); }
-.u8l1-vok { background: #e8f5ee; border-color: #a9d8bd; } .u8l1-vok > b:first-child { color: var(--ok); }
-.u8l1-vno { background: #fdecea; border-color: #f0bdb8; } .u8l1-vno > b:first-child { color: var(--red); }
+.u8l1-vdh { font: 800 20px var(--round); }
+.u8l1-vok { background: #e8f5ee; border-color: #a9d8bd; } .u8l1-vok .u8l1-vdh { color: var(--ok); }
+.u8l1-vno { background: #fdecea; border-color: #f0bdb8; } .u8l1-vno .u8l1-vdh { color: var(--red); }
 
 /* ---------------- explainer panels ---------------- */
 .u8l1-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px; overflow: hidden; }

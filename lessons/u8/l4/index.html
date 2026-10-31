@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Substitution, Part 2 · Math 15 8.4</title>
+<meta name="description" content="Math 15 Unit 8 Lesson 4: solving systems of linear equations by substitution when neither equation is solved for a variable. Choose a variable with a coefficient of 1 or −1, isolate it in one step (every sign flips for −1), then the full five steps: isolate, substitute, solve, back-substitute, check and state. When no coefficient is 1 or −1, carry the fraction and multiply it away. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u8l4.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u8l4">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 8 Systems of Linear Equations · Lesson 4</div>
+  <h1>Solving Systems by Substitution, Part 2: Isolating a Variable First</h1>
+  <p class="lede">When neither equation is solved for a variable, create that starting point yourself. Scan for a coefficient of <span class="tex">1</span> or <span class="tex">-1</span>, get that variable <b>alone</b> in one step, then carry on exactly as in Lesson 3.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>choose which variable to isolate, and in which equation, by looking for a coefficient of <span class="tex">1</span> or <span class="tex">-1</span></li>
+      <li><b>isolate</b> that variable in one step, flipping every sign when the coefficient is <span class="tex">-1</span></li>
+      <li>solve a system with the full <b>five steps</b>: isolate, substitute, solve, back-substitute, check and state <span class="tex">(x,\ y)</span></li>
+      <li>carry a <b>fraction</b> through when no coefficient is <span class="tex">1</span> or <span class="tex">-1</span>, and multiply it away</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF9</b> Solve problems that involve systems of linear equations in two variables, graphically and algebraically.<br><span class="u8l4-today">Today: substitution when you must isolate a variable first.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Movie Night" id="wu" style="--wf-side: 400px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Movie Night</h2>
+  <p class="wf-rule">A family bought <b>9 tickets</b> and paid <b>$78</b>. How many adults? How many kids?</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u8l4-tix">
+      <div class="u8l4-tk u8l4-tka"><span class="u8l4-tkn">ADULT</span><span class="u8l4-tkp">$12</span></div>
+      <div class="u8l4-tk u8l4-tkc"><span class="u8l4-tkn">CHILD</span><span class="u8l4-tkp">$7</span></div>
+      <div class="u8l4-bo"><div class="u8l4-boh">BOX OFFICE</div><div class="u8l4-bor"><span>Tickets:</span><b>9</b></div><div class="u8l4-bor"><span>TOTAL:</span><b class="u8l4-red">$78</b></div></div>
+    </div>
+    <div class="u8l4-wtab">
+      <div class="u8l4-wth">Adults</div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+      <div class="u8l4-wth">Kids</div><div>8</div><div><span data-reveal><b>7</b></span></div><div><span data-reveal><b>6</b></span></div><div><span data-reveal><b>5</b></span></div><div><span data-reveal><b>4</b></span></div>
+      <div class="u8l4-wth">Cost</div><div>$68</div><div><span data-reveal><b>$73</b></span></div><div class="u8l4-hit"><span data-reveal><b>$78</b></span></div><div><span data-reveal><b>$83</b></span></div><div><span data-reveal><b>$88</b></span></div>
+    </div>
+    <p class="u8l4-tnote">Kids and adults always add to 9. Tap a <b>?</b> to check.</p>
+  </div><div class="wf-side">
+    <div class="u8l4-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Fill in the <b>Kids</b> row of the table. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l4-wa"><div class="bk-ans"><span class="tex">8,\ 7,\ 6,\ 5,\ 4</span>: kids <span class="tex">=9-</span> adults.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Fill in the <b>Cost</b> row. Which column costs <b>$78</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l4-wa"><div class="bk-ans">$68, $73, $78, $83, $88. <b>3 adults and 6 kids</b>: <span class="tex">36+42=78</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Finish the rule: Kids <span class="tex">=</span> ____ <span class="tex">-</span> Adults. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l4-wa"><div class="bk-ans">Kids <span class="tex">=</span> <b>9</b> <span class="tex">-</span> Adults. With letters: <span class="tex">a+c=9</span> becomes <span class="tex">c=9-a</span>.</div></div></div>
+    </div>
+  </div></div>
+
+  <div class="poll u8l4-bigone">
+    <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one: pick the easy one.</b> Get one letter <b>alone</b> first. Only <b>one</b> choice avoids fractions. <b>Guess first.</b>
+      <div class="u8l4-bsys"><span class="u8l4-bl">Top:</span> <span class="tex">3x+y=22</span> <span class="u8l4-bl">Bottom:</span> <span class="tex">2x+5y=32</span></div></div></div>
+    <div class="poll-opts">
+      <div class="opt"><b>A</b> <span class="tex">x</span> in the top</div>
+      <div class="opt right"><b>B</b> <span class="tex">y</span> in the top</div>
+      <div class="opt"><b>C</b> <span class="tex">x</span> in the bottom</div>
+      <div class="opt"><b>D</b> <span class="tex">y</span> in the bottom</div>
+    </div>
+    <button class="pill" type="button" data-poll-reveal>Reveal</button>
+    <div class="poll-ans"><b>B: <span class="tex">y</span> in the top.</b> <span class="tex">y</span> has a coefficient of <span class="tex">1</span>, so <span class="tex">y=22-3x</span> in one step, no fraction. The others give <span class="tex">x=\tfrac{22-y}{3}</span>, <span class="tex">x=\tfrac{32-5y}{2}</span> and <span class="tex">y=\tfrac{32-2x}{5}</span>: fractions. Then <span class="tex">2x+5(22-3x)=32</span>, so <span class="tex">x=6</span>, <span class="tex">y=4</span>: <span class="tex">(6,\ 4)</span>.<br><span class="muted">Many people grab <span class="tex">x</span> in the top because it comes first. Look at the <b>coefficients</b>, not the order!</span></div>
+  </div>
+
+  <div class="u8l4-tray-box">
+    <div class="u8l4-tray-h"><b>Test it.</b> Change the number of adults. The other tickets are kids.</div>
+    <div class="u8l4-tray" id="u8l4-tray"></div>
+    <div class="u8l4-tray-row">
+      <button type="button" class="pill" id="u8l4-less">◂ One less adult</button>
+      <button type="button" class="pill" id="u8l4-more">One more adult ▸</button>
+      <div class="u8l4-tray-read" id="u8l4-read"></div>
+    </div>
+  </div>
+  <p class="u8l4-social">Tell a partner: which letter would <b>you</b> get alone first, and why?</p>
+</section>
+
+<!-- ================= 1. Isolate first ================= -->
+<section class="card" data-ink="s1" data-section="1. The Extra Step: Isolate First">
+  <div class="sec-h"><span class="badge">1</span><h2>The Extra Step: Isolate Before You Substitute</h2></div>
+  <p>In Lesson 3 one equation already read <span class="tex">y=\ldots</span> or <span class="tex">x=\ldots</span>. In a system like <span class="tex">x+2y=11,\ 3x-y=5</span> neither variable stands alone, so substitution needs one new step first: <b>isolate a variable yourself</b>, then continue exactly as before.</p>
+  <div class="explainer" data-explainer="table"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Which variable to isolate?">
+  <h3 class="sub">Choose well: look for a coefficient of <span class="tex">1</span> or <span class="tex">-1</span></h3>
+  <p>Scan both equations for a coefficient of <span class="tex">\mathbf{1}</span> or <span class="tex">\mathbf{-1}</span> and isolate <b>that</b> variable: it takes one step and never creates a fraction. In <span class="tex">x+2y=11,\ 3x-y=5</span>, <span class="tex">x</span> in Equation 1 gives <span class="tex">x=11-2y</span> and <span class="tex">y</span> in Equation 2 gives <span class="tex">y=3x-5</span>. Isolating the <span class="tex">2y</span> or the <span class="tex">3x</span> instead would force <span class="tex">\dfrac{11-x}{2}</span> or <span class="tex">\dfrac{5+y}{3}</span>.</p>
+  <div class="explainer" data-explainer="choose"></div>
+</section>
+
+<section class="card" data-ink="s1c" data-section="1. Isolate in one step">
+  <h3 class="sub">Isolating in one step</h3>
+  <p>Move the other term to the other side by doing the <b>opposite</b> to both sides. If the variable is left with a <span class="tex">-1</span> in front, like <span class="tex">-y</span>, multiply every term by <span class="tex">-1</span>: <b>every sign flips</b>.</p>
+  <div class="explainer" data-explainer="isolate"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b><span class="tex">-y=8-3x</span> is not finished.</b> Flip every sign: <span class="tex">y=-8+3x</span>, which is <span class="tex">y=3x-8</span>. Writing <span class="tex">y=8-3x</span> is the most common slip.</div></div>
+</section>
+
+<!-- ================= 2. The five steps ================= -->
+<section class="card" data-ink="s2" data-section="2. The Full Five-Step Process">
+  <div class="sec-h"><span class="badge">2</span><h2>The Full Five-Step Process</h2></div>
+  <div class="u8l4-steps">
+    <div class="u8l4-step"><div class="u8l4-sn">Step 1</div><div class="u8l4-st">Isolate</div><div>a variable in one equation (coefficient <span class="tex">1</span> or <span class="tex">-1</span>)</div></div>
+    <div class="u8l4-step"><div class="u8l4-sn">Step 2</div><div class="u8l4-st">Substitute</div><div>that expression, in brackets, into the <b>other</b> equation</div></div>
+    <div class="u8l4-step"><div class="u8l4-sn">Step 3</div><div class="u8l4-st">Solve</div><div>for the remaining variable</div></div>
+    <div class="u8l4-step"><div class="u8l4-sn">Step 4</div><div class="u8l4-st">Back-substitute</div><div>into the Step 1 expression</div></div>
+    <div class="u8l4-step"><div class="u8l4-sn">Step 5</div><div class="u8l4-st">Check &amp; state</div><div>both values in the <b>original</b> equations; write <span class="tex">(x,\ y)</span></div></div>
+  </div>
+  <p>For <span class="tex">x+2y=11,\ 3x-y=5</span>: <span class="tex">x=11-2y</span>, so <span class="tex">3(11-2y)-y=5</span>, giving <span class="tex">33-7y=5</span>, <span class="tex">y=4</span>; then <span class="tex">x=11-2(4)=3</span>. Both originals check, so the solution is <span class="tex">(3,\ 4)</span>.</p>
+  <div class="explainer" data-explainer="lift"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>All five steps</h3></div>
+  <p class="q">Solve the system <span class="tex">\textcolor{#1f5bd6}{2x+y=12}</span>, <span class="tex">\textcolor{#c27a0e}{x-4y=-3}</span> completely, showing all five steps.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl"><b>Step 1:</b> Isolate a variable (look for a coefficient of <span class="tex">1</span> or <span class="tex">-1</span>).</div><div class="work" style="--h:230px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">In <span class="tex">2x+y=12</span> the <span class="tex">y</span> has coefficient <span class="tex">1</span>, so isolate <span class="tex">y</span> in Equation 1: one step, no fractions.<br><span class="tex">\boldsymbol{y=12-2x}</span></div></div></div>
+    <div class="part"><div class="pl"><b>Steps 2–3:</b> Substitute into the other equation, then solve it.</div><div class="work" style="--h:230px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Substitute into the <b>other</b> equation <span class="tex">x-4y=-3</span>:<br><span class="tex">x-4(12-2x)=-3</span><br><span class="tex">x-48+8x=-3</span><br><span class="tex">9x=45</span>, so <span class="tex">\boldsymbol{x=5}</span></div></div></div>
+    <div class="part"><div class="pl"><b>Steps 4–5:</b> Back-substitute, check both originals, and state the ordered pair.</div><div class="work" style="--h:230px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=12-2(5)=2</span><br>Check: <span class="tex">2(5)+2=12</span> ✓ &nbsp; <span class="tex">5-4(2)=5-8=-3</span> ✓<br>The solution is <span class="tex">\boldsymbol{(5,\ 2)}</span>.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Working through the stages</h3></div>
+  <p class="q">Solve the system <span class="tex">\textcolor{#1f5bd6}{x+5y=17}</span>, <span class="tex">\textcolor{#c27a0e}{4x-y=5}</span>, working through the stages below.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Steps 1–2: isolate a variable, then substitute into the other equation.</div><div class="work" style="--h:240px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x</span> in Equation 1 has coefficient <span class="tex">1</span>: <span class="tex">x=17-5y</span>.<br>Substitute into <span class="tex">4x-y=5</span>:<br><span class="tex">4(17-5y)-y=5</span></div></div></div>
+    <div class="part"><div class="pl">(b) Steps 3–5: solve, back-substitute, check, and state <span class="tex">(x,\ y)</span>.</div><div class="work" style="--h:240px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">68-20y-y=5</span><br><span class="tex">68-21y=5\ \Rightarrow\ 21y=63\ \Rightarrow\ y=3</span><br><span class="tex">x=17-5(3)=2</span><br>Check: <span class="tex">2+5(3)=17</span> ✓ &nbsp; <span class="tex">4(2)-3=5</span> ✓<br>Solution: <span class="tex">\boldsymbol{(2,\ 3)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Only one easy choice</h3></div>
+  <p class="q">For <span class="tex">\textcolor{#1f5bd6}{5x+y=21}</span>, <span class="tex">\textcolor{#c27a0e}{2x-3y=5}</span>, only <b>one</b> variable in the whole system has a coefficient of <span class="tex">1</span> or <span class="tex">-1</span>.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Which variable will you isolate, and in which equation? Why?</div><div class="work" style="--h:250px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Isolate <span class="tex">\boldsymbol{y}</span> in <span class="tex">\boldsymbol{5x+y=21}</span> (Equation 1). It is the only variable in the system with a coefficient of <span class="tex">1</span>, so it comes out in a single step as <span class="tex">y=21-5x</span> with no fractions. Isolating anything else would give a denominator of <span class="tex">5</span>, <span class="tex">2</span> or <span class="tex">3</span>.</div></div></div>
+    <div class="part"><div class="pl">(b) Solve the system completely.</div><div class="work" style="--h:250px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=21-5x</span>; substitute into <span class="tex">2x-3y=5</span>:<br><span class="tex">2x-3(21-5x)=5</span><br><span class="tex">2x-63+15x=5</span><br><span class="tex">17x=68\ \Rightarrow\ x=4</span><br><span class="tex">y=21-5(4)=1</span><br>Check: <span class="tex">5(4)+1=21</span> ✓ &nbsp; <span class="tex">2(4)-3(1)=5</span> ✓<br>Solution: <span class="tex">\boldsymbol{(4,\ 1)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>A coefficient of <span class="tex">-1</span>: watch your signs</h3></div>
+  <p class="q">Solve <span class="tex">\textcolor{#1f5bd6}{3x-y=8}</span>, <span class="tex">\textcolor{#c27a0e}{x+4y=7}</span>. The variable you isolate has a coefficient of <span class="tex">-1</span>: watch your signs.</p>
+  <div class="parts c1">
+    <div class="part"><div class="pl">Solve and check.</div><div class="work" style="--h:300px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">From <span class="tex">3x-y=8</span>: <span class="tex">-y=8-3x</span>, so <span class="tex">y=3x-8</span> (every sign flips).<br>Substitute into <span class="tex">x+4y=7</span>: <span class="tex">x+4(3x-8)=7</span><br><span class="tex">x+12x-32=7\ \Rightarrow\ 13x=39\ \Rightarrow\ x=3</span><br><span class="tex">y=3(3)-8=1</span><br>Check: <span class="tex">3(3)-1=8</span> ✓ &nbsp; <span class="tex">3+4(1)=7</span> ✓<br>Solution: <span class="tex">\boldsymbol{(3,\ 1)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u8l4"></section>
+
+<section class="card" data-ink="s2b" data-section="When no coefficient is 1 or −1">
+  <h3 class="sub">When no coefficient is <span class="tex">1</span> or <span class="tex">-1</span></h3>
+  <p>Sometimes every choice makes a fraction. That is fine: isolate anyway, keep the fraction in brackets when you substitute, then <b>multiply every term</b> by the denominator. The fraction disappears and the numbers come out whole.</p>
+  <div class="explainer" data-explainer="fracs"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>A fraction that clears</h3></div>
+  <p class="q">Solve <span class="tex">\textcolor{#1f5bd6}{2x+3y=14}</span>, <span class="tex">\textcolor{#c27a0e}{5x-4y=12}</span>. <b>No</b> coefficient here is <span class="tex">1</span> or <span class="tex">-1</span>, so isolating creates a fraction; carry it carefully and it will cancel by the end.</p>
+  <div class="parts c1">
+    <div class="part"><div class="pl">Solve and check.</div><div class="work" style="--h:320px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Isolate <span class="tex">x</span> in <span class="tex">2x+3y=14</span>: <span class="tex">x=\dfrac{14-3y}{2}</span>.<br>Substitute into <span class="tex">5x-4y=12</span>: <span class="tex">5\left(\dfrac{14-3y}{2}\right)-4y=12</span><br>Multiply every term by <span class="tex">2</span>: <span class="tex">5(14-3y)-8y=24</span><br><span class="tex">70-15y-8y=24\ \Rightarrow\ 70-23y=24\ \Rightarrow\ 23y=46\ \Rightarrow\ y=2</span><br><span class="tex">x=\dfrac{14-3(2)}{2}=\dfrac{8}{2}=4</span><br>Check: <span class="tex">2(4)+3(2)=14</span> ✓ &nbsp; <span class="tex">5(4)-4(2)=12</span> ✓<br>Solution: <span class="tex">\boldsymbol{(4,\ 2)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2c" data-section="Check in the ORIGINAL equations">
+  <h3 class="sub">Step 5: check in the <b>original</b> equations</h3>
+  <p>Check in the equations you were <b>given</b>, not in your rearranged one: if the isolating step had a slip, the rearranged equation has the slip too. A pair that balances only one equation is not the solution.</p>
+  <div class="explainer" data-explainer="checkBoth"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Isolate first.</b> When neither equation reads <span class="tex">y=\ldots</span> or <span class="tex">x=\ldots</span>, make one yourself, then carry on exactly as in Lesson 3.</div>
+    <div><b>Choose well.</b> A coefficient of <span class="tex">1</span> or <span class="tex">-1</span> means one step and no fractions. Look at the <b>coefficients</b>, not which letter comes first.</div>
+    <div><b>Watch the signs.</b> <span class="tex">-y=8-3x</span> becomes <span class="tex">y=3x-8</span>: every sign flips. The number in front of a bracket multiplies <b>every</b> term.</div>
+    <div><b>Fractions clear.</b> If every choice makes a fraction, multiply every term by the denominator. Then <b>check</b> both values in the <b>original</b> equations and state <span class="tex">(x,\ y)</span>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u8l4">
+    <div><div class="kicker">Your turn</div><b>Assignment 4 — Solving Systems by Substitution, Part 2: Isolating a Variable First</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l5/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 5 — Solving Systems by Elimination, Part 1: When Coefficients Already Match</b><div class="muted">Two receipts, one difference: add or subtract whole equations so a variable vanishes.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u8l4.js';
+  boot({ key: 'u8l4', homeHref: '../../', title: '8.4 Substitution, Part 2' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

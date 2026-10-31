@@ -140,7 +140,7 @@ h2 .katex, h3 .katex { font-size: .95em; }
 .u8l5-big .u8l5-cont:empty::after { content: none; }
 
 /* ---------------- columns explainer ---------------- */
-.u8l5-sc { position: relative; display: flex; align-items: center; justify-content: center; font-size: 26px; border-radius: 10px; transition: background .25s; }
+.u8l5-sc { display: flex; align-items: center; justify-content: center; font-size: 26px; border-radius: 10px; transition: background .25s; }
 .u8l5-sc.u8l5-hl { background: #fff1c9; }
 .u8l5-sname { display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; box-sizing: border-box; }
 .u8l5-sname .u8l5-tg { font-size: 15px; vertical-align: 0; }
@@ -153,7 +153,7 @@ h2 .katex, h3 .katex { font-size: .95em; }
 
 /* ---------------- either explainer ---------------- */
 .u8l5-know { display: flex; align-items: center; justify-content: center; font: 700 22px var(--round); color: var(--ink); background: #e2f4eb; border: 2px solid #9fd3bd; border-radius: 12px; }
-.u8l5-epan { position: relative; gap: 8px; }
+.u8l5-epan { gap: 8px; }
 .u8l5-epan .u8l5-ln { font-size: 23px; }
 .u8l5-epan .bk-stamp { position: absolute; right: 14px; bottom: 14px; }
 .u8l5-esol { display: flex; align-items: center; justify-content: center; font: 700 20px var(--round); }
@@ -168,6 +168,7 @@ h2 .katex, h3 .katex { font-size: .95em; }
 .u8l5-ts2 { color: #b06c08; background: #fff0d4; border-color: #c27a0e; }
 .u8l5-tneg { color: var(--red); border-color: var(--red); border-style: dashed; background: repeating-linear-gradient(135deg, #fff 0 6px, #fbe9e7 6px 9px); }
 .u8l5-tval { color: #12805a; background: #e2f4eb; border-color: #12805a; border-style: solid; font-size: 19px; }
+.u8l5-tile.u8l5-tghost { opacity: .22; z-index: 1; }
 .u8l5-zc { display: flex; align-items: center; font-size: 28px; }
 .u8l5-loop { border: 3px solid var(--ok); border-radius: 22px; background: rgba(18, 128, 90, .06); z-index: 1; }
 .u8l5-zz { font: 900 22px var(--round); color: var(--ok); background: #fff; border: 2.5px solid var(--ok); border-radius: 50%; width: 34px; height: 34px; display: grid; place-items: center; }

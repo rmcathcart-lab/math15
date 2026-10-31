@@ -18,8 +18,19 @@
   'use strict';
   var HW = root.HW, ex = HW.ex, K = HW.kit, t = K.t, ok = K.ok, wrong = K.wrong, form = K.form, B = K.P, LN = HW.lines, DR = HW.draw;
 
+  /* ---------- keypad: one ordered pair (as in Math 15 u6l2.js) ---------- */
+  var PTK = 'u7l3pt', Wd = HW.widgets;
+  if (Wd && Wd.KEYSETS) {
+    var dk = function (n) { return { label: String(n), tex: String(n), plain: String(n) }; };
+    var KY = { del: { label: '⌫', fn: 'del', title: 'Delete' }, clear: { label: 'clear', fn: 'clear' }, left: { label: '◀', fn: 'left', title: 'Move left' },
+      right: { label: '▶', fn: 'right', title: 'Move right (out of a box)' }, enter: { label: 'Check ↵', fn: 'enter', wide: true }, minus: { label: '−', tex: '-', plain: '-' },
+      dot: { label: '.', tex: '.', plain: '.' }, par: { label: '( )', tex: '\\left(#0\\right)', plain: '(', title: 'Ordered pair: type x, y inside' }, comma: { label: ',', tex: ',', plain: ', ' } };
+    if (!Wd.KEYSETS[PTK]) Wd.KEYSETS[PTK] = [[dk(7), dk(8), dk(9), KY.par, KY.del], [dk(4), dk(5), dk(6), KY.minus, KY.clear], [dk(1), dk(2), dk(3), KY.comma, KY.left, KY.right], [dk(0), KY.dot, KY.enter]];
+    if (Wd.KEYHELP && !Wd.KEYHELP[PTK]) Wd.KEYHELP[PTK] = ['Press <b>( )</b>, type the two coordinates with <b>,</b> between them, then <b>▶</b> to step out.', 'Type a point as <code>(3, -2)</code>.'];
+  }
+
   HW.addCodes({
-    'mb-swap': 'Slope and y-intercept swapped', 'mb-order': 'Read m and b in left-to-right order', 'hidden-1': 'Missed the hidden coefficient 1 (or −1)', 'icpt-axis': 'Intercept written as a point on the wrong axis', 'icpt-none': 'Said there is no intercept',
+    'no-divide': 'Didn’t divide by the rate', 'dy-only': 'Used the change in y only (ignored the x-step)', 'sub-swap': 'Substituted x and y the wrong way round', 'mb-swap': 'Slope and y-intercept swapped', 'mb-order': 'Read m and b in left-to-right order', 'hidden-1': 'Missed the hidden coefficient 1 (or −1)', 'icpt-axis': 'Intercept written as a point on the wrong axis', 'icpt-none': 'Said there is no intercept',
     'gr-join': 'Graph: points not joined into a line', 'gr-sign': 'Graph: slope sign wrong', 'gr-flip': 'Graph: rise and run swapped', 'gr-b-xaxis': 'Graph: plotted b on the x-axis', 'gr-b-sign': 'Graph: y-intercept sign wrong',
     'gr-vh': 'Graph: horizontal/vertical mixed up', 'gr-slope': 'Graph: right y-intercept, wrong slope', 'gr-icpt': 'Graph: right slope, wrong y-intercept', 'move-sign': 'Sign error moving a term across', 'not-divided': 'Did not divide every term by the coefficient of y', 'part-div': 'Divided only some terms',
     'tri-half': 'Triangle area: forgot the ½', 'tri-hyp': 'Perimeter: left out the hypotenuse', 'tri-area': 'Gave the area for the perimeter',
@@ -99,7 +110,7 @@
     p.bad = !near(qv(m), qv(b)) ? [[qT(b), qT(m)]] : [];
     return p;
   }
-  function ptPart(prompt, P, opt, sol, hints, text) { var p = B.point(prompt, P, opt, sol, hints, text); p.input.keys = 'pairs'; return p; }
+  function ptPart(prompt, P, opt, sol, hints, text) { var p = B.point(prompt, P, opt, sol, hints, text); p.input.keys = PTK; return p; }
 
   /* ---------------- graphs (from Math 10C u7l1) ---------------- */
   var PADHELP = ' <span style="color:#6a7182;font-size:.92em">(<b>╱ Line</b>: tap two points, then tap the second again.)</span>';
@@ -219,7 +230,7 @@
   }
   function secondPtPart(prompt, m, b, text, lev) {
     var mq = Q(m), P = [mq[1], b + mq[0]];
-    var p = B.math(prompt, secondPtC(m, b), ptT(P), 'From ' + t(ptT([0, b])) + ', step ' + stepT(m) + ': ' + t(ptT(P)) + '. (Any other point of the line works too, e.g. ' + t(ptT([2 * mq[1], b + 2 * mq[0]])) + '.)', ['Write ' + t('m') + ' as ' + t('\\frac{\\text{rise}}{\\text{run}}') + ' and step from ' + t(ptT([0, b])) + ': right by the run, up or down by the rise.'], text, { keys: 'pairs', placeholder: 'e.g. (3, 1)' });
+    var p = B.math(prompt, secondPtC(m, b), ptT(P), 'From ' + t(ptT([0, b])) + ', step ' + stepT(m) + ': ' + t(ptT(P)) + '. (Any other point of the line works too, e.g. ' + t(ptT([2 * mq[1], b + 2 * mq[0]])) + '.)', ['Write ' + t('m') + ' as ' + t('\\frac{\\text{rise}}{\\text{run}}') + ' and step from ' + t(ptT([0, b])) + ': right by the run, up or down by the rise.'], text, { keys: PTK, placeholder: 'e.g. (3, 1)' });
     p.good = ['(' + (-mq[1]) + ', ' + (b - mq[0]) + ')'];
     p.bad = ['(0, ' + b + ')', '(' + mq[1] + ', ' + (b - mq[0]) + ')'].filter(function (s) { return mq[0] !== 0; });
     return p;
@@ -261,7 +272,7 @@
   function graphQ(num, sec, stem, items) {
     var parts = [];
     items.forEach(function (it) {
-      parts.push({ id: num + it.s, sub: it.s + ' i', level: it.lm, make: function (r, sh) { var o = sh[it.s], E = eqShown(o); return mbPart('(' + it.s + ') ' + t(E) + ': state the slope and ' + t('y') + '-intercept.', o.m, o.b, { mDiag: (Math.abs(qv(o.m)) === 1 ? [[0, 'hidden-1', 'A bare ' + t((qv(o.m) < 0 ? '-' : '') + 'x') + ' means ' + t(qv(o.m) + 'x') + '.']] : []).concat(o.rev ? [[o.b, 'mb-order', t(o.b) + ' is written first, but it doesn’t multiply ' + t('x') + '.']] : []) }, (o.rev ? 'Reorder: ' + t(siT(o.m, o.b)) + '. ' : '') + t('m=' + qT(o.m)) + ', ' + t('b=' + o.b) + '.', null, 'mb ' + num + it.s); } });
+      parts.push({ id: num + it.s, sub: it.s + ' i', level: it.lm, make: function (r, sh) { var o = sh[it.s], E = eqShown(o); return mbPart('State the slope and ' + t('y') + '-intercept of ' + t(E) + '.', o.m, o.b, { mDiag: (Math.abs(qv(o.m)) === 1 ? [[0, 'hidden-1', 'A bare ' + t((qv(o.m) < 0 ? '-' : '') + 'x') + ' means ' + t(qv(o.m) + 'x') + '.']] : []).concat(o.rev ? [[o.b, 'mb-order', t(o.b) + ' is written first, but it doesn’t multiply ' + t('x') + '.']] : []) }, (o.rev ? 'Reorder: ' + t(siT(o.m, o.b)) + '. ' : '') + t('m=' + qT(o.m)) + ', ' + t('b=' + o.b) + '.', null, 'mb ' + num + it.s); } });
       parts.push({ id: num + it.s + '2', sub: it.s + ' ii', level: it.lg, make: function (r, sh) { var o = sh[it.s]; return graphMB('Graph ' + t(eqShown(o)) + '.', o.m, o.b, mbSol(o.m, o.b), null, 'graph ' + num + it.s); } });
     });
     var q = { num: num, stem: stem, shared: function (r) { var o = {}; items.forEach(function (it) { o[it.s] = it.gen(r); o[it.s].rev = o[it.s].b !== 0 && r.chance(0.3); }); return o; }, parts: parts };
@@ -442,7 +453,7 @@
           return { a: fracLine(r, [[2, 3], [1, 3], [3, 4], [1, 2]], [-4, 0]), b: fracLine(r, [[-3, 4], [-2, 3], [-1, 3], [-3, 5]], [1, 5]), c: fracLine(r, [[5, 2], [3, 2], [5, 3], [4, 3]], [-5, -1]), d: fracLine(r, [[-4, 3], [-5, 2], [-3, 2], [-5, 3]], [0, 5]) };
         }, parts: [].concat.apply([], ['a', 'b', 'c', 'd'].map(function (L) {
           var lev = L === 'a' || L === 'b' ? 'EMG' : 'PRG';
-          return [{ id: 'e1' + L, sub: L + ' i', level: lev, make: function (r, sh) { var o = sh[L]; return secondPtPart('(' + L + ') ' + t(siT(o.m, o.b)) + ': from ' + t('(0,\\ b)') + ', which second point do you land on?', o.m, o.b, 'EP1' + L + ' second point'); } },
+          return [{ id: 'e1' + L, sub: L + ' i', level: lev, make: function (r, sh) { var o = sh[L]; return secondPtPart('For ' + t(siT(o.m, o.b)) + ': from ' + t('(0,\\ b)') + ', which second point do you land on?', o.m, o.b, 'EP1' + L + ' second point'); } },
             { id: 'e1' + L + '2', sub: L + ' ii', level: lev === 'EMG' ? 'EMG' : 'PRG', make: function (r, sh) { var o = sh[L]; return graphMB('Graph ' + t(siT(o.m, o.b)) + '.', o.m, o.b, mbSol(o.m, o.b), null, 'EP1' + L + ' graph'); } }];
         })) },
       { num: '2', shared: function (r) { var o = fracLine(r, [[-2, 3], [-3, 4], [-1, 2], [-3, 2], [-2, 5]], [-1, 3]); return pickWhere(function () { return o; }, function (o) { var q = Q(o.m); return Math.abs(o.b - q[0]) <= 6; }); },
@@ -478,7 +489,7 @@
             var g = sh[L], W = [{ is: { m: -qv(g.m), b: g.b }, code: 'move-sign', hint: 'When the ' + t('x') + '-term moves across, its sign changes.' }];
             if (Math.abs(g.k) !== 1) W.push({ is: { m: qv(g.m) * g.k, b: g.b * g.k }, code: 'not-divided', hint: 'Divide <b>every</b> term by ' + t(g.k) + '.' }, { is: { m: qv(g.m), b: g.b * g.k }, code: 'part-div', hint: 'Divide the constant by ' + t(g.k) + ' too.' });
             W = W.filter(function (w) { return !(near(w.is.m, qv(g.m)) && near(w.is.b, g.b)); });
-            var p = B.line('(' + L + ') Rearrange ' + t(g.eq) + ' into ' + t('y=mx+b') + '.', { m: qv(g.m), b: g.b }, { form: 'slope-intercept', wrong: W, keyTex: siT(g.m, g.b) }, g.sol, ['Get ' + t('y') + ' alone: move the ' + t('x') + '-term (its sign changes), then divide <b>every</b> term by the coefficient of ' + t('y') + '.'], 'EP4' + L + ' rearrange');
+            var p = B.line('Rearrange ' + t(g.eq) + ' into ' + t('y=mx+b') + '.', { m: qv(g.m), b: g.b }, { form: 'slope-intercept', wrong: W, keyTex: siT(g.m, g.b) }, g.sol, ['Get ' + t('y') + ' alone: move the ' + t('x') + '-term (its sign changes), then divide <b>every</b> term by the coefficient of ' + t('y') + '.'], 'EP4' + L + ' rearrange');
             p.answer = t(siT(g.m, g.b)); p.bad = W.map(function (w) { return siT(LN.toFr(w.is.m), w.is.b); });
             return p;
           } });
@@ -492,10 +503,10 @@
           d: function () { var q = fracLine(r, [[1, 2], [1, 3], [1, 4], [3, 2], [2, 3]], [-5, -1]), f = Q(q.m); return { eq: axbyc(f[0], -f[1], -f[1] * q.b), m: q.m, b: q.b, k: -f[1], sol: 'Subtract ' + t(term(f[0], 'x', true)) + ': ' + t('-' + f[1] + 'y=' + lin([[-f[0], 'x'], [-f[1] * q.b, '']])) + '. Divide every term by ' + t('-' + f[1]) + ': ' + t(siT(q.m, q.b)) + '.' }; } })[L](); }); return o; } },
       /* ================= Part C ================= */
       { num: '5', section: 'Extra practice C — Horizontal and Vertical Lines', stem: 'Graph each line, then fill in all three boxes. Use <b>none</b> or <b>undef.</b> (undefined) where that is the correct answer.', shared: function (r) { return { h: r.pick(nz(-6, 6)), v: r.pick(nz(-6, 6)) }; }, parts: [
-        { id: 'e5a', sub: 'a i', level: 'BEG', make: function (r, s) { var key = lineV([-5, s.h], [5, s.h]); return B.graph('(a) Graph ' + t('y=' + s.h) + '.' + PADHELP, padI(), exactChk(key, [{ is: lineV([s.h, -5], [s.h, 5]), code: 'gr-vh', hint: 'That’s the vertical line ' + t('x=' + s.h) + '. On ' + t('y=' + s.h) + ' every point has ' + t('y') + '-value ' + t(s.h) + ': a <b>horizontal</b> line.' }, { is: lineV([-5, -s.h], [5, -s.h]), code: 'gr-b-sign', hint: 'Check its height: ' + t('y=' + s.h) + '.' }]), key, 'Every point has ' + t('y=' + s.h) + ': the horizontal line through ' + t(ptT([0, s.h])) + '.', ['Every point on the line has the same ' + t('y') + '-value.'], 'EP5a graph'); } },
-        { id: 'e5a2', sub: 'a ii', level: 'EMG', make: function (r, s) { return hvPart('(a) ' + t('y=' + s.h), 0, s.h, 'none', 'horizontal (' + t('y=' + s.h) + ')', 'Slope ' + t('0') + ' (no rise), ' + t('y') + '-intercept ' + t(s.h) + ', ' + t('x') + '-intercept <b>none</b>: the line runs parallel to the ' + t('x') + '-axis and never meets it.'); } },
-        { id: 'e5b', sub: 'b i', level: 'BEG', make: function (r, s) { var key = lineV([s.v, -5], [s.v, 5]); return B.graph('(b) Graph ' + t('x=' + s.v) + '.' + PADHELP, padI(), exactChk(key, [{ is: lineV([-5, s.v], [5, s.v]), code: 'gr-vh', hint: 'That’s the horizontal line ' + t('y=' + s.v) + '. On ' + t('x=' + s.v) + ' every point has ' + t('x') + '-value ' + t(s.v) + ': a <b>vertical</b> line.' }, { is: lineV([-s.v, -5], [-s.v, 5]), code: 'gr-b-sign', hint: 'Check where it crosses the ' + t('x') + '-axis: ' + t('x=' + s.v) + '.' }]), key, 'Every point has ' + t('x=' + s.v) + ': the vertical line through ' + t(ptT([s.v, 0])) + '.', ['Every point on the line has the same ' + t('x') + '-value.'], 'EP5b graph'); } },
-        { id: 'e5b2', sub: 'b ii', level: 'EMG', make: function (r, s) { return hvPart('(b) ' + t('x=' + s.v), 'und', 'none', s.v, 'vertical (' + t('x=' + s.v) + ')', 'Slope <b>undefined</b> (the run is ' + t('0') + '), ' + t('y') + '-intercept <b>none</b> (it runs parallel to the ' + t('y') + '-axis), ' + t('x') + '-intercept ' + t(s.v) + '.'); } }] },
+        { id: 'e5a', sub: 'a i', level: 'BEG', make: function (r, s) { var key = lineV([-5, s.h], [5, s.h]); return B.graph('Graph ' + t('y=' + s.h) + '.' + PADHELP, padI(), exactChk(key, [{ is: lineV([s.h, -5], [s.h, 5]), code: 'gr-vh', hint: 'That’s the vertical line ' + t('x=' + s.h) + '. On ' + t('y=' + s.h) + ' every point has ' + t('y') + '-value ' + t(s.h) + ': a <b>horizontal</b> line.' }, { is: lineV([-5, -s.h], [5, -s.h]), code: 'gr-b-sign', hint: 'Check its height: ' + t('y=' + s.h) + '.' }]), key, 'Every point has ' + t('y=' + s.h) + ': the horizontal line through ' + t(ptT([0, s.h])) + '.', ['Every point on the line has the same ' + t('y') + '-value.'], 'EP5a graph'); } },
+        { id: 'e5a2', sub: 'a ii', level: 'EMG', make: function (r, s) { return hvPart('For ' + t('y=' + s.h) + ':', 0, s.h, 'none', 'horizontal (' + t('y=' + s.h) + ')', 'Slope ' + t('0') + ' (no rise), ' + t('y') + '-intercept ' + t(s.h) + ', ' + t('x') + '-intercept <b>none</b>: the line runs parallel to the ' + t('x') + '-axis and never meets it.'); } },
+        { id: 'e5b', sub: 'b i', level: 'BEG', make: function (r, s) { var key = lineV([s.v, -5], [s.v, 5]); return B.graph('Graph ' + t('x=' + s.v) + '.' + PADHELP, padI(), exactChk(key, [{ is: lineV([-5, s.v], [5, s.v]), code: 'gr-vh', hint: 'That’s the horizontal line ' + t('y=' + s.v) + '. On ' + t('x=' + s.v) + ' every point has ' + t('x') + '-value ' + t(s.v) + ': a <b>vertical</b> line.' }, { is: lineV([-s.v, -5], [-s.v, 5]), code: 'gr-b-sign', hint: 'Check where it crosses the ' + t('x') + '-axis: ' + t('x=' + s.v) + '.' }]), key, 'Every point has ' + t('x=' + s.v) + ': the vertical line through ' + t(ptT([s.v, 0])) + '.', ['Every point on the line has the same ' + t('x') + '-value.'], 'EP5b graph'); } },
+        { id: 'e5b2', sub: 'b ii', level: 'EMG', make: function (r, s) { return hvPart('For ' + t('x=' + s.v) + ':', 'und', 'none', s.v, 'vertical (' + t('x=' + s.v) + ')', 'Slope <b>undefined</b> (the run is ' + t('0') + '), ' + t('y') + '-intercept <b>none</b> (it runs parallel to the ' + t('y') + '-axis), ' + t('x') + '-intercept ' + t(s.v) + '.'); } }] },
       { num: '6', shared: function (r) { return { h: r.pick(nz(-6, 6)), v: r.pick(nz(-6, 6)) }; }, parts: [
         { id: 'e6', level: 'EMG', make: function (r, s) {
           return mc(r, 'Of the lines ' + t('y=' + s.h) + ' and ' + t('x=' + s.v) + ', one can be written in the form ' + t('y=mx+b') + ' and the other cannot. Which statement is correct?', [
@@ -561,7 +572,7 @@
             return wrong('u7l3-pt-off', 'That point isn’t on the line. Start at a point you know and step ' + stepT(s.m) + '.');
           };
           var keyP = pickWhere(function () { var k = r.pick([2, -2, 3, -1, 0]); return [k * q[1], s.b + k * q[0]]; }, function (P) { return !(P[0] === s.A[0] && P[1] === s.A[1]) && !(P[0] === s.Bp[0] && P[1] === s.Bp[1]); });
-          var p = B.math('(d) Give the coordinates of a third point on the line, different from the two marked ones.', chk, ptT(keyP), 'For example ' + t(ptT(keyP)) + ': from a marked point, step ' + stepT(s.m) + ' (or the reverse). Any point that satisfies ' + t(siT(s.m, s.b)) + ' works.', ['From a marked point, step out the slope again.'], 'EP9d', { keys: 'pairs', placeholder: 'e.g. (8, 4)' });
+          var p = B.math('(d) Give the coordinates of a third point on the line, different from the two marked ones.', chk, ptT(keyP), 'For example ' + t(ptT(keyP)) + ': from a marked point, step ' + stepT(s.m) + ' (or the reverse). Any point that satisfies ' + t(siT(s.m, s.b)) + ' works.', ['From a marked point, step out the slope again.'], 'EP9d', { keys: PTK, placeholder: 'e.g. (8, 4)' });
           p.bad = ['(' + s.A[0] + ', ' + s.A[1] + ')', '(' + s.Bp[0] + ', ' + (s.Bp[1] + 1) + ')'];
           return p;
         } },
@@ -570,7 +581,7 @@
           P2[1] = qv(s.m) * P2[0] + s.b;
           var pts = r.shuffle([P1, P2]), ids = ['p1', 'p2'], want = {};
           pts.forEach(function (P, i) { want[ids[i]] = near(P[1], qv(s.m) * P[0] + s.b) ? 'y' : 'n'; });
-          return B.grid('(e) Decide whether each point lies on the line ' + t(siT(s.m, s.b)) + '.', pts.map(function (P, i) { return { id: ids[i], html: t(ptT(P)) }; }), [{ id: 'y', html: 'On the line' }, { id: 'n', html: 'Not on it' }], want,
+          return B.grid('(e) Decide whether each point lies on the line. Show the check by substituting into your equation from (c).', pts.map(function (P, i) { return { id: ids[i], html: t(ptT(P)) }; }), [{ id: 'y', html: 'On the line' }, { id: 'n', html: 'Not on it' }], want,
             { why: function (row) { var P = pts[ids.indexOf(row)]; return { code: 'u7l3-pt-off', hint: 'Substitute ' + t('x=' + P[0]) + ': ' + t(qT(s.m) + '(' + P[0] + ')' + (s.b < 0 ? '' : '+') + s.b) + '. Is it ' + t(P[1]) + '?' }; } },
             pts.map(function (P) { var v = qv(s.m) * P[0] + s.b; return t(ptT(P)) + ': ' + t(qT(s.m) + '(' + P[0] + ')' + (s.b < 0 ? '' : '+') + s.b + '=' + qT(Q(Math.round(v * 12), 12))) + (near(v, P[1]) ? ' ✓ on the line' : t('\\ne ' + P[1]) + ' — not on it'); }).join('<br>'), ['Substitute each ' + t('x') + ' into the equation from (c) and compare.'], 'EP9e on/off');
         } }] },
@@ -608,7 +619,7 @@
         }, parts: [].concat.apply([], ['a', 'b', 'c', 'd'].map(function (L) {
           return [{ id: 'e12' + L, sub: L + ' i', level: L === 'd' ? 'EMG' : 'PRG', make: function (r, sh) {
             var o = sh[L], key = keyLine(o.m, o.b), Wd = o.m === 0 ? [{ is: lineV([o.P[0], -5], [o.P[0], 5]), code: 'gr-vh', hint: 'A slope of ' + t('0') + ' is a <b>horizontal</b> line.' }] : [{ is: lineThroughSlope(o.P, [-Q(o.m)[0], Q(o.m)[1]]), code: 'gr-sign', hint: 'Check the direction of the slope.' }, { is: lineThroughSlope(o.P, [Q(o.m)[1], Q(o.m)[0]]), code: 'gr-flip', hint: 'Rise over run: the top number is the rise.' }, { is: lineThroughSlope([0, o.P[1]], o.m), code: 'gr-icpt', hint: 'Start at the given point ' + t(ptT(o.P)) + ', not on the ' + t('y') + '-axis.' }];
-            var p = B.graph('(' + L + ') Through ' + t(ptT(o.P)) + ' with ' + t('m=' + qT(o.m)) + ': draw the line.' + PADHELP, padI(), exactChk(key, Wd.filter(function (w) { return !DR.same(w.is, key); }), { m: qv(o.m), b: o.b, mq: o.m }), key,
+            var p = B.graph('Through ' + t(ptT(o.P)) + ' with ' + t('m=' + qT(o.m)) + ': draw the line.' + PADHELP, padI(), exactChk(key, Wd.filter(function (w) { return !DR.same(w.is, key); }), { m: qv(o.m), b: o.b, mq: o.m }), key,
               o.m === 0 ? 'Slope ' + t('0') + ': a horizontal line through ' + t(ptT(o.P)) + '.' : 'Plot ' + t(ptT(o.P)) + '. Step ' + stepT(o.m) + ' (or the reverse) to more points, e.g. ' + t(ptT([o.P[0] + Q(o.m)[1], o.P[1] + Q(o.m)[0]])) + ', and draw the line.', ['Plot the given point first, then step out the slope from it.'], 'EP12' + L + ' graph');
             p.bad = Wd.map(function (w) { return w.is; }).filter(function (w) { return !DR.same(w, key); });
             return p;
@@ -652,13 +663,13 @@
         }, parts: [].concat.apply([], ['a', 'b'].map(function (L) {
           return [{ id: 'e15' + L, sub: L + ' i', level: 'PRG', make: function (r, sh) {
             var o = sh[L], T = twoLinesChk(o.L1, o.L2);
-            var p = B.graph('(' + L + ') Graph ' + t(siT(o.L1.m, o.L1.b)) + ' and ' + t(siT(o.L2.m, o.L2.b)) + ' on the same grid.' + PADHELP, padI(), T.check, T.key,
+            var p = B.graph('Graph ' + t(siT(o.L1.m, o.L1.b)) + ' and ' + t(siT(o.L2.m, o.L2.b)) + ' on the same grid.' + PADHELP, padI(), T.check, T.key,
               t(siT(o.L1.m, o.L1.b)) + ': start at ' + t(ptT([0, o.L1.b])) + ', step ' + stepT(o.L1.m) + '. ' + t(siT(o.L2.m, o.L2.b)) + ': start at ' + t(ptT([0, o.L2.b])) + ', step ' + stepT(o.L2.m) + '. They cross at ' + t(ptT([o.X, o.Y])) + '.', ['Graph one line at a time: ' + t('(0,\\ b)') + ', then the slope.'], 'EP15' + L + ' graph both');
             p.bad = [keyLine(o.L1.m, o.L1.b)];
             return p;
           } }, { id: 'e15' + L + '2', sub: L + ' ii', level: L === 'a' ? 'ADV' : 'MAS', make: function (r, sh) {
             var o = sh[L], dm = Q(Math.round((qv(o.L1.m) - qv(o.L2.m)) * 12), 12), db = o.L2.b - o.L1.b;
-            return ptPart('(' + L + ') State the point of intersection of ' + t(siT(o.L1.m, o.L1.b)) + ' and ' + t(siT(o.L2.m, o.L2.b)) + ', confirmed algebraically.', [o.X, o.Y], { wrong: [{ is: [o.Y, o.X], code: 'pt-swap', hint: 'The ' + t('x') + '-value comes first.' }, { is: [o.X, qv(o.L1.m) * o.X], code: 'u7l3-meet-y', hint: 'Right ' + t('x') + ' — substitute it into a full equation (with ' + t('b') + ').' }] },
+            return ptPart('State the point of intersection of ' + t(siT(o.L1.m, o.L1.b)) + ' and ' + t(siT(o.L2.m, o.L2.b)) + ', confirmed algebraically.', [o.X, o.Y], { wrong: [{ is: [o.Y, o.X], code: 'pt-swap', hint: 'The ' + t('x') + '-value comes first.' }, { is: [o.X, qv(o.L1.m) * o.X], code: 'u7l3-meet-y', hint: 'Right ' + t('x') + ' — substitute it into a full equation (with ' + t('b') + ').' }] },
               'Set the expressions equal: ' + t(lin([[o.L1.m, 'x'], [o.L1.b, '']]) + '=' + lin([[o.L2.m, 'x'], [o.L2.b, '']])) + '<br>' + t(term(dm, 'x', true) + '=' + db) + '<br>' + t('x=' + o.X) + ', and ' + t('y=' + qT(o.L1.m) + '(' + o.X + ')' + (o.L1.b < 0 ? '' : '+') + o.L1.b + '=' + o.Y) + '. The intersection is ' + t(ptT([o.X, o.Y])) + ', the point where the graphs cross.',
               ['Read the crossing point from your graph.', 'Confirm: set the two right sides equal, collect the ' + t('x') + '-terms (common denominators for fractions), solve for ' + t('x') + ', then find ' + t('y') + '.'], 'EP15' + L + ' intersection');
           } }];

@@ -18,7 +18,7 @@
   var HW = root.HW, ex = HW.ex, K = HW.kit, t = K.t, ok = K.ok, wrong = K.wrong, form = K.form, B = K.P, LN = HW.lines;
 
   HW.addCodes({
-    'mb-swap': 'Slope and y-intercept swapped', 'mb-order': 'Read m and b in left-to-right order', 'not-divided': 'Did not divide every term by the coefficient of y',
+    'no-divide': 'Didn’t divide by the rate', 'mb-swap': 'Slope and y-intercept swapped', 'mb-order': 'Read m and b in left-to-right order', 'not-divided': 'Did not divide every term by the coefficient of y',
     'hidden-1': 'Missed the hidden coefficient 1 (or −1)', 'h-slope': 'Horizontal line: gave the constant as the slope', 'b-zero': 'b = 0 not recognised',
     'si-swap': 'Swapped m and b in y = mx + b', 'si-zero-b': 'Dropped the x-term when b = 0', 'move-sign': 'Sign error moving a term across', 'part-div': 'Divided only some terms',
     'no-dist': 'Did not distribute', 'icpt-axis': 'Intercept written as a point on the wrong axis', 'icpt-none': 'Said there is no intercept', 'icpt-has': 'Gave a value where there is no intercept',

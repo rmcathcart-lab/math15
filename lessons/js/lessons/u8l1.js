@@ -123,8 +123,8 @@ function mountWarm() {
 const GRID = { width: 420, height: 420, xmin: -6.6, xmax: 6.6, ymin: -6.6, ymax: 6.6, xlabels: 2, ylabels: 2, fontSize: 16 };
 const EXG = {
   ex2: { lines: [{ m: 1, b: -3, col: BLUE, lab: [-1, -4, 'nw', 'y=x-3'] }, { m: -2, b: 3, col: AMB, lab: [-1, 5, 'w', 'y=-2x+3'] }], pt: [2, -1], pos: 'e' },
-  ex3: { lines: [{ m: -2, b: 1, col: BLUE, lab: [-2, 5, 'w', 'y=-2x+1'] }, { m: 1, b: -5, col: AMB, lab: [4, -1, 'se', 'y=x-5'] }], pt: [2, -3], pos: 'w' },
-  ex5: { lines: [{ m: -1, b: 3, col: BLUE, lab: [-2, 5, 'ne', 'y=-x+3'] }, { m: 2, b: -3, col: AMB, lab: [-1, -5, 'w', 'y=2x-3'] }], pt: [2, 1], pos: 'e' }
+  ex3: { lines: [{ m: -2, b: 1, col: BLUE, lab: [-2, 5, 'w', 'y=-2x+1'] }, { m: 1, b: -5, col: AMB, lab: [4, -1, 'se', 'y=x-5'] }], pt: [2, -3], pos: 'e' },
+  ex5: { lines: [{ m: -1, b: 3, col: BLUE, lab: [-1, 4, 'sw', 'y=-x+3'] }, { m: 2, b: -3, col: AMB, lab: [-1, -5, 'w', 'y=2x-3'] }], pt: [2, 1], pos: 'e' }
 };
 function mountStatics() {
   // Example 1: the finished graph
@@ -145,7 +145,7 @@ function mountStatics() {
       G.segment([x, y - 2], [x + 1, y - 2], { color: BLUE, width: 3.5, ends: [null, 'arrow'] });
     });
     [[0, 3], [1, 1], [2, -1]].forEach(([x, y]) => G.point(x, y, { color: INK }));
-    G.label(0, 2, T('-2'), { tex: true, pos: 'w', cls: 'bk-ptlab', color: BLUE });
+    G.label(0, 2, T('-2'), { pos: 'w', cls: 'bk-ptlab', color: BLUE });
     G.label(0.5, 1, T('+1'), { pos: 's', cls: 'bk-ptlab', color: BLUE });
     G.label(1.1, 3.6, T('y=-2x+3'), { pos: 'e', cls: 'bk-ptlab' });
   }
@@ -236,7 +236,7 @@ const DL = {
   ex1: { label: 'Example 1 check', e1: YF(2, 2, 'y=2x+2'), e2: YF(-1, 5, 'y=-x+5'), win: { xmin: -6.5, xmax: 6.5, ymin: -6.5, ymax: 6.5, xlabels: 2, ylabels: 2 },
     start: [4, -3], tour: [[0, 2], [3, 2], [1, 4]], l1: [-3, -4, 'w'], l2: [3.4, 1.6, 'ne'] },
   ex5: { label: 'Example 5 check', e1: STD(1, 1, 3, 'x+y=3'), e2: YF(2, -3, 'y=2x-3'), win: { xmin: -6.5, xmax: 6.5, ymin: -6.5, ymax: 6.5, xlabels: 2, ylabels: 2 },
-    start: [-3, -4], tour: [[0, 3], [3, 3], [2, 1]], l1: [-2, 5, 'ne'], l2: [-1, -5, 'w'] }
+    start: [-3, -4], tour: [[0, 3], [3, 3], [2, 1]], l1: [-1, 4, 'sw'], l2: [-1, -5, 'w'] }
 };
 const dragLab = {
   title: 'Drag the point: ✓ or ✗ for each equation',
@@ -351,7 +351,7 @@ const BH = {
   ex3: { label: 'Example 3', e1: STD(2, 1, 1, '2x+y=1'), r1: { tex: 'y=-2x+1', how: `subtract ${T('2x')} from each side` }, e2: YF(1, -5, 'y=x-5'), sol: [2, -3],
     l1: [-2, 5, 'w'], l2: [4, -1, 'se'], sp: 'e' },
   ex5: { label: 'Example 5', e1: STD(1, 1, 3, 'x+y=3'), r1: { tex: 'y=-x+3', how: `subtract ${T('x')} from each side` }, e2: YF(2, -3, 'y=2x-3'), sol: [2, 1],
-    l1: [-2, 5, 'ne'], l2: [-1, -5, 'w'], sp: 'e', orig: true }
+    l1: [-1, 4, 'sw'], l2: [-1, -5, 'w'], sp: 'e', orig: true }
 };
 const STEPS4 = ['Rewrite as ' + T('y=mx+b'), 'Graph both lines', 'Find where they cross', 'State ' + T('(x,\\ y)') + ', then check'];
 function byHandDef(first) {
@@ -539,11 +539,12 @@ const check = {
     const workOf = (eq) => {
       const std = !eq.Rs, v = std ? eq.L(px, py) : eq.R(px), want = std ? eq.c : py, ok = Math.abs(v - want) < 1e-9;
       const work = (std ? eq.Ls(px, py) : eq.Rs(px)) + (!std && Math.abs(eq.m) !== 1 && eq.b ? '=' + texNum(eq.m * px) + (eq.b < 0 ? '-' : '+') + Math.abs(eq.b) : '') + '=' + texNum(v);
-      const cmp = ok ? `matches ${std ? 'the right side, ' + T(texNum(want)) : T('y=' + texNum(want))}` : `but ${std ? 'the right side is ' + T(texNum(want)) : T('y=' + texNum(want))}`;
-      return { work, cmp, ok };
+      const tgt = std ? 'the right side, ' + T(texNum(want)) : T('y=' + texNum(want));
+      const cmp = ok ? `matches ${tgt}` : `but ${std ? 'the right side is ' + T(texNum(want)) : T('y=' + texNum(want))}`;
+      return { work, cmp, ok, tgt };
     };
     const W1 = workOf(d.e1), W2 = workOf(d.e2), o1 = W1.ok, o2 = W2.ok, both = o1 && o2;
-    const said = (w) => `${T(w.work)}, and that ${w.cmp}: ${w.ok ? '✓ true' : '✗ false'}`;
+    const said = (w) => (w.ok ? `${T(w.work)}, which matches ${w.tgt}: ✓ true` : `${T(w.work)}, ${w.cmp}: ✗ false`);
     const verdict = add(stage, h('div', 'u8l1-cverd ' + (both ? 'u8l1-cv-ok' : 'u8l1-cv-no'),
       both ? `✓ ✓ Both true: ${T(pt(px, py))} <b>is</b> the solution.` : `${T(pt(px, py))} is <b>not</b> the solution.`), LW / 2, 428);
     verdict.style.translate = '-50% 0'; verdict.style.opacity = 0;
@@ -721,10 +722,11 @@ export const _test = { STD, YF, chk, PR, DL, E1, BH, RE, CK, OO };
     for (;;) {
       const { m1, b1, m2, b2, x0, y0 } = twoLines(r, [-3, 4], [-4, 4]);
       const B = r.pick([1, 1, -1]);                     // the y-coefficient of the rewritten equation
-      const l1 = { A: -m1 * B, B, C: b1 * B };          // B(y − m1 x) = B b1
+      let l1 = { A: -m1 * B, B, C: b1 * B };            // B(y − m1 x) = B b1
+      if (l1.A < 0) l1 = { A: -l1.A, B: -l1.B, C: -l1.C + 0 };   // x-term positive, like the booklet's 2x + y = 1, x − y = 3
       if (l1.A === 0) continue;
       const e1 = gen(l1), e2 = siT(m2, b2), r1 = siT(m1, b1);
-      const how = B === 1 ? `\\text{subtract }${tm(l1.A, 'x', true)}\\text{ from each side}` : `\\text{subtract }${tm(l1.A, 'x', true)}\\text{, then change every sign}`;
+      const how = l1.B === 1 ? `\\text{subtract }${tm(l1.A, 'x', true)}\\text{ from each side}` : `\\text{subtract }${tm(l1.A, 'x', true)}\\text{, then change every sign}`;
       const [first, second] = r.chance(0.5) ? [[e1, BL], [e2, AM]] : [[e2, BL], [e1, AM]];
       const swap = first[0] === e2;
       const L1 = { l: l1, col: swap ? AM : BL }, L2 = { l: mb(m2, b2), col: swap ? BL : AM };

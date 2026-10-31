@@ -35,7 +35,7 @@ function panel(stage, x, y, w, hh, title, cls = '') {
 }
 const live = (p) => { p.classList.remove('u8l7-idle'); p.classList.add('u8l7-live'); };
 /** the problem being solved, across the top of a stage (Ryan, 2026-10-30: every explainer shows its question) */
-const qbar = (stage, x, y, w, hh, html) => add(stage, box(h('div', 'u8l7-qbar', html), w, hh), x, y);
+const qbar = (stage, x, y, w, hh, html) => add(stage, box(h('div', 'u8l7-qbar', `<div>${html}</div>`), w, hh), x, y);
 function rel(stage, el) {
   const s = stage.getBoundingClientRect(), r = el.getBoundingClientRect(), k = s.width / (stage.offsetWidth || s.width) || 1;
   return { x: (r.left - s.left) / k - stage.clientLeft, y: (r.top - s.top) / k - stage.clientTop, w: r.width / k, h: r.height / k };
@@ -442,16 +442,16 @@ const step4 = {
 /* =============================== Section 2: bar models (number and age) =============================== */
 const BR = {
   walk: { label: 'Walkthrough', text: 'Two numbers have a sum of <b>22</b>; the larger is <b>6 more</b> than the smaller.', kind: 'more', k: 6, total: 22,
-    small: 'S', big: 'L', names: ['larger', 'smaller'], eqT: 'L+S=22', eqC: 'L=S+6', cmp: '6 more than the smaller',
+    small: 'S', big: 'L', names: ['larger', 'smaller'], unk: 'The smaller number', bigW: 'the larger number', eqT: 'L+S=22', eqC: 'L=S+6', cmp: '6 more than the smaller',
     answer: 'The numbers are <b>14</b> and <b>8</b>.' },
   ex1: { label: 'Example 1 check', text: 'There are <b>30</b> students in Ms. Alvarez’s classroom. There are <b>8 more</b> girls than boys.', kind: 'more', k: 8, total: 30,
-    small: 'b', big: 'g', names: ['girls', 'boys'], eqT: 'b+g=30', eqC: 'g=b+8', cmp: '8 more girls than boys',
+    small: 'b', big: 'g', names: ['girls', 'boys'], unk: 'The number of boys', bigW: 'the girls', eqT: 'b+g=30', eqC: 'g=b+8', cmp: '8 more girls than boys',
     answer: '<b>11 boys</b> and <b>19 girls</b>.' },
   ex2: { label: 'Example 2 check', text: 'Jordan is <b>5 years older</b> than his sister Ava. The sum of their ages is <b>27</b>.', kind: 'more', k: 5, total: 27,
-    small: 'A', big: 'J', names: ['Jordan', 'Ava'], eqT: 'J+A=27', eqC: 'J=A+5', cmp: '5 years older than Ava',
+    small: 'A', big: 'J', names: ['Jordan', 'Ava'], unk: 'Ava’s age', bigW: 'Jordan', eqT: 'J+A=27', eqC: 'J=A+5', cmp: '5 years older than Ava',
     answer: '<b>Jordan is 16</b> and <b>Ava is 11</b>.' },
   times: { label: '4 times as old', text: 'Kim’s mom is <b>4 times</b> as old as Kim. The sum of their ages is <b>50</b>.', kind: 'times', m: 4, total: 50,
-    small: 'K', big: 'M', names: ['Mom', 'Kim'], eqT: 'K+M=50', eqC: 'M=4K', cmp: '4 times as old as Kim',
+    small: 'K', big: 'M', names: ['Mom', 'Kim'], unk: 'Kim’s age', bigW: 'Mom', eqT: 'K+M=50', eqC: 'M=4K', cmp: '4 times as old as Kim',
     answer: '<b>Kim is 10</b> and her <b>mom is 40</b>.' }
 };
 const bars = {
@@ -464,7 +464,7 @@ const bars = {
     const d = BR[k], W = ex.W, more = d.kind === 'more';
     const s = more ? (d.total - d.k) / 2 : d.total / (d.m + 1), b = more ? s + d.k : d.m * s;
     qbar(stage, 12, 8, W - 24, 50, d.text);
-    const X0 = 200, maxBar = W - X0 - 170, sc = maxBar / b, BH = 48, Y1 = 78, Y2 = 140;
+    const X0 = 200, maxBar = W - X0 - 250, sc = maxBar / b, BH = 48, Y1 = 78, Y2 = 140;
     const rowLab = (y, name, v) => add(stage, box(h('div', 'u8l7-blab', `${name} ${T(v)}`), 176, BH), 12, y);
     const lab1 = rowLab(Y1, d.names[1], d.small), lab2 = rowLab(Y2, d.names[0], d.big);
     const piece = (x, y, wd, txt, cls) => add(stage, box(h('div', 'u8l7-piece ' + cls, T(txt)), wd, BH), x, y);
@@ -496,14 +496,14 @@ const bars = {
     const sol = L(colR, T(`\\P{${d.small}=${s},\\ ${d.big}=${b}}`), 'u8l7-sol');
     const relabel = () => { sBar.innerHTML = T(String(s)); bPieces.forEach((p, i) => { if (!(more && i === 1)) p.innerHTML = T(String(s)); }); };
     const steps = [
-      { cap: `The <b>${d.names[1]}</b> is the unknown block: call it ${T(d.small)}.`, run: async (c) => {
+      { cap: `<b>${d.unk}</b> is the unknown block: call it ${T(d.small)}.`, run: async (c) => {
         await show(c, lab1); sBar.style.opacity = 1; await anim(c, sBar, [{ clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)' }], 600); await show(c, let1);
       } }
     ];
-    if (more) steps.push({ cap: `“${d.cmp}”: the ${d.names[0]} bar is one ${T(d.small)} block <b>plus ${d.k} more</b>. ${T(`\\A{${d.eqC}}`)}`, run: async (c) => {
+    if (more) steps.push({ cap: `“${d.cmp}”: the bar for ${d.bigW} is one ${T(d.small)} block <b>plus ${d.k} more</b>. ${T(`\\A{${d.eqC}}`)}`, run: async (c) => {
       await show(c, lab2); await show(c, let2); await pop(c, bPieces[0]); await pop(c, bPieces[1]); await show(c, eC);
     } });
-    else steps.push({ cap: `“${d.cmp}”: the ${d.names[0]} bar is <b>${d.m}</b> ${T(d.small)} blocks. ${T(`\\A{${d.eqC}}`)}`, run: async (c) => {
+    else steps.push({ cap: `“${d.cmp}”: the bar for ${d.bigW} is <b>${d.m}</b> ${T(d.small)} blocks. ${T(`\\A{${d.eqC}}`)}`, run: async (c) => {
       await show(c, lab2); await show(c, let2); for (const p of bPieces) await pop(c, p, 300); await show(c, eC);
     } });
     steps.push({ cap: `Together they make <b>${d.total}</b>: ${T(`\\B{${d.eqT}}`)}. Swap ${T(d.big)} for what it equals: ${T(subTex)}.`, run: async (c) => {
@@ -516,7 +516,7 @@ const bars = {
         tot.innerHTML = T(`${d.total}-${d.k}=${d.total - d.k}`); await pulse(c, tot, 1.12);
         relabel(); await show(c, take);
       } });
-      steps.push({ cap: `So ${T(`${d.small}=${s}`)}, and the ${d.names[0]} bar is ${T(`${s}+${d.k}=${b}`)}.`, run: async (c) => {
+      steps.push({ cap: `So ${T(`${d.small}=${s}`)}, and the bar for ${d.bigW} is ${T(`${s}+${d.k}=${b}`)}.`, run: async (c) => {
         bPieces[1].classList.remove('u8l7-gone'); await anim(c, bPieces[1], [{ opacity: 0.28, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], 400);
         tot.innerHTML = T(String(d.total)); await show(c, back); await pop(c, sol);
       } });
@@ -524,10 +524,10 @@ const bars = {
       steps.push({ cap: `Count the blocks: <b>${d.m + 1}</b> equal blocks make ${d.total}, so each block is ${T(`${d.total}\\div${d.m + 1}=${s}`)}.`, run: async (c) => {
         relabel(); for (const p of [sBar, ...bPieces]) await pulse(c, p, 1.06, 260); await show(c, take);
       } });
-      steps.push({ cap: `So ${T(`${d.small}=${s}`)}, and the ${d.names[0]} bar is ${T(`${d.m}\\times${s}=${b}`)}.`, run: async (c) => { await show(c, back); await pop(c, sol); } });
+      steps.push({ cap: `So ${T(`${d.small}=${s}`)}, and the bar for ${d.bigW} is ${T(`${d.m}\\times${s}=${b}`)}.`, run: async (c) => { await show(c, back); await pop(c, sol); } });
     }
     steps.push({ cap: `Check: ${T(more ? `${s}+${b}=${d.total}` : `${s}+${b}=${d.total}`)} ✓ and ${T(more ? `${b}=${s}+${d.k}` : `${b}=${d.m}(${s})`)} ✓. ${d.answer}`, run: async (c) => {
-      const st = stamp(stage, `✓ ${s} and ${b}`, { ok: true, x: W - 150, y: 186 }); await stampIn(c, st);
+      const st = stamp(stage, `✓ ${s} and ${b}`, { ok: true, x: W - 150, y: 330 }); await stampIn(c, st);
     } });
     return steps;
   }
@@ -539,7 +539,7 @@ const SW = {
     n: 40, lo: 2, hi: 3, total: 97, vl: 'j', vh: 'h', kind: 'item', nameLo: 'juice box', nameHi: 'hot dog', plLo: 'juice boxes', plHi: 'hot dogs', money: true, per: 10,
     e1: 'h+j=40', e2: '3h+2j=97', m: '2h+2j=80', r: 'h=97-80=17', back: 'j=40-17=23' },
   ex4: { label: 'Example 4 check', q: 'Student tickets cost <b>$5</b> and adult tickets cost <b>$8</b>. <b>50</b> tickets were sold for <b>$316</b>. How many of each?',
-    n: 50, lo: 5, hi: 8, total: 316, vl: 's', vh: 'a', kind: 'ticket', nameLo: 'student ticket', nameHi: 'adult ticket', plLo: 'student tickets', plHi: 'adult tickets', money: true, per: 10,
+    n: 50, lo: 5, hi: 8, total: 316, vl: 's', vh: 'a', kind: 'ticket', nameLo: 'student ticket', nameHi: 'adult ticket', plLo: 'student tickets', plHi: 'adult tickets', money: true, per: 10, swapLab: 'student → adult',
     e1: 's+a=50', e2: '5s+8a=316', m: '5s+5a=250', r: '3a=66\\ \\Rightarrow\\ a=22', back: 's=50-22=28' },
   hens: { label: 'Warm-up: hens and cows', q: 'Hens have <b>2</b> legs and cows have <b>4</b>. There are <b>10</b> animals and <b>28</b> legs. How many of each?',
     n: 10, lo: 2, hi: 4, total: 28, vl: 'h', vh: 'c', kind: 'animal', nameLo: 'hen', nameHi: 'cow', plLo: 'hens', plHi: 'cows', money: false, per: 10,
@@ -567,7 +567,7 @@ const swap = {
     const cy = top + rowsN * (bh + 10) + 4;
     const ctr = (x, label, cls) => add(stage, box(h('div', 'u8l7-ctr ' + cls, `<div class="u8l7-ck-l">${label}</div><div class="u8l7-ck-v">–</div>`), 270, 74), x, cy);
     const cx0 = (W - 3 * 270 - 2 * 18) / 2;
-    const cCount = ctr(cx0, `Count (Eq. 1): ${d.kind}s`, 'u8l7-cc1'), cVal = ctr(cx0 + 288, `Value (Eq. 2): ${unitW}`, 'u8l7-cc2'), cSw = ctr(cx0 + 576, `Swaps: ${d.nameLo} → ${d.nameHi}`, 'u8l7-cc3');
+    const cCount = ctr(cx0, `Count (Eq. 1): ${d.kind}s`, 'u8l7-cc1'), cVal = ctr(cx0 + 288, `Value (Eq. 2): ${unitW}`, 'u8l7-cc2'), cSw = ctr(cx0 + 576, `Swaps: ${d.swapLab || `${d.nameLo} → ${d.nameHi}`}`, 'u8l7-cc3');
     const setV = (e, v) => { e.querySelector('.u8l7-ck-v').textContent = v; };
     hide(cCount, cVal, cSw);
     const py = cy + 86, ep = panel(stage, 30, py, W - 60, 520 - py - 8, '', 'u8l7-swpan');
@@ -587,7 +587,7 @@ const swap = {
       { cap: `<b>Value</b> totals ${unitW} instead: ${T(`\\A{${d.e2}}`)}. Guess: all ${d.n} are ${d.plLo}. That is worth ${T(`${d.n}\\times${d.lo}=${all}`)} ${unitW}.`, run: async (c) => {
         await show(c, l2); await show(c, cVal, 200); items.forEach((e) => face(e, d.lo)); setV(cVal, val(all)); await pulse(c, cVal, 1.06);
       } },
-      { cap: `We need ${val(d.total)}${d.money ? '' : ' legs'}: short by <b>${short}</b>. Swap one ${d.nameLo} for a ${d.nameHi}: still ${d.n} ${d.kind}s, but <b>${step} more</b>.`, run: async (c) => {
+      { cap: `We need ${val(d.total)}${d.money ? '' : ' legs'}: short by <b>${short}</b>. Swap one ${d.nameLo} for ${/^[aeiou]/.test(d.nameHi) ? 'an' : 'a'} ${d.nameHi}: still ${d.n} ${d.kind}s, but <b>${step} more</b>.`, run: async (c) => {
         await show(c, cSw, 200); setV(cSw, 0);
         const e = items[d.n - 1]; await c.anim(e, [{ transform: 'rotateY(0deg)' }, { transform: 'rotateY(90deg)' }], 200); face(e, d.hi); await c.anim(e, [{ transform: 'rotateY(90deg)' }, { transform: 'rotateY(0deg)' }], 200);
         setV(cSw, 1); setV(cVal, val(all + step));
@@ -601,7 +601,7 @@ const swap = {
       } },
       { cap: `That is <b>elimination</b>! “All ${d.plLo}” is ${d.lo} × Eq. 1: ${T(d.m)}. Subtract it from Eq. 2 and only the swaps are left.`, run: async (c) => { await show(c, l3); await show(c, l4); } },
       { cap: `${T(`${d.vh}=${nh}`)} ${d.plHi} and ${T(`${d.vl}=${nl}`)} ${d.plLo}. Check: ${T(`${nl}+${nh}=${d.n}`)} ✓ and ${T(`${d.lo}(${nl})+${d.hi}(${nh})=${d.lo * nl}+${d.hi * nh}=${d.total}`)} ✓.`, run: async (c) => {
-        await show(c, l5); const s = stamp(stage, `${nh} ${d.plHi}, ${nl} ${d.plLo}`, { ok: true, x: W - 230, y: Math.min(500, py + 96), size: 'sm' }); await stampIn(c, s);
+        await show(c, l5); const s = stamp(stage, `${d.vh} = ${nh}, ${d.vl} = ${nl}`, { ok: true, x: W - 200, y: Math.min(500, py + 96), size: 'sm' }); await stampIn(c, s);
       } }
     ];
   }
@@ -717,7 +717,7 @@ const mixPour = {
         run: async (c) => { clearHl(tb); tb.highlightCol(1, true, 'u8l7-hb'); await show(c, n1); } },
       { cap: `<b>Value column:</b> the two values add up to the total value. ${T(tc(AMB, d.eq2))}`,
         run: async (c) => { clearHl(tb); tb.highlightCol(3, true, 'u8l7-ha'); await show(c, n2); } },
-      { cap: `<b>Prices are never added.</b> The mix costs ${T(`${d.value}\\div${d.tot}=${d.mprice}`)} dollars per kg: <b>between</b> $${d.B.rate < d.A.rate ? d.B.rate : d.A.rate} and $${d.B.rate < d.A.rate ? d.A.rate : d.B.rate}, not $${+d.A.rate + +d.B.rate}.`,
+      { cap: `<b>Prices are never added.</b> The mix costs ${T(`${d.value}\\div${d.tot}=${d.mprice}`)} dollars per kg: <b>between</b> $${Math.min(+d.A.rate, +d.B.rate)} and $${Math.max(+d.A.rate, +d.B.rate)}, not $${+d.A.rate + +d.B.rate}.`,
         run: async (c) => { clearHl(tb); tb.highlightCol(2, true, 'u8l7-hx'); await tb.reveal(2, 2, c); await show(c, n3); const s = stamp(n3, '✗', { ok: false, size: 'sm' }); s.classList.add('u8l7-inl'); await stampIn(c, s); } }
     ];
   }
@@ -815,24 +815,24 @@ void RED; void appear;
       if (kind === 0) {
         return { text: `The sum of two numbers is ${S2}. The larger number is ${k} more than the smaller number. Find the two numbers.`, q: '',
           atext: 'Let <i>L</i> be the larger number and <i>S</i> the smaller number.',
-          a: [sysT(`L+S=${S2}`, `L=S+${k}`), `(S+${k})+S=${S2}\\ \\Rightarrow\\ 2S=${S2 - k}\\ \\Rightarrow\\ S=${s},\\quad L=${s}+${k}=${b}`, `${W('The numbers are ')}${P(b)}${W(' and ')}${P(s)}.`] };
+          a: [sysT(`L+S=${S2}`, `L=S+${k}`), `(S+${k})+S=${S2}\\ \\Rightarrow\\ 2S=${S2 - k}\\ \\Rightarrow\\ S=${s}`, `L=${s}+${k}=${b}`, `${W('The numbers are ')}${P(b)}${W(' and ')}${P(s)}.`] };
       }
       if (kind === 1) {
         if (s > 25) continue;
         const [x, y] = r.pick(PEOPLE), X = x[0], Y = y[0];
         return { text: `${x} is ${k} years older than ${y}. The sum of their ages is ${S2}. How old is each of them?`, q: '',
           atext: `Let <i>${X}</i> be ${x}’s age and <i>${Y}</i> be ${y}’s age, in years.`,
-          a: [sysT(`${X}+${Y}=${S2}`, `${X}=${Y}+${k}`), `(${Y}+${k})+${Y}=${S2}\\ \\Rightarrow\\ 2${Y}=${S2 - k}\\ \\Rightarrow\\ ${Y}=${s},\\quad ${X}=${s}+${k}=${b}`,
+          a: [sysT(`${X}+${Y}=${S2}`, `${X}=${Y}+${k}`), `(${Y}+${k})+${Y}=${S2}\\ \\Rightarrow\\ 2${Y}=${S2 - k}\\ \\Rightarrow\\ ${Y}=${s}`, `${X}=${s}+${k}=${b}`,
             `${W(`${x} is `)}${P(b)}${W(` and ${y} is `)}${P(s)}.`] };
       }
       if (kind === 2) {
         return { text: `There are ${S2} students in the drama club. There are ${k} more girls than boys. How many boys and how many girls are in the club?`, q: '',
           atext: 'Let <i>b</i> be the number of boys and <i>g</i> the number of girls.',
-          a: [sysT(`b+g=${S2}`, `g=b+${k}`), `b+(b+${k})=${S2}\\ \\Rightarrow\\ 2b=${S2 - k}\\ \\Rightarrow\\ b=${s},\\quad g=${s}+${k}=${b}`, `${P(s)}${W(' boys and ')}${P(b)}${W(' girls')}`] };
+          a: [sysT(`b+g=${S2}`, `g=b+${k}`), `b+(b+${k})=${S2}\\ \\Rightarrow\\ 2b=${S2 - k}\\ \\Rightarrow\\ b=${s}`, `g=${s}+${k}=${b}`, `${P(s)}${W(' boys and ')}${P(b)}${W(' girls')}`] };
       }
       return { text: `A shelf holds ${S2} books, fiction and non-fiction. There are ${k} fewer non-fiction books than fiction books. How many of each are there?`, q: '',
         atext: 'Let <i>f</i> be the number of fiction books and <i>n</i> the number of non-fiction books.',
-        a: [sysT(`f+n=${S2}`, `n=f-${k}`), `f+(f-${k})=${S2}\\ \\Rightarrow\\ 2f=${S2 + k}\\ \\Rightarrow\\ f=${b},\\quad n=${b}-${k}=${s}`, `${P(b)}${W(' fiction and ')}${P(s)}${W(' non-fiction')}`] };
+        a: [sysT(`f+n=${S2}`, `n=f-${k}`), `f+(f-${k})=${S2}\\ \\Rightarrow\\ 2f=${S2 + k}\\ \\Rightarrow\\ f=${b}`, `n=${b}-${k}=${s}`, `${P(b)}${W(' fiction and ')}${P(s)}${W(' non-fiction')}`] };
     }
   }
 
@@ -846,21 +846,21 @@ void RED; void appear;
         const b = m * s, S2 = s + b;
         return { text: `One number is ${TIMES[m]} another number. Their sum is ${S2}. Find the two numbers.`, q: '',
           atext: 'Let <i>x</i> be the larger number and <i>y</i> the smaller number.',
-          a: [sysT(`x+y=${S2}`, `x=${m}y`), `${m}y+y=${S2}\\ \\Rightarrow\\ ${m + 1}y=${S2}\\ \\Rightarrow\\ y=${s},\\quad x=${m}(${s})=${b}`, `${W('The numbers are ')}${P(b)}${W(' and ')}${P(s)}.`] };
+          a: [sysT(`x+y=${S2}`, `x=${m}y`), `${m}y+y=${S2}\\ \\Rightarrow\\ ${m + 1}y=${S2}\\ \\Rightarrow\\ y=${s}`, `x=${m}(${s})=${b}`, `${W('The numbers are ')}${P(b)}${W(' and ')}${P(s)}.`] };
       }
       if (kind === 1) {
         if (m < 3 || SKIP_TIMES.includes(`${s},${m}`)) continue;
         const [who] = r.pick(PEOPLE), [el] = r.pick(ELDERS), b = m * s, S2 = s + b, E = el[0].toUpperCase(), K = who[0] === E ? 'k' : who[0];
         return { text: `${who}’s ${el} is ${TIMES[m]} as old as ${who}. The sum of their ages is ${S2}. How old is each of them?`, q: '',
           atext: `Let <i>${K}</i> be ${who}’s age and <i>${E}</i> the ${el}’s age, in years.`,
-          a: [sysT(`${K}+${E}=${S2}`, `${E}=${m}${K}`), `${K}+${m}${K}=${S2}\\ \\Rightarrow\\ ${m + 1}${K}=${S2}\\ \\Rightarrow\\ ${K}=${s},\\quad ${E}=${m}(${s})=${b}`,
+          a: [sysT(`${K}+${E}=${S2}`, `${E}=${m}${K}`), `${K}+${m}${K}=${S2}\\ \\Rightarrow\\ ${m + 1}${K}=${S2}\\ \\Rightarrow\\ ${K}=${s}`, `${E}=${m}(${s})=${b}`,
             `${W(`${who} is `)}${P(s)}${W(` and the ${el} is `)}${P(b)}.`] };
       }
       const k = r.int(1, 9), more = kind === 2, b = more ? m * s + k : m * s - k, S2 = s + b;
       if (m > 3 || b <= s) continue;
       return { text: `The sum of two numbers is ${S2}. The larger number is ${k} ${more ? 'more' : 'less'} than ${TIMES[m]} the smaller number. Find the two numbers.`, q: '',
         atext: 'Let <i>x</i> be the larger number and <i>y</i> the smaller number.',
-        a: [sysT(`x+y=${S2}`, `x=${m}y${more ? '+' : '-'}${k}`), `(${m}y${more ? '+' : '-'}${k})+y=${S2}\\ \\Rightarrow\\ ${m + 1}y=${more ? S2 - k : S2 + k}\\ \\Rightarrow\\ y=${s},\\quad x=${b}`,
+        a: [sysT(`x+y=${S2}`, `x=${m}y${more ? '+' : '-'}${k}`), `(${m}y${more ? '+' : '-'}${k})+y=${S2}\\ \\Rightarrow\\ ${m + 1}y=${more ? S2 - k : S2 + k}\\ \\Rightarrow\\ y=${s}`, `x=${b}`,
           `${W('The numbers are ')}${P(b)}${W(' and ')}${P(s)}.`] };
     }
   }
@@ -884,7 +884,7 @@ void RED; void appear;
       const elim = lo === 1
         ? `${W('Subtract Eq. 1 from Eq. 2: ')}${co(dq)}${q}=${rhs}`
         : `${lo}\\times${W('Eq. 1: ')}${lo}${p}+${lo}${q}=${lo * N};\\ \\ ${W('subtract: ')}${co(dq)}${q}=${rhs}`;
-      const solve = `${dq === 1 ? '' : `${q}=${rhs}\\div${dq}=`}${dq === 1 ? `${q}=` : ''}${nq},\\quad ${p}=${N}-${nq}=${np}`;
+      const solve = dq === 1 ? `${p}=${N}-${nq}=${np}` : `${q}=${rhs}\\div${dq}=${nq},\\quad ${p}=${N}-${nq}=${np}`;
       return { text: set.story(N, V, lo, hi), q: '', atext: set.lets,
         a: [sysT(`${p}+${q}=${N}`, `${co(lo)}${p}+${co(hi)}${q}=${V}`), elim, solve, `${P(np)}${W(` ${set.pl[0]} and `)}${P(nq)}${W(` ${set.pl[1]}`)}`] };
     }

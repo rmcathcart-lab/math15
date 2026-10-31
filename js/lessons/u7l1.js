@@ -17,6 +17,17 @@
   'use strict';
   var HW = root.HW, K = HW.kit, t = K.t, ok = K.ok, wrong = K.wrong, form = K.form, B = K.P, LN = HW.lines, DR = HW.draw;
 
+  /* ---------- keypad: one ordered pair (as in Math 15 u6l2.js) ---------- */
+  var PTK = 'u7l1pt', Wd = HW.widgets;
+  if (Wd && Wd.KEYSETS) {
+    var dk = function (n) { return { label: String(n), tex: String(n), plain: String(n) }; };
+    var KY = { del: { label: '⌫', fn: 'del', title: 'Delete' }, clear: { label: 'clear', fn: 'clear' }, left: { label: '◀', fn: 'left', title: 'Move left' },
+      right: { label: '▶', fn: 'right', title: 'Move right (out of a box)' }, enter: { label: 'Check ↵', fn: 'enter', wide: true }, minus: { label: '−', tex: '-', plain: '-' },
+      dot: { label: '.', tex: '.', plain: '.' }, par: { label: '( )', tex: '\\left(#0\\right)', plain: '(', title: 'Ordered pair: type x, y inside' }, comma: { label: ',', tex: ',', plain: ', ' } };
+    if (!Wd.KEYSETS[PTK]) Wd.KEYSETS[PTK] = [[dk(7), dk(8), dk(9), KY.par, KY.del], [dk(4), dk(5), dk(6), KY.minus, KY.clear], [dk(1), dk(2), dk(3), KY.comma, KY.left, KY.right], [dk(0), KY.dot, KY.enter]];
+    if (Wd.KEYHELP && !Wd.KEYHELP[PTK]) Wd.KEYHELP[PTK] = ['Press <b>( )</b>, type the two coordinates with <b>,</b> between them, then <b>▶</b> to step out.', 'Type a point as <code>(3, -2)</code>.'];
+  }
+
   HW.addCodes({
     'lin-said-lin': 'Called a non-linear relation linear', 'lin-said-non': 'Called a linear relation non-linear',
     'u7l1-tv-sign': 'Table: sign slip multiplying by a negative x', 'u7l1-tv-no-b': 'Table: left out b', 'u7l1-tv-b-sign': 'Table: used −b instead of b', 'u7l1-tv-add': 'Table: added m and x instead of multiplying',
@@ -217,7 +228,7 @@
     return mc(r, prompt, opts, t(S + '=' + nT(v)) + (on ? '. This equals ' + t('y=' + y0) + ', so the point <b>lies on</b> the line.' : t('\\ne ' + y0) + ', so the point does <b>not</b> lie on the line.'),
       ['Substitute the ' + t('x') + '-coordinate into the equation and simplify.', 'If the result equals the ' + t('y') + '-coordinate, the point is on the line.'], text);
   }
-  function ptPart(prompt, P, opt, sol, hints, text) { var p = B.point(prompt, P, opt, sol, hints, text); p.input.keys = 'pairs'; return p; }
+  function ptPart(prompt, P, opt, sol, hints, text) { var p = B.point(prompt, P, opt, sol, hints, text); p.input.keys = PTK; return p; }
 
   /* ---------------- Q1 templates ---------------- */
   function sortTemplates(r) {
