@@ -186,6 +186,7 @@
     W.forEach(function (w) { bad.push('(' + pS(w.is[0]) + ', ' + pS(w.is[1]) + ')'); });
     p.good = ['x=' + pS(P[0]) + ', y=' + pS(P[1])];
     p.bad = bad;
+    p.solution = String(p.solution).replace(/\\\(([xy])=([^\\]+)\\\) ⟹ \\\(\1=\2\\\)/g, '\\($1=$2\\)');
     return p;
   }
   /* equations in fixed boxes; each graded like K.line (opt.form, opt.wrong per box) */
@@ -606,7 +607,7 @@
     var s = (k1 > 1 ? 'Multiply the first equation by ' + t(k1) + ': ' + t(std(R1.a, R1.b, R1.c)) + '.<br>' : '') + (k2 > 1 ? 'Multiply the second equation by ' + t(k2) + ': ' + t(std(R2.a, R2.b, R2.c)) + '.<br>' : '');
     s += (add ? 'Add' : 'Subtract') + ' the equations (the ' + t(ex === 'x' ? 'x' : 'y') + '-terms cancel): ' + t(T([[kc, keep]]) + '=' + nT(res.c)) + ' ⟹ ' + t(keep + '=' + nT(sol)) + '.<br>';
     var back = E[0], other = ex === 'x' ? 'x' : 'y', ov = ex === 'x' ? P[0] : P[1];
-    s += 'Substitute into ' + t(std(back.a, back.b, back.c)) + ' to get ' + t(other + '=' + nT(ov)) + '.<br>' + ck(t(subT([[E[0].a, 'x'], [E[0].b, 'y']], { x: P[0], y: P[1] }) + '=' + nT(E[0].c))) + ' ' + ck(t(subT([[E[1].a, 'x'], [E[1].b, 'y']], { x: P[0], y: P[1] }) + '=' + nT(E[1].c)));
+    s += 'Substitute into ' + t(std(back.a, back.b, back.c)) + ' to get ' + t(other + '=' + nT(ov)) + '.<br>' + ck(t(subT([[E[0].a, 'x'], [E[0].b, 'y']], { x: P[0], y: P[1] }) + '=' + nT(E[0].c))) + ' and ' + ck(t(subT([[E[1].a, 'x'], [E[1].b, 'y']], { x: P[0], y: P[1] }) + '=' + nT(E[1].c)));
     return { text: s, step: T([[kc, keep]]) + '=' + nT(res.c), v: keep, root: sol };
   }
   /* exact (rational) intersection of two lines given as rows a x + b y = c */
@@ -822,7 +823,7 @@
         } }] },
     /* ---------- 20 ---------- */
     { num: '20', section: 'Part E — Mixed Review', shared: function (r) { return r.chance(0.06) ? { f1: 20, f2: 50, rt: 35 } : gen(function () { var f1 = 5 * r.int(2, 12), f2 = 5 * r.int(2, 12), rt = r.int(20, 60); return f1 === f2 ? null : { f1: f1, f2: f2, rt: rt }; }, null); },
-      stem: function (s) { return 'Gym A charges a ' + Dh(s.f1) + ' sign-up fee plus ' + Dh(s.rt) + ' per month; Gym B charges a ' + Dh(s.f2) + ' sign-up fee plus ' + Dh(s.rt) + ' per month. Let ' + t('C') + ' be the total cost in dollars after ' + t('m') + ' months.'; },
+      stem: function (s) { return 'Gym A charges ' + art(s.f1) + ' ' + Dh(s.f1) + ' sign-up fee plus ' + Dh(s.rt) + ' per month; Gym B charges ' + art(s.f2) + ' ' + Dh(s.f2) + ' sign-up fee plus ' + Dh(s.rt) + ' per month. Let ' + t('C') + ' be the total cost in dollars after ' + t('m') + ' months.'; },
       parts: [
         { id: '20a', sub: 'a', level: 'EMG', make: function (r, s) {
           var LA = line(s.rt, -1, s.f1), LB = line(s.rt, -1, s.f2);
@@ -841,7 +842,7 @@
             ['Compare the slopes (monthly fees) and the intercepts (sign-up fees).'], 'gym classify');
         } }] },
     /* ---------- 21 ---------- */
-    { num: '21', shared: function (r) { return r.chance(0.06) ? { w: 14, c: 3, l: 25, P: 78 } : gen(function () { var w = r.int(6, 25), c = r.int(1, 9), l = 2 * w - c; return { w: w, c: c, l: l, P: 2 * (l + w) }; }, null); },
+    { num: '21', shared: function (r) { return r.chance(0.06) ? { w: 14, c: 3, l: 25, P: 78 } : gen(function () { var w = r.int(6, 25), c = r.int(1, 9), l = 2 * w - c; if (w <= c) return null; return { w: w, c: c, l: l, P: 2 * (l + w) }; }, null); },
       stem: function (o) { return 'A community garden is rectangular. Its perimeter is ' + t(o.P + '\\text{ m}') + ', and its length is ' + t(o.c + '\\text{ m}') + ' less than twice its width. Let ' + t('l') + ' be the length and ' + t('w') + ' the width, in metres.'; },
       parts: [
         { id: '21a', sub: 'system', level: 'PRG', make: function (r, o) {
@@ -1167,22 +1168,22 @@
         } }] },
     /* ---------- 11 ---------- */
     { num: '11', shared: function (r) { return r.chance(0.08) ? { p: 2, q: 3, b1: -1, b2: -4 } : gen(function () { var q = r.pick([2, 3]), p = nz(r, -3, 3), b1 = nz(r, -4, 4), b2 = nz(r, -5, 5); if (gcd(p, q) !== 1 || b1 === b2) return null; var L1 = mbL([p, q], b1), L2 = mbL([p, q], b2); if (!lvisible(L1, W6) || !lvisible(L2, W6)) return null; return { p: p, q: q, b1: b1, b2: b2 }; }, null); },
-      stem: function (o) { return 'The system ' + t(yT([o.p, o.q], o.b1)) + ' (solid) and ' + t(std(o.p, -o.q, -o.q * o.b2)) + ' (dashed) is graphed below.' + sysFig([mbL([o.p, o.q], o.b1), mbL([o.p, o.q], o.b2)], W6); },
+      stem: function (o) { return 'The system ' + t(yT([o.p, o.q], o.b1)) + ' (solid) and ' + t(e11s(o, o.b2)) + ' (dashed) is graphed below.' + sysFig([mbL([o.p, o.q], o.b1), mbL([o.p, o.q], o.b2)], W6); },
       parts: [
         { id: 'e11a', sub: 'a', level: 'EMG', make: function (r, o) {
-          return clsMC(r, 'Classify the system from the picture, supported by the slopes and intercepts.', 'none', t(std(o.p, -o.q, -o.q * o.b2)) + ' is ' + t(yT([o.p, o.q], o.b2)) + '. Both slopes are ' + t(fT([o.p, o.q])) + '; the intercepts are ' + t(o.b1) + ' and ' + t(o.b2) + '.',
+          return clsMC(r, 'Classify the system from the picture, supported by the slopes and intercepts.', 'none', t(e11s(o, o.b2)) + ' is ' + t(yT([o.p, o.q], o.b2)) + '. Both slopes are ' + t(fT([o.p, o.q])) + '; the intercepts are ' + t(o.b1) + ' and ' + t(o.b2) + '.',
             { html: '<b>One solution</b> — the lines will cross somewhere off the grid.', why: 'Lines with equal slopes stay the same distance apart forever — they never cross.' }, null, 'E11 classify');
         } },
         { id: 'e11b1', sub: 'b standard form', level: 'PRG', make: function (r, o) {
-          var T0 = [o.p, -o.q, o.q * o.b1], key = std(o.p, -o.q, -o.q * o.b1);
-          var p = K.P.math('Multiply ' + t(yT([o.p, o.q], o.b1)) + ' by ' + t(o.q) + ' and write it in standard form, ' + t('Ax+By=C') + ' (so it lines up with ' + t(std(o.p, -o.q, -o.q * o.b2)) + ').', stdChk(T0, { p: o.p, q: -o.q }), key,
+          var T0 = [o.p, -o.q, o.q * o.b1], key = e11s(o, o.b1);
+          var p = K.P.math('Multiply ' + t(yT([o.p, o.q], o.b1)) + ' by ' + t(o.q) + ' and write it in standard form, ' + t('Ax+By=C') + ' (so it lines up with ' + t(e11s(o, o.b2)) + ').', stdChk(T0, { p: o.p, q: -o.q }), key,
             t(o.q + 'y=' + T([[o.p, 'x'], [o.q * o.b1, '']])) + ' ⟹ ' + t(key) + '.', ['Multiply every term by ' + t(o.q) + ', then move the ' + t('x') + '-term to the left.'], 'E11 standard form', { keys: 'eq', vars: ['x', 'y'], placeholder: ' ' });
-          p.bad = [yT([o.p, o.q], o.b1), std(o.p, -o.q, o.q * o.b1)];
+          p.bad = [yT([o.p, o.q], o.b1), e11s(o, -o.b1)];
           return p;
         } },
         { id: 'e11b2', sub: 'b conclusion', level: 'PRG', make: function (r, o) {
-          return ptNI('Now eliminate: subtract ' + t(std(o.p, -o.q, -o.q * o.b1)) + ' from ' + t(std(o.p, -o.q, -o.q * o.b2)) + '. What is the solution of the system?', 'none', [mbL([o.p, o.q], o.b1), mbL([o.p, o.q], o.b2)],
-            'Subtracting gives ' + t('0=' + (-o.q * o.b2 + o.q * o.b1)) + ', a <b>false</b> statement: no point satisfies both equations — <b>no solution</b>, which matches the parallel lines.', ['Both variables vanish. Is the statement left true or false?'], 'E11 conclusion');
+          return ptNI('Now eliminate: subtract ' + t(e11s(o, o.b1)) + ' from ' + t(e11s(o, o.b2)) + '. What is the solution of the system?', 'none', [mbL([o.p, o.q], o.b1), mbL([o.p, o.q], o.b2)],
+            'Subtracting gives ' + t('0=' + (o.p < 0 ? 1 : -1) * (o.q * o.b2 - o.q * o.b1)) + ', a <b>false</b> statement: no point satisfies both equations — <b>no solution</b>, which matches the parallel lines.', ['Both variables vanish. Is the statement left true or false?'], 'E11 conclusion');
         } }] },
     /* ---------- 12 ---------- */
     { num: '12', shared: function (r) { return r.chance(0.08) ? { m: -1, b: 3, x0: 2 } : gen(function () { var m = r.pick([-1, 1, -2, 2]), b = nz(r, -4, 4), x0 = nz(r, -3, 3), y0 = m * x0 + b; if (Math.abs(y0) > 5 || x0 === 0) return null; return { m: m, b: b, x0: x0 }; }, null); },
@@ -1261,7 +1262,7 @@
           return pointPart('Solve correctly.', o.P, [mbL(o.m, -o.q), Lsd(o.a, o.c, d)], { wrong: [] }, t(T([[o.a, 'x'], [o.c * o.m, 'x']]) + '-' + (o.c * o.q) + '=' + d) + ' ⟹ ' + t(T([[k, 'x']]) + '=' + (d + o.c * o.q)) + ' ⟹ ' + t('x=' + o.P[0]) + '; ' + t('y=' + o.m + '(' + o.P[0] + ')-' + o.q + '=' + o.P[1]) + '.<br>' + chkPt([{ a: -o.m, b: 1, c: -o.q }, { a: o.a, b: o.c, c: d }], o.P), ['Distribute to both terms in the bracket.'], 'E15 redo'); } }] },
     /* ---------- 16 ---------- */
     { num: '16', section: 'Extra Practice G — Applications', shared: function (r) { return r.chance(0.08) ? { fA: 60, rA: 4, fB: 20, rB: 6, v: 30 } : gen(function () { var rA = r.int(3, 8), rB = rA + r.int(1, 4), n = 5 * r.int(2, 8), fB = 5 * r.int(2, 8), fA = fB + (rB - rA) * n; if (fA > 200) return null; return { fA: fA, rA: rA, fB: fB, rB: rB, v: n + 5 * r.int(1, 4) * r.pick([1, -1]) }; }, null); },
-      stem: function (o) { return 'Two shops will print team shirts. Shop A charges a ' + Dh(o.fA) + ' setup fee plus ' + Dh(o.rA) + ' per shirt; Shop B charges a ' + Dh(o.fB) + ' setup fee plus ' + Dh(o.rB) + ' per shirt. Let ' + t('n') + ' be the number of shirts and ' + t('C') + ' the total cost in dollars.'; },
+      stem: function (o) { return 'Two shops will print team shirts. Shop A charges ' + art(o.fA) + ' ' + Dh(o.fA) + ' setup fee plus ' + Dh(o.rA) + ' per shirt; Shop B charges ' + art(o.fB) + ' ' + Dh(o.fB) + ' setup fee plus ' + Dh(o.rB) + ' per shirt. Let ' + t('n') + ' be the number of shirts and ' + t('C') + ' the total cost in dollars.'; },
       parts: [
         { id: 'e16a', sub: 'a', level: 'EMG', make: function (r, o) { return twoEq('Write one equation for each shop.', [line(o.rA, -1, o.fA), line(o.rB, -1, o.fB)], ['Shop A:', 'Shop B:'], { vars: ['n', 'C'], wrong: [[{ is: 'C=' + o.fA + 'n+' + o.rA, code: 'rate-fixed', hint: 'The setup fee is paid once; ' + Dh(o.rA) + ' is paid per shirt.' }], [{ is: 'C=' + o.fB + 'n+' + o.rB, code: 'rate-fixed', hint: 'The setup fee is paid once; ' + Dh(o.rB) + ' is paid per shirt.' }]] }, 'Shop A: ' + t('C=' + o.rA + 'n+' + o.fA) + '<br>Shop B: ' + t('C=' + o.rB + 'n+' + o.fB), ['Cost = price per shirt × shirts + setup fee.'], 'shops equations'); } },
         { id: 'e16b', sub: 'b', level: 'PRG', make: function (r, o) { var n = (o.fA - o.fB) / (o.rB - o.rA), C = o.rA * n + o.fA;
@@ -1289,11 +1290,11 @@
           return sysP('Write one equation for the total volume and one for the total acid.', [[1, 1, -o.M], [o.p1, o.p2, -o.pm * o.M]],
             { vars: ['x', 'y'], keyTex: ['x+y=' + o.M, String(o.p1 / 100) + 'x+' + String(o.p2 / 100) + 'y=' + N(A)], names: ['the volume', 'the acid'], factHints: ['the two volumes add to ' + t(o.M) + ' L.', 'pure acid: ' + t(String(o.p1 / 100) + 'x+' + String(o.p2 / 100) + 'y') + ' equals ' + t(o.pm + '\\%') + ' of ' + t(o.M) + ' L.'],
               wrong: [{ eq: String(o.p1 / 100) + 'x+' + String(o.p2 / 100) + 'y=' + String(o.pm / 100), code: 'u8l8-pct-total', hint: 'The right side is the litres of pure acid in the mixture: ' + t(String(o.pm / 100) + '(' + o.M + ')=' + N(A)) + '.' }, { eq: o.p1 + 'x+' + o.p2 + 'y=' + N(A), code: 'pct-decimal', hint: 'Change each percent to a decimal: ' + t(o.p1 + '\\%=' + o.p1 / 100) + '.' }],
-              good: [['x+y=' + o.M, (o.p1 / 10) + 'x+' + (o.p2 / 10) + 'y=' + N(A * 10)]] },
-            t('x+y=' + o.M) + '<br>' + t(String(o.p1 / 100) + 'x+' + String(o.p2 / 100) + 'y=' + String(o.pm / 100) + '(' + o.M + ')=' + N(A)) + ' — times ' + t(10) + ': ' + t((o.p1 / 10) + 'x+' + (o.p2 / 10) + 'y=' + N(10 * A)) + '.', ['One equation adds litres of solution; the other adds litres of pure acid.'], 'acid system'); } },
+              good: [['x+y=' + o.M, T([[o.p1 / 10, 'x'], [o.p2 / 10, 'y']]) + '=' + N(A * 10)]] },
+            t('x+y=' + o.M) + '<br>' + t(String(o.p1 / 100) + 'x+' + String(o.p2 / 100) + 'y=' + String(o.pm / 100) + '(' + o.M + ')=' + N(A)) + ' — times ' + t(10) + ': ' + t(T([[o.p1 / 10, 'x'], [o.p2 / 10, 'y']]) + '=' + N(10 * A)) + '.', ['One equation adds litres of solution; the other adds litres of pure acid.'], 'acid system'); } },
         { id: 'e17b', sub: 'b', level: 'ADV', make: function (r, o) { var A = o.pm * o.M / 100;
           return numsP('Solve: how many litres of each solution?', [{ label: o.p1 + '% solution', after: 'L' }, { label: o.p2 + '% solution', after: 'L' }], [o.x, o.y], { names: ['litres of ' + o.p1 + '% solution', 'litres of ' + o.p2 + '% solution'], sys: [[1, 1, -o.M], [o.p1, o.p2, -o.pm * o.M]], sysNames: ['the volume equation', 'the acid equation'] },
-            'The volume equation has coefficients of ' + t(1) + ', so substitute ' + t('x=' + o.M + '-y') + ' into ' + t((o.p1 / 10) + 'x+' + (o.p2 / 10) + 'y=' + N(10 * A)) + ': ' + t((o.p1 / 10) + '(' + o.M + '-y)+' + (o.p2 / 10) + 'y=' + N(10 * A)) + ' ⟹ ' + t(((o.p2 - o.p1) / 10) + 'y=' + N(10 * A - o.p1 / 10 * o.M)) + ' ⟹ ' + t('y=' + o.y) + ', ' + t('x=' + o.x) + '.<br>' + chk('Acid: ' + t(String(o.p1 / 100) + '(' + o.x + ')+' + String(o.p2 / 100) + '(' + o.y + ')=' + N(o.p1 * o.x / 100) + '+' + N(o.p2 * o.y / 100) + '=' + N(A)) + ' L') + '<br><b>' + o.x + ' L of the ' + o.p1 + '% solution and ' + o.y + ' L of the ' + o.p2 + '% solution.</b>',
+            'The volume equation has coefficients of ' + t(1) + ', so substitute ' + t('x=' + o.M + '-y') + ' into ' + t(T([[o.p1 / 10, 'x'], [o.p2 / 10, 'y']]) + '=' + N(10 * A)) + ': ' + t((o.p1 === 10 ? '' : o.p1 / 10) + '(' + o.M + '-y)+' + T([[o.p2 / 10, 'y']]) + '=' + N(10 * A)) + ' ⟹ ' + t(((o.p2 - o.p1) / 10) + 'y=' + N(10 * A - o.p1 / 10 * o.M)) + ' ⟹ ' + t('y=' + o.y) + ', ' + t('x=' + o.x) + '.<br>' + chk('Acid: ' + t(String(o.p1 / 100) + '(' + o.x + ')+' + String(o.p2 / 100) + '(' + o.y + ')=' + N(o.p1 * o.x / 100) + '+' + N(o.p2 * o.y / 100) + '=' + N(A)) + ' L') + '<br><b>' + o.x + ' L of the ' + o.p1 + '% solution and ' + o.y + ' L of the ' + o.p2 + '% solution.</b>',
             ['Multiply the acid equation by ' + t(10) + ', then substitute ' + t('x=' + o.M + '-y') + '.'], 'acid solve'); } }] },
     /* ---------- 18 ---------- */
     { num: '18', shared: function (r) { return r.chance(0.08) ? { X: 'q', Y: 'n', n1: 'quarters', n2: 'loonies', what: 'coins', each: 'each', dec: true, p1: 0.25, p2: 1, x: 23, y: 29, N: 52, T: 34.75 } : cv(r, { X: 'q', Y: 'n', n1: 'quarters', n2: 'loonies', what: 'coins', each: 'each', dec: true }, function () { return { p1: 0.25, p2: 1, x: r.int(10, 50), y: r.int(10, 50) }; }); },
@@ -1339,7 +1340,7 @@
             hints: ['Treat ' + t('a') + ' like a number: add the equations, then divide by ' + t(o.m + 1) + '.'], text: 'literal coefficients', bad: [[ky, kx], [T([[o.u + 1, 'a']]), ky]] };
         } },
         { id: 'e21b', sub: 'b', level: 'PRG', make: function (r, o) { var A = 4, P = [o.u * A, o.v * A];
-          return pointPart('Put ' + t('a=' + A) + ' into the system, giving ' + both(T([[o.m, 'x'], [1, 'y']]) + '=' + (o.m * o.u + o.v) * A, 'x-y=' + (o.u - o.v) * A) + ', and solve it.', P, [Lsd(o.m, 1, (o.m * o.u + o.v) * A), Lsd(1, -1, (o.u - o.v) * A)], {}, 'Add: ' + t((o.m + 1) + 'x=' + (o.m + 1) * o.u * A) + ' ⟹ ' + t('x=' + P[0]) + ', ' + t('y=' + P[1]) + ' — the same as ' + t('x=' + o.u + 'a') + ', ' + t('y=' + (o.v === 1 ? '' : o.v === -1 ? '-' : o.v) + 'a') + ' with ' + t('a=4') + ' ✓', ['Add the equations.'], 'literal check'); } }] },
+          return pointPart('Put ' + t('a=' + A) + ' into the system, giving ' + both(T([[o.m, 'x'], [1, 'y']]) + '=' + (o.m * o.u + o.v) * A, 'x-y=' + (o.u - o.v) * A) + ', and solve it.', P, [Lsd(o.m, 1, (o.m * o.u + o.v) * A), Lsd(1, -1, (o.u - o.v) * A)], {}, 'Add: ' + t((o.m + 1) + 'x=' + (o.m + 1) * o.u * A) + ' ⟹ ' + t('x=' + P[0]) + ', ' + t('y=' + P[1]) + ' — the same as ' + t('x=' + T([[o.u, 'a']])) + ', ' + t('y=' + T([[o.v, 'a']])) + ' with ' + t('a=4') + ' ✓', ['Add the equations.'], 'literal check'); } }] },
     /* ---------- 22 ---------- */
     { num: '22', shared: function (r) { return r.chance(0.08) ? { s: 5, p: 2, P: [2, 3], d: 2 } : gen(function () { var x0 = r.int(1, 5), y0 = r.int(1, 5), p = r.int(2, 4), d = r.int(1, 3); if (x0 === y0) return null; return { s: x0 + y0, p: p, P: [x0, y0], d: d }; }, null); },
       stem: function (o) { var c = o.d + 1, k3 = c * o.P[0] + o.d * o.P[1]; return '<b>Three lines.</b> ' + t('\\ell_1:\\ ' + std(1, 1, o.s)) + ', ' + t('\\ell_2:\\ ' + std(o.p, -1, o.p * o.P[0] - o.P[1])) + ', ' + t('\\ell_3:\\ ' + std(c, o.d, k3)) + '.'; },
@@ -1412,6 +1413,7 @@
     if (bk) return mkE(bk);
     return gen(function () { var b = r.pick([2, 3, 4]), n = nz(r, -7, 7), a1 = r.int(1, 6), a2 = r.int(1, 6), x0 = nz(r, -3, 4); if (n % b === 0 || a1 === a2) return null; return mkE([a1, b, a1 * x0 + n, a2, -b, a2 * x0 - n]); }, null);
   }
+  function e11s(o, b) { var g = o.p < 0 ? -1 : 1; return std(g * o.p, -g * o.q, -g * o.q * b); }
   function fracText(s, first) { return elimText(s, first === 'y' ? 'x' : 'y').text; }
   var E7BOOK = {
     a: { E1: yT(-4, 3), E2: std(8, 2, 6), kind: 'inf', tell: t(std(8, 2, 6)) + ' becomes ' + t(yT(-4, 3)) + ' — the same line as ' + t(yT(-4, 3)) + '.' },
