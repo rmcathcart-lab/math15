@@ -36,7 +36,7 @@
 .u8l3-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 6px 0 16px; }
 .u8l3-step { background: #f6f5f1; border-radius: 12px; padding: 10px 12px; font-size: 17px; line-height: 1.35; border-top: 5px solid var(--u8l3-p); }
 .u8l3-sn { font: 800 14px var(--round); text-transform: uppercase; letter-spacing: .06em; color: var(--u8l3-p); }
-.u8l3-st { font: 800 21px var(--round); color: var(--ink); margin-bottom: 4px; }
+.u8l3-st { font: 800 19px var(--round); color: var(--ink); margin-bottom: 4px; }
 
 /* ---------------- explainer pieces ---------------- */
 .u8l3-sfig { display: flex; flex-direction: column; align-items: center; }

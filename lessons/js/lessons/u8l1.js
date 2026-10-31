@@ -59,19 +59,14 @@ function chk(eq, x, y) {
 }
 const eqLine = (G, eq, o) => G.line([0, eq.f(0)], [1, eq.f(1)], o);
 const mark = (ok) => (ok ? '<b class="u8l1-ok">✓</b>' : '<b class="u8l1-no">✗</b>');
-/** a "check in eq" row for a panel: coloured equation, then the substitution and ✓/✗ */
-function checkRow(P, eq, x, y, col) {
-  const r = chk(eq, x, y);
-  return line(P, `<span class="u8l1-ckeq">${T(kc(col)(eq.tex))}</span><span class="u8l1-cksub">${T(r.tex)}</span>${mark(r.ok)}`, 'u8l1-ck');
-}
 /** the booklet's short check: "2-3=-1 ✓" (y = mx + b: the right side worked out) or "2+1=3 ✓" (ax + by = c: the left side) */
 function flat(eq, x, y) {
   if (eq.Rs) {
     const rv = eq.R(x), ok = Math.abs(rv - y) < 1e-9, mid = Math.abs(eq.m) !== 1 && eq.b ? '=' + texNum(eq.m * x) + (eq.b < 0 ? '-' : '+') + texNum(Math.abs(eq.b)) : '';
-    return { ok, tex: `${eq.Rs(x)}${mid}=${texNum(rv)}${ok ? '' : '\neq ' + texNum(y)}` };
+    return { ok, tex: `${eq.Rs(x)}${mid}=${texNum(rv)}${ok ? '' : '\\neq ' + texNum(y)}` };
   }
   const lv = eq.L(x, y), ok = Math.abs(lv - eq.c) < 1e-9;
-  return { ok, tex: `${eq.Ls(x, y)}=${texNum(lv)}${ok ? '' : '\neq ' + texNum(eq.c)}` };
+  return { ok, tex: `${eq.Ls(x, y)}=${texNum(lv)}${ok ? '' : '\\neq ' + texNum(eq.c)}` };
 }
 /** a one-line check row for a panel: "y=x-3:  2-3=-1  ✓" */
 function flatRow(P, eq, x, y, col) {
@@ -107,7 +102,7 @@ async function plotLine(G, c, m, b, color, o = {}) {
 /* =============================== warm-up: the clue graph and its sticky note =============================== */
 function mountWarm() {
   const host = document.getElementById('u8l1-wgraph'); if (!host) return;
-  const G = new Graph(host, { width: 380, height: 380, xmin: 0, xmax: 10.6, ymin: 0, ymax: 10.6, xlabels: 2, ylabels: 2, origin: true,
+  const G = new Graph(host, { width: 340, height: 340, xmin: 0, xmax: 10.6, ymin: 0, ymax: 10.6, xlabels: 2, ylabels: 2, origin: true,
     xtitle: '', ytitle: '', fontSize: 16, pad: [12, 12, 50, 56] });
   G.segment([0, 10], [10, 0], { color: RED, width: 4.5 });
   G.segment([0, 4], [6, 10], { color: BLUE, width: 4.5 });
@@ -117,7 +112,7 @@ function mountWarm() {
   host.appendChild(tx); host.appendChild(ty);
   const S = G.point(3, 7, { color: PUR, r: 9 }), SL = G.label(3, 7, T(kp('(3,\\ 7)')), { cls: 'bk-ptlab u8l1-glab', pos: 'e', gap: 12 });
   const note = h('button', 'u8l1-sticky', '<span>?</span>'); note.type = 'button'; note.title = 'Lift the sticky note';
-  G.html.appendChild(note);
+  G.el.appendChild(note);   // above the SVG (the html overlay lets taps through)
   const [px, py] = G.toPx(3, 7); note.style.left = px + 'px'; note.style.top = py + 'px';
   const set = (up) => { host.classList.toggle('u8l1-lifted', up); S.style.opacity = SL.style.opacity = up ? 1 : 0; };
   set(false);
@@ -505,7 +500,7 @@ const check = {
       const r = add(stage, box(h('div', 'u8l1-crow u8l1-crow' + (col === AMB ? 2 : 1)), LW - 20, 150), 10, y0);
       const ln = h('div', 'u8l1-cslots');
       parts.forEach((p, i) => {
-        if (p[0] === '@') { const v = p[1], s = h('span', 'u8l1-slot', T(v)); s.dataset.v = v; s.dataset.i = i; ln.appendChild(s); } else ln.appendChild(h('span', 'u8l1-cfix', T(p)));
+        if (p[0] === '@') { const v = p[1], s = h('span', 'u8l1-slot', T(v)); s.dataset.v = v; s.dataset.i = i; ln.appendChild(s); } else ln.appendChild(h('span', 'u8l1-cfix', T(/^[+-]/.test(p) && i > 0 ? '{}' + p + (p.length === 1 ? '{}' : '') : p)));
       });
       r.appendChild(h('div', 'u8l1-ctag', T(kc(col)(eq.tex)))); r.appendChild(ln);
       const res = h('div', 'u8l1-cres'); r.appendChild(res); r.style.opacity = 0;
@@ -535,15 +530,20 @@ const check = {
       await Promise.all(flies);
     };
     const res = async (c, R) => {
-      const r = flat(R.eq, px, py), eq = R.eq, std = !eq.Rs;
-      const v = std ? eq.L(px, py) : eq.R(px), want = std ? eq.c : py;
-      const work = (std ? eq.Ls(px, py) : eq.Rs(px)) + (!std && Math.abs(eq.m) !== 1 && eq.b ? '=' + texNum(eq.m * px) + (eq.b < 0 ? '-' : '+') + Math.abs(eq.b) : '') + '=' + texNum(v);
-      const cmp = r.ok ? `matches ${std ? 'the ' + T(texNum(want)) : T('y=' + texNum(want))}` : `but ${std ? 'it should be ' + T(texNum(want)) : T('y=' + texNum(want))}`;
-      R.res.innerHTML = `${T(work)}<span class="u8l1-cmp">${cmp}</span>${mark(r.ok)}`; R.r.classList.add(r.ok ? 'u8l1-good' : 'u8l1-bad');
-      await show(c, R.res); return r.ok;
+      const w = workOf(R.eq);
+      R.res.innerHTML = `${T(w.work)}<span class="u8l1-cmp">${w.cmp}</span>${mark(w.ok)}`; R.r.classList.add(w.ok ? 'u8l1-good' : 'u8l1-bad');
+      return w.ok;
+      await show(c, R.res);
     };
-    const o1 = chk(d.e1, px, py).ok, o2 = chk(d.e2, px, py).ok, both = o1 && o2;
-    const said = (eq, ok) => `${T(flat(eq, px, py).tex)}${ok ? ', which matches: ✓ true' : ': ✗ false'}`;
+    /** the worked side ("2(3)-5=6-5=1") and how it compares with the other side */
+    const workOf = (eq) => {
+      const std = !eq.Rs, v = std ? eq.L(px, py) : eq.R(px), want = std ? eq.c : py, ok = Math.abs(v - want) < 1e-9;
+      const work = (std ? eq.Ls(px, py) : eq.Rs(px)) + (!std && Math.abs(eq.m) !== 1 && eq.b ? '=' + texNum(eq.m * px) + (eq.b < 0 ? '-' : '+') + Math.abs(eq.b) : '') + '=' + texNum(v);
+      const cmp = ok ? `matches ${std ? 'the right side, ' + T(texNum(want)) : T('y=' + texNum(want))}` : `but ${std ? 'the right side is ' + T(texNum(want)) : T('y=' + texNum(want))}`;
+      return { work, cmp, ok };
+    };
+    const W1 = workOf(d.e1), W2 = workOf(d.e2), o1 = W1.ok, o2 = W2.ok, both = o1 && o2;
+    const said = (w) => `${T(w.work)}, and that ${w.cmp}: ${w.ok ? '✓ true' : '✗ false'}`;
     const verdict = add(stage, h('div', 'u8l1-cverd ' + (both ? 'u8l1-cv-ok' : 'u8l1-cv-no'),
       both ? `✓ ✓ Both true: ${T(pt(px, py))} <b>is</b> the solution.` : `${T(pt(px, py))} is <b>not</b> the solution.`), LW / 2, 428);
     verdict.style.translate = '-50% 0'; verdict.style.opacity = 0;
@@ -551,9 +551,9 @@ const check = {
     return [
       { cap: `The ordered pair ${T(pt(px, py))} means ${T('x=' + px)} and ${T('y=' + py)}.`, run: async (c) => { await pop(c, pair, 420); PT.style.opacity = 1; await pop(c, PT, 300); await fadeIn(c, PL); } },
       { cap: `Substitute into ${T(k1(d.e1.tex))}: ${T(px)} goes in for ${T('x')}, ${T(py)} goes in for ${T('y')}.`, run: (c) => sub(c, R1) },
-      { cap: `Work out each side: ${said(d.e1, o1)}.`, run: (c) => res(c, R1) },
+      { cap: `Work it out: ${said(W1)}.`, run: (c) => res(c, R1) },
       { cap: `Now ${T(k2(d.e2.tex))}: substitute the <b>same</b> numbers.`, run: (c) => sub(c, R2) },
-      { cap: `${said(d.e2, o2)}.${!o1 && !o2 ? ' (One ✗ was already enough to say no.)' : ''}`, run: (c) => res(c, R2) },
+      { cap: `${said(W2)}.${!o1 && !o2 ? ' (One ✗ was already enough to say no.)' : ''}`, run: (c) => res(c, R2) },
       { cap: both ? `Both true ✓ ✓: ${T(pt(px, py))} <b>is</b> the solution. On the graph it sits ${onWhich}: the crossing.`
         : `${o1 || o2 ? 'One is true, one is false' : 'Neither is true'}: ${T(pt(px, py))} is <b>not</b> the solution. On the graph it sits ${onWhich}.${d.maya ? ' (It fits Clue 1 only.)' : ''}`,
       run: async (c) => {

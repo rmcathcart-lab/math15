@@ -261,14 +261,15 @@
   function graphQ(num, sec, stem, items) {
     var parts = [];
     items.forEach(function (it) {
-      parts.push({ id: num + it.s, sub: it.s + ' i', level: it.lm, make: function (r, sh) { var o = sh[it.s]; return mbPart('(' + it.s + ') ' + t(siT(o.m, o.b)) + ': state the slope and ' + t('y') + '-intercept.', o.m, o.b, { mDiag: Math.abs(qv(o.m)) === 1 ? [[0, 'hidden-1', 'A bare ' + t((qv(o.m) < 0 ? '-' : '') + 'x') + ' means ' + t(qv(o.m) + 'x') + '.']] : [] }, t('m=' + qT(o.m)) + ', ' + t('b=' + o.b) + '.', null, 'mb ' + num + it.s); } });
-      parts.push({ id: num + it.s + '2', sub: it.s + ' ii', level: it.lg, make: function (r, sh) { var o = sh[it.s]; return graphMB('Graph ' + t(siT(o.m, o.b)) + '.', o.m, o.b, mbSol(o.m, o.b), null, 'graph ' + num + it.s); } });
+      parts.push({ id: num + it.s, sub: it.s + ' i', level: it.lm, make: function (r, sh) { var o = sh[it.s], E = eqShown(o); return mbPart('(' + it.s + ') ' + t(E) + ': state the slope and ' + t('y') + '-intercept.', o.m, o.b, { mDiag: (Math.abs(qv(o.m)) === 1 ? [[0, 'hidden-1', 'A bare ' + t((qv(o.m) < 0 ? '-' : '') + 'x') + ' means ' + t(qv(o.m) + 'x') + '.']] : []).concat(o.rev ? [[o.b, 'mb-order', t(o.b) + ' is written first, but it doesn’t multiply ' + t('x') + '.']] : []) }, (o.rev ? 'Reorder: ' + t(siT(o.m, o.b)) + '. ' : '') + t('m=' + qT(o.m)) + ', ' + t('b=' + o.b) + '.', null, 'mb ' + num + it.s); } });
+      parts.push({ id: num + it.s + '2', sub: it.s + ' ii', level: it.lg, make: function (r, sh) { var o = sh[it.s]; return graphMB('Graph ' + t(eqShown(o)) + '.', o.m, o.b, mbSol(o.m, o.b), null, 'graph ' + num + it.s); } });
     });
-    var q = { num: num, stem: stem, shared: function (r) { var o = {}; items.forEach(function (it) { o[it.s] = it.gen(r); }); return o; }, parts: parts };
+    var q = { num: num, stem: stem, shared: function (r) { var o = {}; items.forEach(function (it) { o[it.s] = it.gen(r); o[it.s].rev = o[it.s].b !== 0 && r.chance(0.3); }); return o; }, parts: parts };
     if (sec) q.section = sec;
     return q;
   }
 
+  function eqShown(o) { return o.rev ? 'y=' + o.b + term(o.m, 'x', false) : siT(o.m, o.b); }
   /* two lines: the drawing must show both */
   function twoLinesChk(L1, L2) {
     var k1 = keyLine(L1.m, L1.b), k2 = keyLine(L2.m, L2.b), both = gv([], DR.norm(k1).pieces.concat(DR.norm(k2).pieces));
@@ -289,13 +290,13 @@
         { id: '1a', sub: 'a', level: 'BEG', make: function (r) { var a = r.int(2, 9), c = r.pick(nz(-9, 9)); return mbPart('(a) ' + t(siT(a, c)), a, c, {}, t('m=' + a) + ', ' + t('b=' + c) + '.', null, '1a'); } },
         { id: '1b', sub: 'b', level: 'BEG', make: function (r) { var a = r.int(2, 9), c = r.pick(nz(-9, 9)); return mbPart('(b) ' + t(siT(-a, c)), -a, c, { mDiag: [[a, 'sign', 'Keep the minus sign: ' + t('m=-' + a) + '.']] }, t('m=-' + a) + ', ' + t('b=' + c) + '.', null, '1b'); } },
         { id: '1c', sub: 'c', level: 'BEG', make: function (r) { var m = r.pick(fracs([2, 3, 4, 5], 4, true)), c = r.pick(nz(-9, 9)); return mbPart('(c) ' + t(siT(m, c)), m, c, {}, t('m=' + qT(m)) + ', ' + t('b=' + c) + '.', null, '1c'); } },
-        { id: '1d', sub: 'd', level: 'BEG', make: function (r) { var m = qneg(r.pick(fracs([3, 4, 5, 7], 6, true))); return mbPart('(d) ' + t(siT(m, 0)), m, 0, {}, t(siT(m, 0) + '+0') + ': ' + t('m=' + qT(m)) + ', ' + t('b=0') + '.', null, '1d'); } },
+        { id: '1d', sub: 'd', level: 'BEG', make: function (r) { var m = qneg(r.pick(fracs([3, 4, 5, 7, 8, 9], 8, true))); return mbPart('(d) ' + t(siT(m, 0)), m, 0, {}, t(siT(m, 0) + '+0') + ': ' + t('m=' + qT(m)) + ', ' + t('b=0') + '.', null, '1d'); } },
         { id: '1e', sub: 'e', level: 'EMG', make: function (r) { var a = r.int(2, 9), c = r.int(2, 12); return mbPart('(e) ' + t('y=' + c + '-' + a + 'x'), -a, c, { mDiag: [[c, 'mb-order', t(c) + ' is the first number, but it doesn’t multiply ' + t('x') + '. Reorder: ' + t(siT(-a, c)) + '.']], bDiag: [[-a, 'mb-order', 'The number multiplying ' + t('x') + ' is the slope.']] }, 'Reorder: ' + t(siT(-a, c)) + '. ' + t('m=-' + a) + ', ' + t('b=' + c) + '.', null, '1e'); } }] },
       { num: '2', stem: 'Write the ' + t('y') + '-intercept of each equation as an ordered pair ' + t('(0,\\ b)') + '.', parts: [
         { id: '2a', sub: 'a', level: 'BEG', make: function (r) { var a = r.int(2, 9), c = -r.int(1, 12); return ptPart('(a) ' + t(siT(a, c)), [0, c], { wrong: [{ is: [0, a], code: 'mb-swap', hint: t(a) + ' is the slope. The ' + t('y') + '-intercept is the constant.' }, { is: [0, -c], code: 'sign', hint: 'Keep the sign of the constant.' }] }, t('b=' + c) + ', so the line crosses the ' + t('y') + '-axis at ' + t(ptT([0, c])) + '.', ['The ' + t('y') + '-intercept is on the ' + t('y') + '-axis, where ' + t('x=0') + '.'], '2a'); } },
         { id: '2b', sub: 'b', level: 'BEG', make: function (r) { var a = r.int(2, 9), c = r.int(1, 12); return ptPart('(b) ' + t(siT(-a, c)), [0, c], { wrong: [{ is: [0, -a], code: 'mb-swap', hint: t(-a) + ' is the slope. The ' + t('y') + '-intercept is the constant.' }] }, t('b=' + c) + ': ' + t(ptT([0, c])) + '.', ['The ' + t('y') + '-intercept is ' + t('(0,\\ b)') + '.'], '2b'); } },
         { id: '2c', sub: 'c', level: 'BEG', make: function (r) { var m = r.pick(fracs([3, 4, 5, 7], 6, true)).map(function (v, i) { return i === 0 && r.chance(0.3) ? -v : v; }); return ptPart('(c) ' + t(siT(m, 0)), [0, 0], { wrong: [{ is: [0, m], code: 'mb-swap', hint: 'That’s the slope. There is no constant term, so ' + t('b=0') + '.' }] }, 'No constant term: ' + t('b=0') + '. The line passes through the origin ' + t('(0,\\ 0)') + '.', ['There is no constant term — what is ' + t('b') + '?'], '2c'); } },
-        { id: '2d', sub: 'd', level: 'BEG', make: function (r) { var c = r.int(2, 15); return ptPart('(d) ' + t('y=' + c + '-x'), [0, c], { wrong: [{ is: [0, -1], code: 'mb-order', hint: t('-1') + ' is the slope (' + t('-x=-1x') + '). The constant is ' + t(c) + '.' }] }, 'Reorder: ' + t(siT(-1, c)) + ': ' + t('b=' + c) + ', ' + t(ptT([0, c])) + '.', ['The constant term is ' + t('b') + ', wherever it is written.'], '2d'); } }] },
+        { id: '2d', sub: 'd', level: 'BEG', make: function (r) { var c = r.pick(nz(-9, 15).filter(function (v) { return Math.abs(v) > 1; })); return ptPart('(d) ' + t('y=' + c + '-x'), [0, c], { wrong: [{ is: [0, -1], code: 'mb-order', hint: t('-1') + ' is the slope (' + t('-x=-1x') + '). The constant is ' + t(c) + '.' }] }, 'Reorder: ' + t(siT(-1, c)) + ': ' + t('b=' + c) + ', ' + t(ptT([0, c])) + '.', ['The constant term is ' + t('b') + ', wherever it is written.'], '2d'); } }] },
       { num: '3', stem: 'Write the slope of each equation as a fraction ' + t('\\dfrac{\\text{rise}}{\\text{run}}') + '.', parts: [
         { id: '3a', sub: 'a', level: 'BEG', make: function (r) { var a = r.int(2, 9), c = r.pick(nz(-9, 9)); return fracPart('(a) ' + t(siT(a, c)), a, '3a'); } },
         { id: '3b', sub: 'b', level: 'BEG', make: function (r) { var a = r.int(2, 9), c = r.pick(nz(-9, 9)); return fracPart('(b) ' + t(siT(-a, c)), -a, '3b'); } },
@@ -303,14 +304,14 @@
         { id: '3d', sub: 'd', level: 'BEG', make: function (r) { var m = qneg(r.pick(fracs([2, 3, 4], 9, false).filter(function (f) { return f[0] > f[1]; }))), c = r.pick(nz(-9, 9)); return fracPart('(d) ' + t(siT(m, c)), m, '3d'); } }] },
       /* ================= Part B ================= */
       graphQ('4', 'Part B — Graphing from y = mx + b', 'For each equation, state the slope and ' + t('y') + '-intercept, then graph the line: plot the ' + t('y') + '-intercept, use the slope to find a second point, and draw the line through both points.', [
-        { s: 'a', lm: 'BEG', lg: 'BEG', gen: function (r) { return intLine(r, [1], [-5, 5]); } },
-        { s: 'b', lm: 'BEG', lg: 'BEG', gen: function (r) { return intLine(r, [2], [-4, 4]); } },
-        { s: 'c', lm: 'BEG', lg: 'BEG', gen: function (r) { return intLine(r, [3], [-6, 3]); } },
+        { s: 'a', lm: 'BEG', lg: 'BEG', gen: function (r) { return intLine(r, [1], [-6, 6]); } },
+        { s: 'b', lm: 'BEG', lg: 'BEG', gen: function (r) { return intLine(r, [2], [-6, 6]); } },
+        { s: 'c', lm: 'BEG', lg: 'BEG', gen: function (r) { return intLine(r, [3], [-6, 6]); } },
         { s: 'd', lm: 'BEG', lg: 'BEG', gen: function (r) { return intLine(r, [4, 3], [-4, 4]); } }]),
       graphQ('5', null, 'Same instruction as Question 4. Each of these lines has a <b>negative</b> slope.', [
-        { s: 'a', lm: 'BEG', lg: 'EMG', gen: function (r) { return intLine(r, [-1], [-5, 5]); } },
-        { s: 'b', lm: 'BEG', lg: 'EMG', gen: function (r) { return intLine(r, [-2], [-4, 5]); } },
-        { s: 'c', lm: 'BEG', lg: 'EMG', gen: function (r) { return intLine(r, [-3], [-5, 4]); } }]),
+        { s: 'a', lm: 'BEG', lg: 'EMG', gen: function (r) { return intLine(r, [-1], [-6, 6]); } },
+        { s: 'b', lm: 'BEG', lg: 'EMG', gen: function (r) { return intLine(r, [-2], [-6, 6]); } },
+        { s: 'c', lm: 'BEG', lg: 'EMG', gen: function (r) { return intLine(r, [-3], [-6, 6]); } }]),
       graphQ('6', null, 'Same instruction as Question 4. Each of these lines has a <b>fractional</b> slope.', [
         { s: 'a', lm: 'BEG', lg: 'PRG', gen: function (r) { return fracLine(r, [[1, 2], [1, 3]], [-5, 3]); } },
         { s: 'b', lm: 'BEG', lg: 'PRG', gen: function (r) { return fracLine(r, [[3, 4], [2, 3], [3, 5], [2, 5]], [-4, 3]); } },
@@ -326,24 +327,24 @@
             { html: 'The slope only works when you start on the ' + t('x') + '-axis.', why: 'The slope works from any point of the line. And ' + t('(0,\\ b)') + ' is on the ' + t('y') + '-axis.' }],
             t('b') + ' is in the equation, so ' + t(ptT([0, b])) + ' is a point you know for certain without any arithmetic. From there the slope gives more points.', ['What can you read from ' + t(siT(m, b)) + ' without calculating?'], 'why start at b');
         } }] },
-      { num: '8', shared: function (r) { return { a: r.int(2, 9) }; }, stem: function (s) { return 'A line has slope ' + t(-s.a) + '.'; }, parts: [
+      { num: '8', shared: function (r) { return { a: r.int(2, 12) * (r.chance(0.75) ? 1 : -1) }; }, stem: function (s) { return 'A line has slope ' + t(-s.a) + '.'; }, parts: [
         { id: '8a', level: 'EMG', make: function (r, s) {
           var first = null, m = -s.a;
           var c1 = riseRunC(m, null), c2 = riseRunC(m, null, function () { return first; });
           var p = B.fields('(a) Write the slope as two different but equivalent fractions ' + t('\\dfrac{\\text{rise}}{\\text{run}}') + '.', [{ label: 'Fraction 1', name: 'fraction 1', mode: 'math', keys: 'fraction' }, { label: 'Fraction 2', name: 'fraction 2', mode: 'math', keys: 'fraction' }], [function (resp) { var f = fracParts(cleanS(resp)); first = f && f.frac; return c1(resp); }, c2],
             ['\\frac{' + m + '}{1}', '\\frac{' + s.a + '}{-1}'], t('\\frac{' + m + '}{1}') + ' and ' + t('\\frac{' + s.a + '}{-1}'),
-            t(m + '=\\frac{' + m + '}{1}') + ' (down ' + t(s.a) + ', right ' + t('1') + ') ' + t('=\\frac{' + s.a + '}{-1}') + ' (up ' + t(s.a) + ', left ' + t('1') + '). Others work too, e.g. ' + t('\\frac{' + 2 * m + '}{2}') + '.', ['Any whole number can be written over ' + t('1') + '.', 'Moving the minus sign from the top to the bottom keeps the value the same.'], '8a two fractions');
+            t(m + '=\\frac{' + m + '}{1}') + ' (' + (m < 0 ? 'down ' : 'up ') + t(Math.abs(m)) + ', right ' + t('1') + ') ' + t('=\\frac{' + s.a + '}{-1}') + ' (' + (m < 0 ? 'up ' : 'down ') + t(Math.abs(m)) + ', left ' + t('1') + '). Others work too, e.g. ' + t('\\frac{' + 2 * m + '}{2}') + '.', ['Any whole number can be written over ' + t('1') + '.', 'Moving the minus sign from the top to the bottom keeps the value the same.'], '8a two fractions');
           p.good = [['\\frac{' + 2 * m + '}{2}', '\\frac{' + m + '}{1}']];
           p.bad = [['\\frac{' + m + '}{1}', '\\frac{' + m + '}{1}'], [String(m), '\\frac{' + s.a + '}{-1}']];
           return p;
         } },
         { id: '8b', level: 'EMG', make: function (r, s) {
-          return mc(r, '(b) Why do ' + t('\\frac{-' + s.a + '}{1}') + ' and ' + t('\\frac{' + s.a + '}{-1}') + ' produce the same line?', [
-            { html: 'They are the same number. Down ' + t(s.a) + '-right ' + t('1') + ' and up ' + t(s.a) + '-left ' + t('1') + ' are opposite moves along the same line, so both land on it.', right: true },
+          return mc(r, '(b) Why do ' + t('\\frac{' + (-s.a) + '}{1}') + ' and ' + t('\\frac{' + s.a + '}{-1}') + ' produce the same line?', [
+            { html: 'They are the same number. ' + (s.a > 0 ? 'Down' : 'Up') + ' ' + t(Math.abs(s.a)) + '-right ' + t('1') + ' and ' + (s.a > 0 ? 'up' : 'down') + ' ' + t(Math.abs(s.a)) + '-left ' + t('1') + ' are opposite moves along the same line, so both land on it.', right: true },
             { html: 'They don’t: one line rises and the other falls.', why: 'Both fractions equal ' + t(-s.a) + ': each move goes the same direction along the line, just in opposite senses.' },
             { html: 'Because a slope can always be written upside down.', why: t('\\frac{1}{' + (-s.a) + '}') + ' is a different slope. Here only the minus sign moves.' },
-            { html: 'Because both have ' + t(s.a) + ' in them, and the sign never matters.', why: 'The sign matters: ' + t(s.a) + ' and ' + t(-s.a) + ' are different slopes. Here both fractions are ' + t(-s.a) + '.' }],
-            t('\\frac{-' + s.a + '}{1}=\\frac{' + s.a + '}{-1}=' + (-s.a)) + '. Stepping down ' + t(s.a) + ' and right ' + t('1') + ', or up ' + t(s.a) + ' and left ' + t('1') + ', travels the same line in opposite directions.', ['Work out each fraction as a single number.'], '8b same line');
+            { html: 'Because both have ' + t(Math.abs(s.a)) + ' in them, and the sign never matters.', why: 'The sign matters: ' + t(s.a) + ' and ' + t(-s.a) + ' are different slopes. Here both fractions are ' + t(-s.a) + '.' }],
+            t('\\frac{' + (-s.a) + '}{1}=\\frac{' + s.a + '}{-1}=' + (-s.a)) + '. The two moves travel the same line in opposite directions.', ['Work out each fraction as a single number.'], '8b same line');
         } }] },
       { num: '9', shared: function (r) {
           var C = r.pick([['A bike rental company', 'hours rented'], ['A canoe rental company', 'hours rented'], ['A kayak rental shop', 'hours rented'], ['An e-scooter rental', 'hours rented']]);
@@ -416,7 +417,7 @@
           return mc(r, '<i>(Multiple Choice)</i> Which statement is <b>false</b> for the line ' + t(eq) + '?', ['A', 'B', 'C', 'D'].map(function (k) { return S[k]; }),
             'Check each: ' + ['A', 'B', 'C', 'D'].map(function (k) { return k === F ? '<b>' + why[k] + ' — false.</b>' : S[k].why; }).join('<br>'), ['Test every statement against ' + t(eq) + '.'], '12 false statement', true);
         } }] },
-      { num: '13', shared: function (r) { return pickWhere(function () { return { a: r.pick([1, 2, 3, 4, 5, 6]), x0: r.int(1, 4) }; }, function (o) { return o.a * o.x0 <= 12 && (o.a * o.x0 * o.x0) % 2 === 0; }); },
+      { num: '13', shared: function (r) { return pickWhere(function () { return { a: r.pick([1, 2, 3, 4, 5, 6]), x0: r.int(1, 6) }; }, function (o) { return o.a * o.x0 <= 18 && (o.a * o.x0 * o.x0) % 2 === 0; }); },
         stem: function (s) { var c = s.a * s.x0; return 'Consider the line with equation ' + t(siT(-s.a, c)) + '. The line intersects the ' + t('x') + '-axis at ' + t('P') + ' and the ' + t('y') + '-axis at ' + t('Q') + '. Triangle ' + t('POQ') + ' is formed, where ' + t('O') + ' is the origin.'; }, parts: [
         { id: '13', level: 'PRG', make: function (r, s) {
           var c = s.a * s.x0, A = s.x0 * c / 2;
@@ -466,15 +467,10 @@
           p.bad = [[left, right]];
           return p;
         } }; }
-        return [P('e3a', 'EMG', function (r) { return -r.int(2, 9); }), P('e3b', 'EMG', function (r) { return qneg(r.pick(fracs([3, 4, 5, 7], 6, true))); }), P('e3c', 'EMG', function (r) { return r.pick(fracs([2, 3, 4], 9, false).filter(function (f) { return f[0] > f[1]; })); })];
+        return [P('e3a', 'EMG', function (r) { return r.int(2, 12) * (r.chance(0.7) ? -1 : 1); }), P('e3b', 'EMG', function (r) { return qneg(r.pick(fracs([3, 4, 5, 7, 8, 9], 8, true))); }), P('e3c', 'EMG', function (r) { var f = r.pick(fracs([2, 3, 4], 9, false).filter(function (f) { return f[0] > f[1]; })); return r.chance(0.6) ? f : qneg(f); })];
       })() },
       /* ================= Part B ================= */
       { num: '4', section: 'Extra practice B — Rearrange First, Then Graph', stem: 'None of these equations is in ' + t('y=mx+b') + ' form yet. Rearrange each one, then graph it.', parts: (function () {
-        var gens = {
-          a: function (r) { var k = r.pick([2, 3]), o = intLine(r, [2, 3, -2, 4], [-4, 3]); return { eq: k + 'y=' + lin([[k * o.m, 'x'], [k * o.b, '']]), m: o.m, b: o.b, k: k, sol: 'Divide every term by ' + t(k) + ': ' + t(siT(o.m, o.b)) + '.' }; },
-          b: function (r) { var o = intLine(r, [-3, -2, -4, -1], [1, 6]); return { eq: lin([[-o.m, 'x'], [1, 'y']]) + '=' + o.b, m: o.m, b: o.b, k: 1, sol: 'Subtract ' + t(term(-o.m, 'x', true)) + ': ' + t(siT(o.m, o.b)) + '.' }; },
-          c: function (r) { var o = fracLine(r, [[-3, 4], [-1, 2], [-2, 3], [-1, 4]], [1, 4]), q = Q(o.m); return { eq: axbyc(-q[0], q[1], q[1] * o.b), m: o.m, b: o.b, k: q[1], sol: 'Subtract ' + t(term(-q[0], 'x', true)) + ': ' + t(q[1] + 'y=' + lin([[q[0], 'x'], [q[1] * o.b, '']])) + '. Divide every term by ' + t(q[1]) + ': ' + t(siT(o.m, o.b)) + '.' }; },
-          d: function (r) { var o = fracLine(r, [[1, 2], [1, 3], [1, 4]], [-5, -1]), q = Q(o.m); return { eq: axbyc(1, -q[1], -q[1] * o.b), m: o.m, b: o.b, k: -q[1], sol: 'Subtract ' + t('x') + ': ' + t('-' + q[1] + 'y=-x' + (-q[1] * o.b < 0 ? '' : '+') + (-q[1] * o.b)) + '. Divide every term by ' + t('-' + q[1]) + ': ' + t(siT(o.m, o.b)) + '.' }; } };
         var out = [];
         ['a', 'b', 'c', 'd'].forEach(function (L) {
           var lev = L === 'a' || L === 'b' ? 'EMG' : 'PRG';
@@ -492,10 +488,10 @@
       })(), shared: function (r) { var o = {}; ['a', 'b', 'c', 'd'].forEach(function (L) { o[L] = ({
           a: function () { var k = r.pick([2, 3]), q = intLine(r, [2, 3, -2, 4], [-4, 3]); return { eq: k + 'y=' + lin([[k * q.m, 'x'], [k * q.b, '']]), m: q.m, b: q.b, k: k, sol: 'Divide every term by ' + t(k) + ': ' + t(siT(q.m, q.b)) + '.' }; },
           b: function () { var q = intLine(r, [-3, -2, -4, -1], [1, 6]); return { eq: lin([[-q.m, 'x'], [1, 'y']]) + '=' + q.b, m: q.m, b: q.b, k: 1, sol: 'Subtract ' + t(term(-q.m, 'x', true)) + ' from both sides: ' + t(siT(q.m, q.b)) + '.' }; },
-          c: function () { var q = fracLine(r, [[-3, 4], [-1, 2], [-2, 3], [-1, 4]], [1, 4]), f = Q(q.m); return { eq: axbyc(-f[0], f[1], f[1] * q.b), m: q.m, b: q.b, k: f[1], sol: 'Subtract ' + t(term(-f[0], 'x', true)) + ': ' + t(f[1] + 'y=' + lin([[f[0], 'x'], [f[1] * q.b, '']])) + '. Divide every term by ' + t(f[1]) + ': ' + t(siT(q.m, q.b)) + '.' }; },
-          d: function () { var q = fracLine(r, [[1, 2], [1, 3], [1, 4]], [-5, -1]), f = Q(q.m); return { eq: axbyc(1, -f[1], -f[1] * q.b), m: q.m, b: q.b, k: -f[1], sol: 'Subtract ' + t('x') + ': ' + t('-' + f[1] + 'y=-x' + (-f[1] * q.b < 0 ? '' : '+') + (-f[1] * q.b)) + '. Divide every term by ' + t('-' + f[1]) + ': ' + t(siT(q.m, q.b)) + '.' }; } })[L](); }); return o; } },
+          c: function () { var q = fracLine(r, [[-3, 4], [-1, 2], [-2, 3], [-1, 4]], [-2, 4]), f = Q(q.m); return { eq: axbyc(-f[0], f[1], f[1] * q.b), m: q.m, b: q.b, k: f[1], sol: 'Subtract ' + t(term(-f[0], 'x', true)) + ': ' + t(f[1] + 'y=' + lin([[f[0], 'x'], [f[1] * q.b, '']])) + '. Divide every term by ' + t(f[1]) + ': ' + t(siT(q.m, q.b)) + '.' }; },
+          d: function () { var q = fracLine(r, [[1, 2], [1, 3], [1, 4], [3, 2], [2, 3]], [-5, -1]), f = Q(q.m); return { eq: axbyc(f[0], -f[1], -f[1] * q.b), m: q.m, b: q.b, k: -f[1], sol: 'Subtract ' + t(term(f[0], 'x', true)) + ': ' + t('-' + f[1] + 'y=' + lin([[-f[0], 'x'], [-f[1] * q.b, '']])) + '. Divide every term by ' + t('-' + f[1]) + ': ' + t(siT(q.m, q.b)) + '.' }; } })[L](); }); return o; } },
       /* ================= Part C ================= */
-      { num: '5', section: 'Extra practice C — Horizontal and Vertical Lines', stem: 'Graph each line, then fill in all three boxes. Use <b>none</b> or <b>undef.</b> (undefined) where that is the correct answer.', shared: function (r) { return { h: r.pick(nz(-5, 5)), v: r.pick(nz(-5, 5)) }; }, parts: [
+      { num: '5', section: 'Extra practice C — Horizontal and Vertical Lines', stem: 'Graph each line, then fill in all three boxes. Use <b>none</b> or <b>undef.</b> (undefined) where that is the correct answer.', shared: function (r) { return { h: r.pick(nz(-6, 6)), v: r.pick(nz(-6, 6)) }; }, parts: [
         { id: 'e5a', sub: 'a i', level: 'BEG', make: function (r, s) { var key = lineV([-5, s.h], [5, s.h]); return B.graph('(a) Graph ' + t('y=' + s.h) + '.' + PADHELP, padI(), exactChk(key, [{ is: lineV([s.h, -5], [s.h, 5]), code: 'gr-vh', hint: 'That’s the vertical line ' + t('x=' + s.h) + '. On ' + t('y=' + s.h) + ' every point has ' + t('y') + '-value ' + t(s.h) + ': a <b>horizontal</b> line.' }, { is: lineV([-5, -s.h], [5, -s.h]), code: 'gr-b-sign', hint: 'Check its height: ' + t('y=' + s.h) + '.' }]), key, 'Every point has ' + t('y=' + s.h) + ': the horizontal line through ' + t(ptT([0, s.h])) + '.', ['Every point on the line has the same ' + t('y') + '-value.'], 'EP5a graph'); } },
         { id: 'e5a2', sub: 'a ii', level: 'EMG', make: function (r, s) { return hvPart('(a) ' + t('y=' + s.h), 0, s.h, 'none', 'horizontal (' + t('y=' + s.h) + ')', 'Slope ' + t('0') + ' (no rise), ' + t('y') + '-intercept ' + t(s.h) + ', ' + t('x') + '-intercept <b>none</b>: the line runs parallel to the ' + t('x') + '-axis and never meets it.'); } },
         { id: 'e5b', sub: 'b i', level: 'BEG', make: function (r, s) { var key = lineV([s.v, -5], [s.v, 5]); return B.graph('(b) Graph ' + t('x=' + s.v) + '.' + PADHELP, padI(), exactChk(key, [{ is: lineV([-5, s.v], [5, s.v]), code: 'gr-vh', hint: 'That’s the horizontal line ' + t('y=' + s.v) + '. On ' + t('x=' + s.v) + ' every point has ' + t('x') + '-value ' + t(s.v) + ': a <b>vertical</b> line.' }, { is: lineV([-s.v, -5], [-s.v, 5]), code: 'gr-b-sign', hint: 'Check where it crosses the ' + t('x') + '-axis: ' + t('x=' + s.v) + '.' }]), key, 'Every point has ' + t('x=' + s.v) + ': the vertical line through ' + t(ptT([s.v, 0])) + '.', ['Every point on the line has the same ' + t('x') + '-value.'], 'EP5b graph'); } },
@@ -522,7 +518,7 @@
         } }] },
       /* ================= Part D ================= */
       { num: '8', section: 'Extra practice D — Reading the Equation Off a Graph', stem: 'Each line passes through the two marked lattice points. Read the slope and the ' + t('y') + '-intercept from the graph, then write the equation in ' + t('y=mx+b') + ' form.', parts: (function () {
-        var lists = { a: [[[2, 3], [1, 2], [1, 3], [3, 4]], [-3, -1]], b: [[[-3, 4], [-2, 3], [-1, 2], [-3, 5]], [2, 5]], c: [[[5, 2], [3, 2], [4, 3], [5, 3]], [-5, -2]], d: [[[-2, 3], [-1, 3], [-4, 3], [-5, 2]], [1, 3]] };
+        var lists = { a: [[[2, 3], [1, 2], [1, 3], [3, 4]], [-4, 1]], b: [[[-3, 4], [-2, 3], [-1, 2], [-3, 5]], [1, 5]], c: [[[5, 2], [3, 2], [4, 3], [5, 3]], [-5, -1]], d: [[[-2, 3], [-1, 3], [-4, 3], [-5, 2]], [0, 4]] };
         return ['a', 'b', 'c', 'd'].map(function (L) {
           return { id: 'e8' + L, sub: L, level: L === 'a' || L === 'c' ? 'EMG' : 'PRG', make: function (r) {
             var o = fracLine(r, lists[L][0], lists[L][1]), q = Q(o.m), P2 = [q[1], o.b + q[0]];
@@ -553,7 +549,7 @@
         { id: 'e9b', sub: 'b', level: 'EMG', make: function (r, s) { return ptPart('(b) State the ' + t('y') + '-intercept as an ordered pair.', [0, s.b], { wrong: [{ is: [s.b, 0], code: 'pt-swap', hint: 'On the ' + t('y') + '-axis, ' + t('x=0') + ': ' + t('(0,\\ b)') + '.' }] }, 'The line crosses the ' + t('y') + '-axis at ' + t(ptT([0, s.b])) + '.', ['Where does the line cross the vertical axis?'], 'EP9b'); } },
         { id: 'e9c', sub: 'c', level: 'PRG', outcome: 'RF7', make: function (r, s) { var p = B.line('(c) Write the equation of the line.', { m: qv(s.m), b: s.b }, { form: 'slope-intercept', keyTex: siT(s.m, s.b) }, 'Slope ' + t(qT(s.m)) + ', ' + t('y') + '-intercept ' + t(s.b) + ': ' + t(siT(s.m, s.b)) + '.', ['Use your answers to (a) and (b) in ' + t('y=mx+b') + '.'], 'EP9c'); p.answer = t(siT(s.m, s.b)); return p; } },
         { id: 'e9d', sub: 'd', level: 'EMG', make: function (r, s) {
-          var q = Q(s.m), key = [2 * q[1] + (s.Bp[0] === q[1] ? 0 : 0), s.b + 2 * q[0]];
+          var q = Q(s.m);
           var chk = function (resp) {
             var rr = LN.readPoint(resp);
             if (rr.empty) return form('empty', 'Type a point.');
@@ -619,7 +615,7 @@
           } }, { id: 'e12' + L + '2', sub: L + ' ii', level: L === 'd' ? 'PRG' : 'ADV', outcome: 'RF7', make: function (r, sh) {
             var o = sh[L], q = Q(o.m), k = o.m === 0 ? 0 : -o.P[0] / q[1];
             var W = o.m === 0 ? [{ is: { x: o.P[0] }, code: 'line-vh', hint: 'Slope ' + t('0') + ': horizontal, ' + t('y=k') + '.' }] : [{ is: { m: qv(o.m), b: o.P[1] }, code: 'line-intercept', hint: t(o.P[1]) + ' is the ' + t('y') + '-coordinate of the given point, not the ' + t('y') + '-intercept. Step along the line to ' + t('x=0') + '.' }];
-            var p = B.line('Write the equation of line (' + L + ') in ' + t('y=mx+b') + ' form.', o.m === 0 ? { y: o.b } : { m: qv(o.m), b: o.b }, { form: 'slope-intercept', keyTex: o.m === 0 ? 'y=' + o.b : siT(o.m, o.b), wrong: W },
+            var p = B.line('Write the equation of line (' + L + ') — through ' + t(ptT(o.P)) + ' with ' + t('m=' + qT(o.m)) + ' — in ' + t('y=mx+b') + ' form.', o.m === 0 ? { y: o.b } : { m: qv(o.m), b: o.b }, { form: 'slope-intercept', keyTex: o.m === 0 ? 'y=' + o.b : siT(o.m, o.b), wrong: W },
               o.m === 0 ? 'Horizontal through ' + t(ptT(o.P)) + ': ' + t('y=' + o.b) + '.' : 'From ' + t(ptT(o.P)) + ', step ' + (k > 0 ? stepT(o.m) : 'the reverse way (left ' + t(q[1]) + ', ' + (q[0] > 0 ? 'down ' : 'up ') + t(Math.abs(q[0])) + ')') + (Math.abs(k) > 1 ? ' ' + t(Math.abs(k)) + ' times' : '') + ' to reach the ' + t('y') + '-axis at ' + t(ptT([0, o.b])) + '. So ' + t(siT(o.m, o.b)) + '.',
               ['Step along the line from the given point until you reach the ' + t('y') + '-axis: that is ' + t('b') + '.'], 'EP12' + L + ' equation');
             p.answer = t(o.m === 0 ? 'y=' + o.b : siT(o.m, o.b));

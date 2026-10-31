@@ -41,14 +41,14 @@
     'u8x-elim-const': 'Elimination: did not multiply the constant', 'u8x-back-sign': 'Sign slip back-substituting',
     'u8x-other': 'Gave the other amount (or matched the prices to the wrong items)', 'u8x-total': 'Gave the total instead',
     'u8x-age-nohalf': 'Age problem: did not divide by 2', 'u8x-age-half': 'Age problem: split the total in half, ignoring the difference',
-    'u8x-bc-ground': 'Gave a speed with or against the current/wind', 'u8x-bc-nohalf': 'Speeds: did not divide by 2', 'u8x-ka': 'Found a multiple of the number, not the number'
+    'u8x-swap': 'Answers in each other’s boxes', 'u8x-one': 'One of the two values wrong', 'u8x-bc-ground': 'Gave a speed with or against the current/wind', 'u8x-bc-nohalf': 'Speeds: did not divide by 2', 'u8x-ka': 'Found a multiple of the number, not the number'
   });
   HW.addPartial({
     'u8x-gr-line': 'b', 'u8x-gr-shift': 's', 'u8x-gr-sign': 's', 'u8x-gr-flip': 's', 'u8x-gr-slope': 'b', 'u8x-line-missing': 'b', 'u8x-line-extra': 's', 'u8x-point-off': 'n', 'u8x-points-only': 'n', 'u8x-graph': 'n',
     'u8x-yint': 'n', 'u8x-pt-sign': 's', 'u8x-si-sign': 's', 'u8x-si-neg': 's', 'u8x-si-div': 's', 'u8x-k-sign': 's', 'u8x-k-icpt': 'n',
     'u8x-distribute': 'b', 'u8x-dist-sign': 's', 'u8x-copied': 'n', 'u8x-step-solved': 'b', 'u8x-iso-sign': 's', 'u8x-elim-sign': 's', 'u8x-elim-rhs': 's',
     'u8x-elim-const': 'b', 'u8x-back-sign': 's', 'u8x-other': 'b', 'u8x-total': 'n', 'u8x-age-nohalf': 'b', 'u8x-age-half': 'n',
-    'u8x-bc-ground': 'b', 'u8x-bc-nohalf': 'b', 'u8x-ka': 'b'
+    'u8x-swap': 's', 'u8x-one': 's', 'u8x-bc-ground': 'b', 'u8x-bc-nohalf': 'b', 'u8x-ka': 'b'
   });
 
   /* ================= numbers and LaTeX ================= */
@@ -247,15 +247,21 @@
       for (var i = 0; i < 2; i++) { var r0 = K.number(vals[i])(resp[i] == null ? '' : String(resp[i])); if (r0.v === 'form') return { v: 'form', code: r0.code, hint: '<b>' + names[i] + ':</b> ' + (r0.hint || 'Enter a number.') }; }
       var g = [numIs(resp[0], vals[0]), numIs(resp[1], vals[1])];
       if (g[0] && g[1]) return ok();
-      if (vals[0] !== vals[1] && numIs(resp[0], vals[1]) && numIs(resp[1], vals[0])) return wrong('amt-swap', 'Your two answers are in each other’s boxes: check which letter (or item) each value belongs to.');
+      if (vals[0] !== vals[1] && numIs(resp[0], vals[1]) && numIs(resp[1], vals[0])) return wrong('u8x-swap', 'Your two answers are in each other’s boxes: check which letter (or item) each value belongs to.');
       for (i = 0; i < 2; i++) { if (g[i]) continue; var L = (dls && dls[i]) || []; for (var j = 0; j < L.length; j++) if (isFinite(L[j][0]) && !near(L[j][0], vals[i]) && numIs(resp[i], L[j][0])) return wrong(L[j][1], '<b>' + names[i] + ':</b> ' + L[j][2]); }
-      if (g[0] || g[1]) return wrong('amt-one', 'Your ' + names[g[0] ? 0 : 1] + ' is right — check the other value: substitute back into one of the equations.');
+      if (g[0] || g[1]) return wrong('u8x-one', 'Your ' + names[g[0] ? 0 : 1] + ' is right — check the other value: substitute back into one of the equations.');
       return wrong('value', null);
     };
     var bad = [[String(vals[1]), String(vals[0])]];
     (dls || []).forEach(function (L, i) { (L || []).forEach(function (d) { if (isFinite(d[0]) && isInt(d[0]) && !near(d[0], vals[i])) { var b = [String(vals[0]), String(vals[1])]; b[i] = String(cl(d[0])); bad.push(b); } }); });
     return { prompt: prompt, input: { type: 'fields', fields: fields }, check: check, key: [String(vals[0]), String(vals[1])], answer: answer, solution: sol, hints: hints || [], text: text,
       bad: bad.filter(function (b, i, a) { return !(b[0] === String(vals[0]) && b[1] === String(vals[1])) && a.findIndex(function (c) { return c[0] === b[0] && c[1] === b[1]; }) === i; }) };
+  }
+  /* y = mx + b answer; W: [{ is: { m, b }, code, hint }] (also the bad answers) */
+  function linePart(prompt, m, b, W, sol, hints, text) {
+    var p = K.P.line(prompt, { m: m, b: b }, { form: 'slope-intercept', wrong: W }, sol, hints, text);
+    p.bad = W.filter(function (w) { return !(w.is.m === m && w.is.b === b); }).map(function (w) { return siT(w.is.m, w.is.b); }).filter(function (x, i, a) { return a.indexOf(x) === i; });
+    return p;
   }
   function fld(label, name, after) { return { label: label, name: name, mode: 'math', keys: 'fraction', placeholder: 'a number', after: after }; }
 
@@ -369,7 +375,7 @@
           : [{ is: { m: -s.a, b: -s.b1 }, code: 'u8x-si-neg', hint: 'After subtracting ' + t(ax) + ' you have ' + t('-y=' + T([[-s.a, 'x'], [-s.b1, '']])) + ': divide <b>every</b> term by ' + t('-1') + '.' },
             { is: { m: s.a, b: -s.b1 }, code: 'u8x-si-neg', hint: 'Divide <b>every</b> term by ' + t('-1') + ' — the constant changes sign too.' },
             { is: { m: -s.a, b: s.b1 }, code: 'u8x-si-sign', hint: 'Moving ' + t(ax) + ' to the other side changes its sign.' }];
-        return K.P.line('Rewrite ' + t(e1) + ' in slope–intercept form, ' + t('y=mx+b') + '.', { m: s.m1, b: s.b1 }, { form: 'slope-intercept', wrong: W },
+        return linePart('Rewrite ' + t(e1) + ' in slope–intercept form, ' + t('y=mx+b') + '.', s.m1, s.b1, W,
           (s.plus ? 'Subtract ' + t(ax) + ' from both sides: ' + t(siT(s.m1, s.b1)) + '.' : 'Subtract ' + t(ax) + ' from both sides: ' + t('-y=' + T([[-s.a, 'x'], [-s.b1, '']])) + '.<br>Divide every term by ' + t('-1') + ': ' + t(siT(s.m1, s.b1)) + '.'),
           ['Get ' + t('y') + ' by itself: move the ' + t('x') + '-term to the other side (its sign changes).', s.plus ? 'The constant stays where it is.' : 'Then divide <b>every</b> term by ' + t('-1') + '.'], 'rearrange to y = mx + b');
       } },
@@ -420,7 +426,7 @@
         else W = [{ is: { m: -s.m1, b: -s.b1 }, code: 'u8x-si-neg', hint: 'After moving ' + t(ax) + ', ' + t('y') + ' has a negative coefficient: divide <b>every</b> term by ' + t(-s.k) + '.' }, { is: { m: s.m1, b: -s.b1 }, code: 'u8x-si-neg', hint: 'Divide <b>every</b> term by ' + t(-s.k) + ' — the constant changes sign too.' }, { is: { m: -s.m1, b: s.b1 }, code: 'u8x-si-sign', hint: 'Moving ' + t(ax) + ' to the other side changes its sign.' }];
         if (s.k > 1) W.push({ is: { m: s.m1, b: s.k * s.b1 }, code: 'u8x-si-div', hint: 'Divide <b>every</b> term by ' + t(R.By) + ' — the constant too.' });
         var mid = T([[R.By, 'y']]) + '=' + T([[-R.A, 'x'], [R.C, '']]);
-        return K.P.line('Rewrite the first equation, ' + t(R.tex) + ', in slope–intercept form.', { m: s.m1, b: s.b1 }, { form: 'slope-intercept', wrong: W },
+        return linePart('Rewrite the first equation, ' + t(R.tex) + ', in slope–intercept form.', s.m1, s.b1, W,
           'Subtract ' + t(ax) + ' from both sides: ' + t(mid) + '.' + (R.By !== 1 ? '<br>Divide every term by ' + t(R.By) + ': ' + t(siT(s.m1, s.b1)) + '.' : ''),
           ['Get ' + t('y') + ' by itself: move the ' + t('x') + '-term to the other side (its sign changes).', R.By !== 1 ? 'Then divide <b>every</b> term by ' + t(R.By) + '.' : 'The constant stays where it is.'], 'rearrange to y = mx + b');
       } },
@@ -463,7 +469,7 @@
     o = o || {};
     return until(function () {
       var u = r.chance(o.py == null ? 0.65 : o.py) ? 'y' : 'x', m = r.pick(o.ms || [1, 1, 2, 3, -1]), p = nz(r, -6, 7), v0 = r.int(o.vlo == null ? -3 : o.vlo, o.vhi || 10), a = r.int(1, 5), b = nz(r, -5, 5);
-      var s = subObj(u, m, p, a, b, 0); var x0 = u === 'x' ? m * v0 + p : v0, y0 = u === 'x' ? v0 : m * v0 + p;
+      var x0 = u === 'x' ? m * v0 + p : v0, y0 = u === 'x' ? v0 : m * v0 + p;
       return subObj(u, m, p, a, b, a * x0 + b * y0);
     }, function (s) { return isInt(s.v0) && s.D >= (o.dmin || 1) && s.D <= 6 && Math.abs(s.beta) >= (o.bmin || 2) && s.x0 !== s.y0 && s.c !== 0 && Math.abs(s.c) <= 40 && Math.abs(s.x0) <= 14 && Math.abs(s.y0) <= 14 && (!o.ok || o.ok(s)); });
   }
@@ -514,7 +520,7 @@
         };
         var p = B.math('Write <b>Step 2</b> correctly.', check, w.st2,
           'Step 2 must multiply <b>both</b> terms in the bracket by ' + t(s.beta) + ': ' + t(brT(s.beta, w.inner, true) + '=' + T([[s.beta * s.m, s.v], [s.K, '']])) + '.<br>' + (o.err === 'dist' ? 'The student multiplied only the first term.' : 'The student got the sign of ' + t(s.beta + '\\times ' + pT(s.p)) + ' wrong: it is ' + t(s.K) + '.') + '<br>Correct Step 2: ' + t(w.st2) + ' (or, collected, ' + t(w.st3) + ').',
-          ['Step 2 multiplies out the bracket in Step 1.', 'The number in front of the bracket multiplies <b>every</b> term inside it — watch the signs.'], 'fix step 2 (' + o.err + ')', { keys: 'eq', vars: [s.v], placeholder: 'e.g. ' + w.exp(1).replace(/\\/g, '') });
+          ['Step 2 multiplies out the bracket in Step 1.', 'The number in front of the bracket multiplies <b>every</b> term inside it — watch the signs.'], 'fix step 2 (' + o.err + ')', { keys: 'eq', vars: [s.v], placeholder: 'an equation in ' + s.v });
         p.bad = [bw.st[1], s.v + '=' + nT(s.v0)];
         return p;
       } },
@@ -564,7 +570,7 @@
     return 'In ' + t(e1) + ', ' + t(s.u) + ' has a coefficient of ' + t(s.su) + ', so isolate it: ' + (s.su === 1 ? t(w.iso) : t('-' + s.u + '=' + T([[-s.ko, s.sub.v], [s.c1, '']])) + ', so ' + t(w.iso)) + '.<br>';
   }
   function isoWrongs(s) {   // sign slip isolating; not multiplying the constant in the bracket
-    var q = s.sub, W = [], mw = s.su === 1 ? -q.m : -q.m, pw = s.su === 1 ? q.p : -q.p;
+    var q = s.sub, W = [], mw = -q.m, pw = s.su === 1 ? q.p : -q.p;   // kept the sign of the moved term / did not divide by −1
     var den = q.alpha + q.beta * mw; if (den) { var vw = (q.c - q.beta * pw) / den; var uw = mw * vw + pw; W.push({ is: frP(q.u === 'x' ? [uw, vw] : [vw, uw]), code: 'u8x-iso-sign', hint: 'Check the signs when you isolate ' + t(q.u) + ' in the first equation' + (s.su === -1 ? ': with ' + t('-' + q.u) + ', divide <b>every</b> term by ' + t('-1') + '.' : ': the term you move changes sign.') }); }
     if (Math.abs(q.beta) >= 2) W.push({ is: subPt(q, (q.c - q.p) / q.D), code: 'u8x-distribute', hint: 'Multiply <b>both</b> terms in the bracket by ' + t(q.beta) + '.' });
     return W.filter(function (x) { return x.is; });
@@ -719,11 +725,11 @@
    * Lesson 7 — Word problems with systems (number/age, cost, mixture)
    * ===================================================================================================== */
   var SALES = [
-    { intro: 'A bake sale sells muffins for {pa} each and cookies for {pb} each. It sold {N} items in total for {V}.', a: ['muffins', 'm'], b: ['cookies', 'c'], pa: [3, 4], pb: [1, 2], N: [20, 50], it: 'items' },
-    { intro: 'A theatre sells adult tickets for {pa} and child tickets for {pb}. It sold {N} tickets for {V} in total.', a: ['adult tickets', 'a'], b: ['child tickets', 'c'], pa: [10, 14], pb: [5, 8], N: [20, 40], it: 'tickets' },
-    { intro: 'A school store sells binders for {pa} and notebooks for {pb}. One week it sold {N} of them for {V} in total.', a: ['binders', 'b'], b: ['notebooks', 'n'], pa: [4, 6], pb: [1, 3], N: [15, 40], it: 'items' },
-    { intro: 'A fundraiser sells large pizzas for {pa} and small pizzas for {pb}. It sold {N} pizzas for {V} in total.', a: ['large pizzas', 'l'], b: ['small pizzas', 's'], pa: [12, 16], pb: [7, 10], N: [10, 30], it: 'pizzas' },
-    { intro: 'A car wash charges {pa} for a truck and {pb} for a car. One Saturday it washed {N} vehicles and took in {V}.', a: ['trucks', 't'], b: ['cars', 'c'], pa: [9, 12], pb: [5, 7], N: [15, 40], it: 'vehicles' }];
+    { intro: 'A bake sale sells muffins for {pa} each and cookies for {pb} each. It sold {N} items in total for {V}.', a: ['muffins', 'm'], b: ['cookies', 'c'], pa: [3, 4], pb: [1, 2], N: [20, 50], it: 'items', verb: 'sold' },
+    { intro: 'A theatre sells adult tickets for {pa} and child tickets for {pb}. It sold {N} tickets for {V} in total.', a: ['adult tickets', 'a'], b: ['child tickets', 'c'], pa: [10, 14], pb: [5, 8], N: [20, 40], it: 'tickets', verb: 'sold' },
+    { intro: 'A school store sells binders for {pa} and notebooks for {pb}. One week it sold {N} of them for {V} in total.', a: ['binders', 'b'], b: ['notebooks', 'n'], pa: [4, 6], pb: [1, 3], N: [15, 40], it: 'items', verb: 'sold' },
+    { intro: 'A fundraiser sells large pizzas for {pa} and small pizzas for {pb}. It sold {N} pizzas for {V} in total.', a: ['large pizzas', 'l'], b: ['small pizzas', 's'], pa: [12, 16], pb: [7, 10], N: [10, 30], it: 'pizzas', verb: 'sold' },
+    { intro: 'A car wash charges {pa} for a truck and {pb} for a car. One Saturday it washed {N} vehicles and took in {V}.', a: ['trucks', 't'], b: ['cars', 'c'], pa: [9, 12], pb: [5, 7], N: [15, 40], it: 'vehicles', verb: 'washed' }];
   var L7Q1 = { num: '1', shared: function (r) {   // Ryan: muffins $3, cookies $2, 45 items, $110 → 20 muffins · adult $12, child $8, 30 tickets, $296 → 14 adult
       return until(function () {
         var c = r.pick(SALES), pa = r.int(c.pa[0], c.pa[1]), pb = r.int(c.pb[0], c.pb[1]), N = r.int(c.N[0], c.N[1]), x = r.int(3, N - 3);
@@ -747,7 +753,7 @@
         var c = s.c, A = c.a[1], Bv = c.b[1], ans = s.askA ? s.x : s.y, other = s.askA ? s.y : s.x, nm = s.askA ? c.a[0] : c.b[0];
         var dl = [[other, 'u8x-other', 'That is the number of ' + (s.askA ? c.b[0] : c.a[0]) + '. The question asks for the ' + nm + ' — check which price goes with which item.'], [s.N, 'u8x-total', t(s.N) + ' is the total number of ' + c.it + '. Solve the system to split it.']];
         if (s.askA) dl.push([(s.V - s.N) / (s.pa - s.pb), 'u8x-elim-const', 'When you multiply ' + t(A + '+' + Bv + '=' + s.N) + ' by ' + t(s.pb) + ', multiply the ' + t(s.N) + ' too.']);
-        return numPart('Solve the system. How many <b>' + nm + '</b> were sold' + (c.it === 'vehicles' ? ' (washed)' : '') + '?', ans, dl,
+        return numPart('Solve the system. How many <b>' + nm + '</b> were ' + c.verb + '?', ans, dl,
           'Multiply ' + t(A + '+' + Bv + '=' + s.N) + ' by ' + t(s.pb) + ': ' + t(s.pb + A + '+' + s.pb + Bv + '=' + s.pb * s.N) + '.<br>Subtract it from ' + t(s.pa + A + '+' + s.pb + Bv + '=' + s.V) + ': ' + t((s.pa - s.pb === 1 ? '' : s.pa - s.pb) + A + '=' + (s.V - s.pb * s.N)) + ', so ' + t(A + '=' + s.x) + '.<br>Then ' + t(Bv + '=' + s.N + '-' + s.x + '=' + s.y) + '. So ' + t(s.x) + ' ' + c.a[0] + ' and ' + t(s.y) + ' ' + c.b[0] + '.<br><b>Check.</b> ' + t(s.pa + '(' + s.x + ')+' + s.pb + '(' + s.y + ')=' + s.V) + ' ✓',
           ['Eliminate ' + t(Bv) + ': multiply the count equation by ' + t(s.pb) + ' and subtract (or substitute ' + t(Bv + '=' + s.N + '-' + A) + ').', 'Answer the question that was asked: the number of ' + nm + '.'], 'solve: how many ' + nm, { after: nm });
       } }] };
@@ -784,7 +790,7 @@
     var inf = r.chance(0.45), elim = r.chance(0.6), res;
     if (inf) { var a = r.chance(0.6) ? 0 : nz(r, -9, 9); res = [a, a]; }
     else res = r.chance(0.6) ? [0, nz(r, -12, 12)] : until(function () { return [nz(r, -9, 9), r.int(-9, 9)]; }, function (p) { return p[0] !== p[1]; });
-    var rT = res[0] + '=' + res[1], X = Math.abs(res[0]) <= 4 && Math.abs(res[1]) <= 4 ? res : [r.int(-2, 2), r.int(-2, 2)];
+    var rT = res[0] + '=' + res[1], X = Math.abs(res[0]) <= 3 && Math.abs(res[1]) <= 3 ? res : [r.int(-2, 2), r.int(-2, 2)];
     var opts = [{ html: 'Lines cross at ' + t(ptT(res)) + '<br>' + crossPic(r, X), why: t(rT) + ' has no ' + t('x') + ' or ' + t('y') + ' left in it — it is not a point. ' + (inf ? 'It is always true, so every point on the line works.' : 'It is false, so no point works.') },
       { html: 'Parallel lines: no solution<br>' + parPic(r), right: !inf, why: t(rT) + ' is always <b>true</b>: the equations describe the same line, so every point on it is a solution.' },
       { html: 'Same line: infinitely many solutions<br>' + samePic(r), right: inf, why: t(rT) + ' is <b>false</b>: no ' + t('(x,\\ y)') + ' makes both equations true, so the lines never meet.' }];
