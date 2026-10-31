@@ -59,6 +59,7 @@ h2 .katex, h3 .katex { font-size: .95em; }
 .u8l1-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 4px 0 14px; }
 .u8l1-steps > div { background: var(--brand-soft); border-radius: 12px; padding: 8px 12px; font-size: 18px; line-height: 1.3; }
 .u8l1-steps .n, .u8l1-slist .n { display: inline-grid; place-items: center; width: 26px; height: 26px; margin-right: 6px; border-radius: 50%; background: var(--brand2); color: #fff; font-size: 15px; }
+.u8l1-negy { margin: -6px 0 14px; font-size: 18px; }
 .u8l1-oneline { display: grid; grid-template-columns: 1fr 260px; gap: 16px; align-items: center; margin: 0 0 4px; }
 .u8l1-oneline .def { margin: 0; }
 .u8l1-ol { margin: 6px 0 0; padding-left: 1.4em; line-height: 1.55; }

@@ -795,7 +795,7 @@ export const _test = { SYS, HM, GC, CL, SB, EL, PIPE };
       const kind = r.pick(['one', 'none', 'inf']), m = nz(r, -5, 5), b = r.int(-9, 9);
       let m2 = m, b2 = b;
       if (kind === 'one') do m2 = nz(r, -5, 5); while (m2 === m);
-      if (kind === 'none') do b2 = r.int(-9, 9); while (b2 === b);
+      if (kind === 'none') do b2 = r.int(-9, 9); while (b2 === b || (m === 5 && b + b2 === 2 && b * b2 === -8));   // Assignment 8 Q3 (y=5x−2, y=5x+4) stays for homework
       if (kind === 'one') b2 = r.int(-9, 9);
       const why = kind === 'one' ? `${W('slopes ')}${m}${W(' and ')}${m2}${W(' differ: one solution')}` : kind === 'none' ? `${W('same slope ')}${m}${W(', intercepts ')}${b}${W(' and ')}${b2}${W(': no solution (parallel)')}` : `${W('same slope ')}${m}${W(' and same intercept ')}${b}${W(': infinitely many')}`;
       return { text: 'Without graphing: one solution, no solution, or infinitely many?', q: `\\begin{aligned}${yform(m, b)}\\\\${yform(m2, b2)}\\end{aligned}`, a: [why] };
