@@ -290,9 +290,9 @@
       { id: 'e1b2', sub: 'b slope', level: 'EMG', make: function (r, sh) { return slopeIntFields(t('x=' + sh.b), 'x', sh.b); } }] },
     { num: '2', stem: 'You are given a point instead of an equation. Write the equation of the line described, then graph it.',
       shared: function (r) { return { h: [r.pick(pm(1, 6)), -r.int(1, 7)], v: [-r.int(1, 7), r.pick(pm(1, 6))] }; }, parts: [
-      { id: 'e2a', sub: 'a eq', level: 'BEG', make: function (r, sh) { return hvEq('(a) The <b>horizontal</b> line through ' + ptt(sh.h) + '.', 'y', sh.h); } },
+      { id: 'e2a', sub: 'a eq', level: 'BEG', make: function (r, sh) { return hvEq('The <b>horizontal</b> line through ' + ptt(sh.h) + '.', 'y', sh.h); } },
       { id: 'e2a2', sub: 'a graph', level: 'BEG', make: function (r, sh) { return hvGraph('Graph the horizontal line through ' + ptt(sh.h) + '.', 'y', sh.h[1], W8); } },
-      { id: 'e2b', sub: 'b eq', level: 'BEG', make: function (r, sh) { return hvEq('(b) The <b>vertical</b> line through ' + ptt(sh.v) + '.', 'x', sh.v); } },
+      { id: 'e2b', sub: 'b eq', level: 'BEG', make: function (r, sh) { return hvEq('The <b>vertical</b> line through ' + ptt(sh.v) + '.', 'x', sh.v); } },
       { id: 'e2b2', sub: 'b graph', level: 'BEG', make: function (r, sh) { return hvGraph('Graph the vertical line through ' + ptt(sh.v) + '.', 'x', sh.v[0], W8); } }] },
     { num: '3', stem: function (sh) { return 'Each grid already shows a line. Write its equation and state its slope.' + '<div style="display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center">' + '<div style="text-align:center"><b>(a)</b>' + labFig([{ L: hz(sh.a), color: BLUE }], W8, { max: 220 }) + '</div><div style="text-align:center"><b>(b)</b>' + labFig([{ L: vt(sh.b), color: RED }], W8, { max: 220 }) + '</div></div>'; },
       shared: function (r) { return { a: r.pick(pm(1, 7)), b: r.pick(pm(1, 7)) }; }, parts: [
@@ -521,7 +521,7 @@
         return p;
       } },
       { id: 'e18b', sub: 'b', level: 'PRG', make: function (r, sh) {
-        return mc(r, '(b) Why must the triangle have a right angle, and at which vertex?', [
+        return mc(r, 'Why must the triangle have a right angle, and at which vertex?', [
           { html: t('x=' + sh.a) + ' is vertical and ' + t('y=' + sh.b) + ' is horizontal, and those are always perpendicular — so the right angle is where they meet, ' + ptt([sh.a, sh.b]) + '.', right: true },
           { html: 'The slanted line is perpendicular to ' + t('y=' + sh.b) + ', so the right angle is on the slanted line.', why: 'The slanted line has slope ' + t(fT([-sh.s[0], sh.s[1]])) + ' — it isn’t perpendicular to a horizontal line (only a vertical line is).' },
           { html: 'Every triangle made of three lines has a right angle.', why: 'Most don’t. This one does because one side is horizontal and another vertical.' },
@@ -555,7 +555,7 @@
     var k = axis === 'y' ? P0[1] : P0[0], o = axis === 'y' ? P0[0] : P0[1], T = axis === 'y' ? { y: k } : { x: k };
     var wr = [{ is: axis === 'y' ? { x: k } : { y: k }, code: 'l5-gr-hv', hint: axis === 'y' ? 'That’s a vertical line. A horizontal line keeps ' + t('y') + ' fixed: ' + t('y=k') + '.' : 'That’s a horizontal line. A vertical line keeps ' + t('x') + ' fixed: ' + t('x=k') + '.' }];
     if (!fromGraph && o !== k && o !== 0) wr.push({ is: axis === 'y' ? { y: o } : { x: o }, code: 'u7l8-other-coord', hint: 'A ' + (axis === 'y' ? 'horizontal' : 'vertical') + ' line copies the point’s <b>' + t(axis) + '</b>-coordinate; the other coordinate, ' + t(o) + ', doesn’t matter.' });
-    var p = KP.line(prompt + ' Write its equation.', T, { wrong: wr },
+    var p = KP.line(fromGraph ? prompt : prompt + ' Write its equation.', T, { wrong: wr },
       fromGraph ? 'The line is ' + (axis === 'y' ? 'horizontal' : 'vertical') + ' and every point on it has ' + t(axis) + '-coordinate ' + t(k) + ', so its equation is ' + t(axis + '=' + k) + '.'
         : 'A ' + (axis === 'y' ? 'horizontal' : 'vertical') + ' line keeps ' + t(axis) + ' fixed, so it copies the ' + t(axis) + '-coordinate of ' + ptt(P0) + ': ' + t(axis + '=' + k) + '. (The ' + t(axis === 'y' ? 'x' : 'y') + '-coordinate ' + t(o) + ' is irrelevant.)',
       ['Which coordinate stays the same all along a ' + (axis === 'y' ? 'horizontal' : 'vertical') + ' line?'], 'equation of ' + axis + '=' + k);

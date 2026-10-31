@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Substitution, Part 1 · Math 15 8.3</title>
+<meta name="description" content="Math 15 Unit 8 Lesson 3: solving systems of linear equations by substitution when one equation is already solved for a variable. Two names for the same value, the five steps (find, substitute into the other equation, solve, back-substitute, write and check the ordered pair), brackets that carry the whole expression, and checking in both original equations. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u8l3.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u8l3">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 8 Systems of Linear Equations · Lesson 3</div>
+  <h1>Solving Systems by Substitution, Part 1: When a Variable Is Already Isolated</h1>
+  <p class="lede">Trading a variable for an equal expression gets an <b>exact</b> solution without graphing. If one equation says <span class="tex">y=2x+1</span>, then <span class="tex">y</span> and <span class="tex">2x+1</span> are <b>two names for the same value</b>. Swap one for the other in the <b>other</b> equation, and two equations with two unknowns become one equation with one unknown.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>explain why I can <b>substitute</b> an expression for a variable it equals</li>
+      <li>solve a system by substitution when one equation is already solved for <span class="tex">y</span> or for <span class="tex">x</span>, using the <b>five steps</b></li>
+      <li>put the expression in <b>brackets</b> and multiply <b>every</b> term inside, even when there is a minus sign in front</li>
+      <li>write the solution as an ordered pair <span class="tex">(x,\ y)</span> and <b>check</b> it in <b>both</b> original equations</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF9</b> Solve problems that involve systems of linear equations in two variables, graphically and algebraically.<br><span class="u8l3-today">Today: solving a system algebraically, by substitution.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Swap It Out!" id="wu" style="--wf-side: 390px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Swap It Out!</h2>
+  <p class="wf-rule">Every scale is <b>perfectly balanced</b>. Things that balance weigh the <b>same</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u8l3-scales">
+      <figure class="u8l3-scale" id="u8l3-scA"><figcaption>Scale A</figcaption></figure>
+      <figure class="u8l3-scale" id="u8l3-scB"><figcaption>Scale B</figcaption></figure>
+    </div>
+    <div class="u8l3-wbtns">
+      <button type="button" class="pill" id="u8l3-swapB">Swap the box on Scale B for 3 balls ▸</button>
+      <button type="button" class="pill" id="u8l3-resetB">Reset</button>
+    </div>
+  </div><div class="wf-side">
+    <div class="u8l3-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Scale A: how many balls balance <b>2</b> boxes? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l3-wa"><div class="bk-ans"><b>6 balls.</b> Each box balances 3 balls, so 2 boxes balance <span class="tex">3+3=6</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Scale B: <b>swap</b> the box for 3 balls. How many balls balance 25 g? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l3-wa"><div class="bk-ans"><b>5 balls.</b> The box and 3 balls weigh the same, so the scale stays balanced: <span class="tex">3+2=5</span> balls balance 25 g.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>How heavy is one ball? One box? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l3-wa"><div class="bk-ans">Ball <span class="tex">=25\div5=</span> <b>5 g</b>. Box <span class="tex">=3\times5=</span> <b>15 g</b>. Check Scale B: <span class="tex">15+5+5=25</span> g ✓</div></div></div>
+    </div>
+  </div></div>
+
+  <div class="poll u8l3-big">
+    <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A new shop: a <b>tiny</b> gold nugget, cans and marbles. It takes <b>two</b> swaps! How heavy is the <b>tiny nugget</b>? <b>Guess first.</b></div></div>
+    <div class="u8l3-scales u8l3-three">
+      <figure class="u8l3-scale" id="u8l3-scC"><figcaption>Scale C</figcaption></figure>
+      <figure class="u8l3-scale" id="u8l3-scD"><figcaption>Scale D</figcaption></figure>
+      <figure class="u8l3-scale" id="u8l3-scE"><figcaption>Scale E</figcaption></figure>
+    </div>
+    <div class="poll-opts">
+      <div class="opt"><b>A</b> 10 g</div>
+      <div class="opt"><b>B</b> 33 g</div>
+      <div class="opt right"><b>C</b> 60 g</div>
+    </div>
+    <div class="u8l3-wbtns u8l3-wb2">
+      <button type="button" class="pill" data-poll-reveal>Reveal</button>
+      <button type="button" class="pill" id="u8l3-swapE1">Swap 1: nugget → 2 cans</button>
+      <button type="button" class="pill" id="u8l3-swapE2">Swap 2: each can → 3 marbles</button>
+      <button type="button" class="pill" id="u8l3-resetE">Reset</button>
+    </div>
+    <div class="poll-ans"><b>C: the nugget weighs 60 g.</b> Swap 1 (Scale C): the nugget becomes 2 cans. Swap 2 (Scale D): every can becomes 3 marbles. Scale E is now <span class="tex">6+3+1=10</span> marbles <span class="tex">=100</span> g, so a marble is <b>10 g</b>, a can is <span class="tex">3\times10=</span> <b>30 g</b> and the nugget is <span class="tex">2\times30=</span> <b>60 g</b>. Check: <span class="tex">60+30+10=100</span> g ✓<br><span class="muted">The nugget is drawn tiny, so <b>A</b> is tempting; <b>B</b> splits 100 three ways. The smallest thing on the pan is more than half the weight!</span></div>
+  </div>
+  <p class="u8l3-social">Your turn: invent a two-scale swap puzzle. Can your neighbour crack it?</p>
+</section>
+
+<!-- ================= 1. The idea ================= -->
+<section class="card" data-ink="s1" data-section="1. The Idea Behind Substitution">
+  <div class="sec-h"><span class="badge">1</span><h2>The Idea Behind Substitution</h2></div>
+  <p>Graphing gives a solution only as accurate as the grid; substitution gives the <b>exact</b> answer every time. If one equation says <span class="tex">y=2x+1</span>, then “<span class="tex">y</span>” and “<span class="tex">2x+1</span>” are two names for the same value, so wherever <span class="tex">y</span> appears in the <b>other</b> equation we may write <span class="tex">2x+1</span> instead. That other equation then holds only <span class="tex">x</span>: one equation, one unknown, which we already know how to solve.</p>
+  <div class="def"><b>Substitute</b> means <b>“swap in something equal.”</b> On a balanced scale you can swap a box for the 3 balls it balances. In an equation you can swap <span class="tex">y</span> for the expression it equals.</div>
+  <div class="explainer" data-explainer="swap"></div>
+</section>
+
+<!-- ================= 2. The process ================= -->
+<section class="card" data-ink="s2" data-section="2. The Substitution Process">
+  <div class="sec-h"><span class="badge">2</span><h2>The Substitution Process, Step by Step</h2></div>
+  <div class="u8l3-steps">
+    <div class="u8l3-step"><div class="u8l3-sn">Step 1</div><div class="u8l3-st">Find</div><div>the equation already written as <span class="tex">y=\ldots</span> or <span class="tex">x=\ldots</span></div></div>
+    <div class="u8l3-step"><div class="u8l3-sn">Step 2</div><div class="u8l3-st">Substitute</div><div>that expression, in brackets, into the <b>other</b> equation</div></div>
+    <div class="u8l3-step"><div class="u8l3-sn">Step 3</div><div class="u8l3-st">Solve</div><div>the new equation. It has only <b>one</b> variable.</div></div>
+    <div class="u8l3-step"><div class="u8l3-sn">Step 4</div><div class="u8l3-st">Back-substitute</div><div>that value into the isolated equation to get the other variable</div></div>
+    <div class="u8l3-step"><div class="u8l3-sn">Step 5</div><div class="u8l3-st">State &amp; check</div><div>the ordered pair <span class="tex">(x,\ y)</span>, in <b>both</b> original equations</div></div>
+  </div>
+  <div class="explainer" data-explainer="lift"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Into the OTHER equation">
+  <h3 class="sub">Substitute into the <b>other</b> equation</h3>
+  <p>Putting the expression back into the equation it <b>came from</b> collapses to a true-but-useless statement such as <span class="tex">2x+1=2x+1</span>.</p>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> What happens if you swap <span class="tex">2x+1</span> for <span class="tex">y</span> in <span class="tex">y=2x+1</span> itself? Try it.</div><div class="work" style="--h:90px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">You get <span class="tex">2x+1=2x+1</span>. It is true for <b>every</b> <span class="tex">x</span>, so it tells you nothing. The expression came <b>from</b> that equation. Always use the <b>other</b> one.</div></div></div>
+  </div>
+  <div class="explainer" data-explainer="other"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>One step at a time</h3></div>
+  <p class="q">Solve <span class="tex">\textcolor{#1f5bd6}{y=2x+1}</span> and <span class="tex">\textcolor{#c27a0e}{3x+y=16}</span> by substitution, one step at a time.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl"><b>Step 1:</b> Which equation already has a variable isolated? Write it down.</div><div class="work" style="--h:130px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=2x+1</span> is already solved for <span class="tex">y</span>. So substitute into the <b>other</b> equation, <span class="tex">3x+y=16</span>.</div></div></div>
+    <div class="part"><div class="pl"><b>Step 2:</b> Substitute <span class="tex">2x+1</span> in place of <span class="tex">y</span> in <span class="tex">3x+y=16</span>. The new equation should contain only <span class="tex">x</span>.</div><div class="work" style="--h:130px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3x+y=16</span><br><span class="tex">3x+(2x+1)=16</span><br><span class="tex">\boldsymbol{5x+1=16}</span>: only <span class="tex">x</span> left.</div></div></div>
+    <div class="part"><div class="pl"><b>Step 3:</b> Solve the equation from Step 2 for <span class="tex">x</span>.</div><div class="work" style="--h:140px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">5x+1=16</span><br><span class="tex">5x=15</span><br><span class="tex">\boldsymbol{x=3}</span></div></div></div>
+    <div class="part"><div class="pl"><b>Step 4:</b> Substitute that <span class="tex">x</span>-value back into <span class="tex">y=2x+1</span> to find <span class="tex">y</span>.</div><div class="work" style="--h:140px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=2(3)+1</span><br><span class="tex">y=6+1</span><br><span class="tex">\boldsymbol{y=7}</span></div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part"><div class="pl"><b>Step 5:</b> Write the solution as an ordered pair <span class="tex">(x,\ y)</span>, then check it in <b>both</b> original equations.</div><div class="work" style="--h:150px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Solution: <span class="tex">\boldsymbol{(3,\ 7)}</span><br>Check in <span class="tex">y=2x+1</span>: <span class="tex">2(3)+1=7</span> ✓ &nbsp;&nbsp; Check in <span class="tex">3x+y=16</span>: <span class="tex">3(3)+7=9+7=16</span> ✓<br>It works in <b>both</b>, so <span class="tex">(3,\ 7)</span> solves the system.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Practicing ================= -->
+<section class="card" data-ink="s3" data-section="3. Practicing Substitution">
+  <div class="sec-h"><span class="badge">3</span><h2>Practicing Substitution</h2></div>
+  <p>Each system below already has one equation solved for a variable. Substitute, solve, back-substitute, and check. The isolated variable may be <span class="tex">x</span> rather than <span class="tex">y</span>, and a solution may come out negative. Both are perfectly normal.</p>
+  <div class="def"><b>Brackets go in with the expression.</b> The number in front of the variable multiplies the <b>whole</b> expression: <span class="tex">3y</span> with <span class="tex">y=x-4</span> becomes <span class="tex">3(x-4)=3x-12</span>, not <span class="tex">3x-4</span>.</div>
+  <div class="explainer" data-explainer="brackets"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>A minus in front of the bracket changes both terms.</b> <span class="tex">-(-2x+5)=+2x-5</span>, and <span class="tex">-2(3x-7)=-6x+14</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>The number in front multiplies the bracket</h3></div>
+  <p class="q">Solve <span class="tex">\textcolor{#1f5bd6}{y=x-4}</span> and <span class="tex">\textcolor{#c27a0e}{2x+3y=18}</span> by substitution.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Substitute <span class="tex">x-4</span> for <span class="tex">y</span> in the second equation and solve for <span class="tex">x</span>.</div><div class="work" style="--h:260px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2x+3y=18</span><br><span class="tex">2x+3(x-4)=18</span><br><span class="tex">2x+3x-12=18</span><br><span class="tex">5x-12=18</span><br><span class="tex">5x=30</span><br><span class="tex">\boldsymbol{x=6}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Substitute your <span class="tex">x</span>-value back into <span class="tex">y=x-4</span> to find <span class="tex">y</span>.</div><div class="work" style="--h:260px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=x-4</span><br><span class="tex">y=6-4</span><br><span class="tex">\boldsymbol{y=2}</span><br>Solution: <span class="tex">\boldsymbol{(6,\ 2)}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Check your solution in both original equations.</div><div class="work" style="--h:260px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=x-4</span>: <span class="tex">2=6-4</span> ✓<br><span class="tex">2x+3y=18</span>:<br><span class="tex">2(6)+3(2)=12+6=18</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>This time <span class="tex">x</span> is isolated</h3></div>
+  <p class="q">Solve <span class="tex">\textcolor{#1f5bd6}{x=3y+1}</span> and <span class="tex">\textcolor{#c27a0e}{x+2y=16}</span> by substitution.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Substitute the expression for <span class="tex">x</span> into the second equation and solve the system.</div><div class="work" style="--h:250px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x+2y=16</span><br><span class="tex">(3y+1)+2y=16</span><br><span class="tex">5y+1=16\ \Rightarrow\ 5y=15\ \Rightarrow\ \boldsymbol{y=3}</span><br><span class="tex">x=3(3)+1=\boldsymbol{10}</span><br>Solution: <span class="tex">\boldsymbol{(10,\ 3)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Check your solution in both original equations.</div><div class="work" style="--h:250px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x=3y+1</span>: <span class="tex">3(3)+1=10</span> ✓<br><span class="tex">x+2y=16</span>: <span class="tex">10+2(3)=10+6=16</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Which value comes first?">
+  <h3 class="sub">Which value do you find first?</h3>
+  <p>You always find the <b>other</b> variable first: when <span class="tex">y</span> is isolated, Step 3 gives <span class="tex">x</span>; when <span class="tex">x</span> is isolated, Step 3 gives <span class="tex">y</span>. Either way, the answer is written <span class="tex">(x,\ y)</span>: <span class="tex">x</span> first.</p>
+  <div class="explainer" data-explainer="order"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>A minus sign in front, and a negative answer</h3></div>
+  <p class="q">Solve <span class="tex">\textcolor{#1f5bd6}{y=-2x+5}</span> and <span class="tex">\textcolor{#c27a0e}{3x-y=10}</span> by substitution, and check. One variable will come out negative.</p>
+  <div class="parts c1">
+    <div class="part"><div class="pl">Solve and check.</div><div class="work" style="--h:300px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Substitute <span class="tex">-2x+5</span> for <span class="tex">y</span> in <span class="tex">3x-y=10</span>. Watch the subtraction sign: it changes <b>both</b> terms.<br><span class="tex">3x-(-2x+5)=10\ \Rightarrow\ 3x+2x-5=10\ \Rightarrow\ 5x-5=10\ \Rightarrow\ 5x=15\ \Rightarrow\ \boldsymbol{x=3}</span><br>Back-substitute: <span class="tex">y=-2(3)+5=-6+5=\boldsymbol{-1}</span>. &nbsp; Solution: <span class="tex">\boldsymbol{(3,\ -1)}</span><br>Check: <span class="tex">-2(3)+5=-1</span> ✓ &nbsp; <span class="tex">3(3)-(-1)=9+1=10</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u8l3"></section>
+
+<!-- ================= 4. Checking ================= -->
+<section class="card" data-ink="s4" data-section="4. Checking the Solution">
+  <div class="sec-h"><span class="badge">4</span><h2>Checking the Solution</h2></div>
+  <p>Check every ordered pair in <b>both</b> original equations (not rearranged ones), and confirm each left side equals its right side. A check that does not balance catches sign errors and missed steps, and a pair that satisfies only <b>one</b> equation is not a solution to the system at all.</p>
+  <div class="explainer" data-explainer="checkBoth"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Show the substitution, then check each equation on its own line</h3></div>
+  <p class="q">Solve <span class="tex">\textcolor{#1f5bd6}{y=3x-7}</span> and <span class="tex">\textcolor{#c27a0e}{5x-2y=11}</span> by substitution. Show the substitution step clearly, then check the solution in <b>both</b> original equations, writing each check as its own line of work.</p>
+  <div class="parts c1">
+    <div class="part"><div class="pl">Solve and check.</div><div class="work" style="--h:320px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Substitution step: replace <span class="tex">y</span> with <span class="tex">3x-7</span> in <span class="tex">5x-2y=11</span>.<br><span class="tex">5x-2(3x-7)=11\ \Rightarrow\ 5x-6x+14=11\ \Rightarrow\ -x+14=11\ \Rightarrow\ -x=-3\ \Rightarrow\ \boldsymbol{x=3}</span><br><span class="tex">y=3(3)-7=9-7=\boldsymbol{2}</span>. &nbsp; Solution: <span class="tex">\boldsymbol{(3,\ 2)}</span><br>Check 1 (<span class="tex">y=3x-7</span>): <span class="tex">2=3(3)-7=2</span> ✓<br>Check 2 (<span class="tex">5x-2y=11</span>): <span class="tex">5(3)-2(2)=15-4=11</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Exact, not estimated">
+  <h3 class="sub">Exact, not estimated</h3>
+  <p>Remember Section 1: a graph is only as accurate as its grid. When the lines cross <b>between</b> grid lines, reading the graph gives a guess, and a guess usually fails the check. Substitution gives the exact crossing point.</p>
+  <div class="explainer" data-explainer="exact"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Two names, one value.</b> If <span class="tex">y=2x+1</span>, then wherever <span class="tex">y</span> appears in the <b>other</b> equation you may write <span class="tex">(2x+1)</span>. Two unknowns become one.</div>
+    <div><b>The five steps.</b> <b>Find</b> the isolated equation; <b>substitute</b> into the <b>other</b> equation; <b>solve</b>; <b>back-substitute</b>; <b>state</b> <span class="tex">(x,\ y)</span> and check.</div>
+    <div><b>Brackets go in with it.</b> The number in front multiplies every term: <span class="tex">3(x-4)=3x-12</span>, <span class="tex">-(-2x+5)=2x-5</span>, <span class="tex">-2(3x-7)=-6x+14</span>.</div>
+    <div><b>Check in BOTH originals.</b> A pair that works in only one equation is not the solution. Write <span class="tex">x</span> first in the pair, even when you found <span class="tex">y</span> first.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u8l3">
+    <div><div class="kicker">Your turn</div><b>Assignment 3 — Solving Systems by Substitution, Part 1: When a Variable Is Already Isolated</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l4/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 4 — Solving Systems by Substitution, Part 2: Isolating a Variable First</b><div class="muted">What if neither equation says <span class="tex">y=\ldots</span>? Isolate a variable yourself, then swap.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u8l3.js';
+  boot({ key: 'u8l3', homeHref: '../../', title: '8.3 Substitution, Part 1' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>
