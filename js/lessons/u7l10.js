@@ -143,7 +143,7 @@
       if (Math.abs(L.A * P[0] + L.B * P[1] + L.C) > 1e-9) {
         var m = slopeOf(L);
         if (m && not && Math.abs(P[0] - qv(not[0]) - qv(m)) < 1e-9 && same(P[1] - qv(not[1]), 1)) return wrong('slope-flip', 'You moved up and across the wrong way round: the slope is rise over run — go <b>across ' + t(Q(m)[1]) + '</b>, then up or down ' + t(Math.abs(Q(m)[0])) + '.');
-        return wrong('u7l10-off-line', 'That point isn’t on the line: substitute it into the equation to check. Start at the ' + t('y') + '-intercept, go across the run, then up or down the rise.');
+        return wrong('u7l10-off-line', not ? 'That point isn’t on the line: substitute it into the equation to check. Start at the ' + t('y') + '-intercept, go across the run, then up or down the rise.' : 'That point isn’t on the line. Look for places where the line passes exactly through a grid corner, and read across first, then up or down.');
       }
       if (cond && !cond(P)) return form('u7l10-cond', condHint);
       return ok();
@@ -488,7 +488,7 @@
       var q = r.pick([2, 3]), p = r.pick([1, 2, 3, 4, 5]) * (r.chance(0.65) ? 1 : -1); if (gcd(p, q) !== 1) return null;
       var b = rnz(r, -6, 6), ys = [-2, -1, 0, 1, 2].map(function (j) { return b + j * p; }); if (ys.some(function (y) { return Math.abs(y) > 12; })) return null;
       var x1 = -q * r.int(1, 2), k = r.int(2, 4), x5 = q * r.pick([4, 5]), on = r.chance(0.6), y5 = b + p * x5 / q + (on ? 0 : r.pick([-1, 1]));
-      var dots = [[0, b], [q, b + p], [2 * q, b + 2 * p], [-q, b - p]].filter(function (d) { return Math.abs(d[0]) <= 6 && Math.abs(d[1]) <= 9; }); if (dots.length < 2) return null;
+      var dots = [[0, b], [q, b + p], [2 * q, b + 2 * p], [-q, b - p]].filter(function (d) { return Math.abs(d[0]) <= 6 && Math.abs(d[1]) <= 7; }); if (dots.length < 2) return null;
       return { p: p, q: q, b: b, x1: x1, k: k, x5: x5, y5: y5, x6: -4 * q };
     });
   }
@@ -499,11 +499,11 @@
     { num: '1', section: 'Extra practice A — One Line, Four Ways', shared: ep1,
       stem: function (sh) {
         var q = sh.q, p = sh.p, b = sh.b, xs = [-2, -1, 0, 1, 2].map(function (j) { return j * q; }), ys = xs.map(function (x) { return b + p * x / q; });
-        var L = lineMB(Q(p, q), b), dots = [[0, b], [q, b + p], [2 * q, b + 2 * p], [-q, b - p], [-2 * q, b - 2 * p]].filter(function (d) { return Math.abs(d[0]) <= 6 && Math.abs(d[1]) <= 9; }).slice(0, 2);
+        var L = lineMB(Q(p, q), b), dots = [[0, b], [q, b + p], [2 * q, b + 2 * p], [-q, b - p], [-2 * q, b - 2 * p]].filter(function (d) { return Math.abs(d[0]) <= 6 && Math.abs(d[1]) <= 7; }).slice(0, 2);
         var P3 = [sh.x1, b + p * sh.x1 / q], P4 = [sh.x1 + sh.k * q, b + p * (sh.x1 + sh.k * q) / q], P5 = [2 * q, b + 2 * p];
         return 'The four descriptions below all belong to <b>the same straight line</b>. Answer each part from its own description alone.' +
           '<p><b>Description I — a table of values</b></p>' + HW.valueTable([[t('x')].concat(xs.map(function (x) { return t(x); })), [t('y')].concat(ys.map(function (y) { return t(y); }))]) +
-          '<p><b>Description II — a graph</b></p>' + lineFig([{ L: L }], [-6, 6], [-10, 10], dots.map(function (d) { return [d[0], d[1]]; }), { max: 260, aria: 'graph of the line' }) +
+          '<p><b>Description II — a graph</b></p>' + lineFig([{ L: L }], [-6, 6], [-8, 8], dots.map(function (d) { return [d[0], d[1]]; }), { max: 260, aria: 'graph of the line' }) +
           '<p><b>Description III — two points:</b> the line passes through ' + t(ptT(P3)) + ' and ' + t(ptT(P4)) + '.</p>' +
           '<p><b>Description IV — words:</b> the line ' + (p > 0 ? 'rises ' : 'falls ') + t(Math.abs(p)) + (Math.abs(p) === 1 ? ' unit' : ' units') + ' for every ' + t(q) + ' units it runs to the right, and it passes through ' + t(ptT(P5)) + '.</p>';
       },
@@ -529,7 +529,7 @@
         return gen(r, function (r) {
           var m = sl(r, [[3, 4], [2, 3], [1, 2], [3, 2], [5, 4], [1, 3]]), P = [m[1] * r.pick([1, 2, -1]), r.int(-6, 6)]; if (isInt(qs(P[1], qm(m, P[0]))) === false) return null;
           var m2 = sl(r, [[3, 2], [2, 3], [1, 2], [5, 2], [1, 4]]), x1 = -r.int(1, 4), A = [x1, r.int(-4, 9)], Bp = [x1 + m2[1] * r.int(2, 4), 0]; Bp[1] = A[1] + m2[0] * (Bp[0] - x1) / m2[1]; if (Math.abs(Bp[1]) > 14) return null;
-          return { m: m, P: P, A: A, Bp: Bp, v: rnz(r, -8, 8), vy: [r.int(-6, 6), r.int(-6, 6)], h: rnz(r, -8, 8), hx: [r.int(-6, 8), r.int(-6, 8)] };
+          return { m: m, P: P, A: A, Bp: Bp, v: rnz(r, -8, 8), vy: [r.int(-6, 6), r.int(-6, 6)], h: rnz(r, -12, 12), hx: [r.int(-6, 8), r.int(-6, 8)] };
         });
       },
       parts: [
@@ -556,7 +556,7 @@
           p.bad = [['x=' + sh.h, gT(L3(1, 0, -sh.h))]]; return p;
         } },
         { id: 'e2e', level: 'PRG', outcome: 'RF6', make: function (r, sh) {
-          return mc(r, '(e) Exactly one of the four lines <b>cannot</b> be written in the form ' + t('y=mx+b') + '. Which, and why?', [
+          return mc(r, '(e) Exactly one of the four lines <b>cannot</b> be written in the form ' + t('y=mx+b') + ' — and line (d), ' + t('y=' + sh.h) + ', looks odd but can. Which one cannot, and why?', [
             { html: 'Line (c), ' + t('x=' + sh.v) + ': it is vertical, so its slope is undefined and there is no ' + t('m') + ' to use. Line (d) can, because slope 0 is a number: ' + t('y=0x' + (sh.h < 0 ? '' : '+') + sh.h) + '.', right: true },
             { html: 'Line (d), ' + t('y=' + sh.h) + ': it has no ' + t('x') + '-term, so it has no slope.', why: 'A horizontal line has slope 0, which is a number: ' + t('y=0x' + (sh.h < 0 ? '' : '+') + sh.h) + '.' },
             { html: 'Line (b): its ' + t('y') + '-intercept is a fraction.', why: 'Fractions are allowed in ' + t('y=mx+b') + '.' },
@@ -637,7 +637,7 @@
       },
       stem: function (sh) {
         var L = sh.L, txt = { proper: pol([[L.A, 'x'], [L.B, 'y'], [L.C, '']]) + '=0', neg: pol([[-L.B, 'y'], [-L.A, 'x'], [-L.C, '']]) + '=0', scaled: pol([[sh.f * L.A, 'x'], [sh.f * L.B, 'y'], [sh.f * L.C, '']]) + '=0' };
-        return '<b>Same line in different clothes.</b> Five equations:<br>(i) ' + t(siTex(sh.m, sh.b)) + '  (ii) ' + t(txt[sh.roles[0]]) + '  (iii) ' + t(txt[sh.roles[1]]) + '  (iv) ' + t(txt[sh.roles[2]]) + '  (v) ' + t(siTex(Q(sh.m[1], sh.m[0]), sh.b));
+        return '<b>Same line in different clothes.</b> Five equations:<br>(i) ' + t(siTex(sh.m, sh.b)) + '&emsp; (ii) ' + t(txt[sh.roles[0]]) + '&emsp; (iii) ' + t(txt[sh.roles[1]]) + '&emsp; (iv) ' + t(txt[sh.roles[2]]) + '&emsp; (v) ' + t(siTex(Q(sh.m[1], sh.m[0]), sh.b));
       },
       parts: [
         { id: 'e8a', level: 'PRG', outcome: 'RF6', make: function (r, sh) {
@@ -661,7 +661,7 @@
     /* ---------------- Part D ---------------- */
     { num: '9', section: 'Extra practice D — Graphs and Lines', shared: function (r) {
         if (r.chance(0.25)) return { m: Q(-4, 3), b: 2, X: 12, Y: -30 };
-        return gen(r, function (r) { var m = sl(r, [[4, 3], [3, 2], [2, 3], [1, 2], [5, 3], [3, 4]]), b = r.int(-4, 6), L = lineMB(m, b); if (lattice(L, [-6, 6], [-8, 10]).length < 3) return null; var X = m[1] * r.pick([4, 5, 6]), Xy = qv(yAt(L, X)), Yk = r.pick([3, 4, 5, 6]) * (qv(m) < 0 ? -1 : 1), Y = b + m[0] * Yk * (m[1] === 1 ? 1 : 1); var xY = qv(xAt(L, Y)); return isI(xY) && Math.abs(xY) > 6 ? { m: m, b: b, X: X, Y: Y } : null; });
+        return gen(r, function (r) { var m = sl(r, [[4, 3], [3, 2], [2, 3], [1, 2], [5, 3], [3, 4]]), b = r.int(-4, 6), L = lineMB(m, b); if (lattice(L, [-6, 6], [-8, 10]).length < 3) return null; var X = m[1] * r.pick([4, 5, 6]), Xy = qv(yAt(L, X)), Yk = r.pick([3, 4, 5, 6]) * (qv(m) < 0 ? -1 : 1), Y = b + m[0] * Yk * (m[1] === 1 ? 1 : 1); var xY = qv(xAt(L, Y)); return isI(xY) && Math.abs(xY) > 6 && !same(xY, Xy) ? { m: m, b: b, X: X, Y: Y } : null; });
       },
       stem: function (sh) { return '<b>From a graph to an equation to a prediction.</b>' + lineFig([{ L: lineMB(sh.m, sh.b) }], [-6, 6], [-8, 10], [], { max: 300 }); },
       parts: [
@@ -698,12 +698,12 @@
         return gen(r, function (r) {
           var m = sl(r, [[2, 3], [1, 2], [3, 2], [1, 3], [3, 4]]), P = [r.int(-4, 6), r.int(-5, 5)], b1 = qs(P[1], qm(m, P[0])); if (!isInt(b1) || Math.abs(qv(b1)) > 7) return null;
           var a = r.pick([1, 3, -1, -3]), L2 = L3(a, 2, -(a * P[0] + 2 * P[1])); if (gcd(a, 2) !== 1) return null;
-          var L1 = lineMB(m, qv(b1)), k = rnz(r, -6, 6), h = rnz(r, -5, 5); if (k === P[1] || h === P[0]) return null;
+          var L1 = lineMB(m, qv(b1)), k = rnz(r, -6, 6), h = rnz(r, -5, 5); if (k === P[1] || h === P[0] || h === k) return null;
           if (lattice(L1, [-6, 6], [-8, 8]).length < 2 || lattice(L2, [-6, 6], [-8, 8]).length < 2) return null;
           return { m: m, b1: qv(b1), a: a, P: P, k: k, h: h };
         });
       },
-      stem: function (sh) { var L2 = L3(sh.a, 2, -(sh.a * sh.P[0] + 2 * sh.P[1])); return 'Four lines: (i) ' + t(siTex(sh.m, sh.b1)) + '  (ii) ' + t(gT(L2)) + '  (iii) ' + t('y=' + sh.k) + '  (iv) ' + t('x=' + sh.h) + '. Two of them must be rearranged before they can be graphed from a slope and an intercept, and one cannot be put in the form ' + t('y=mx+b') + ' at all.'; },
+      stem: function (sh) { var L2 = L3(sh.a, 2, -(sh.a * sh.P[0] + 2 * sh.P[1])); return 'Four lines: (i) ' + t(siTex(sh.m, sh.b1)) + '&emsp; (ii) ' + t(gT(L2)) + '&emsp; (iii) ' + t('y=' + sh.k) + '&emsp; (iv) ' + t('x=' + sh.h) + '. Two of them must be rearranged before they can be graphed from a slope and an intercept, and one cannot be put in the form ' + t('y=mx+b') + ' at all.'; },
       parts: [
         { id: 'e10a', sub: 'graph', level: 'PRG', outcome: 'RF6', make: function (r, sh) {
           var L1 = lineMB(sh.m, sh.b1), L2 = L3(sh.a, 2, -(sh.a * sh.P[0] + 2 * sh.P[1])), L3_ = L3(0, 1, -sh.k), L4 = L3(1, 0, -sh.h), xr = [-6, 6], yr = [-8, 8];
@@ -803,14 +803,14 @@
     /* ---------------- Part F ---------------- */
     { num: '15', section: 'Extra practice F — Applications', shared: function (r) {
         if (r.chance(0.25)) return { D0: 20, q: 1.25, t1: 6, tf: 10 };
-        return gen(r, function (r) { var q = r.pick([0.5, 0.75, 1.25, 1.5, 2.5]), D0 = r.pick([10, 12, 15, 16, 18, 20, 24, 30]), T = D0 / q; if (!isI(T) || T < 8 || T > 24) return null; var t1 = r.int(2, T - 2), tf = r.int(2, T - 2); return t1 === tf ? null : { D0: D0, q: q, t1: t1, tf: tf }; });
+        return gen(r, function (r) { var q = r.pick([0.5, 0.75, 1.25, 1.5, 2, 2.5]), D0 = r.pick([9, 10, 12, 14, 15, 16, 18, 20, 21, 24, 25, 27, 30]), T = D0 / q; if (!isI(T) || T < 8 || T > 28) return null; var t1 = r.int(2, T - 2), tf = r.int(2, T - 2); return t1 === tf ? null : { D0: D0, q: q, t1: t1, tf: tf }; });
       },
       stem: function (sh) { return 'Amira’s monthly phone plan includes ' + t(sh.D0) + ' GB of data. She uses data at a steady ' + t(nf(sh.q)) + ' GB per day. Let ' + t('D') + ' be the data remaining (GB) after ' + t('t') + ' days of the month.'; },
       parts: [
         { id: 'e15a', level: 'PRG', outcome: 'RF4', make: function (r, sh) { return ctxLine('(a) Write an equation for ' + t('D') + ' in terms of ' + t('t') + '.', -sh.q, sh.D0, { X: 't', Y: 'D' }, 'She loses ' + t(nf(sh.q)) + ' GB each day from ' + t(sh.D0) + ' GB: ' + t(ctxTex('D', 't', -sh.q, sh.D0)), ['Using data makes the amount go down: negative slope.'], 'data equation'); } },
         { id: 'e15b', level: 'PRG', outcome: 'RF4', make: function (r, sh) {
-          var T = sh.D0 / sh.q, xm = Math.ceil((T + 1) / 4) * 4, key = gv([], [segv([0, sh.D0], [T, 0])]);
-          var I = { x: [0, xm], y: [0, sh.D0 + 2], labels: 4, firstQuadrant: true, xName: 't', yName: 'D', xTitle: 'Time, t (days)', yTitle: 'Data remaining, D (GB)', defaultEnd: 'closed', tools: ['line', 'ends'] };
+          var T = sh.D0 / sh.q, xm = Math.ceil((T + 1) / 4) * 4 + 1, key = gv([], [segv([0, sh.D0], [T, 0])]);
+          var I = { x: [0, xm], y: [0, sh.D0 + 3], labels: 4, firstQuadrant: true, xName: 't', yName: 'D', xTitle: 'Time, t (days)', yTitle: 'Data remaining, D (GB)', defaultEnd: 'closed', tools: ['line', 'ends'] };
           var p = B.graph('(b) Graph the relation on the axes. Use <b>╱ Line</b>: tap the start of the month, then the day the data runs out (the ends are dots — the month has a start and an end).', I, exactChk(key, { wrong: [{ is: gv([], [segv([0, sh.D0], [T, 0], 'arrow', 'arrow')]), code: 'graph-arrows', hint: 'The data starts at ' + t('t=0') + ' and runs out at ' + t('t=' + T) + ': draw a segment with dots at the ends.' }] }), key,
             'Start at ' + t(ptT([0, sh.D0])) + ' (full allowance). The data runs out when ' + t('D=0') + ': ' + t('t=' + sh.D0 + '\\div ' + nf(sh.q) + '=' + T) + ', the point ' + t(ptT([T, 0])) + '. Join them with a straight segment.', ['Plot the two intercepts: ' + t('(0,\\ ' + sh.D0 + ')') + ' and the day ' + t('D=0') + '.'], 'graph the data line');
           p.bad = [gv([], [segv([0, sh.D0], [T, 0], 'arrow', 'arrow')]), gv([], [segv([0, 0], [T, sh.D0])])];

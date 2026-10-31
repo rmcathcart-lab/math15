@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elimination, Part 1: When Coefficients Already Match · Math 15 8.5</title>
+<meta name="description" content="Math 15 Unit 8 Lesson 5: solving a system by elimination when a variable's coefficients already match or are opposites. Two receipts compared, two balances combined pan to pan, subtracting in columns (every sign flips, the constant too), zero pairs when adding opposites, the add-or-subtract decision, back-substituting into either equation, and checking in both. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u8l5.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u8l5">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 8 Systems of Linear Equations · Lesson 5</div>
+  <h1>Solving Systems by Elimination, Part 1: When Coefficients Already Match</h1>
+  <p class="lede">Substitution always works, but sometimes it drags fractions along. <b>Elimination</b> is a shortcut: line the two equations up and <b>add</b> or <b>subtract</b> them, so one variable <b>vanishes</b>. What is left is one equation with one variable, the kind you already know how to solve.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>spot a variable whose coefficients <b>match</b> (same number, same sign) or are <b>opposites</b> (same number, opposite signs)</li>
+      <li><b>subtract</b> the equations when the coefficients match, lining up columns and changing the sign of <b>every</b> term I subtract, the constant too</li>
+      <li><b>add</b> the equations when the coefficients are opposites, because a number plus its opposite is <span class="tex">0</span></li>
+      <li>solve the one-variable equation, <b>back-substitute</b> into either original equation, and <b>check</b> in both</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF9</b> Solve problems that involve systems of linear equations in two variables, graphically and algebraically.<br><span class="u8l5-today">Today: solving a system algebraically by adding or subtracting the equations.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Two Receipts" id="wu" style="--wf-side: 390px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Two Receipts</h2>
+  <p class="wf-rule">Mia and Jay ate at <b>Burger Barn</b>. Same prices, but the price tags <b>tore off</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u8l5-rcpts" id="u8l5-bb"></div>
+    <div class="u8l5-bigframe"><span class="u8l5-bigtag">for the big one</span><div class="u8l5-rcpts" id="u8l5-tt"></div></div>
+  </div><div class="wf-side">
+    <div class="u8l5-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What’s <b>the same</b> on both receipts? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Both receipts have <b>2 burgers</b>.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>What’s <b>different</b>? How much more did Jay pay? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Jay has <b>2 more drinks</b>, and paid <span class="tex">18-14=\$4</span> more.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>So <b>one drink</b> costs…? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">The burgers are the same, so the extra $4 is <b>only</b> the 2 extra drinks: 2 drinks <span class="tex">=\$4</span>, one drink <span class="tex">=\$2</span>.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>And <b>one burger</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Mia: 2 burgers <span class="tex">+\ \$2=\$14</span>, so 2 burgers <span class="tex">=\$12</span>, one burger <span class="tex">=\$6</span>. Check Jay: <span class="tex">12+3(2)=18</span> ✓</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A refund is a <b>minus</b>. To find a taco’s price, what do you do with Sam’s two slips? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Subtract them</div>
+        <div class="opt right"><b>B</b> Add them</div>
+        <div class="opt"><b>C</b> Can’t be done</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: add them.</b> Put everything Sam did together: <span class="tex">3+1=4</span> tacos, and the 2 juices he bought were handed back, so the juices are <b>gone</b>. Money: paid $13, got $1 back, so $12 spent. 4 tacos <span class="tex">=\$12</span>, one taco <span class="tex">=\$3</span>, and then a juice is $2.<br><span class="muted"><b>Why not A?</b> Subtracting leaves 2 tacos and 4 juices: nothing vanished. Many pick A because “that’s what we did last time.”</span></div>
+    </div>
+  </div></div>
+  <p class="u8l5-social">Your turn: write two receipts for your neighbour to crack!</p>
+</section>
+
+<section class="card" data-ink="warm2" data-section="Warm-up: the receipts, solved">
+  <h3 class="sub">The receipts, solved: compare them, and one item vanishes</h3>
+  <p>Stack the two receipts and combine them, item by item and total by total. Something <b>cancels</b> and leaves just one kind of item. That move has a name: <b>elimination</b>.</p>
+  <div class="explainer" data-explainer="receipts"></div>
+</section>
+
+<!-- ================= 1. The idea ================= -->
+<section class="card" data-ink="s1" data-section="1. The Idea Behind Elimination">
+  <div class="sec-h"><span class="badge">1</span><h2>The Idea Behind Elimination</h2></div>
+  <p>Substitution always works, but isolating a variable can create fractions to drag through every step. <b>Elimination</b> lines the two equations up and combines them so one variable <b>disappears</b> entirely.</p>
+  <div class="def">If <span class="tex">5x+2y=19</span> and <span class="tex">5x-3y=4</span>, subtracting gives
+    <div class="u8l5-disp"><span class="tex">(5x+2y)-(5x-3y)=19-4</span></div>
+    so <span class="tex">5y=15</span> and <span class="tex">y=3</span>. The <span class="tex">x</span>-terms cancelled because <span class="tex">5x-5x=0</span>, leaving <b>one equation in one variable</b>.</div>
+  <p>Think of each equation as a <b>level balance</b>: the left side and the right side weigh the same. Put both balances on one big balance and it is still level.</p>
+  <div class="u8l5-key">
+    <span class="u8l5-kk">Key</span>
+    <span class="u8l5-kblk">x-block</span>
+    <span class="u8l5-kblk u8l5-ky">y-block</span>
+    <span class="u8l5-kblk u8l5-kc">number</span>
+    <span class="u8l5-kblk u8l5-kn">dashed = negative</span>
+    <span class="u8l5-ksep"></span>
+    <span class="u8l5-tg u8l5-t1">Eq. 1</span><span class="u8l5-tg u8l5-t2">Eq. 2</span><span class="u8l5-tg u8l5-tr">combined</span>
+  </div>
+  <div class="explainer" data-explainer="balance"></div>
+</section>
+
+<!-- ================= 2. Subtraction ================= -->
+<section class="card" data-ink="s2" data-section="2. Eliminating by Subtraction">
+  <div class="sec-h"><span class="badge">2</span><h2>Eliminating by Subtraction (Matching Coefficients)</h2></div>
+  <div class="u8l5-s2row">
+    <div>
+      <div class="def">If a variable has the <b>exact same</b> coefficient in both equations (same number, <b>same sign</b>), <b>subtract</b> the equations. Line up the <span class="tex">x</span>-terms, the <span class="tex">y</span>-terms and the constants in columns, and subtract each column.</div>
+      <p>Then solve the one-variable equation and <b>back-substitute</b> into either <b>original</b> equation.</p>
+    </div>
+    <div class="u8l5-stack">
+      <span class="tex">\begin{array}{r@{\,}r@{\,}c@{\,}r} &amp; \textcolor{#1f5bd6}{3x+4y} &amp; = &amp; \textcolor{#1f5bd6}{23}\\ -) &amp; \textcolor{#c27a0e}{3x-2y} &amp; = &amp; \textcolor{#c27a0e}{11}\\[1pt] \hline &amp; \textcolor{#12805a}{6y} &amp; = &amp; \textcolor{#12805a}{12} \end{array}</span>
+    </div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Subtracting changes the sign of every term</b> you subtract, the constant included. Here <span class="tex">4y-(-2y)=4y+2y=6y</span>, and the constants give <span class="tex">23-11</span>, not <span class="tex">23+11</span>. Writing brackets, <span class="tex">(3x+4y)-(3x-2y)</span>, keeps the signs straight.</div></div>
+  <div class="explainer" data-explainer="columns"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Subtract, one step at a time</h3></div>
+  <p class="q">For the system <span class="u8l5-sys"><span class="u8l5-tg u8l5-t1">Eq. 1</span><span class="tex u8l5-e1">3x+4y=23</span> <span class="u8l5-tg u8l5-t2">Eq. 2</span><span class="tex u8l5-e2">3x-2y=11</span></span> work through the elimination one step at a time.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Do the <span class="tex">x</span>-terms have the same coefficient? Which variable does subtracting Eq. 2 from Eq. 1 remove?</div>
+      <div class="work" style="--h:130px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes</b>: both equations start with <span class="tex">3x</span> (same number, same sign).<br>Since <span class="tex">3x-3x=0</span>, subtracting removes <span class="tex">\boldsymbol{x}</span>.</div></div></div>
+    <div class="part"><div class="pl">(b) Subtract Equation 2 from Equation 1, lining up like terms. Write the resulting one-variable equation.</div>
+      <div class="work" style="--h:130px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(3x+4y)-(3x-2y)=23-11</span><br><span class="tex">3x-3x+4y+2y=12</span> (the <span class="tex">-2y</span> becomes <span class="tex">+2y</span>)<br><span class="tex">\boldsymbol{6y=12}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Solve the equation from part (b) for <span class="tex">y</span>.</div>
+      <div class="work" style="--h:130px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">6y=12</span><br><span class="tex">y=\dfrac{12}{6}</span>, so <span class="tex">\boldsymbol{y=2}</span></div></div></div>
+    <div class="part"><div class="pl">(d) Substitute your <span class="tex">y</span> into either original equation to find <span class="tex">x</span>, then check in <b>both</b> originals.</div>
+      <div class="work" style="--h:130px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3x+4(2)=23\ \Rightarrow\ 3x=15\ \Rightarrow\ \boldsymbol{x=5}</span><br>Check: <span class="tex">3(5)+4(2)=23</span> ✓ &nbsp; <span class="tex">3(5)-2(2)=11</span> ✓<br>The solution is <span class="tex">\boldsymbol{(5,\ 2)}</span>.</div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> What if you subtract the other way, Eq. 2 <span class="tex">-</span> Eq. 1? Do you get a different answer?</div><div class="work" style="--h:80px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Same answer.</b> <span class="tex">(3x-2y)-(3x+4y)=11-23</span> gives <span class="tex">-6y=-12</span>, so <span class="tex">y=2</span> again. Either order works; pick the one that keeps the numbers positive.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Back-substitute into either">
+  <h3 class="sub">Back-substitute into <b>either</b> original equation</h3>
+  <p>Once you know one variable, put it into <b>either</b> original equation to find the other. Both give the same answer, so pick the one with the friendlier numbers. Then check in <b>both</b>.</p>
+  <div class="explainer" data-explainer="either"></div>
+</section>
+
+<!-- ================= 3. Addition ================= -->
+<section class="card" data-ink="s3" data-section="3. Eliminating by Addition">
+  <div class="sec-h"><span class="badge">3</span><h2>Eliminating by Addition (Opposite Coefficients)</h2></div>
+  <p>Sometimes the coefficients are not equal but <b>opposite</b>: same number, <b>opposite signs</b>, like <span class="tex">+5y</span> and <span class="tex">-5y</span>. Then <b>add</b> the two equations: left sides together, right sides together.</p>
+  <div class="def">A number plus its opposite is <span class="tex">0</span>, so <span class="tex">5y+(-5y)=0</span> and the variable is <b>gone</b>. Solve, then back-substitute and check in both original equations, exactly as before.</div>
+  <div class="explainer" data-explainer="zero"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Opposites: add the equations</h3></div>
+  <p class="q">For the system <span class="u8l5-sys"><span class="u8l5-tg u8l5-t1">Eq. 1</span><span class="tex u8l5-e1">2x+5y=23</span> <span class="u8l5-tg u8l5-t2">Eq. 2</span><span class="tex u8l5-e2">6x-5y=9</span></span> eliminate by adding.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Are the <span class="tex">y</span>-terms opposites? Which variable does adding the two equations remove?</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes</b>: <span class="tex">+5y</span> and <span class="tex">-5y</span> are the same number with opposite signs.<br>Since <span class="tex">5y+(-5y)=0</span>, adding removes <span class="tex">\boldsymbol{y}</span>.</div></div></div>
+    <div class="part"><div class="pl">(b) Add the two equations. Write the resulting one-variable equation, then solve it for <span class="tex">x</span>.</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(2x+5y)+(6x-5y)=23+9</span><br><span class="tex">8x+0y=32</span><br><span class="tex">8x=32</span>, so <span class="tex">\boldsymbol{x=4}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Substitute your <span class="tex">x</span> into either original equation to find <span class="tex">y</span>, then check both originals.</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2(4)+5y=23\ \Rightarrow\ 5y=15\ \Rightarrow\ \boldsymbol{y=3}</span><br>Check: <span class="tex">2(4)+5(3)=23</span> ✓<br><span class="tex">6(4)-5(3)=9</span> ✓<br>The solution is <span class="tex">\boldsymbol{(4,\ 3)}</span>.</div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. On the graph">
+  <h3 class="sub">What elimination does on the graph</h3>
+  <p>Back in Lesson 1, the solution was the point where the two lines <b>cross</b>. Adding or subtracting the equations makes a <b>new</b> line that still goes through that crossing. Elimination picks the new line that is <b>flat</b> (<span class="tex">y=\ldots</span>) or <b>straight up and down</b> (<span class="tex">x=\ldots</span>), so you can read one coordinate right off it.</p>
+  <div class="explainer" data-explainer="graph"></div>
+</section>
+
+<!-- ================= 4. Deciding ================= -->
+<section class="card" data-ink="s4" data-section="4. Deciding: Add or Subtract?">
+  <div class="sec-h"><span class="badge">4</span><h2>Deciding: Add or Subtract?</h2></div>
+  <p>Before touching a new system, ask one question: <b>do a variable’s coefficients match, or are they opposite?</b></p>
+  <div class="u8l5-ao">
+    <div class="u8l5-aoc u8l5-ao2"><div class="u8l5-aoh">Same number, <b>same</b> sign → <b>subtract</b></div><div class="u8l5-aoe"><span class="tex">+4x</span> and <span class="tex">+4x</span></div><div class="u8l5-aof"><span class="tex">4x-4x=0</span></div></div>
+    <div class="u8l5-aoc u8l5-ao1"><div class="u8l5-aoh">Same number, <b>opposite</b> signs → <b>add</b></div><div class="u8l5-aoe"><span class="tex">+4x</span> and <span class="tex">-4x</span></div><div class="u8l5-aof"><span class="tex">4x+(-4x)=0</span></div></div>
+  </div>
+  <p>Either way one variable disappears, leaving an equation you already know how to solve.</p>
+  <div class="explainer" data-explainer="decide"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Decide, eliminate, solve</h3></div>
+  <p class="q">For the system <span class="u8l5-sys"><span class="u8l5-tg u8l5-t1">Eq. 1</span><span class="tex u8l5-e1">4x+3y=18</span> <span class="u8l5-tg u8l5-t2">Eq. 2</span><span class="tex u8l5-e2">7x+3y=36</span></span> decide, eliminate, and solve.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Add or subtract? Look at the coefficients of <span class="tex">y</span> in both equations and decide.</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The <span class="tex">y</span>-coefficients are <span class="tex">+3</span> and <span class="tex">+3</span>: same number, <b>same</b> sign.<br>Matching coefficients <span class="tex">\Rightarrow</span> <b>subtract</b> the equations.</div></div></div>
+    <div class="part"><div class="pl">(b) Eliminate <span class="tex">y</span> and solve the resulting equation for <span class="tex">x</span>.</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(7x+3y)-(4x+3y)=36-18</span><br><span class="tex">3x=18</span>, so <span class="tex">\boldsymbol{x=6}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Back-substitute to find <span class="tex">y</span>, then check both original equations.</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4(6)+3y=18\ \Rightarrow\ 3y=-6\ \Rightarrow\ \boldsymbol{y=-2}</span><br>Check: <span class="tex">4(6)+3(-2)=18</span> ✓<br><span class="tex">7(6)+3(-2)=36</span> ✓<br>The solution is <span class="tex">\boldsymbol{(6,\ -2)}</span>.</div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> The answer in (b) subtracts Eq. 1 from Eq. 2, not Eq. 2 from Eq. 1. Why is that order friendlier here?</div><div class="work" style="--h:70px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Bigger minus smaller keeps the numbers <b>positive</b>: <span class="tex">7x-4x=3x</span> and <span class="tex">36-18=18</span>. The other order gives <span class="tex">-3x=-18</span>: the same <span class="tex">x=6</span>, just more negatives to handle.</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Decide, eliminate, solve</h3></div>
+  <p class="q">For the system <span class="u8l5-sys"><span class="u8l5-tg u8l5-t1">Eq. 1</span><span class="tex u8l5-e1">4x+y=-7</span> <span class="u8l5-tg u8l5-t2">Eq. 2</span><span class="tex u8l5-e2">-4x+3y=27</span></span> decide, eliminate, and solve.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Add or subtract? Look at the coefficients of <span class="tex">x</span> in both equations and decide.</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The <span class="tex">x</span>-coefficients are <span class="tex">+4</span> and <span class="tex">-4</span>: same number, <b>opposite</b> signs.<br>Opposite coefficients <span class="tex">\Rightarrow</span> <b>add</b> the equations.</div></div></div>
+    <div class="part"><div class="pl">(b) Eliminate <span class="tex">x</span> and solve the resulting equation for <span class="tex">y</span>.</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(4x+y)+(-4x+3y)=-7+27</span><br><span class="tex">4y=20</span>, so <span class="tex">\boldsymbol{y=5}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Back-substitute to find <span class="tex">x</span>, then check both original equations.</div>
+      <div class="work" style="--h:200px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4x+5=-7\ \Rightarrow\ 4x=-12\ \Rightarrow\ \boldsymbol{x=-3}</span><br>Check: <span class="tex">4(-3)+5=-7</span> ✓<br><span class="tex">-4(-3)+3(5)=27</span> ✓<br>The solution is <span class="tex">\boldsymbol{(-3,\ 5)}</span>.</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u8l5"></section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Both negative: watch your signs</h3></div>
+  <p class="q">For <span class="u8l5-sys"><span class="u8l5-tg u8l5-t1">Eq. 1</span><span class="tex u8l5-e1">-2x+5y=-34</span> <span class="u8l5-tg u8l5-t2">Eq. 2</span><span class="tex u8l5-e2">-2x-3y=-2</span></span> both coefficients of <span class="tex">x</span> are negative. Watch your signs.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Add or subtract? Look at the coefficients of <span class="tex">x</span> in both equations and decide.</div>
+      <div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Both <span class="tex">x</span>-coefficients are <span class="tex">-2</span>: same number and the <b>same</b> (negative) sign, so they <b>match</b>; they are not opposites.<br><b>Subtract</b> the equations.</div></div></div>
+    <div class="part"><div class="pl">(b) Eliminate <span class="tex">x</span> and solve the resulting equation for <span class="tex">y</span>.</div>
+      <div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-2x+5y)-(-2x-3y)=-34-(-2)</span><br><span class="tex">-2x+2x+5y+3y=-32</span><br><span class="tex">8y=-32</span>, so <span class="tex">\boldsymbol{y=-4}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Back-substitute to find <span class="tex">x</span>, then check both original equations.</div>
+      <div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">-2x+5(-4)=-34</span><br><span class="tex">\Rightarrow\ -2x=-14\ \Rightarrow\ \boldsymbol{x=7}</span><br>Check: <span class="tex">-2(7)+5(-4)=-34</span> ✓<br><span class="tex">-2(7)-3(-4)=-2</span> ✓<br>The solution is <span class="tex">\boldsymbol{(7,\ -4)}</span>.</div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Two negatives are the same sign.</b> <span class="tex">-2x</span> and <span class="tex">-2x</span> <b>match</b>, so subtract: <span class="tex">-2x-(-2x)=-2x+2x=0</span>. Adding them would give <span class="tex">-4x</span>, and nothing vanishes. And the constants: <span class="tex">-34-(-2)=-34+2=-32</span>.</div></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Examples check">
+  <h3 class="sub">Examples 1 to 5 check: decide, eliminate, solve, back-substitute, check</h3>
+  <p>Step through a full solution, one line at a time, to check the class’s work.</p>
+  <div class="explainer" data-explainer="walk"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>The idea.</b> Line the equations up and combine them, left side with left side and right side with right side. Choose the combination so one variable <b>cancels</b>, leaving one equation in one variable.</div>
+    <div><b>Same sign → subtract.</b> <span class="tex">+3x</span> and <span class="tex">+3x</span>, or <span class="tex">-2x</span> and <span class="tex">-2x</span>, match. Subtract in columns and change the sign of <b>every</b> term you subtract, the constant too: <span class="tex">(\;\cdots)-(\;\cdots)</span>.</div>
+    <div><b>Opposite signs → add.</b> <span class="tex">+5y</span> and <span class="tex">-5y</span> are opposites: <span class="tex">5y+(-5y)=0</span>, a zero pair. Add the left sides and add the right sides.</div>
+    <div><b>Finish the job.</b> Solve for the variable that is left, <b>back-substitute</b> into either original equation, and <b>check</b> the pair in <b>both</b> equations.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u8l5">
+    <div><div class="kicker">Your turn</div><b>Assignment 5 — Solving Systems by Elimination, Part 1: When Coefficients Already Match</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l6/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 6 — Solving Systems by Elimination, Part 2: Multiplying First</b><div class="muted">What if Mia bought 1 burger and Jay bought 2? Nothing matches, until you double a whole receipt.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u8l5.js';
+  boot({ key: 'u8l5', homeHref: '../../', title: '8.5 Elimination, Part 1' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

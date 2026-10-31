@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Solving Word Problems with Systems · Math 15 8.7</title>
+<meta name="description" content="Math 15 Unit 8 Lesson 7: solving word problems with systems of linear equations. The four-stage method (define the two variables, write two equations, solve, answer in a sentence and check), key words for +, − and ×, number and age problems, cost and purchase problems (a count equation and a value equation), and mixture problems. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u8l7.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u8l7">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 8 Systems of Linear Equations · Lesson 7</div>
+  <h1>Solving Word Problems with Systems of Equations</h1>
+  <p class="lede">Turning a paragraph about <b>two unknown quantities</b> into <b>two equations</b>, then solving it. The algebra is nothing new: substitution and elimination already work. The new skill is <b>translating</b> the words.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>use the <b>four stages</b>: define the two variables, write two equations, solve, and answer in a sentence with a check</li>
+      <li>turn key words into <b>+</b>, <b>−</b> and <b>×</b> (sum, more than, fewer than, twice …)</li>
+      <li>solve <b>number and age</b> problems: a sum and a comparison</li>
+      <li>solve <b>cost and purchase</b> problems: one equation <b>counts</b> the items, the other totals their <b>value</b></li>
+      <li>solve <b>mixture</b> problems: one equation for the <b>total amount</b>, one for the <b>total value</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF9</b> Solve problems that involve systems of linear equations in two variables, graphically and algebraically.<br><span class="u8l7-today">Today: real problems. Name the two unknowns, write two equations, and solve them the way you already know.</span></div>
+  <div class="u8l7-key"><span class="u8l7-k1">Eq. 1</span> blue <span class="u8l7-k2">Eq. 2</span> amber <span class="u8l7-ks">solution</span> purple, all through the lesson.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Heads and Legs" id="wu" style="--wf-side: 400px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Heads and Legs</h2>
+  <p class="wf-rule">Farmer Jo’s <b>hens</b> (2 legs) and <b>cows</b> (4 legs) hide behind the fence, each in a sun hat. We can see <b>10 hats</b> and <b>28 legs</b>.</p></div>
+  <div class="u8l7-wtop">
+    <div id="u8l7-fence" class="u8l7-fence"></div>
+    <div class="u8l7-fctl">
+      <div class="u8l7-fread" id="u8l7-fread"></div>
+      <div class="u8l7-fbtns">
+        <button type="button" class="pill" data-u8l7-swap="1">Swap a hen for a cow</button>
+        <button type="button" class="pill" data-u8l7-swap="-1">Swap back</button>
+        <button type="button" class="pill" id="u8l7-peek">Peek over the fence</button>
+      </div>
+    </div>
+  </div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u8l7-wtab">
+      <div class="u8l7-wth">Hens</div><div>10</div><div>9</div><div>8</div><div><span data-reveal>7</span></div><div><span data-reveal>6</span></div>
+      <div class="u8l7-wth">Cows</div><div>0</div><div>1</div><div>2</div><div><span data-reveal>3</span></div><div><span data-reveal>4</span></div>
+      <div class="u8l7-wth">Legs</div><div><span data-reveal>20</span></div><div><span data-reveal>22</span></div><div><span data-reveal>24</span></div><div><span data-reveal>26</span></div><div class="u8l7-w28">28</div>
+    </div>
+    <div class="u8l7-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>If all 10 were <b>hens</b>, how many legs? If all 10 were <b>cows</b>?</div></div>
+        <div class="u8l7-wa"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans">All hens: <span class="tex">10\times2=20</span> legs. All cows: <span class="tex">10\times4=40</span> legs. So 28 is somewhere in between.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Fill in the table. Swapping one hen for a cow adds ___ legs.</div></div>
+        <div class="u8l7-wa"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans">Legs: 20, 22, 24, 26, 28. Each swap adds <b>2 legs</b> (a cow has 2 more legs than a hen).</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>How many hens and how many cows?</div></div>
+        <div class="u8l7-wa"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>6 hens and 4 cows:</b> <span class="tex">6+4=10</span> heads and <span class="tex">12+16=28</span> legs. Shortcut: 28 is 8 more than 20, and each cow adds 2, so <span class="tex">8\div2=4</span> cows.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll u8l7-poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> This puzzle is over <b>1500 years old!</b> An ancient Chinese book asks: a cage of pheasants (2 legs) and rabbits (4 legs) has <b>35 heads</b> and <b>94 feet</b>. How many <b>rabbits</b>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> 12</div>
+        <div class="opt"><b>B</b> 17</div>
+        <div class="opt"><b>C</b> 23</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A: 12 rabbits</b> (and 23 pheasants). The book’s trick: make every animal stand on 2 legs. <span class="tex">35\times2=70</span> feet on the ground, so <span class="tex">94-70=24</span> feet are lifted. Each rabbit lifts 2, so <span class="tex">24\div2=12</span> rabbits. Check: <span class="tex">23+12=35</span> ✓, <span class="tex">46+48=94</span> ✓.<br><span class="muted">C (23) is the number of pheasants; B (17) is “about half”.</span></div>
+    </div>
+  </div></div>
+  <p class="u8l7-social">Jo’s cousin counts 10 hats and <b>29</b> legs. Ask a neighbour: could he be right?</p>
+</section>
+
+<!-- ================= 1. The four-stage method ================= -->
+<section class="card" data-ink="s1" data-section="1. The Four-Stage Method">
+  <div class="sec-h"><span class="badge">1</span><h2>The Four-Stage Method</h2></div>
+  <p>The algebra is nothing new: substitution and elimination already work. The new skill is <b>translating</b>. Every problem in this lesson runs the same four stages.</p>
+  <div class="u8l7-steps">
+    <div class="u8l7-step"><div class="u8l7-sn">Stage 1</div><div><b>Define</b> the two variables: say exactly what each letter counts, with units.</div></div>
+    <div class="u8l7-step"><div class="u8l7-sn">Stage 2</div><div>Write <b>two equations</b>: one from each fact in the problem.</div></div>
+    <div class="u8l7-step"><div class="u8l7-sn">Stage 3</div><div><b>Solve</b> by substitution or elimination.</div></div>
+    <div class="u8l7-step"><div class="u8l7-sn">Stage 4</div><div><b>Answer in a sentence</b>, and check that the answer is reasonable.</div></div>
+  </div>
+  <p>Watch the walkthrough travel through the four stages: the unknowns become <b>let</b> statements, each fact becomes a row, and each row becomes an equation.</p>
+  <div class="def u8l7-walk"><b>Walkthrough.</b> <i>“Two numbers have a sum of 22; the larger is 6 more than the smaller.”</i> Let <span class="tex">L=</span> larger, <span class="tex">S=</span> smaller, so <span class="tex">L+S=22</span> and <span class="tex">L=S+6</span>. Substituting, <span class="tex">(S+6)+S=22</span>, giving <span class="tex">2S=16</span>, <span class="tex">S=8</span>, <span class="tex">L=14</span>. The numbers are 14 and 8: <span class="tex">14+8=22</span> ✓ and <span class="tex">14=8+6</span> ✓.</div>
+  <div class="explainer" data-explainer="pipeline"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Key Words">
+  <h3 class="sub">Key words name the operation</h3>
+  <div class="u8l7-words">
+    <div class="u8l7-wd1"><b class="u8l7-op">+</b><span><i>sum, total, altogether</i>, and <i>more than</i></span></div>
+    <div class="u8l7-wd2"><b class="u8l7-op">−</b><span><i>difference, less than, fewer than</i></span></div>
+    <div class="u8l7-wd3"><b class="u8l7-op">×</b><span><i>twice, double, triple</i>, “3 times as many”</span></div>
+  </div>
+  <div class="explainer" data-explainer="translate"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>“More than” and “less than” flip the order.</b> “4 fewer cats than dogs” starts with 4, but the 4 is taken away <b>from the dogs</b>: <span class="tex">c=d-4</span>. Always read your equation back with small numbers to test it.</div></div>
+</section>
+
+<section class="card" data-ink="s1c" data-section="1. Does It Make Sense?">
+  <h3 class="sub">Stage 4: does the answer make sense?</h3>
+  <div class="def amber">Check the answer in <b>both</b> equations, then check it against the <b>words</b>: counts of people or things must be <b>whole numbers</b>, ages and amounts must be <b>positive</b>, and the sentence must answer the question that was <b>asked</b>.</div>
+  <div class="explainer" data-explainer="step4"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Boys and girls in a classroom</h3></div>
+  <p class="q">There are <span class="tex">30</span> students in Ms. Alvarez’s classroom. There are <span class="tex">8</span> more girls than boys.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Assign a variable to each unknown.<br>Let <span class="tex">b=</span> ________ &nbsp; Let <span class="tex">g=</span> ________</div><div class="work" style="--h:120px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Let <span class="tex">b=</span> the number of boys.<br>Let <span class="tex">g=</span> the number of girls.<br><span class="muted">Both letters count <b>people</b>, so both must be whole numbers.</span></div></div></div>
+    <div class="part"><div class="pl">(b) Translate the two given facts into a system.</div><div class="work" style="--h:120px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Equation 1: <span class="tex">\textcolor{#1f5bd6}{b+g=30}</span><br>Equation 2: <span class="tex">\textcolor{#c27a0e}{g=b+8}</span><br><span class="muted">“30 students” is the total; “8 more girls” compares <span class="tex">g</span> to <span class="tex">b</span>.</span></div></div></div>
+    <div class="part"><div class="pl">(c) Solve the system to find the number of boys and the number of girls.</div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Equation 2 is already solved for <span class="tex">g</span>, so substitute it into Equation 1:<br><span class="tex">b+(\textcolor{#c27a0e}{b+8})=30</span><br><span class="tex">2b+8=30\ \Rightarrow\ 2b=22\ \Rightarrow\ \boldsymbol{b=11}</span><br><span class="tex">g=11+8=\boldsymbol{19}</span></div></div></div>
+    <div class="part"><div class="pl">(d) State the answer in words, and check both values in the original equations.</div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>There are <span class="tex">\textcolor{#7b4fc4}{11}</span> boys and <span class="tex">\textcolor{#7b4fc4}{19}</span> girls.</b><br>Check: <span class="tex">11+19=30</span> ✓ &nbsp; <span class="tex">19=11+8</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex1c" data-section="Example 1 check">
+  <h3 class="sub">Example 1 check: the four stages</h3>
+  <div class="explainer" data-explainer="ex1chk"></div>
+</section>
+
+<!-- ================= 2. Number and age ================= -->
+<section class="card" data-ink="s2" data-section="2. Number and Age Problems">
+  <div class="sec-h"><span class="badge">2</span><h2>Number and Age Word Problems</h2></div>
+  <p>Two related numbers (often two people’s ages) are tied together by a <b>sum</b> and by a <b>comparison</b> (“5 years older than”, “3 times as old as”). The comparison is usually already <b>isolated</b>, so <b>substitution</b> is quickest.</p>
+  <div class="u8l7-cv">
+    <div class="u8l7-cv1"><div class="u8l7-cvh">The sum</div>add the two unknowns<div class="u8l7-cvx"><span class="tex">J+A=27</span></div></div>
+    <div class="u8l7-cv2"><div class="u8l7-cvh">The comparison</div>one unknown, written using the other<div class="u8l7-cvx"><span class="tex">J=A+5</span> &nbsp;or&nbsp; <span class="tex">M=3K</span></div></div>
+  </div>
+  <p>A <b>bar model</b> shows why substitution works: the bigger bar is the smaller bar plus a bit more (or several copies of it).</p>
+  <div class="explainer" data-explainer="bars"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Jordan and Ava</h3></div>
+  <p class="q">Jordan is <span class="tex">5</span> years older than his sister Ava. The sum of their ages is <span class="tex">27</span>.</p>
+  <div class="parts c1">
+    <div class="part"><div class="pl">(a) Let <span class="tex">J</span> represent Jordan’s age and <span class="tex">A</span> represent Ava’s age. Write a system of two equations that models this situation.</div><div class="work" style="--h:100px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Equation 1: <span class="tex">\textcolor{#1f5bd6}{J=A+5}</span> &nbsp;&nbsp; Equation 2: <span class="tex">\textcolor{#c27a0e}{J+A=27}</span><br><span class="muted">“5 years older than Ava” is the comparison; “the sum of their ages is 27” is the total.</span></div></div></div>
+  </div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(b) Solve the system using <b>substitution</b>.</div><div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Equation 1 is already solved for <span class="tex">J</span>, so replace <span class="tex">J</span> in Equation 2:<br><span class="tex">(\textcolor{#1f5bd6}{A+5})+A=27</span><br><span class="tex">2A+5=27\ \Rightarrow\ 2A=22\ \Rightarrow\ \boldsymbol{A=11}</span><br><span class="tex">J=11+5=\boldsymbol{16}</span></div></div></div>
+    <div class="part"><div class="pl">(c) State both ages in words, and check your answer.</div><div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Jordan is <span class="tex">\textcolor{#7b4fc4}{16}</span> and Ava is <span class="tex">\textcolor{#7b4fc4}{11}</span>.</b><br>Check: <span class="tex">16+11=27</span> ✓ &nbsp; <span class="tex">16=11+5</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex2c" data-section="Example 2 check">
+  <h3 class="sub">Example 2 check: the four stages</h3>
+  <div class="explainer" data-explainer="ex2chk"></div>
+</section>
+
+<!-- ================= 3. Cost and purchase ================= -->
+<section class="card" data-ink="s3" data-section="3. Cost and Purchase Problems">
+  <div class="sec-h"><span class="badge">3</span><h2>Cost and Purchase Word Problems</h2></div>
+  <p>Two different items sell at two different prices. One equation counts <b>how many</b> items there are altogether; the other totals their <b>value</b>: price times quantity for each item, added. Both come out in standard form, so <b>elimination</b> usually fits best.</p>
+  <div class="u8l7-cv">
+    <div class="u8l7-cv1"><div class="u8l7-cvh">Count equation</div>every item counts as <b>1</b>, whatever it costs<div class="u8l7-cvx"><span class="tex">h+j=\text{number of items}</span></div></div>
+    <div class="u8l7-cv2"><div class="u8l7-cvh">Value equation</div>each item counts as <b>its price</b> in dollars<div class="u8l7-cvx"><span class="tex">3h+2j=\text{total sales}</span></div></div>
+  </div>
+  <div class="explainer" data-explainer="swap"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t mix a count with a value.</b> <span class="tex">h+j=97</span> adds hot dogs to dollars. Read the units in each equation: items + items = items; dollars + dollars = dollars.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Hot dogs and juice boxes</h3></div>
+  <p class="q">At the school canteen, hot dogs cost $3 and juice boxes cost $2. On Monday, the canteen sold a combined total of <span class="tex">40</span> hot dogs and juice boxes, for total sales of $97.</p>
+  <div class="parts c1">
+    <div class="part"><div class="pl">(a) Let <span class="tex">h</span> represent the number of hot dogs sold and <span class="tex">j</span> represent the number of juice boxes sold. Write a system of two equations (one for the total number of items, one for the total sales).</div><div class="work" style="--h:90px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Count equation: <span class="tex">\textcolor{#1f5bd6}{h+j=40}</span> &nbsp;&nbsp; Value equation: <span class="tex">\textcolor{#c27a0e}{3h+2j=97}</span><br><span class="muted">The count equation adds <b>items</b>; the value equation adds <b>dollars</b> (price × quantity).</span></div></div></div>
+  </div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(b) Solve the system using <b>elimination</b>.</div><div class="work" style="--h:230px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Multiply the count equation by 2 so the <span class="tex">j</span> terms match:<br><span class="tex">2h+2j=80</span><br><span class="tex">3h+2j=97</span><br>Subtract the first from the second: <span class="tex">\boldsymbol{h=17}</span><br>Then <span class="tex">17+j=40</span>, so <span class="tex">\boldsymbol{j=23}</span><br><span class="muted">Check: <span class="tex">3(17)+2(23)=51+46=97</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl">(c) State the answer in words, and check.</div><div class="work" style="--h:230px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>The canteen sold <span class="tex">\textcolor{#7b4fc4}{17}</span> hot dogs and <span class="tex">\textcolor{#7b4fc4}{23}</span> juice boxes</b>, and <span class="tex">17+23=40</span> items ✓.</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Concert tickets</h3></div>
+  <p class="q">At a school concert, student tickets cost $5 and adult tickets cost $8. A total of <span class="tex">50</span> tickets were sold, for total ticket revenue of $316.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Let <span class="tex">s</span> represent the number of student tickets sold and <span class="tex">a</span> represent the number of adult tickets sold. Write a system of two equations, then solve it using <b>elimination</b>.</div><div class="work" style="--h:300px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Count: <span class="tex">\textcolor{#1f5bd6}{s+a=50}</span> &nbsp;&nbsp; Value: <span class="tex">\textcolor{#c27a0e}{5s+8a=316}</span><br>Multiply the count equation by 5: <span class="tex">5s+5a=250</span><br>Subtract it from the value equation: <span class="tex">3a=66\ \Rightarrow\ \boldsymbol{a=22}</span><br>Then <span class="tex">s+22=50</span>, so <span class="tex">\boldsymbol{s=28}</span><br><span class="muted">Check: <span class="tex">5(28)+8(22)=140+176=316</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl">(b) State the answer in words, and check.</div><div class="work" style="--h:300px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b><span class="tex">\textcolor{#7b4fc4}{28}</span> student tickets and <span class="tex">\textcolor{#7b4fc4}{22}</span> adult tickets were sold</b> (<span class="tex">28+22=50</span> tickets ✓).</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex34c" data-section="Examples 3 and 4 check">
+  <h3 class="sub">Examples 3 and 4 check: the four stages</h3>
+  <div class="explainer" data-explainer="ex34chk"></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u8l7"></section>
+
+<!-- ================= 4. Mixture ================= -->
+<section class="card" data-ink="s4" data-section="4. Mixture Problems">
+  <div class="sec-h"><span class="badge">4</span><h2>Mixture Word Problems</h2></div>
+  <p>A mixture blends two ingredients with different prices per kilogram. The same two equations return: one for the <b>total amount</b> mixed, one for the <b>total value</b>. Define each variable as a <b>number of kilograms</b> so the units in the value equation agree.</p>
+  <div class="u8l7-orgwrap">
+    <table class="u8l7-org">
+      <tr><th></th><th>Amount (kg)</th><th>× Price ($/kg)</th><th>= Value ($)</th></tr>
+      <tr><td>Ingredient 1</td><td>first unknown</td><td>its price</td><td>price × amount</td></tr>
+      <tr><td>Ingredient 2</td><td>second unknown</td><td>its price</td><td>price × amount</td></tr>
+      <tr class="u8l7-tot"><td>Mix</td><td>total amount</td><td></td><td>total value</td></tr>
+    </table>
+    <div class="u8l7-orgnote">The <b class="u8l7-cb">Amount</b> column adds up: that is Eq. 1.<br>The <b class="u8l7-ca">Value</b> column adds up: that is Eq. 2.<br>The prices <b>never</b> add up.</div>
+  </div>
+  <div class="explainer" data-explainer="mixPour"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>A party mix</h3></div>
+  <p class="q">A snack shop mixes cashews, which cost $8/kg, with peanuts, which cost $3/kg, to make a party mix. The mix weighs <span class="tex">20</span> kg in total and sells for $110.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Let <span class="tex">c</span> represent the number of kg of cashews used and <span class="tex">p</span> represent the number of kg of peanuts used. Write a system of two equations (one for the total weight, one for the total value), then solve it using <b>substitution</b>.</div><div class="work" style="--h:300px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Weight: <span class="tex">\textcolor{#1f5bd6}{c+p=20}</span> &nbsp;&nbsp; Value: <span class="tex">\textcolor{#c27a0e}{8c+3p=110}</span><br>Isolate <span class="tex">p</span> in the weight equation: <span class="tex">p=20-c</span><br><span class="tex">8c+3(20-c)=110</span><br><span class="tex">8c+60-3c=110\ \Rightarrow\ 5c=50\ \Rightarrow\ \boldsymbol{c=10}</span><br><span class="tex">p=20-10=\boldsymbol{10}</span><br><span class="muted">Check: <span class="tex">8(10)+3(10)=80+30=110</span> dollars ✓</span></div></div></div>
+    <div class="part"><div class="pl">(b) State how many kg of each ingredient are in the mix, and check your answer.</div><div class="work" style="--h:300px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>The mix contains <span class="tex">\textcolor{#7b4fc4}{10}</span> kg of cashews and <span class="tex">\textcolor{#7b4fc4}{10}</span> kg of peanuts.</b><br>Check: <span class="tex">10+10=20</span> kg ✓ and <span class="tex">80+30=110</span> dollars ✓</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="ex5c" data-section="Example 5 check">
+  <h3 class="sub">Example 5 check: substitute, graph, check both</h3>
+  <div class="explainer" data-explainer="mixSolve"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Four stages.</b> 1 Define the two variables (what each letter counts). 2 Two equations, one from each fact. 3 Solve by substitution or elimination. 4 Answer in a sentence and check.</div>
+    <div><b>Key words.</b> Sum, total, more than <span class="tex">\to +</span>. Difference, less than, fewer than <span class="tex">\to -</span>. Twice, triple <span class="tex">\to \times</span>. “4 fewer cats than dogs” is <span class="tex">c=d-4</span>: read it back to test it.</div>
+    <div><b>Count and value.</b> One equation counts items (<span class="tex">h+j=40</span>), the other totals dollars (<span class="tex">3h+2j=97</span>). Mixtures: total kilograms and total value. Elimination or substitution both work.</div>
+    <div><b>Check against the story.</b> Both equations come true, counts are whole numbers, ages and amounts are positive, and the sentence answers the question that was asked.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u8l7">
+    <div><div class="kicker">Your turn</div><b>Assignment 7 — Solving Word Problems with Systems of Equations</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l8/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 8 — Unit Review: Systems of Linear Equations</b><div class="muted">Graphing, substitution, elimination and word problems, all together. Which method fits best?</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u8l7.js';
+  boot({ key: 'u8l7', homeHref: '../../', title: '8.7 Word Problems with Systems' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>
