@@ -627,7 +627,7 @@
   var QUESTIONS = [
     /* ---------- 1 ---------- */
     { num: '1', section: 'Part A — Graphing and Classifying', shared: function (r) { return r.chance(0.06) ? Object.assign({ m1: -1, b1: 6, m2: 3, b2: -2, P: [2, 4] }, { L1: mbL(-1, 6), L2: mbL(3, -2), e1: yT(-1, 6), e2: yT(3, -2) }) : crossGen(r, {}); },
-      stem: function (s) { return 'The system ' + t(s.e1) + ' (solid) and ' + t(s.e2) + ' (dashed) has been graphed on the grid below, and the lines cross at integer coordinates.' + sysFig([s.L1, s.L2], W6); },
+      stem: function (s) { return 'The lines ' + t(s.e1) + ' and ' + t(s.e2) + ' cross at integer coordinates.'; },
       parts: [
         { id: '1a', sub: 'a', level: 'BEG', make: function (r, s) {
           var key = T([[s.m1, 'x'], [s.b1, '']]) + '=' + T([[s.m2, 'x'], [s.b2, '']]);
@@ -636,7 +636,7 @@
         } },
         { id: '1b', sub: 'b', level: 'BEG', make: function (r, s) {
           return pointPart('State the solution of the system as an ordered pair.', s.P, [s.L1, s.L2], { wrong: [{ is: [0, s.b1], code: 'u8l1-yint', hint: 'That’s where the first line crosses the ' + t('y') + '-axis. The solution is where the two lines cross each other.' }] },
-            t(T([[s.m1, 'x'], [s.b1, '']]) + '=' + T([[s.m2, 'x'], [s.b2, '']])) + ' gives ' + t('x=' + nT(s.P[0])) + '; then ' + t('y=' + subT([[s.m1, 'x'], [s.b1, '']], { x: s.P[0] }) + '=' + nT(s.P[1])) + '.<br>' + ck(t(nT(s.P[1]) + '=' + subT([[s.m2, 'x'], [s.b2, '']], { x: s.P[0] }))) + '<br>The solution is ' + ptt(s.P) + ' — the point where the lines cross on the graph.',
+            t(T([[s.m1, 'x'], [s.b1, '']]) + '=' + T([[s.m2, 'x'], [s.b2, '']])) + ' gives ' + t('x=' + nT(s.P[0])) + '; then ' + t('y=' + subT([[s.m1, 'x'], [s.b1, '']], { x: s.P[0] }) + '=' + nT(s.P[1])) + '.<br>' + ck(t(nT(s.P[1]) + '=' + subT([[s.m2, 'x'], [s.b2, '']], { x: s.P[0] }))) + '<br>The solution is ' + ptt(s.P) + ' — the point where the two lines cross.',
             ['Find ' + t('x') + ' from part (a), then substitute it into either equation to find ' + t('y') + '.'], 'state the solution');
         } }] },
     /* ---------- 2 ---------- */
@@ -656,7 +656,7 @@
     /* ---------- 3–6 ---------- */
     { num: '3', stem: 'Without graphing, state whether the system has one solution, no solution, or infinitely many solutions.', parts: [
       { id: '3', level: 'BEG', make: function (r) {
-        var o = r.chance(0.06) ? { m: 6, b1: -1, b2: 5 } : gen(function () { var m = nz(r, -7, 7), b1 = nz(r, -9, 9), b2 = nz(r, -9, 9); return b1 === b2 ? null : { m: m, b1: b1, b2: b2 }; }, null);
+        var o = r.chance(0.06) ? { m: 5, b1: -2, b2: 4 } : gen(function () { var m = nz(r, -7, 7), b1 = nz(r, -9, 9), b2 = nz(r, -9, 9); if (m === 6 && (b1 + b2 === 4 && b1 * b2 === -5)) return null; return b1 === b2 ? null : { m: m, b1: b1, b2: b2 }; }, { m: 5, b1: -2, b2: 4 });   // Example 2(a), y=6x−1 and y=6x+5, stays out
         return clsMC(r, 'The system ' + both(yT(o.m, o.b1), yT(o.m, o.b2)) + ' has', 'none', 'Both slopes are ' + t(nT(o.m)) + '; the intercepts are ' + t(nT(o.b1)) + ' and ' + t(nT(o.b2)) + '.',
           { html: '<b>One solution</b> — the ' + t('y') + '-intercepts are different, so the lines are different and must cross.', why: 'Different lines don’t have to cross: with <b>equal slopes</b> they are parallel and never meet.' }, null, 'classify: same slope');
       } }] },
@@ -882,8 +882,8 @@
           ['Solve the system by elimination (multiply both equations), then substitute into ' + t(ct) + '.'], 'value of a combination');
       } }] },
     /* ---------- 24 ---------- */
-    { num: '24', shared: function (r) { return r.chance(0.06) ? { X: 's', Y: 'l', n1: 'small bags', n2: 'large bags', what: 'bags', each: 'each', dec: true, p1: 1.5, p2: 2.5, x: 21, y: 69, N: 90, T: 204 } : cv(r, { X: 's', Y: 'l', n1: 'small bags', n2: 'large bags', what: 'bags', each: 'each', dec: true }, function () { var p1 = r.pick([1, 1.25, 1.5, 1.75]), p2 = p1 + r.pick([0.5, 1, 1.5]); return { p1: p1, p2: p2, x: r.int(10, 70), y: r.int(10, 70) }; }); },
-      stem: function (s) { return 'A vending machine sold ' + t(s.N) + ' bags of snacks: small bags at ' + t('\\$' + m2(s.p1)) + ' and large bags at ' + t('\\$' + m2(s.p2)) + '. Total sales were ' + t('\\$' + m2(s.T)) + '.'; },
+    { num: '24', shared: function (r) { return r.chance(0.06) ? { X: 's', Y: 'l', n1: 'small bags', n2: 'large bags', what: 'bags', each: 'each', dec: false, p1: 2, p2: 3, x: 21, y: 69, N: 90, T: 249 } : cv(r, { X: 's', Y: 'l', n1: 'small bags', n2: 'large bags', what: 'bags', each: 'each', dec: true }, function () { var p1 = r.pick([1, 1.25, 1.5, 1.75, 2, 2]), p2 = p1 + r.pick([0.5, 1, 1, 1.5]); return { p1: p1, p2: p2, x: r.int(10, 70), y: r.int(10, 70), dec: !(Number.isInteger(p1) && Number.isInteger(p2)) }; }); },
+      stem: function (s) { return 'A vending machine sold ' + t(s.N) + ' bags of snacks: small bags at ' + t('\\$' + mon(s.p1)) + ' and large bags at ' + t('\\$' + mon(s.p2)) + '. Total sales were ' + t('\\$' + mon(s.T)) + '.'; },
       parts: [
         { id: '24a', sub: 'system', level: 'EMG', make: function (r, s) { return cvSys('Let ' + t('s') + ' be the number of small bags and ' + t('l') + ' the number of large bags. Write a system of two equations.', s); } },
         { id: '24b', sub: 'solve', level: 'PRG', make: function (r, s) { return cvSolve('How many of each were sold?', s, s.x + ' small bags and ' + s.y + ' large bags were sold.'); } }] }

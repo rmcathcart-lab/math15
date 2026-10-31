@@ -704,8 +704,11 @@ export const explainers = mountExplainers({ books, stuck, scale, columns, lcm, r
   const lcmN = (a, b) => Math.abs(a * b) / gcd(a, b);
   const nz = (r, lo, hi) => r.int(lo, hi) * r.sign();
   const mk = (a1, b1, a2, b2, x0, y0) => [N(a1, b1, a1 * x0 + b1 * y0), N(a2, b2, a2 * x0 + b2 * y0)];
-  const ok = (e1, e2) => e1.a * e2.b !== e1.b * e2.a && gcd(gcd(e1.a, e1.b), e1.c) === 1 && gcd(gcd(e2.a, e2.b), e2.c) === 1;
+  const ok0 = (e1, e2) => e1.a * e2.b !== e1.b * e2.a && gcd(gcd(e1.a, e1.b), e1.c) === 1 && gcd(gcd(e2.a, e2.b), e2.c) === 1;
   const co = (e, v) => (v === 'x' ? e.a : e.b);
+  /* Assignment 6 Q10, Q11 and Q12 (whole-number systems) stay for homework */
+  const SKIP = ['2x+3y=13|x-6y=-16', '3x+2y=14|4x-3y=13', '5x-2y=8|2x+3y=26'];
+  const ok = (e1, e2) => ok0(e1, e2) && !SKIP.includes(`${eqS(e1)}|${eqS(e2)}`) && !SKIP.includes(`${eqS(e2)}|${eqS(e1)}`);
   function work(e1, e2, v, x0, y0, lead) {
     const c1 = co(e1, v), c2 = co(e2, v), u = v === 'x' ? 'y' : 'x', L = lcmN(c1, c2), m1 = L / Math.abs(c1), m2 = L / Math.abs(c2);
     const s1 = { a: e1.a * m1, b: e1.b * m1, c: e1.c * m1 }, s2 = { a: e2.a * m2, b: e2.b * m2, c: e2.c * m2 };

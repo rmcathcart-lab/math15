@@ -857,7 +857,7 @@ void RED; void appear;
             `${W(`${who} is `)}${P(s)}${W(` and the ${el} is `)}${P(b)}.`] };
       }
       const k = r.int(1, 9), more = kind === 2, b = more ? m * s + k : m * s - k, S2 = s + b;
-      if (m > 3 || b <= s) continue;
+      if (m > 3 || b <= s || (!more && `${S2},${m},${k}` === '40,3,4')) continue;   // Assignment 7 Q11: sum 40, 4 less than three times
       return { text: `The sum of two numbers is ${S2}. The larger number is ${k} ${more ? 'more' : 'less'} than ${TIMES[m]} the smaller number. Find the two numbers.`, q: '',
         atext: 'Let <i>x</i> be the larger number and <i>y</i> the smaller number.',
         a: [sysT(`x+y=${S2}`, `x=${m}y${more ? '+' : '-'}${k}`), `(${m}y${more ? '+' : '-'}${k})+y=${S2}\\ \\Rightarrow\\ ${m + 1}y=${more ? S2 - k : S2 + k}\\ \\Rightarrow\\ y=${s}`, `x=${b}`,
@@ -873,7 +873,7 @@ void RED; void appear;
     { story: (N, V) => `A bike rack holds bicycles (2 wheels) and tricycles (3 wheels). There are ${N} bikes with ${V} wheels in all. How many of each are there?`, p: 'b', q: 't', pl: ['bicycles', 'tricycles'], lets: 'Let <i>b</i> be the number of bicycles and <i>t</i> the number of tricycles.', fixed: [2, 3] },
     { story: (N, V) => `A farm has chickens (2 legs) and pigs (4 legs). There are ${N} heads and ${V} legs. How many chickens and how many pigs are there?`, p: 'c', q: 'p', pl: ['chickens', 'pigs'], lets: 'Let <i>c</i> be the number of chickens and <i>p</i> the number of pigs.', fixed: [2, 4] }
   ];
-  const SKIP_CV = ['7,11,9,79', '2,3,50,126', '30,45,120,4650', '1,2,45,76', '7,12,200,1900', '2,3,40,97', '5,8,50,316', '2,4,10,28'];
+  const SKIP_CV = ['7,11,9,79', '2,3,50,126', '30,45,120,4650', '1,2,45,76', '7,12,200,2000', '2,3,40,97', '5,8,50,316', '2,4,10,28'];
   function mas(r) {
     for (;;) {
       const set = r.pick(SETS);

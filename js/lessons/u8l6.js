@@ -443,7 +443,7 @@
           acc.push({ id: '2' + L + 'ii', sub: L + ' ii', level: 'BEG', make: function (r, sh) { return mulPart('Now add or subtract, solve, and check. Give the solution as an ordered pair.', sh[L]); } });
           return acc;
         }, []) },
-      { num: '3', stem: 'Solve each system by multiplying only one equation. Watch your signs — in each case you will need to subtract the equations after multiplying.', parts: [
+      { num: '3', stem: 'Solve each system by multiplying only one equation. Multiply one equation so a variable’s coefficients match, then subtract the equations. Watch your signs.', parts: [
         { id: '3a', level: 'EMG', make: function (r) { return mulPart('Solve. Give the solution as an ordered pair.', oneGen(r, { e: 1, i: 1, op: 'sub', smMax: 1, smSign: 1, xr: [1, 6], yr: [1, 6] }, [5, 2, 16, 1, 1, 5])); } },
         { id: '3b', level: 'EMG', make: function (r) { return mulPart('Solve. Give the solution as an ordered pair.', oneGen(r, { e: 1, i: 1, op: 'sub', smMax: 2, smSign: -1, xr: [1, 7], yr: [1, 6] }, [3, -4, -2, 1, -2, -4])); } },
         { id: '3c', level: 'EMG', make: function (r) { return mulPart('Solve. Give the solution as an ordered pair.', oneGen(r, { e: 0, i: 0, op: 'sub', smMax: 2, xr: [-4, 4], yr: [1, 5], test: function (C) { return C[0][1] > 0 && C[1][1] < 0; } }, [2, 3, 7, 4, -1, -7])); } }] },
@@ -494,15 +494,15 @@
         } }] },
       { num: '10', stem: '<i>(Multiple Choice)</i>', parts: [
         { id: '10', level: 'EMG', make: function (r) {
-          var a, b, c, k, c1, c2;
-          for (var g = 0; g < 300; g++) { a = r.int(2, 5); b = r.int(2, 4); k = r.int(2, 3); c = r.int(1, 4); c1 = rnz(r, 1, 20); c2 = rnz(r, -12, 12); if ((k * a + c) !== (a + c) && k * c1 + c2 !== c1 + c2 && (k * a - c) !== 0 && k * c1 + c2 !== 0) break; }
-          var E1 = E(a, b, c1), E2 = E(c, -k * b, c2);
+          var a, b, c, k, x0, y0, c1, c2;   // built from a whole-number solution (booklet: 2x+3y=13, x−6y=−16, (2, 3))
+          for (var g = 0; g < 300; g++) { a = r.int(2, 5); b = r.int(2, 4); k = r.int(2, 3); c = r.int(1, 4); x0 = r.int(1, 5); y0 = r.int(1, 5); c1 = a * x0 + b * y0; c2 = c * x0 - k * b * y0; if (c2 !== 0 && c1 <= 30 && Math.abs(c2) <= 30) break; }
+          var E1 = E(a, b, c1), E2 = E(c, -k * b, c2), A = k * a + c, R = k * c1 + c2;
           return mc(r, 'When ' + t('y') + ' is eliminated from ' + t(eqT(E1)) + ' and ' + t(eqT(E2)) + ' by multiplying the first equation by ' + t(k) + ' and then adding, the result is', [
-            { html: t(term(k * a + c, 'x', true) + '=' + (k * c1 + c2)), right: true },
-            { html: t(term(a + c, 'x', true) + '=' + (k * c1 + c2)), why: 'Every term of the first equation is multiplied by ' + t(k) + ' — the ' + t(a + 'x') + ' too: ' + t((k * a) + 'x') + '.', code: 'u8-mult' },
-            { html: t(term(k * a + c, 'x', true) + '=' + (c1 + c2)), why: 'The constant is multiplied too: ' + t(k + '\\times ' + c1 + '=' + k * c1) + '.', code: 'elim-const' },
-            { html: t(term(k * a - c, 'x', true) + '=' + (k * c1 - c2)), why: 'The ' + t('y') + '-terms are opposites after multiplying, so <b>add</b>.', code: 'addsub' }],
-            'First equation × ' + t(k) + ': ' + t(pol([[k * a, 'x'], [k * b, 'y']]) + '=' + k * c1) + '. Add ' + t(eqT(E2)) + ': the ' + t('y') + '-terms cancel and ' + t(term(k * a + c, 'x', true) + '=' + (k * c1 + c2)) + '.', ['Multiply <b>every</b> term of the first equation by ' + t(k) + ', then add the equations column by column.'], 'MC result');
+            { html: t(term(A, 'x', true) + '=' + R), right: true },
+            { html: t(term(a + c, 'x', true) + '=' + R), why: 'Every term of the first equation is multiplied by ' + t(k) + ' — the ' + t(a + 'x') + ' too: ' + t((k * a) + 'x') + '.', code: 'u8-mult' },
+            { html: t(term(A, 'x', true) + '=' + (k * c1 - c2)), why: 'You are <b>adding</b> the equations, so add the constants: ' + t(k * c1 + '+' + nb(c2) + '=' + R) + '.', code: 'elim-const' },
+            { html: t('x=' + R), why: 'Add the ' + t('x') + '-terms too: ' + t(k * a + 'x+' + (c === 1 ? '' : c) + 'x=' + A + 'x') + '.', code: 'xterm' }],
+            'First equation × ' + t(k) + ': ' + t(pol([[k * a, 'x'], [k * b, 'y']]) + '=' + k * c1) + '. Add ' + t(eqT(E2)) + ': the ' + t('y') + '-terms cancel and ' + t('(' + k * a + 'x+' + (c === 1 ? '' : c) + 'x)+(' + k * b + 'y-' + k * b + 'y)=' + k * c1 + '+' + nb(c2)) + ', so ' + t(term(A, 'x', true) + '=' + R) + ' (and ' + t('x=' + x0) + ', ' + t('y=' + y0) + ').', ['Multiply <b>every</b> term of the first equation by ' + t(k) + ', then add the equations column by column.'], 'MC result');
         } }] },
       { num: '11', stem: '<i>(Numerical Response)</i>', parts: [{ id: '11', level: 'ADV', make: nrPartM(11) }] },
       { num: '12', stem: '<i>(Numerical Response)</i>', parts: [{ id: '12', level: 'ADV', make: nrPartM(12) }] },
@@ -812,26 +812,28 @@
       solution: 'Divide each equation by its common factor: both become ' + t(eqT(bs)) + ' — the same line in disguise, so every point on it is a solution. For example ' + keys.map(function (P) { return t(ptT(P)); }).join(' and ') + ': ' + keys.map(function (P) { return t(qv(bs.a) + nb(P[0]) + (qv(bs.b) < 0 ? '' : '+') + qv(bs.b) + nb(P[1]) + '=' + qT(bs.c)); }).join(', ') + ' ✓',
       hints: ['Divide each equation by its common factor — both become the same equation.', 'Choose a value of ' + t('x') + ' that makes ' + t('y') + ' a whole number.'], text: 'two points on the line', bad: [[ptK(keys[0]), ptK(keys[0])], ['(0,0)', '(1,1)']] };
   }
-  function nrPartM(kind) {
+  function nrPartM(kind) {   // Q11: a x + b y = c, p x − q y = d, ask x + y.  Q12: a x − b y = c, p x + q y = d, ask 2x − y.  Whole-number answers, no rounding.
     return function (r) {
-      var Es, s, v;
+      var Es, x0, y0, ans;
       for (var g = 0; g < 900; g++) {
-        Es = [E(r.int(2, 6), r.int(2, 5), r.int(5, 25)), E(r.int(2, 6), kind === 11 ? -r.int(2, 5) : r.int(2, 5), rnz(r, -5, 20))];
-        if (kind === 12) Es[0] = E(qv(Es[0].a), -qv(Es[0].b), qv(Es[0].c));
-        s = solve2(Es[0], Es[1]); if (!s || isInt(s[0]) || isInt(s[1]) || Q(s[0])[1] > 23 || !Es.every(okEq)) continue;
+        var a = r.int(2, 6), b = r.int(2, 5), p = r.int(2, 6), q = r.int(2, 5);
+        x0 = r.int(1, 6); y0 = r.int(1, 7);
+        Es = kind === 11 ? [E(a, b, a * x0 + b * y0), E(p, -q, p * x0 - q * y0)] : [E(a, -b, a * x0 - b * y0), E(p, q, p * x0 + q * y0)];
+        ans = kind === 11 ? x0 + y0 : 2 * x0 - y0;
+        if (ans < 1 || ans === x0 || ans === y0 || x0 === y0 || !Es.every(okEq)) continue;
+        if (Es.some(function (e) { return Math.abs(qv(e.c)) > 40; }) || qv(Es[0].c) < 1) continue;
         if (!noDiv(qv(Es[0].a), qv(Es[1].a)) || !noDiv(qv(Es[0].b), qv(Es[1].b))) continue;
-        v = kind === 11 ? qv(qa(s[0], s[1])) : qv(qs(qm(2, s[0]), s[1])); var f = v * 10 - Math.floor(v * 10);
-        if (v < 0.2 || v > 99 || Math.abs(f - 0.5) < 0.1 || f < 0.06 || f > 0.94) continue;
+        var s = solve2(Es[0], Es[1]); if (!s || qv(s[0]) !== x0 || qv(s[1]) !== y0) continue;
         break;
       }
-      if (g >= 900) { Es = kind === 11 ? [E(3, 2, 14), E(4, -3, 1)] : [E(5, -2, 8), E(2, 3, 17)]; s = solve2(Es[0], Es[1]); v = kind === 11 ? 97 / 17 : 47 / 19; }
-      var texs = Es.map(function (e) { return eqT(e); }), what = kind === 11 ? 'x+y' : '2x-y', res = elimSolM(Es, chooseE(Es), {}), x = qv(s[0]), y = qv(s[1]);
-      return B.approx('If ' + t(texs[0]) + ' and ' + t(texs[1]) + ', then the value of ' + t(what) + ', to the nearest tenth, is ________.', v, 1, { nr: true, diag: function (z) {
-        if (near(z, K.roundTo(x, 1)) || near(z, K.roundTo(y, 1))) return { code: 'nr-one', hint: 'That’s just one of the values. Find both, then work out ' + t(what) + '.' };
-        if (near(z, K.roundTo(kind === 11 ? x - y : x + y, 1))) return { code: 'nr-sum', hint: 'Check the combination: the question asks for ' + t(what) + '.' };
+      if (g >= 900) { if (kind === 11) { Es = [E(3, 2, 14), E(4, -3, 13)]; x0 = 4; y0 = 1; ans = 5; } else { Es = [E(5, -2, 8), E(2, 3, 26)]; x0 = 4; y0 = 6; ans = 2; } }
+      var texs = Es.map(function (e) { return eqT(e); }), what = kind === 11 ? 'x+y' : '2x-y', res = elimSolM(Es, chooseE(Es), {}), other = kind === 11 ? x0 - y0 : x0 + y0;
+      return B.nr('If ' + t(texs[0]) + ' and ' + t(texs[1]) + ', then the value of ' + t(what) + ' is ________.', ans, function (z) {
+        if (z === x0 || z === y0) return { code: 'nr-one', hint: 'That’s just one of the values. Find both, then work out ' + t(what) + '.' };
+        if (z === other) return { code: 'nr-sum', hint: 'Check the combination: the question asks for ' + t(what) + '.' };
         return null;
-      } }, res.html + '<br>' + t(what + '=' + qT(kind === 11 ? qa(s[0], s[1]) : qs(qm(2, s[0]), s[1])) + '\\approx ' + dc(Math.round(v * 1000) / 1000)) + ', which rounds to <b>' + K.roundTo(v, 1).toFixed(1) + '</b>.',
-        ['Multiply both equations so one variable lines up, eliminate, and solve. The values are fractions — keep them exact.', 'Combine the fractions, then divide to round to the nearest tenth.'], 'NR ' + what);
+      }, res.html + '<br>' + t(what + '=' + (kind === 11 ? x0 + '+' + nb(y0) : '2(' + x0 + ')-' + nb(y0)) + '=' + ans) + '.',
+        ['Multiply both equations so one variable lines up, eliminate, and solve.', 'Find both ' + t('x') + ' and ' + t('y') + ', then work out ' + t(what) + '.'], 'NR ' + what);
     };
   }
 })(window);

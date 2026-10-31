@@ -266,7 +266,7 @@
       } },
       { id: '1b1', sub: 'b let', level: 'BEG', make: function (r, sh) {
         var o = sh.b, c = o.c;
-        return mc(r, 'A ' + o.holder + ' contains ' + c.c1 + ' and ' + c.c2 + ' only. There are ' + t(o.N) + ' coins in total, worth ' + Dh(o.V) + '.<br>Which let statements define the two unknowns correctly?', [
+        return mc(r, 'A ' + o.holder + ' contains ' + c.c1 + ' and ' + c.c2 + ' only. There are ' + t(o.N) + ' coins in total, worth ' + Dh(o.V) + ' (' + t(Math.round(o.V * 100)) + ' cents).<br>Which let statements define the two unknowns correctly?', [
           { html: 'Let ' + t(c.X) + ' = the <b>number</b> of ' + c.c1 + ' and ' + t(c.Y) + ' = the <b>number</b> of ' + c.c2 + '.', right: true },
           { html: 'Let ' + t(c.X) + ' = ' + c.c1 + ' and ' + t(c.Y) + ' = ' + c.c2 + '.', why: 'Too vague: is ' + t(c.X) + ' the <b>number</b> of ' + c.c1 + ' or their <b>value</b>? Say exactly what each letter counts.' },
           { html: 'Let ' + t(c.X) + ' = ' + t(pdec(c.v1)) + ' and ' + t(c.Y) + ' = ' + t(pdec(c.v2)) + '.', why: 'The value of one ' + c.s1 + ' is already known. The unknowns are <b>how many</b> of each coin there are.' },
@@ -274,11 +274,18 @@
           'The unknowns are <b>how many</b> of each coin: ' + t(c.X) + ' = the number of ' + c.c1 + ', ' + t(c.Y) + ' = the number of ' + c.c2 + '. (The total count and the total value are given.)', ['What don’t you know yet: the value of one coin, or how many of each coin there are?'], 'let statements for coins');
       } },
       { id: '1b2', sub: 'b system', level: 'EMG', make: function (r, sh) {
-        var o = sh.b, c = o.c;
-        var s = { X: c.X, Y: c.Y, n1: c.c1, n2: c.c2, p1: c.v1 / 100, p2: c.v2 / 100, x: o.x, y: o.y, N: o.N, T: o.V, what: 'coins', each: 'each', dec: true };
-        var p = cvSys('A ' + o.holder + ' contains ' + c.c1 + ' and ' + c.c2 + ' only. There are ' + t(o.N) + ' coins in total, worth ' + Dh(o.V) + '.<br>Let ' + t(c.X) + ' be the number of ' + c.c1 + ' and ' + t(c.Y) + ' the number of ' + c.c2 + '. Write the system.', s);
-        p.solution += '<br>Every term of the value equation is in dollars, so a ' + c.s1 + ' is ' + t(pdec(c.v1)) + ' and a ' + c.s2 + ' is ' + t(pdec(c.v2)) + '.';
-        return p;
+        var o = sh.b, c = o.c, X = c.X, Y = c.Y, Vc = Math.round(o.V * 100), k = [X + '+' + Y + '=' + o.N, c.v1 + X + '+' + c.v2 + Y + '=' + Vc], dol = pdec(c.v1) + X + '+' + pdec(c.v2) + Y + '=' + m2(o.V);
+        return sysP('A ' + o.holder + ' contains ' + c.c1 + ' and ' + c.c2 + ' only. There are ' + t(o.N) + ' coins in total, worth ' + Dh(o.V) + ' (' + t(Vc) + ' cents).<br>Let ' + t(X) + ' be the number of ' + c.c1 + ' and ' + t(Y) + ' the number of ' + c.c2 + '. Write the system.', [[1, 1, -o.N], [c.v1, c.v2, -Vc]],
+          { vars: [X, Y], keyTex: k, names: ['the total number of coins', 'the total value'],
+            factHints: ['one equation counts the coins: ' + t(k[0]) + '.', 'the other adds the values in cents: a ' + c.s1 + ' is ' + t(c.v1) + ' cents and a ' + c.s2 + ' is ' + t(c.v2) + ' cents, so ' + t(c.v1 + X + '+' + c.v2 + Y) + '.'],
+            wrong: [{ eq: c.v2 + X + '+' + c.v1 + Y + '=' + Vc, code: 'value-swap', hint: 'Each value goes with its own coin: a ' + c.s1 + ' is worth ' + t(c.v1) + ' cents, so the ' + c.c1 + ' are worth ' + t(c.v1 + X) + ' cents.' },
+              { eq: X + '+' + Y + '=' + Vc, code: 'count-value', hint: t(X + '+' + Y) + ' counts coins, so it equals the total number of coins, ' + t(o.N) + ' — not the value.' },
+              { eq: c.v1 + X + '+' + c.v2 + Y + '=' + o.N, code: 'count-value', hint: 'Value × number gives <b>cents</b>, so the value equation equals the total value, ' + t(Vc) + ' cents.' },
+              { eq: c.v1 + X + '+' + c.v2 + Y + '=' + m2(o.V), code: 'units-mix', hint: 'Mixed units: ' + t(c.v1 + X + '+' + c.v2 + Y) + ' is in <b>cents</b> but ' + t(m2(o.V)) + ' is in dollars. Use ' + t(k[1]) + ' (or ' + t(dol) + ' in dollars).' },
+              { eq: pdec(c.v1) + X + '+' + pdec(c.v2) + Y + '=' + Vc, code: 'units-mix', hint: 'Mixed units: ' + t(pdec(c.v1) + X + '+' + pdec(c.v2) + Y) + ' is in <b>dollars</b> but ' + t(Vc) + ' is in cents. Use ' + t(k[1]) + '.' }],
+            good: [[k[0], dol]] },
+          '<b>Count:</b> ' + t(k[0]) + '<br><b>Value:</b> ' + t(k[1]) + ' (in cents)<br>Work in cents so every value is a whole number: a ' + c.s1 + ' is ' + t(c.v1) + ', a ' + c.s2 + ' ' + t(c.v2) + ', and ' + Dh(o.V) + ' is ' + t(Vc) + '. (The dollars form ' + t(dol) + ' is the same equation.)',
+          ['One equation counts the coins; the other adds their values.', 'Work in cents: a ' + c.s1 + ' is ' + t(c.v1) + ' cents, a ' + c.s2 + ' is ' + t(c.v2) + ' cents, and ' + Dh(o.V) + ' is ' + t(Vc) + ' cents.'], 'count and value system');
       } }] },
     /* ---------- 2 ---------- */
     { num: '2', section: 'Part B — Number and Age Problems', shared: function (r) { return bookOr(r, 0.05, { kind: 'more', y: 18, d: 9, x: 27, S: 45 }, function (r) { return sumMore(r, 5, 40, 2, 15); }); },
@@ -337,7 +344,7 @@
     /* ---------- 11 ---------- */
     { num: '11', section: 'Part E — Multiple Choice and Numerical Response', stem: '<i>(Multiple Choice)</i>', parts: [
       { id: '11', level: 'EMG', make: function (r) {
-        var o = r.chance(0.06) ? { S: 40, k: 3, c: 6, less: true } : gen(function () { var y = r.int(6, 20), k = r.pick([2, 3, 4]), c = r.int(2, 9), less = r.chance(0.7), x = less ? k * y - c : k * y + c; if (x <= y) return null; return { S: x + y, k: k, c: c, less: less }; }, { S: 40, k: 3, c: 6, less: true });
+        var o = r.chance(0.06) ? { S: 40, k: 3, c: 4, less: true } : gen(function () { var y = r.int(6, 20), k = r.pick([2, 3, 4]), c = r.int(2, 9), less = r.chance(0.7), x = less ? k * y - c : k * y + c; if (x <= y) return null; return { S: x + y, k: k, c: c, less: less }; }, { S: 40, k: 3, c: 4, less: true });
         var op = o.less ? '-' : '+', no = o.less ? '+' : '-', sys = function (a, b) { return t(a + ',\\ \\ ' + b); };
         return mc(r, 'A word problem states: <i>“The sum of two numbers is ' + t(o.S) + '. The larger number is ' + t(o.c) + ' ' + (o.less ? 'less' : 'more') + ' than ' + TIMES[o.k] + ' the smaller number.”</i> If ' + t('x') + ' is the larger number and ' + t('y') + ' is the smaller number, which system correctly represents this situation?', [
           { html: sys('x+y=' + o.S, 'x=' + o.k + 'y' + op + o.c), right: true },
@@ -371,7 +378,7 @@
           ['Count equation: ' + t('c+k=' + Nn) + '. Value equation: ' + t(co(o.p1) + 'c+' + co(o.p2) + 'k=' + T) + '.'], 'NR cupcakes');
       } }] },
     /* ---------- 14 ---------- */
-    { num: '14', section: 'Part F — Mixed Review', shared: function (r) { return r.chance(0.05) ? { X: 'a', Y: 's', n1: 'adult tickets', n2: 'student tickets', what: 'tickets', each: 'each', p1: 12, p2: 7, x: 100, y: 100, N: 200, T: 1900 } : q14(r); },
+    { num: '14', section: 'Part F — Mixed Review', shared: function (r) { return r.chance(0.05) ? { X: 'a', Y: 's', n1: 'adult tickets', n2: 'student tickets', what: 'tickets', each: 'each', p1: 12, p2: 7, x: 120, y: 80, N: 200, T: 2000 } : q14(r); },
       stem: function (s) { return '<i>(Mixed Review)</i> A school ordered a total of ' + t(s.N) + ' tickets for the spring play: adult tickets at ' + Dh(s.p1) + ' and student tickets at ' + Dh(s.p2) + ', for total ticket revenue of ' + Dh(s.T) + '.'; },
       parts: [
         { id: '14a', sub: 'a', level: 'EMG', make: function (r, s) { return cvSys('Let ' + t('a') + ' be the number of adult tickets and ' + t('s') + ' the number of student tickets. Write a system of two equations representing this situation.', s); } },
@@ -425,7 +432,7 @@
           t('s+j=' + T) + ' and ' + t('s=' + o.k + 'j+' + o.c) + '.', ['“' + o.c + ' more than ' + TIMES[o.k] + ' the junior amount” — build it in order: ' + t(o.k + 'j') + ', then ' + t('+' + o.c) + '.'], 'translate: more than twice');
       } }] },
     /* ---------- 2 ---------- */
-    { num: '2', stem: 'These translations are harder — the two facts are buried deeper. Write the system. <b>Do not solve.</b>', parts: [
+    { num: '2', stem: 'These translations are harder — the two facts are buried deeper, and some use ideas beyond the lesson’s examples (percent, speed, digits). Write the system. <b>Do not solve.</b>', parts: [
       { id: 'e2a', sub: 'a', level: 'PRG', make: function (r) {
         var o = r.chance(0.08) ? { td: 2, tu: 3, D: 24, b: 10, c: 2 } : riverGen(r), riv = r.pick(['Bow', 'Red Deer', 'Oldman', 'North Saskatchewan']);
         var ttd = o.td === 1 ? '1\\text{ h}' : o.td + '\\text{ h}';
@@ -592,7 +599,7 @@
             'The equations check, but counts of burgers and hot dogs must be whole numbers. ' + t(N(b)) + ' burgers is impossible, so <b>the report must contain an error</b> — the count or the money (or some money came from something else).', ['Check the answer against the <b>words</b>, not just the equations.'], 'barbecue conclusion');
         } }] },
     /* ---------- 11 ---------- */
-    { num: '11', section: 'Extra Practice D — Mixture and Percent Problems', shared: function (r) { return r.chance(0.06) ? { p1: 20, p2: 50, M: 500, x: 300, y: 200, pm: 32 } : pctGen(r, [10, 15, 20, 25], [40, 50, 60], [200, 300, 400, 500, 600, 1000]); },
+    { num: '11', section: 'Extra Practice D — Mixture and Percent Problems (percent mixtures go beyond the lesson: Stretch)', shared: function (r) { return r.chance(0.06) ? { p1: 20, p2: 50, M: 500, x: 300, y: 200, pm: 32 } : pctGen(r, [10, 15, 20, 25], [40, 50, 60], [200, 300, 400, 500, 600, 1000]); },
       stem: function (o) { return 'A lab technician needs ' + t(o.M + '\\text{ mL}') + ' of ' + art(o.pm) + ' ' + t(o.pm + '\\%') + ' antifreeze mixture. She has a ' + t(o.p1 + '\\%') + ' stock solution and a ' + t(o.p2 + '\\%') + ' stock solution on hand. Let ' + t('x') + ' = mL of the ' + t(o.p1 + '\\%') + ' solution and ' + t('y') + ' = mL of the ' + t(o.p2 + '\\%') + ' solution.'; },
       parts: [
         { id: 'e11sys', sub: 'system', level: 'PRG', make: function (r, o) {
@@ -623,7 +630,7 @@
             ['Mass: ' + t('x+y=' + o.M) + '. Protein: ' + t(pdec(o.p1) + 'x+' + pdec(o.p2) + 'y=' + N(P)) + ' kg.', 'Multiply the protein equation by ' + t(100) + ', then substitute ' + t('x=' + o.M + '-y') + '.'], 'feedlot solve');
         } }] },
     /* ---------- 13 ---------- */
-    { num: '13', section: 'Extra Practice E — Distance, Rate, and Time', shared: function (r) { return r.chance(0.06) ? { r1: 100, r2: 60, x: 6, y: 2.5 } : gen(function () { var r1 = r.pick([80, 90, 100, 110]), r2 = r.pick([40, 50, 60, 70]), x = r.int(2, 7), y = r.int(1, 8) / 2; if (r1 - r2 < 30 || x === y) return null; return { r1: r1, r2: r2, x: x, y: y }; }, { r1: 100, r2: 60, x: 6, y: 2.5 }); },
+    { num: '13', section: 'Extra Practice E — Distance, Rate, and Time (Stretch: beyond the lesson’s examples)', shared: function (r) { return r.chance(0.06) ? { r1: 100, r2: 60, x: 6, y: 2.5 } : gen(function () { var r1 = r.pick([80, 90, 100, 110]), r2 = r.pick([40, 50, 60, 70]), x = r.int(2, 7), y = r.int(1, 8) / 2; if (r1 - r2 < 30 || x === y) return null; return { r1: r1, r2: r2, x: x, y: y }; }, { r1: 100, r2: 60, x: 6, y: 2.5 }); },
       stem: function (o) { return 'Priya drove a ' + t(N(o.r1 * o.x + o.r2 * o.y) + '\\text{ km}') + ' trip from Calgary to Fort McMurray. Part of the trip she drove at ' + t(o.r1 + '\\text{ km/h}') + ', and part of it, through a construction zone, at ' + t(o.r2 + '\\text{ km/h}') + '. The drive took ' + t(N(o.x + o.y) + '\\text{ h}') + ' of driving time. Let ' + t('x') + ' = hours at ' + t(o.r1 + '\\text{ km/h}') + ' and ' + t('y') + ' = hours at ' + t(o.r2 + '\\text{ km/h}') + '.'; },
       parts: [
         { id: 'e13sys', sub: 'system', level: 'PRG', make: function (r, o) {
@@ -668,7 +675,7 @@
             ['Divide each equation by its time first, then add them.'], 'jet boat solve');
         } }] },
     /* ---------- 15 ---------- */
-    { num: '15', section: 'Extra Practice F — Geometry, Break-Even, and Rates of Work', shared: function (r) { return r.chance(0.06) ? { w: 30, c: 3, less: true, l: 57, P: 174 } : gen(function () { var w = 5 * r.int(2, 8), c = r.int(1, 9), less = r.chance(0.7), l = less ? 2 * w - c : 2 * w + c; return { w: w, c: c, less: less, l: l, P: 2 * (l + w) }; }, { w: 30, c: 3, less: true, l: 57, P: 174 }); },
+    { num: '15', section: 'Extra Practice F — Geometry, Break-Even, and Rates of Work (Stretch: beyond the lesson’s examples)', shared: function (r) { return r.chance(0.06) ? { w: 30, c: 3, less: true, l: 57, P: 174 } : gen(function () { var w = 5 * r.int(2, 8), c = r.int(1, 9), less = r.chance(0.7), l = less ? 2 * w - c : 2 * w + c; return { w: w, c: c, less: less, l: l, P: 2 * (l + w) }; }, { w: 30, c: 3, less: true, l: 57, P: 174 }); },
       stem: function (o) { return 'A rectangular skating rink in Okotoks has a perimeter of ' + t(o.P + '\\text{ m}') + '. Its length is ' + t(o.c + '\\text{ m}') + ' ' + (o.less ? 'less' : 'more') + ' than twice its width. Let ' + t('l') + ' be the length and ' + t('w') + ' the width, in metres.'; },
       parts: [
         { id: 'e15sys', sub: 'system', level: 'EMG', make: function (r, o) {
