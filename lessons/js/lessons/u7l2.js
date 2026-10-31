@@ -331,7 +331,7 @@ const rearrange = {
       { cap: `Write the ${T('x')}-term first. Each term keeps <b>its own sign</b>: ${T(eqTex(m, b, { color: false }))}.`,
         run: async (c) => { await show(c, r3.r); await Promise.all([fly(c, stage, T(mv), r2.els[3], r3.els[2]), fly(c, stage, T(String(cc)), r2.els[2], r3.els[3])]); } },
       { cap: `Now read it off: ${T(cM('m=' + m))} and ${T(cB('b=' + b))}. Both forms are the <b>same line</b>.`,
-        run: async (c) => { await pop(c, read); await show(c, gl); await G.drawIn(G.line({ m, b }, { color: LINE, width: 3.5 }), 600, c); await G.reveal(G.point(0, b, { color: BC, r: 7, label: T(P2(0, b)), pos: m < 0 ? 'ne' : 'nw', labelCls: 'u7l2-bint' }), c); } }
+        run: async (c) => { await pop(c, read); await show(c, gl); await G.drawIn(G.line({ m, b }, { color: LINE, width: 3.5 }), 600, c); await G.reveal(G.point(0, b, { color: BC, r: 7, label: T(P2(0, b)), pos: b > 7 ? 'se' : m < 0 ? 'ne' : 'nw', labelCls: 'u7l2-bint' }), c); } }
     ];
   }
 };
@@ -518,6 +518,10 @@ export const _test = { eqTex };
 (() => {
   const nz = (r, a, b) => { let v; do v = r.int(a, b); while (!v); return v; };
   const plain = (m, b) => eqTex(m, b, { color: false });
+  // what the Lesson 2 assignment uses: never a Stand Up question
+  const A_READ = new Set(['6,5', '-2,9', '1,-4', '-1,1', '8,0', '0,-3', '2,1', '5,-3']);
+  const A_ONE = new Set(['1,10', '4,3', '-6,-2', '3,12']);              // a, c in ax + y = c
+  const A_TWO = new Set(['2,5,3', '2,-1,8', '4,-2,7']);                 // K, m, b in Ax + Ky = C or Ky = Mx + C
   // read m and b off y = mx + b, special cases included
   function read(r) {
     const kind = r.pick(['gen', 'gen', 'gen', 'one', 'neg1', 'noB', 'flat']);
@@ -527,12 +531,14 @@ export const _test = { eqTex };
     else if (kind === 'neg1') { m = -1; b = nz(r, -9, 9); }
     else if (kind === 'noB') { m = nz(r, -9, 9); b = 0; }
     else { m = 0; b = nz(r, -9, 9); }
+    if (A_READ.has(m + ',' + b)) return read(r);
     const q = r.chance(0.25) && kind === 'gen' && b > 0 ? `y=${b}${m < 0 ? '-' : '+'}${Math.abs(m)}x` : plain(m, b);
     return { text: 'State the slope <i>m</i> and the <i>y</i>-intercept <i>b</i>.', q, a: [`m=${m},\\quad b=${b}`, ...(q === plain(m, b) ? [] : [plain(m, b)])] };
   }
   // ax + y = c (or y − ax = c): get y alone
   function solve1(r) {
     const a = nz(r, -8, 8), c = nz(r, -9, 9), m = -a, b = c;
+    if (A_ONE.has(a + ',' + c)) return solve1(r);
     const q = r.chance(0.7) ? `${co(a)}x+y=${c}` : `y${a < 0 ? '-' : '+'}${co(Math.abs(a))}x=${c}`;
     const mid = `y=${c}${-a < 0 ? '-' : '+'}${co(Math.abs(a))}x`;
     return { text: 'Rearrange into <i>y</i> = <i>mx</i> + <i>b</i>, then state <i>m</i> and <i>b</i>.', q: q.replace('+-', '-'), a: [mid, plain(m, b), `m=${m},\\quad b=${b}`] };
@@ -540,6 +546,7 @@ export const _test = { eqTex };
   // Ax + Ky = C or Ky = Mx + C: move the x-term, divide every term
   function solve2(r) {
     const K = r.int(2, 5), m = nz(r, -6, 6), b = nz(r, -6, 6), M = m * K, C = b * K;
+    if (A_TWO.has(K + ',' + m + ',' + b)) return solve2(r);
     if (r.chance(0.5)) {
       return { text: 'Rearrange into <i>y</i> = <i>mx</i> + <i>b</i>, then state <i>m</i> and <i>b</i>.', q: `${K}y=${co(M)}x${C < 0 ? '-' : '+'}${Math.abs(C)}`,
         a: [`\\dfrac{${K}y}{${K}}=\\dfrac{${co(M)}x}{${K}}${C < 0 ? '-' : '+'}\\dfrac{${Math.abs(C)}}{${K}}`, plain(m, b), `m=${m},\\quad b=${b}`] };

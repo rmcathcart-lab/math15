@@ -115,7 +115,7 @@ h2 .katex, h3 .katex { font-size: .95em; }
 .u7l9-sb-on { border-bottom-color: var(--ok); }
 .u7l9-tok { display: inline-block; color: var(--brand); padding: 0 4px; }
 .u7l9-why { font-size: 19px; color: var(--ink2); padding: 4px 6px; }
-.u7l9-tail { position: relative; }
+.u7l9-tail { }
 
 /* words to equation */
 .u7l9-tk { border-radius: 6px; padding: 0 4px; transition: background .3s; }

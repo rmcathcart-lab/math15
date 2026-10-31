@@ -36,6 +36,12 @@ const yEq = (m, b, o = {}) => {
   if (mv === 0) return `${o.Y || 'y'}=${o.col ? cB(b) : b}`;
   return `${o.Y || 'y'}=${o.col && M !== '' && M !== '-' ? cM(M) : M}${o.X || 'x'}${Bs}`;
 };
+/** thin-space axis numbers ≥ 1000 on a Graph (re-applied on every redraw) */
+function thinAxes(G) {
+  const fb = G.frameBase.bind(G);
+  G.frameBase = () => { fb(); G.layers.axes.querySelectorAll('.bk-num').forEach((t) => { const v = +t.textContent.replace('−', '-'); if (Math.abs(v) >= 1000) t.textContent = String(v).replace(/(\d)(\d{3})$/, '$1\u202f$2'); }); };
+  G.frame(); return G;
+}
 /** a stamp placed in a panel */
 const stampP = async (c, host, text, ok = true, cls = 'u7l10-stampb') => { const s = stamp(host, text, { ok }); s.classList.add(cls); await stampIn(c, s); return s; };
 
@@ -70,8 +76,7 @@ async function fly(c, stage, src, dst) {
 const MINI = {
   P: { seg: [[-0.5, -4], [3.5, 4]], pts: [[0, -3], [1, -1], [2, 1], [3, 3]] },
   R: { seg: [[-4, 3], [4, 3]], pts: [[-2, 3], [0, 3], [2, 3]] },
-  T: { seg: [[-1, 4], [4, -1]], pts: [[0, 3], [1, 2], [2, 1], [3, 0]] },
-  A2: { seg: [[-4, 3], [4, 3]], pts: [] }
+  T: { seg: [[-1, 4], [4, -1]], pts: [[0, 3], [1, 2], [2, 1], [3, 0]] }
 };
 const mini = (host, k, size = 132) => {
   const d = MINI[k], G = new Graph(host, { width: size, height: size, xmin: -4, xmax: 4, ymin: -4, ymax: 4, numbers: false, xtitle: '', ytitle: '', arrows: false, pad: 6 });
@@ -89,7 +94,7 @@ function mountWarm() {
     gap.classList.add('u7l10-filled'); fill.classList.add('on');
     gap.innerHTML = `<span class="u7l10-tl">A</span><div class="u7l10-half">${T('x-y-2=0')}</div><div class="u7l10-half">${T('(0,\\ 3)')}<br>and<br>${T('(4,\\ 3)')}</div>`;
     pop(liveCtx(), gap);
-    if (note) note.innerHTML = '<b>Tile A</b> closes the loop: <span class="tex-i">y = x − 2</span> meets P, and <span class="tex-i">y = 3</span> meets R.';
+    if (note) note.innerHTML = `<b>Tile A</b> closes the loop: ${T('y=x-2')} meets P, and ${T('y=3')} meets R.`;
   };
   if (rs) rs.onclick = () => { gap.classList.remove('u7l10-filled'); gap.innerHTML = orig; if (fill) fill.classList.remove('on'); if (note) note.innerHTML = 'Guess first (the big one), then fill the gap.'; };
 }
@@ -177,14 +182,14 @@ const table = {
   title: 'From a table of values to a line',
   height: 470,
   minW: 900,
-  choices: Object.keys(TB).map((k) => ({ v: k, label: TB[k].label.replace('y = ', '') ? TB[k].label : TB[k].label })),
+  choices: Object.keys(TB).map((k) => ({ v: k, label: TB[k].label })),
   intro: (k) => `Substitute each ${T('x')}, plot the points, rule the line. Press <b>Next</b>.`,
   make(stage, k, ex) {
     const d = TB[k], f = (x) => d.m * x + d.b, eq = yEq([d.m, 1], d.b);
     const tb = new ValueTable(stage, { x: 14, y: 14, rows: d.xs.map((x) => [x, f(x)]), hide: 1, tap: false, cellW: 86, cellH: 50, diffs: true, diffSpace: 80 });
     const P = panel(stage, 14, 330, 300, 126, `${T(eq)}`);
     const G = new Graph(stage, Object.assign({ x: 330, y: 14, width: ex.W - 344, height: 442, ylabels: 2, xlabels: 1 }, d.win));
-    const sub = (x) => `${T(`y=${d.m}${par(x)}${d.b < 0 ? '-' : '+'}${Math.abs(d.b)}=${f(x)}`)}`;
+    const sub = (x) => `${T(`y=${d.m}(${x})${d.b < 0 ? '-' : '+'}${Math.abs(d.b)}=${d.m * x}${d.b < 0 ? '-' : '+'}${Math.abs(d.b)}=${f(x)}`)}`;
     const calc = line(P, '', 'u7l10-mline');
     return [
       { cap: `Substitute ${T(`x=${d.xs[0]}`)}: ${sub(d.xs[0])}. Brackets around negatives!`,
@@ -256,7 +261,7 @@ const rearrange = {
 const SP = {
   ex3: { label: 'Example 3 check: y = −3x + 4', m: [-3, 1], b: 4, win: W3, fw: 2, bw: 2 },
   ex4b: { label: 'Example 4(b): y = −¼x + 8', m: [-1, 4], b: 8, win: W3, fw: 1, bw: 1 },
-  frac: { label: 'Try: y = ⅔x − 1', m: [2, 3], b: -1, win: W3, fw: 2, bw: 2 }
+  frac: { label: 'Try: y = ⅔x − 1', m: [2, 3], b: -1, win: W3, fw: 2, bw: 1 }
 };
 const stepper = {
   title: 'Plot b, then step the slope',
@@ -320,9 +325,9 @@ const solveB = {
           const b0 = st.b; await tween(c, 1600, (t) => { st.b = b0 + (b - b0) * t; ln._bkDraw(); G.moveTo(bp, 0, st.b); });
           fam.forEach((e) => (e.style.opacity = 0.35));
         } },
-      { cap: `Algebra finds that ${T('b')}: substitute the point, ${T(`x=${px}`)} and ${T(`y=${py}`)}: ${T(`${py}=${m}${par(px)}+b`)}.`,
-        run: async (c) => { await show(c, line(P, T(`${cX(py)}=${m}${par(`\\textcolor{${XI}}{${px}}`).replace(/^\((.*)\)$/, '($1)')}+b`).replace('(', '('), 'u7l10-mline')); } },
-      { cap: `Multiply: ${T(`${m}${par(px)}=${mx}`)}, so ${T(`${py}=${mx}+b`)}. ${mx >= 0 ? 'Subtract' : 'Add'} ${T(String(Math.abs(mx)))} on both sides: ${T(`b=${b}`)}.`,
+      { cap: `Algebra finds that ${T('b')}: substitute the point, ${T(`x=${px}`)} and ${T(`y=${py}`)}: ${T(`${py}=${m}(${px})+b`)}.`,
+        run: async (c) => { await show(c, line(P, T(`${cX(py)}=${m}(${cX(px)})+b`), 'u7l10-mline')); } },
+      { cap: `Multiply: ${T(`${m}(${px})=${mx}`)}, so ${T(`${py}=${mx}+b`)}. ${mx >= 0 ? 'Subtract' : 'Add'} ${T(String(Math.abs(mx)))} on both sides: ${T(`b=${b}`)}.`,
         run: async (c) => { await show(c, line(P, T(`${py}=${mx}+b`), 'u7l10-mline')); await show(c, line(P, T(cB(`b=${b}`)), 'u7l10-mline')); } },
       { cap: `Rewrite with both numbers: ${T(yEq([m, 1], b))}. The slid line crosses the ${T('y')}-axis at ${T(String(b))} ✓.`,
         run: async (c) => {
@@ -336,7 +341,7 @@ const solveB = {
 /* =============================== explainer 6: two points =============================== */
 const TP = {
   ex6: { label: 'Example 6 check', A: [1, 4], B: [4, 13], X: 'x', Y: 'y', win: { xmin: -3, xmax: 6, ymin: -4, ymax: 16, xstep: 1, ystep: 1, ylabels: 2 }, unit: '' },
-  ch2: { label: 'Challenge 2 check: the balloon', A: [3, 450], B: [7, 1050], X: 't', Y: 'A', win: { xmin: 0, xmax: 16, ymin: 0, ymax: 2400, xstep: 1, ystep: 100, ylabels: 300, xlabels: 2, xtitle: 't\\text{ (min)}', ytitle: 'A\\text{ (m)}', origin: true }, unit: 'm per minute', pred: 15 }
+  ch2: { label: 'Challenge 2 check: the balloon', A: [3, 450], B: [7, 1050], X: 't', Y: 'A', win: { xmin: 0, xmax: 16, ymin: 0, ymax: 2400, xstep: 1, ystep: 100, ylabels: 300, xlabels: 2, xtitle: 't\\text{ (min)}', ytitle: 'A\\text{ (m)}', origin: true }, unit: 'm per minute', pred: 15, pos: ['se', 'nw'] }
 };
 const twoPts = {
   title: 'Two points: slope first, then b',
@@ -346,13 +351,13 @@ const twoPts = {
   intro: (k) => `Through ${T(`(${TP[k].A.join(',\\ ')})`)} and ${T(`(${TP[k].B.join(',\\ ')})`)}. Press <b>Next</b>.`,
   make(stage, k, ex) {
     const d = TP[k], [x1, y1] = d.A, [x2, y2] = d.B, run = x2 - x1, rise = y2 - y1, m = rise / run, b = y1 - m * x1, X = d.X, Y = d.Y;
-    const G = new Graph(stage, Object.assign({ x: 14, y: 14, width: 430, height: 442, pad: [20, 20, 34, 52] }, d.win));
+    const G = thinAxes(new Graph(stage, Object.assign({ x: 14, y: 14, width: 430, height: 442, pad: [20, 20, 34, 52] }, d.win)));
     const P = panel(stage, 460, 14, ex.W - 474, 442, 'Two steps', 'u7l10-big');
     const fmtN = (v) => (Math.abs(v) >= 1000 ? String(v).replace(/(\d)(\d{3})$/, '$1\\,$2') : String(v));
     const eqT = (col) => (b === 0 ? `${Y}=${col ? cM(m) : m}${X}` : `${Y}=${col ? cM(m) : m}${X}${b < 0 ? '-' : '+'}${col ? cB(Math.abs(b)) : Math.abs(b)}`);
     const steps = [
       { cap: `Plot the two points ${T(`(${x1},\\ ${fmtN(y1)})`)} and ${T(`(${x2},\\ ${fmtN(y2)})`)}.`,
-        run: async (c) => { for (const [x, y] of [d.A, d.B]) await G.reveal(G.point(x, y, { color: RED, r: 7, label: T(`(${x},\\ ${fmtN(y)})`), pos: 'nw' }), c); } },
+        run: async (c) => { for (const [i, [x, y]] of [d.A, d.B].entries()) await G.reveal(G.point(x, y, { color: RED, r: 7, label: T(`(${x},\\ ${fmtN(y)})`), pos: (d.pos || ['nw', 'nw'])[i] }), c); } },
       { cap: `<b>Step 1:</b> the slope. Run ${T(`${x2}-${x1}=${run}`)}, rise ${T(`${fmtN(y2)}-${fmtN(y1)}=${fmtN(rise)}`)}. ${T(`m=\\dfrac{${fmtN(rise)}}{${run}}=${m}`)}.`,
         run: async (c) => { const t = tri(G, x1, y1, run, rise, { runText: `run ${run}`, riseText: `rise ${rise}` }); await t.draw(c, 400); await show(c, line(P, `<b>1</b> ${T(`m=\\dfrac{${fmtN(y2)}-${fmtN(y1)}}{${x2}-${x1}}=\\dfrac{${fmtN(rise)}}{${run}}=${cM(m)}`)}`, 'u7l10-mline')); } },
       { cap: `<b>Step 2:</b> substitute ${T(`m=${m}`)} and either point, say ${T(`(${x1},\\ ${fmtN(y1)})`)}: ${T(`${fmtN(y1)}=${m}(${x1})+b`)}, so ${T(`${fmtN(y1)}=${fmtN(m * x1)}+b`)} and ${T(`b=${b}`)}.`,
@@ -447,12 +452,14 @@ const hv = {
 
 /* =============================== explainer 9: which method? =============================== */
 const WT = {
-  ex4a: { label: 'Example 4(a)', given: 'slope 6, y-intercept −3', path: ['start', 'mb', 'w1', 'ans'], lines: [`${T('m=6,\\ b=-3')}`, T('y=6x-3')] },
-  ex5b: { label: 'Example 5(b)', given: 'slope −2 through (−1, 6)', path: ['start', 'mp', 'w2', 'ans'], lines: [T('y=-2x+b'), T('6=-2(-1)+b\\ \\Rightarrow\\ b=4'), T('y=-2x+4')] },
-  ex6: { label: 'Example 6', given: 'through (1, 4) and (4, 13)', path: ['start', 'tp', 'w3', 'w2', 'ans'], lines: [T('m=\\dfrac{13-4}{4-1}=3'), T('4=3(1)+b\\ \\Rightarrow\\ b=1'), T('y=3x+1')] },
-  ex2b: { label: 'Example 2(b)', given: 'the equation 4x + y = 9', path: ['start', 'gf', 'w4', 'ans'], lines: [T('4x+y=9'), T('y=-4x+9'), T('m=-4,\\ b=9')] },
-  ch3c: { label: 'Challenge 3(c)', given: '⊥ to slope 2, through (−4, 5)', path: ['start', 'mp', 'w2', 'ans', 'gen'], pre: 'perpendicular: flip and change the sign, ', lines: [T('m=-\\tfrac{1}{2}'), T('5=-\\tfrac12(-4)+b\\ \\Rightarrow\\ b=3'), T('y=-\\tfrac12x+3\\ \\Rightarrow\\ x+2y-6=0')] }
+  ex4a: { label: 'Example 4(a)', given: 'slope 6, y-intercept −3', g: 'mb', st: [['w1', `Both are given: put them straight in, ${T('m=6')}, ${T('b=-3')}.`, T('m=6,\\ b=-3')], ['ans', `${T('y=6x-3')}. One step, no solving.`, T('y=6x-3')]] },
+  ex5b: { label: 'Example 5(b)', given: 'slope −2 through (−1, 6)', g: 'mp', st: [['w2', `Substitute the point into ${T('y=-2x+b')}: ${T('6=-2(-1)+b')}, so ${T('6=2+b')} and ${T('b=4')}.`, T('6=-2(-1)+b\\Rightarrow b=4')], ['ans', `${T('y=-2x+4')}.`, T('y=-2x+4')]] },
+  ex6: { label: 'Example 6', given: 'through (1, 4) and (4, 13)', g: 'tp', st: [['w3', `Slope first: ${T('m=\\tfrac{13-4}{4-1}=\\tfrac93=3')}.`, T('m=3')], ['w2', `Now it is “${T('m')} and a point”: ${T('4=3(1)+b')}, so ${T('b=1')}.`, T('4=3(1)+b\\Rightarrow b=1')], ['ans', `${T('y=3x+1')}.`, T('y=3x+1')]] },
+  ex2b: { label: 'Example 2(b)', given: 'the equation 4x + y = 9', g: 'gf', st: [['w4', `Isolate ${T('y')}: subtract ${T('4x')} from both sides, ${T('y=-4x+9')}.`, T('y=-4x+9')], ['ans', `Read them off: ${T('m=-4')}, ${T('b=9')}.`, T('m=-4,\\ b=9')]] },
+  ch3c: { label: 'Challenge 3(c)', given: 'perpendicular to slope 2, through (−4, 5)', g: 'mp', pre: `Perpendicular: flip and change the sign, ${T('m=-\\tfrac12')}. Now we have `,
+    st: [['w2', `${T('5=-\\tfrac12(-4)+b')}, so ${T('5=2+b')} and ${T('b=3')}.`, T('m=-\\tfrac12;\\ b=3')], ['ans', `${T('y=-\\tfrac12x+3')}.`, T('y=-\\tfrac12x+3')], ['gen', `The question asks for general form: times 2, ${T('2y=-x+6')}, so ${T('x+2y-6=0')}.`, T('x+2y-6=0')]] }
 };
+const GIVEN = { mb: 'm and b', mp: 'm and a point', tp: 'two points', gf: 'another form' };
 const whichTool = {
   title: 'What am I given? One chart for the whole unit',
   height: 500,
@@ -469,11 +476,11 @@ const whichTool = {
         tp: { x: col4[2], y: 118, w: 205, h: 56, html: '<b>two points</b>', color: 'blue' },
         gf: { x: col4[3], y: 118, w: 205, h: 56, html: '<b>another form</b>', color: 'blue' },
         w1: { x: col4[0], y: 214, w: 205, h: 70, html: `<b>write it</b>straight into ${T('y=mx+b')}`, color: 'green' },
-        w3: { x: col4[2], y: 214, w: 205, h: 70, html: `<b>slope first</b>${T('m=\\tfrac{y_2-y_1}{x_2-x_1}')}`, color: 'purple' },
         w2: { x: col4[1], y: 214, w: 205, h: 70, html: '<b>substitute a point</b>solve for <i>b</i>', color: 'purple' },
+        w3: { x: col4[2], y: 214, w: 205, h: 70, html: `<b>slope first</b>${T('m=\\tfrac{y_2-y_1}{x_2-x_1}')}`, color: 'purple' },
         w4: { x: col4[3], y: 214, w: 205, h: 70, html: `<b>isolate ${T('y')}</b>then read ${T('m')}, ${T('b')}`, color: 'purple' },
         ans: { x: cx - 120, y: 316, w: 290, h: 52, html: `<b>${T('y=mx+b')}</b>`, cls: 'bk-round', color: 'green' },
-        gen: { x: cx + 230, y: 316, w: 250, h: 52, html: `<b>general form</b> if asked`, cls: 'bk-dashed', color: 'amber' }
+        gen: { x: cx + 230, y: 316, w: 250, h: 52, html: '<b>general form</b> if asked', cls: 'bk-dashed', color: 'amber' }
       },
       edges: [
         { from: 'start', to: 'mb', route: 'vhv' }, { from: 'start', to: 'mp', route: 'vhv' }, { from: 'start', to: 'tp', route: 'vhv' }, { from: 'start', to: 'gf', route: 'vhv' },
@@ -482,16 +489,10 @@ const whichTool = {
       ] });
     const A = panel(stage, 14, 372, W - 28, 116, '', 'u7l10-wtp');
     const row = h('div', 'u7l10-wtrow'); A.appendChild(row);
-    const steps = [{ cap: `Given: <b>${d.given}</b>. ${d.pre ? 'First the slope: ' + d.pre + 'so we have ' : 'That is '}<b>${{ mb: 'm and b', mp: 'm and a point', tp: 'two points', gf: 'another form' }[d.path[1]]}</b>.`,
-      run: async (c) => { await F.light(c, d.path.slice(0, 2)); } }];
-    const rest = d.path.slice(1);
-    d.lines.forEach((L, i) => {
-      const seg = i === 0 ? rest.slice(0, 2) : i === d.lines.length - 1 ? rest.slice(Math.min(i, rest.length - 2)) : rest.slice(i, i + 2);
-      steps.push({ cap: L, run: async (c) => {
-        for (let j = 1; j < seg.length; j++) { if (!F.edge(seg[j - 1], seg[j]).classList.contains('bk-lit')) await F.go(c, seg[j - 1], seg[j]); await F.visit(c, seg[j]); }
-        const sp = h('span', 'u7l10-wtl', L); row.appendChild(sp); await pop(c, sp);
-      } });
-    });
+    let cur = d.g;
+    const steps = [{ cap: `Given: <b>${d.given}</b>. ${d.pre || 'That is '}<b>${GIVEN[d.g]}</b>.`, run: (c) => F.light(c, ['start', d.g]) }];
+    d.st.forEach(([node, cap, L]) => steps.push({ cap,
+      run: async (c) => { await F.go(c, cur, node); await F.visit(c, node); cur = node; const sp = h('span', 'u7l10-wtl', L); row.appendChild(sp); await pop(c, sp); } }));
     return steps;
   }
 };
@@ -564,7 +565,7 @@ function suBeg(r) {
   if (r.chance(0.5)) {
     const fracM = r.chance(0.3), d = fracM ? r.pick([2, 3, 4, 5]) : 1; let n = r.int(1, 6) * r.sign(); if (fracM && gcd(Math.abs(n), d) !== 1) n = r.sign();
     const b = r.int(-9, 9);
-    return { text: `Write the equation of the line with slope <span class="su-m"></span>and <i>y</i>-intercept shown below.`, q: `m=${suF(n, d)},\\quad b=${b}`, a: [suEq(n, d, b)] };
+    return { text: 'Write the equation of the line with the slope and <i>y</i>-intercept below.', q: `m=${suF(n, d)},\\quad b=${b}`, a: [suEq(n, d, b)] };
   }
   const k = r.int(2, 7) * r.sign(), c = r.int(-9, 9);
   return { text: 'Rearrange into slope–intercept form, then state <i>m</i> and <i>b</i>.', q: `${coefT(k, 'x', true)}+y=${c}`,
@@ -574,7 +575,7 @@ function suPrg(r) {
   for (;;) {
     const m = r.int(1, 5) * r.sign(), x = r.int(-5, 5), b = r.int(-9, 9), y = m * x + b; if (x === 0 || Math.abs(y) > 20) continue;
     return { text: 'Determine the equation of the line, in the form <i>y</i> = <i>mx</i> + <i>b</i>.', q: `m=${m}\\ \\text{ through }(${x},\\ ${y})`,
-      a: [`y=${m}x+b`, `${y}=${m}${par(x)}+b\\ \\Rightarrow\\ ${y}=${m * x}+b\\ \\Rightarrow\\ b=${b}`, suEq(m, 1, b)] };
+      a: [`y=${m}x+b`, `${y}=${m}(${x})+b\\ \\Rightarrow\\ ${y}=${m * x}+b\\ \\Rightarrow\\ b=${b}`, suEq(m, 1, b)] };
   }
 }
 function suMas(r) {
@@ -583,7 +584,7 @@ function suMas(r) {
       const m = r.int(1, 4) * r.sign(), b = r.int(-8, 8), x1 = r.int(-4, 3), x2 = x1 + r.int(1, 4), y1 = m * x1 + b, y2 = m * x2 + b;
       if (Math.abs(y1) > 20 || Math.abs(y2) > 20) continue;
       return { text: 'Determine the equation of the line through the two points. Give it in slope–intercept form and in general form.', q: `(${x1},\\ ${y1})\\ \\text{ and }\\ (${x2},\\ ${y2})`,
-        a: [`m=\\frac{${y2}-${par(y1)}}{${x2}-${par(x1)}}=\\frac{${y2 - y1}}{${x2 - x1}}=${m}`, `${y1}=${m}${par(x1)}+b\\ \\Rightarrow\\ b=${b}`, suEq(m, 1, b), suGen(m, 1, b)] };
+        a: [`m=\\frac{${y2}-${par(y1)}}{${x2}-${par(x1)}}=\\frac{${y2 - y1}}{${x2 - x1}}=${m}`, `${y1}=${m}(${x1})+b\\ \\Rightarrow\\ b=${b}`, suEq(m, 1, b), suGen(m, 1, b)] };
     }
   }
   for (;;) {
@@ -592,9 +593,9 @@ function suMas(r) {
     const [pn, pd] = perp ? (n < 0 ? [d, -n] : [-d, n]) : [n, d];   // the new slope pn/pd (pd > 0)
     const x = pd * r.int(-3, 3) || pd, b = r.int(-8, 8), y = pn * x / pd + b;
     if (Math.abs(y) > 20) continue;
-    return { text: `Line <i>L</i> has slope <span class="su-m"></span>shown below. Determine the equation of the line ${perp ? '<b>perpendicular</b>' : '<b>parallel</b>'} to <i>L</i> through the point, in slope–intercept form.`,
+    return { text: `Line <i>L</i> has the slope below. Determine the equation of the line ${perp ? '<b>perpendicular</b>' : '<b>parallel</b>'} to <i>L</i> through the point, in slope–intercept form.`,
       q: `m_L=${suF(n, d)},\\quad (${x},\\ ${y})`,
-      a: [`m=${suF(pn, pd)}${perp ? '\\ \\text{(flip, change sign)}' : '\\ \\text{(same slope)}'}`, `${y}=${suF(pn, pd)}${par(x)}+b\\ \\Rightarrow\\ ${y}=${pn * x / pd}+b\\ \\Rightarrow\\ b=${b}`, suEq(pn, pd, b)] };
+      a: [`m=${suF(pn, pd)}${perp ? '\\ \\text{(flip, change sign)}' : '\\ \\text{(same slope)}'}`, `${y}=${suF(pn, pd)}(${x})+b\\ \\Rightarrow\\ ${y}=${pn * x / pd}+b\\ \\Rightarrow\\ b=${b}`, suEq(pn, pd, b)] };
   }
 }
 standup('u7l10', {

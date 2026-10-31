@@ -237,12 +237,12 @@ const either = {
           await pop(c, G.point(A[0], A[1], { color: AC, r: 8, label: T(cA(pt(A))), pos: 'se' }));
           await pop(c, G.point(B[0], B[1], { color: BPC, r: 8, label: T(cBp(pt(B))), pos: 'se' }));
         } },
-      { cap: `Use ${T(cA(pt(A)))}: ${T(wA.sub)}, so ${T(wA.mult)} and ${T(cB(`b=${qT(wA.b)}`))}. On the graph: ${nA} step${nA > 1 ? 's' : ''} back to the ${T(yv)}-axis.`,
+      { cap: `Use ${T(cA(pt(A)))}: ${T(wA.sub)}, so ${T(wA.mult)} and ${T(cB(`b=${qT(wA.b)}`))}. On the graph: ${nA} step${nA > 1 ? "s" : ""} over to the ${T(yv)}-axis.`,
         run: async (c) => {
           for (const s of [wA.sub, wA.mult, cB(`b=${qT(wA.b)}`)]) await show(c, line(PA, T(s), 'u7l6-eline'));
           await walk(c, A, AC);
         } },
-      { cap: `Use ${T(cBp(pt(B)))} instead: ${T(wB.sub)}, so ${T(wB.mult)} and ${T(cB(`b=${qT(wB.b)}`))}. ${nB} step${nB > 1 ? 's' : ''} back from this point.`,
+      { cap: `Use ${T(cBp(pt(B)))} instead: ${T(wB.sub)}, so ${T(wB.mult)} and ${T(cB(`b=${qT(wB.b)}`))}. ${nB} step${nB > 1 ? "s" : ""} over to the axis from this point.`,
         run: async (c) => {
           for (const s of [wB.sub, wB.mult, cB(`b=${qT(wB.b)}`)]) await show(c, line(PB, T(s), 'u7l6-eline'));
           await walk(c, B, BPC);

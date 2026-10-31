@@ -156,7 +156,7 @@ function mountFigures() {
 }
 
 /* =============================== try it: on the line or not? =============================== */
-const TRY = [[1, -1], [-2, 3], [2, -3], [3, 2]];
+const TRY = [[1, -1], [-2, 3], [2, -3], [3, -4]]; // (not y = 3x + 2: the assignment asks for a point on it)
 function mountTry() {
   const host = document.getElementById('u7l1-tryg'); if (!host) return;
   const G = sqGraph(host, BIG, 400, 530, { g: { fontSize: 15 } });
@@ -200,7 +200,7 @@ const LT = {
     { k: T('\\tfrac{4}{x}'), tex: `y=\\dfrac{4}{${cR('x')}}`, f: (x) => 4 / x, breaks: [0], lin: false, why: `${T('x')} is <b>in a denominator</b>` },
     { k: T('2^x'), tex: `y=2^{${cR('x')}}`, f: (x) => 2 ** x, lin: false, why: `${T('x')} is an <b>exponent</b>` },
     { k: T('xy'), tex: `${cR('x')}y=4`, f: (x) => 4 / x, breaks: [0], lin: false, why: `${T('x')} is <b>times another variable</b>` },
-    { k: T('2x+1'), tex: 'y=2x+1', f: (x) => 2 * x + 1, lin: true, why: `${T('x')} to the first power, times a number, plus a number` }] },
+    { k: T('2x-1'), tex: 'y=2x-1', f: (x) => 2 * x - 1, lin: true, why: `${T('x')} to the first power, times a number, plus a number` }] },
   ex1: { label: 'Example 1 check', ex: true, items: [
     { k: '(a)', tex: 'y=4x-1', f: (x) => 4 * x - 1, lin: true, why: `${T('x')} to the first power only` },
     { k: '(b)', tex: `y=x^{${cR('2')}}+2`, f: (x) => x * x + 2, lin: false, why: `${T('x')} is <b>squared</b>` },
@@ -249,7 +249,7 @@ const linTest = {
         : `Only ${T('x')} to the <b>first power</b>, times a number, plus a number, keeps the graph <b>straight</b>.`,
       run: async (c) => {
         if (cur) G.remove(cur); cur = null;
-        hide(verdict); eq.innerHTML = d.ex ? 'the four linear ones' : T('y=2x+1'); why.innerHTML = `${T('x')} to the first power only`;
+        hide(verdict); eq.innerHTML = d.ex ? 'the four linear ones' : T('y=2x-1'); why.innerHTML = `${T('x')} to the first power only`;
         for (const it of lins) await G.drawIn(G.fn(it.f, { color: LINE, width: 3.5 }), 400, c);
       }
     });
@@ -572,13 +572,17 @@ export const _test = { eqTex, subLine, subTex, midTex };
 /* ============ Stand Up Break! (whiteboard stations) ============ */
 (() => {
   const XS = [-2, -1, 0, 1, 2];
+  // lines the Lesson 1 assignment uses (tables, graphs, point tests, the sort): never a Stand Up question
+  const ASG = new Set(['2,1', '1,2', '-3,2', '2,-4', '-1,5', '3,-2', '5,2', '-3,-3', '-4,0', '-1,-9', '3,1', '-1,2', '2,2', '-2,6', '4,-5', '3,2']);
+  const asg = (m, b) => ASG.has(m + ',' + b);
   const tab = (xs, ys) => `\\begin{array}{|c|${xs.map(() => 'c').join('|')}|}\\hline x & ${xs.join(' & ')}\\\\ \\hline y & ${ys.map((y) => (y == null ? '\\phantom{-00}' : y)).join(' & ')}\\\\ \\hline\\end{array}`;
   const stepTxt = (ys) => ys.slice(1).map((y, i) => y - ys[i]).map((d) => '{' + (d >= 0 ? '+' : '') + d + '}').join(',\\ ');
   /** the blank table for the question: vertical, so it stays narrow on the small cards */
   const vtab = (xs) => `\\begin{array}{|c|c|}\\hline x & y\\\\ \\hline ${xs.map((x) => `${x} & \\phantom{-0}`).join('\\\\ \\hline ')}\\\\ \\hline\\end{array}`;
   // complete a table for y = mx + b (positive m)
   function table(r, neg) {
-    const m = neg ? -r.int(1, 4) : r.int(1, 4), b = r.int(-6, 6), ys = XS.map((x) => m * x + b);
+    let m, b; do { m = neg ? -r.int(1, 4) : r.int(1, 4); b = r.int(-6, 6); } while (asg(m, b));
+    const ys = XS.map((x) => m * x + b);
     return { text: `Complete the table of values${neg ? ', then plot the points and join them with a straight line' : ''}.`, q: `${eqTex(m, b)}\\quad ${vtab(XS)}`,
       a: tab(XS, ys) };
   }
@@ -586,11 +590,13 @@ export const _test = { eqTex, subLine, subTex, midTex };
   function linOrNot(r) {
     const xs = r.pick([[-2, -1, 0, 1, 2], [0, 1, 2, 3, 4], [-1, 0, 1, 2, 3]]);
     if (r.chance(0.5)) {
-      const c = r.int(-5, 5), ys = xs.map((x) => x * x + c), eq = `y=x^2${c ? (c < 0 ? '-' : '+') + Math.abs(c) : ''}`;
+      let c; do c = r.int(-5, 5); while (c === -3 || c === -4);
+      const ys = xs.map((x) => x * x + c), eq = `y=x^2${c ? (c < 0 ? '-' : '+') + Math.abs(c) : ''}`;
       return { text: 'Complete the table. Does <i>y</i> change by the same step each time? Is the graph a straight line?', q: `${eq}\\quad ${vtab(xs)}`,
         a: [tab(xs, ys), `\\text{steps: } ${stepTxt(ys)}`, '\\text{not the same step: NOT a straight line (non-linear)}'] };
     }
-    const m = r.pick([-4, -3, -2, 2, 3, 4, 5]), b = r.int(-7, 7), ys = xs.map((x) => m * x + b);
+    let m, b; do { m = r.pick([-4, -3, -2, 2, 3, 4, 5]); b = r.int(-7, 7); } while (asg(m, b));
+    const ys = xs.map((x) => m * x + b);
     return { text: 'Complete the table. Does <i>y</i> change by the same step each time? Is the graph a straight line?', q: `${eqTex(m, b)}\\quad ${vtab(xs)}`,
       a: [tab(xs, ys), `\\text{steps: } ${stepTxt(ys)}`, `\\text{same step } (${m > 0 ? '+' : ''}${m})\\text{ every time: a straight line (linear)}`] };
   }

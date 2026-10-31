@@ -64,7 +64,7 @@ const CARDS = [
 ];
 function mountBoard() {
   const host = document.getElementById('u7l8-board'); if (!host) return;
-  const G = new Graph(host, { width: 500, height: 440, xmin: 0, xmax: 10.9, ymin: 0, ymax: 9.9, xlabels: 1, ylabels: 1, origin: true, fontSize: 15, arrows: true });
+  const G = new Graph(host, { width: 480, height: 405, xmin: 0, xmax: 10.9, ymin: 0, ymax: 9.9, xlabels: 1, ylabels: 1, origin: true, fontSize: 15, arrows: true });
   const L = {
     P: G.segment([4, 0.15], [4, 8.85], { color: BOARD, width: 8 }), Q: G.segment([7, 0.15], [7, 8.85], { color: BOARD, width: 8 }),
     R: G.segment([1.15, 3], [9.85, 3], { color: BOARD, width: 8 }), S: G.segment([1.15, 6], [9.85, 6], { color: BOARD, width: 8 })
