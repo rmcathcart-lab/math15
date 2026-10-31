@@ -408,7 +408,7 @@
             [{ kind: 'y', x: -1 }, { kind: 'x', y: f(0), x: 0 }, { kind: 'y', x: 2 }, { kind: 'x', y: f(5), x: 5 }], 'EP2b');
         } }] },
       /* ================= Part B ================= */
-      { num: '3', section: 'Extra practice B — Finding the Rule and Testing for Linearity', stem: 'Each table comes from a linear equation. Find the rule and write it in the form ' + t('y=mx+b') + '.', parts: [
+      { num: '3', section: 'Extra practice B — Finding the Rule and Testing for Linearity', stem: 'Each table comes from a linear equation. Find the rule and write it in the form ' + t('y=mx+b') + ' (' + t('m') + ' is the rate: the change in ' + t('y') + ' for each step of ' + t('1') + ' in ' + t('x') + '; ' + t('b') + ' is the ' + t('y') + '-value at ' + t('x=0') + ').', parts: [
         { id: 'e3a', sub: 'a', level: 'EMG', make: function (r) {
           var m = r.pick([2, 3, 4, 5]), b = r.pick(nz(-6, 6)), xs = X5, ys = xs.map(function (x) { return m * x + b; });
           return linePart('(a)' + tbl(xs, ys), m, b, [{ m: b, b: m, code: 'si-swap', hint: 'The change per step (' + t(m) + ') multiplies ' + t('x') + '; the value at ' + t('x=0') + ' (' + t(b) + ') is the constant.' }, { m: m, b: ys[0], code: 'line-intercept', hint: t('b') + ' is the ' + t('y') + '-value when ' + t('x=0') + ', not the first ' + t('y') + ' in the table.' }],
