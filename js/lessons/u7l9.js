@@ -684,7 +684,7 @@
             { html: 'Metres are bigger than kilometres, so the rate per metre is smaller.', why: 'A kilometre is the bigger unit: 1 km = 1000 m.' }],
             'Over one metre the temperature changes by ' + t(nf(pm)) + '°C; over ' + t(1000) + ' metres (1 km) it changes ' + t(1000) + ' times as much: ' + t(-sh.k) + '°C. Same rate, different units.', ['How many metres are in a kilometre?'], 'why the numbers differ');
         } },
-        { id: 'e8b', level: 'ADV', outcome: 'RF4', make: function (r, sh) {
+        { id: 'e8b', sub: 'b', level: 'ADV', outcome: 'RF4', make: function (r, sh) {
           var pm = cl(-sh.k / 1000), T1 = cl(sh.T0 - sh.k * sh.h1 / 1000);
           return line('(b) Write an equation for the temperature ' + t('T') + ' (°C) at an altitude of ' + t('h') + ' metres.', pm, sh.T0, { X: 'h', Y: 'T', wrong: [{ m: -sh.k, b: sh.T0, code: 'ctx-noconv', hint: t('h') + ' is in <b>metres</b>, so use the rate per metre, ' + t(nf(pm)) + '.' }, { m: pm, b: T1, code: 'ctx-b-point', hint: t(nf(T1)) + '°C is the temperature at ' + t(nf(sh.h1)) + ' m, not at sea level. Substitute the point to find ' + t('b') + '.' }] },
             t('T=' + nf(pm) + 'h+b') + '; substitute ' + t('(' + nf(sh.h1) + ',\\ ' + nf(T1) + ')') + ': ' + t(nf(T1) + '=' + nf(pm) + '(' + nf(sh.h1) + ')+b=' + nf(pm * sh.h1) + '+b\\Rightarrow b=' + nf(sh.T0)) + '<br>' + t(eqTex('T', 'h', pm, sh.T0)),
@@ -694,12 +694,12 @@
           var M = { Y: 'T', X: 'h', what: 'the temperature', yu: '°C', ya: '°C', each: 'metre', xs: 'metres', up: 'rises', down: 'falls', start: function (v) { return 'the temperature at sea level (an altitude of 0 m) is ' + v + '.'; } };
           return interMC(r, '(b) What does the ' + t('T') + '-intercept, ' + t(nf(sh.T0) + '^\\circ') + 'C, represent?', M, -sh.k / 1000, sh.T0, interSol(M, -sh.k / 1000, sh.T0), 'meaning of T-intercept');
         } },
-        { id: 'e8c', level: 'PRG', outcome: 'RF4', make: function (r, sh) {
+        { id: 'e8c', sub: 'c', level: 'PRG', outcome: 'RF4', make: function (r, sh) {
           var pm = cl(-sh.k / 1000), v = cl(sh.T0 + pm * sh.h3);
           return num('(c) Predict the temperature at ' + t(nf(sh.h3)) + ' m.', v, [{ v: sh.T0 - pm * sh.h3, code: 'ctx-rate-sign', hint: 'The air cools as you climb: ' + t(nf(pm) + '\\times ' + nf(sh.h3)) + ' is negative.' }, { v: pm * sh.h3, code: 'ctx-no-b', hint: 'Add the sea-level temperature ' + t(nf(sh.T0)) + '.' }, { v: sh.T0 - sh.k * sh.h3, code: 'ctx-noconv', hint: 'Use the rate per <b>metre</b> with an altitude in metres.' }],
             t('T=' + nf(pm) + '(' + nf(sh.h3) + ')+' + nf(sh.T0) + '=' + nf(pm * sh.h3) + '+' + nf(sh.T0) + '=' + nf(v)) + '°C', ['Substitute ' + t('h=' + sh.h3) + '.'], 'predict temperature', { after: '°C' });
         } },
-        { id: 'e8d', level: 'ADV', outcome: 'RF4', make: function (r, sh) {
+        { id: 'e8d', sub: 'd', level: 'ADV', outcome: 'RF4', make: function (r, sh) {
           var pm = cl(-sh.k / 1000);
           return num('(d) At what altitude does the temperature reach ' + t(sh.Tt + '^\\circ') + 'C?', sh.ht, [{ v: (sh.T0 + sh.Tt) * 1000 / sh.k, code: 'ctx-add-b', hint: 'Subtract ' + t(nf(sh.T0)) + ' from both sides: ' + t(sh.Tt + '-' + nf(sh.T0) + '=' + nf(sh.Tt - sh.T0)) + '.' }, { v: sh.ht / 1000, code: 'ctx-noconv', hint: 'That’s in kilometres. The question uses metres.' }, { v: -sh.ht, code: 'ctx-rate-sign', hint: 'Altitude is positive here — check the signs when you divide.' }],
             t(sh.Tt + '=' + nf(pm) + 'h+' + nf(sh.T0) + '\\Rightarrow ' + nf(pm) + 'h=' + nf(sh.Tt - sh.T0) + '\\Rightarrow h=\\dfrac{' + nf(sh.Tt - sh.T0) + '}{' + nf(pm) + '}=' + nf(sh.ht)) + ' m', ['Set ' + t('T=' + sh.Tt) + ' and solve for ' + t('h') + '.', 'Dividing by ' + t(nf(pm)) + ' is the same as dividing by ' + t(-sh.k) + ' and multiplying by ' + t(1000) + '.'], 'altitude for temperature', { after: 'm' });
@@ -939,11 +939,11 @@
           var M = { Y: 'd', X: 't', what: 'the depth', yu: 'cm', ya: 'cm', each: 'minute', xs: 'minutes', up: 'increases', down: 'decreases', start: function (v) { return 'the water was ' + v + ' deep when the siphon started.'; } };
           return interMC(r, '(b) What does the ' + t('d') + '-intercept, ' + t(nf(sh.d0)) + ' cm, represent?', M, -sh.q, sh.d0, interSol(M, -sh.q, sh.d0), 'meaning of d-intercept');
         } },
-        { id: 'e16c', level: 'BEG', outcome: 'RF4', make: function (r, sh) {
+        { id: 'e16c', sub: 'c', level: 'BEG', outcome: 'RF4', make: function (r, sh) {
           var v = cl(sh.d0 - sh.q * sh.t1);
           return num('(c) Predict the depth after ' + t(sh.t1) + ' minutes.', v, [{ v: sh.q * sh.t1, code: 'ctx-change', hint: 'That’s how much the depth has dropped. What is the depth now?' }], t('d=-' + nf(sh.q) + '(' + sh.t1 + ')+' + nf(sh.d0) + '=' + nf(-sh.q * sh.t1) + '+' + nf(sh.d0) + '=' + nf(v)) + ' cm', ['Substitute ' + t('t=' + sh.t1) + '.'], 'predict depth', { after: 'cm' });
         } },
-        { id: 'e16d', level: 'PRG', outcome: 'RF4', make: function (r, sh) {
+        { id: 'e16d', sub: 'd', level: 'PRG', outcome: 'RF4', make: function (r, sh) {
           var S = cl(sh.d0 - sh.q * sh.tS);
           return num('(d) The siphon must be stopped at a depth of ' + t(nf(S)) + ' cm. When is that?', sh.tS, [{ v: S / sh.q, code: 'ctx-no-sub', hint: 'Use the whole equation: ' + t(nf(S) + '=-' + nf(sh.q) + 't+' + nf(sh.d0)) + '.' }, { v: (sh.d0 + S) / sh.q, code: 'ctx-add-b', hint: 'Subtract ' + t(nf(sh.d0)) + ' from both sides.' }],
             t(nf(S) + '=-' + nf(sh.q) + 't+' + nf(sh.d0) + '\\Rightarrow -' + nf(sh.q) + 't=' + nf(S - sh.d0) + '\\Rightarrow t=' + sh.tS) + ' min', ['Set ' + t('d=' + nf(S)) + ' and solve.'], 'time for depth', { after: 'min' });

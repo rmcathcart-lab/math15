@@ -154,7 +154,7 @@ const sub = {
     const done = add(stage, box(h('div', 'u7l4-done'), W - 28, 100), 14, 288);
     const steps = [];
     d.probs.forEach((p, i) => {
-      const fresh = (c) => { giv.innerHTML = `<span class="u7l4-gk">Given</span> ${p.given}`; tpl.innerHTML = T(slotEq(null, null)); res.innerHTML = ''; return show(c, giv); };
+      const fresh = (c) => { giv.innerHTML = `<span class="u7l4-gk">Given</span><span>${p.given}</span>`; tpl.innerHTML = T(slotEq(null, null)); res.innerHTML = ''; return show(c, giv); };
       const fillM = async (c) => { tpl.innerHTML = T(slotEq(p.m, null)); await pulse(c, tpl, 1.04); };
       const fillB = async (c) => { tpl.innerHTML = T(slotEq(p.m, p.b)); await pulse(c, tpl, 1.04); };
       if (p.first === 'b') {
@@ -246,16 +246,17 @@ const fromGraph = {
     const eqb = h('div', 'u7l4-eqbox'); P.appendChild(eqb); eqb.innerHTML = T('y=\\ ?');
     const alg = h('div', 'u7l4-alg'); P.appendChild(alg);
     const mid = d.miss ? [d.miss, b + mv * d.miss] : null;
+    let missPt = null;
     const steps = [
       { cap: `Where does ${nm} cross the ${T('y')}-axis? At ${T(cB(pairTex(0, b)))}, so ${T(cB('b=' + b))}.`,
         run: async (c) => { await G.reveal(bPoint(G, b), c); vB.innerHTML = T(cB(String(b))); await pulse(c, vB.parentNode, 1.06); } }
     ];
     if (mid) steps.push({ cap: `Now a second point. Careful: at ${T('x=' + d.miss)}, the line passes <b>between</b> grid lines (${T('y=' + fr(Math.round(mid[1] * run), run))}). Not a lattice point, so skip it.`,
-      run: async (c) => { await G.reveal(G.point(mid[0], mid[1], { color: RED, r: 8, open: true, label: '✗', pos: 'ne', labelCls: 'u7l4-plab u7l4-redl' }), c); } });
-    steps.push({ cap: `${mid ? 'Keep going along the line to' : 'Find another'} a grid corner the line passes exactly through: ${T(pairTex(sx, sy))}.`,
+      run: async (c) => { missPt = G.point(mid[0], mid[1], { color: RED, r: 8, open: true, label: '✗', pos: 'ne', labelCls: 'u7l4-plab u7l4-redl' }); await G.reveal(missPt, c); } });
+    steps.push({ cap: `${mid ? 'Keep going along the line to a grid corner' : 'Now a second <b>lattice point</b>: a grid corner'} the line passes exactly through: ${T(pairTex(sx, sy))}.`,
       run: async (c) => { await G.reveal(G.point(sx, sy, { color: INK, r: 7.5, label: T(pairTex(sx, sy)), pos: rise > 0 ? 'e' : 'ne', labelCls: 'u7l4-plab' }), c); } });
     steps.push({ cap: `Count from ${T(pairTex(0, b))} to ${T(pairTex(sx, sy))}: ${dirW(sx, sy - b)}. ${T(`m=\\dfrac{\\text{rise}}{\\text{run}}=\\dfrac{${cR(String(sy - b))}}{${cU(String(sx))}}=${cM(fr(sy - b, sx))}`)}.`,
-      run: async (c) => { const t = new SlopeTri(G, { x: 0, y: b, run: sx, rise: sy - b }, { fillOp: 0.08 }); await t.drawIn(c, 420); vM.innerHTML = T(cM(fr(rise, run, true))); await pulse(c, vM.parentNode, 1.06); } });
+      run: async (c) => { if (missPt) { missPt.style.opacity = 0.25; if (missPt.label) missPt.label.style.opacity = 0; } const t = new SlopeTri(G, { x: 0, y: b, run: sx, rise: sy - b }, { fillOp: 0.08 }); await t.drawIn(c, 420); vM.innerHTML = T(cM(fr(rise, run, true))); await pulse(c, vM.parentNode, 1.06); } });
     steps.push({ cap: `Substitute ${T(cM('m=' + fr(rise, run)))} and ${T(cB('b=' + b))}: ${T(eqTex(d.m, b))}.`,
       run: async (c) => { eqb.innerHTML = T(eqTex(d.m, b, { big: true })); await pulse(c, eqb, 1.06); } });
     const [cx, cy] = d.chk;
@@ -315,12 +316,12 @@ const fromTable = {
   intro: 'The <b>change in y</b> is the slope; the <b>y beside x = 0</b> is the y-intercept. Press <b>Next</b>.',
   make(stage, k, ex) {
     const d = TB[k], rows = d.xs.map((x) => [x, d.m * x + d.b]), ys = rows.map((r) => r[1]), i0 = d.xs.indexOf(0), last = rows[rows.length - 1];
-    const tb = new ValueTable(stage, { x: 14, y: 30, rows, layout: 'h', cellW: 76, cellH: 56, diffs: true, diffSpace: 70, tap: false });
+    const tb = new ValueTable(stage, { x: 14, y: 30, rows, layout: 'h', cellW: 84, cellH: 62, diffs: true, diffSpace: 72, tap: false, cls: 'u7l4-vt' });
     // +1 labels above the x row
     const ups = rows.slice(1).map((r, i) => { const a = tb.cell(i, 0), b2 = tb.cell(i + 1, 0); const l = h('div', 'u7l4-xup', '+1'); add(stage, l, 14 + (a.offsetLeft + b2.offsetLeft + b2.offsetWidth) / 2, 10); l.style.translate = '-50% 0'; hide(l); return l; });
-    const info = add(stage, box(h('div', 'u7l4-tinfo'), 470, 230), 14, 236);
+    const info = add(stage, box(h('div', 'u7l4-tinfo'), 500, 220), 14, 252);
     const lo = Math.min(0, ...ys), hi = Math.max(0, ...ys), span = hi - lo, ystep = span > 12 ? 2 : 1;
-    const G = new Graph(stage, { x: ex.W - 14 - 380, y: 10, width: 380, height: 460, xmin: Math.min(-1, d.xs[0] - 1) - 0.5, xmax: Math.max(...d.xs) + 1.5, ymin: lo - 1.5, ymax: hi + 1.5, xlabels: 1, ylabels: ystep * 2, ystep, fontSize: 14 });
+    const G = new Graph(stage, { x: ex.W - 14 - 350, y: 10, width: 350, height: 460, xmin: Math.min(-1, d.xs[0] - 1) - 0.5, xmax: Math.max(...d.xs) + 1.5, ymin: lo - 1.5, ymax: hi + 1.5, xlabels: 1, ylabels: ystep * 2, ystep, fontSize: 14 });
     const mt = d.m > 0 ? `+${d.m}` : String(d.m);
     const steps = [
       { cap: `Plot the table: the points line up. Now read the two numbers from the table itself.`,
@@ -346,7 +347,7 @@ const SY = {
   ex5: { label: 'Example 5 check', start: 60, rate: 12, ask: 9, yv: 'B', xv: 'w', unit: 'week', money: true, ymax: 200, ystep: 20, ylab: 40,
     startW: 'Jaden starts with <b>$60</b>', rateW: 'He adds <b>$12 every week</b>', yt: 'B', xt: 'w', askW: 'after 9 weeks' },
   bat: { label: 'A phone battery', start: 90, rate: -5, ask: 6, yv: 'P', xv: 't', unit: 'hour', money: false, ymax: 100, ystep: 10, ylab: 20,
-    startW: 'A phone starts at <b>90%</b> charge', rateW: 'It loses <b>5% every hour</b>', yt: 'P', xt: 't', askW: 'after 6 hours' }
+    startW: 'A phone starts at <b>90%</b> charge', rateW: 'It loses <b>5% every hour</b>', yt: 'P', xt: 't', askW: 'After 6 hours' }
 };
 const story = {
   title: 'Start + rate = y = mx + b',
@@ -364,14 +365,14 @@ const story = {
     const A = d.ask, FA = f(A);
     return [
       { cap: `${d.startW}: that is the value at ${T(d.xv + '=0')}, before any time passes. Start = ${T(cB('b=' + d.start))}.`,
-        run: async (c) => { await appear(c, bar(0, BC), 400); const l = G.label(0, d.start, T(cB(v(d.start))), { pos: 'ne', cls: 'u7l4-plab', gap: 10 }); await pop(c, l); await show(c, line(alg, `start: ${T(cB('b=' + d.start))}`)); } },
+        run: async (c) => { await G.drawIn(G.segment([0, 0], [0, d.start], { color: BC, width: 12 }), 500, c); const l = G.label(0, d.start, T(cB(v(d.start))), { pos: 'nw', cls: 'u7l4-plab u7l4-startl', gap: 8 }); await pop(c, l); await show(c, line(alg, `start: ${T(cB('b=' + d.start))}`)); } },
       { cap: `${d.rateW}: each ${d.unit} the bar ${d.rate > 0 ? 'grows' : 'shrinks'} by ${T(String(Math.abs(d.rate)))}. Rate = ${T(cM('m=' + d.rate))} per ${d.unit}.`,
         run: async (c) => { for (let w = 1; w <= 3; w++) { await appear(c, bar(w, LINE, 0.55), 300); const l = G.label(w, f(w), T(cR((d.rate > 0 ? '+' : '') + d.rate)), { pos: 'n', cls: 'u7l4-plab', gap: 6 }); await pop(c, l, 220); } await show(c, line(alg, `rate: ${T(cM('m=' + d.rate))} per ${d.unit}`)); } },
       { cap: `Keep going: the tops of the bars line up in a straight line.`,
         run: async (c) => { for (let w = 4; w <= 10; w++) await appear(c, bar(w, LINE, 0.35), 120); await G.drawIn(G.line([0, d.start], [1, f(1)], { color: LINE, width: 3.5, arrows: false }), 600, c); } },
       { cap: `Substitute: ${T(eq)}. Same form as ${T('y=mx+b')}, with ${T(d.yv)} for ${T('y')} and ${T(d.xv)} for ${T('x')}.`,
         run: async (c) => { await show(c, line(alg, T(eqTex([d.rate, 1], d.start, { y: d.yv, x: d.xv, big: true })), 'u7l4-big')); } },
-      { cap: `${k === 'ex5' ? 'Example 5(b): ' : ''}${d.askW}, put ${T(`${d.xv}=${A}`)} in: ${T(`${d.yv}=${d.rate}(${A})+${d.start}=${d.rate * A}+${d.start}=${FA}`)}. That's ${T(v(FA))}.`,
+      { cap: `${k === 'ex5' ? 'Example 5(b): ' + d.askW.toLowerCase() : d.askW}, put ${T(`${d.xv}=${A}`)} in: ${T(`${d.yv}=${d.rate}(${A})+${d.start}=${d.rate * A}+${d.start}=${FA}`)}. That's ${T(v(FA))}.`,
         run: async (c) => { const g = G.vline(A, { color: RUN }); await G.drawIn(g, 400, c); await G.reveal(G.point(A, FA, { color: INK, r: 8, label: T(v(FA)), pos: 'ne', labelCls: 'u7l4-plab' }), c);
           await show(c, line(alg, T(`${d.yv}=${d.rate}(${A})+${d.start}`))); await show(c, line(alg, T(`\\phantom{${d.yv}}=${d.rate * A}+${d.start}=\\boldsymbol{${FA}}`))); } }
     ];
@@ -452,19 +453,19 @@ standup('u7l4', {
     BEG: (r) => { // given m and b (or (0, b)), any order
       const frac = r.chance(0.3), q = frac ? r.pick([2, 3, 4, 5]) : 1, p = frac ? r.int(1, q - 1 || 1) * r.sign() : r.pick([-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7]);
       const [pp, qq] = suQ(p, q), b = r.chance(0.12) ? 0 : r.int(-9, 9), asPt = r.chance(0.35), bFirst = r.chance(0.35);
-      const mT = suN(pp, qq), bW = asPt ? 'passing through \\((0,\\ ' + b + ')\\)' : '<i>y</i>-intercept \\(' + b + '\\)';
-      const sW = 'slope \\(' + mT + '\\)';
-      const text = 'Write the equation of the line with ' + (bFirst ? bW + ' and ' + sW : sW + (asPt ? ', ' : ' and ') + bW) + '.';
+      const mT = suN(pp, qq), P0 = '\\((0,\\ ' + b + ')\\)', M0 = '\\(' + mT + '\\)', B0 = '\\(' + b + '\\)';
+      const text = 'Write the equation of the line ' + (asPt ? (bFirst ? 'through ' + P0 + ' with slope ' + M0 : 'with slope ' + M0 + ', passing through ' + P0)
+        : (bFirst ? 'with <i>y</i>-intercept ' + B0 + ' and slope ' + M0 : 'with slope ' + M0 + ' and <i>y</i>-intercept ' + B0)) + '.';
       return { text: text.replace(/\\\((.*?)\\\)/g, (m0, t) => tex(t)), q: '', a: [`m=${mT},\\quad b=${b}`, '\\boldsymbol{' + suSI(pp, qq, b) + '}'] };
     },
     PRG: (r) => { // a table
       for (;;) {
-        const m = r.pick([-5, -4, -3, -2, 2, 3, 4, 5]), b = r.int(-8, 12), x0 = r.chance(0.6) ? 0 : r.pick([-1, -2]), xs = [0, 1, 2, 3, 4].map((i) => x0 + i).slice(0, x0 ? 5 : 4);
+        const m = r.pick([-5, -4, -3, -2, 2, 3, 4, 5]), b = r.int(-8, 12), x0 = r.chance(0.6) ? 0 : r.pick([-1, -2]), xs = [0, 1, 2, 3].map((i) => x0 + i);
         if (b === 0) continue;
         const ys = xs.map((x) => m * x + b);
         const tab = '\\begin{array}{|c|' + 'c|'.repeat(xs.length) + '}\\hline x&' + xs.join('&') + '\\\\\\hline y&' + ys.join('&') + '\\\\\\hline\\end{array}';
         return { text: 'Determine the equation of the line represented by the table.', q: tab,
-          a: [`y\\text{ changes by }${m > 0 ? '+' : ''}${m}\\text{ each time } x \\text{ goes up }1:\\ m=${m}`, `\\text{at }x=0,\\ y=${b}:\\ b=${b}`, '\\boldsymbol{' + suSI(m, 1, b) + '}'] };
+          a: [`\\text{change in }y:\\ ${m > 0 ? '+' : ''}${m}\\ \\Rightarrow\\ m=${m}`, `\\text{at }x=0,\\ y=${b}:\\ b=${b}`, '\\boldsymbol{' + suSI(m, 1, b) + '}'] };
       }
     },
     MAS: (r) => {

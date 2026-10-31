@@ -86,7 +86,7 @@ function mountPhones() {
   let cur = null;
   const btns = [];
   for (let g = 0; g <= 8; g++) {
-    const b = h('button', 'pill small u7l2-gb', `${g} GB`); b.type = 'button'; row.appendChild(b); btns.push(b);
+    const b = h('button', 'pill small u7l2-gb', String(g)); b.type = 'button'; row.appendChild(b); btns.push(b);
     b.addEventListener('click', () => {
       cur = cur === g ? null : g; btns.forEach((x, i) => x.classList.toggle('on', i === cur));
       const vals = PLANS.map((p) => p.fee + p.per * g), lo = Math.min(...vals);
@@ -116,13 +116,13 @@ const meaning = {
   make(stage, k, ex) {
     const { m, b, xs, win } = MN[k], ys = xs.map((x) => m * x + b), i0 = xs.indexOf(0), up = m > 0 ? 'increases' : 'decreases';
     const eqb = add(stage, box(h('div', 'u7l2-eqbox', T(eqTex(m, b))), 420, 66), 14, 8);
-    const tags = add(stage, h('div', 'u7l2-tags', `<span class="u7l2-tag u7l2-tm">${T(cM('m=' + m))}: slope</span><span class="u7l2-tag u7l2-tb">${T(cB('b=' + b))}: y-intercept</span>`), 14, 84); hide(tags);
+    const tags = add(stage, h('div', 'u7l2-tags', `<span class="u7l2-tag u7l2-tagm">${T(cM('m=' + m))}: slope</span><span class="u7l2-tag u7l2-tagb">${T(cB('b=' + b))}: y-intercept</span>`), 14, 84); hide(tags);
     const tb = add(stage, h('div', 'u7l2-vtab'), 14, 136);
     tb.innerHTML = `<div class="u7l2-vth">${T('x')}</div><div class="u7l2-vth">${T('y')}</div>` + xs.map((x, i) => `<div class="u7l2-vtd" data-r="${i}">${T(x)}</div><div class="u7l2-vtd u7l2-vy" data-r="${i}">${T(ys[i])}</div>`).join('');
     const ycells = [...tb.querySelectorAll('.u7l2-vy')]; ycells.forEach(hide);
     const rowEls = (i) => [...tb.querySelectorAll(`[data-r="${i}"]`)];
-    const diffs = xs.slice(1).map((x, i) => hide(add(stage, h('div', 'u7l2-diff', `${m > 0 ? '+' : '−'}${Math.abs(m)}`), 196, 136 + 44 + 46 * i + 23 - 13)));
-    const sent = panel(stage, 14, 376, 420, 94, ''); hide(sent);
+    const diffs = xs.slice(1).map((x, i) => hide(add(stage, h('div', 'u7l2-diff', `${m > 0 ? '+' : '−'}${Math.abs(m)}`), 192, 136 + 44 + 46 * (i + 1) - 14)));
+    const sent = panel(stage, 14, 372, 430, 102, '', 'u7l2-sent'); hide(sent);
     const G = new Graph(stage, Object.assign({ x: 458, y: 8, width: ex.W - 472, height: 464, fontSize: 15 }, win));
     return [
       { cap: `In ${T(eqTex(m, b))}, ${T(cM('m=' + m))} is the number times ${T('x')} and ${T(cB('b=' + b))} is the number on its own.`,
@@ -154,7 +154,7 @@ const phones = {
   intro: 'Cost is <b>y</b>, GB is <b>x</b>. Press <b>Next</b>.',
   make(stage, k, ex) {
     const G = new Graph(stage, { x: 10, y: 8, width: 540, height: 464, xmin: 0, xmax: 8, ymin: 0, ymax: 90, ystep: 10, ylabels: 10, xtitle: '\\text{GB}', ytitle: '\\text{cost (\\$)}', fontSize: 15, origin: true });
-    const P = panel(stage, 572, 8, ex.W - 586, 464, 'As y = mx + b');
+    const P = panel(stage, 572, 8, ex.W - 586, 464, 'The plans as lines');
     const tb = h('div', 'u7l2-ptab'); P.appendChild(tb);
     tb.innerHTML = `<div class="u7l2-pth">Plan</div><div class="u7l2-pth">${T('y=mx+b')}</div><div class="u7l2-pth">${T(cM('m'))}</div><div class="u7l2-pth">${T(cB('b'))}</div>`;
     const cells = PLANS.map((p) => {
@@ -171,11 +171,11 @@ const phones = {
       { cap: `At 0 GB, Plan A already costs $20: the line starts at ${T(cB('(0,\\ 20)'))}. That fee is ${T(cB('b=20'))}.`,
         run: async (c) => { await G.reveal(G.point(0, 20, { color: BC, r: 8 }), c); await show(c, cells[0][3]); } },
       { cap: `Every GB adds $5: right 1, up 5. That rate is the slope, ${T(cM('m=5'))}.`,
-        run: async (c) => { await stepTri(c, G, 0, 20, 1, 5, 300); await stepTri(c, G, 1, 25, 1, 5, 200); await G.drawIn(ln(A), 600, c); lab(A, 7.6, 58, 'n'); await show(c, cells[0][2]); } },
+        run: async (c) => { await stepTri(c, G, 0, 20, 1, 5, 300); await stepTri(c, G, 1, 25, 1, 5, 200); await G.drawIn(ln(A), 600, c); lab(A, 8, 60, 'nw'); await show(c, cells[0][2]); } },
       { cap: `Plan B, ${T('C=35+2g')}: write the ${T('x')}-term first, ${T(eqTex(2, 35))}. It <b>starts higher</b> (${T(cB('b=35'))}) but <b>climbs slower</b> (${T(cM('m=2'))}).`,
-        run: async (c) => { for (const e of cells[1]) await show(c, e); await G.reveal(G.point(0, 35, { color: BC, r: 8 }), c); await G.drawIn(ln(B), 600, c); lab(B, 7.6, 50, 's'); } },
+        run: async (c) => { for (const e of cells[1]) await show(c, e); await G.reveal(G.point(0, 35, { color: BC, r: 8 }), c); await G.drawIn(ln(B), 600, c); lab(B, 8, 51, 'sw'); } },
       { cap: `Plan C, ${T('C=10g')}: ${T(eqTex(10, 0))}. No fee, so ${T(cB('b=0'))}: it starts at the origin. ${T(cM('m=10'))}: the <b>steepest</b> line.`,
-        run: async (c) => { for (const e of cells[2]) await show(c, e); await G.reveal(G.point(0, 0, { color: BC, r: 8 }), c); await G.drawIn(ln(C), 600, c); lab(C, 8.4, 86, 'w'); } },
+        run: async (c) => { for (const e of cells[2]) await show(c, e); await G.reveal(G.point(0, 0, { color: BC, r: 8 }), c); await G.drawIn(ln(C), 600, c); lab(C, 8, 80, 'nw'); } },
       { cap: `The big one: go up from ${T('x=6')}. A is at $50, B at $47, C at $60. The <b>lowest</b> line is the cheapest plan: <b>Orbit</b>.`,
         run: async (c) => {
           await G.drawIn(G.segment([6, 0], [6, 88], { color: GRAY, width: 2.5, dash: true }), 400, c);
@@ -189,7 +189,7 @@ const phones = {
 /* =============================== explainer: m and b sliders (star) =============================== */
 /** a horizontal slider: integers min … max; onSet(v) while dragging. Returns { el, set(v) } */
 function slider(host, o) {
-  const W = o.w, H = 92, pad = 22, x0 = pad, x1 = W - pad, ty = 54, n = o.max - o.min;
+  const W = o.w, H = 84, x0 = 92, x1 = W - 18, ty = 46, n = o.max - o.min;
   const el = box(h('div', 'u7l2-sl ' + (o.cls || '')), W, H); el.setAttribute('data-tap', ''); host.appendChild(el);
   const sv = svgEl('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}` }, el);
   const hl = h('div', 'bk-html'); el.appendChild(hl);
@@ -200,7 +200,7 @@ function slider(host, o) {
     svgEl('line', { x1: X(v), x2: X(v), y1: ty + 8, y2: ty + (big ? 18 : 13), stroke: INK, 'stroke-width': big ? 2 : 1.2 }, sv);
     if (big) { const t = h('div', 'bk-lab u7l2-sltick', T(v)); hl.appendChild(t); place(t, X(v), ty + 19, 's', 0); }
   }
-  const nm = h('div', 'bk-lab u7l2-slname', o.name); nm.style.color = o.color; hl.appendChild(nm); place(nm, 4, 4, 'se', 0);
+  const nm = h('div', 'bk-lab u7l2-slname', o.name); nm.style.color = o.color; hl.appendChild(nm); place(nm, 2, ty, 'e', 0);
   const fillL = svgEl('line', { x1: X(0), x2: X(0), y1: ty, y2: ty, stroke: o.color, 'stroke-width': 8, 'stroke-linecap': 'round' }, sv);
   const knob = svgEl('circle', { cx: X(0), cy: ty, r: 14, fill: o.color, stroke: '#fff', 'stroke-width': 3 }, sv);
   const val = h('div', 'bk-lab u7l2-slval'); val.style.color = o.color; hl.appendChild(val);
@@ -305,7 +305,7 @@ const rearrange = {
   make(stage, k, ex) {
     const { a, c: cc } = RA[k], m = -a, b = cc;
     const xt = `${co(a)}x`, mv = `${co(-a)}x`;                       // the x-term, and the x-term after it moves
-    const opW = a > 0 ? `Subtract ${T(`${co(a)}x`)}` : `Add ${T(`${co(-a)}x`)}`, opT = a > 0 ? `-${co(a)}x` : `+${co(-a)}x`;
+    const opW = a > 0 ? `Subtract ${T(`${co(a)}x`)} from both sides` : `Add ${T(`${co(-a)}x`)} to both sides`, opT = a > 0 ? `-${co(a)}x` : `+${co(-a)}x`;
     const mkRow = (y, parts) => {
       const r = add(stage, h('div', 'u7l2-row'), 30, y);
       const els = parts.map((p) => { const s = h('span', 'u7l2-tm' + (p[1] ? ' ' + p[1] : ''), T(p[0])); r.appendChild(s); return s; });
@@ -314,20 +314,22 @@ const rearrange = {
     const r1 = mkRow(20, [[xt, 'u7l2-xt'], ['{}+{}'], ['y'], ['{}={}'], [String(cc)]]);
     const ann = add(stage, h('div', 'u7l2-ann'), 30, 84); hide(ann);
     const r2 = mkRow(150, [['y'], ['{}={}'], [String(cc)], [`{}${mv.startsWith('-') ? '-' : '+'}${mv.replace('-', '')}`, 'u7l2-xt']]); hide(r2.r);
-    const r3 = mkRow(260, [['y'], ['{}={}'], [cM(mv), 'u7l2-mt'], [cB(`{}+${cc}`), 'u7l2-bt']]); hide(r3.r);
+    const r3 = mkRow(260, [['y'], ['{}={}'], [cM(mv), 'u7l2-mt'], [cB(`{}${cc < 0 ? '-' : '+'}${Math.abs(cc)}`), 'u7l2-bt']]); hide(r3.r);
     const read = add(stage, h('div', 'u7l2-read', `${T(cM('m=' + m))}<span class="u7l2-gap"></span>${T(cB('b=' + b))}`), 30, 360); hide(read);
     const G = new Graph(stage, { x: ex.W - 330, y: 70, width: 316, height: 316, xmin: -10, xmax: 10, ymin: -10, ymax: 10, xlabels: 5, ylabels: 5, fontSize: 13 });
     const gl = add(stage, h('div', 'u7l2-glab', 'Same line, either way'), ex.W - 330, 34); hide(gl);
     return [
       { cap: `${T('y')} is not alone yet: the ${T('x')}-term ${T(xt)} is on its side of the equation.`,
         run: async (c) => { r1.els[0].classList.add('u7l2-flag'); await pulse(c, r1.els[0], 1.2); } },
-      { cap: `${opW} from both sides${a > 0 ? '' : ' (it was being subtracted)'}: the ${T('x')}-term crosses to the other side and its <b>sign flips</b>. ${T(`y=${cc}${mv.startsWith('-') ? '' : '+'}${mv}`)}.`,
+      { cap: `${opW}: the ${T('x')}-term crosses to the other side and its <b>sign flips</b>. ${T(`y=${cc}${mv.startsWith('-') ? '' : '+'}${mv}`)}.`,
         run: async (c) => {
-          ann.innerHTML = `<span class="u7l2-op">${T(opT)}</span><span class="u7l2-op u7l2-op2">${T(opT)}</span>`; await show(c, ann);
+          ann.innerHTML = ''; const k0 = relPos(stage, ann);
+          [r1.els[0], r1.els[4]].forEach((el) => { const [x, , w] = relPos(stage, el), o = add(ann, h('span', 'u7l2-op', T(opT)), x + w / 2 - k0[0], 0); o.style.translate = '-50% 0'; });
+          await show(c, ann);
           await show(c, r2.r); await fly(c, stage, T(xt), r1.els[0], r2.els[3], 'u7l2-flyx');
         } },
       { cap: `Write the ${T('x')}-term first. Each term keeps <b>its own sign</b>: ${T(eqTex(m, b, { color: false }))}.`,
-        run: async (c) => { await show(c, r3.r); await Promise.all([fly(c, stage, T(r2.els[3].textContent && `${mv}`), r2.els[3], r3.els[2]), fly(c, stage, T(String(cc)), r2.els[2], r3.els[3])]); } },
+        run: async (c) => { await show(c, r3.r); await Promise.all([fly(c, stage, T(mv), r2.els[3], r3.els[2]), fly(c, stage, T(String(cc)), r2.els[2], r3.els[3])]); } },
       { cap: `Now read it off: ${T(cM('m=' + m))} and ${T(cB('b=' + b))}. Both forms are the <b>same line</b>.`,
         run: async (c) => { await pop(c, read); await show(c, gl); await G.drawIn(G.line({ m, b }, { color: LINE, width: 3.5 }), 600, c); await G.reveal(G.point(0, b, { color: BC, r: 7, label: T(P2(0, b)), pos: m < 0 ? 'ne' : 'nw', labelCls: 'u7l2-bint' }), c); } }
     ];
@@ -453,12 +455,12 @@ const tableCheck = {
     const bad = oks.indexOf(false);
     const S = [{ cap: `The line ${T(eq)}. Substitute each ${T('x')} from the table and compare with the table’s ${T('y')}.`, run: (c) => G.drawIn(G.line({ m, b }, { color: LINE, width: 4 }), 600, c) }];
     rows.forEach(([x, y], i) => {
-      const sub = x === 0 ? `${b}` : `${co(m)}(${x})${b < 0 ? '-' : '+'}${Math.abs(b)}=${vals[i]}`;
+      const sub = `${co(m)}(${x})${b < 0 ? '-' : '+'}${Math.abs(b)}=${vals[i]}`;
       S.push({
         cap: `${T('x=' + x)}: ${T(sub)}. The table says ${T(y)}${oks[i] ? ' ✓' : `: <b>not equal</b> ✗`}`,
         run: async (c) => {
           cv[i].innerHTML = T(vals[i]); await pop(c, cv[i], 260);
-          ck[i].innerHTML = oks[i] ? '<b class="u7l2-okc">✓</b>' : '<b class="u7l2-badc">✗</b>'; ck[i].parentNode && cv[i].classList.toggle('u7l2-badrow', !oks[i]); await pop(c, ck[i], 260);
+          ck[i].innerHTML = oks[i] ? '<b class="u7l2-okc">✓</b>' : '<b class="u7l2-badc">✗</b>'; cv[i].classList.toggle('u7l2-badrow', !oks[i]); await pop(c, ck[i], 260);
           await G.reveal(G.point(x, y, { color: oks[i] ? BC : RED, r: 7.5, coords: !oks[i], pos: 'nw', labelColor: RED }), c);
           if (!oks[i]) await G.drawIn(G.segment([x, vals[i]], [x, y], { color: RED, width: 3, dash: true }), 400, c);
         }
@@ -492,7 +494,7 @@ const context = {
       { cap: `Write it in ${T('y=mx+b')} order: ${T(`\\text{cost}=${cM('20')}h+${cB('35')}`)}. So ${T(cM('m=20'))} and ${T(cB('b=35'))}.`,
         run: async (c) => { await show(c, l2); } },
       { cap: `${T(cB('b=35'))}: at ${T('h=0')} hours the cost is already $35. It is the <b>starting amount</b>, the call-out fee charged before any work.`,
-        run: async (c) => { await G.reveal(G.point(0, 35, { color: BC, r: 8, label: T(cB('(0,\\ 35)')), pos: 'e', labelCls: 'u7l2-bint', gap: 10 }), c); await show(c, l3); } },
+        run: async (c) => { await G.reveal(G.point(0, 35, { color: BC, r: 8, label: T(cB('(0,\\ 35)')), pos: 'se', labelCls: 'u7l2-bint', gap: 8 }), c); await show(c, l3); } },
       { cap: `${T(cM('m=20'))}: every extra hour adds $20. Right 1 hour, up $20: that is the <b>rate</b>, $20 per hour.`,
         run: async (c) => { for (let i = 0; i < 3; i++) { await stepTri(c, G, i, f(i), 1, 20, 260); await pop(c, G.point(i + 1, f(i + 1), { color: INK, r: 6 }), 160); } await show(c, l4); } },
       { cap: `Join them: the cost line starts at ${T('(0,\\ 35)')} and climbs $20 per hour. (No negative hours, so it starts at ${T('h=0')}.)`,
@@ -531,7 +533,7 @@ export const _test = { eqTex };
   // ax + y = c (or y − ax = c): get y alone
   function solve1(r) {
     const a = nz(r, -8, 8), c = nz(r, -9, 9), m = -a, b = c;
-    const q = r.chance(0.7) ? `${co(a)}x+y=${c}` : `y${a < 0 ? '+' : '-'}${co(Math.abs(a))}x=${c}`.replace('y-x', 'y-x');
+    const q = r.chance(0.7) ? `${co(a)}x+y=${c}` : `y${a < 0 ? '-' : '+'}${co(Math.abs(a))}x=${c}`;
     const mid = `y=${c}${-a < 0 ? '-' : '+'}${co(Math.abs(a))}x`;
     return { text: 'Rearrange into <i>y</i> = <i>mx</i> + <i>b</i>, then state <i>m</i> and <i>b</i>.', q: q.replace('+-', '-'), a: [mid, plain(m, b), `m=${m},\\quad b=${b}`] };
   }

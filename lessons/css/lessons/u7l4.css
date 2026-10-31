@@ -94,3 +94,12 @@
 /* where */
 .u7l4 .bk-fc-node { font-size: 16.5px; line-height: 1.35; }
 .u7l4-whex { font-size: 20px; background: #f6f5f1; border-radius: 12px; padding: 10px 14px; box-sizing: border-box; display: flex; align-items: center; line-height: 1.4; }
+.u7l4-res { display: flex; align-items: center; justify-content: center; gap: 4px; }
+.u7l4-given > span:last-child { white-space: normal; }
+.u7l4-whex { display: block; }
+.u7l4-panel .u7l4-line { font-size: 22px; }
+.u7l4-panel .u7l4-big { font-size: 30px; }
+.u7l4-tinfo .u7l4-line { font-size: 23px; }
+.u7l4-tinfo .u7l4-big { font-size: 30px; }
+.u7l4-vt .bk-td, .u7l4-vt .bk-th { font-size: 24px; }
+.u7l4-startl { font-size: 18px; background: rgba(255, 255, 255, .9); border-radius: 6px; padding: 0 3px; }

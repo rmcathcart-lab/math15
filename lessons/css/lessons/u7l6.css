@@ -1,0 +1,112 @@
+/* Math 15 · Unit 7 · Lesson 6 — Equation from two points: styles used only on this page (prefix u7l6-).
+ * Colours: slope blue, the points red (A) and dark orange (B), b green, run amber, rise purple. */
+:root { --u7l6-m: #1f5bd6; --u7l6-a: #c93a33; --u7l6-bp: #b0590e; --u7l6-b: #12805a; --u7l6-run: #c27a0e; --u7l6-rise: #7b4fc4; }
+
+.u7l6 .ex-cap .katex { font-size: 1.04em; }
+.u7l6 .chip .katex { font-size: 1em; }
+.u7l6 .pl .katex { font-size: 1.1em; }
+.u7l6 .ans .katex { font-size: 1.04em; }
+.u7l6 .katex { white-space: nowrap; }
+.u7l6 h2 .katex, .u7l6 h3 .katex { font-size: .95em; }
+.u7l6-c-m { color: var(--u7l6-m); }
+.u7l6-c-run { color: var(--u7l6-run); }
+.u7l6-c-rise { color: var(--u7l6-rise); }
+.u7l6-exgap { margin-top: 18px; }
+.u7l6-ans { line-height: 1.6; }
+.u7l6-small { font-size: 16px; }
+
+/* ---------------- warm-up ---------------- */
+.u7l6-candles { display: flex; justify-content: center; }
+.u7l6-cwrap { position: relative; }
+.u7l6-cwrap svg { position: absolute; left: 0; top: 0; }
+.u7l6-cname { font: 800 19px var(--round); color: var(--ink); white-space: nowrap; }
+.u7l6-csub { font: 600 16px var(--font); color: var(--ink2); white-space: nowrap; }
+.u7l6-cred { color: var(--u7l6-a); }
+.u7l6-ctag { font: 800 18px var(--round); color: var(--u7l6-a); background: rgba(255, 255, 255, .9); border-radius: 6px; padding: 0 4px; white-space: nowrap; }
+.u7l6-cbtns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 4px 0 8px; }
+.u7l6-cbtns .pill.small { margin: 0; font-size: 15.5px; }
+.wf .u7l6-wqs .q-line { font-size: 17.5px; margin: 4px 0 2px; gap: 10px; }
+.wf .u7l6-wqs .q-line .pill.small { padding: 2px 10px; }
+.u7l6-wa { margin: 0 0 6px 40px; }
+.wf .u7l6-wa .bk-ans { font-size: 16px; line-height: 1.35; margin-top: 2px; }
+.wf .wf-poll { margin-top: 0; padding: 2px 14px 12px; }
+.wf .wf-poll > .q-line { font-size: 17px; margin: 8px 0 8px; }
+.wf .wf-poll .opt { padding: 5px 9px; font-size: 17px; }
+.wf-poll:not(.revealed) .poll-ans { display: none; }
+.u7l6-social { margin-top: 10px; }
+.u7l6-social .q-line { font-size: 18px; gap: 10px; }
+
+/* ---------------- section cards ---------------- */
+.u7l6-stagebox { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 8px; align-items: stretch; margin: 4px 0 14px; }
+.u7l6-stg { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; background: #f6f5f1; border-radius: 12px; padding: 10px 12px; font-size: 18px; line-height: 1.35; border-top: 5px solid; }
+.u7l6-stg b { font-size: 20px; }
+.u7l6-stg1 { border-color: var(--u7l6-rise); } .u7l6-stg2 { border-color: var(--u7l6-m); } .u7l6-stg3 { border-color: var(--u7l6-b); }
+.u7l6-stg1 .katex { font-size: 1.15em; }
+.u7l6-stn { font: 800 14px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u7l6-arr { align-self: center; font-size: 28px; color: var(--muted); }
+.u7l6-walk { font-size: 20px; background: #f6f5f1; border-radius: 12px; padding: 10px 16px; margin: 0 0 16px; text-align: center; line-height: 1.6; }
+.u7l6-wk { font: 800 14px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin-right: 8px; }
+.u7l6-sub { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 4px 0 14px; }
+.u7l6-sb { display: flex; flex-direction: column; align-items: center; gap: 2px; background: #f6f5f1; border-radius: 12px; padding: 8px; font-size: 22px; border-top: 5px solid var(--u7l6-rise); }
+.u7l6-sbt { font-size: 16.5px; color: var(--ink2); }
+.u7l6-ctx { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 4px 0 8px; }
+.u7l6-cbox { display: flex; flex-direction: column; gap: 4px; background: #f6f5f1; border-radius: 12px; padding: 10px 14px; font-size: 17.5px; line-height: 1.35; border-top: 5px solid; }
+.u7l6-cbox b:first-child { font-size: 19px; }
+.u7l6-cb-m { border-color: var(--u7l6-m); } .u7l6-cb-p { border-color: var(--u7l6-a); } .u7l6-cb-b { border-color: var(--u7l6-b); }
+
+/* ---------------- explainer pieces ---------------- */
+.u7l6-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+.u7l6-ph { font: 800 16px var(--round); color: var(--muted); }
+.u7l6-ph:empty { display: none; }
+.u7l6-line { font-size: 21px; line-height: 1.4; }
+.u7l6-big { font-size: 25px; }
+.u7l6-sm { font-size: 18.5px; }
+.u7l6-tall { line-height: 1.2; }
+.u7l6-chk { font-size: 20px; color: var(--ok); font-weight: 700; }
+.u7l6-okc { color: var(--ok); } .u7l6-badc { color: var(--red); }
+.u7l6-ansbox { margin-top: auto; align-self: center; border: 3px solid var(--ok); background: #eef8f2; color: #0d5c3f; border-radius: 12px; padding: 6px 16px; font-size: 22px; text-align: center; }
+.u7l6-tick { font-weight: 800; color: var(--ok); margin-right: 4px; }
+.u7l6-tlab { font: 700 18px var(--round); background: rgba(255, 255, 255, .9); border-radius: 7px; padding: 0 5px; white-space: nowrap; }
+.u7l6-trun { color: var(--u7l6-run); } .u7l6-trise { color: var(--u7l6-rise); }
+
+/* stages */
+.u7l6-swork { gap: 8px; padding: 12px 18px; }
+.u7l6-trk { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 4px; }
+.u7l6-tk { display: flex; align-items: center; gap: 6px; font-size: 16.5px; border: 2px solid var(--line2); border-radius: 10px; padding: 5px 8px; color: var(--muted); white-space: nowrap; transition: background .25s, border-color .25s, color .25s; }
+.u7l6-tk span { flex: none; width: 24px; height: 24px; border-radius: 50%; background: #c9ccd3; color: #fff; font: 800 14px/24px var(--round); text-align: center; }
+.u7l6-tk.on { border-color: var(--brand2); background: var(--brand-soft); color: var(--ink); }
+.u7l6-tk.on span { background: var(--brand2); }
+.u7l6-tk.done { color: var(--ok); border-color: #bfe0cf; }
+.u7l6-tk.done span { background: var(--ok); }
+.u7l6-sline { font-size: 25px; }
+.u7l6-final { align-self: flex-start; border: 3px solid var(--u7l6-m); border-radius: 12px; padding: 2px 14px; background: #eef3fd; font-weight: 700; font-size: 27px; }
+
+/* either */
+.u7l6-ecol { gap: 8px; }
+.u7l6-ecol .u7l6-ph { font-size: 19px; }
+.u7l6-ecol .u7l6-ph .katex { font-size: 1.1em; }
+.u7l6-eline { font-size: 22px; }
+.u7l6-eres { display: flex; align-items: center; justify-content: center; gap: 26px; background: #eaf6f0; border: 2.5px solid var(--u7l6-b); border-radius: 14px; font-size: 24px; box-sizing: border-box; }
+.u7l6-efin { border: 3px solid var(--u7l6-m); border-radius: 12px; padding: 0 12px; background: #eef3fd; }
+
+/* travel */
+.u7l6-trtop { display: flex; align-items: center; justify-content: center; gap: 22px; font-size: 26px; }
+.u7l6-trto { font-size: 30px; color: var(--muted); }
+.u7l6-nltag { position: absolute; font-size: 19px; }
+.u7l6-trres { display: flex; align-items: center; justify-content: center; font-size: 28px; background: #eef3fd; border: 2.5px solid var(--u7l6-m); border-radius: 14px; box-sizing: border-box; }
+.u7l6 .ex-stage .bk-hoplab { font-size: 22px; }
+.u7l6 .ex-stage .bk-nline .bk-ptlab { font-size: 19px; }
+
+/* flow */
+.u7l6 .ex-stage .bk-fc-node { font-size: 17px; }
+.u7l6-fline { font-size: 21px; }
+
+/* reduce */
+.u7l6-keep { display: inline-block; border: 2.5px solid var(--ok); border-radius: 10px; padding: 4px 8px; }
+
+/* sunflower */
+.u7l6-garden { position: relative; border-radius: 14px; overflow: hidden; }
+.u7l6-garden svg { position: absolute; left: 0; top: 0; }
+.u7l6-sknum { font: 700 15px var(--round); color: var(--ink); }
+.u7l6-clock { font: 800 20px var(--round); background: #fff; border: 2px solid var(--ink); border-radius: 9px; padding: 0 10px; white-space: nowrap; }
+.u7l6-skh { font: 800 18px var(--round); color: var(--u7l6-a); background: rgba(255, 255, 255, .9); border-radius: 8px; padding: 0 6px; white-space: nowrap; }
