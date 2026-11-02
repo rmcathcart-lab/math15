@@ -234,6 +234,39 @@ const tileRect = {
     const res = add(stage, box(h('div', 'u4l3-tres'), pw, 0), px, ry); res.style.height = 'auto'; hide(res);
     res.innerHTML = `<div class="u4l3-tph">Area = length × width</div><div class="u4l3-teq">${K(`${P}`)}</div><div class="u4l3-teq u4l3-good">${K(`=${facs}`)}</div><div class="u4l3-tck"><b>Check:</b> ${K(`${facs}`)}<br>${K(`=${polyT(prods)}`)}<br>${K(`=${P}`)} <span class="ok">✓</span></div>`;
     const sq = r === k ? ` The rectangle is a <b>square</b>!` : '';
+    /* the corner blocks that don't work are BUILT, to see why: the unit tiles make the block, the x-tiles we have line its
+     * top and side, and the empty x-tile spots (or the x-tiles left over) show it can't be one rectangle */
+    [big, ...xt, ...ut].forEach((t) => { t.home = [t.cx, t.cy, t.rot]; });
+    const hitAt = rows.indexOf(hit), tries = rows.slice(0, hitAt), tx = 44, ty = oy;
+    let trialBits = [];
+    const clearTrial = (c2) => { const bits = trialBits; trialBits = []; return Promise.all(bits.map((e) => c2.anim(e, [{ opacity: 1 }, { opacity: 0 }], 220).then(() => e.remove()))); };
+    async function buildTrial(c2, q) {
+      const R = q.s, C = q.l, need = R + C, have = nb, moves = [];
+      await clearTrial(c2);
+      moves.push(moveTile(c2, big, tx + X / 2, ty + X / 2, 0, 600));
+      ut.forEach((t, i) => moves.push(moveTile(c2, t, tx + X + (i % C) * U + U / 2, ty + X + Math.floor(i / C) * U + U / 2, 0, 600, Math.min(i * 30, 300))));
+      const slots = [];
+      for (let i = 0; i < C; i++) slots.push({ x: tx + X + i * U, y: ty, w: U, hh: X, cx: tx + X + i * U + U / 2, cy: ty + X / 2, rot: 0 });
+      for (let j = 0; j < R; j++) slots.push({ x: tx, y: ty + X + j * U, w: X, hh: U, cx: tx + X / 2, cy: ty + X + j * U + U / 2, rot: 90 });
+      xt.forEach((t, i) => { const sl = slots[i]; if (sl) moves.push(moveTile(c2, t, sl.cx, sl.cy, sl.rot, 650, 250 + i * 70)); else moves.push(moveTile(c2, t, t.home[0], t.home[1], t.home[2], 500)); });
+      await Promise.all(moves);
+      const gh = slots.slice(have).map((sl) => { const e = add(stage, box(h('div', 'u4l3-ghost'), sl.w, sl.hh), sl.x, sl.y); hide(e); return e; });
+      const msg = need > have ? `${need - have} ${T('x')}-tile${need - have > 1 ? 's' : ''} short` : `${have - need} ${T('x')}-tile${have - need > 1 ? 's' : ''} left over`;
+      const tag = add(stage, h('div', 'u4l3-short c', `✗ ${msg}`), tx + (X + C * U) / 2, ty + X + R * U + 26); hide(tag);
+      trialBits = [...gh, tag];
+      await Promise.all(gh.map((e, i) => c2.fadeIn(e, 260, { delay: i * 60 })));
+      await c2.pop(tag, 380);
+    }
+    const showRow = async (c2, i) => {
+      await c2.fadeIn(sp.els[i], 280, { from: 'translateX(-12px)' });
+      sp.els[i].classList.add(rows[i].ok ? 'hit' : 'miss');
+      if (rows[i].ok) await c2.pop(sp.els[i].lastChild, 380);
+    };
+    const trialSteps = tries.map((q, i) => ({
+      cap: `Try a ${T(`${q.s}\\times${q.l}`)} corner block: ${q.s} row${q.s > 1 ? 's' : ''} of ${q.l}. It needs ${T(`${q.s}+${q.l}=${q.s + q.l}`)} ${T('x')}-tiles (${q.l} along the top, ${q.s} down the side), but we only have ${nb}. ` +
+        (q.s + q.l > nb ? `The empty spots mean the tiles <b>can't make a rectangle</b> ✗` : `The ${nb - q.s - q.l} extra tiles don't fit anywhere ✗`),
+      run: async (c2) => { await showRow(c2, i); await buildTrial(c2, q); }
+    }));
     return [{
       cap: `Count the tiles: one ${T('x^2')}-tile, ${nb} ${T('x')}-tiles and ${A} unit tiles. Together they are ${T(P)}.`,
       run: (c2) => Promise.all([...pl.map((e, i) => c2.fadeIn(e, 300, { delay: i * 150 })), c2.fadeIn(card, 350, { delay: 300 })])
@@ -242,10 +275,13 @@ const tileRect = {
       run: (c2) => Promise.all([...pl.map((e) => c2.anim(e, [{ opacity: 1 }, { opacity: 0 }], 250)), moveTile(c2, big, ox + X / 2, oy + X / 2, 0, 700)])
     }, {
       cap: `The ${A} unit tiles fill the <b>bottom-right corner</b>, so they make a block: <b>rows × columns = ${A}</b>. One ${T('x')}-tile sits beside each row and above each column, so we need <b>rows + columns = ${b}</b>.`,
-      run: (c2) => sp.run(c2)
-    }, {
+      run: (c2) => c2.fadeIn(sp.wrap, 260)
+    }, ...trialSteps, {
       cap: `The ${T(`${r}\\times${k}`)} block works: ${T(`${r}+${k}=${b}`)} ✓. Stand ${k} ${T('x')}-tiles along the <b>top</b> and lay ${r} down the <b>side</b>.`,
       run: async (c2) => {
+        await clearTrial(c2);
+        for (let i = hitAt; i < rows.length; i++) await showRow(c2, i);
+        await Promise.all([moveTile(c2, big, ox + X / 2, oy + X / 2, 0, 600), ...ut.map((t) => moveTile(c2, t, t.home[0], t.home[1], 0, 600))]);
         await Promise.all(xt.slice(0, k).map((t, i) => moveTile(c2, t, ox + X + i * U + U / 2, oy + X / 2, 0, 650, i * 90)));
         await Promise.all(xt.slice(k).map((t, j) => moveTile(c2, t, ox + X / 2, oy + X + j * U + U / 2, 90, 750, j * 120)));
       }
