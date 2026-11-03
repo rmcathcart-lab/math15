@@ -113,7 +113,7 @@ async def main():
         await tp.click('.tt-m >> nth=1'); await tp.wait_for_selector('#tt-detail .tt-dbox')   # the answer pop-up
         await tp.screenshot(path=SHOTS + 'tm_t_results.png', full_page=True)
         await tp.keyboard.press('Escape'); assert await tp.locator('#tt-detail').count() == 0
-        await tp.click('.tt-top .btn-primary:has-text("Release")'); await tp.wait_for_timeout(1500)
+        rel = await tp.inner_text('.tt-top .btn-primary'); assert 'Hide' in rel, 'exit slip not released on close: ' + rel  # exit slips release on close
         # ---- Ava sees her results ----
         await a.goto(BASE + '?class=10c-b'); await a.wait_for_selector('.tm-res-card', timeout=15000)
         await a.click('.tm-res-card'); await a.wait_for_selector('.tm-res-big')
