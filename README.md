@@ -41,7 +41,7 @@ Homework practice for every Math 15 lesson, built from the course booklets. Ever
 | Path | What it is |
 |---|---|
 | `js/ns.js` | **First script on every page.** Keeps this site's browser storage under an `m15/` prefix, because the Math 10C site shares the same web address (otherwise the two Teacher Ledgers sign each other out and lesson ink leaks between courses) |
-| `js/courses.js` | The course switcher list (click the badge in the Teacher Ledger's corner). Keep it identical in every course's repo |
+| `js/courses.js` | Fallback course list for the switcher. The real list is `teaching/js/courses.js` (see Teaching Hub below) |
 | `js/core.js` | Seeded random numbers, number theory, answer parsing, KaTeX helpers |
 | `js/kit.js` | Shared checkers with error diagnoses, and the lesson registry |
 | `js/lessons/u1l*.js`, `u2l*.js` | Units 1 and 2: every assignment question plus the extra practice |
@@ -72,3 +72,12 @@ The home page shows a small **Lesson** card to the left of each assignment, and 
 **Go to the lesson** button. Both open the same lesson on the Math 15 Teaching site in a new tab (`HW.TEACHING` in
 `js/catalog.js` lists the lessons it has), with `?class=<block>` so the student sees that class's notes. The block is the one set for the class in the dashboard's Settings; without one, a final letter
 A–D in the class code (e.g. `10c-b`) is used, otherwise the link has no class.
+
+## Teaching Hub (universal settings)
+
+Bell times, days off, the semester schedule (which class is in which block), the universal calendar and sub plans live
+in the Teaching Hub: https://rmcathcart-lab.github.io/teaching/ (repo `teaching`). It sends bell times and days off to
+this ledger's backend, gives the current semester's classes their block, and reads and changes the class calendars
+through `teacher/bridge.html` (keep `teacher/bridge.js` the same in math10c and math15). The course switcher (the badge in
+the ledger's corner) comes from `teaching/js/courses.js`; `js/courses.js` here is only a fallback. The ledger opens a
+class with `?class=<code>` and a tab with `?tab=<tab>` (the hub's universal bookmark uses these).
