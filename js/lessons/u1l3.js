@@ -246,7 +246,7 @@
         { id: '3b', level: 'BEG', make: function (r) { return ladderPart(r.chance(0.7) ? 8 * r.pick([3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]) : 16 * r.pick([3, 5, 7, 9, 11, 13, 15])); } }] },
       { num: '4', stem: 'Use a <b>factor tree</b> to determine the prime factorization.', parts: [
         { id: '4a', level: 'BEG', make: function (r) { return treePart(find(function () { var ps = r.sample([2, 3, 5, 7, 11, 13, 17, 19, 23], 3); return prodOf(ps); }, function (n) { return n >= 42 && n <= 250 && n % 2 === 0; }, 78)); } },
-        { id: '4b', level: 'BEG', make: function (r) { return treePart(r.pick([9, 9, 25, 49, 4]) * r.pick([3, 5, 7, 11, 13, 17, 19, 23]) * 1 || 99); } }] },
+        { id: '4b', level: 'BEG', make: function (r) { return treePart(find(function () { var sq = r.pick([9, 9, 25, 49, 4]), q = r.pick([3, 5, 7, 11, 13, 17, 19, 23]); return sq % q ? sq * q : 0; }, function (n) { return n >= 44 && n <= 250; }, 99)); } }] },
       { num: '5', section: 'Part B — GCF and LCM', stem: 'Determine the greatest common factor by <b>listing factors</b>.', parts: [
         { id: '5a', level: 'BEG', make: function (r) { return gcfPart(find(function () { var g = r.pick([2, 3, 4, 5, 6, 8]), x = r.int(2, 7), y = r.int(2, 8); return [g * Math.min(x, y), g * Math.max(x, y), x, y]; }, function (v) { return v[0] !== v[1] && gcd(v[2], v[3]) === 1 && v[1] <= 48 && noneDivides(v.slice(0, 2)); }, [16, 20]).slice(0, 2), 'list'); } },
         { id: '5b', level: 'EMG', make: function (r) { return gcfPart(tripleBy(r, [2, 3, 4, 6, 5], range(2, 7), 45, [12, 18, 30]), 'list'); } }] },
