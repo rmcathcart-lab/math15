@@ -601,10 +601,11 @@ standup('u2l1', (() => {
   const PLAIN = [[2, 3], [2, 4], [2, 5], [3, 2], [3, 3], [3, 4], [4, 2], [4, 3], [5, 2], [7, 2], [8, 2], [9, 2], [10, 2], [10, 4], [10, 5], [1, 6], [2, 7], [6, 3]];
   // −k^n vs (−k)^n, avoiding Assignment 1 #4 (7², 4³, 2⁴)
   const PAIRS = [[2, 2], [2, 3], [2, 5], [3, 2], [3, 3], [3, 4], [5, 2], [5, 3], [6, 2], [10, 2], [10, 3], [10, 4], [1, 4], [1, 5]];
-  const SUBS = [[-2, 2], [-2, 3], [-2, 5], [-3, 2], [-3, 4], [-5, 2], [-5, 3], [-1, 5], [-1, 6], [-6, 2], [-10, 3], [-10, 2], [3, 3], [4, 2], [2, 5], [5, 3]];
+  // substitution: avoids Assignment 1 #6 (a² at 4, b³ at 3, c² at −4, d⁴ at −1, e³ at −3)
+  const SUBS = [[-2, 2], [-2, 3], [-2, 5], [-3, 2], [-3, 4], [-5, 2], [-5, 3], [-1, 5], [-1, 6], [-6, 2], [-10, 3], [-10, 2], [3, 4], [4, 3], [2, 5], [5, 3]];
   const LET = ['a', 'b', 'c', 'd', 'k', 'm', 'n', 'p', 'q', 't', 'w', 'x', 'y', 'z'];
   // Product Law with numbers: bases and exponent sums that keep the value friendly; skips Assignment 1 #8 and the examples
-  const SKIP = new Set(['3,2,3', '6,4,2', '5,2,4', '10,3,2', '3,2,4', '6,3,1', '2,3,2', '4,2,3']);
+  const SKIP = new Set(['3,2,3', '6,2,1', '5,2,2', '10,3,2', '3,2,4', '6,3,1', '2,3,2', '4,2,3']);
   const PL = { 2: 8, 3: 5, 4: 4, 5: 4, 10: 6 };
   return {
     intro: 'Work it out at your whiteboard station, no calculator. Write the factors out if it helps you count.',

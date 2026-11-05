@@ -291,7 +291,7 @@
         } },
         { id: '1b', level: 'LIM', make: function (r) {
           var a = r.int(6, 15), b = r.int(2, a - 2);
-          return addSubPart(a, '+', -b, { prompt: t(a + '+(-' + b + ')') + ': the signs differ, so subtract the smaller absolute value from the larger and keep the sign of the number farther from zero.' });
+          return addSubPart(a, '+', -b, { prompt: t(a + '+(-' + b + ')') + ': the signs differ, so subtract the smaller size (distance from zero) from the larger and keep the sign of the number farther from zero.' });
         } }] },
       { num: '2', stem: 'Evaluate each expression.', parts: [
         { id: '2a', level: 'BEG', make: function (r) { var a = r.int(5, 15), b = r.int(2, a - 1); return addSubPart(-a, '+', b); } },

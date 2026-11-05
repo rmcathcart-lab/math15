@@ -329,9 +329,9 @@
           } }] },
       { num: '8', stem: 'Use the Product Law to simplify, then evaluate.', parts: [
         { id: '8a', level: 'BEG', make: function (r) { var x = pickWhere(function () { return [r.int(2, 5), r.int(1, 4), r.int(2, 4)]; }, function (x) { return x[1] * x[2] !== x[1] + x[2] && Math.pow(x[0], x[1] + x[2]) <= 4100 && x[1] + x[2] >= 3; }); return prodEval([x[0], x[0]], [x[1], x[2]]); } },
-        { id: '8b', level: 'EMG', make: function (r) { var x = pickWhere(function () { return [r.int(3, 7), r.int(1, 4), r.int(1, 4)]; }, function (x) { var v = Math.pow(x[0], x[1] + x[2]); return x[1] * x[2] !== x[1] + x[2] && v >= 1000 && v <= 50000 && x[1] + x[2] >= 4; }); if (r.chance(0.15)) x = [6, 4, 2]; return prodEval([x[0], x[0]], [x[1], x[2]]); } },
+        { id: '8b', level: 'EMG', make: function (r) { var x = pickWhere(function () { var b = r.int(3, 10), m = r.int(2, 5); return r.chance(0.5) ? [b, m, 1] : [b, 1, m]; }, function (x) { var v = Math.pow(x[0], x[1] + x[2]); return v >= 27 && v <= 1024; }); if (r.chance(0.15)) x = [6, 2, 1]; return prodEval([x[0], x[0]], [x[1], x[2]], { bare1: true }); } },
         { id: '8c', level: 'EMG', make: function (r) { var b = r.pick([2, 2, 3]), x = pickWhere(function () { return r.shuffle([r.int(2, 5), 1, r.int(2, 4)]); }, function (x) { var e = x[0] + x[1] + x[2]; return b === 2 ? e <= 11 && e >= 5 : e <= 7; }); return prodEval([b, b, b], x); } },
-        { id: '8d', level: 'BEG', make: function (r) { var x = pickWhere(function () { return [r.pick([2, 3, 4, 5, 10]), r.int(2, 5), r.int(2, 5)]; }, function (x) { var v = Math.pow(x[0], x[1] + x[2]); return x[1] * x[2] !== x[1] + x[2] && (x[0] === 10 || v <= 16000); }); return prodEval([x[0], x[0]], [x[1], x[2]]); } },
+        { id: '8d', level: 'BEG', make: function (r) { var x = pickWhere(function () { return [r.pick([2, 3, 4, 5, 7, 9]), r.int(2, 5), r.int(2, 5)]; }, function (x) { var v = Math.pow(x[0], x[1] + x[2]); return (x[1] * x[2] !== x[1] + x[2] || x[0] === 5) && v <= 1024; }); if (r.chance(0.15)) x = [5, 2, 2]; return prodEval([x[0], x[0]], [x[1], x[2]]); } },
         { id: '8e', level: 'BEG', make: function (r) { var m = r.int(1, 5), n = pickWhere(function () { return r.int(1, 5); }, function (n) { return n * m !== n + m; }); return prodEval([10, 10], [m, n]); } }] },
       { num: '9', stem: 'Use the Product Law to simplify.', parts: [
         { id: '9a', level: 'BEG', make: function (r) { var v = r.pick(LET), x = pickWhere(function () { return [r.int(2, 9), r.int(2, 9)]; }, function (x) { return x[0] * x[1] !== x[0] + x[1]; }); return prodPart([[1, [[v, x[0]]]], [1, [[v, x[1]]]]]); } },
@@ -613,13 +613,13 @@
   function subPart(v, n, a) {
     var val = Math.pow(a, n), rows = [[a * n, 'times-exp', 'The exponent isn’t a multiplier: ' + t(pw(v, n)) + ' means ' + t(v) + ' multiplied by itself ' + n + ' times.']];
     if (a < 0) rows.push([-val, 'fence', 'Substitute the whole value, sign included, in brackets: ' + t(pw('(' + a + ')', n)) + '. ' + (n % 2 ? 'An odd number of negative factors gives a negative.' : 'An even number of negative factors gives a positive.')]);
-    return numPart(t(pw(v, n) + ',\\quad ' + v + '=' + a), val, rows, t(pw(v, n) + '=' + pw(a < 0 ? '(' + a + ')' : a, n) + '=' + rep(a < 0 ? '(' + a + ')' : a, n, a < 0 ? '' : '\\times ') + '=' + F(val)) + '.',
+    return numPart(t(pw(v, n) + ',\\quad ' + v + '=' + a), val, rows, t(pw(v, n) + '=' + pw('(' + a + ')', n) + '=' + rep(a < 0 ? '(' + a + ')' : a, n, a < 0 ? '' : '\\times ') + '=' + F(val)) + '.',
       ['Replace ' + t(v) + ' with ' + t(a < 0 ? '(' + a + ')' : a) + ' — in brackets if it is negative — then multiply.'], v + '^' + n + ', ' + v + '=' + a);
   }
-  function prodEval(bs, es) {
-    var b = bs[0], e = es.reduce(function (x, y) { return x + y; }, 0), V = Math.pow(b, e), tex = es.map(function (x) { return pw(b, x); }).join('\\times ');
+  function prodEval(bs, es, opt) {
+    var b = bs[0], e = es.reduce(function (x, y) { return x + y; }, 0), V = Math.pow(b, e), tex = es.map(function (x) { return opt && opt.bare1 && x === 1 ? String(b) : pw(b, x); }).join('\\times ');
     var prod = es.reduce(function (x, y) { return x * y; }, 1), rows = []; if (prod !== e) rows.push([prod, 'mult-exp', 'Product Law: when you multiply powers with the same base, <b>add</b> the exponents.']);
-    if (es.indexOf(1) >= 0) rows.push([e - 1, 'no-one', t(pw(b, 1)) + ' still counts: it is one factor of ' + t(b) + '.']);
+    if (es.indexOf(1) >= 0) rows.push([e - 1, 'no-one', (opt && opt.bare1 ? 'A base written with no exponent has the exponent 1: ' + t(b + '=' + pw(b, 1)) + '. It' : t(pw(b, 1)) + ' still') + ' counts: it is one factor of ' + t(b) + '.']);
     return lawEval(tex, b, String(b), e, V, rows, LAW.prod + ': ' + t(tex + '=' + pw(b, es.join('+')) + '=' + pw(b, e) + '=' + F(V)) + '.', ['Write out the factors: how many ' + t(b) + 's are multiplied altogether?'], plain(tex));
   }
   function missExp(v, exps, total, ans, known, unk) {

@@ -652,9 +652,18 @@ standup('u2l3', (() => {
   const coefPow = (r, n) => r.pick({ 2: [2, 3, 4, 5, 10, -2, -3], 3: [2, 3, 4, 5, -2, -3], 4: [2, 3], 5: [2] }[n]);
   const P = (b, e) => (e === 1 ? b : `${b}^{${e}}`);
   const neg = (k) => (k < 0 ? `(${k})` : String(k));
-  return {
-    intro: 'Simplify at your whiteboard station, no calculator. Give the outer exponent to every factor inside the brackets, numbers too.',
-    levels: {
+  // Assignment 3 (#2–#5, #7, #8, #11, #12) must not come up at the whiteboards. Compared by shape, so the same
+  // question with other letters counts too: (3m)³ × m² and (3x)³ × x² are the same question.
+  const shape = (q) => { const m = {}; let i = 0; return String(q).replace(/\\left|\\right|\s+/g, '').replace(/\\tfrac/g, '\\dfrac').replace(/\\[a-zA-Z]+|[a-zA-Z]/g, (t) => (t.length > 1 ? t : (m[t] = m[t] || 'ABCDEFGH'[i++]))); };
+  const ASG = new Set(['x^{4}\\times x^{5}', 'y^{9}\\div y^{3}', '(m^{3})^{2}', 'n^{6}\\times n\\times n^{2}',
+    '(2y)^{3}', '(\\dfrac{m}{4})^{2}', '(5ab)^{2}', '(\\dfrac{a}{b})^{6}',
+    '(2x)^{3}', '(5y)^{2}', '(-3m)^{2}', '(4ab)^{2}', '(10w)^{3}', '(-2xy)^{3}',
+    '(\\dfrac{2}{3})^{2}', '(\\dfrac{x}{4})^{2}', '(\\dfrac{7}{y})^{2}', '(\\dfrac{m}{n})^{5}', '(\\dfrac{a}{2})^{3}', '(\\dfrac{3}{b})^{4}',
+    '(3x)^{2}\\times x^{4}', '(y^{2})^{3}\\div y^{3}', '(3m)^{3}\\times m^{2}', '(a^{2})^{4}\\div a^{5}', '(4n^{2})^{2}', '(\\dfrac{p}{2})^{2}\\times p^{3}',
+    '(3x)^{2}(x^{2})^{3}', '\\dfrac{(2m^{3})^{2}}{m^{4}}', '(\\dfrac{3a^{2}}{b})^{2}', '\\dfrac{(2x^{2})^{3}}{x^{4}}',
+    '(4y)^{2}', '(3m^{2})^{2}'].map(shape));
+  const avoid = (gen) => (r) => { let x, i = 0; do { x = gen(r); } while (ASG.has(shape(x.q)) && ++i < 60); return x; };
+  const lv = {
       BEG: (r) => { // one new law: a power of a product or of a quotient
         const v = r.pick(L), kind = r.pick(['prod', 'prod', 'prod2', 'quotL', 'quotR', 'quotN']);
         if (kind === 'prod') { const n = r.pick([2, 2, 3, 3, 4]), k = coefPow(r, n); return { q: `(${k}${v})^{${n}}`, a: [`=${neg(k)}^{${n}}${v}^{${n}}`, `=${Math.pow(k, n)}${v}^{${n}}`] }; }
@@ -680,7 +689,10 @@ standup('u2l3', (() => {
         const n = r.pick([2, 3]), k = r.pick(n === 2 ? [2, 3, 4, 5] : [2, 3]), m = r.int(2, 4);
         return { q: `\\left(\\dfrac{${a}^{${m}}}{${k}${b}}\\right)^{${n}}`, a: [`=\\dfrac{\\left(${a}^{${m}}\\right)^{${n}}}{${k}^{${n}}${b}^{${n}}}`, `=\\dfrac{${a}^{${m * n}}}{${Math.pow(k, n)}${b}^{${n}}}`] };
       }
-    }
+  };
+  return {
+    intro: 'Simplify at your whiteboard station, no calculator. Give the outer exponent to every factor inside the brackets, numbers too.',
+    levels: { BEG: avoid(lv.BEG), PRG: avoid(lv.PRG), MAS: avoid(lv.MAS) }
   };
 })());
 

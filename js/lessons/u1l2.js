@@ -411,14 +411,16 @@
     p.bad = ['\\frac{' + N + '}{' + (D === 10 ? 100 : 10) + '}'];
     return p;
   }
-  /* Q10 / EP11: terminates or repeats */
+  /* Q10 / EP11: terminates or repeats (Q10 explains by dividing; EP11 by the denominator's prime factors) */
+  function repRem(f) { var seen = {}, x = f[0] % f[1]; while (!seen[x]) { seen[x] = 1; x = x * 10 % f[1]; } return x; }
   function termPart(r, f, shownF) {
     var g = shownF || f, term = isTerm(f[1]), red = shownF && (shownF[0] !== f[0] || shownF[1] !== f[1]);
     var p = P.mc(r, t('\\frac{' + g[0] + '}{' + g[1] + '}'), [
       { html: '<b>terminates</b>', right: term, why: term ? null : 'Divide it out: ' + t('\\frac{' + f[0] + '}{' + f[1] + '}=' + decStr(f)) + '. The digits never stop.', code: 'said-term' },
       { html: '<b>repeats</b>', right: !term, why: term ? 'Divide it out: ' + t(f[0] + '\\div ' + f[1] + '=' + decStr(f)) + ' — it stops.' : null, code: 'said-rep' }],
+      !shownF ? t(f[0] + '\\div ' + f[1] + '=' + decStr(f)) + (term ? ': it comes out even, so it <b>terminates</b>.' : ': the remainder ' + t(repRem(f)) + ' comes back, so the same digits come back forever. It <b>repeats</b>.') :
       (red ? 'Lowest terms first: ' + t('\\frac{' + g[0] + '}{' + g[1] + '}=' + fT(f)) + '. ' : '') + t(fT(f) + '=' + decStr(f)) + ' ' + (term ? '<b>terminates</b>' : '<b>repeats</b>') + '. ' + (term ? 'In lowest terms the denominator ' + t(f[1]) + (f[1] === 1 ? '' : '=' + K.fac(f[1])) + ' is built from 2s and 5s only.' : 'In lowest terms the denominator ' + t(f[1]) + ' has a prime factor other than 2 and 5.'),
-      [red ? 'Write the fraction in lowest terms first.' : 'Divide the numerator by the denominator and see whether the digits stop.', 'A decimal stops only when the denominator (in lowest terms) is built from 2s and 5s.'], 'terminate/repeat ' + g.join('/'), true);
+      !shownF ? ['Divide: if the division comes out even it terminates; if a remainder comes back, the digits repeat.'] : [red ? 'Write the fraction in lowest terms first.' : 'Divide the numerator by the denominator and see whether the digits stop.', 'A decimal stops only when the denominator (in lowest terms) is built from 2s and 5s.'], 'terminate/repeat ' + g.join('/'), true);
     p.input.columns = 2; p.tries = 1;
     return p;
   }
@@ -463,18 +465,18 @@
       { num: '9', stem: 'Convert each decimal to a fraction in lowest terms.', parts: [
         { id: '9a', level: 'LIM', make: function (r) { return r.chance(0.4) ? toFracPart(R(r.pick([1, 3, 7, 9, 5, 2, 4, 6, 8]), 10)) : toFracPart(R(r.pick([5, 15, 35, 45, 55, 65, 85, 95, 50, 25, 75]), 100)); } },
         { id: '9b', level: 'BEG', make: function (r) { return toFracPart(R(r.pick([25, 15, 35, 45, 55, 65, 85, 95, 12, 16, 24, 28, 32, 36, 44, 48, 52, 56, 64, 68, 72, 76, 84, 88, 92, 96]), 100)); } },
-        { id: '9c', level: 'BEG', make: function (r) { return toFracPart(R(r.pick([75, 25, 5, 35, 65, 85, 22, 18, 14, 26, 34, 38, 42, 46, 54, 58, 62, 66, 74, 78, 82, 86, 94, 98]), 100)); } },
+        { id: '9c', level: 'BEG', make: function (r) { return toFracPart(R(r.pick([35, 25, 5, 65, 85, 22, 18, 14, 26, 34, 38, 42, 46, 54, 58, 62, 66, 74, 78, 82, 86, 94, 98]), 100)); } },
         { id: '9d', level: 'LIM', make: function (r) { return toFracPart(R(r.pick([4, 2, 6, 8, 5]), 10)); } }] },
       { num: '10', stem: 'For each fraction, state whether its decimal form <i>terminates</i> or <i>repeats</i>.', parts: ['a', 'b', 'c', 'd'].map(function (L, i) {
         return { id: '10' + L, level: 'BEG', make: function (r) {
           var term = r.chance(0.5) ? i % 2 === 0 : i % 2 === 1;
-          var f = term ? R.apply(null, find(function () { var q = r.pick([2, 4, 5, 8, 10, 16, 20, 25]); return [r.int(1, q - 1), q]; }, function (v) { return gcd(v[0], v[1]) === 1; }, [1, 4])) : R.apply(null, find(function () { var q = r.pick([3, 6, 7, 9, 11, 12, 15]); return [r.int(1, q - 1), q]; }, function (v) { return gcd(v[0], v[1]) === 1; }, [1, 3]));
+          var f = term ? R.apply(null, find(function () { var q = r.pick([2, 4, 5, 8, 10, 16, 20, 25]); return [r.int(1, q - 1), q]; }, function (v) { return gcd(v[0], v[1]) === 1; }, [1, 4])) : R.apply(null, find(function () { var q = r.pick([9, 6, 7, 11, 12, 15]); return [r.int(1, q - 1), q]; }, function (v) { return gcd(v[0], v[1]) === 1; }, [4, 9]));
           return termPart(r, f);
         } };
       }) },
       { num: '11', section: 'Part D — Order of Operations and Applications', stem: 'Evaluate using the correct order of operations. Give your answer in lowest terms.', parts: [
         { id: '11a', level: 'EMG', make: function (r) { var v = find(function () { return [proper(r, [2, 3, 4, 5]), proper(r, [2, 3, 4, 5]), proper(r, [3, 4, 5, 6])]; }, function (v) { var x = rmul(v[1], v[2]), s = radd(v[0], x); return x[1] <= 12 && s[1] <= 12 && rv(s) < 1.5 && !req(s, rmul(radd(v[0], v[1]), v[2])); }, [[1, 2], [1, 3], [3, 4]]); return fPart(S(v[0][0], v[0][1]) + '+' + S(v[1][0], v[1][1]) + '*' + S(v[2][0], v[2][1])); } },
-        { id: '11b', level: 'EMG', make: function (r) { var v = find(function () { return [proper(r, [2, 3, 4, 5, 6]), proper(r, [2, 3, 4]), proper(r, [2, 3, 4, 5])]; }, function (v) { var x = rmul(v[1], v[2]), s = rsub(v[0], x); return s[0] > 0 && x[1] <= 12 && s[1] <= 12 && !req(s, rmul(rsub(v[0], v[1]), v[2])); }, [[2, 3], [1, 2], [1, 3]]); return fPart(S(v[0][0], v[0][1]) + '-' + S(v[1][0], v[1][1]) + '*' + S(v[2][0], v[2][1])); } }] },
+        { id: '11b', level: 'EMG', make: function (r) { var v = find(function () { return [proper(r, [2, 3, 4, 5, 6]), proper(r, [2, 3, 4]), proper(r, [2, 3, 4, 5])]; }, function (v) { var x = rmul(v[1], v[2]), s = rsub(v[0], x); return s[0] > 0 && x[1] <= 12 && s[1] <= 12 && !req(s, rmul(rsub(v[0], v[1]), v[2])); }, [[5, 6], [1, 4], [2, 3]]); return fPart(S(v[0][0], v[0][1]) + '-' + S(v[1][0], v[1][1]) + '*' + S(v[2][0], v[2][1])); } }] },
       { num: '12', stem: 'Evaluate using the correct order of operations.', parts: [
         { id: '12a', level: 'EMG', make: function (r) { var v = find(function () { return [r.int(15, 60) / 10, r.int(1, 9) / 10, r.int(2, 6)]; }, function (v) { return v[0] - v[1] * v[2] > 0; }, [3.2, 0.5, 4]); return fPart(v[0].toFixed(1) + '-' + v[1].toFixed(1) + '*' + v[2], { dec: true }); } },
         { id: '12b', level: 'BEG', make: function (r) { var a = r.int(5, 35) / 10, b = r.int(1, 9) / 10; return fPart('(' + a.toFixed(1) + '+' + b.toFixed(1) + ')*' + r.int(2, 5), { dec: true }); } }] },
@@ -533,7 +535,7 @@
     extra: [
       { num: '1', section: 'Extra practice A — Order of operations with three or more terms', stem: 'Evaluate. Remember that multiplication and division come before addition and subtraction. Give each answer in lowest terms.', parts: [
         { id: 'e1a', level: 'PRG', make: function (r) { var v = find(function () { return [proper(r, [3, 4, 5]), proper(r, [2, 3, 4]), proper(r, [3, 4, 5, 6])]; }, function (v) { var s = radd(v[0], rmul(v[1], v[2])); return s[1] <= 30 && !req(s, rmul(radd(v[0], v[1]), v[2])); }, [[2, 3], [1, 4], [4, 5]]); return fPart(S(v[0][0], v[0][1]) + '+' + S(v[1][0], v[1][1]) + '*' + S(v[2][0], v[2][1])); } },
-        { id: 'e1b', level: 'PRG', make: function (r) { var v = find(function () { return [proper(r, [2, 3, 4, 6]), proper(r, [2, 3, 4, 5]), proper(r, [3, 4, 5, 9])]; }, function (v) { var s = rsub(v[0], rdiv(v[1], v[2])); return s[1] <= 24 && s[0] !== 0 && Math.abs(rv(s)) < 2; }, [[5, 6], [2, 3], [4, 9]]); return fPart(S(v[0][0], v[0][1]) + '-' + S(v[1][0], v[1][1]) + '/' + S(v[2][0], v[2][1])); } },
+        { id: 'e1b', level: 'PRG', make: function (r) { var v = find(function () { return [proper(r, [2, 3, 4, 6]), proper(r, [2, 3, 4, 5]), proper(r, [3, 4, 5, 9])]; }, function (v) { var s = rsub(v[0], rdiv(v[1], v[2])); return s[1] <= 24 && s[0] > 0; }, [[5, 6], [1, 3], [4, 9]]); return fPart(S(v[0][0], v[0][1]) + '-' + S(v[1][0], v[1][1]) + '/' + S(v[2][0], v[2][1])); } },
         { id: 'e1c', level: 'PRG', make: function (r) { var v = find(function () { return [proper(r, [3, 4, 5]), proper(r, [5, 8, 9, 10]), proper(r, [2, 3, 6, 4])]; }, function (v) { var s = radd(rmul(v[0], v[1]), v[2]); return s[1] <= 24 && rmul(v[0], v[1])[1] <= 12; }, [[3, 4], [8, 9], [1, 6]]); return fPart(S(v[0][0], v[0][1]) + '*' + S(v[1][0], v[1][1]) + '+' + S(v[2][0], v[2][1])); } }] },
       { num: '2', stem: 'Evaluate. Brackets first.', parts: [
         { id: 'e2a', level: 'PRG', make: function (r) { var v = find(function () { return [proper(r, [2, 3, 4]), proper(r, [3, 4, 5, 6]), proper(r, [4, 5, 6, 8])]; }, function (v) { var s = rdiv(radd(v[0], v[1]), v[2]); return s[1] <= 6 && rv(s) <= 4 && v[0][1] !== v[1][1]; }, [[1, 2], [1, 3], [5, 6]]); return fPart('(' + S(v[0][0], v[0][1]) + '+' + S(v[1][0], v[1][1]) + ')/' + S(v[2][0], v[2][1])); } },

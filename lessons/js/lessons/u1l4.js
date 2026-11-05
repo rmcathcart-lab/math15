@@ -843,7 +843,7 @@ const suSETKIND = {
   rep: (r) => { const d = r.pick(['3', '6', '1', '8', '27', '45', '12']); return { t: `${r.int(0, 3)}.\\overline{${d}}`, home: 'Q' }; },
   sqP: (r) => { const k = r.int(2, 10); return r.chance(0.5) ? { t: `\\sqrt{${k * k}}`, val: '=' + k, home: 'N' } : { t: `-\\sqrt{${k * k}}`, val: '=-' + k, home: 'I' }; },
   sqN: (r) => { let n; do n = r.int(2, 80); while (suSq(n)); return { t: `${r.chance(0.25) ? '-' : ''}\\sqrt{${n}}`, home: 'Qb' }; },
-  pi: (r) => ({ t: r.pick(['\\pi', '2\\pi', '-\\pi']), home: 'Qb' })
+  pi: (r) => ({ t: r.pick(['\\pi', '3\\pi', '-\\pi']), home: 'Qb' })
 };
 function suSets(r) {
   for (;;) {

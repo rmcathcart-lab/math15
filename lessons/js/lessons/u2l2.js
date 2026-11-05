@@ -116,7 +116,7 @@ const coefDiv = cancelDef('Numbers divide, letters cancel', CD, [{ v: 'n1', labe
 /* ================= 3. Power of a Power: n copies of a^m, stacked in rows ================= */
 const POW = {
   n1: ['2', 3, 2], n2: ['4', 2, 2],
-  e3a: ['3', 2, 3], e3b: ['5', 3, 2], e3c: ['x', 4, 3], e3d: ['y', 2, 5],
+  e3a: ['3', 2, 3], e3b: ['2', 3, 2], e3c: ['x', 4, 3], e3d: ['y', 2, 5],
   e4a: ['2', 4, 2], e4b: ['6', 2, 2], e4c: ['p', 5, 3], e4d: ['q', 3, 6]
 };
 const ppT = (k) => { const [b, m, n] = POW[k]; return `\\left(${b}^{${m}}\\right)^{${n}}`; };
@@ -124,7 +124,8 @@ const copies = {
   title: 'Copies of a power',
   height: 440,
   minW: 880,
-  choices: [{ v: 'n1', label: tex(ppT('n1')) }, { v: 'n2', label: tex(ppT('n2')) }, { sep: 'Example 3 check:' }, ...['e3a', 'e3b', 'e3c', 'e3d'].map((v) => ({ v, label: tex(ppT(v)) })),
+  // (2³)² from the Section 3 note is now Example 3(b), so it is replayed only under “Example 3 check”
+  choices: [{ v: 'n2', label: tex(ppT('n2')) }, { sep: 'Example 3 check:' }, ...['e3a', 'e3b', 'e3c', 'e3d'].map((v) => ({ v, label: tex(ppT(v)) })),
     { sep: 'Example 4 check:' }, ...['e4a', 'e4b', 'e4c', 'e4d'].map((v) => ({ v, label: tex(ppT(v)) }))],
   intro: (k) => { const [b, m, n] = POW[k]; return `The outer exponent ${tex(String(n))} says how many <b>copies</b> of ${tex(`${b}^{${m}}`)} to multiply.${k === 'n2' ? ' (The warm-up: a crate is a box of boxes!)' : ''}`; },
   make(stage, key, ex) {
@@ -173,13 +174,13 @@ const copies = {
 };
 
 /* ================= 3. Check with numbers: brackets first, the law, and the "add" mistake ================= */
-const CHK = { n1: ['2', 3, 2], n2: ['2', 2, 3], e3a: ['3', 2, 3], e3b: ['5', 3, 2], e4a: ['2', 4, 2] };
+const CHK = { n2: ['2', 2, 3], e3a: ['3', 2, 3], e3b: ['2', 3, 2], e4a: ['2', 4, 2] };
 const ckT = (k) => { const [b, m, n] = CHK[k]; return `\\left(${b}^{${m}}\\right)^{${n}}`; };
 const check = {
   title: 'Check it with numbers',
   height: 330,
   minW: 900,
-  choices: [{ v: 'n1', label: tex(ckT('n1')) }, { v: 'n2', label: tex(ckT('n2')) }, { sep: 'Example 3 check:' }, { v: 'e3a', label: tex(ckT('e3a')) }, { v: 'e3b', label: tex(ckT('e3b')) }, { sep: 'Example 4 check:' }, { v: 'e4a', label: tex(ckT('e4a')) }],
+  choices: [{ v: 'n2', label: tex(ckT('n2')) }, { sep: 'Example 3 check:' }, { v: 'e3a', label: tex(ckT('e3a')) }, { v: 'e3b', label: tex(ckT('e3b')) }, { sep: 'Example 4 check:' }, { v: 'e4a', label: tex(ckT('e4a')) }],
   intro: (k) => `Three ways to work out ${tex(ckT(k))}. Which ones agree?`,
   make(stage, key, ex) {
     const W = ex.W, [b, m, n] = CHK[key], bv = +b, inner = Math.pow(bv, m), v = Math.pow(inner, n), wrong = Math.pow(bv, m + n), cw = (W - 60) / 3, cy = 14;
@@ -322,7 +323,7 @@ standup('u2l2', (() => {
   const LET = ['a', 'b', 'c', 'd', 'k', 'm', 'n', 'p', 'q', 'r', 't', 'w', 'x', 'y', 'z'];
   const par = (b) => (b < 0 ? `(${b})` : String(b));
   // Assignment 2 items (and the examples), so the whiteboards don't give them away
-  const SKIP = new Set(['5,6,3', '8,5,2', '-4,7,5', '2,9,4', '6,7,4', '9,5,3', '7,5,2', '-3,8,5', 'P4,2,3', 'P2,3,3', 'P3,2,2', 'P2,2,4', 'P5,2,2', 'P7,2,2', 'P3,2,3', 'P5,3,2', 'P2,4,2', 'P6,2,2']);
+  const SKIP = new Set(['5,6,3', '8,5,2', '-4,7,5', '2,9,4', '6,7,4', '9,5,3', '7,5,2', '-3,8,5', 'P4,2,3', 'P2,3,3', 'P3,2,2', 'P2,2,4', 'P5,2,2', 'P7,2,2', 'P3,2,3', 'P2,3,2', 'P2,4,2', 'P6,2,2']);
   const LIM = { 2: 6, 3: 4, 4: 3, 5: 3, 10: 5, '-2': 5, '-3': 4, 6: 2, 7: 2, 8: 2, 9: 2 };
   const fracOrDiv = (r, top, bot) => (r.chance(0.5) ? `\\dfrac{${top}}{${bot}}` : `${top}\\div ${bot}`);
   return {

@@ -130,11 +130,11 @@
 
   /* ---------- the Venn diagram ---------- */
   function vennSvg() {
-    return '<svg viewBox="0 0 304 184" width="100%" style="max-width:420px;display:block;margin:6px auto" role="img" aria-label="The real number system: rectangle R; on the left nested ellipses Q, I, W, N; on the right Q-bar">' +
-      '<g fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="300" height="180" rx="3"/><line x1="222" y1="2" x2="222" y2="182"/>' +
-      '<ellipse cx="107" cy="94" rx="98" ry="80"/><ellipse cx="107" cy="102" rx="78" ry="64"/><ellipse cx="107" cy="110" rx="58" ry="48"/><ellipse cx="107" cy="124" rx="34" ry="28"/></g>' +
-      '<g fill="currentColor" font-size="15" font-style="italic" font-family="KaTeX_Math, Times New Roman, serif" text-anchor="middle"><text x="14" y="21">R</text><text x="107" y="31">Q</text><text x="107" y="55">I</text><text x="107" y="80">W</text><text x="107" y="129">N</text><text x="262" y="99">Q</text></g>' +
-      '<line x1="255" y1="85" x2="269" y2="85" stroke="currentColor" stroke-width="1.3"/></svg>';
+    return '<svg viewBox="0 0 304 184" width="100%" style="max-width:420px;display:block;margin:6px auto" role="img" aria-label="The real number system: rectangle R holding nested rectangles N inside W inside I inside Q, and a separate box for Q-bar">' +
+      '<g fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="300" height="180" rx="3"/><rect x="10" y="28" width="206" height="148"/><rect x="226" y="28" width="68" height="148"/></g>' +
+      '<g fill="none" stroke="currentColor" stroke-width="1.2"><rect x="20" y="50" width="186" height="118"/><rect x="30" y="72" width="166" height="88"/><rect x="40" y="94" width="146" height="58"/></g>' +
+      '<g fill="currentColor" font-size="15" font-style="italic" font-family="KaTeX_Math, Times New Roman, serif"><text x="10" y="20">R</text><text x="17" y="45">Q</text><text x="27" y="67">I</text><text x="37" y="89">W</text><text x="113" y="128" text-anchor="middle">N</text><text x="260" y="108" text-anchor="middle">Q</text></g>' +
+      '<line x1="253" y1="94" x2="267" y2="94" stroke="currentColor" stroke-width="1.3"/></svg>';
   }
 
   /* ---------- reading a typed real number exactly (from 10C u1l5) ---------- */
@@ -391,7 +391,7 @@
             t(k + '\\times ' + k + '=' + k * k) + ', so ' + t('\\sqrt{' + k * k + '}=' + k) + ', which is ' + t('\\frac{' + k + '}{1}') + '. <b>Rational.</b>', ['Is ' + t(k * k) + ' a perfect square?'], 'classify sqrt ' + k * k);
         } },
         { id: '4c', level: 'LIM', make: function (r) {
-          var tx = r.pick(['\\pi', '\\pi', '2\\pi', '\\frac{\\pi}{2}', '\\pi+1', '3\\pi']);
+          var tx = r.pick(['2\\pi', '2\\pi', '\\pi', '\\frac{\\pi}{2}', '\\pi+1', '3\\pi', '4\\pi']);
           return P.mc(r, t(tx), [
             { html: '<b>Irrational:</b> ' + t('\\pi=3.141\\,59\\ldots') + ' never ends and never repeats' + (tx === '\\pi' ? '.' : ', and neither does ' + t(tx) + '.'), right: true },
             { html: '<b>Rational:</b> ' + t('\\pi=\\frac{22}{7}') + '.', why: t('\\frac{22}{7}=3.142\\,857\\ldots') + ' is only close to ' + t('\\pi=3.141\\,592\\ldots') + ' — they aren’t equal.', code: 'said-rational' },
@@ -532,13 +532,13 @@
             { html: t('0.' + d), why: 'It terminates: ' + t('0.' + d + '=\\frac{' + d + '}{100}') + ' — rational.' }],
             t(k * k + '<' + n + '<' + (k + 1) * (k + 1)) + ', so ' + t(n) + ' is not a perfect square and ' + t('\\sqrt{' + n + '}') + ' is irrational (not rational).', ['Which square root is of a number that isn’t a perfect square?'], 'MC not rational', true);
         } }] },
-      { num: '14', stem: 'A Venn diagram of the real number system: the rectangle is ' + S('R') + ', split by a vertical line; nested ellipses on the left, ' + S('Qb') + ' on the right.' + vennSvg(), parts: [
+      { num: '14', stem: 'A diagram of the real number system, like the one in the lesson: inside the rectangle for ' + S('R') + ', nested rectangles ' + t('N\\subset W\\subset I\\subset Q') + ' and a separate box for ' + S('Qb') + '.' + vennSvg(), parts: [
         { id: '14a', level: 'BEG', make: function (r) {
           var inward = r.chance(0.5), chain = ['N', 'W', 'I', 'Q', 'R'], items = chain.map(function (x) { return { id: x, tex: SYM[x] }; });
           if (inward) items.reverse();
-          return P.order(r, 'Label the left side: put the sets in order from the ' + (inward ? '<b>outermost</b> (the rectangle) to the <b>innermost</b> ellipse' : '<b>innermost</b> ellipse to the <b>outermost</b> (the rectangle)') + '.', items,
+          return P.order(r, 'Label the nested rectangles: put the sets in order from the ' + (inward ? '<b>outermost</b> (the big rectangle) to the <b>innermost</b> rectangle' : '<b>innermost</b> rectangle to the <b>outermost</b> (the big rectangle)') + '.', items,
             { first: inward ? 'outermost' : 'innermost', last: inward ? 'innermost' : 'outermost', why: function (a, b) { var big = inward ? a : b, small = inward ? b : a; if (!sub(small, big)) { big = inward ? b : a; small = inward ? a : b; } return 'Every ' + NOUN[small] + ' is also ' + ONE[big] + ', so ' + S(small) + ' sits <b>inside</b> ' + S(big) + '.'; } },
-            'From the inside out: ' + t('N\\subset W\\subset I\\subset Q\\subset R') + '. ' + S('W') + ' adds ' + t('0') + ' to ' + S('N') + ', ' + S('I') + ' adds the negatives, ' + S('Q') + ' adds the fractions, and ' + S('R') + ' adds the irrationals ' + S('Qb') + ' (the right side).',
+            'From the inside out: ' + t('N\\subset W\\subset I\\subset Q\\subset R') + '. ' + S('W') + ' adds ' + t('0') + ' to ' + S('N') + ', ' + S('I') + ' adds the negatives, ' + S('Q') + ' adds the fractions, and ' + S('R') + ' adds the irrationals ' + S('Qb') + ' (the separate box).',
             ['Start with the counting numbers ' + t('1, 2, 3, \\ldots') + ' — which set is that?', 'Each set contains everything in the one before it, plus more.'], 'Venn nesting order');
         } },
         { id: '14b', level: 'EMG', make: function (r) {
@@ -551,9 +551,9 @@
               return wrong('u1l4-region', describe(o) + ' Its innermost region is ' + S(k) + ', not ' + S(g) + '. You need ' + (g === 'W' ? t('0') + ' (the only whole number that isn’t natural)' : g === 'I' ? 'a negative integer' : g === 'Q' ? 'a fraction or decimal that isn’t an integer' : TIP[g]) + '.');
             };
           });
-          var p = P.fields('Write one example number for each region of the diagram. Each number must sit in that region and <b>not</b> in a smaller ellipse inside it.', regs.map(function (g) { return { name: lab[g].replace(/\\\(|\\\)/g, ''), label: lab[g] + ':', mode: 'math', keys: 'expr', wide: true }; }),
+          var p = P.fields('Write one example number for each region of the diagram. Each number must sit in that region and <b>not</b> in a smaller rectangle inside it.', regs.map(function (g) { return { name: lab[g].replace(/\\\(|\\\)/g, ''), label: lab[g] + ':', mode: 'math', keys: 'expr', wide: true }; }),
             checks, ['5', '0', '-3', '\\frac{1}{2}', '\\sqrt{2}'], t('N') + ': e.g. ' + t('5') + '; ' + t('W') + ' only: ' + t('0') + '; ' + t('I') + ' only: e.g. ' + t('-3') + '; ' + t('Q') + ' only: e.g. ' + t('\\frac{1}{2}') + '; ' + S('Qb') + ': e.g. ' + t('\\sqrt{2}'),
-            'Innermost ellipse ' + S('N') + ': a counting number such as ' + t('5') + '. ' + S('W') + ' but not ' + S('N') + ': only ' + t('0') + '. ' + S('I') + ' but not ' + S('W') + ': a negative integer such as ' + t('-3') + '. ' + S('Q') + ' but not ' + S('I') + ': a fraction such as ' + t('\\frac{1}{2}') + ' or ' + t('0.75') + '. ' + S('Qb') + ': ' + t('\\sqrt{2}') + ', ' + t('\\pi') + ', … Every one of them is also in ' + S('R') + '.',
+            'Innermost rectangle ' + S('N') + ': a counting number such as ' + t('5') + '. ' + S('W') + ' but not ' + S('N') + ': only ' + t('0') + '. ' + S('I') + ' but not ' + S('W') + ': a negative integer such as ' + t('-3') + '. ' + S('Q') + ' but not ' + S('I') + ': a fraction such as ' + t('\\frac{1}{2}') + ' or ' + t('0.75') + '. ' + S('Qb') + ': ' + t('\\sqrt{2}') + ', ' + t('\\pi') + ', … Every one of them is also in ' + S('R') + '.',
             ['Work from the inside out: counting number; then the one extra whole number; then a negative; then a fraction; then a number whose decimal never ends or repeats.'], 'example in each Venn region');
           p.good = [['12', '\\frac{0}{3}', '-1', '-2.5', '\\pi']];
           p.bad = [['0', '0', '-3', '\\frac{1}{2}', '\\sqrt{2}'], ['5', '0', '-3', '2', '\\sqrt{2}'], ['5', '0', '3', '\\frac{1}{2}', '\\sqrt{4}']];

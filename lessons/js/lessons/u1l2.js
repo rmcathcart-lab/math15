@@ -10,7 +10,7 @@
  *   longdiv  (long division one digit at a time: terminating or repeating; adapted from Math 10C 1.4),
  *   place    (decimal → fraction: the place-value chart, a hundred grid, then the GCF; Example 4(b)),
  *   fbedmas  (the order of operations with fractions and decimals, the next operation lit up; Example 5(a)),
- *   decimals (line up the decimal points; count the decimal places).
+ *   decimals (line up the decimal points; count the decimal places; divide by a decimal: both points hop right).
  * Colours: first fraction amber, second blue, overlap / answer purple and red, cancelled factors gray. */
 import { h, tex, add, box, stamp, stampIn, mountExplainers, pop, fadeIn, appear, sleep, tween, svgEl, pulse, shake, anim, liveCtx, COLORS } from '../blocks.js';
 import { standup } from '../standup.js';
@@ -254,7 +254,7 @@ const mixed = {
 
 /* =============================== explainer: multiplying with an area model =============================== */
 const TIM = {
-  e3a: { label: 'Example 3(a) check', a: [3, 4], b: [2, 9] },
+  e3a: { label: 'Example 3(a) check', a: [2, 3], b: [3, 8] },
   e5b: { label: 'Example 5(b): half of ⅔', a: [2, 3], b: [1, 2], of: true },
   demo: { label: 'Demo: 2/3 × 3/5', a: [2, 3], b: [3, 5] }
 };
@@ -546,7 +546,7 @@ const longdiv = {
 };
 
 /* =============================== explainer: decimal → fraction by place value =============================== */
-const PLC = { e4b1: { label: 'Example 4 check: (b)(i)', s: '0.45' }, e4b2: { label: '(b)(ii)', s: '0.6' }, demo: { label: 'Demo: 0.375', s: '0.375' } };
+const PLC = { e4b1: { label: 'Example 4 check: (b)(i)', s: '0.45' }, e4b2: { label: '(b)(ii)', s: '0.85' }, demo: { label: 'Demo: 0.375', s: '0.375' } };
 const PLACES = ['tenths', 'hundredths', 'thousandths'];
 const place = {
   title: 'Read the place value',
@@ -667,10 +667,12 @@ const DEC = {
   add: { label: 'Line up: 2.75 + 1.4', a: '2.75', b: '1.4', op: '+' },
   sub: { label: 'Line up: 6.2 − 3.75', a: '6.2', b: '3.75', op: '-' },
   m1: { label: 'Count places: 0.3 × 0.25', a: '0.3', b: '0.25', op: '*' },
-  m2: { label: 'Count places: 1.2 × 0.4', a: '1.2', b: '0.4', op: '*' }
+  m2: { label: 'Count places: 1.2 × 0.4', a: '1.2', b: '0.4', op: '*' },
+  d1: { label: 'Notes: 1.2 ÷ 0.3', a: '1.2', b: '0.3', op: '/' },
+  d2: { label: 'Demo: 3.6 ÷ 0.04', a: '3.6', b: '0.04', op: '/' }
 };
 const decimals = {
-  title: 'Decimal points: line them up, or count them',
+  title: 'Decimal points: line them up, count them, or hop them',
   height: 400,
   minW: 900,
   capH: 96,
@@ -679,6 +681,40 @@ const decimals = {
   make(stage, k, ex) {
     const d = DEC[k], W = ex.W, CW = 54, RH = 70;
     const dpA = d.a.split('.')[1].length, dpB = d.b.split('.')[1].length;
+    if (d.op === '/') {
+      // dividing by a decimal: multiply both numbers by 10 until the divisor is whole (the points hop right together)
+      const sh = dpB, k10 = 10 ** sh;
+      const cellsOf = (s) => { const [ip, fp] = s.split('.'); return { ip, ds: (ip + fp.padEnd(sh, '0')).split(''), orig: ip.length + fp.length }; };
+      const moved = (s) => { const [ip, fp] = s.split('.'), f = fp.padEnd(sh, '0'), n = (ip + f.slice(0, sh)).replace(/^0+(?=\d)/, ''), r = f.slice(sh); return r ? n + '.' + r : n; };
+      const A2 = moved(d.a), B2 = moved(d.b), q = Math.round((+A2 / +B2) * 1e6) / 1e6;
+      lab(stage, W / 2, 40, K(`${d.a}\\div${d.b}`), 'u1l2-dhead');
+      const hops = svgEl('svg', { class: 'u1l2-dhops', width: W, height: 400 }); add(stage, hops, 0, 0);
+      const rows = [d.a, d.b].map((s, ri) => {
+        const { ip, ds, orig } = cellsOf(s), n = ds.length, y = 96 + ri * 104, x0 = W / 2 - 60 - n * CW;
+        const cells = ds.map((ch, i) => { const e = add(stage, h('div', 'u1l2-dg' + (i >= orig ? ' u1l2-dzero' : ''), ch), x0 + i * CW, y); e.style.width = CW + 'px'; if (i >= orig) hide(e); return e; });
+        const dot = add(stage, h('div', 'u1l2-ddot'), x0 + ip.length * CW - 7, y + 44);
+        const tag = hide(lab(stage, W / 2 + 150, y + 30, `${T(`${s}\\times${k10}=${ri ? B2 : A2}`)}`, 'u1l2-dsub'));
+        return { cells, dot, tag, x0, y, ip: ip.length, orig };
+      });
+      const res = hide(lab(stage, W / 2, 352, K(`${A2}\\div${B2}=\\boldsymbol{${q}}`), 'u1l2-dsub'));
+      return [
+        { cap: `The divisor ${T(d.b)} is not a whole number. Multiply <b>both</b> numbers by ${k10 === 10 ? '10' : `10 ${sh === 2 ? 'twice' : sh + ' times'} (${T(`\\times${k10}`)})`}: each decimal point hops <b>${sh} place${sh > 1 ? 's' : ''} right</b>.`,
+          run: async (c) => {
+            for (const r of rows) {
+              for (let i = 0; i < sh; i++) {
+                const xa = r.x0 + (r.ip + i) * CW, xb = xa + CW;
+                const p = svgEl('path', { d: `M${xa} ${r.y + 50} Q${(xa + xb) / 2} ${r.y + 82} ${xb} ${r.y + 50}`, fill: 'none', stroke: AMB, 'stroke-width': 3 }, hops); hide(p);
+                await appear(c, p, 150);
+                await anim(c, r.dot, [{ left: xa - 7 + 'px' }, { left: xb - 7 + 'px' }], 300);
+                const z = r.cells[r.ip + i]; if (z && z.classList.contains('u1l2-dzero')) await pop(c, z, 250);
+              }
+              await show(c, r.tag);
+            }
+          } },
+        { cap: `Now the divisor is whole: ${T(`${A2}\\div${B2}=${q}`)}.`, run: async (c) => { await show(c, res); } },
+        { cap: `Same answer as ${T(`${d.a}\\div${d.b}`)}: scaling <b>both</b> numbers keeps the quotient the same. Check: ${T(`${d.b}\\times${q}=${d.a}`)}.`, run: async (c) => { await pulse(c, res, 1.08); } }
+      ];
+    }
     if (d.op !== '*') {
       const P = Math.max(dpA, dpB), pad = (s) => s + '0'.repeat(P - s.split('.')[1].length);
       const A = pad(d.a), B = pad(d.b), sc = 10 ** P, rv = (d.op === '+' ? Math.round(+A * sc) + Math.round(+B * sc) : Math.round(+A * sc) - Math.round(+B * sc)) / sc, Rs = rv.toFixed(P);
