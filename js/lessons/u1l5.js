@@ -635,7 +635,7 @@
             t('\\sqrt[3]{' + F(V) + '}=' + k) + ', since ' + t(k + '\\times ' + k + '\\times ' + k + '=' + F(V)) + '.', ['Edge ' + t('=\\sqrt[3]{V}') + '. Use prime factorization or a calculator.'], 'NR cube edge ' + V);
         } }] },
       { num: '19', outcome: 'AN2', stem: function (sh) { return 'A classmate says: “' + t('\\sqrt{' + F(sh.n) + '}') + ' must be about ' + t(sh.L + '.5') + ', because ' + t(F(sh.n)) + ' is halfway between ' + t(F(sh.L * sh.L)) + ' and ' + t(F((sh.L + 1) * (sh.L + 1))) + '.”'; },
-        shared: function (r) { var L = r.int(12, 35), span = 2 * L + 1, j = Math.round(span * (r.chance(0.5) ? r.pick([0.62, 0.66, 0.7, 0.75]) : r.pick([0.25, 0.3, 0.34, 0.38]))); return { L: L, n: L * L + j }; },
+        shared: function (r) { return gen(r, function () { var L = r.int(12, 35), span = 2 * L + 1, j = Math.round(span * (r.chance(0.5) ? r.pick([0.68, 0.72, 0.76, 0.8]) : r.pick([0.2, 0.24, 0.28, 0.32]))); return { L: L, n: L * L + j }; }, function (o) { return Math.abs(Math.sqrt(o.n) - o.L - 0.5) > 0.16; }); },
         parts: [
           { id: 'e19a', level: 'ADV', make: function (r, sh) {
             var L = sh.L, n = sh.n, d1 = n - L * L, d2 = (L + 1) * (L + 1) - n, above = d1 > d2;

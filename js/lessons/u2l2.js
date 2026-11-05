@@ -15,7 +15,7 @@
     'mult-exp': 'Multiplied exponents (should add)', 'add-exp': 'Added exponents (should multiply)', 'div-exp': 'Divided exponents (should subtract)', 'law-added': 'Added exponents where the law multiplies or subtracts',
     'no-one': 'Forgot the invisible exponent 1', 'coef-not-raised': 'Didn’t raise the coefficient', 'coef-times': 'Multiplied coefficient by the exponent', 'coef-sub': 'Subtracted coefficients instead of dividing',
     'coef-added': 'Added coefficients instead of multiplying', 'times-exp': 'Multiplied base by exponent', 'single-power': 'Not written as a single power', 'as-power': 'Not written as a power',
-    'part-base': 'Took only part of the base', 'swapped': 'Swapped base and exponent', count: 'Wrong number of factors', subtracted: 'Subtracted instead of dividing', multiplied: 'Multiplied instead of dividing',
+    'part-base': 'Took only part of the base', 'swapped': 'Swapped base and exponent', base: 'Changed the base', count: 'Wrong number of factors', subtracted: 'Subtracted instead of dividing', multiplied: 'Multiplied instead of dividing',
     'divided-total': 'Divided by the wrong number', 'zero-is-0': 'Thought a⁰ = 0', 'zero-is-base': 'Thought a⁰ = a',
     'u2l2-pow-exp': 'Power of a power: raised an exponent to a power instead of multiplying', 'u2l2-sub-x': 'Missing exponent: subtracted the wrong way',
     'u2l2-no-pp': 'Didn’t clear the bracket (power of a power) first', 'u2l2-flip': 'Quotient upside down (bottom exponent minus top)', 'u2l2-coef-unreduced': 'Fraction coefficient not reduced / divided the wrong way',

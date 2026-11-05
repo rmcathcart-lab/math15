@@ -124,7 +124,7 @@
       var m = n.m, z = Object.keys(m.v).filter(function (x) { return m.v[x] === 0; });
       if (!z.length) return m;
       var v = {}; Object.keys(m.v).forEach(function (x) { if (m.v[x] !== 0) v[x] = m.v[x]; }); var m2 = { c: m.c, v: v };
-      L.push('Zero exponent: ' + t(z.map(function (x) { return x + '^{0}'; }).join('=') + '=1') + ', so ' + t(qTex(m) + '=' + rawT(m2, true)) + '.');
+      L.push('Zero exponent: ' + t(z.map(function (x) { return x + '^{0}'; }).join('=') + '=1') + (qTex(m) === z.map(function (x) { return x + '^{0}'; }).join('') ? '.' : ', so ' + t(qTex(m) + '=' + rawT(m2, true)) + '.'));
       return m2;
     }
     if (n.t === 'p') {
@@ -173,7 +173,7 @@
   function solText(tree, o) {
     o = o || {}; var L = [], res = solve(tree, L, o);
     if (o.neg && Object.keys(res.v).some(function (x) { return res.v[x] < 0; }) && L[L.length - 1].indexOf('=' + posTex(res) + '\\)') < 0) L.push('Positive exponents: ' + t(rawNeg(res) + '=' + posTex(res)) + '.');
-    L.push('So ' + t(tex(tree) + '=' + posTex(res)) + '.');
+    L.push('So ' + t((o.show || tex(tree)) + '=' + posTex(res)) + '.');
     return L.join('<br>');
   }
   /* typed-answer helpers */
@@ -243,7 +243,7 @@
   /* simplify a whole tree */
   function chain(tree, o) {
     o = o || {};
-    var res = ev(tree, {}), shown = tex(tree);
+    var res = ev(tree, {}), shown = o.show || tex(tree);
     var ws = (o.wrongs || []).concat(chainWrongs(tree, res));
     return X(o.prompt || t(shown), res, ws, (o.pre ? o.pre + '<br>' : '') + solText(tree, o), o.hints || [HO, o.hint || HW_], o.text || shown, { vars: lettersOf(tree), bad: o.bad, good: o.good });
   }
@@ -275,7 +275,7 @@
     if (!truth) opts.push({ html: '<b>False</b> — the left side simplifies to ' + t(good), right: true });
     falses.filter(function (f) { return !sameTex(f.tex, good) && !sameTex(f.tex, shownRhs); }).filter(function (f, i, arr) { return arr.map(function (g) { return g.tex; }).indexOf(f.tex) === i; }).slice(0, truth ? 3 : 2).forEach(function (f) { opts.push({ html: '<b>False</b> — the left side simplifies to ' + t(f.tex), why: f.hint }); });
     var tf = opts.shift(), rest = r.shuffle(opts); rest.unshift(tf);
-    return P.mc(r, 'True or false? If false, choose the correct simplification.<br>' + t(lhs + '=' + shownRhs), rest, sol, hints, text, true);
+    return P.mc(r, t(lhs + '=' + shownRhs), rest, sol, hints, text, true);
   }
   /* "write as a single power, then evaluate": two boxes */
   function bTex(b) { return b < 0 ? '(' + b + ')' : String(b); }
@@ -500,7 +500,7 @@
           { id: 'e1b', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return nchain(Pw(Mn(sh.k, [[sh.x, 1]]), -sh.n), { wrongs: [W('\\frac{' + sh.k + '}{' + vt(sh.x, sh.n) + '}', 'not-raised', 'The bracket makes ' + t(sh.k) + ' part of the base: ' + t(sh.k + '^{-' + sh.n + '}=\\frac{1}{' + Math.pow(sh.k, sh.n) + '}') + ' too.'), W('\\frac{1}{' + sh.k + vt(sh.x, sh.n) + '}', 'not-raised', 'Raise the ' + t(sh.k) + ' to the power ' + t(sh.n) + ' as well: ' + t(sh.k + '^{' + sh.n + '}=' + Math.pow(sh.k, sh.n)) + '.')], hint: HONLY, text: '(kx)^-n' }); } },
           { id: 'e1c', level: 'LIM', outcome: 'AN3', make: function (r, sh) { return nchain(Mn(-sh.k, [[sh.x, sh.n]]), { pre: 'There is no negative <b>exponent</b> here: the minus is a <b>sign</b> in front, and the exponent ' + t(sh.n) + ' is positive. Nothing moves — the expression is already simplified.', wrongs: [W('-\\frac{' + sh.k + '}{' + vt(sh.x, sh.n) + '}', 'opposite', 'There is no negative <b>exponent</b> here — the minus is a sign in front, so nothing moves.'), W('\\frac{1}{' + sh.k + vt(sh.x, sh.n) + '}', 'opposite', 'There is no negative exponent here: ' + t('-' + sh.k + vt(sh.x, sh.n)) + ' is already simplified.')], hints: ['A minus <b>sign</b> in front is not a negative <b>exponent</b>. Is there anything to move?', HONLY], text: '-kx^n (already simple)' }); } },
           { id: 'e1d', level: 'BEG', outcome: 'AN3', make: function (r, sh) { return nchain(Pw(Mn(sh.k, [[sh.x, 1]]), sh.n), { hint: HONLY, text: '(kx)^n' }); } },
-          { id: 'e1e', level: 'BEG', outcome: 'AN3', make: function (r, sh) { return nchain(Mul([Mn(sh.k, []), Mn(1, [[sh.x, -sh.n]])]), { prompt: t(sh.k + '\\left(' + vt(sh.x, -sh.n) + '\\right)'), wrongs: [W('\\frac{1}{' + sh.k + vt(sh.x, sh.n) + '}', 'coef-side', 'The bracket holds only ' + t(vt(sh.x, -sh.n)) + '; the ' + t(sh.k) + ' has no negative exponent, so it stays on top.')], hint: HONLY, text: 'k(x^-n)' }); } },
+          { id: 'e1e', level: 'BEG', outcome: 'AN3', make: function (r, sh) { return nchain(Mul([Mn(sh.k, []), Mn(1, [[sh.x, -sh.n]])]), { show: sh.k + '\\left(' + vt(sh.x, -sh.n) + '\\right)', wrongs: [W('\\frac{1}{' + sh.k + vt(sh.x, sh.n) + '}', 'coef-side', 'The bracket holds only ' + t(vt(sh.x, -sh.n)) + '; the ' + t(sh.k) + ' has no negative exponent, so it stays on top.')], hint: HONLY, text: 'k(x^-n)' }); } },
           { id: 'e1f', level: 'EMG', outcome: 'AN3', make: function (r, sh) {
             var k = sh.k, x = sh.x, n = sh.n, ex_ = ['(a) ' + t(k + vt(x, -n)), '(b) ' + t('(' + k + x + ')^{-' + n + '}'), '(c) ' + t('-' + k + vt(x, n)), '(d) ' + t('(' + k + x + ')^{' + n + '}'), '(e) ' + t(k + '\\left(' + vt(x, -n) + '\\right)')];
             return P.mc(r, 'Which two of ' + ex_.join(', ') + ' are equal?', [{ html: '(a) and (e)', right: true }, { html: '(a) and (b)', why: 'In (b) the bracket makes ' + t(k) + ' part of the base too: ' + t('\\frac{1}{' + Math.pow(k, n) + vt(x, n) + '}') + ', but (a) is ' + t('\\frac{' + k + '}{' + vt(x, n) + '}') + '.' }, { html: '(c) and (d)', why: '(c) is negative and (d) is positive.' }, { html: '(b) and (d)', why: '(b) is the reciprocal of (d), not equal to it.' }],

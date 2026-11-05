@@ -237,15 +237,15 @@
         { id: '1a', level: 'LIM', make: function (r) { return factorsPart(r.pick([18, 12, 20, 28, 32, 45, 50, 27, 44, 52, 63, 75, 98, 16, 21, 33, 35, 39, 49, 26])); } },
         { id: '1b', level: 'BEG', make: function (r) { return factorsPart(r.pick([40, 36, 48, 42, 54, 56, 60, 64, 66, 70, 72, 78, 80, 84, 88, 90, 96, 30, 24, 100])); } }] },
       { num: '2', stem: 'Classify each number as prime or composite.', parts: [
-        { id: '2a', level: 'LIM', make: function (r) { return classifyPart(r.pick(primesIn(11, 73))); } },
+        { id: '2a', level: 'LIM', make: function (r) { return classifyPart(r.pick(primesIn(11, 89))); } },
         { id: '2b', level: 'LIM', make: function (r) { return classifyPart(2 * r.int(11, 45)); } },
-        { id: '2c', level: 'LIM', make: function (r) { return classifyPart(r.pick(primesIn(41, 113))); } },
+        { id: '2c', level: 'LIM', make: function (r) { return classifyPart(r.pick(primesIn(41, 131))); } },
         { id: '2d', level: 'BEG', make: function (r) { return classifyPart(r.pick([51, 57, 69, 87, 93, 39, 33, 77, 91, 49, 63, 81, 99, 21, 27, 111, 119, 133, 117, 123]), true); } }] },
       { num: '3', stem: 'Use a <b>division ladder</b> to determine the prime factorization.', parts: [
         { id: '3a', level: 'BEG', make: function (r) { return ladderPart(find(function () { return 4 * r.pick([7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]) * r.pick([1, 1, 3, 5]); }, function (n) { return n <= 400; }, 92)); } },
         { id: '3b', level: 'BEG', make: function (r) { return ladderPart(r.chance(0.7) ? 8 * r.pick([3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]) : 16 * r.pick([3, 5, 7, 9, 11, 13, 15])); } }] },
       { num: '4', stem: 'Use a <b>factor tree</b> to determine the prime factorization.', parts: [
-        { id: '4a', level: 'BEG', make: function (r) { return treePart(find(function () { var ps = r.sample([2, 3, 5, 7, 11, 13, 17, 19, 23], 3); return prodOf(ps); }, function (n) { return n >= 42 && n <= 250 && n % 2 === 0; }, 78)); } },
+        { id: '4a', level: 'BEG', make: function (r) { return treePart(find(function () { var ps = r.sample([2, 3, 5, 7, 11, 13, 17, 19, 23], 3); return prodOf(ps); }, function (n) { return n >= 42 && n <= 330 && n % 2 === 0; }, 78)); } },
         { id: '4b', level: 'BEG', make: function (r) { return treePart(find(function () { var sq = r.pick([9, 9, 25, 49, 4]), q = r.pick([3, 5, 7, 11, 13, 17, 19, 23]); return sq % q ? sq * q : 0; }, function (n) { return n >= 44 && n <= 250; }, 99)); } }] },
       { num: '5', section: 'Part B — GCF and LCM', stem: 'Determine the greatest common factor by <b>listing factors</b>.', parts: [
         { id: '5a', level: 'BEG', make: function (r) { return gcfPart(find(function () { var g = r.pick([2, 3, 4, 5, 6, 8]), x = r.int(2, 7), y = r.int(2, 8); return [g * Math.min(x, y), g * Math.max(x, y), x, y]; }, function (v) { return v[0] !== v[1] && gcd(v[2], v[3]) === 1 && v[1] <= 48 && noneDivides(v.slice(0, 2)); }, [16, 20]).slice(0, 2), 'list'); } },
@@ -310,7 +310,7 @@
     ],
     extra: [
       { num: '1', section: 'Extra practice A — Bigger numbers, deeper factorizations', stem: 'Write the prime factorization of each number in <b>exponent form</b>.', parts: [
-        { id: 'e1a', level: 'EMG', make: function (r) { return productPart(find(function () { return Math.pow(2, r.int(1, 4)) * Math.pow(3, r.int(1, 3)) * Math.pow(5, r.int(1, 2)); }, function (n) { return n <= 900 && n >= 90 && nt.factor(n).some(function (pe) { return pe[1] > 1; }); }, 360), 'required'); } },
+        { id: 'e1a', level: 'EMG', make: function (r) { return productPart(find(function () { return Math.pow(2, r.int(1, 4)) * Math.pow(3, r.int(1, 3)) * Math.pow(5, r.int(1, 2)); }, function (n) { return n <= 1500 && n >= 90 && nt.factor(n).some(function (pe) { return pe[1] > 1; }); }, 360), 'required'); } },
         { id: 'e1b', level: 'EMG', make: function (r) { return productPart(find(function () { return Math.pow(2, r.int(1, 4)) * Math.pow(3, r.int(1, 2)) * r.pick([7, 11, 13, 17, 19]); }, function (n) { return n >= 150 && n <= 999; }, 504), 'required'); } },
         { id: 'e1c', level: 'EMG', make: function (r) { return productPart(r.pick([1000, 500, 2000, 250, 400, 800, 200, 1250, 625, 160, 320, 640, 100, 5000, 2500, 4000, 125, 1600, 3200, 8000]), 'required'); } },
         { id: 'e1d', level: 'PRG', make: function (r) { return productPart(r.pick([1024, 512, 256, 128, 2048, 729, 243, 81, 625, 343, 2187, 4096, 64, 3125, 2401, 1331, 6561, 32, 16807, 15625]), 'required'); } }] },

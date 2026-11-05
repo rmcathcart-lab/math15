@@ -120,7 +120,7 @@
       var m = n.m, z = Object.keys(m.v).filter(function (x) { return m.v[x] === 0; });
       if (!z.length) return m;
       var v = {}; Object.keys(m.v).forEach(function (x) { if (m.v[x] !== 0) v[x] = m.v[x]; }); var m2 = { c: m.c, v: v };
-      L.push('Zero exponent: ' + t(z.map(function (x) { return x + '^{0}'; }).join('=') + '=1') + ', so ' + t(qTex(m) + '=' + rawT(m2, true)) + '.');
+      L.push('Zero exponent: ' + t(z.map(function (x) { return x + '^{0}'; }).join('=') + '=1') + (qTex(m) === z.map(function (x) { return x + '^{0}'; }).join('') ? '.' : ', so ' + t(qTex(m) + '=' + rawT(m2, true)) + '.'));
       return m2;
     }
     if (n.t === 'p') {
@@ -169,7 +169,7 @@
   function solText(tree, o) {
     o = o || {}; var L = [], res = solve(tree, L, o);
     if (o.neg && Object.keys(res.v).some(function (x) { return res.v[x] < 0; }) && L[L.length - 1].indexOf('=' + posTex(res) + '\\)') < 0) L.push('Positive exponents: ' + t(rawNeg(res) + '=' + posTex(res)) + '.');
-    L.push('So ' + t(tex(tree) + '=' + posTex(res)) + '.');
+    L.push('So ' + t((o.show || tex(tree)) + '=' + posTex(res)) + '.');
     return L.join('<br>');
   }
   /* typed-answer helpers */
@@ -239,7 +239,7 @@
   /* simplify a whole tree */
   function chain(tree, o) {
     o = o || {};
-    var res = ev(tree, {}), shown = tex(tree);
+    var res = ev(tree, {}), shown = o.show || tex(tree);
     var ws = (o.wrongs || []).concat(chainWrongs(tree, res));
     return X(o.prompt || t(shown), res, ws, (o.pre ? o.pre + '<br>' : '') + solText(tree, o), o.hints || [HO, o.hint || HW_], o.text || shown, { vars: lettersOf(tree), bad: o.bad, good: o.good });
   }
@@ -271,7 +271,7 @@
     if (!truth) opts.push({ html: '<b>False</b> — the left side simplifies to ' + t(good), right: true });
     falses.filter(function (f) { return !sameTex(f.tex, good) && !sameTex(f.tex, shownRhs); }).filter(function (f, i, arr) { return arr.map(function (g) { return g.tex; }).indexOf(f.tex) === i; }).slice(0, truth ? 3 : 2).forEach(function (f) { opts.push({ html: '<b>False</b> — the left side simplifies to ' + t(f.tex), why: f.hint }); });
     var tf = opts.shift(), rest = r.shuffle(opts); rest.unshift(tf);
-    return P.mc(r, 'True or false? If false, choose the correct simplification.<br>' + t(lhs + '=' + shownRhs), rest, sol, hints, text, true);
+    return P.mc(r, t(lhs + '=' + shownRhs), rest, sol, hints, text, true);
   }
   /* "write as a single power, then evaluate": two boxes */
   function bTex(b) { return b < 0 ? '(' + b + ')' : String(b); }
@@ -445,17 +445,17 @@
         parts: [
           { id: 'e1a', level: 'BEG', outcome: 'AN3', make: function (r, sh) { return chain(Mn(sh.k, [[sh.l, 0]]), { wrongs: [W('1', 'u2l5-coef-zero', 'The ' + t('0') + ' sits on ' + t(sh.l) + ' only.')], hints: [HWH, HZ], text: 'kx^0' }); } },
           { id: 'e1b', level: 'BEG', outcome: 'AN3', make: function (r, sh) { return chain(Pw(Mn(sh.k, [[sh.l, 1]]), 0), { wrongs: [W(String(sh.k), 'zero-coef', 'The brackets make the whole ' + t(sh.k + sh.l) + ' the base.')], hints: [HWH, HZ], text: '(kx)^0' }); } },
-          { id: 'e1c', level: 'BEG', outcome: 'AN3', make: function (r, sh) { return chain(Mul([Mn(sh.k, []), Mn(1, [[sh.l, 0]])]), { prompt: t(sh.k + '\\left(' + sh.l + '^{0}\\right)'), wrongs: [W('1', 'u2l5-coef-zero', 'The bracket holds only ' + t(sh.l + '^{0}') + ', which is ' + t('1') + '; the ' + t(sh.k) + ' is outside.')], hints: [HWH, HZ], text: 'k(x^0)' }); } },
+          { id: 'e1c', level: 'BEG', outcome: 'AN3', make: function (r, sh) { return chain(Mul([Mn(sh.k, []), Mn(1, [[sh.l, 0]])]), { show: sh.k + '\\left(' + sh.l + '^{0}\\right)', wrongs: [W('1', 'u2l5-coef-zero', 'The bracket holds only ' + t(sh.l + '^{0}') + ', which is ' + t('1') + '; the ' + t(sh.k) + ' is outside.')], hints: [HWH, HZ], text: 'k(x^0)' }); } },
           { id: 'e1d', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return chain(Mn(-sh.k, [[sh.l, 0]]), { wrongs: [W('-1', 'u2l5-coef-zero', 'The ' + t('0') + ' sits on ' + t(sh.l) + ' only.'), W('1', 'u2l5-coef-zero', 'The ' + t('0') + ' sits on ' + t(sh.l) + ' only, so the ' + t('-' + sh.k) + ' stays.')], hints: [HWH, HZ], text: '-kx^0' }); } },
           { id: 'e1e', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return chain(Pw(Mn(-sh.k, [[sh.l, 1]]), 0), { wrongs: [W('-1', 'u2l5-neg-in', 'The minus sign is inside the brackets: the whole ' + t('-' + sh.k + sh.l) + ' is the base.'), W(String(-sh.k), 'zero-coef', 'The brackets make the whole ' + t('-' + sh.k + sh.l) + ' the base.')], hints: [HWH, HSG], text: '(-kx)^0' }); } }] },
       { num: '2', stem: function (sh) { return 'Simplify each expression, where ' + t(sh.x + '\\neq 0') + ' and ' + t(sh.y + '\\neq 0') + '.'; },
         shared: function (r) { var ls = L2(r); return { x: ls[0], y: ls[1], k: r.int(2, 5), p: r.int(2, 4) }; },
         parts: [
           { id: 'e2a', level: 'BEG', outcome: 'AN3', make: function (r, sh) { return chain(Pw(Mn(sh.k, [[sh.x, sh.p], [sh.y, 1]]), 0), { wrongs: [W(String(sh.k), 'zero-coef', 'The whole bracket is the base.')], hints: [HWH, HZ], text: '(kx^p y)^0' }); } },
-          { id: 'e2b', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return chain(Mul([Mn(sh.k, []), Pw(Mn(1, [[sh.x, sh.p], [sh.y, 1]]), 0)]), { prompt: t(sh.k + '\\left(' + vt(sh.x, sh.p) + sh.y + '\\right)^{0}'), wrongs: [W('1', 'u2l5-coef-zero', 'The ' + t(sh.k) + ' is outside the bracket, so it stays.')], hints: [HWH, HZ], text: 'k(x^p y)^0' }); } },
+          { id: 'e2b', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return chain(Mul([Mn(sh.k, []), Pw(Mn(1, [[sh.x, sh.p], [sh.y, 1]]), 0)]), { show: sh.k + '\\left(' + vt(sh.x, sh.p) + sh.y + '\\right)^{0}', wrongs: [W('1', 'u2l5-coef-zero', 'The ' + t(sh.k) + ' is outside the bracket, so it stays.')], hints: [HWH, HZ], text: 'k(x^p y)^0' }); } },
           { id: 'e2c', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return chain(Mn(sh.k, [[sh.x, sh.p], [sh.y, 0]]), { wrongs: [W('1', 'u2l5-coef-zero', 'The ' + t('0') + ' sits on ' + t(sh.y) + ' only.'), W(String(sh.k), 'u2l5-coef-zero', 'Only ' + t(sh.y) + ' has the exponent ' + t('0') + '; ' + t(vt(sh.x, sh.p)) + ' stays.')], hints: [HWH, HZ], text: 'kx^p y^0' }); } },
-          { id: 'e2d', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return chain(Mul([Mn(sh.k, [[sh.x, sh.p]]), Mn(1, [[sh.y, 0]])]), { prompt: t('\\left(' + sh.k + vt(sh.x, sh.p) + '\\right)' + sh.y + '^{0}'), wrongs: [W('1', 'u2l5-coef-zero', 'The ' + t('0') + ' sits on ' + t(sh.y) + ' only; the bracket has no exponent.')], hints: [HWH, HZ], text: '(kx^p)y^0' }); } },
-          { id: 'e2e', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return chain(Mul([Pw(Mn(sh.k, [[sh.x, 1]]), 2), Mn(1, [[sh.y, 0]])]), { prompt: t('(' + sh.k + sh.x + ')^{2}' + sh.y + '^{0}'), wrongs: [W(sh.k + vt(sh.x, 2), 'not-raised', 'Square the ' + t(sh.k) + ' too: ' + t('(' + sh.k + sh.x + ')^{2}=' + sh.k * sh.k + vt(sh.x, 2)) + '.')], hints: [HWH, HW_], text: '(kx)^2 y^0' }); } }] },
+          { id: 'e2d', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return chain(Mul([Mn(sh.k, [[sh.x, sh.p]]), Mn(1, [[sh.y, 0]])]), { show: '\\left(' + sh.k + vt(sh.x, sh.p) + '\\right)' + sh.y + '^{0}', wrongs: [W('1', 'u2l5-coef-zero', 'The ' + t('0') + ' sits on ' + t(sh.y) + ' only; the bracket has no exponent.')], hints: [HWH, HZ], text: '(kx^p)y^0' }); } },
+          { id: 'e2e', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return chain(Mul([Pw(Mn(sh.k, [[sh.x, 1]]), 2), Mn(1, [[sh.y, 0]])]), { show: '(' + sh.k + sh.x + ')^{2}' + sh.y + '^{0}', wrongs: [W(sh.k + vt(sh.x, 2), 'not-raised', 'Square the ' + t(sh.k) + ' too: ' + t('(' + sh.k + sh.x + ')^{2}=' + sh.k * sh.k + vt(sh.x, 2)) + '.')], hints: [HWH, HW_], text: '(kx)^2 y^0' }); } }] },
       { num: '3', stem: 'Evaluate each expression. Watch whether the negative sign is inside or outside the base.',
         shared: function (r) { return { k: r.int(2, 25), n: r.int(2, 5), m: r.int(2, 5) }; },
         parts: [
