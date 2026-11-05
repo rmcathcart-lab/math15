@@ -113,14 +113,14 @@
   var MEMBER_HINTS = ['Simplify first. Is the number rational (it ends or repeats) or irrational? Every number here is in ' + S('R') + '.', 'If it is rational: is it an integer? Is it ' + t('\\ge 0') + ' (then it is whole)? Is it ' + t('\\ge 1') + ' (then it is natural)?'];
   function wantSets(it) { return SETS.filter(function (x) { return SETS_OF[it.kind].indexOf(x) >= 0; }); }
   function memberPart(it, prompt) {
-    var p = P.grid(prompt || 'Check every set that ' + t(it.tex) + ' belongs to.', [{ id: 'x', html: t(it.tex), label: plainTex(it.tex) }], COLS, { x: wantSets(it) },
+    var p = P.grid(prompt || 'Check every set that ' + t(it.tex) + ' belongs to.', [{ id: 'x', html: t(it.tex.replace(/\\frac/g, '\\dfrac')), label: plainTex(it.tex) }], COLS, { x: wantSets(it) },
       { count: false, why: function (rid, got) { return memberWhy(it, got); } }, it.note + ' Sets: ' + setsTex(bigToSmall(it.kind)) + '.', MEMBER_HINTS, 'sets of ' + plainTex(it.tex));
     p.bad = [{ x: it.kind === 'irr' ? ['Q', 'R'] : ['Qb', 'R'] }, { x: wantSets(it).filter(function (x) { return x !== 'R'; }) }];
     return p;
   }
   function memberTable(items, prompt, text) {
     var rows = [], want = {}, byId = {}, L = 'abcdefgh';
-    items.forEach(function (it, i) { var id = L.charAt(i); rows.push({ id: id, html: t(it.tex), label: plainTex(it.tex) }); want[id] = wantSets(it); byId[id] = it; });
+    items.forEach(function (it, i) { var id = L.charAt(i); rows.push({ id: id, html: t(it.tex.replace(/\\frac/g, '\\dfrac')), label: plainTex(it.tex) }); want[id] = wantSets(it); byId[id] = it; });
     var p = P.grid(prompt, rows, COLS, want, { why: function (rid, got) { return memberWhy(byId[rid], got); } },
       items.map(function (it) { return t(it.tex) + ': ' + setsTex(bigToSmall(it.kind)) + ' — ' + it.note; }).join('<br>'), MEMBER_HINTS, text);
     var b1 = {}; rows.forEach(function (rw) { b1[rw.id] = want[rw.id].filter(function (x) { return x !== 'R'; }); });
@@ -408,13 +408,13 @@
             { html: '<b>Irrational:</b> it has more than ten digits.', why: 'Right verdict, wrong reason: ' + t('0.\\overline{3}') + ' has endless digits and is rational. The key is that no block repeats.', code: 'said-irrational' }],
             'Between the ' + t(g.d) + '’s the run of ' + t(g.c) + '’s gets one longer each time, so no fixed block ever repeats, and the digits never stop. <b>Irrational.</b>', ['Look closely: is there one block of digits that copies itself forever?'], 'classify growing decimal');
         } }] },
-      { num: '5', stem: 'Complete the table. Check <b>every</b> set that each number belongs to.', parts: [
+      { num: '5', stem: 'Complete the table.', parts: [
         { id: '5a', sub: 'left column', level: 'BEG', make: function (r) {
           var q = r.pick([4, 5, 8, 3, 7]), p = gen(r, function () { return r.int(1, q - 1); }, function (p) { return gcd(p, q) === 1; });
-          return memberTable([natInt(r.int(10, 40)), negInt(r.int(2, 15)), fracItem(p, q, false), sqrtIrr(gen(r, function () { return r.int(2, 30); }, nonSq))], 'Check every set each number belongs to.', 'set table 1');
+          return memberTable([natInt(r.int(10, 40)), negInt(r.int(2, 15)), fracItem(p, q, false), sqrtIrr(gen(r, function () { return r.int(2, 30); }, nonSq))], 'Check <b>every</b> set that each number belongs to.', 'set table 1');
         } },
         { id: '5b', sub: 'right column', level: 'EMG', make: function (r) {
-          return memberTable([zeroItem(), termItem(r.int(1, 9), r.int(1, 9)), negSqrt(r.int(2, 10)), repItem(rep2(r))], 'Check every set each number belongs to.', 'set table 2');
+          return memberTable([zeroItem(), termItem(r.int(1, 9), r.int(1, 9)), negSqrt(r.int(2, 10)), repItem(rep2(r))], 'Check <b>every</b> set that each number belongs to.', 'set table 2');
         } }] },
 
       /* ================= Part B — Reasoning About the Sets ================= */
@@ -574,16 +574,16 @@
         { id: 'e2c', level: 'BEG', make: function (r) { return memberPart(repItem(rep2(r))); } },
         { id: 'e2d', level: 'BEG', make: function (r) { var n = r.pick([2, 3, 5, 6, 7, 10, 11]) * r.pick([4, 9, 16]); return memberPart(sqrtIrr(n)); } },
         { id: 'e2e', level: 'BEG', make: function (r) { var q = r.int(2, 9), k = r.int(2, 9), tx = '-\\frac{' + k * q + '}{' + q + '}'; return memberPart(item(tx, 'negint', t(tx + '=-' + k) + ', a negative integer.', { neg: true, whyRat: t(tx + '=-' + k) + ', an integer — rational.' })); } }] },
-      { num: '3', stem: 'Complete the table. Evaluate each expression <b>first</b>, then check every set the result belongs to.', parts: [
+      { num: '3', stem: 'Complete the table.', parts: [
         { id: 'e3a', sub: 'left column', level: 'EMG', make: function (r) {
           var k = r.int(6, 12), q = r.int(2, 9), m = r.int(2, 9), a = r.pick([2, 3, 5, 7]), x = r.pick(['\\pi', '\\sqrt{2}', '\\sqrt{5}']);
           return memberTable([sqrtPerfect(k), item('-\\frac{' + m * q + '}{' + q + '}', 'negint', t('-\\frac{' + m * q + '}{' + q + '}=-' + m) + ', a negative integer.', { neg: true, whyRat: t('-\\frac{' + m * q + '}{' + q + '}=-' + m) + ' — rational.' }),
             item('\\sqrt{' + a + '}\\times\\sqrt{' + a + '}', 'nat', t('\\sqrt{' + a + '}\\times\\sqrt{' + a + '}=' + a) + ', a counting number.', { whyRat: t('\\sqrt{' + a + '}\\times\\sqrt{' + a + '}=' + a) + ' — rational, even though each factor is irrational.' }),
-            item(x + '-' + x, 'zero', t(x + '-' + x + '=0') + ': whole, but not natural.', { whyRat: t(x + '-' + x + '=0') + ' — rational.' })], 'Check every set each result belongs to.', 'evaluate-first table 1');
+            item(x + '-' + x, 'zero', t(x + '-' + x + '=0') + ': whole, but not natural.', { whyRat: t(x + '-' + x + '=0') + ' — rational.' })], 'Evaluate each expression <b>first</b>, then check every set the result belongs to.', 'evaluate-first table 1');
         } },
         { id: 'e3b', sub: 'right column', level: 'PRG', make: function (r) {
           var c = r.int(2, 5), n = gen(r, function () { return r.int(2, 20); }, nonSq);
-          return memberTable([piItem(c + '\\pi'), decSqItem(r.int(1, 9)), negSqrtIrr(n), fracItem(22, 7, false)], 'Check every set each result belongs to.', 'evaluate-first table 2');
+          return memberTable([piItem(c + '\\pi'), decSqItem(r.int(1, 9)), negSqrtIrr(n), fracItem(22, 7, false)], 'Evaluate each expression <b>first</b>, then check every set the result belongs to.', 'evaluate-first table 2');
         } }] },
       { num: '4', stem: function (sh) { return 'Consider ' + sh.list.map(function (n) { return t('\\sqrt{' + n + '}'); }).join(',  ') + '.'; },
         shared: function (r) {

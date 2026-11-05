@@ -237,30 +237,30 @@
         { id: '1a', level: 'LIM', make: function (r) { return factorsPart(r.pick([18, 12, 20, 28, 32, 45, 50, 27, 44, 52, 63, 75, 98, 16, 21, 33, 35, 39, 49, 26])); } },
         { id: '1b', level: 'BEG', make: function (r) { return factorsPart(r.pick([40, 36, 48, 42, 54, 56, 60, 64, 66, 70, 72, 78, 80, 84, 88, 90, 96, 30, 24, 100])); } }] },
       { num: '2', stem: 'Classify each number as prime or composite.', parts: [
-        { id: '2a', level: 'LIM', make: function (r) { return classifyPart(r.pick(primesIn(11, 47))); } },
+        { id: '2a', level: 'LIM', make: function (r) { return classifyPart(r.pick(primesIn(11, 73))); } },
         { id: '2b', level: 'LIM', make: function (r) { return classifyPart(2 * r.int(11, 45)); } },
-        { id: '2c', level: 'LIM', make: function (r) { return classifyPart(r.pick(primesIn(41, 97))); } },
+        { id: '2c', level: 'LIM', make: function (r) { return classifyPart(r.pick(primesIn(41, 113))); } },
         { id: '2d', level: 'BEG', make: function (r) { return classifyPart(r.pick([51, 57, 69, 87, 93, 39, 33, 77, 91, 49, 63, 81, 99, 21, 27, 111, 119, 133, 117, 123]), true); } }] },
       { num: '3', stem: 'Use a <b>division ladder</b> to determine the prime factorization.', parts: [
-        { id: '3a', level: 'BEG', make: function (r) { return ladderPart(4 * r.pick([11, 13, 17, 19, 23, 29, 31]) * r.pick([1, 1, 3])); } },
-        { id: '3b', level: 'BEG', make: function (r) { return ladderPart(8 * r.pick([7, 11, 13, 3, 5, 9, 17])); } }] },
+        { id: '3a', level: 'BEG', make: function (r) { return ladderPart(find(function () { return 4 * r.pick([7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]) * r.pick([1, 1, 3, 5]); }, function (n) { return n <= 400; }, 92)); } },
+        { id: '3b', level: 'BEG', make: function (r) { return ladderPart(r.chance(0.7) ? 8 * r.pick([3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]) : 16 * r.pick([3, 5, 7, 9, 11, 13, 15])); } }] },
       { num: '4', stem: 'Use a <b>factor tree</b> to determine the prime factorization.', parts: [
-        { id: '4a', level: 'BEG', make: function (r) { return treePart(6 * r.pick([7, 11, 13, 17, 19, 5, 23])); } },
-        { id: '4b', level: 'BEG', make: function (r) { return treePart(9 * r.pick([11, 13, 7, 5, 17, 19, 2, 4, 23])); } }] },
+        { id: '4a', level: 'BEG', make: function (r) { return treePart(find(function () { var ps = r.sample([2, 3, 5, 7, 11, 13, 17, 19, 23], 3); return prodOf(ps); }, function (n) { return n >= 42 && n <= 250 && n % 2 === 0; }, 78)); } },
+        { id: '4b', level: 'BEG', make: function (r) { return treePart(r.pick([9, 9, 25, 49, 4]) * r.pick([3, 5, 7, 11, 13, 17, 19, 23]) * 1 || 99); } }] },
       { num: '5', section: 'Part B — GCF and LCM', stem: 'Determine the greatest common factor by <b>listing factors</b>.', parts: [
         { id: '5a', level: 'BEG', make: function (r) { return gcfPart(find(function () { var g = r.pick([2, 3, 4, 5, 6, 8]), x = r.int(2, 7), y = r.int(2, 8); return [g * Math.min(x, y), g * Math.max(x, y), x, y]; }, function (v) { return v[0] !== v[1] && gcd(v[2], v[3]) === 1 && v[1] <= 48 && noneDivides(v.slice(0, 2)); }, [16, 20]).slice(0, 2), 'list'); } },
         { id: '5b', level: 'EMG', make: function (r) { return gcfPart(tripleBy(r, [2, 3, 4, 6, 5], range(2, 7), 45, [12, 18, 30]), 'list'); } }] },
       { num: '6', stem: 'Use <b>prime factorization</b> to determine the greatest common factor.', parts: [
         { id: '6a', level: 'EMG', make: function (r) { return factFieldsPart(pairBy(r, [21, 15, 14, 35, 18, 12, 9], [2, 3, 4, 5, 7], 30, 140, [63, 105]).slice(0, 2), 'gcf'); } },
-        { id: '6b', level: 'EMG', make: function (r) { return factFieldsPart(pairBy(r, [22, 26, 33, 39, 34, 38], [2, 3, 4, 5], 40, 160, [88, 110]).slice(0, 2), 'gcf'); } },
-        { id: '6c', level: 'PRG', make: function (r) { return factFieldsPart(tripleBy(r, [17, 13, 11, 19, 7], [2, 3, 5, 7], 100, [34, 51, 85]), 'gcf'); } }] },
+        { id: '6b', level: 'EMG', make: function (r) { return factFieldsPart(pairBy(r, [22, 26, 33, 39, 34, 38, 44, 46, 30, 28], [2, 3, 4, 5, 7], 40, 180, [88, 110]).slice(0, 2), 'gcf'); } },
+        { id: '6c', level: 'PRG', make: function (r) { return factFieldsPart(tripleBy(r, [17, 13, 11, 19, 7, 23, 14, 10], [2, 3, 4, 5, 7], 120, [34, 51, 85]), 'gcf'); } }] },
       { num: '7', stem: 'Determine the lowest common multiple by <b>listing multiples</b>.', parts: [
-        { id: '7a', level: 'BEG', make: function (r) { return lcmPart(find(function () { return sortN(r.sample(range(3, 12), 2)); }, function (v) { var g = gcd(v[0], v[1]); return g > 1 && noneDivides(v) && lcm(v[0], v[1]) <= 60; }, [6, 10]), 'list'); } },
+        { id: '7a', level: 'BEG', make: function (r) { return lcmPart(find(function () { return sortN(r.sample(range(3, 16), 2)); }, function (v) { var g = gcd(v[0], v[1]); return g > 1 && noneDivides(v) && lcm(v[0], v[1]) <= 72; }, [6, 10]), 'list'); } },
         { id: '7b', level: 'EMG', make: function (r) { return lcmPart(find(function () { return sortN(r.sample(range(2, 10), 3)); }, function (v) { var L = lcmA(v); return L <= 72 && L < prodOf(v) && v.some(function (x, i) { return v.some(function (y, j) { return i !== j && y % x === 0; }); }) && L !== v[2]; }, [4, 5, 8]), 'list'); } }] },
       { num: '8', stem: 'Use <b>prime factorization</b> to determine the lowest common multiple.', parts: [
         { id: '8a', level: 'EMG', make: function (r) { return factFieldsPart(find(function () { return sortN(r.sample(range(8, 30), 2)); }, function (v) { var g = gcd(v[0], v[1]); return g >= 2 && g <= 6 && noneDivides(v) && lcm(v[0], v[1]) <= 120; }, [16, 20]), 'lcm'); } },
-        { id: '8b', level: 'EMG', make: function (r) { return factFieldsPart(find(function () { var s = r.pick([7, 5, 3, 11]), pq = r.sample([2, 3, 5, 7].filter(function (x) { return x !== s; }), 2); return sortN([pq[0] * s, pq[1] * s]); }, function (v) { return v[1] <= 60; }, [21, 35]), 'lcm'); } },
-        { id: '8c', level: 'PRG', make: function (r) { return factFieldsPart(find(function () { var a = r.pick([[3, 2], [2, 2], [5, 1], [3, 1], [2, 3]]), b = r.pick([[3, 1], [5, 1], [2, 1], [3, 2], [5, 2]]); var ps = r.sample([2, 3, 5, 7], 2); return sortN([Math.pow(ps[0], 2), ps[0] * ps[1], Math.pow(ps[1], 2)]); }, function (v) { return v[2] <= 50 && noneDivides(v); }, [9, 15, 25]), 'lcm'); } }] },
+        { id: '8b', level: 'EMG', make: function (r) { return factFieldsPart(find(function () { var s = r.pick([7, 5, 3, 11, 13]), pq = r.sample([2, 3, 5, 7, 4].filter(function (x) { return x !== s; }), 2); return sortN([pq[0] * s, pq[1] * s]); }, function (v) { return v[1] <= 70 && gcd(v[0], v[1]) === v[0] / (v[0] / gcd(v[0], v[1])) && noneDivides(v); }, [21, 35]), 'lcm'); } },
+        { id: '8c', level: 'PRG', make: function (r) { return factFieldsPart(find(function () { return sortN(r.sample([4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 25, 27, 28, 30, 35, 45, 49, 50], 3)); }, function (v) { var L = lcmA(v); return noneDivides(v) && L <= 300 && L * 4 <= prodOf(v); }, [9, 15, 25]), 'lcm'); } }] },
       { num: '9', stem: '', parts: [
         { id: '9', level: 'PRG', make: function (r) { var v = pairBy(r, [14, 6, 10, 12, 15, 18], [2, 3, 4, 5], 18, 90, [28, 42, 14]); return bothPart('Determine both the greatest common factor <b>and</b> the lowest common multiple of ' + nlist(v.slice(0, 2)) + '.', v.slice(0, 2), 'GCF and LCM ' + v.slice(0, 2).join(',')); } }] },
       { num: '10', section: 'Part C — Applications and Review', stem: function (sh) { return 'A coach has ' + t(sh.a) + ' ' + sh.it[0] + ' and ' + t(sh.b) + ' ' + sh.it[1] + ' to divide evenly among identical team bags, using every item, with the greatest number of bags possible.'; },
@@ -310,20 +310,20 @@
     ],
     extra: [
       { num: '1', section: 'Extra practice A — Bigger numbers, deeper factorizations', stem: 'Write the prime factorization of each number in <b>exponent form</b>.', parts: [
-        { id: 'e1a', level: 'EMG', make: function (r) { return productPart(find(function () { return Math.pow(2, r.int(2, 4)) * Math.pow(3, r.int(1, 2)) * 5; }, function (n) { return n <= 720; }, 360), 'required'); } },
-        { id: 'e1b', level: 'EMG', make: function (r) { return productPart(find(function () { return Math.pow(2, r.int(1, 3)) * Math.pow(3, r.int(1, 2)) * r.pick([7, 11, 13]); }, function (n) { return n >= 150 && n <= 999; }, 504), 'required'); } },
+        { id: 'e1a', level: 'EMG', make: function (r) { return productPart(find(function () { return Math.pow(2, r.int(1, 4)) * Math.pow(3, r.int(1, 3)) * Math.pow(5, r.int(1, 2)); }, function (n) { return n <= 900 && n >= 90 && nt.factor(n).some(function (pe) { return pe[1] > 1; }); }, 360), 'required'); } },
+        { id: 'e1b', level: 'EMG', make: function (r) { return productPart(find(function () { return Math.pow(2, r.int(1, 4)) * Math.pow(3, r.int(1, 2)) * r.pick([7, 11, 13, 17, 19]); }, function (n) { return n >= 150 && n <= 999; }, 504), 'required'); } },
         { id: 'e1c', level: 'EMG', make: function (r) { return productPart(r.pick([1000, 500, 2000, 250, 400, 800, 200, 1250, 625, 160, 320, 640, 100, 5000, 2500, 4000, 125, 1600, 3200, 8000]), 'required'); } },
         { id: 'e1d', level: 'PRG', make: function (r) { return productPart(r.pick([1024, 512, 256, 128, 2048, 729, 243, 81, 625, 343, 2187, 4096, 64, 3125, 2401, 1331, 6561, 32, 16807, 15625]), 'required'); } }] },
       { num: '2', stem: 'Use the method indicated. Show every step, then write the answer in exponent form.', parts: [
-        { id: 'e2a', level: 'PRG', make: function (r) { return treePart(find(function () { return Math.pow(2, r.int(1, 3)) * r.pick([3, 9, 5]) * Math.pow(7, r.int(1, 2)); }, function (n) { return n >= 300 && n <= 2500; }, 1176), 'required'); } },
+        { id: 'e2a', level: 'PRG', make: function (r) { return treePart(find(function () { return Math.pow(2, r.int(1, 4)) * r.pick([3, 9, 5, 15, 25, 27]) * Math.pow(r.pick([7, 11]), r.int(1, 2)); }, function (n) { return n >= 300 && n <= 2500; }, 1176), 'required'); } },
         { id: 'e2b', level: 'PRG', make: function (r) { return ladderPart(find(function () { return prodOf(r.sample([2, 3, 5, 7, 11, 13], 4)) * r.pick([1, 1, 5, 3]); }, function (n) { return n >= 500 && n <= 4000; }, 2310), 'required'); } }] },
       { num: '3', stem: 'Each prime factorization below belongs to a whole number. Determine that number.', parts: [
-        { id: 'e3a', level: 'EMG', make: function (r) { return valuePart([[2, r.int(2, 4)], [3, r.int(1, 2)], [5, 1]]); } },
-        { id: 'e3b', level: 'EMG', make: function (r) { return valuePart([[2, r.int(1, 2)], [5, r.int(1, 2)], [r.pick([7, 11, 13]), 1]]); } },
-        { id: 'e3c', level: 'EMG', make: function (r) { var ps = r.sample([3, 5, 7], 2).sort(); return valuePart([[ps[0], r.int(2, 3)], [ps[1], 2]]); } }] },
+        { id: 'e3a', level: 'EMG', make: function (r) { return valuePart([[2, r.int(2, 5)], [3, r.int(1, 3)], [r.pick([5, 7]), 1]]); } },
+        { id: 'e3b', level: 'EMG', make: function (r) { return valuePart([[2, r.int(1, 3)], [5, r.int(1, 2)], [r.pick([7, 11, 13, 17]), 1]]); } },
+        { id: 'e3c', level: 'EMG', make: function (r) { var ps = r.sample([2, 3, 5, 7], 2).sort(); return valuePart([[ps[0], r.int(2, 4)], [ps[1], r.int(2, 3)]]); } }] },
       { num: '4', stem: '<b>Counting factors.</b> ' + t('12=2^{2}\\times 3^{1}') + ' has six factors (' + t('1,2,3,4,6,12') + '). Adding ' + t('1') + ' to each exponent and multiplying gives ' + t('(2+1)\\times(1+1)=6') + '. That works for every number. Use the rule to find how many factors each number has.', parts: [
-        { id: 'e4a', level: 'PRG', make: function (r) { var e1 = r.int(2, 6), e2 = r.int(1, 3), n = Math.pow(2, e1) * Math.pow(3, e2); return ruleCount(n, t('2^{' + e1 + '}\\times 3' + (e2 > 1 ? '^{' + e2 + '}' : '')) + ' (don’t multiply it out)'); } },
-        { id: 'e4b', level: 'PRG', make: function (r) { return ruleCount(r.pick([360, 180, 240, 300, 420, 504, 540, 600, 720, 120, 210, 450])); } },
+        { id: 'e4a', level: 'PRG', make: function (r) { var e1 = r.int(2, 7), e2 = r.int(1, 3), q = r.pick([3, 3, 5, 7]), n = Math.pow(2, e1) * Math.pow(q, e2); return ruleCount(n, t('2^{' + e1 + '}\\times ' + q + (e2 > 1 ? '^{' + e2 + '}' : '')) + ' (don’t multiply it out)'); } },
+        { id: 'e4b', level: 'PRG', make: function (r) { return ruleCount(r.pick([360, 180, 240, 300, 420, 504, 540, 600, 720, 120, 210, 450, 630, 660, 780, 840, 900, 168, 264, 280])); } },
         { id: 'e4c', level: 'PRG', make: function (r) { return ruleCount(r.pick([96, 48, 72, 80, 112, 160, 144, 192, 54, 162, 200, 63, 75, 98, 88, 136, 176, 208, 44, 52])); } }] },
       { num: '5', stem: 'Work backwards from the ideas above.', parts: [
         { id: 'e5a', level: 'ADV', make: function (r) {
@@ -338,10 +338,10 @@
           p.bad = [String(v[1] * 2)];
           return p;
         } },
-        { id: 'e5b', level: 'MAS', make: function (r) { return smallestWith(r.pick([4, 6, 8, 9, 10, 12, 5, 6, 8])); } }] },
+        { id: 'e5b', level: 'MAS', make: function (r) { return smallestWith(r.pick([4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 16, 18, 20])); } }] },
       { num: '6', section: 'Extra practice B — GCF and LCM with three numbers', stem: 'Use prime factorization to determine the greatest common factor.', parts: [
         { id: 'e6a', level: 'PRG', make: function (r) { return gcfPart(tripleBy(r, [42, 30, 18, 14, 21, 12], [2, 3, 5, 7], 300, [84, 126, 210])); } },
-        { id: 'e6b', level: 'PRG', make: function (r) { return gcfPart(find(function () { var g = r.pick([12, 6, 8, 10, 4]), ps = r.sample([2, 3, 5, 7], 3); return sortN([g * ps[0] * ps[1], g * ps[0] * ps[2], g * ps[1] * ps[2]]); }, function (v) { return v[2] <= 400; }, [72, 120, 180])); } },
+        { id: 'e6b', level: 'PRG', make: function (r) { return gcfPart(find(function () { var g = r.pick([12, 6, 8, 10, 4, 9, 14, 15]), ps = r.sample([2, 3, 5, 7], 3); return sortN([g * ps[0] * ps[1], g * ps[0] * ps[2], g * ps[1] * ps[2]]); }, function (v) { return v[2] <= 400; }, [72, 120, 180])); } },
         { id: 'e6c', level: 'PRG', make: function (r) { return gcfPart(tripleBy(r, [45, 15, 25, 35, 9], [2, 3, 5, 7], 320, [90, 135, 225])); } }] },
       { num: '7', stem: 'Use prime factorization to determine the lowest common multiple.', parts: [
         { id: 'e7a', level: 'PRG', make: function (r) { return lcmPart(find(function () { return sortN(r.sample(range(6, 36), 3)); }, function (v) { var L = lcmA(v); return noneDivides(v) && L >= 60 && L <= 400 && gcfA(v) > 1; }, [12, 18, 30])); } },
@@ -361,7 +361,7 @@
         } };
       }) },
       { num: '10', section: 'Extra practice C — The GCF–LCM relationship', stem: 'For any two whole numbers ' + t('a') + ' and ' + t('b') + ': ' + t('\\text{GCF}(a,b)\\times\\text{LCM}(a,b)=a\\times b') + '. Verify that it holds for each pair by computing all four quantities.', parts: [
-        { id: 'e10a', level: 'EMG', make: function (r) { return identityPart(pairBy(r, [6, 4, 3, 2], [2, 3, 4, 5], 10, 40, [18, 24, 6]).slice(0, 2)); } },
+        { id: 'e10a', level: 'EMG', make: function (r) { return identityPart(pairBy(r, [6, 4, 3, 2, 8, 5], [2, 3, 4, 5, 7], 10, 48, [18, 24, 6]).slice(0, 2)); } },
         { id: 'e10b', level: 'EMG', make: function (r) { return identityPart(find(function () { var g = r.pick([10, 5, 6, 4, 15]), xy = r.pick([[2, 5], [3, 4], [2, 3], [4, 5], [3, 5]]); return [g * xy[0], g * xy[1]]; }, function (v) { return v[1] <= 75; }, [20, 50])); } }] },
       { num: '11', stem: 'Use the relationship from Question 10 to find the missing number. Check your answer by finding the GCF and LCM of the pair you end up with.', parts: [
         { id: 'e11a', level: 'ADV', make: function (r) { return otherPart(r, [6, 4, 3, 5]); } },
@@ -426,7 +426,7 @@
           } }] },
       { num: '18', stem: 'For each situation, first state whether you need the <b>GCF</b> or the <b>LCM</b>, then solve.', parts: [
         { id: 'e18a', level: 'ADV', make: function (r) {
-          var ab = find(function () { return sortN(r.sample([20, 24, 30, 36, 40, 45, 48, 50, 60], 2)); }, function (v) { var L = lcm(v[0], v[1]); return gcd(v[0], v[1]) > 1 && noneDivides(v) && L >= 90 && L <= 360 && L % 60 !== 0; }, [36, 48]), a = ab[0], b = ab[1], L = lcm(a, b), h = Math.floor(L / 60), m = L % 60;
+          var ab = find(function () { return sortN(r.sample([15, 18, 20, 24, 25, 30, 35, 36, 40, 42, 45, 48, 50, 54, 56, 60, 72, 75, 80, 90], 2)); }, function (v) { var L = lcm(v[0], v[1]); return gcd(v[0], v[1]) > 1 && noneDivides(v) && L >= 90 && L <= 400 && L % 60 !== 0; }, [36, 48]), a = ab[0], b = ab[1], L = lcm(a, b), h = Math.floor(L / 60), m = L % 60;
           var p = P.fields('Ferry A leaves the dock every ' + t(a) + ' minutes and Ferry B every ' + t(b) + ' minutes. They just left together. How long until they next leave together, in hours and minutes?',
             [{ name: 'Tool', label: 'GCF or LCM?', mode: 'text', placeholder: 'GCF or LCM' }, { name: 'Hours', label: 'Hours', after: 'h' }, { name: 'Minutes', label: 'Minutes', after: 'min' }],
             [toolChk('lcm'), K.number(h, function (v) { if (v === L) return { code: 'u1l3-hm', hint: t(L) + ' is the time in minutes. Change it to hours and minutes: ' + t('60') + ' minutes in an hour.' }; if (v === Math.round(L / 60 * 100) / 100) return { code: 'u1l3-hm', hint: 'Give whole hours here and the leftover minutes in the next box.' }; return null; }), K.number(m, function (v) { return v === L ? { code: 'u1l3-hm', hint: 'Take out the full hours first.' } : null; })],
