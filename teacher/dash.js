@@ -261,7 +261,7 @@
   }
   function students() { var d = derive(); return Object.keys(d.stu).map(function (k) { return d.stu[k]; }).sort(function (a, b) { return a.name.localeCompare(b.name); }); }
   function builtLessons() { var out = []; HW.CATALOG.forEach(function (u) { u.lessons.forEach(function (c) { if (HW.lessons[c.id]) out.push(HW.lessons[c.id]); }); }); return out; }
-  function outcomesBuilt() { var o = []; builtLessons().forEach(function (l) { l.items.forEach(function (it) { if (o.indexOf(it.outcome) < 0) o.push(it.outcome); }); }); return o; }
+  function outcomesBuilt() { var o = []; builtLessons().forEach(function (l) { l.items.forEach(function (it) { if (o.indexOf(it.outcome) < 0 && !(HW.NO_LEVEL || {})[it.outcome]) o.push(it.outcome); }); }); return o; }
 
   /* ---------------- render ---------------- */
   function render() {

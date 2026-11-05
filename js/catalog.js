@@ -114,6 +114,10 @@
     RF1: 'Interpreting and explaining relations', RF2: 'Relations and functions', RF3: 'Slope', RF4: 'Linear relations',
     RF5: 'Characteristics of linear relations', RF6: 'Forms of linear equations', RF7: 'Equations of linear relations',
     RF8: 'Function notation', RF9: 'Systems of linear equations', M1: 'SI and imperial measurement', M2: 'Converting units',
-    M3: 'Surface area and volume', M4: 'Trigonometry', EXT: 'Extension (not part of a unit level)'
+    M3: 'Surface area and volume', M4: 'Trigonometry', EXT: 'Extension (not part of a unit level)',
+    REV: 'Grade 9 review (not part of a unit level)'
   };
+  /* outcomes that never count toward a level, a badge or a unit grade: extension topics, and Math 15's Grade 9 review
+     lessons (Unit 1 Lessons 1–2: integers, fractions and decimals; Ryan's exit-slip tags give them no outcome) */
+  root.HW.NO_LEVEL = { EXT: 1, REV: 1 };
 })(window);

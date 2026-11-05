@@ -209,7 +209,7 @@
       lesson.items.forEach(function (it) {
         var r = (S.lessons[lesson.id] || { items: {} }).items[it.id];
         if (!r || r.s !== 'done' || r.credit !== 'first') return;
-        if (it.outcome === 'EXT') return; // extension lessons (e.g. distance and midpoint) don't count toward a level
+        if (HW.NO_LEVEL[it.outcome]) return; // extension lessons (e.g. distance and midpoint) don't count toward a level
         if (outs.indexOf(it.outcome) < 0) outs.push(it.outcome);
         if (best[it.outcome] == null || LV.indexOf(it.level) > LV.indexOf(best[it.outcome])) best[it.outcome] = it.level;
       });
@@ -375,7 +375,7 @@
       var lesson = HW.lessons[lid]; if (lesson.test) return;
       var items = (S.lessons[lid] || { items: {} }).items;
       lesson.items.forEach(function (it) {
-        var r = items[it.id]; if (!r || r.s !== 'done' || r.credit !== 'first' || it.outcome === 'EXT') return;
+        var r = items[it.id]; if (!r || r.s !== 'done' || r.credit !== 'first' || HW.NO_LEVEL[it.outcome]) return;
         var t = HW.Medals.tierOf(it.level); if (best[it.outcome] == null || t > best[it.outcome].tier) best[it.outcome] = { tier: t, src: 'from practice' };
       });
     });
@@ -391,7 +391,7 @@
         else TC.outcomeGrades(r.def, r.marks).outcomes.forEach(function (x) { got[x.outcome] = x.ind; });
       } catch (e) { return; }
       Object.keys(got).forEach(function (o) {
-        var t = HW.Medals.tierOf(got[o]); if (o === 'EXT' || t < 0) return;
+        var t = HW.Medals.tierOf(got[o]); if (HW.NO_LEVEL[o] || t < 0) return;
         if (!best[o] || t > best[o].tier) best[o] = { tier: t, src: 'from ' + (r.title || (r.kind === 'exit' ? 'an exit slip' : 'a test')) };
       });
     });

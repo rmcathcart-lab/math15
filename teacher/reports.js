@@ -13,6 +13,7 @@
  * Exit slip and test results are marked the same way the Results view marks them (HW.DashTests.grade). */
 (function (root) {
   'use strict';
+  var NOL = root.HW.NO_LEVEL || { EXT: 1 }; // outcomes that never get a level (catalog.js)
   var HW = root.HW, el = HW.el, esc = HW.esc, TC = HW.TestCore, C = HW.Comments, PS = HW.PS;
   var D = HW.Dash, st = D.state, RP = HW.DashReports = { cache: {}, marked: {} };
   D.onWrite(function (a) { // changed marks or a release: mark again; a launch, a test ending or a class list change: list the sessions again
@@ -85,30 +86,30 @@
     var exits = [], tests = {}, inPlay = {};
     graded.forEach(function (R) {
       var def = R.session.def, outs = []; R.items.forEach(function (x) { if (outs.indexOf(x.it.outcome) < 0) outs.push(x.it.outcome); });
-      outs.forEach(function (o) { if (o !== 'EXT') inPlay[o] = 1; });
+      outs.forEach(function (o) { if (!NOL[o]) inPlay[o] = 1; });
       if (!R.isTest) {
-        var ex = { R: R, outs: outs.filter(function (o) { return o !== 'EXT'; }), lv: {} };
+        var ex = { R: R, outs: outs.filter(function (o) { return !NOL[o]; }), lv: {} };
         R.rows.forEach(function (r) {
           var e = S(r.name); if (!e) return; ex.lv[r.name] = {};
           ex.outs.forEach(function (o) { var lv = r.sum.levels[o] || 'NM'; ex.lv[r.name][o] = lv; var cur = e.exit[o]; if (!cur || LADDER.indexOf(lv) > LADDER.indexOf(cur)) e.exit[o] = lv; });
-          R.items.forEach(function (x) { if (x.it.outcome !== 'EXT') lessonAdd(e, x.it.outcome, x.lesson.id, TC.credit(r.final.charAt(x.pos))); });
+          R.items.forEach(function (x) { if (!NOL[x.it.outcome]) lessonAdd(e, x.it.outcome, x.lesson.id, TC.credit(r.final.charAt(x.pos))); });
         });
         exits.push(ex);
       } else {
         var u = unitOfDef(def), T = tests[u] || (tests[u] = { unit: u, sessions: [], outs: [], best: {}, unitBest: {} });
-        T.sessions.push(R); outs.forEach(function (o) { if (o !== 'EXT' && T.outs.indexOf(o) < 0) T.outs.push(o); });
+        T.sessions.push(R); outs.forEach(function (o) { if (!NOL[o] && T.outs.indexOf(o) < 0) T.outs.push(o); });
         R.rows.forEach(function (r) {
           var e = S(r.name); if (!e || !r.g) return;
           var b = T.best[r.name] || (T.best[r.name] = {});
-          r.g.outcomes.forEach(function (g) { if (g.outcome === 'EXT') return; if (!b[g.outcome] || g.pct > b[g.outcome].pct) b[g.outcome] = { ind: g.ind, pct: g.pct }; var cur = e.test[g.outcome]; if (!cur || g.pct > cur.pct) e.test[g.outcome] = { ind: g.ind, pct: g.pct, unit: u }; });
+          r.g.outcomes.forEach(function (g) { if (NOL[g.outcome]) return; if (!b[g.outcome] || g.pct > b[g.outcome].pct) b[g.outcome] = { ind: g.ind, pct: g.pct }; var cur = e.test[g.outcome]; if (!cur || g.pct > cur.pct) e.test[g.outcome] = { ind: g.ind, pct: g.pct, unit: u }; });
           if (T.unitBest[r.name] == null || r.g.unit > T.unitBest[r.name]) T.unitBest[r.name] = r.g.unit;
         });
       }
     });
     // outcomes the class has worked on: on an exit slip or test, or practised by a fifth of the class (at least 2)
     var need = Math.max(2, Math.round(names.length / 5));
-    Object.keys(practiced).forEach(function (o) { if (o !== 'EXT' && Object.keys(practiced[o]).length >= need) inPlay[o] = 1; });
-    var outcomes = Object.keys(inPlay).filter(function (o) { return HW.OUTCOMES[o] && o !== 'EXT'; }).sort(byOutcome);
+    Object.keys(practiced).forEach(function (o) { if (!NOL[o] && Object.keys(practiced[o]).length >= need) inPlay[o] = 1; });
+    var outcomes = Object.keys(inPlay).filter(function (o) { return HW.OUTCOMES[o] && !NOL[o]; }).sort(byOutcome);
     var units = []; outcomes.forEach(function (o) { var u = unitOfOutcome(o); if (u < 99 && units.indexOf(u) < 0) units.push(u); });
     Object.keys(tests).forEach(function (u) { u = Number(u); if (u && units.indexOf(u) < 0) units.push(u); });
     units.sort(function (a, b) { return a - b; });
