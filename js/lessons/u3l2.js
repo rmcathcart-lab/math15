@@ -62,11 +62,11 @@
   }
   /* classic wrong answers for a monomial times a bracket */
   function monoWrongs(m, terms) {
-    var out = [], prods = terms.map(function (q) { return mul(m, q); }), c = coefOf(m);
+    var out = [], prods = terms.map(function (q) { return mul(m, q); }), c = coefOf(m), cr = PL.terms(m)[0].c;
     if (terms.length > 1) {
       out.push({ is: sumOf([prods[0]].concat(terms.slice(1))), code: 'first-only', hint: 'Multiply <b>every</b> term in the bracket by ' + t(tx(m)) + ', not just the first one.' });
       if (c < 0) out.push({ is: sumOf([prods[0]].concat(terms.slice(1).map(function (q) { return mul(neg(m), q); }))), code: 'neg-first', hint: 'The negative sign is part of ' + t(tx(m)) + ', so it multiplies <b>every</b> term in the bracket. Check the signs after the first term.' });
-      if (PL.vars(m).length) out.push({ is: sumOf([prods[0]].concat(terms.slice(1).map(function (q) { return mul(N(c), q); }))), code: 'var-first', hint: 'The variable part of ' + t(tx(m)) + ' multiplies every term in the bracket too, not just the first one.' });
+      if (PL.vars(m).length) out.push({ is: sumOf([prods[0]].concat(terms.slice(1).map(function (q) { return mul(N(cr), q); }))), code: 'var-first', hint: 'The variable part of ' + t(tx(m)) + ' multiplies every term in the bracket too, not just the first one.' });
     }
     return out;
   }
@@ -220,7 +220,7 @@
     { num: '3', stem: 'Expand. Each monomial has a fraction as its coefficient, but the rule is unchanged: multiply the fraction by every coefficient inside.', parts: [
       { id: 'e3a', level: 'EMG', make: function (r) { var a = r.int(1, 4) * 2, b = r.int(1, 3) * 2, c = r.int(1, 5) * 2; if (r.chance(0.15)) { a = 6; b = 4; c = 10; } return fracPart(M([1, 2], { x: 1 }), [xm(a, 2), xm(-b), N(c)]); } },
       { id: 'e3b', level: 'PRG', make: function (r) { var a = r.int(1, 3) * 3, b = r.int(1, 3) * 3, c = r.int(1, 2) * 3; if (r.chance(0.15)) { a = 6; b = 9; c = 3; } return fracPart(M([-2, 3], { a: 2 }), [xm(-a, 2, 'a'), xm(b, 1, 'a'), N(c)]); } },
-      { id: 'e3c', level: 'EMG', make: function (r) { var a = r.int(1, 3) * 4, b = r.int(1, 3) * 4, c = 4; if (r.chance(0.15)) { a = 8; b = 12; } return fracPart(M([1, 4], { x: 1 }), [xm(a, 2), xm(b), N(-c)]); } }] },
+      { id: 'e3c', level: 'EMG', make: function (r) { var a = r.int(1, 3) * 4, b = r.int(1, 4) * 4 * (r.chance(0.3) ? -1 : 1), c = r.pick([4, 4, 8]); if (r.chance(0.15)) { a = 8; b = 12; c = 4; } return fracPart(M([1, 4], { x: 1 }), [xm(a, 2), xm(b), N(-c)]); } }] },
     { num: '4', section: 'Extra practice B — Distribute, Then Collect', stem: 'Two brackets means two separate distributions. Expand the first completely and write it down before you touch the second — then collect like terms.<br>For example ' + t('3x(x-2)+4x(2x+1)=3x^{2}-6x+8x^{2}+4x=11x^{2}-2x') + '.<br>Expand and simplify.', parts: [
       { id: 'e4a', level: 'EMG', make: function (r) { var a = r.int(2, 4), b = r.int(1, 3), c = r.int(2, 5), d = r.int(2, 5); if (r.chance(0.15)) { a = 2; b = 1; c = 5; d = 4; } return twoProducts(xm(a), [xm(3), N(b)], xm(c), [xm(1), N(-d)]); } },
       { id: 'e4b', level: 'EMG', make: function (r) { var a = r.int(2, 4), b = r.int(1, 4), c = r.int(2, 5), d = r.int(1, 3); if (r.chance(0.15)) { a = 3; b = 2; c = 4; d = 1; } return twoProducts(xm(a, 1, 'a'), [xm(1, 1, 'a'), N(-b)], xm(-c, 1, 'a'), [xm(2, 1, 'a'), N(d)]); } },
@@ -338,7 +338,7 @@
             'Large: ' + t(PL.at(sh.A, { x: v }) + '\\times ' + PL.at(sumOf(sh.B), { x: v }) + '=' + bv) + '; small: ' + t(PL.at(sh.a, { x: v }) + '\\times ' + PL.at(sumOf(sh.b), { x: v }) + '=' + sv) + '; remaining ' + t(bv + '-' + sv + '=' + val) + '. (Your expression gives the same: ' + t(tx(T).replace(/x/g, '(' + v + ')') + '=' + val) + '.)', ['Substitute into your expression from the previous part.'], 'remaining area at x=' + v);
         } }] },
     { num: '15', stem: function (sh) { return '<b>Reasoning.</b> A monomial of degree ' + t(sh.m) + ' is multiplied by a trinomial of degree ' + t(sh.n) + '.'; },
-      shared: function (r) { var m = r.int(1, 3), n = r.int(2, 4); if (r.chance(0.3)) { m = 2; n = 3; } if (m * n === m + n) n = 3; return { m: m, n: n }; },
+      shared: function (r) { var m = r.int(1, 4), n = r.int(2, 5); if (r.chance(0.2)) { m = 2; n = 3; } if (m * n === m + n) n = 3; return { m: m, n: n }; },
       parts: [
         { id: 'e15a', level: 'EMG', make: function (r, sh) {
           var d = sh.m + sh.n;
@@ -453,7 +453,7 @@
         { id: '3a', level: 'BEG', make: function (r) { var a = r.int(2, 9), b = r.int(1, 9); return expandMono(xm(a), [xm(1), N(b)]); } },
         { id: '3b', level: 'BEG', make: function (r) { var a = r.int(2, 9), b = r.int(1, 9); return expandMono(xm(a), [xm(1), N(-b)]); } },
         { id: '3c', level: 'BEG', make: function (r) { var a = r.int(2, 9), b = r.int(1, 9); return expandMono(xm(-a), [xm(1), N(b)]); } },
-        { id: '3d', level: 'EMG', make: function (r) { var b = r.int(2, 12); return expandMono(xm(-1), [xm(1), N(-b)], { hints: [t('-x') + ' means ' + t('-1x') + ': multiply it by each term in the bracket.', 'A negative times a negative is positive.'] }); } }] },
+        { id: '3d', level: 'EMG', make: function (r) { var b = r.int(2, 12), v = r.pick(['x', 'x', 'y', 'a', 'm']); return expandMono(xm(-1, 1, v), [xm(1, 1, v), N(-b)], { hints: [t('-x') + ' means ' + t('-1x') + ': multiply it by each term in the bracket.', 'A negative times a negative is positive.'] }); } }] },
       /* ================= Part B ================= */
       { num: '4', section: 'Part B — Trinomials and Collecting Like Terms', stem: 'Expand.', parts: [
         { id: '4a', level: 'BEG', make: function (r) { var a = r.int(2, 6), b = r.int(1, 6), c = r.int(1, 9); return expandMono(N(a), [xm(1, 2), xm(b), N(c)]); } },

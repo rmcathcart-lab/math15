@@ -224,7 +224,7 @@ const squareSplit = {
   choices: [{ v: 'ab', label: tex('(a+b)^2') }, { v: 'x3', label: tex('(x+3)^2') }, { v: 'n21', label: tex('21^2') }, { sep: 'Example 3 check:' }, { v: 'a3', label: '(a)' }, { v: 'b3', label: '(b)' }, { v: 'c3', label: '(c)' }, { v: 'd3', label: '(d)' }],
   intro: (k) => { const d = SQ[k]; return `Here is a square with side ${T(`${d.A}+${d.B}`)}. Its area is ${T(d.num ? d.q : d.head)}. Let’s find that area <b>another way</b>, piece by piece.`; },
   make(stage, key, ex) {
-    const W = ex.W, d = SQ[key], { A, B, p } = d, x0 = 86, y0 = 58, S = 304, pa = Math.round(S * d.ra), pb = S - pa;
+    const W = ex.W, d = SQ[key], { A, B, p } = d, x0 = 106, y0 = 58, S = 304, pa = Math.round(S * d.ra), pb = S - pa;
     add(stage, box(h('div', 'u3l4-sqo'), S, S), x0, y0);
     const rects = [[x0, y0, pa, pa, 'aa'], [x0 + pa, y0, pb, pa, 'ab'], [x0, y0 + pa, pa, pb, 'ab'], [x0 + pa, y0 + pa, pb, pb, 'bb']];
     const pcs = rects.map(([x, y, w, ht, cls], i) => { const e = add(stage, box(h('div', 'u3l4-pc ' + cls, `<span>${K(p[i])}</span>`), w, ht), x, y); hide(e); return e; });
@@ -277,7 +277,7 @@ const classicError = {
   choices: [{ v: '1,3', label: tex('(1+3)^2') }, { v: '3,4', label: tex('(3+4)^2') }, { v: '2,5', label: tex('(2+5)^2') }],
   intro: (k) => { const [a, b] = k.split(',').map(Number); return `Is ${T(`(${a}+${b})^2`)} the same as ${T(`${a}^2+${b}^2`)}? Count the small squares and see.`; },
   make(stage, key, ex) {
-    const W = ex.W, H = 420, [a, b] = key.split(',').map(Number), n = a + b, cell = Math.min(42, 320 / n), x0 = 78, gy = Math.round((H - n * cell) / 2) + 10;
+    const W = ex.W, H = 420, [a, b] = key.split(',').map(Number), n = a + b, cell = Math.min(n <= 4 ? 64 : 42, 320 / n), x0 = 78, gy = Math.round((H - n * cell) / 2) + 10;
     const reg = (i, j) => (i < a ? (j < a ? 'aa' : 'ab') : (j < a ? 'ba' : 'bb'));
     const cells = [];
     for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {

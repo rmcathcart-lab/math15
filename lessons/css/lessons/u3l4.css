@@ -184,12 +184,6 @@
 .u3l4-arcs { left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 3; }
 .u3l4-arclab { font: 900 22px var(--round); }
 .u3l4-lab { font-size: 26px; font-weight: 600; white-space: nowrap; }
-.u3l4-dim { height: 0; border-top: 2px solid #8b909b; }
-.u3l4-dim::before, .u3l4-dim::after { content: ""; position: absolute; top: -7px; width: 2px; height: 12px; background: #8b909b; }
-.u3l4-dim::before { left: 0; } .u3l4-dim::after { right: 0; }
-.u3l4-vdim { width: 0; border-left: 2px solid #8b909b; }
-.u3l4-vdim::before, .u3l4-vdim::after { content: ""; position: absolute; left: -7px; height: 2px; width: 12px; background: #8b909b; }
-.u3l4-vdim::before { top: 0; } .u3l4-vdim::after { bottom: 0; }
 .u3l4-wl { font-size: 28px; white-space: nowrap; }
 .u3l4-ans { color: var(--ok); }
 .u3l4-ans .katex { font-weight: 700; }

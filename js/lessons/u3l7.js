@@ -72,6 +72,9 @@
   function at(p, x) { return Y.at(p, { x: x }); }
   function numDiag(list) { return function (x) { for (var i = 0; i < list.length; i++) if (list[i][0] === x) return { code: list[i][1], hint: list[i][2] }; return null; }; }
   function numDiagClean(ans, list) { return numDiag(list.filter(function (d) { return d[0] !== ans && isFinite(d[0]); })); }
+  function o2(v, e) { var o = {}; o[v] = e; return o; }
+  function o11(u, w) { var o = {}; o[u] = 1; o[w] = 1; return o; }
+  var F = HW.fmt;
   var LETTERS2 = [['x', 'y'], ['a', 'b'], ['m', 'n'], ['p', 'q'], ['c', 'd'], ['s', 't'], ['u', 'v'], ['h', 'k']];
 
   /* like terms, one group per line, as in the booklet's worked solutions */
@@ -666,6 +669,699 @@
             return p0;
           } }] }
     ],
-    extra: []
+    extra: [
+      /* ---------- Part A ---------- */
+      { num: '1', section: 'Part A — Multi-Step Simplification', stem: 'Expand each product, then collect like terms. Work one product at a time and keep the brackets until you have distributed the sign in front of them.', parts: [
+        { id: 'e1a', level: 'PRG', make: function (r) {
+          var s = pickWhere(function () { return { a: r.int(2, 5), b: r.int(1, 5), c: r.int(1, 6), d: r.int(1, 5), e: r.int(1, 5) }; }, function (s) { return s.c !== s.d && -s.a * s.b + s.c - s.d + 2 * s.e !== 0; });
+          if (r.chance(0.12)) s = { a: 3, b: 2, c: 4, d: 1, e: 3 };
+          return comboPart('', [{ s: 1, p: pMono(M(s.a, 'x'), [M(1, 'x'), N(-s.b)]) }, { s: 1, p: pFoil(M(1, 'x'), N(s.c), M(1, 'x'), N(-s.d)) }, { s: -1, p: pSq(M(1, 'x'), N(-s.e)) }], null, 'ax(x−b)+(x+c)(x−d)−(x−e)²');
+        } },
+        { id: 'e1b', level: 'PRG', make: function (r) {
+          var s = pickWhere(function () { var o = { a: r.int(2, 6), b: r.int(1, 5), c: r.int(2, 3), d: r.int(1, 5), e: r.int(1, 7) }; o.f = o.a * o.b - (o.c * o.e - o.d); return o; },
+            function (s) { return s.f >= 2 && s.f <= 6 && s.a - s.c + s.f !== 0 && gcd(s.c, s.d) === 1; });
+          if (r.chance(0.12)) s = { a: 5, b: 3, c: 2, d: 1, e: 6, f: 4 };
+          var part = comboPart('', [{ s: 1, p: pMono(M(s.a, 'x'), [M(1, 'x'), N(s.b)]) }, { s: -1, p: pFoil(M(s.c, 'x'), N(-s.d), M(1, 'x'), N(s.e)) }, { s: 1, p: pMono(N(s.f), [M(1, 'x', 2), M(-1, 'x')]) }], null, 'ax(x+b)−(cx−d)(x+e)+f(x²−x)');
+          part.solution += '<br>The ' + t('x') + '-terms cancel completely.';
+          return part;
+        } }] },
+      { num: '2', stem: 'Expand and simplify. One part of each question uses a special-product pattern.', parts: [
+        { id: 'e2a', level: 'PRG', make: function (r) {
+          var s = pickWhere(function () { return { a: r.int(2, 4), b: r.int(1, 5), c: r.int(1, 6), d: r.int(1, 6) }; }, function (s) { return -s.a * s.c + s.b - 2 * s.d !== 0 && gcd(s.a, s.b) === 1; });
+          if (r.chance(0.12)) s = { a: 3, b: 2, c: 5, d: 4 };
+          return comboPart('', [{ s: 1, p: pFoil(M(s.a, 'x'), N(s.b), M(1, 'x'), N(-s.c)) }, { s: -1, p: pSq(M(1, 'x'), N(s.d)) }], null, '(ax+b)(x−c)−(x+d)²');
+        } },
+        { id: 'e2b', level: 'PRG', make: function (r) {
+          var s = pickWhere(function () { return { a: r.int(2, 4), b: r.int(1, 9), c: r.int(1, 6), d: r.int(2, 9) }; }, function (s) { return s.c !== s.d && s.c * s.d !== s.b * s.b && s.a * s.a !== 1 && gcd(s.a, s.b) === 1; });
+          if (r.chance(0.12)) s = { a: 2, b: 7, c: 3, d: 8 };
+          return comboPart('', [{ s: 1, p: pSd(M(s.a, 'x'), N(-s.b), 1, false) }, { s: -1, p: pFoil(M(1, 'x'), N(-s.c), M(1, 'x'), N(s.d)) }], null, '(ax−b)(ax+b)−(x−c)(x+d)');
+        } }] },
+      { num: '3', stem: 'Each expression is a product of <b>three</b> factors. Multiply two of them first — choosing the pair that forms a special product makes the work much shorter — then multiply the result by the remaining factor.', parts: [
+        { id: 'e3a', level: 'PRG', make: function (r) {
+          var s = pickWhere(function () { return { k: r.int(2, 4), a: r.int(1, 5), b: r.int(1, 5) }; }, function (s) { return s.a !== s.b; });
+          if (r.chance(0.12)) s = { k: 2, a: 3, b: 1 };
+          var D = S([M(1, 'x', 2), N(-s.a * s.a)]), kD = Y.scale(D, s.k), B = lin(1, s.b), T = Y.mul(kD, B), tex = s.k + '(x+' + s.a + ')(x-' + s.a + ')(x+' + s.b + ')';
+          return pp(t(tex), T, [
+            { is: Y.mul(S([M(1, 'x', 2), N(s.a * s.a)]), B, N(s.k)), code: 'sd-plus', hint: t('(x+' + s.a + ')(x-' + s.a + ')=x^{2}-' + s.a * s.a) + ': a sum times a difference gives a <b>difference</b> of squares.' },
+            { is: Y.mul(D, B), code: 'k-forgot', hint: 'Don’t forget the ' + t(s.k) + ' in front: it multiplies the whole product.' },
+            { is: Y.mul(D, B, N(s.k * s.k)), code: 'k-both', hint: 'The ' + t(s.k) + ' multiplies the product <b>once</b>, not once for each bracket.' },
+            { is: S([M(s.k, 'x', 3), N(-s.k * s.a * s.a * s.b)]), code: 'fl-only', hint: 'Multiply <b>every</b> term of ' + t(s.k + 'x^{2}-' + s.k * s.a * s.a) + ' by <b>every</b> term of ' + t('(x+' + s.b + ')') + ' — four products.' }],
+            'The pair ' + t('(x+' + s.a + ')(x-' + s.a + ')') + ' is a sum times a difference: ' + t('x^{2}-' + s.a * s.a) + '.<br>' + t(s.k + '\\left(x^{2}-' + s.a * s.a + '\\right)=' + tx(kD)) + '<br>' + t('\\left(' + tx(kD) + '\\right)(x+' + s.b + ')=' + seq([Y.mul(kD, M(1, 'x')), Y.mul(kD, N(s.b))].reduce(function (a, p) { return a.concat(termsOf(p)); }, [])) + '=' + tx(T)),
+            ['Multiply ' + t('(x+' + s.a + ')(x-' + s.a + ')') + ' first — a difference of squares. Then multiply by ' + t(s.k) + ', then by ' + t('(x+' + s.b + ')') + '.'], 'k(x+a)(x−a)(x+b)');
+        } },
+        { id: 'e3b', level: 'PRG', make: function (r) {
+          var ab = pickWhere(function () { return [r.int(2, 5), r.int(1, 5)]; }, function (q) { return gcd(q[0], q[1]) === 1; }), a = ab[0], b = ab[1]; if (r.chance(0.12)) { a = 2; b = 1; }
+          var D = S([M(a * a, 'x', 2), N(-b * b)]), T = Y.mul(M(-1, 'x'), D), bt0 = b === 1 ? '1' : String(b);
+          return pp(t('-x(' + a + 'x-' + bt0 + ')(' + a + 'x+' + bt0 + ')'), T, [
+            { is: Y.mul(M(-1, 'x'), S([M(a * a, 'x', 2), N(b * b)])), code: 'sd-plus', hint: 'A sum times a difference gives a <b>difference</b> of squares: ' + t('(' + a + 'x)^{2}-' + bt0 + '^{2}=' + tx(D)) + '.' },
+            { is: S([M(-a * a, 'x', 3), M(-b * b, 'x')]), code: 'neg-first', hint: 'The ' + t('-x') + ' multiplies <b>both</b> terms of ' + t(tx(D)) + ': ' + t('-x\\cdot(-' + b * b + ')=+' + (b * b === 1 ? '' : b * b) + 'x') + '.' },
+            { is: Y.mul(M(-1, 'x'), S([M(a, 'x', 2), N(-b * b)])), code: 'coef-not-squared', hint: 'Square the whole first term: ' + t('(' + a + 'x)^{2}=' + a * a + 'x^{2}') + '.' }],
+            'Sum times difference first: ' + t('(' + a + 'x-' + bt0 + ')(' + a + 'x+' + bt0 + ')=' + tx(D)) + '<br>' + t('-x\\left(' + tx(D) + '\\right)=' + tx(T)),
+            ['Multiply the two binomials first (a difference of squares), then multiply both terms by ' + t('-x') + '.'], '−x(ax−b)(ax+b)');
+        } }] },
+      { num: '4', stem: 'A cube of a binomial is just a square followed by one more multiplication.',
+        shared: function (r) { var k = r.int(2, 6), m = r.int(1, 5); if (r.chance(0.12)) { k = 2; m = 1; } return { k: k, m: m }; },
+        parts: [
+          { id: 'e4a', level: 'BEG', make: function (r, sh) { var P = pSq(M(1, 'x'), N(sh.k)); return pp('(a) Expand ' + t(P.tex) + '.', P.val, combo([{ s: 1, p: P }]).wr, P.sol, ['Use ' + t('(a+b)^{2}=a^{2}+2ab+b^{2}') + '.'], 'square (x+k)²'); } },
+          { id: 'e4b', level: 'EMG', make: function (r, sh) {
+            var k = sh.k, Sq = Y.pow(lin(1, k), 2), C = Y.pow(lin(1, k), 3);
+            return pp('(b) Multiply your answer from (a) by ' + t('(x+' + k + ')') + ' to obtain ' + t('(x+' + k + ')^{3}') + '.', C, [
+              { is: S([M(1, 'x', 3), N(k * k * k)]), code: 'cube-each', hint: 'You can’t cube each term separately: ' + t('(x+' + k + ')^{3}') + ' is ' + t('(x+' + k + ')(x+' + k + ')(x+' + k + ')') + '.' },
+              { is: Y.mul(S([M(1, 'x', 2), N(k * k)]), lin(1, k)), code: 'sq-no-middle', hint: 'Use the square from (a) with its middle term: ' + t(tx(Sq)) + '.' },
+              { is: S([Y.mul(Sq, M(1, 'x')), N(k)]), code: 'q-not-mult', hint: 'The ' + t(k) + ' in ' + t('(x+' + k + ')') + ' multiplies every term of ' + t(tx(Sq)) + ' too.' }],
+              t('(x+' + k + ')\\left(' + tx(Sq) + '\\right)=' + seq(termsOf(Y.mul(Sq, M(1, 'x'))).concat(termsOf(Y.mul(Sq, N(k))))) + '=' + tx(C)),
+              ['Multiply ' + t('x') + ' by each term of ' + t(tx(Sq)) + ', then ' + t(k) + ' by each term — six products. Then collect.'], 'cube (x+k)³');
+          } },
+          { id: 'e4c', level: 'PRG', make: function (r, sh) {
+            var m = sh.m, Sq = Y.pow(lin(1, -m), 2), C = Y.pow(lin(1, -m), 3);
+            return pp('(c) Use the same two-step method to expand ' + t('(x-' + m + ')^{3}') + '.', C, [
+              { is: S([M(1, 'x', 3), N(-m * m * m)]), code: 'cube-each', hint: 'You can’t cube each term separately. Square first: ' + t('(x-' + m + ')^{2}=' + tx(Sq)) + ', then multiply by ' + t('(x-' + m + ')') + '.' },
+              { is: Y.mul(S([M(1, 'x', 2), N(m * m)]), lin(1, -m)), code: 'sq-no-middle', hint: 'Square first, with the middle term: ' + t('(x-' + m + ')^{2}=' + tx(Sq)) + '.' },
+              { is: Y.mul(Sq, lin(1, m)), code: 'sign', hint: 'The third factor is ' + t('(x-' + m + ')') + ': multiply by ' + t('-' + m) + ', not ' + t('+' + m) + '.' }],
+              'Step 1: ' + t('(x-' + m + ')^{2}=' + tx(Sq)) + '<br>Step 2: ' + t('(x-' + m + ')\\left(' + tx(Sq) + '\\right)=' + seq(termsOf(Y.mul(Sq, M(1, 'x'))).concat(termsOf(Y.mul(Sq, N(-m))))) + '=' + tx(C)),
+              ['Square first: ' + t('(x-' + m + ')^{2}') + '. Then multiply every term by ' + t('x') + ' and by ' + t('-' + m) + '.', 'The signs alternate in the answer: ' + t('+,\\ -,\\ +,\\ -') + '.'], 'cube (x−m)³');
+          } }] },
+      { num: '5', stem: 'Expand and simplify. Notice that the first term is a binomial times a trinomial and the second is a monomial times a perfect square.', parts: [
+        { id: 'e5', level: 'ADV', make: function (r) {
+          var s = pickWhere(function () { return { a: r.int(2, 3), e: nz(r, -3, 3), b: r.int(1, 5), c: r.int(1, 6), d: r.int(2, 6) }; }, function (s) {
+            var R = Y.sub(Y.mul(lin(s.a, s.e), S([M(1, 'x', 2), M(-s.b, 'x'), N(s.c)])), Y.mul(M(1, 'x'), Y.pow(lin(1, -s.d), 2))); return Y.count(R) === 4;
+          });
+          if (r.chance(0.12)) s = { a: 2, e: 1, b: 3, c: 4, d: 5 };
+          var sqd = Y.pow(lin(1, -s.d), 2), P2 = { tex: 'x(x-' + s.d + ')^{2}', val: Y.mul(M(1, 'x'), sqd), sol: t('(x-' + s.d + ')^{2}=' + tx(sqd)) + ', so ' + t('x(x-' + s.d + ')^{2}=x\\left(' + tx(sqd) + '\\right)=' + tx(Y.mul(M(1, 'x'), sqd))),
+            wr: [{ p: Y.mul(M(1, 'x'), S([M(1, 'x', 2), N(s.d * s.d)])), code: 'sq-no-middle', hint: 'Square first, with the middle term: ' + t('(x-' + s.d + ')^{2}=' + tx(sqd)) + '.' },
+              { p: Y.pow(lin(1, -s.d), 2), code: 'k-forgot', hint: 'Multiply the square by the ' + t('x') + ' in front.' },
+              { p: Y.pow(Y.mul(M(1, 'x'), lin(1, -s.d)), 2), code: 'k-in-square', hint: 'Square the bracket first, then multiply by ' + t('x') + '. Putting ' + t('x') + ' inside before squaring makes it ' + t('x^{2}') + '.' }] };
+          return comboPart('', [{ s: 1, p: pBT([M(s.a, 'x'), N(s.e)], [M(1, 'x', 2), M(-s.b, 'x'), N(s.c)]) }, { s: -1, p: P2 }], ['Do the two products separately: six products for the binomial × trinomial; square, then multiply by ' + t('x') + ' for the second.', 'Subtract the <b>whole</b> second result: change every sign.'], 'binomial×trinomial − x(x−d)²');
+        } }] },
+      /* ---------- Part B ---------- */
+      { num: '6', section: 'Part B — Special Products and Patterns', stem: 'Expand using the appropriate pattern. Be careful about what plays the role of ' + t('a') + ' and what plays the role of ' + t('b') + '.', parts: [
+        { id: 'e6a', level: 'EMG', make: function (r) {
+          var L = r.pick(LETTERS2), ab = pickWhere(function () { return [r.int(2, 5), r.int(1, 5)]; }, function (q) { return gcd(q[0], q[1]) === 1 && q[0] !== q[1]; });
+          if (r.chance(0.12)) { L = ['x', 'y']; ab = [3, 2]; }
+          var P = pSq(M(ab[0], L[0]), M(ab[1], L[1]));
+          return pp(t(P.tex), P.val, combo([{ s: 1, p: P }]).wr, P.sol, ['Here ' + t('a=' + ab[0] + L[0]) + ' and ' + t('b=' + (ab[1] === 1 ? '' : ab[1]) + L[1]) + '. Use ' + t('(a+b)^{2}=a^{2}+2ab+b^{2}') + '.', 'Square each whole term, coefficient and all.'], '(au+bw)²', { vars: L });
+        } },
+        { id: 'e6b', level: 'EMG', make: function (r) {
+          var L = r.pick(LETTERS2), ab = pickWhere(function () { return [r.int(2, 6), r.int(1, 6)]; }, function (q) { return gcd(q[0], q[1]) === 1 && q[0] !== q[1]; });
+          if (r.chance(0.12)) { L = ['a', 'b']; ab = [5, 4]; }
+          var P = pSd(M(ab[0], L[0]), M(-ab[1], L[1]), 1, false);
+          return pp(t(P.tex), P.val, combo([{ s: 1, p: P }]).wr, P.sol, ['A sum times a difference: ' + t('(a-b)(a+b)=a^{2}-b^{2}') + ' with ' + t('a=' + ab[0] + L[0]) + ', ' + t('b=' + (ab[1] === 1 ? '' : ab[1]) + L[1]) + '.'], '(au−bw)(au+bw)', { vars: L });
+        } },
+        { id: 'e6c', level: 'EMG', make: function (r) {
+          var k = r.int(2, 9), v = r.pick(['x', 'x', 'y', 'a', 'm']), sw = r.chance(0.3); if (r.chance(0.12)) { k = 3; v = 'x'; sw = false; }
+          var P = pSd(M(1, v, 2), N(k), 1, sw);
+          return pp(t(P.tex), P.val, combo([{ s: 1, p: P }]).wr, P.sol, ['The first term is ' + t(v + '^{2}') + ' itself, so ' + t('a=' + v + '^{2}') + ' and ' + t('a^{2}=(' + v + '^{2})^{2}=' + v + '^{4}') + '.'], '(x²+k)(x²−k)');
+        } }] },
+      { num: '7', stem: 'Work backwards from the pattern to find the missing terms.', parts: [
+        { id: 'e7a', level: 'EMG', make: function (r) {
+          var k = r.int(2, 12); if (r.chance(0.12)) k = 7;
+          var p = KP.number('Find the missing number: ' + t('\\left(x+\\square\\right)^{2}=x^{2}+' + 2 * k + 'x+' + k * k), k, numDiagClean(k, [[2 * k, 'cs-half', 'That is the middle coefficient, ' + t('2ab') + '. The missing number is <b>half</b> of it.'], [k * k, 'not-sq', 'That is the last term, ' + t('b^{2}') + '. The missing number is its <b>square root</b>.']]),
+            t('(x+b)^{2}=x^{2}+2bx+b^{2}') + ': the last term is ' + t(k * k + '=' + k + '^{2}') + ' and the middle term ' + t(2 * k + 'x=2(x)(' + k + ')') + ' agrees, so the missing number is ' + t(k) + '.',
+            ['The last term of a perfect square is ' + t('b^{2}') + '. What number squared gives ' + t(k * k) + '?', 'Check with the middle term: it should be ' + t('2\\cdot b\\cdot x') + '.'], 'missing b in (x+b)²', { before: t('\\square=') });
+          p.bad = [String(2 * k), String(k * k)]; return p;
+        } },
+        { id: 'e7b', level: 'PRG', make: function (r) {
+          var ab = pickWhere(function () { return [r.int(2, 5), r.int(1, 7)]; }, function (q) { return gcd(q[0], q[1]) === 1; }), a = ab[0], b = ab[1]; if (r.chance(0.12)) { a = 3; b = 4; }
+          var p = KP.number('Find the missing number: ' + t('\\left(' + a + 'x-\\square\\right)^{2}=' + a * a + 'x^{2}-' + 2 * a * b + 'x+' + b * b), b, numDiagClean(b, [[b * b, 'not-sq', 'That is the last term. The missing number is its <b>square root</b>.'], [2 * a * b, 'cs-half', 'That is the middle coefficient, ' + t('2ab') + '.'], [a * b, 'cs-half', t('2ab=' + 2 * a * b) + ' with ' + t('a=' + a + 'x') + ', so ' + t('b=' + 2 * a * b + '\\div(2\\cdot' + a + ')') + '.'], [-b, 'sign', 'The bracket already shows the minus sign: type the number that goes in the box.']]),
+            'The last term is ' + t(b * b + '=' + b + '^{2}') + ', so the missing number is ' + t(b) + '. Check the middle term: ' + t('-2(' + a + 'x)(' + b + ')=-' + 2 * a * b + 'x') + ' ✓',
+            ['The last term is ' + t('b^{2}') + '. Take its square root, then check the middle term ' + t('-2(' + a + 'x)(b)') + '.'], 'missing b in (ax−b)²', { before: t('\\square=') });
+          p.bad = [String(b * b), String(2 * a * b)]; return p;
+        } },
+        { id: 'e7c', level: 'PRG', make: function (r) {
+          var a = r.int(2, 9), m = r.int(1, 9); if (r.chance(0.12)) { a = 4; m = 5; }
+          var want = M(a, 'x');
+          var chk = function (resp) {
+            var A = readPoly(resp); if (A.res) return A.res;
+            if (Y.eq(A.p, want) || Y.eq(A.p, Y.neg(want))) return A.fi ? form(A.fi.code, A.fi.msg || 'Simplify it.') : ok();
+            if (Y.eq(A.p, M(a * a, 'x', 2)) || Y.eq(A.p, M(a * a, 'x'))) return wrong('not-sq', 'The square of the blank is ' + t(a * a + 'x^{2}') + ', so the blank is its <b>square root</b>: what squared gives ' + t(a * a + 'x^{2}') + '?');
+            if (Y.eq(A.p, N(a)) || Y.eq(A.p, M(1, 'x'))) return wrong('value', 'The blank squared must be the whole first term, ' + t(a * a + 'x^{2}') + ' — include both the number and the ' + t('x') + '.');
+            if (Y.eq(A.p, M(a, 'x', 2))) return wrong('exp', t('(' + a + 'x^{2})^{2}=' + a * a + 'x^{4}') + '. The blank is ' + t('\\sqrt{' + a * a + 'x^{2}}') + '.');
+            return wrong('value', 'Expand ' + t('(\\square+' + m + ')(\\square-' + m + ')=\\square^{2}-' + m * m) + ', so ' + t('\\square^{2}') + ' must be ' + t(a * a + 'x^{2}') + '.');
+          };
+          var p = KP.math('Find the term that goes in <b>both</b> blanks: ' + t('\\left(\\square+' + m + '\\right)\\left(\\square-' + m + '\\right)=' + a * a + 'x^{2}-' + m * m), chk, a + 'x',
+            'A sum times a difference: ' + t('(\\square+' + m + ')(\\square-' + m + ')=\\square^{2}-' + m * m) + '. So ' + t('\\square^{2}=' + a * a + 'x^{2}') + ' and ' + t('\\square=' + a + 'x') + ' (since ' + t('(' + a + 'x)^{2}=' + a * a + 'x^{2}') + ').',
+            ['The product is ' + t('\\square^{2}-' + m + '^{2}') + '. What squared gives ' + t(a * a + 'x^{2}') + '?'], 'missing a in (a+m)(a−m)', { keys: 'poly', vars: ['x'], before: t('\\square=') });
+          p.bad = [a * a + 'x^{2}', String(a), a + 'x^{2}']; p.good = ['-' + a + 'x'];
+          return p;
+        } }] },
+      { num: '8', stem: 'Patterns are not only for algebra — they make some arithmetic easy enough to do in your head.',
+        shared: function (r) {
+          var k = r.pick([1, 1, 1, 2, 3]), form2 = r.chance(0.7) ? 'plus' : 'minus', v = r.pick(['n', 'n', 'n', 'm', 't', 'a']), Nn = r.int(2, 9) * 10 + r.pick([0, 0, 0, r.int(1, 9)]);
+          if (r.chance(0.12)) { k = 1; form2 = 'plus'; v = 'n'; Nn = 50; }
+          var a = r.int(2, 10) * 10, b = r.int(1, 5); if (r.chance(0.12)) { a = 100; b = 2; }
+          return { k: k, form: form2, v: v, N: Nn, a: a, b: b };
+        },
+        parts: [
+          { id: 'e8a1', sub: 'a expand', level: 'EMG', make: function (r, sh) {
+            var k = sh.k, v = sh.v, plus = sh.form === 'plus', L = plus ? Y.sub(Y.pow(lin(1, k, v), 2), M(1, v, 2)) : Y.sub(M(1, v, 2), Y.pow(lin(1, -k, v), 2));
+            var lhs = plus ? '(' + v + '+' + k + ')^{2}-' + v + '^{2}' : v + '^{2}-(' + v + '-' + k + ')^{2}', sq = plus ? Y.pow(lin(1, k, v), 2) : Y.pow(lin(1, -k, v), 2);
+            return pp('(a) Expand and simplify the left side of ' + t(lhs + '=' + tx(L)) + ' to show that it is true for every number ' + t(v) + '. (Type the simplified left side.)', L, [
+              { is: plus ? N(k * k) : N(-k * k), code: 'sq-no-middle', hint: 'The square has a middle term: ' + t((plus ? '(' + v + '+' + k + ')^{2}' : '(' + v + '-' + k + ')^{2}') + '=' + tx(sq)) + '.' },
+              { is: plus ? Y.sub(sq, N(0)) : Y.add(M(2, v, 2), Y.neg(sq)).length ? null : null, code: 'value' },
+              { is: plus ? null : S([M(-2 * k, v), N(k * k)]), code: 'minus-first', hint: 'Subtract the <b>whole</b> square: ' + t('-\\left(' + tx(sq) + '\\right)=' + tx(Y.neg(sq))) + '.' }],
+              t(lhs + '=' + (plus ? '\\left(' + tx(sq) + '\\right)-' + v + '^{2}' : v + '^{2}-\\left(' + tx(sq) + '\\right)') + '=' + tx(L)),
+              ['Expand the square with its middle term, then subtract.'], 'expand (n+k)²−n²', { vars: [v] });
+          } },
+          { id: 'e8a2', sub: 'a evaluate', level: 'EMG', make: function (r, sh) {
+            var k = sh.k, n = sh.N, plus = sh.form === 'plus', val = plus ? 2 * k * n + k * k : 2 * k * n - k * k;
+            var exprN = plus ? (n + k) + '^{2}-' + n + '^{2}' : n + '^{2}-' + (n - k) + '^{2}', rule = plus ? '2' + (k === 1 ? '' : k) + sh.v + '+' + k * k : 2 * k + sh.v + '-' + k * k;
+            var p = KP.number('Use the result ' + t((plus ? '(' + sh.v + '+' + k + ')^{2}-' + sh.v + '^{2}' : sh.v + '^{2}-(' + sh.v + '-' + k + ')^{2}') + '=' + (plus ? tx(lin(2 * k, k * k, sh.v)) : tx(lin(2 * k, -k * k, sh.v)))) + ' to evaluate ' + t(exprN) + ' without a calculator.', val,
+              numDiagClean(val, [[2 * k * n, 'missing-term', 'Include the constant term ' + t((plus ? '+' : '-') + k * k) + '.'], [k * k, 'sq-no-middle', 'That leaves out the middle term ' + t('2\\cdot' + k + '\\cdot' + sh.v) + '.'], [plus ? 2 * k * (n + k) + k * k : 2 * k * (n - k) - k * k, 'value', 'Use ' + t(sh.v + '=' + n) + ' (the number that is <b>not</b> ' + (plus ? 'increased' : 'decreased') + ').']]),
+              'With ' + t(sh.v + '=' + n) + ': ' + t(exprN + '=' + (plus ? 2 * k + '(' + n + ')+' + k * k : 2 * k + '(' + n + ')-' + k * k) + '=' + val) + '.',
+              ['Match ' + t(exprN) + ' with the left side: what is ' + t(sh.v) + '? Then work out ' + t(rule) + '.'], 'evaluate with the pattern');
+            p.bad = [String(2 * k * n), String(k * k)]; return p;
+          } },
+          { id: 'e8b', sub: 'b', level: 'EMG', make: function (r, sh) {
+            var a = sh.a, b = sh.b, P1 = a + b, P2 = a - b, val = a * a - b * b, fl = [nbox('a', { label: t('a') }), nbox('b', { label: t('b') }), nbox('Product', { label: t(P1 + '\\times ' + P2 + '=') })];
+            var chk = function (resp) {
+              resp = resp || [];
+              var A = HW.parse.number(resp[0] == null ? '' : resp[0]), Bv = HW.parse.number(resp[1] == null ? '' : resp[1]), Cv = HW.parse.number(resp[2] == null ? '' : resp[2]);
+              if (!A.ok || !Bv.ok || !Cv.ok) return form('empty', 'Fill in all three boxes with numbers.');
+              if (A.value !== a || Math.abs(Bv.value) !== b) {
+                if (A.value === P1 && Bv.value === P2 || A.value === P2 && Bv.value === P1) return wrong('u3l7-ab-pick', t('a') + ' and ' + t('b') + ' are not the two numbers being multiplied. Write ' + t(P1 + '=a+b') + ' and ' + t(P2 + '=a-b') + ': ' + t('a') + ' is the number halfway between, and ' + t('b') + ' is the distance to each.');
+                return wrong('u3l7-ab-pick', t('a') + ' is the number halfway between ' + t(P1) + ' and ' + t(P2) + ', and ' + t('b') + ' is how far each one is from it.');
+              }
+              if (Cv.value === val) return ok();
+              if (Cv.value === a * a + b * b) return wrong('sd-plus', t('(a+b)(a-b)=a^{2}-b^{2}') + ': <b>subtract</b> ' + t(b + '^{2}') + '.');
+              if (Cv.value === a * a - b || Cv.value === a * a - 2 * b) return wrong('not-sq', 'Square ' + t('b') + ': ' + t(b + '^{2}=' + b * b) + '.');
+              return wrong('value', t(a + '^{2}-' + b + '^{2}=' + a * a + '-' + b * b) + '.');
+            };
+            var p = KP.fields('(b) Use ' + t('(a+b)(a-b)=a^{2}-b^{2}') + ' to evaluate ' + t(P1 + '\\times ' + P2) + ' mentally. State what you chose for ' + t('a') + ' and for ' + t('b') + ', and the product.', fl, [], [String(a), String(b), String(val)], t('a=' + a) + ', ' + t('b=' + b) + ', ' + t(P1 + '\\times ' + P2 + '=' + F(val)),
+              t(P1 + '=' + a + '+' + b) + ' and ' + t(P2 + '=' + a + '-' + b) + ', so ' + t('a=' + a) + ' and ' + t('b=' + b) + '.<br>' + t(P1 + '\\times ' + P2 + '=' + a + '^{2}-' + b + '^{2}=' + F(a * a) + '-' + b * b + '=' + F(val)) + '.',
+              ['Write ' + t(P1) + ' and ' + t(P2) + ' as the same number plus and minus a small number.'], 'mental product (a+b)(a−b)');
+            p.check = chk; p.bad = [[String(P1), String(P2), String(val)], [String(a), String(b), String(a * a + b * b)]];
+            return p;
+          } }] },
+      { num: '9', stem: 'Multiply each binomial by the trinomial beside it. Six products, then collect — and watch how much collapses.',
+        shared: function (r) { var L = r.pick(LETTERS2); if (r.chance(0.12)) L = ['x', 'y']; return { u: L[0], w: L[1], rev: r.chance(0.3), k: r.int(2, 5), sg: r.pick([1, 1, -1]), v: r.pick(['x', 'x', 'y', 'a']) }; },
+        parts: [
+          { id: 'e9a', sub: 'a', level: 'PRG', make: function (r, sh) {
+            var u = M(1, sh.u), w = M(1, sh.w), Tr = sh.rev ? [MV(1, o2(sh.w, 2)), MV(-1, o11(sh.u, sh.w)), MV(1, o2(sh.u, 2))] : [MV(1, o2(sh.u, 2)), MV(-1, o11(sh.u, sh.w)), MV(1, o2(sh.w, 2))];
+            var P = pBT([u, w], Tr), part = comboPart('(a) Expand ', [{ s: 1, p: P }], ['Multiply ' + t(sh.u) + ' by each term of the trinomial, then ' + t(sh.w) + ' by each term. Watch for terms that cancel.'], 'sum of cubes', { vars: [sh.u, sh.w] });
+            part.solution += '<br>The four middle terms cancel in pairs.';
+            return part;
+          } },
+          { id: 'e9a2', sub: 'a pattern', level: 'EMG', make: function (r, sh) {
+            var u = sh.u, w = sh.w;
+            return mc(r, 'What pattern do you notice in (a)?', [
+              { html: 'The four middle products cancel in pairs, leaving only two terms: a <b>sum of cubes</b>, ' + t(u + '^{3}+' + w + '^{3}') + '.', right: true },
+              { html: 'Nothing cancels: there are six different terms.', why: 'Look again: ' + t('-' + u + '^{2}' + w) + ' and ' + t('+' + u + '^{2}' + w) + ' are like terms and cancel; so do ' + t('+' + u + w + '^{2}') + ' and ' + t('-' + u + w + '^{2}') + '.', code: 'p-none' },
+              { html: 'It is a difference of squares, ' + t(u + '^{2}-' + w + '^{2}') + '.', why: 'A binomial (degree 1) times a trinomial (degree 2) has degree ' + t(3) + ': the answer has cubes.', code: 'p-dos' },
+              { html: 'The answer is ' + t('(' + u + '+' + w + ')^{3}') + '.', why: t('(' + u + '+' + w + ')^{3}') + ' has four terms with ' + t(3 + u + '^{2}' + w) + ' and ' + t(3 + u + w + '^{2}') + '. Here those terms cancel.', code: 'p-cube' }],
+              t('(' + u + '+' + w + ')(' + u + '^{2}-' + u + w + '+' + w + '^{2}) = ' + u + '^{3}-' + u + '^{2}' + w + '+' + u + w + '^{2}+' + u + '^{2}' + w + '-' + u + w + '^{2}+' + w + '^{3}=' + u + '^{3}+' + w + '^{3}') + ': the middle products cancel in pairs, leaving a sum of cubes.',
+              ['Which of the six products are like terms with opposite signs?'], 'sum of cubes pattern');
+          } },
+          { id: 'e9b', sub: 'b', level: 'PRG', make: function (r, sh) {
+            var u = M(1, sh.u), w = M(-1, sh.w), Tr = sh.rev ? [MV(1, o2(sh.w, 2)), MV(1, o11(sh.u, sh.w)), MV(1, o2(sh.u, 2))] : [MV(1, o2(sh.u, 2)), MV(1, o11(sh.u, sh.w)), MV(1, o2(sh.w, 2))];
+            return comboPart('(b) Expand ', [{ s: 1, p: pBT([u, w], Tr) }], ['Multiply ' + t(sh.u) + ' by each term, then ' + t('-' + sh.w) + ' by each term. Watch the signs.'], 'difference of cubes', { vars: [sh.u, sh.w] });
+          } },
+          { id: 'e9b2', sub: 'b compare', level: 'EMG', make: function (r, sh) {
+            var u = sh.u, w = sh.w;
+            return mc(r, 'How does the result of (b) compare with (a)?', [
+              { html: 'Same structure — the middle products cancel again — but the sign of ' + t(w + '^{3}') + ' is reversed: (b) gives the <b>difference of cubes</b> ' + t(u + '^{3}-' + w + '^{3}') + '.', right: true },
+              { html: 'It is exactly the same answer as (a).', why: 'The last product is ' + t('(-' + w + ')(' + w + '^{2})=-' + w + '^{3}') + ', so the sign changes.', code: 'c-same' },
+              { html: 'In (b) nothing cancels, so there are six terms.', why: 'The middle products cancel in pairs again: ' + t(u + '^{2}' + w) + ' with ' + t('-' + u + '^{2}' + w) + ', ' + t(u + w + '^{2}') + ' with ' + t('-' + u + w + '^{2}') + '.', code: 'c-none' },
+              { html: 'Both signs change: (b) is ' + t('-' + u + '^{3}-' + w + '^{3}') + '.', why: 'The first product is ' + t(u + '\\cdot ' + u + '^{2}=+' + u + '^{3}') + ' — it is still positive.', code: 'c-both' }],
+              '(a) gives ' + t(u + '^{3}+' + w + '^{3}') + ' and (b) gives ' + t(u + '^{3}-' + w + '^{3}') + ': in both, the four middle products cancel; only the sign of ' + t(w + '^{3}') + ' differs.',
+              ['Compare the last product in each: ' + t(w + '\\cdot ' + w + '^{2}') + ' and ' + t('(-' + w + ')\\cdot ' + w + '^{2}') + '.'], 'compare cubes');
+          } },
+          { id: 'e9c', sub: 'c', level: 'EMG', make: function (r, sh) {
+            var k = sh.k, s = sh.sg, v = sh.v, T = S([M(1, v, 3), N(s * k * k * k)]), tex = '(' + v + (s > 0 ? '+' : '-') + k + ')\\left(' + v + '^{2}' + (s > 0 ? '-' : '+') + k + v + '+' + k * k + '\\right)';
+            return pp('(c) Use the pattern from (a) and (b) to write the expansion of ' + t(tex) + ' in one step.', T, [
+              { is: S([M(1, v, 3), N(s * k * k)]), code: 'not-sq', hint: 'The last term is ' + t(k + '\\cdot ' + k * k + '=' + k + '^{3}') + ', not ' + t(k * k) + '.' },
+              { is: S([M(1, v, 3), N(s * 3 * k)]), code: 'value', hint: t(k + '^{3}=' + k + '\\times ' + k + '\\times ' + k) + ', not ' + t('3\\times ' + k) + '.' },
+              { is: S([M(1, v, 3), N(-s * k * k * k)]), code: 'sign', hint: 'Look at the sign in the binomial: the last term is ' + t('(' + (s > 0 ? '' : '-') + k + ')(' + k * k + ')') + '.' }],
+              'It matches ' + (s > 0 ? t('(a+b)(a^{2}-ab+b^{2})=a^{3}+b^{3}') : t('(a-b)(a^{2}+ab+b^{2})=a^{3}-b^{3}')) + ' with ' + t('a=' + v) + ' and ' + t('b=' + k) + ', so the answer is ' + t(v + '^{3}' + (s > 0 ? '+' : '-') + k + '^{3}=' + tx(T)) + '.',
+              ['Match it with the pattern: ' + t('a=' + v) + ', ' + t('b=' + k) + '. Only the cubes are left.'], 'sum/difference of cubes in one step', { vars: [v] });
+          } }] },
+      /* ---------- Part C ---------- */
+      { num: '10', section: 'Part C — Reasoning and Error Analysis', stem: '<b>Degree reasoning.</b> The <b>degree</b> of a polynomial in one variable is the largest exponent on the variable once the expression is fully simplified.',
+        shared: function (r) { return pickWhere(function () { return { p: r.int(1, 6), q: r.int(1, 6), w: r.int(2, 9) }; }, function (s) { var R = Y.mul(lin(1, s.p), S([M(1, 'x', 2), M(-s.q, 'x'), N(s.w)])); return Y.count(R) === 4 && s.p !== s.q; }); },
+        parts: [
+          { id: 'e10a', sub: 'a', level: 'EMG', make: function (r, sh) {
+            var Bn = lin(1, sh.p), Tr = S([M(1, 'x', 2), M(-sh.q, 'x'), N(sh.w)]), R = Y.mul(Bn, Tr), ex = '(x+' + sh.p + ')\\left(' + tx(Tr) + '\\right)';
+            var fl = [nbox('Degree', { label: 'degree of the product' }), nbox('Products', { label: 'products formed before collecting' }), nbox('Terms', { label: 'terms left after collecting (usually)' })];
+            return KP.fields('(a) A binomial of degree ' + t(1) + ' is multiplied by a trinomial of degree ' + t(2) + ', for example ' + t(ex) + '.', fl,
+              [K.number(3, numDiag([[2, 'deg-wrong', 'The highest term is ' + t('x\\cdot x^{2}=x^{3}') + ': exponents <b>add</b> when you multiply.'], [1, 'deg-wrong', 'The highest term is ' + t('x\\cdot x^{2}=x^{3}') + '.']])),
+                K.number(6, numDiag([[5, 'value', 'Each of the ' + t(2) + ' terms multiplies each of the ' + t(3) + ' terms: ' + t('2\\times 3') + '.'], [4, 'foil-only', 'That is FOIL for two binomials. Here each of ' + t(2) + ' terms meets each of ' + t(3) + ' terms.']])),
+                K.number(4, numDiag([[6, 'cancel-missed', 'Like terms collect: the two ' + t('x^{2}') + '-terms and the two ' + t('x') + '-terms each combine.'], [3, 'value', 'Count the terms of ' + t(tx(R)) + '.']]))],
+              ['3', '6', '4'], 'degree ' + t(3) + ', ' + t(6) + ' products, ' + t(4) + ' terms',
+              t(ex + '=' + seq(termsOf(Y.mul(M(1, 'x'), Tr)).concat(termsOf(Y.mul(N(sh.p), Tr)))) + '=' + tx(R)) + '<br>Degree ' + t('1+2=3') + ' (from ' + t('x\\cdot x^{2}') + '); ' + t('2\\times 3=6') + ' products; the ' + t('x^{2}') + '-terms and the ' + t('x') + '-terms collect, leaving ' + t(4) + ' terms.',
+              ['Multiply the highest terms to find the degree. Each term of the binomial meets each term of the trinomial once.'], 'degree and count of products');
+          } },
+          { id: 'e10b', sub: 'b', level: 'EMG', make: function (r, sh) {
+            var Tr = S([M(1, 'x', 2), M(-sh.q, 'x'), N(sh.w)]), sum = Y.add(lin(1, sh.p), Tr);
+            return mc(r, '(b) What is the degree of the <b>sum</b> ' + t('(x+' + sh.p + ')+\\left(' + tx(Tr) + '\\right)') + ', and why do adding and multiplying affect the degree so differently?', [
+              { html: 'Degree ' + t(2) + ': adding only combines like terms, so it can’t make a higher power — the sum keeps the larger degree. Multiplying <b>adds</b> exponents, so the product has degree ' + t('1+2=3') + '.', right: true },
+              { html: 'Degree ' + t(3) + ': degrees add, whether you add or multiply.', why: 'Add them: ' + t(tx(sum)) + '. The highest power is still ' + t('x^{2}') + '.', code: 'b-3' },
+              { html: 'Degree ' + t(1) + ': the sum has the degree of the smaller polynomial.', why: 'The ' + t('x^{2}') + '-term of the trinomial is still there in the sum: ' + t(tx(sum)) + '.', code: 'b-1' },
+              { html: 'Degree ' + t(2) + ', because when you add, the degrees multiply: ' + t('1\\times 2=2') + '.', why: 'The answer ' + t(2) + ' is right, but not the reason: adding never multiplies degrees. It just keeps the highest power present.', code: 'b-2why' }],
+              t('(x+' + sh.p + ')+\\left(' + tx(Tr) + '\\right)=' + tx(sum)) + ' has degree ' + t(2) + '. Adding combines like terms (same exponent), so no new power appears. Multiplying adds exponents, ' + t('x\\cdot x^{2}=x^{3}') + ', so the product has degree ' + t(3) + '.',
+              ['Add the two polynomials. What is the highest power of ' + t('x') + '?'], 'degree of a sum');
+          } },
+          { id: 'e10c', sub: 'c', level: 'PRG', make: function (r, sh) {
+            var a = r.int(1, 5), c1 = nz(r, -9, 9), c2 = pickWhere(function () { return nz(r, -9, 9); }, function (v) { return v !== -c1; });
+            var A = lin(a, c1), B = lin(-a, c2);
+            var chk = function (resp) {
+              resp = resp || [];
+              var P1 = readPoly(resp[0] == null ? '' : resp[0]); if (P1.res) return lab(P1.res, 'First binomial');
+              var P2 = readPoly(resp[1] == null ? '' : resp[1]); if (P2.res) return lab(P2.res, 'Second binomial');
+              if (P1.fi) return lab(form(P1.fi.code, P1.fi.msg || 'Write it simplified.'), 'First binomial');
+              if (P2.fi) return lab(form(P2.fi.code, P2.fi.msg || 'Write it simplified.'), 'Second binomial');
+              var isLin = function (p) { return Y.count(p) === 2 && Y.degree(p) === 1 && Y.vars(p).length === 1; };
+              if (!isLin(P1.p)) return wrong('u3l7-ex-degree', '<b>First binomial:</b> it must be a binomial of degree ' + t(1) + ' — one ' + t('x') + '-term and one number, like ' + t('3x-2') + '.');
+              if (!isLin(P2.p)) return wrong('u3l7-ex-degree', '<b>Second binomial:</b> it must be a binomial of degree ' + t(1) + ' — one ' + t('x') + '-term and one number, like ' + t('3x-2') + '.');
+              var Sm = Y.add(P1.p, P2.p);
+              if (Y.isZero(Sm)) return wrong('u3l7-ex-zero', 'Their sum is ' + t(0) + ', which has no degree at all. Keep the ' + t('x') + '-terms opposite, but choose numbers that don’t cancel.');
+              if (Y.degree(Sm) >= 1) return wrong('u3l7-ex-sum', 'Their sum is ' + t(tx(Sm)) + ', which still has degree ' + t(1) + '. Make the ' + t('x') + '-terms <b>opposites</b> so they cancel.');
+              return ok();
+            };
+            var p = KP.fields('(c) Can the sum of two binomials of degree ' + t(1) + ' have a degree <b>lower</b> than ' + t(1) + '? Give an example: two binomials of degree ' + t(1) + ' whose sum has degree ' + t(0) + '.', [pbox('First binomial'), pbox('Second binomial')], [], [tx(A), tx(B)], t(tx(A)) + ' and ' + t(tx(B)) + ' (answers vary)',
+              'Yes — if the ' + t('x') + '-terms are opposites, they cancel. For example ' + t('(' + tx(A) + ')+(' + tx(B) + ')=' + (c1 + c2)) + ', a number, which has degree ' + t(0) + '.',
+              ['What happens when you add ' + t('3x') + ' and ' + t('-3x') + '?'], 'example: sum of degree 0');
+            p.check = chk; p.good = [['x+3', '-x+5'], ['2x-1', '7-2x']]; p.bad = [['x+3', 'x+5'], ['x+3', '-x-3'], ['x^2+3', '-x^2+5']];
+            return p;
+          } }] },
+      { num: '11', stem: function (sh) { return '<b>Error analysis.</b> Priya simplified the expression below. Exactly <b>one</b> step contains an error.' + workTable(['Step', 'Priya’s work'], [['1', '2', '3', '4'], [sh.expr, sh.step2, sh.step3, tx(sh.wrongRes)]]); },
+        shared: function (r) { return priya(r); },
+        parts: [
+          { id: 'e11a', sub: 'a', level: 'EMG', make: function (r, sh) {
+            return mc(r, '(a) Which is the first step that is wrong?', [
+              { html: 'Step 2', why: 'Check it: ' + t(sh.a + 'x(x+' + sh.b + ')=' + tx(sh.A)) + ' and ' + t('(x-' + sh.c + ')(x+' + sh.d + ')=' + tx(sh.prod)) + ' — Step 2 is right, and the bracket is kept.', code: 'step2' },
+              { html: 'Step 3', right: true },
+              { html: 'Step 4', why: 'Step 4 collects the terms of Step 3 correctly. The error is earlier.', code: 'step4' },
+              { html: 'No step is wrong.', why: 'Substitute ' + t('x=' + sh.x0) + ': the original gives ' + t(sh.val) + ' but Step 4 gives ' + t(sh.wVal) + '.', code: 'step0' }],
+              'Step 3 removes the bracket after a minus sign but changes only the sign of ' + t('x^{2}') + '.', ['Check each step against the one before it. Look closely where a bracket is removed.'], 'Priya: which step', true);
+          } },
+          { id: 'e11b', sub: 'b', level: 'EMG', make: function (r, sh) {
+            var pr = sh.prod, d = sh.d - sh.c, cd = sh.c * sh.d;
+            return mc(r, '(b) Describe the error.', [
+              { html: 'The minus sign in front of the bracket must change the sign of <b>all three</b> terms. Priya changed only ' + t('x^{2}') + ': she should have written ' + t('-' + (d === 1 ? '' : d) + 'x+' + cd) + ', not ' + t('+' + (d === 1 ? '' : d) + 'x-' + cd) + '.', right: true },
+              { html: 'She multiplied ' + t('(x-' + sh.c + ')(x+' + sh.d + ')') + ' incorrectly.', why: t('(x-' + sh.c + ')(x+' + sh.d + ')=' + tx(pr)) + ' — that product is right.', code: 'e-foil' },
+              { html: 'She should have added the bracket instead of subtracting it.', why: 'The expression subtracts the product. The mistake is how she removed the bracket.', code: 'e-add' },
+              { html: 'She collected the ' + t('x') + '-terms incorrectly in the last step.', why: 'Step 4 adds the terms of Step 3 correctly. The problem is in Step 3 itself.', code: 'e-collect' }],
+              t('-\\left(' + tx(pr) + '\\right)=' + tx(Y.neg(pr))) + ': every sign changes. Priya wrote ' + t(seq([M(-1, 'x', 2), M(d, 'x'), N(-cd)])) + '.',
+              ['What does a minus sign in front of a bracket do to each term inside?'], 'Priya: describe the error');
+          } },
+          { id: 'e11c', sub: 'c', level: 'PRG', make: function (r, sh) {
+            var c = combo(sh.list);
+            return pp('(c) Give the correct simplified expression for ' + t(sh.expr) + '.', c.T, c.wr.concat([{ is: sh.wrongRes, code: 'minus-first', hint: 'That is Priya’s answer. Change the sign of <b>every</b> term in the subtracted bracket.' }]), c.sol, HCOMBO, 'Priya corrected');
+          } },
+          { id: 'e11d', sub: 'd', level: 'BEG', make: function (r, sh) {
+            var x0 = sh.x0, fl = [nbox('Original', { label: 'value of the original expression' }), nbox('Simplified', { label: 'value of your simplified expression' })];
+            var p = KP.fields('(d) Verify your answer by substituting ' + t('x=' + x0) + ' into both the original expression and your simplified expression.', fl,
+              [K.number(sh.val), K.number(sh.val, numDiagClean(sh.val, [[sh.wVal, 'u3l7-sub-val', 'That is the value of Priya’s answer. Substitute into your corrected expression.']]))], [String(sh.val), String(sh.val)], 'both ' + t(sh.val),
+              'Original: ' + t(sh.a + '(' + x0 + ')(' + x0 + '+' + sh.b + ')-(' + x0 + '-' + sh.c + ')(' + x0 + '+' + sh.d + ')=' + sh.a * x0 * (x0 + sh.b) + '-(0)(' + (x0 + sh.d) + ')=' + sh.val) + '.<br>Simplified: ' + t(valuesTex(sh.correct, x0) + '=' + sh.val) + ' ✓ (Priya’s answer gives ' + t(sh.wVal) + '.)',
+              ['Replace every ' + t('x') + ' with ' + t(x0) + '. Brackets first.'], 'verify Priya');
+            p.bad = [[String(sh.val), String(sh.wVal)]]; return p;
+          } }] },
+      { num: '12', stem: 'Simplify each expression, then <b>check your answer</b> by substituting ' + t('x=-1') + ' into both the original expression and your simplified version. Both must give the same value.',
+        shared: function (r) {
+          var A = pickWhere(function () { return { a: r.int(2, 4), b: r.int(1, 5), c: r.int(1, 3), d: r.int(2, 7) }; }, function (s) { return s.a !== 1 && -s.a * s.b - (s.d - s.c) !== 0 && s.c !== s.d; });
+          var B = pickWhere(function () { return { p: r.int(2, 4), q: r.int(1, 5), rr: r.int(1, 3) }; }, function (s) { return s.p * s.rr !== 2 * s.q && gcd(s.p, s.q) === 1; });
+          if (r.chance(0.12)) { A = { a: 2, b: 3, c: 1, d: 6 }; B = { p: 3, q: 2, rr: 1 }; }
+          return { A: A, B: B };
+        },
+        parts: [
+          { id: 'e12a', sub: 'a', level: 'PRG', make: function (r, sh) { var s = sh.A; return comboPart('(a) Simplify ', [{ s: 1, p: pMono(M(s.a, 'x'), [M(1, 'x'), N(-s.b)]) }, { s: -1, p: pFoil(M(1, 'x'), N(-s.c), M(1, 'x'), N(s.d)) }], null, 'ax(x−b)−(x−c)(x+d)'); } },
+          { id: 'e12a2', sub: 'a check', level: 'BEG', make: function (r, sh) {
+            var s = sh.A, c = combo([{ s: 1, p: pMono(M(s.a, 'x'), [M(1, 'x'), N(-s.b)]) }, { s: -1, p: pFoil(M(1, 'x'), N(-s.c), M(1, 'x'), N(s.d)) }]), v = at(c.T, -1), w1 = at(c.wr.filter(function (w) { return w.code === 'minus-first'; })[0].is, -1);
+            var p = KP.number('Check (a): substitute ' + t('x=-1') + ' into ' + t(c.tex) + ' and into your simplified expression. What value do both give?', v, numDiagClean(v, [[w1, 'u3l7-sub-val', 'That value comes from changing only the first sign of the subtracted product. Check your simplified expression.'], [s.a * (1 + s.b) - (1 + s.c) * (s.d - 1), 'sign', 'Watch the signs: ' + t('(-1-' + s.c + ')(-1+' + s.d + ')=(' + (-1 - s.c) + ')(' + (s.d - 1) + ')=' + (-1 - s.c) * (s.d - 1)) + ', and you subtract it.']]),
+              'Original: ' + t(s.a + '(-1)(-1-' + s.b + ')-(-1-' + s.c + ')(-1+' + s.d + ')=' + s.a * (1 + s.b) + '-(' + (-(1 + s.c) * (s.d - 1)) + ')=' + v) + '.<br>Simplified: ' + t(valuesTex(c.T, -1) + '=' + v) + ' ✓',
+              ['Replace every ' + t('x') + ' with ' + t('(-1)') + '. Work out each bracket first.'], 'check at x = −1');
+            p.bad = [String(w1)]; return p;
+          } },
+          { id: 'e12b', sub: 'b', level: 'PRG', make: function (r, sh) { var s = sh.B; return comboPart('(b) Simplify ', [{ s: 1, p: pSq(M(s.p, 'x'), N(-s.q)) }, { s: 1, p: pMono(M(-s.p * s.p, 'x'), [M(1, 'x'), N(-s.rr)]) }], null, '(px−q)²−p²x(x−r)'); } },
+          { id: 'e12b2', sub: 'b check', level: 'BEG', make: function (r, sh) {
+            var s = sh.B, c = combo([{ s: 1, p: pSq(M(s.p, 'x'), N(-s.q)) }, { s: 1, p: pMono(M(-s.p * s.p, 'x'), [M(1, 'x'), N(-s.rr)]) }]), v = at(c.T, -1);
+            var p = KP.number('Check (b): substitute ' + t('x=-1') + ' into ' + t(c.tex) + ' and into your simplified expression. What value do both give?', v, numDiagClean(v, [[(s.p + s.q) * (s.p + s.q), 'value', 'Include the second product: ' + t('-' + s.p * s.p + '(-1)(-1-' + s.rr + ')') + '.'], [s.p * s.p + s.q * s.q - s.p * s.p * (1 + s.rr), 'sq-no-middle', 'Square the whole bracket: ' + t('(' + s.p + '(-1)-' + s.q + ')^{2}=(' + (-s.p - s.q) + ')^{2}') + '.']]),
+              'Original: ' + t('(' + s.p + '(-1)-' + s.q + ')^{2}-' + s.p * s.p + '(-1)(-1-' + s.rr + ')=(' + (-s.p - s.q) + ')^{2}-' + s.p * s.p * (1 + s.rr) + '=' + v) + '.<br>Simplified: ' + t(valuesTex(c.T, -1) + '=' + v) + ' ✓',
+              ['Replace every ' + t('x') + ' with ' + t('(-1)') + '. Work out the bracket, then square it.'], 'check at x = −1');
+            p.bad = [String((s.p + s.q) * (s.p + s.q))]; return p;
+          } }] },
+      { num: '13', stem: function (sh) { return 'A very common error is to write ' + t('(x+' + sh.k + ')^{2}=x^{2}+' + sh.k * sh.k) + '.'; },
+        shared: function (r) { var k = r.int(2, 9), m = r.int(2, 9); if (r.chance(0.12)) { k = 4; m = 3; } return { k: k, m: m }; },
+        parts: [
+          { id: 'e13a', sub: 'a expand', level: 'BEG', make: function (r, sh) { var P = pSq(M(1, 'x'), N(sh.k)); return pp('(a) Expand ' + t(P.tex) + ' correctly.', P.val, combo([{ s: 1, p: P }]).wr, P.sol + '<br>' + t('(x+' + sh.k + ')(x+' + sh.k + ')=x^{2}+' + sh.k + 'x+' + sh.k + 'x+' + sh.k * sh.k), ['Write it as ' + t('(x+' + sh.k + ')(x+' + sh.k + ')') + ' and use FOIL.'], 'expand (x+k)²'); } },
+          { id: 'e13a2', sub: 'a why', level: 'EMG', make: function (r, sh) {
+            var k = sh.k;
+            return mc(r, 'What does squaring ' + t('(x+' + k + ')') + ' actually do to the two terms?', [
+              { html: 'It multiplies the whole bracket by itself, ' + t('(x+' + k + ')(x+' + k + ')') + ', which makes two middle products ' + t(k + 'x') + ' and ' + t(k + 'x') + ' — you can’t square the terms separately.', right: true },
+              { html: 'It squares each term separately, so the error is only in the arithmetic.', why: 'Test ' + t('x=1') + ': ' + t('(1+' + k + ')^{2}=' + (1 + k) * (1 + k)) + ' but ' + t('1+' + k * k + '=' + (1 + k * k)) + '. Squaring each term misses the middle products.', code: 'w-each' },
+              { html: 'It doubles each term: ' + t('2x+' + 2 * k) + '.', why: 'Squaring is multiplying by itself, not by ' + t(2) + '.', code: 'w-double' },
+              { html: 'It squares the ' + t('x') + ' only; the ' + t(k) + ' stays as it is.', why: 'The whole bracket is squared: every term meets every term.', code: 'w-xonly' }],
+              t('(x+' + k + ')^{2}=(x+' + k + ')(x+' + k + ')=x^{2}+' + k + 'x+' + k + 'x+' + k * k + '=x^{2}+' + 2 * k + 'x+' + k * k) + '. The two middle products make the term ' + t(2 * k + 'x') + ' that the error leaves out.',
+              ['Write the square as a product of two brackets and FOIL it.'], 'what squaring does');
+          } },
+          { id: 'e13b', sub: 'b', level: 'PRG', make: function (r, sh) {
+            var k = sh.k;
+            var p = KP.number('(b) Find every value of ' + t('x') + ' for which ' + t('(x+' + k + ')^{2}=x^{2}+' + k * k) + ' is actually true.', 0, numDiag([[k, 'value', 'Substitute it: ' + t('(' + k + '+' + k + ')^{2}=' + 4 * k * k) + ' but ' + t(k + '^{2}+' + k * k + '=' + 2 * k * k) + '. Expand the left side and solve.'], [-k, 'value', 'Substitute it: ' + t('(' + -k + '+' + k + ')^{2}=0') + ' but ' + t('(' + -k + ')^{2}+' + k * k + '=' + 2 * k * k) + '. Expand the left side and solve.'], [2 * k, 'value', 'Expand: ' + t('x^{2}+' + 2 * k + 'x+' + k * k + '=x^{2}+' + k * k) + '. What is left?']]),
+              t('x^{2}+' + 2 * k + 'x+' + k * k + '=x^{2}+' + k * k) + '<br>Subtract ' + t('x^{2}') + ' and ' + t(k * k) + ' from both sides: ' + t(2 * k + 'x=0') + ', so ' + t('x=0') + '. It is true <b>only</b> for ' + t('x=0') + '.',
+              ['Expand the left side, then subtract ' + t('x^{2}+' + k * k) + ' from both sides.'], 'when is (x+k)² = x²+k²', { before: t('x=') });
+            p.bad = [String(k), String(-k)]; return p;
+          } },
+          { id: 'e13c', sub: 'c', level: 'EMG', make: function (r, sh) {
+            var m = sh.m;
+            return mc(r, '(c) By contrast, is there any value of ' + t('x') + ' for which ' + t('(x+' + m + ')(x-' + m + ')=x^{2}-' + m * m) + ' is false?', [
+              { html: 'No. ' + t('(x+' + m + ')(x-' + m + ')') + ' expands to <b>exactly</b> ' + t('x^{2}-' + m * m) + ', so the two sides agree for every value of ' + t('x') + ' — it is an identity.', right: true },
+              { html: 'Yes, it is false for ' + t('x=0') + '.', why: 'At ' + t('x=0') + ': ' + t('(' + m + ')(-' + m + ')=-' + m * m) + ' and ' + t('0-' + m * m + '=-' + m * m) + ' — true.', code: 'c-zero' },
+              { html: 'Yes, it is false whenever ' + t('x') + ' is negative.', why: 'Try ' + t('x=-1') + ': ' + t('(' + (m - 1) + ')(' + (-1 - m) + ')=' + (m - 1) * (-1 - m)) + ' and ' + t('1-' + m * m + '=' + (1 - m * m)) + ' — true.', code: 'c-neg' },
+              { html: 'Yes, like the error in (a), it is true for only one value of ' + t('x') + '.', why: 'Expand the left side: the middle terms cancel and you get ' + t('x^{2}-' + m * m) + ' exactly.', code: 'c-one' }],
+              t('(x+' + m + ')(x-' + m + ')=x^{2}-' + m + 'x+' + m + 'x-' + m * m + '=x^{2}-' + m * m) + ' for every ' + t('x') + ': an identity, not an equation to solve.',
+              ['Expand the left side. Does it match the right side exactly?'], 'identity');
+          } }] },
+      /* ---------- Part D ---------- */
+      { num: '14', section: 'Part D — Working Backwards and Solving', stem: 'Each rectangle below has a known area and one known side. Work backwards to find the missing side, then check by multiplying.',
+        shared: function (r) {
+          var A = pickWhere(function () { return { a: r.int(2, 3), b: r.int(1, 5), c: r.int(2, 4), d: r.int(1, 5) }; }, function (s) { return s.b * s.c - s.a * s.d !== 0 && gcd(s.a, s.b) === 1 && gcd(s.c, s.d) === 1 && s.a !== s.c; });
+          var p = r.int(2, 9), q = pickWhere(function () { return r.int(1, 8); }, function (v) { return v !== p; });
+          if (r.chance(0.12)) { A = { a: 2, b: 3, c: 3, d: 1 }; p = 6; q = 5; }
+          return { A: A, p: p, q: q };
+        },
+        parts: [
+          { id: 'e14a', sub: 'a', level: 'ADV', make: function (r, sh) {
+            var s = sh.A, Wd = lin(s.a, s.b), Ln = lin(s.c, -s.d), Ar = Y.mul(Wd, Ln);
+            var p = KP.math('(a) The area is ' + t(tx(Ar)) + ' and the width is ' + t('(' + tx(Wd) + ')') + '. Determine the length.', factorCheck(Wd, Ln, Ar), tx(Ln),
+              'Length × ' + t('(' + tx(Wd) + ')') + ' must give ' + t(tx(Ar)) + '.<br>First terms: ' + t(s.a + 'x\\times ? =' + s.a * s.c + 'x^{2}') + ', so ' + t('?=' + s.c + 'x') + '. Last terms: ' + t(s.b + '\\times ? =' + (-s.b * s.d)) + ', so ' + t('?=' + (-s.d)) + '.<br>Length ' + t('=' + tx(Ln)) + '. Check: ' + t('(' + tx(Wd) + ')(' + tx(Ln) + ')=' + seq([M(s.a * s.c, 'x', 2), M(-s.a * s.d, 'x'), M(s.b * s.c, 'x'), N(-s.b * s.d)]) + '=' + tx(Ar)) + ' ✓',
+              ['Length × width = area. What times ' + t(s.a + 'x') + ' gives ' + t(s.a * s.c + 'x^{2}') + '? What times ' + t(s.b) + ' gives ' + t(-s.b * s.d) + '?', 'Then multiply to check the middle term.'], 'missing length', { keys: 'poly', vars: ['x'] });
+            p.bad = [tx(Y.neg(Ln)), tx(lin(s.c, s.d))]; return p;
+          } },
+          { id: 'e14b', sub: 'b width', level: 'PRG', make: function (r, sh) {
+            var Ln = lin(1, sh.p), Wd = lin(1, sh.q), Ar = Y.mul(Ln, Wd);
+            var p = KP.math('(b) The area is ' + t(tx(Ar)) + ' and the length is ' + t('(' + tx(Ln) + ')') + '. Determine the width.', factorCheck(Ln, Wd, Ar), tx(Wd),
+              'Two numbers multiply to ' + t(sh.p * sh.q) + ': one is ' + t(sh.p) + ', so the other is ' + t(sh.q) + '. Width ' + t('=' + tx(Wd)) + '. Check: ' + t('(' + tx(Ln) + ')(' + tx(Wd) + ')=x^{2}+' + sh.q + 'x+' + sh.p + 'x+' + sh.p * sh.q + '=' + tx(Ar)) + ' ✓',
+              ['Width = ' + t('(x+?)') + ', where ' + t(sh.p + '\\times ?=' + sh.p * sh.q) + '. Check the middle term by multiplying.'], 'missing width', { keys: 'poly', vars: ['x'] });
+            p.bad = [tx(lin(1, sh.p * sh.q)), tx(lin(1, -sh.q))]; return p;
+          } },
+          { id: 'e14c', sub: 'b perimeter', level: 'PRG', make: function (r, sh) {
+            var Ln = lin(1, sh.p), Wd = lin(1, sh.q), Pm = lin(4, 2 * (sh.p + sh.q));
+            return pp('Write a simplified expression for the perimeter of the rectangle in (b), with length ' + t('(' + tx(Ln) + ')') + '.', Pm, [
+              { is: lin(2, sh.p + sh.q), code: 'dims-perim', hint: 'That is one length plus one width — half the perimeter. A rectangle has <b>two</b> lengths and <b>two</b> widths.' },
+              { is: Y.mul(Ln, Wd), code: 'perim-area', hint: 'That is the area. The perimeter is the distance around: ' + t('2l+2w') + '.' },
+              { is: lin(4, sh.p + sh.q), code: 'k-first', hint: 'Double the numbers too: ' + t('2(x+' + sh.p + ')=2x+' + 2 * sh.p) + '.' }],
+              t('P=2(x+' + sh.p + ')+2(x+' + sh.q + ')=2x+' + 2 * sh.p + '+2x+' + 2 * sh.q + '=' + tx(Pm)),
+              ['Perimeter ' + t('=2(\\text{length})+2(\\text{width})') + '. Use the width from (b).'], 'perimeter');
+          } }] },
+      { num: '15', stem: 'Find the missing numbers. In each case, expand the left side first and match it to the right side term by term.', parts: [
+        { id: 'e15a', sub: 'a', level: 'MAS', make: function (r) {
+          var s = pickWhere(function () { return { a: r.int(1, 7), b: -r.int(1, 9) }; }, function (s) { return s.a + s.b !== 0 && s.a * s.b !== s.a + s.b; });
+          if (r.chance(0.12)) s = { a: 3, b: -5 };
+          var a = s.a, b = s.b, T = S([M(1, 'x', 2), M(a + b, 'x'), N(a * b)]), fl = [nbox('a', { label: t('a') }), nbox('b', { label: t('b') })];
+          var chk = function (resp) {
+            resp = resp || [];
+            var A = HW.parse.number(resp[0] == null ? '' : resp[0]), Bv = HW.parse.number(resp[1] == null ? '' : resp[1]);
+            if (!A.ok || !Bv.ok) return form('empty', 'Type a number in each box.');
+            var u = A.value, v = Bv.value;
+            if ((u === a && v === b) || (u === b && v === a)) return ok();
+            if ((u === -a && v === -b) || (u === -b && v === -a)) return wrong('u3l7-pair-sign', 'Expand ' + t('(x' + sgn(u) + ')(x' + sgn(v) + ')') + ': the middle term is ' + t(tx(M(u + v, 'x'))) + ', not ' + t(tx(M(a + b, 'x'))) + '. Switch both signs.');
+            if (u * v === a * b) return wrong('u3l7-pair-product', 'Their product is ' + t(a * b) + ' ✓, but they must also <b>add</b> to ' + t(a + b) + ' (the ' + t('x') + '-coefficient).');
+            if (u + v === a + b) return wrong('value', 'They add to ' + t(a + b) + ' ✓, but they must also <b>multiply</b> to ' + t(a * b) + '.');
+            return wrong('value', t('(x+a)(x+b)=x^{2}+(a+b)x+ab') + ', so ' + t('a+b=' + (a + b)) + ' and ' + t('ab=' + a * b) + '.');
+          };
+          var p = KP.fields('(a) Find ' + t('a') + ' and ' + t('b') + ' so that ' + t('(x+a)(x+b)=' + tx(T)) + '.', fl, [], [String(a), String(b)], t('a=' + a) + ' and ' + t('b=' + b) + ' (in either order)',
+            t('(x+a)(x+b)=x^{2}+(a+b)x+ab') + '. Match: ' + t('a+b=' + (a + b)) + ' and ' + t('ab=' + a * b) + '.<br>The numbers ' + t(a) + ' and ' + t(b) + ' work: ' + t(a + '+(' + b + ')=' + (a + b)) + ' and ' + t(a + '\\times(' + b + ')=' + a * b) + '. Check: ' + t('(x+' + a + ')(x' + sgn(b) + ')=' + tx(T)) + ' ✓',
+            ['Expand ' + t('(x+a)(x+b)') + ': the ' + t('x') + '-coefficient is ' + t('a+b') + ' and the constant is ' + t('ab') + '.', 'List the pairs of numbers that multiply to ' + t(a * b) + ', and find the pair that adds to ' + t(a + b) + '.'], 'find a and b');
+          p.check = chk; p.good = [[String(b), String(a)]]; p.bad = [[String(-a), String(-b)], [String(a), String(-b)]].filter(function (x) { return !((+x[0] === a && +x[1] === b) || (+x[0] === b && +x[1] === a)); });
+          return p;
+        } },
+        { id: 'e15b', sub: 'b', level: 'PRG', make: function (r) {
+          var pk = pickWhere(function () { return [r.int(2, 4), r.int(1, 7)]; }, function (q) { return gcd(q[0], q[1]) === 1; }), p0 = pk[0], k = pk[1] * (r.chance(0.25) ? -1 : 1); if (r.chance(0.12)) { p0 = 2; k = 5; }
+          var T = Y.pow(lin(p0, k), 2);
+          var p = KP.number('(b) Find ' + t('k') + ' so that ' + t('(' + p0 + 'x+k)^{2}=' + tx(T)) + '.', k, numDiagClean(k, [[2 * p0 * k, 'cs-half', 'That is the middle coefficient. The middle term is ' + t('2(' + p0 + 'x)(k)=' + 2 * p0 + 'kx') + ', so divide by ' + t(2 * p0) + '.'], [k * k, 'not-sq', 'That is the last term, ' + t('k^{2}') + '. Take its square root.'], [-k, 'sign', 'Check the sign with the middle term: ' + t(2 * p0 + 'k=' + 2 * p0 * k) + '.'], [p0 * k, 'cs-half', 'The middle term is <b>twice</b> ' + t(p0 + 'x\\cdot k') + ': ' + t(2 * p0 + 'k=' + 2 * p0 * k) + '.']]),
+            t('(' + p0 + 'x+k)^{2}=' + p0 * p0 + 'x^{2}+' + 2 * p0 + 'kx+k^{2}') + '. Match the middle terms: ' + t(2 * p0 + 'k=' + 2 * p0 * k) + ', so ' + t('k=' + k) + '. Check the last term: ' + t('(' + k + ')^{2}=' + k * k) + ' ✓',
+            ['Expand the left side and match the middle terms (the last term alone can’t tell you the sign of ' + t('k') + ').'], 'find k in (px+k)²', { before: t('k=') });
+          p.bad = [String(2 * p0 * k), String(k * k), String(-k)]; return p;
+        } },
+        { id: 'e15c', sub: 'c', level: 'PRG', make: function (r) {
+          var p0 = r.int(2, 5), m = r.int(2, 9); if (p0 === m) m++; if (r.chance(0.12)) { p0 = 3; m = 8; }
+          var chk = function (resp) {
+            var q = HW.parse.number(resp); if (!q.ok) return form('empty', 'Type a number.');
+            if (Math.abs(q.value) === m) return ok();
+            if (Math.abs(q.value) === m * m) return wrong('not-sq', t('m^{2}=' + m * m) + ', so ' + t('m') + ' is its square root.');
+            if (Math.abs(q.value) === p0 * p0 * m || Math.abs(q.value) === p0 * m) return wrong('value', t('(' + p0 + 'x+m)(' + p0 + 'x-m)=' + p0 * p0 + 'x^{2}-m^{2}') + ': match ' + t('m^{2}=' + m * m) + '.');
+            return wrong('value', 'Expand: ' + t('(' + p0 + 'x+m)(' + p0 + 'x-m)=' + p0 * p0 + 'x^{2}-m^{2}') + '. What squared gives ' + t(m * m) + '?');
+          };
+          var p = KP.math('(c) Find ' + t('m') + ' so that ' + t('(' + p0 + 'x+m)(' + p0 + 'x-m)=' + p0 * p0 + 'x^{2}-' + m * m) + '.', chk, String(m),
+            t('(' + p0 + 'x+m)(' + p0 + 'x-m)=' + p0 * p0 + 'x^{2}-m^{2}') + ', so ' + t('m^{2}=' + m * m) + ' and ' + t('m=' + m) + ' (or ' + t('m=-' + m) + ': both give ' + t(p0 * p0 + 'x^{2}-' + m * m) + ').',
+            ['A sum times a difference: ' + t('(a+b)(a-b)=a^{2}-b^{2}') + '. What squared gives ' + t(m * m) + '?'], 'find m in sum × difference', { keys: 'expr', before: t('m=') });
+          p.input.type = 'number'; delete p.input.keys; p.good = [String(-m)]; p.bad = [String(m * m)]; return p;
+        } }] },
+      { num: '16', stem: 'Solve each equation. Expand <b>both</b> sides first — the ' + t('x^{2}') + ' terms will disappear, leaving a linear equation.',
+        shared: function (r) {
+          var A = pickWhere(function () { return { p: r.int(1, 7), q: r.int(1, 7), u: r.int(1, 6), w: r.int(1, 6) }; }, function (s) { var den = (s.p - s.q) - (s.u + s.w), num = s.u * s.w + s.p * s.q; return den !== 0 && num % den === 0 && num / den !== 0 && Math.abs(num / den) <= 20 && s.u !== s.w; });
+          var B = pickWhere(function () { return { a: r.int(2, 4), b: r.int(1, 6), c: r.int(1, 5), d: r.int(1, 6) }; }, function (s) { var den = s.a * s.b - s.a * s.d + s.c; return den !== 0 && (s.c * s.d) % den === 0 && s.c * s.d / den !== 0 && Math.abs(s.c * s.d / den) <= 20; });
+          var C = pickWhere(function () { return { p: r.int(1, 7), q: r.int(2, 9) }; }, function (s) { return s.p < s.q && (s.p + s.q) % 2 === 0; });
+          if (r.chance(0.12)) { A = { p: 5, q: 2, u: 1, w: 3 }; B = { a: 2, b: 3, c: 1, d: 4 }; C = { p: 2, q: 6 }; }
+          return { A: A, B: B, C: C };
+        },
+        parts: [
+          { id: 'e16a', sub: 'a', level: 'ADV', make: function (r, sh) {
+            var s = sh.A, L = Y.mul(lin(1, s.p), lin(1, -s.q)), R = Y.mul(lin(1, s.u), lin(1, s.w)), den = (s.p - s.q) - (s.u + s.w), x = (s.u * s.w + s.p * s.q) / den;
+            var p = KP.number('(a) Solve ' + t('(x+' + s.p + ')(x-' + s.q + ')=(x+' + s.u + ')(x+' + s.w + ')') + '.', x, numDiagClean(x, [[-x, 'u3l7-solve-sign', 'Check the sign in your last step. Substitute your answer into both sides.'], [(s.u * s.w - s.p * s.q) / den, 'last-sign', 'Check the constant on the left: ' + t('(' + s.p + ')(-' + s.q + ')=-' + s.p * s.q) + '.']]),
+              'Left: ' + t(tx(L)) + '. Right: ' + t(tx(R)) + '.<br>' + t(tx(L) + '=' + tx(R)) + '<br>Subtract ' + t('x^{2}') + ' from both sides: ' + t(tx(Y.sub(L, M(1, 'x', 2))) + '=' + tx(Y.sub(R, M(1, 'x', 2)))) + '<br>' + t(tx(M(den, 'x')) + '=' + (s.u * s.w + s.p * s.q)) + ', so ' + t('x=' + x) + '.',
+              ['FOIL both sides. The ' + t('x^{2}') + ' terms cancel; collect the ' + t('x') + '-terms on one side and the numbers on the other.'], 'solve after expanding', { before: t('x=') });
+            p.bad = [String(-x)]; return p;
+          } },
+          { id: 'e16b', sub: 'b', level: 'ADV', make: function (r, sh) {
+            var s = sh.B, L = Y.mul(M(s.a, 'x'), lin(1, s.b)), R = Y.mul(lin(s.a, -s.c), lin(1, s.d)), den = s.a * s.b - s.a * s.d + s.c, x = -s.c * s.d / den;
+            var p = KP.number('(b) Solve ' + t(s.a + 'x(x+' + s.b + ')=(' + s.a + 'x-' + s.c + ')(x+' + s.d + ')') + '.', x, numDiagClean(x, [[-x, 'u3l7-solve-sign', 'Check the sign in your last step. Substitute your answer into both sides.']]),
+              'Left: ' + t(tx(L)) + '. Right: ' + t(tx(R)) + '.<br>Subtract ' + t(s.a + 'x^{2}') + ' from both sides: ' + t(tx(Y.sub(L, M(s.a, 'x', 2))) + '=' + tx(Y.sub(R, M(s.a, 'x', 2)))) + '<br>' + t(tx(M(den, 'x')) + '=' + (-s.c * s.d)) + ', so ' + t('x=' + x) + '.',
+              ['Distribute on the left, FOIL on the right. The ' + t('x^{2}') + ' terms cancel.'], 'solve after expanding (b)', { before: t('x=') });
+            p.bad = [String(-x)]; return p;
+          } },
+          { id: 'e16c', sub: 'c', level: 'PRG', make: function (r, sh) {
+            var p = sh.C.p, q = sh.C.q, m = (p + q) / 2;
+            return mc(r, '(c) Solve ' + t('(x+' + p + ')(x+' + q + ')=(x+' + m + ')^{2}') + '.', [
+              { html: 'No solution: both sides expand to ' + t('x^{2}+' + (p + q) + 'x') + ' plus a number, so the ' + t('x') + '-terms cancel as well, leaving ' + t(p * q + '=' + m * m) + ', which is never true.', right: true },
+              { html: t('x=0'), why: 'Substitute ' + t('x=0') + ': ' + t(p * q) + ' on the left, ' + t(m * m) + ' on the right.', code: 'n-zero' },
+              { html: 'Every value of ' + t('x') + ' works, because both sides have ' + t('x^{2}+' + (p + q) + 'x') + '.', why: 'The numbers differ: ' + t(p * q) + ' and ' + t(m * m) + '. So the two sides are <b>never</b> equal.', code: 'n-all' },
+              { html: 'No solution, because the ' + t('x^{2}') + ' terms cancel.', why: 'The ' + t('x^{2}') + ' terms cancel in (a) and (b) too, and those have solutions. Here the ' + t('x') + '-terms cancel as well.', code: 'n-x2' }],
+              'Left: ' + t('x^{2}+' + (p + q) + 'x+' + p * q) + '. Right: ' + t('x^{2}+' + 2 * m + 'x+' + m * m) + '.<br>Subtract ' + t('x^{2}+' + (p + q) + 'x') + ' from both sides: ' + t(p * q + '=' + m * m) + ' — false. There is <b>no solution</b>.',
+              ['Expand both sides and subtract the ' + t('x^{2}') + ' terms. What is left?'], 'no solution');
+          } }] },
+      /* ---------- Part E ---------- */
+      { num: '17', section: 'Part E — Applications', stem: function (sh) { return '<b>Open-top box.</b> A rectangular sheet of cardboard measures ' + t(sh.L) + ' cm by ' + t(sh.W) + ' cm. A square of side length ' + t('x') + ' cm is cut from each of the four corners, and the flaps are folded up to form an open-top box.' + figNet(sh.L, sh.W); },
+        shared: function (r) {
+          var s = pickWhere(function () { return { L: 2 * r.int(10, 18), W: 2 * r.int(6, 12), x: r.int(2, 5) }; }, function (s) { return s.W < s.L && s.W - 2 * s.x >= 4; });
+          if (r.chance(0.12)) s = { L: 30, W: 20, x: 4 };
+          return s;
+        },
+        parts: [
+          { id: 'e17a', sub: 'a', level: 'EMG', make: function (r, sh) {
+            var Ln = lin(-2, sh.L), Wd = lin(-2, sh.W), X = M(1, 'x');
+            var chk = function (resp) {
+              resp = resp || [];
+              var a = readPoly(resp[0] == null ? '' : resp[0]); if (a.res) return lab(a.res, 'Length');
+              var b = readPoly(resp[1] == null ? '' : resp[1]); if (b.res) return lab(b.res, 'Width');
+              var c = readPoly(resp[2] == null ? '' : resp[2]); if (c.res) return lab(c.res, 'Height');
+              var lw = (Y.eq(a.p, Ln) && Y.eq(b.p, Wd)) || (Y.eq(a.p, Wd) && Y.eq(b.p, Ln));
+              if (lw && Y.eq(c.p, X)) { var fi = a.fi || b.fi || c.fi; return fi ? form(fi.code, fi.msg || 'Simplify it.') : ok(); }
+              if ([a.p, b.p].some(function (p) { return Y.eq(p, lin(-1, sh.L)) || Y.eq(p, lin(-1, sh.W)); })) return wrong('box-dims', 'A square is cut from <b>both</b> ends of each side, so each side loses ' + t('2x') + ': ' + t(sh.L + '-2x') + ' and ' + t(sh.W + '-2x') + '.');
+              if (!Y.eq(c.p, X)) return wrong('no-height', 'When the flaps fold up, the height of the box is the side of the cut square.');
+              return wrong('value', 'The length and the width are what is left of each side of the sheet after the two corner squares are cut off.');
+            };
+            var p = KP.fields('(a) Write an expression for the length, the width and the height of the finished box.', [pbox('Length'), pbox('Width'), pbox('Height')], [], [tx(Ln, { order: 'asc' }), tx(Wd, { order: 'asc' }), 'x'],
+              'length ' + t(sh.L + '-2x') + ', width ' + t(sh.W + '-2x') + ', height ' + t('x'),
+              'A square of side ' + t('x') + ' comes off <b>both</b> ends of each side: length ' + t(sh.L + '-2x') + ', width ' + t(sh.W + '-2x') + '. The flaps fold up to a height of ' + t('x') + '.',
+              ['How much is cut off the ' + t(sh.L) + ' cm side? There is a corner square at each end.'], 'box dimensions');
+            p.check = chk; p.good = [[tx(Wd), tx(Ln), 'x']]; p.bad = [[tx(lin(-1, sh.L)), tx(lin(-1, sh.W)), 'x'], [tx(Ln), tx(Wd), '2x']];
+            return p;
+          } },
+          { id: 'e17b', sub: 'b', level: 'ADV', make: function (r, sh) {
+            var Ln = lin(-2, sh.L), Wd = lin(-2, sh.W), base = Y.mul(Ln, Wd), V = Y.mul(base, M(1, 'x'));
+            return pp('(b) Write a fully expanded and simplified expression for the volume of the box.', V, [
+              { is: base, code: 'no-height', hint: 'That is the area of the base. Multiply by the height ' + t('x') + ' too.' },
+              { is: Y.mul(lin(-1, sh.L), lin(-1, sh.W), M(1, 'x')), code: 'box-dims', hint: 'Each side loses ' + t('2x') + ' (a square at each end): ' + t(sh.L + '-2x') + ' and ' + t(sh.W + '-2x') + '.' },
+              { is: Y.mul(S([N(sh.L * sh.W), M(4, 'x', 2)]), M(1, 'x')), code: 'fl-only', hint: 'FOIL the two brackets — four products, including the Outer and Inner products ' + t('-' + 2 * sh.W + 'x') + ' and ' + t('-' + 2 * sh.L + 'x') + '.' }],
+              t('V=x(' + sh.L + '-2x)(' + sh.W + '-2x)') + '<br>' + t('(' + sh.L + '-2x)(' + sh.W + '-2x)=' + sh.L * sh.W + '-' + 2 * sh.L + 'x-' + 2 * sh.W + 'x+4x^{2}=' + tx(base)) + '<br>' + t('x\\left(' + tx(base) + '\\right)=' + tx(V)) + ' cm' + t('^{3}'),
+              ['Volume = length × width × height. FOIL the length and width first, then multiply every term by ' + t('x') + '.'], 'open box volume', { after: t('\\text{cm}^{3}') });
+          } },
+          { id: 'e17c', sub: 'c', level: 'BEG', make: function (r, sh) {
+            var x = sh.x, l = sh.L - 2 * x, w = sh.W - 2 * x, V = x * l * w, Vp = Y.mul(lin(-2, sh.L), lin(-2, sh.W), M(1, 'x'));
+            var p = KP.number('(c) Determine the volume when ' + t('x=' + x) + ' cm.', V, numDiagClean(V, [[x * (sh.L - x) * (sh.W - x), 'box-dims', 'Each side loses ' + t('2x=' + 2 * x) + ' cm: ' + t(sh.L + '-' + 2 * x + '=' + l) + '.'], [l * w, 'no-height', 'That is the area of the base. Multiply by the height ' + t(x) + '.']]),
+              'Using the expansion: ' + t(valuesTex(Vp, x) + '=' + V) + ' cm' + t('^{3}') + '.<br>Directly: ' + t(x + '\\times' + l + '\\times' + w + '=' + V) + ' cm' + t('^{3}') + ' ✓',
+              ['Substitute into your expansion, or multiply the three dimensions: ' + t(sh.L + '-2(' + x + ')') + ', ' + t(sh.W + '-2(' + x + ')') + ' and ' + t(x) + '.'], 'box volume at x', { after: t('\\text{cm}^{3}') });
+            p.bad = [String(l * w)]; return p;
+          } }] },
+      { num: '18', stem: function (sh) { return '<b>Path around a garden.</b> A rectangular garden measures ' + t('(x+' + sh.p + ')') + ' m by ' + t('(x+' + sh.q + ')') + ' m. A uniform path ' + t(sh.w) + ' m wide is laid all the way around the outside of the garden.' + figPath(2 + sh.p / 5, 1.3 + sh.q / 5, 0.45, 'x+' + sh.p, 'x+' + sh.q, sh.w + '\\text{ m}'); },
+        shared: function (r) { var s = pickWhere(function () { return { p: r.int(3, 9), q: r.int(1, 7), w: r.int(1, 3) }; }, function (s) { return s.p > s.q; }); if (r.chance(0.12)) s = { p: 5, q: 3, w: 2 }; return s; },
+        parts: [
+          { id: 'e18a', sub: 'a', level: 'EMG', make: function (r, sh) {
+            var O1 = lin(1, sh.p + 2 * sh.w), O2 = lin(1, sh.q + 2 * sh.w);
+            var p = KP.fields('(a) Write expressions for the outer length and outer width of the garden-plus-path region.', [pbox('Outer length'), pbox('Outer width')], [], [tx(O1), tx(O2)], t(tx(O1)) + ' m and ' + t(tx(O2)) + ' m',
+              'The path adds ' + t(sh.w) + ' m at <b>both</b> ends of each dimension: ' + t('x+' + sh.p + '+2(' + sh.w + ')=' + tx(O1)) + ' and ' + t('x+' + sh.q + '+2(' + sh.w + ')=' + tx(O2)) + '.',
+              ['The path is on <b>both</b> sides of the garden, so each dimension grows by ' + t('2\\times' + sh.w) + '.'], 'outer dimensions');
+            p.check = pairCheck(O1, O2, ['Outer length', 'Outer width'], function (A, B) {
+              if ([A, B].some(function (q) { return Y.eq(q, lin(1, sh.p + sh.w)) || Y.eq(q, lin(1, sh.q + sh.w)); })) return { code: 'u3l7-path-one', hint: 'The path is on <b>both</b> ends of each side: add ' + t(sh.w) + ' twice.' };
+              return null;
+            });
+            p.good = [[tx(O2), tx(O1)]]; p.bad = [[tx(lin(1, sh.p + sh.w)), tx(lin(1, sh.q + sh.w))]];
+            return p;
+          } },
+          { id: 'e18b', sub: 'b', level: 'EMG', make: function (r, sh) {
+            var P = pFoil(M(1, 'x'), N(sh.p + 2 * sh.w), M(1, 'x'), N(sh.q + 2 * sh.w));
+            return pp('(b) Write a simplified expression for the total area of the garden-plus-path region.', P.val, combo([{ s: 1, p: P }]).wr.concat([{ is: Y.mul(lin(1, sh.p + sh.w), lin(1, sh.q + sh.w)), code: 'u3l7-path-one', hint: 'The outer length is ' + t('x+' + (sh.p + 2 * sh.w)) + ': the path adds ' + t(sh.w) + ' m at <b>both</b> ends.' }]),
+              'Total area ' + t('=' + P.tex) + '<br>' + P.sol + ' m' + t('^{2}'), ['Area = (outer length) × (outer width). FOIL.'], 'total area', { after: t('\\text{m}^{2}') });
+          } },
+          { id: 'e18c', sub: 'c', level: 'PRG', make: function (r, sh) {
+            var Tot = Y.mul(lin(1, sh.p + 2 * sh.w), lin(1, sh.q + 2 * sh.w)), G = Y.mul(lin(1, sh.p), lin(1, sh.q)), Pa = Y.sub(Tot, G);
+            return pp('(c) Write a simplified expression for the area of the path alone.', Pa, [
+              { is: Tot, code: 'u3l7-path-total', hint: 'That is the area of the garden <b>and</b> the path. Subtract the garden’s area.' },
+              { is: Y.add(Tot, G), code: 'minus-ignored', hint: 'Path = (total) − (garden): subtract the garden’s area.' },
+              { is: Y.add(Tot, Y.neg(firstTerm(G)), Y.sub(G, firstTerm(G))), code: 'minus-first', hint: 'Subtract the <b>whole</b> garden area: ' + t('-\\left(' + tx(G) + '\\right)=' + tx(Y.neg(G))) + '.' },
+              { is: Y.sub(Y.mul(lin(1, sh.p + sh.w), lin(1, sh.q + sh.w)), G), code: 'u3l7-path-one', hint: 'The outer dimensions add ' + t(sh.w) + ' m at <b>both</b> ends of each side.' }],
+              'Garden: ' + t('(x+' + sh.p + ')(x+' + sh.q + ')=' + tx(G)) + '<br>Path ' + t('=\\left(' + tx(Tot) + '\\right)-\\left(' + tx(G) + '\\right)=' + tx(Pa)) + ' m' + t('^{2}'),
+              ['Area of the path = (total area) − (area of the garden).', 'Subtract the whole garden area: change every sign.'], 'path area', { after: t('\\text{m}^{2}') });
+          } },
+          { id: 'e18d', sub: 'c degree', level: 'EMG', make: function (r, sh) {
+            return mc(r, 'What is the degree of the path’s area, and why is that reasonable?', [
+              { html: 'Degree ' + t(1) + ': the ' + t('x^{2}') + ' terms cancel. The path is a thin border of fixed width, so its area grows with the <b>perimeter</b> of the garden (like ' + t('x') + '), not with its area (like ' + t('x^{2}') + ').', right: true },
+              { html: 'Degree ' + t(2) + ': an area always has degree ' + t(2) + '.', why: 'Subtract: the ' + t('x^{2}') + ' terms cancel. An area can have any degree — a border of fixed width grows like the perimeter.', code: 'd-2' },
+              { html: 'Degree ' + t(0) + ': the path’s area doesn’t change with ' + t('x') + '.', why: 'A bigger garden needs a longer path: the area has an ' + t('x') + '-term.', code: 'd-0' },
+              { html: 'Degree ' + t(1) + ', because the path is ' + t(sh.w) + ' m wide.', why: 'The degree is right, but the width alone doesn’t explain it: think about how the path grows as the garden grows.', code: 'd-why' }],
+              'The ' + t('x^{2}') + ' terms cancel, so the path’s area has degree ' + t(1) + ': it grows in proportion to the garden’s perimeter.',
+              ['Look at your answer to (c): what is the highest power of ' + t('x') + '?'], 'degree of path area');
+          } }] },
+      { num: '19', stem: function (sh) { return '<b>Comparing two areas.</b> Rectangle A has length ' + t('(x+' + sh.a + ')') + ' cm and width ' + t('(x+' + sh.b + ')') + ' cm. Rectangle B is a square with side length ' + t('(x+' + sh.m + ')') + ' cm.' + sideBySide([figRect(1.4 + sh.a / 8, 0.9 + sh.b / 8, 'x+' + sh.a, 'x+' + sh.b, 'rectangle A', '\\text{A}'), figRect(1.2 + sh.m / 8, 1.2 + sh.m / 8, 'x+' + sh.m, 'x+' + sh.m, 'square B', '\\text{B}')]); },
+        shared: function (r) { var s = pickWhere(function () { return { a: r.int(3, 9), b: r.int(1, 7) }; }, function (s) { return s.a > s.b + 1 && (s.a + s.b) % 2 === 0; }); if (r.chance(0.12)) s = { a: 7, b: 1 }; s.m = (s.a + s.b) / 2; s.D = s.m * s.m - s.a * s.b; return s; },
+        parts: [
+          { id: 'e19a', sub: 'a', level: 'BEG', make: function (r, sh) {
+            var A = Y.mul(lin(1, sh.a), lin(1, sh.b)), B = Y.pow(lin(1, sh.m), 2);
+            return KP.fields('(a) Write a simplified expression for the area of each figure.', [pbox('Area of A', ['x'], { after: t('\\text{cm}^{2}') }), pbox('Area of B', ['x'], { after: t('\\text{cm}^{2}') })],
+              [polyChk(A, [{ is: S([M(1, 'x', 2), N(sh.a * sh.b)]), code: 'fl-only', hint: 'Include the Outer and Inner products: ' + t((sh.a + sh.b) + 'x') + '.' }]), polyChk(B, [{ is: S([M(1, 'x', 2), N(sh.m * sh.m)]), code: 'sq-no-middle', hint: 'A square of a binomial has a middle term: ' + t(2 * sh.m + 'x') + '.' }])],
+              [tx(A), tx(B)], 'A: ' + t(tx(A)) + ' cm' + t('^{2}') + ', B: ' + t(tx(B)) + ' cm' + t('^{2}'),
+              'A: ' + t('(x+' + sh.a + ')(x+' + sh.b + ')=' + tx(A)) + '<br>B: ' + t('(x+' + sh.m + ')^{2}=' + tx(B)),
+              ['FOIL for A; the perfect square pattern for B.'], 'areas A and B');
+          } },
+          { id: 'e19b', sub: 'b', level: 'EMG', make: function (r, sh) {
+            var D = sh.D, ab = sh.a * sh.b, m2 = sh.m * sh.m;
+            return mc(r, '(b) Subtract to determine which figure has the greater area, and by how much.', [
+              { html: 'Square B, by ' + t(D) + ' cm' + t('^{2}'), right: true },
+              { html: 'Rectangle A, by ' + t(D) + ' cm' + t('^{2}'), why: t('B-A=' + m2 + '-' + ab + '=+' + D) + ': the positive difference means <b>B</b> is greater.', code: 'b-A' },
+              { html: 'Square B, by ' + t(m2 + ab) + ' cm' + t('^{2}'), why: 'Subtract the constants: ' + t(m2 + '-' + ab) + '.', code: 'b-add' },
+              { html: 'They have equal areas, because both have ' + t('x^{2}+' + (sh.a + sh.b) + 'x') + '.', why: 'The ' + t('x^{2}') + '- and ' + t('x') + '-terms match, but the constants ' + t(ab) + ' and ' + t(m2) + ' don’t.', code: 'b-eq' }],
+              t('\\left(x^{2}+' + 2 * sh.m + 'x+' + m2 + '\\right)-\\left(x^{2}+' + (sh.a + sh.b) + 'x+' + ab + '\\right)=' + D) + ', so the square B is greater by ' + t(D) + ' cm' + t('^{2}') + '.',
+              ['Subtract area A from area B. The ' + t('x^{2}') + '- and ' + t('x') + '-terms cancel.'], 'which is greater');
+          } },
+          { id: 'e19c', sub: 'c', level: 'EMG', make: function (r, sh) {
+            var D = sh.D, A1 = (1 + sh.a) * (1 + sh.b), B1 = (1 + sh.m) * (1 + sh.m), A10 = (10 + sh.a) * (10 + sh.b), B10 = (10 + sh.m) * (10 + sh.m);
+            return mc(r, '(c) Your answer to (b) contains no ' + t('x') + ' at all. What does that tell you about the two figures?', [
+              { html: 'Whatever the value of ' + t('x') + ', the square B is bigger than A by exactly ' + t(D) + ' cm' + t('^{2}') + '. (At ' + t('x=1') + ': ' + t(A1) + ' and ' + t(B1) + '; at ' + t('x=10') + ': ' + t(A10) + ' and ' + t(B10) + '.)', right: true },
+              { html: 'The difference is ' + t(D) + ' cm' + t('^{2}') + ' only when ' + t('x=0') + '.', why: 'Test ' + t('x=10') + ': ' + t(B10 + '-' + A10 + '=' + D) + '. The difference never depends on ' + t('x') + '.', code: 'c-x0' },
+              { html: 'The difference grows as ' + t('x') + ' grows.', why: 'Test ' + t('x=1') + ' and ' + t('x=10') + ': ' + t(B1 + '-' + A1 + '=' + D) + ' and ' + t(B10 + '-' + A10 + '=' + D) + ' — the same.', code: 'c-grow' },
+              { html: 'For large values of ' + t('x') + ' the two areas become equal.', why: 'The difference is always ' + t(D) + ', however large ' + t('x') + ' is.', code: 'c-large' }],
+              'The difference ' + t(D) + ' has no ' + t('x') + ', so it is the same for every ' + t('x') + '. Check: ' + t('x=1') + ' gives ' + t(B1 + '-' + A1 + '=' + D) + '; ' + t('x=10') + ' gives ' + t(B10 + '-' + A10 + '=' + D) + ' ✓',
+              ['Try ' + t('x=1') + ' and ' + t('x=10') + ' in both areas and compare.'], 'difference is constant');
+          } }] },
+      { num: '20', stem: '<b>Volume.</b> Write a fully expanded expression for each volume, then evaluate it at the given value and confirm your answer by multiplying the dimensions directly.',
+        shared: function (r) {
+          var A = pickWhere(function () { return { p: r.int(1, 4), q: r.int(2, 3), s: r.int(1, 5), v: r.int(3, 6) }; }, function (s) { return gcd(s.q, s.s) === 1 && s.q * s.v - s.s > 0 && Y.count(Y.mul(Y.pow(lin(1, s.p), 2), lin(s.q, -s.s))) === 4; });
+          var k = r.int(1, 5), v = k + r.int(1, 5);
+          if (r.chance(0.12)) { A = { p: 1, q: 2, s: 3, v: 5 }; k = 2; v = 6; }
+          return { A: A, k: k, v: v };
+        },
+        parts: [
+          { id: 'e20a', sub: 'a', level: 'PRG', make: function (r, sh) {
+            var s = sh.A, Sq = Y.pow(lin(1, s.p), 2), H = lin(s.q, -s.s), V = Y.mul(Sq, H);
+            return pp('(a) A prism has a square base of side length ' + t('(x+' + s.p + ')') + ' cm and height ' + t('(' + tx(H) + ')') + ' cm.' + figPrism(2, 2.2, 2, 'x+' + s.p, tx(H), 'x+' + s.p, 'prism with a square base') + 'Write a fully expanded expression for its volume.', V, [
+              { is: Y.mul(S([M(1, 'x', 2), N(s.p * s.p)]), H), code: 'sq-no-middle', hint: 'Square the base side with its middle term: ' + t('(x+' + s.p + ')^{2}=' + tx(Sq)) + '.' },
+              { is: Y.mul(lin(1, s.p), H), code: 'two-dims', hint: 'The base is a square: length <b>and</b> width are both ' + t('(x+' + s.p + ')') + '.' },
+              { is: S([Y.mul(Sq, M(s.q, 'x')), N(-s.s)]), code: 'q-not-mult', hint: 'The ' + t('-' + s.s) + ' multiplies every term of ' + t(tx(Sq)) + '.' }],
+              t('V=(x+' + s.p + ')^{2}(' + tx(H) + ')') + '<br>' + t('(x+' + s.p + ')^{2}=' + tx(Sq)) + '<br>' + t('\\left(' + tx(Sq) + '\\right)(' + tx(H) + ')=' + seq(termsOf(Y.mul(Sq, M(s.q, 'x'))).concat(termsOf(Y.mul(Sq, N(-s.s))))) + '=' + tx(V)) + ' cm' + t('^{3}'),
+              ['Volume = (side)² × height. Square first, then multiply by the height.'], 'volume (x+p)²(qx−s)', { after: t('\\text{cm}^{3}') });
+          } },
+          { id: 'e20a2', sub: 'a value', level: 'BEG', make: function (r, sh) {
+            var s = sh.A, V = Y.mul(Y.pow(lin(1, s.p), 2), lin(s.q, -s.s)), v = s.v, side = v + s.p, h = s.q * v - s.s, val = side * side * h;
+            var p = KP.number('Evaluate the volume in (a) at ' + t('x=' + v) + '.', val, numDiagClean(val, [[side * h, 'two-dims', 'The base is ' + t(side) + ' by ' + t(side) + ': multiply by ' + t(side) + ' twice.'], [side * side, 'face-area', 'That is the area of the base. Multiply by the height ' + t(h) + '.']]),
+              'Expansion: ' + t(valuesTex(V, v) + '=' + val) + ' cm' + t('^{3}') + '.<br>Directly: side ' + t(v + '+' + s.p + '=' + side) + ', height ' + t(s.q + '(' + v + ')-' + s.s + '=' + h) + ': ' + t(side + '^{2}\\times' + h + '=' + val) + ' cm' + t('^{3}') + ' ✓',
+              ['Substitute ' + t('x=' + v) + ' into your expansion, or work out each dimension and multiply.'], 'volume value', { after: t('\\text{cm}^{3}') });
+            p.bad = [String(side * side)]; return p;
+          } },
+          { id: 'e20b', sub: 'b', level: 'PRG', make: function (r, sh) {
+            var k = sh.k, V = Y.mul(M(1, 'x'), S([M(1, 'x', 2), N(-k * k)]));
+            return pp('(b) A rectangular prism has dimensions ' + t('x') + ' cm, ' + t('(x+' + k + ')') + ' cm and ' + t('(x-' + k + ')') + ' cm.' + figPrism(2.2, 1.5, 1.6, 'x+' + k, 'x', 'x-' + k, 'rectangular prism') + 'Write a fully expanded expression for its volume.', V, [
+              { is: Y.mul(M(1, 'x'), S([M(1, 'x', 2), N(k * k)])), code: 'sd-plus', hint: t('(x+' + k + ')(x-' + k + ')=x^{2}-' + k * k) + ': a sum times a difference gives a <b>difference</b>.' },
+              { is: S([M(1, 'x', 2), N(-k * k)]), code: 'two-dims', hint: 'Multiply all three dimensions: the ' + t('x') + ' as well.' },
+              { is: S([M(1, 'x', 3), N(-k * k)]), code: 'first-only', hint: 'Multiply <b>both</b> terms of ' + t('x^{2}-' + k * k) + ' by ' + t('x') + '.' }],
+              t('(x+' + k + ')(x-' + k + ')=x^{2}-' + k * k) + ' (sum × difference)<br>' + t('V=x\\left(x^{2}-' + k * k + '\\right)=' + tx(V)) + ' cm' + t('^{3}'),
+              ['Multiply the sum × difference pair first, then multiply by ' + t('x') + '.'], 'volume x(x+k)(x−k)', { after: t('\\text{cm}^{3}') });
+          } },
+          { id: 'e20b2', sub: 'b value', level: 'BEG', make: function (r, sh) {
+            var k = sh.k, v = sh.v, val = v * (v + k) * (v - k);
+            var p = KP.number('Evaluate the volume in (b) at ' + t('x=' + v) + '.', val, numDiagClean(val, [[v * (v * v + k * k), 'sd-plus', t('x^{2}-' + k * k) + ' at ' + t('x=' + v) + ' is ' + t(v * v + '-' + k * k) + '.'], [(v + k) * (v - k), 'two-dims', 'Multiply by the third dimension, ' + t(v) + ', too.']]),
+              'Expansion: ' + t(v + '^{3}-' + k * k + '(' + v + ')=' + v * v * v + '-' + k * k * v + '=' + val) + ' cm' + t('^{3}') + '.<br>Directly: ' + t(v + '\\times' + (v + k) + '\\times' + (v - k) + '=' + val) + ' cm' + t('^{3}') + ' ✓',
+              ['Substitute ' + t('x=' + v) + ' into your expansion, or multiply ' + t(v) + ', ' + t(v + k) + ' and ' + t(v - k) + '.'], 'volume value (b)', { after: t('\\text{cm}^{3}') });
+            p.bad = [String((v + k) * (v - k))]; return p;
+          } }] },
+      /* ---------- Part F ---------- */
+      { num: '21', section: 'Part F — Challenge', stem: function (sh) { return '<b>Grouping.</b> A trinomial in brackets can sometimes be treated as a binomial in disguise. For example, ' + t('(' + sh.u + '+' + sh.w + '+' + sh.k + ')^{2}') + ' can be written as ' + t('\\big[(' + sh.u + '+' + sh.w + ')+' + sh.k + '\\big]^{2}') + ', a perfect square whose “first term” is the whole quantity ' + t('(' + sh.u + '+' + sh.w + ')') + '.'; },
+        shared: function (r) { var L = r.pick(LETTERS2), k = r.int(2, 6), j = r.int(2, 7); if (r.chance(0.12)) { L = ['x', 'y']; k = 2; j = 3; } return { u: L[0], w: L[1], k: k, j: j }; },
+        parts: [
+          { id: 'e21a', sub: 'a', level: 'ADV', make: function (r, sh) {
+            var U = M(1, sh.u), W = M(1, sh.w), G = Y.add(U, W), G2 = Y.pow(G, 2), k = sh.k, T = S([G2, Y.scale(G, 2 * k), N(k * k)]);
+            return pp('(a) Expand ' + t('(' + sh.u + '+' + sh.w + '+' + k + ')^{2}') + ' using this grouping, then finish by expanding ' + t('(' + sh.u + '+' + sh.w + ')^{2}') + '.', T, [
+              { is: S([M(1, sh.u, 2), M(1, sh.w, 2), Y.scale(G, 2 * k), N(k * k)]), code: 'sq-no-middle', hint: t('(' + sh.u + '+' + sh.w + ')^{2}') + ' has a middle term too: ' + t(tx(G2)) + '.' },
+              { is: S([G2, N(k * k)]), code: 'no-group-middle', hint: 'The grouped square has a middle term: ' + t('2(' + sh.u + '+' + sh.w + ')(' + k + ')=' + tx(Y.scale(G, 2 * k))) + '.' },
+              { is: S([G2, Y.scale(G, k), N(k * k)]), code: 'sq-not-doubled', hint: 'Double the middle product: ' + t('2(' + sh.u + '+' + sh.w + ')(' + k + ')') + '.' },
+              { is: S([M(1, sh.u, 2), M(1, sh.w, 2), N(k * k)]), code: 'sq-no-middle', hint: 'Squaring each term separately misses every cross product. Use the grouping.' }],
+              t('\\big[(' + sh.u + '+' + sh.w + ')+' + k + '\\big]^{2}=(' + sh.u + '+' + sh.w + ')^{2}+2(' + sh.u + '+' + sh.w + ')(' + k + ')+' + k + '^{2}') + '<br>' + t('=' + tx(G2) + '+' + tx(Y.scale(G, 2 * k)) + '+' + k * k),
+              ['Let ' + t('a=(' + sh.u + '+' + sh.w + ')') + ' and ' + t('b=' + k) + ' in ' + t('(a+b)^{2}=a^{2}+2ab+b^{2}') + '.', 'Then expand ' + t('a^{2}=(' + sh.u + '+' + sh.w + ')^{2}') + ' and ' + t('2ab') + '.'], 'grouped square', { vars: [sh.u, sh.w] });
+          } },
+          { id: 'e21b', sub: 'b', level: 'ADV', make: function (r, sh) {
+            var G = Y.add(M(1, sh.u), M(1, sh.w)), G2 = Y.pow(G, 2), j = sh.j, T = Y.sub(G2, N(j * j));
+            return pp('(b) Use the same idea with the difference of squares to expand ' + t('(' + sh.u + '+' + sh.w + '+' + j + ')(' + sh.u + '+' + sh.w + '-' + j + ')') + '.', T, [
+              { is: Y.add(G2, N(j * j)), code: 'sd-plus', hint: 'A sum times a difference gives a <b>difference</b> of squares: ' + t('-' + j + '^{2}') + '.' },
+              { is: S([M(1, sh.u, 2), M(1, sh.w, 2), N(-j * j)]), code: 'sq-no-middle', hint: t('(' + sh.u + '+' + sh.w + ')^{2}') + ' has a middle term: ' + t(tx(G2)) + '.' },
+              { is: S([G2, Y.scale(G, 2 * j), N(-j * j)]), code: 'sd-middle', hint: 'In a sum times a difference the middle products cancel: no ' + t('(' + sh.u + '+' + sh.w + ')') + '-terms.' }],
+              t('\\big[(' + sh.u + '+' + sh.w + ')+' + j + '\\big]\\big[(' + sh.u + '+' + sh.w + ')-' + j + '\\big]=(' + sh.u + '+' + sh.w + ')^{2}-' + j + '^{2}=' + tx(T)),
+              ['Let ' + t('a=(' + sh.u + '+' + sh.w + ')') + ' and ' + t('b=' + j) + ' in ' + t('(a+b)(a-b)=a^{2}-b^{2}') + '.'], 'grouped difference of squares', { vars: [sh.u, sh.w] });
+          } }] },
+      { num: '22', stem: '<b>Three factors.</b>',
+        shared: function (r) { var s = pickWhere(function () { return { a: r.int(1, 4), b: r.int(2, 5), c: r.int(3, 6), v: r.int(3, 9) }; }, function (s) { return s.a < s.b && s.b < s.c; }); if (r.chance(0.12)) s = { a: 1, b: 2, c: 3, v: 7 }; return s; },
+        parts: [
+          { id: 'e22a', sub: 'a', level: 'PRG', make: function (r, sh) {
+            var A = lin(1, sh.a), B = lin(1, sh.b), C = lin(1, sh.c), AB = Y.mul(A, B), T = Y.mul(AB, C);
+            return pp('Expand ' + t('(x+' + sh.a + ')(x+' + sh.b + ')(x+' + sh.c + ')') + ' completely.', T, [
+              { is: S([M(1, 'x', 3), N(sh.a * sh.b * sh.c)]), code: 'fl-only', hint: 'Multiply two of the brackets first (four products), then multiply every term of that result by the third bracket.' },
+              { is: S([Y.mul(AB, M(1, 'x')), N(sh.c)]), code: 'q-not-mult', hint: 'The ' + t(sh.c) + ' must multiply every term of ' + t(tx(AB)) + ' too.' },
+              { is: Y.mul(S([M(1, 'x', 2), N(sh.a * sh.b)]), C), code: 'fl-only', hint: 'FOIL the first two brackets completely: ' + t('(x+' + sh.a + ')(x+' + sh.b + ')=' + tx(AB)) + '.' }],
+              t('(x+' + sh.a + ')(x+' + sh.b + ')=' + tx(AB)) + '<br>' + t('\\left(' + tx(AB) + '\\right)(x+' + sh.c + ')=' + seq(termsOf(Y.mul(AB, M(1, 'x'))).concat(termsOf(Y.mul(AB, N(sh.c))))) + '=' + tx(T)),
+              ['FOIL the first two brackets, then multiply the trinomial by ' + t('(x+' + sh.c + ')') + ' — six products.'], 'three binomials');
+          } },
+          { id: 'e22b', sub: 'b', level: 'BEG', make: function (r, sh) {
+            var v = sh.v, T = Y.mul(lin(1, sh.a), lin(1, sh.b), lin(1, sh.c)), val = (v + sh.a) * (v + sh.b) * (v + sh.c);
+            var p = KP.number('Evaluate your expansion at ' + t('x=' + v) + ', and check it by substituting ' + t('x=' + v) + ' into the original three factors and multiplying. What value do both give?', val, numDiagClean(val, [[v * v * v + sh.a * sh.b * sh.c, 'fl-only', 'That is ' + t('x^{3}+' + sh.a * sh.b * sh.c) + ' — the expansion is missing terms. Multiply the three factors directly to check.']]),
+              'Expansion: ' + t(valuesTex(T, v) + '=' + val) + '.<br>Factors: ' + t((v + sh.a) + '\\times' + (v + sh.b) + '\\times' + (v + sh.c) + '=' + val) + ' ✓',
+              ['Work out each bracket at ' + t('x=' + v) + ' and multiply the three numbers.'], 'three factors check');
+            p.bad = [String(v * v * v + sh.a * sh.b * sh.c)]; return p;
+          } }] },
+      { num: '23', stem: function (sh) { return '<b>A hidden difference of squares.</b> The product ' + t('\\left(' + sh.T1 + '\\right)\\left(' + sh.T2 + '\\right)') + ' looks like a trinomial times a trinomial, but regrouping each bracket as ' + t('\\left(x^{2}+' + sh.m + '\\right)\\pm ' + sh.kx) + ' turns it into a difference of squares.'; },
+        shared: function (r) {
+          var s = pickWhere(function () { return { k: r.int(1, 3), m: r.int(1, 5) }; }, function (s) { return 2 * s.m !== s.k * s.k; });
+          if (r.chance(0.12)) s = { k: 1, m: 1 };
+          s.kx = s.k === 1 ? 'x' : s.k + 'x'; s.T1 = 'x^{2}+' + s.kx + '+' + s.m; s.T2 = 'x^{2}-' + s.kx + '+' + s.m;
+          return s;
+        },
+        parts: [
+          { id: 'e23a', sub: 'a', level: 'MAS', make: function (r, sh) {
+            var k = sh.k, m = sh.m, G = S([M(1, 'x', 2), N(m)]), G2 = Y.pow(G, 2), T = Y.sub(G2, M(k * k, 'x', 2));
+            return pp('(a) Expand the product using this regrouping. You will need ' + t('\\left(x^{2}+' + m + '\\right)^{2}') + ' along the way.', T, [
+              { is: Y.add(G2, M(k * k, 'x', 2)), code: 'sd-plus', hint: 'It is a <b>difference</b> of squares: ' + t('\\left[(x^{2}+' + m + ')+' + sh.kx + '\\right]\\left[(x^{2}+' + m + ')-' + sh.kx + '\\right]=(x^{2}+' + m + ')^{2}-(' + sh.kx + ')^{2}') + '.' },
+              { is: Y.sub(S([M(1, 'x', 4), N(m * m)]), M(k * k, 'x', 2)), code: 'sq-no-middle', hint: t('\\left(x^{2}+' + m + '\\right)^{2}') + ' has a middle term: ' + t(tx(G2)) + '.' },
+              { is: Y.sub(G2, M(k, 'x', 2)), code: 'coef-not-squared', hint: 'Square the whole term: ' + t('(' + sh.kx + ')^{2}=' + (k * k === 1 ? '' : k * k) + 'x^{2}') + '.' },
+              { is: Y.sub(G2, M(k * k, 'x')), code: 'exp', hint: t('(' + sh.kx + ')^{2}') + ' has ' + t('x^{2}') + ', not ' + t('x') + '.' }],
+              t('\\left[(x^{2}+' + m + ')+' + sh.kx + '\\right]\\left[(x^{2}+' + m + ')-' + sh.kx + '\\right]=(x^{2}+' + m + ')^{2}-(' + sh.kx + ')^{2}') + '<br>' + t('(x^{2}+' + m + ')^{2}=' + tx(G2)) + '<br>' + t('=' + tx(G2) + '-' + (k * k === 1 ? '' : k * k) + 'x^{2}=' + tx(T)),
+              ['Let ' + t('a=x^{2}+' + m) + ' and ' + t('b=' + sh.kx) + '. Then the product is ' + t('(a+b)(a-b)=a^{2}-b^{2}') + '.', 'Expand ' + t('a^{2}=(x^{2}+' + m + ')^{2}') + ' with its middle term, then subtract ' + t('b^{2}') + ' and collect.'], 'hidden difference of squares');
+          } },
+          { id: 'e23b', sub: 'b', level: 'PRG', make: function (r, sh) {
+            return mc(r, '(b) Why does the final answer contain no ' + t('x^{3}') + ' term and no ' + t('x') + ' term?', [
+              { html: 'The regrouping makes it a difference of squares, which has no middle term: the cross products ' + t('+' + sh.kx + '(x^{2}+' + sh.m + ')') + ' and ' + t('-' + sh.kx + '(x^{2}+' + sh.m + ')') + ' cancel, and they are the only source of ' + t('x^{3}') + ' and ' + t('x') + ' terms.', right: true },
+              { html: 'Because the two trinomials have no ' + t('x^{3}') + ' term to begin with.', why: 'Multiplying can create an ' + t('x^{3}') + ' term (' + t('x^{2}\\cdot x') + '). They appear, then cancel.', code: 'h-start' },
+              { html: 'Because ' + t('x^{3}') + ' and ' + t('x') + ' terms always cancel when you multiply two trinomials.', why: 'Try ' + t('(x^{2}+x+1)(x^{2}+x+1)') + ': it has ' + t('2x^{3}') + '. Here they cancel only because the middle signs are opposite.', code: 'h-always' },
+              { html: 'Because the constant terms ' + t(sh.m) + ' and ' + t(sh.m) + ' are equal.', why: 'Equal constants help the grouping, but the cancelling comes from the opposite signs on the ' + t(sh.kx) + ' terms.', code: 'h-const' }],
+              'With ' + t('a=x^{2}+' + sh.m) + ' and ' + t('b=' + sh.kx) + ', ' + t('(a+b)(a-b)=a^{2}-ab+ab-b^{2}') + ': the cross products ' + t('\\pm ab=\\pm ' + sh.kx + '(x^{2}+' + sh.m + ')') + ' cancel. They are the only products with an odd power of ' + t('x') + '.',
+              ['Which products would give ' + t('x^{3}') + ' or ' + t('x') + '? Look at their signs.'], 'why no odd powers');
+          } }] }
+    ]
   });
 })(window);
