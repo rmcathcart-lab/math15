@@ -532,7 +532,7 @@
             { html: t('0.' + d), why: 'It terminates: ' + t('0.' + d + '=\\frac{' + d + '}{100}') + ' — rational.' }],
             t(k * k + '<' + n + '<' + (k + 1) * (k + 1)) + ', so ' + t(n) + ' is not a perfect square and ' + t('\\sqrt{' + n + '}') + ' is irrational (not rational).', ['Which square root is of a number that isn’t a perfect square?'], 'MC not rational', true);
         } }] },
-      { num: '14', stem: 'A diagram of the real number system, like the one in the lesson: inside the rectangle for ' + S('R') + ', nested rectangles ' + t('N\\subset W\\subset I\\subset Q') + ' and a separate box for ' + S('Qb') + '.' + vennSvg(), parts: [
+      { num: '14', stem: 'A diagram of the real number system, like the one in the lesson: inside the rectangle for ' + S('R') + ', nested rectangles for ' + S('N') + ', ' + S('W') + ', ' + S('I') + ' and ' + S('Q') + ' (each one inside another) and a separate box for ' + S('Qb') + '.' + vennSvg(), parts: [
         { id: '14a', level: 'BEG', make: function (r) {
           var inward = r.chance(0.5), chain = ['N', 'W', 'I', 'Q', 'R'], items = chain.map(function (x) { return { id: x, tex: SYM[x] }; });
           if (inward) items.reverse();
