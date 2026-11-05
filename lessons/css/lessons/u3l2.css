@@ -1,0 +1,152 @@
+/* Math 15 · Unit 3 · Lesson 2 — Multiplying a Monomial by a Polynomial: styles used only on this page.
+ * Adapted from Math 10C 3.2. Area-model pieces take the Unit 3 term colours (teal, amber, purple); negative pieces are hatched. */
+/* captions may run to four lines; reserve the room so nothing below an explainer moves while it plays */
+.ex-cap { min-height: 128px; }
+.ex-cap .katex { font-size: 1.04em; }
+.chip .katex { font-size: 1em; }
+.pl .katex { font-size: 1.12em; }
+.part.span2 { grid-column: span 2; }
+.part.think.span2 { margin-bottom: 0; }
+.pill-col { display: flex; flex-direction: column; gap: 6px; }
+.ans .katex { font-size: 1.04em; }
+/* ---------------- notes ---------------- */
+.u3l2-dp { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 12px; margin: 4px 0 6px; }
+.u3l2-dpb { background: #f6f5f1; border-radius: 12px; padding: 8px 14px 10px; text-align: center; font-size: 23px; white-space: nowrap; }
+.u3l2-dph { font: 800 15px var(--round); color: var(--brand); text-transform: uppercase; letter-spacing: .05em; }
+/* ---------------- shared explainer pieces ---------------- */
+.u3l2-arcs { left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 3; }
+.u3l2-arclab { font: 900 22px var(--round); }
+.u3l2-lab { font-size: 26px; font-weight: 600; white-space: nowrap; }
+.u3l2-rect { border: 3px solid var(--ink); border-radius: 2px; z-index: 2; pointer-events: none; }
+.u3l2-divl { border-left: 3px solid var(--ink); transform-origin: top; z-index: 2; }
+.u3l2-fill { background: color-mix(in srgb, var(--pc) 17%, #fff); }
+.u3l2-fill.neg, .u3l2-gc.neg.on, .u3l2-gg.in.neg.on { background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--pc) 22%, #fff) 0 8px, #fff 8px 13px); }
+.u3l2-dim { height: 0; border-top: 2px solid #8b909b; }
+.u3l2-dim::before, .u3l2-dim::after { content: ""; position: absolute; top: -7px; width: 2px; height: 12px; background: #8b909b; }
+.u3l2-dim::before { left: 0; } .u3l2-dim::after { right: 0; }
+.u3l2-vdim { width: 0; border-left: 2px solid #8b909b; }
+.u3l2-vdim::before, .u3l2-vdim::after { content: ""; position: absolute; left: -7px; height: 2px; width: 12px; background: #8b909b; }
+.u3l2-vdim::before { top: 0; } .u3l2-vdim::after { bottom: 0; }
+.u3l2-ctr { font-size: 22px; color: var(--muted); white-space: nowrap; }
+.u3l2-plab { font-size: 30px; font-weight: 700; white-space: nowrap; z-index: 3; }
+.u3l2-wl { font-size: 28px; white-space: nowrap; }
+.u3l2-ans { color: var(--ok); }
+.u3l2-ans .katex { font-weight: 700; }
+.u3l2-red { color: var(--red); }
+
+/* distributing */
+.u3l2-ds0 { font-size: 40px; white-space: nowrap; }
+.u3l2-ds1 { font-size: 34px; white-space: nowrap; }
+.u3l2-ds1.u3l2-ans { border-radius: 10px; }
+.u3l2-hot { background: #fff1c9; border-radius: 6px; box-shadow: 0 0 0 3px #fff1c9; }
+.u3l2-likeu { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
+
+/* area-model cells and four-cell grids */
+.u3l2-gc { --fillc: color-mix(in srgb, var(--pc) 17%, #fff); background: #fff; border: 2px solid var(--ink); display: grid; place-items: center; overflow: hidden; transition: background-color .35s, box-shadow .3s; }
+.u3l2-gc.on { background: var(--fillc); }
+.u3l2-gc.like { box-shadow: inset 0 0 0 4px #c2417a; }
+.u3l2-gcl { position: absolute; inset: 0; display: grid; place-items: center; font-size: 26px; font-weight: 700; color: var(--pc); white-space: nowrap; }
+.u3l2-gc.neg .u3l2-gcl { color: var(--red); }
+.u3l2-gg { --fillc: color-mix(in srgb, var(--pc) 17%, #fff); border: 1.5px solid #9aa0ab; background: #fff; display: grid; place-items: center; font-size: 24px; transition: background-color .35s, box-shadow .3s; }
+.u3l2-gg.hd { background: #eceae4; font-weight: 700; color: var(--ink2); }
+.u3l2-gg.hd.x { color: var(--muted); }
+.u3l2-gg.in > span { font-weight: 700; color: var(--pc, var(--ink)); white-space: nowrap; }
+.u3l2-gg.in.neg > span { color: var(--red); }
+.u3l2-gg.on { background: var(--fillc); }
+.u3l2-gg.like { box-shadow: inset 0 0 0 4px #c2417a; }
+.u3l2-gg.miss { background: #fde9e7; box-shadow: inset 0 0 0 3px var(--red); }
+.u3l2-gg.miss::after { content: "?"; font: 900 32px var(--round); color: var(--red); position: absolute; }
+.u3l2-gg.in > i { position: absolute; left: 5px; top: 2px; font: 900 15px var(--round); font-style: normal; color: var(--pc); }
+.u3l2-gt { font: 800 14px var(--font); color: var(--muted); text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; }
+.u3l2-gl { font-size: 28px; }
+
+/* ---------------- static figures in examples and answers ---------------- */
+.u3l2-mini { display: flex; align-items: center; gap: 6px; margin: 4px 0 6px; color: var(--ink); }
+.u3l2-mside { font-size: 16px; }
+.u3l2-mtop { display: flex; font-size: 15px; }
+.u3l2-mtop > span, .u3l2-mrow > span { display: inline-grid; place-items: center; }
+.u3l2-mtop > span.v, .u3l2-mrow > span.v { width: 92px; } .u3l2-mtop > span.k, .u3l2-mrow > span.k { width: 54px; }
+.u3l2-mrow { display: flex; border: 2px solid var(--ink); height: 46px; font-size: 16px; color: var(--red); }
+.u3l2-mrow > span + span { border-left: 2px solid var(--ink); }
+.u3l2-mrow > span.neg { background: repeating-linear-gradient(135deg, #fbe2df 0 6px, #fff 6px 10px); }
+.u3l2-grid { margin: 4px 0 6px; }
+.u3l2-grid table { border-collapse: collapse; font-size: 16px; color: var(--ink); }
+.u3l2-grid th, .u3l2-grid td { border: 1.5px solid #8b909b; padding: 3px 10px; text-align: center; min-width: 54px; height: 34px; }
+.u3l2-grid th { background: #eceae4; font-weight: 600; }
+.u3l2-gg.in.on { background: var(--fillc); }
+.u3l2-gg.hd.on { box-shadow: inset 0 -4px 0 currentColor; }
+
+/* ---------------- Math 15 additions ---------------- */
+.u3l2-wqs { display: grid; gap: 8px; margin-top: 8px; }
+.u3l2-wqs .bk-ans { color: var(--red); }
+.u3l2-social { margin: 10px 0 0 !important; font-size: 17px; font-style: italic; text-align: center; color: var(--ink2); }
+.u3l2-social [data-reveal] { font-style: normal; font-weight: 700; color: var(--red); }
+.wf .u3l2-wqs .q-line { font-size: 17px; gap: 10px; margin: 2px 0; }
+.wf .u3l2-wqs .q-num { width: 28px; height: 28px; font-size: 15px; }
+.wf .u3l2-wqs .bk-ans { font-size: 16px; }
+.wf .wf-poll .opt { font-size: 18px; padding: 6px 10px; }
+.wf .wf-poll:not(.revealed) .poll-ans { display: none; }
+
+/* warm-up: beat the calculator */
+.u3l2-bc { background: #fffdf6; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px 8px; }
+.u3l2-bcg { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.u3l2-bcfig { --w1: 200px; --w2: 46px; display: flex; flex-direction: column; align-items: flex-start; padding-left: 30px; }
+.u3l2-bctop { display: flex; height: 30px; align-items: flex-end; font: 800 20px var(--round); }
+.u3l2-bctop > span { text-align: center; }
+.u3l2-bctop .w1 { width: var(--w1); } .u3l2-bctop .w2 { width: var(--w2); }
+.u3l2-bctop .red, .u3l2-bcbox .sm { color: var(--red); }
+.u3l2-bcmid { position: relative; display: flex; align-items: center; }
+.u3l2-bcs { position: absolute; left: -28px; font: 800 22px var(--round); }
+.u3l2-bcbox { display: flex; height: 108px; border: 2.5px solid #c88c14; border-radius: 2px; }
+.u3l2-bcbox > div { display: grid; place-items: center; text-align: center; font-size: 19px; }
+.u3l2-bcbox .big { width: var(--w1); background: #ffecb3; }
+.u3l2-bcbox .sm { width: var(--w2); background: #f8dedb; border-left: 2.5px solid var(--red); font-weight: 700; }
+.u3l2-bcbox .sm.cut { background: repeating-linear-gradient(135deg, #f4c4bf 0 6px, #fff 6px 11px); border-left-style: dashed; }
+.u3l2-bcbox .sm small { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 13px; font-weight: 800; background: #fff; padding: 2px 0; }
+.u3l2-bcbr { width: calc(var(--w1) + var(--w2)); height: 12px; border: 2.5px solid var(--ink2); border-top: none; border-radius: 0 0 10px 10px; margin-top: 6px; }
+.u3l2-bcbl { width: calc(var(--w1) + var(--w2)); text-align: center; font: 700 18px var(--round); margin-top: 2px; }
+.u3l2-bcctl { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.u3l2-bcctl .pill.small { margin-left: 0; }
+.u3l2-bcctl .pill.on { background: var(--amber); border-color: var(--amber); color: #fff; }
+.u3l2-bcread { font-size: 19px; min-height: 1.6em; margin-top: 4px; color: var(--ink2); }
+.u3l2-bc.xmode .u3l2-bctop .w1, .u3l2-bc.xmode .u3l2-bcbox .big { color: var(--brand2); }
+
+/* monomial × monomial */
+.u3l2-mm0 { font-size: 44px; white-space: nowrap; }
+.u3l2-mm0 .u3l2-mc { color: #a3610a; }
+.u3l2-mm0 .u3l2-mv { color: var(--brand2); }
+.u3l2-mm1 { font-size: 32px; white-space: nowrap; }
+.u3l2-mcol { color: #a3610a; }
+.u3l2-mvol { color: var(--brand2); }
+.u3l2-mx { width: 40px; height: 46px; border-radius: 9px; display: grid; place-items: center; font-size: 26px; background: #e3ebfa; border: 2px solid #9db3e0; }
+.u3l2-mx.b { background: #ece4fa; border-color: #b9a3e3; }
+.u3l2-mbr { font-size: 20px; color: var(--brand2); white-space: nowrap; }
+.u3l2-mbr.b { color: #7b4fc4; }
+.u3l2-mcnt { font-size: 20px; white-space: nowrap; translate: 0 -50%; }
+.u3l2-mcnt b { font: 900 26px var(--round); color: var(--brand2); }
+.u3l2-mcard { background: #fff; border: 2.5px solid; border-radius: 14px; padding: 4px 16px 8px; font-size: 26px; white-space: nowrap; text-align: center; }
+.u3l2-mcard small { display: block; font: 800 12px var(--round); text-transform: uppercase; letter-spacing: .06em; }
+.u3l2-mcard.amb { border-color: #c27a0e; } .u3l2-mcard.amb small { color: #a3610a; }
+.u3l2-mcard.blu { border-color: var(--brand2); } .u3l2-mcard.blu small { color: var(--brand2); }
+.u3l2-mres { font-size: 36px; white-space: nowrap; background: #fff; border: 3px solid var(--ok); border-radius: 14px; padding: 2px 22px; }
+.u3l2-mres .katex { color: var(--ok); }
+
+/* the area grid */
+.u3l2-tally { font-size: 18px; white-space: nowrap; background: var(--brand-soft); border-radius: 12px; padding: 4px 14px; color: var(--brand); }
+.u3l2-ansl .katex { font-weight: 700; }
+
+/* spot the mistake */
+.u3l2-msq { font-size: 36px; white-space: nowrap; }
+.u3l2-mscard { background: #fff; border: 2.5px solid var(--line); border-radius: 14px; padding: 8px 16px 10px; min-height: 160px; }
+.u3l2-mscard.good { border-color: var(--ok); background: #f1f9f5; }
+.u3l2-msh { font: 800 14px var(--round); color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+.u3l2-mscard.good .u3l2-msh { color: var(--ok); }
+.u3l2-msl { font-size: 25px; white-space: nowrap; line-height: 1.6; }
+.u3l2-bad { border-radius: 8px; transition: background .3s, box-shadow .3s; }
+.u3l2-bad.on { background: #fde9e7; box-shadow: 0 0 0 3px var(--red); color: var(--red); }
+.u3l2-mswhy { font-size: 19px; line-height: 1.4; color: var(--red); background: #fff6f5; border-radius: 12px; padding: 6px 12px; }
+.u3l2-stamp { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 900 26px var(--round); z-index: 4; }
+.u3l2-stamp.ok { background: var(--ok); } .u3l2-stamp.no { background: var(--red); }
+
+/* mini area models in the answers sit on one line */
+.ans .u3l2-mini { margin: 2px 0 6px; }

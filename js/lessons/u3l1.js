@@ -489,7 +489,7 @@
           { html: 'Because subtracting means adding the two polynomials.', why: 'Subtracting means adding the <b>opposite</b>, not adding. Think about ' + t('10-?=4') + '.' }],
           'Like ' + t('10-?=4') + ' (where ' + t('?=10-4=6') + ', not ' + t('4-10=-6') + '), the missing piece is (start) − (result). Reversing the subtraction gives the opposite polynomial, with every sign changed.', ['Try the same question with numbers: what must be subtracted from ' + t('10') + ' to give ' + t('4') + '?'], 'why order matters');
       } }] },
-    { num: '12', section: 'Mastery challenge', stem: 'Determine the missing coefficients.', parts: [
+    { num: '12', stem: '<b>Stretch.</b> Determine the missing coefficients.', parts: [
       { id: 'e12a', level: 'MAS', make: function (r) {
         var q = r.int(1, 4), rr = r.int(1, 4), p = r.int(1, 6), s = -r.int(1, 6), a = q + rr, b = p - s;
         if (r.chance(0.15)) { q = 2; rr = 1; p = 3; s = -5; a = 3; b = 8; }

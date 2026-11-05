@@ -836,9 +836,9 @@ standup('u3l7', {
       const kind = r.pick(['collect', 'addsub', 'addsub', 'mono']), v = r.pick(['x', 'x', 'x', 'a', 'm']);
       if (kind === 'collect') {
         for (;;) {
-          const ts = [suM(r.int(2, 9), v, 2), suM(suNz(r, -9, 9), v), suM(suNz(r, -12, 12)), suM(suNz(r, -6, 6), v, 2), suM(suNz(r, -9, 9), v), suM(suNz(r, -12, 12))];
+          const ts = [suM(r.int(2, 9), v, 2), suM(suNz(r, -9, 9), v), suM(suNz(r, -12, 12)), suM(suNz(r, -6, 6), v, 2), r.chance(0.5) ? suM(suNz(r, -9, 9), v) : suM(suNz(r, -12, 12))];
           const sum = suP(ts); if (Object.keys(sum).length < 2) continue;
-          const order = r.shuffle([0, 1, 2, 3, 4, 5]), list = order.map((i) => ts[i]);
+          const list = r.shuffle(ts);
           const byK = [v + '2', v + '1', ''].map((k) => list.filter((t) => suOne(t)[1] === k));
           return { text: 'Simplify by collecting like terms.', q: suSeq(list), a: ['=' + byK.map((g) => '(' + suSeq(g) + ')').join('+'), '=' + suTex(sum)] };
         }
@@ -848,7 +848,7 @@ standup('u3l7', {
           const A = suTri(r, v, r.int(2, 9)), B = suTri(r, v, r.int(1, 6)), minus = r.chance(0.6), res = minus ? suAdd(suP(A), suNeg(suP(B))) : suAdd(suP(A), suP(B));
           if (Object.keys(res).length < 2) continue;
           return minus
-            ? { text: 'Subtract.', q: suPar(A) + '-' + suPar(B), a: ['=' + suSeq(A) + suSeq(B.map(suNeg), true) + '\\quad\\text{(flip every sign)}', '=' + suTex(res)] }
+            ? { text: 'Subtract.', q: suPar(A) + '-' + suPar(B), a: ['=' + suSeq(A) + suSeq(B.map(suNeg), true), '=' + suTex(res)] }
             : { text: 'Add.', q: suPar(A) + '+' + suPar(B), a: ['=' + suSeq(A) + suSeq(B, true), '=' + suTex(res)] };
         }
       }
@@ -871,7 +871,7 @@ standup('u3l7', {
         const a = r.pick([1, 1, 2, 3]), c = r.pick([1, 1, 2, 3, 4]), b = suNz(r, -9, 9), d = suNz(r, -9, 9);
         if (a === c && (b === d || b === -d)) continue; // that's a special product
         const A = suL(v, a, b), B = suL(v, c, d), parts = suParts(A, B), res = suP(parts);
-        return { text: 'Expand and simplify.', q: suPar(A) + suPar(B), a: ['=' + suSeq(parts) + '\\quad\\text{(F, O, I, L)}', '=' + suTex(res)] };
+        return { text: 'Expand and simplify.', q: suPar(A) + suPar(B), a: ['=' + suSeq(parts), '=' + suTex(res)] };
       }
     },
     /* binomial × trinomial; two products combined; area or volume */

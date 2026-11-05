@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Applying Polynomial Products · Math 15 3.6</title>
+<meta name="description" content="Math 15 Unit 3 Lesson 6: applying polynomial products to area, volume and equations. Areas of rectangles with binomial sides, the volume of a box with three binomial edges, equal-area equations where the squared terms cancel, and a multi-step fish-tank problem. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u3l6.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u3l6">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 3 Polynomial Operations · Lesson 6</div>
+  <h1>Applying Polynomial Products to Area, Volume, and Equations</h1>
+  <p class="lede">Every multiplication skill from this unit, put to work on real shapes. When the sides of a garden or a crate are expressions, the product <b>is</b> the area or the volume. Put in a number for <span class="tex">x</span> and you get real square metres or cubic centimetres.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>write the area of a rectangle with binomial sides as a simplified trinomial, then evaluate it</li>
+      <li>write the volume of a box with three binomial edges: multiply two edges first, then the third</li>
+      <li>set two equal areas equal, expand both sides, and solve the equation that is left when the <span class="tex">x^2</span> terms cancel</li>
+      <li>work through a multi-step problem, changing a dimension <b>before</b> I multiply</li>
+      <li>check an answer by multiplying the real side lengths</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN4</b> Demonstrate an understanding of the multiplication of polynomial expressions (limited to monomials, binomials and trinomials), concretely, pictorially and symbolically.<br><span class="u3l6-today">Today: products that measure areas and volumes.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Open-Top Box" style="--wf-side: 320px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Open-Top Box</h2>
+  <p class="wf-rule">Cut a square from each corner of a <b>12 cm by 12 cm</b> sheet. Fold up the sides. <span class="muted">Tap a cut size to fold it. Tap a <b class="u3l6-cr">?</b> to reveal it.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u3l6-wu" id="u3l6-wu"></div>
+    <div class="u3l6-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Cut <b>1 cm</b> squares. Why is the box 10 cm long, not 11 cm? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">A square is cut from <b>both</b> ends of each side, so the length loses 1 cm twice: <span class="tex">12-2\times1=10</span>.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Cut <b>3 cm</b> squares. How long, wide and tall is the box? Its volume? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>6 by 6 by 3</b> (<span class="tex">12-2\times3=6</span>). Volume <span class="tex">6\times6\times3=108</span> cm³.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>What if you cut <b>6 cm</b> squares? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><span class="tex">12-2\times6=0</span>: nothing is left to fold. No box, volume 0.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A small cut makes a box that is wide but flat. A big cut makes one that is tall but skinny. Which cut makes the box hold the <b>most</b>? <b>Guess first</b>, then fill in the table.</div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b> 1 cm</div>
+        <div class="opt right"><b>B</b> 2 cm</div>
+        <div class="opt"><b>C</b> 3 cm</div>
+        <div class="opt"><b>D</b> 4 cm</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, 2 cm:</b> <span class="tex">8\times8\times2=128</span> cm³.<br>The table: 100, <b>128</b>, 108, 64, 20, 0. The volume climbs, peaks, then falls to 0.<br>The <span class="tex">4\times4\times4</span> cube looks the fullest, but it holds only 64, <b>half</b> of the winner.</div>
+    </div>
+  </div></div>
+  <div class="bk-wq u3l6-wide"><div class="q-line"><div class="q-num bonus">+</div><div><b>Try it:</b> cut and fold a real sheet. Could a cut like <b>2.5 cm</b> beat the winner? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="bk-ans">No. 2.5 cm gives <span class="tex">7\times7\times2.5=122.5</span> and 1.5 cm gives <span class="tex">9\times9\times1.5=121.5</span>. 128 cm³ is the most.</div></div>
+</section>
+
+<!-- ================= 1. The skills ================= -->
+<section class="card" data-ink="s1" data-section="1. The Skills You Will Need">
+  <div class="sec-h"><span class="badge">1</span><h2>The Multiplication Skills You Will Need</h2></div>
+  <p>Four tools from Lessons 2 to 5 do all the work today. <span class="muted">Tap a card to flip it.</span></p>
+  <div class="bk-flips u3l6-tools" style="--bk-cols:4">
+    <div class="bk-flip"><div class="bk-front"><b>Monomial × polynomial</b><small>Lesson 2: distribute</small></div><div class="bk-back"><span class="tex">3x(x+4)</span><span class="tex">=3x^2+12x</span></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>FOIL</b><small>Lesson 3: two binomials</small></div><div class="bk-back"><span class="tex">(x+2)(x+5)</span><span class="tex">=x^2+7x+10</span></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Special products</b><small>Lesson 4: the patterns</small></div><div class="bk-back"><span class="tex">(a+b)(a-b)=a^2-b^2</span><span class="tex">(a\pm b)^2=a^2\pm2ab+b^2</span></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Binomial × trinomial</b><small>Lesson 5: six products</small></div><div class="bk-back"><span class="tex">(x+2)(x^2+4x+5)</span><span class="tex">=x^3+6x^2+13x+10</span></div></div>
+  </div>
+  <p>What’s new: the expressions are the <b>side lengths</b> of a real shape. So the answer is a real <b>area</b> or <b>volume</b>.</p>
+</section>
+
+<!-- ================= 2. Area ================= -->
+<section class="card" data-ink="s2" data-section="2. Area Applications">
+  <div class="sec-h"><span class="badge">2</span><h2>Area Applications</h2></div>
+  <div class="def u3l6-rule"><b>Area of a rectangle:</b> <span class="tex">A=\text{length}\times\text{width}</span></div>
+  <p>When the length and width are binomials, multiply them with <b>FOIL</b> and collect like terms. The simplified trinomial <b>is</b> the area. To find a number, substitute the given value of <span class="tex">x</span> into that trinomial.</p>
+  <div class="explainer" data-explainer="area"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>A vegetable garden</h3></div>
+  <p class="q">A rectangular vegetable garden has length <span class="tex">(x+6)</span> m and width <span class="tex">(x+2)</span> m.</p>
+  <div class="u3l6-exg">
+    <div class="u3l6-fig" data-fig="ex1" style="--fw:290px;--fh:170px"></div>
+    <div class="u3l6-exparts">
+      <div class="part"><div class="pl">(a) Write an expression for the area of the garden as a simplified trinomial.</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">A=(x+6)(x+2)=x^2+2x+6x+12</span><br><span class="tex">A=\mathbf{x^2+8x+12}</span> (in m²)</div></div></div>
+      <div class="part"><div class="pl">(b) Determine the area of the garden when <span class="tex">x=3</span> m.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">A=3^2+8(3)+12=9+24+12=\mathbf{45}</span> m²<br>Check with the sides: <span class="tex">9\times5=45</span> ✓</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. A piece cut out">
+  <h3 class="sub">Good to know: an area with a piece cut out</h3>
+  <p>Some shapes are a rectangle with a smaller piece <b>removed</b> (a frame, a lawn with a flower bed cut out, a path around a garden). Find both areas, then subtract:</p>
+  <div class="def u3l6-rule gray"><b>area left = whole area − area cut out</b></div>
+  <div class="explainer" data-explainer="cutout"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Subtract the whole piece.</b> Keep its brackets: <span class="tex">-(x^2+2x+1)=-x^2-2x-1</span>. Every term changes sign, not just the first one.</div></div>
+</section>
+
+<!-- ================= 3. Volume ================= -->
+<section class="card" data-ink="s3" data-section="3. Volume Applications">
+  <div class="sec-h"><span class="badge">3</span><h2>Volume Applications</h2></div>
+  <div class="def u3l6-rule"><b>Volume of a rectangular prism:</b> <span class="tex">V=\text{length}\times\text{width}\times\text{height}</span></div>
+  <p>With three binomial edges, multiply <b>two</b> of them first to get a trinomial (the area of the base). Then multiply that trinomial by the third binomial. That’s exactly the Lesson 5 skill.</p>
+  <div class="explainer" data-explainer="box"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>A storage crate</h3></div>
+  <p class="q">A rectangular storage crate has length <span class="tex">(x+2)</span> cm, width <span class="tex">(x+1)</span> cm, and height <span class="tex">(x+3)</span> cm.</p>
+  <div class="u3l6-exg">
+    <div class="u3l6-fig" data-fig="ex2" style="--fw:290px;--fh:200px"></div>
+    <div class="u3l6-exparts">
+      <div class="part"><div class="pl">(a) Write an expression for the volume of the crate as a simplified polynomial. <span class="u3l6-hint">Hint: multiply the length and width first, then multiply that trinomial by the height.</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Length × width: <span class="tex">(x+2)(x+1)=x^2+3x+2</span><br>Now × height: <span class="tex">(x^2+3x+2)(x+3)</span><br><span class="tex">=x^3+3x^2+2x+3x^2+9x+6</span><br><span class="tex">V=\mathbf{x^3+6x^2+11x+6}</span> (in cm³)</div></div></div>
+      <div class="part"><div class="pl">(b) Determine the volume of the crate when <span class="tex">x=2</span> cm.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">V=8+6(4)+11(2)+6=8+24+22+6=\mathbf{60}</span> cm³<br>Check: <span class="tex">4\times3\times5=60</span> ✓</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. The warm-up box">
+  <h3 class="sub">The warm-up box, in algebra</h3>
+  <p>Every row of the warm-up table followed the same recipe. Call the cut <span class="tex">x</span> and write the recipe <b>once</b>.</p>
+  <div class="explainer" data-explainer="openbox"></div>
+</section>
+
+<!-- ================= 4. Equal areas ================= -->
+<section class="card" data-ink="s4" data-section="4. Equations from Equal Areas">
+  <div class="sec-h"><span class="badge">4</span><h2>Writing and Solving Equations from Equal Areas</h2></div>
+  <p>If two regions have the <b>same</b> area, set the two area expressions equal and expand both sides. The <span class="tex">x^2</span> terms cancel, and a simple linear equation is left to solve.</p>
+  <div class="u3l6-steps">
+    <div><span class="u3l6-n">1</span>Write <b>area A = area B</b>.</div>
+    <div><span class="u3l6-n">2</span><b>Expand</b> both sides (FOIL).</div>
+    <div><span class="u3l6-n">3</span>The <span class="tex">x^2</span> terms <b>cancel</b>. Solve for <span class="tex">x</span>.</div>
+    <div><span class="u3l6-n">4</span><b>Check</b> with the real sizes.</div>
+  </div>
+  <div class="explainer" data-explainer="equal"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Two plots, the same area</h3></div>
+  <p class="q">Plot A measures <span class="tex">(x+2)</span> m by <span class="tex">(x+9)</span> m. Plot B measures <span class="tex">(x+1)</span> m by <span class="tex">(x+11)</span> m. The two plots have exactly the same area.</p>
+  <div class="u3l6-exg">
+    <div class="u3l6-fig" data-fig="ex3" style="--fw:290px;--fh:290px"></div>
+    <div class="u3l6-exparts">
+      <div class="part"><div class="pl">(a) Write an equation that sets the area of Plot A equal to the area of Plot B.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\mathbf{(x+2)(x+9)=(x+1)(x+11)}</span></div></div></div>
+      <div class="part"><div class="pl">(b) Expand both sides and simplify to solve for <span class="tex">x</span>.</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2+11x+18=x^2+12x+11</span><br>Subtract <span class="tex">x^2</span> from both sides: <span class="tex">11x+18=12x+11</span><br><span class="tex">18-11=12x-11x</span>, so <span class="tex">\mathbf{x=7}</span></div></div></div>
+      <div class="part"><div class="pl">(c) State the actual dimensions and area of each plot.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Plot A: <b>9 m by 16 m</b>; Plot B: <b>8 m by 18 m</b>.<br>Both areas <span class="tex">=\mathbf{144}</span> m² ✓</div></div></div>
+    </div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Why do the <span class="tex">x^2</span> terms always cancel in a question like this?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Each side is <span class="tex">x\cdot x</span> plus smaller terms, so <b>both</b> sides start with exactly one <span class="tex">x^2</span>. Subtracting <span class="tex">x^2</span> from both sides removes it, and only <span class="tex">x</span> terms and numbers are left.</div></div></div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u3l6"></section>
+
+<!-- ================= 5. Multi-step ================= -->
+<section class="card" data-ink="s5" data-section="5. A Multi-Step Application">
+  <div class="sec-h"><span class="badge">5</span><h2>A Multi-Step Application</h2></div>
+  <p>This one puts area, volume and evaluating together. Watch for phrases like <b>“2 cm longer and 2 cm wider”</b>: they change a dimension <b>before</b> you multiply.</p>
+  <div class="explainer" data-explainer="tank"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Change the sides first, then multiply.</b> A lid 2 cm longer than <span class="tex">(x+4)</span> is <span class="tex">(x+4+2)=(x+6)</span>. Adding 2 to the <b>area</b> instead would be wrong.</div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>A fish tank with a glass lid</h3></div>
+  <p class="q">A rectangular fish tank has a base with length <span class="tex">(x+4)</span> cm and width <span class="tex">(x+1)</span> cm, and a height of <span class="tex">(x+2)</span> cm. A glass lid is 2 cm longer and 2 cm wider than the base, so it overhangs slightly.</p>
+  <div class="u3l6-exg">
+    <div class="u3l6-fig" data-fig="ex4" style="--fw:290px;--fh:210px"></div>
+    <div class="u3l6-exparts c2">
+      <div class="part"><div class="pl">(a) Write and simplify an expression for the area of the base of the tank.</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">A=(x+4)(x+1)</span><br><span class="tex">=x^2+x+4x+4</span><br><span class="tex">=\mathbf{x^2+5x+4}</span> cm²</div></div></div>
+      <div class="part"><div class="pl">(b) Write and simplify an expression for the volume of the tank. <span class="u3l6-hint">Hint: use part (a).</span></div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">V=(x^2+5x+4)(x+2)</span><br><span class="tex">=x^3+2x^2+5x^2+10x+4x+8</span><br><span class="tex">V=\mathbf{x^3+7x^2+14x+8}</span> cm³</div></div></div>
+      <div class="part"><div class="pl">(c) Write and simplify an expression for the area of the lid.</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Lid: <span class="tex">(x+4+2)</span> by <span class="tex">(x+1+2)</span>, so <span class="tex">(x+6)(x+3)</span><br><span class="tex">=\mathbf{x^2+9x+18}</span> cm²</div></div></div>
+      <div class="part"><div class="pl">(d) If <span class="tex">x=6</span>, calculate the volume of the tank and the area of the lid.</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">V=216+252+84+8=\mathbf{560}</span> cm³<br>Lid <span class="tex">=36+54+18=\mathbf{108}</span> cm²<br>Check: <span class="tex">10\times7\times8=560</span>, <span class="tex">12\times9=108</span> ✓</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Area:</b> multiply length × width with FOIL, collect like terms. <span class="tex">(x+6)(x+2)=x^2+8x+12</span>. Substitute <span class="tex">x</span> to get a number.</div>
+    <div><b>Volume:</b> multiply two edges first (the base), then multiply by the third edge: a binomial × trinomial.</div>
+    <div><b>Equal areas:</b> set the areas equal, expand both sides, cancel the <span class="tex">x^2</span> terms, solve for <span class="tex">x</span>.</div>
+    <div><b>Multi-step:</b> change a side <b>before</b> multiplying (“2 cm longer”). Check every answer with the real side lengths.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u3l6">
+    <div><div class="kicker">Your turn</div><b>Assignment 6 — Applying Polynomial Products to Area, Volume, and Equations</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l7/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 7 — Unit Review: Polynomial Operations</b><div class="muted">Every skill from the unit, one more time, before the test</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u3l6.js';
+  boot({ key: 'u3l6', homeHref: '../../', title: '3.6 Area, Volume and Equations' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>
