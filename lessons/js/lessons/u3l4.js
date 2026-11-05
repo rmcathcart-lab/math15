@@ -454,7 +454,7 @@ const sumDiff = {
         await c.fadeIn(resE, 400);
       }
     }, {
-      cap: `Now picture it. A square of side ${T(A)} has area ${T(d.AA)}. Cut a ${T(B)}-by-${T(B)} square out of the corner: what’s left has area <b>${T(d.ds)}</b>.`,
+      cap: `Now picture it. A square of side ${T(A)} has area ${T(d.AA)}. Cut a square of side ${T(B)} out of the corner: what’s left has area <b>${T(d.ds)}</b>.`,
       run: async (c) => {
         await Promise.all([c.fadeIn(sqo, 200), c.fadeIn(top, 350), c.fadeIn(bot, 350), c.fadeIn(cor, 350), c.fadeIn(lab, 350), ...[...dT, ...dL, ...dC].map((e) => c.fadeIn(e, 350))]);
         cor.classList.add('gone'); lab.innerHTML = K(d.ds);

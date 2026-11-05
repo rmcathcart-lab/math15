@@ -552,8 +552,8 @@
         { id: '8', level: 'ADV', make: function (r) {
           var s = gen(function () {
             var a = r.int(2, 9), b = r.int(1, a - 1), c = r.int(a + 1, 18), den = b + c - 2 * a, num = a * a - b * c;
-            if (den <= 0 || num <= 0 || (2 * num) % den || (a === 3 && b === 1 && c === 6)) return null;
-            var x0 = num / den; if (x0 > 9 || (x0 % 1 && x0 % 1 !== 0.5)) return null; return { a: a, b: b, c: c, x0: x0, den: den, num: num };
+            if (den <= 0 || num <= 0 || num % den || (a === 3 && b === 1 && c === 6)) return null;
+            var x0 = num / den; if (x0 > 9) return null; return { a: a, b: b, c: c, x0: x0, den: den, num: num };
           });
           var Sq = P.pow(lin(1, s.a), 2), R = P.mul(lin(1, s.b), lin(1, s.c)), x0 = s.x0, xs = N(x0);
           var noMid = s.c + s.b !== 0 ? (s.a * s.a - s.b * s.c) / (s.b + s.c - s.a) : NaN;
@@ -561,7 +561,7 @@
             [[noMid, 'not-doubled', 'Check the middle term of the square: ' + t('(x+' + s.a + ')^{2}=x^{2}+' + 2 * s.a + 'x+' + s.a * s.a) + '.'], [-x0, 'sign', 'Check the signs as you move terms.']],
             steps(['(x+' + s.a + ')^{2}=(x+' + s.b + ')(x+' + s.c + ')', tx(Sq) + '=' + tx(R), 2 * s.a + 'x+' + s.a * s.a + '=' + (s.b + s.c) + 'x+' + s.b * s.c, s.a * s.a + '-' + s.b * s.c + '=' + (s.b + s.c) + 'x-' + 2 * s.a + 'x', s.num + '=' + s.den + 'x', 'x=' + (Number.isInteger(x0) ? xs : '\\frac{' + s.num + '}{' + s.den + '}=' + xs)]) +
             '<br>Check: square ' + t('(' + N(x0 + s.a) + ')^{2}=' + N((x0 + s.a) * (x0 + s.a))) + ', rectangle ' + t(N(x0 + s.b) + '\\times ' + N(x0 + s.c) + '=' + N((x0 + s.b) * (x0 + s.c))) + ' ✓',
-            ['Area of the square = ' + t('(x+' + s.a + ')^{2}') + '; area of the rectangle = ' + t('(x+' + s.b + ')(x+' + s.c + ')') + '. Set them equal.', 'Expand both (the square has a middle term). The ' + t('x^{2}') + ' terms cancel; the answer may be a decimal or fraction.'], 'square = rectangle');
+            ['Area of the square = ' + t('(x+' + s.a + ')^{2}') + '; area of the rectangle = ' + t('(x+' + s.b + ')(x+' + s.c + ')') + '. Set them equal.', 'Expand both (the square has a middle term). The ' + t('x^{2}') + ' terms cancel, leaving a linear equation.'], 'square = rectangle');
         } }] },
       /* ---------- Part C ---------- */
       { num: '9', section: 'Part C — Multi-Step Applications', stem: function (sh) { return 'A rectangular planter box has a base with length ' + t(bt(sh.l)) + ' ft and width ' + t(bt(sh.w)) + ' ft, and a height of ' + t(bt(sh.h)) + ' ft.' + prismAt(sh.l, sh.w, sh.h, sh.X, { label: 'planter box' }); },
