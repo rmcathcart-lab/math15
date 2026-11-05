@@ -654,7 +654,7 @@ standup('u2l3', (() => {
   const neg = (k) => (k < 0 ? `(${k})` : String(k));
   // Assignment 3 (#2–#5, #7, #8, #11, #12) must not come up at the whiteboards. Compared by shape, so the same
   // question with other letters counts too: (3m)³ × m² and (3x)³ × x² are the same question.
-  const shape = (q) => { const m = {}; let i = 0; return String(q).replace(/\\left|\\right|\s+/g, '').replace(/\\tfrac/g, '\\dfrac').replace(/\\[a-zA-Z]+|[a-zA-Z]/g, (t) => (t.length > 1 ? t : (m[t] = m[t] || 'ABCDEFGH'[i++]))); };
+  const shape = (q) => { const m = {}; let i = 0; return String(q).replace(/\\left|\\right/g, '').replace(/\\tfrac/g, '\\dfrac').replace(/\\[a-zA-Z]+|[a-zA-Z]/g, (t) => (t.length > 1 ? t : (m[t] = m[t] || 'ABCDEFGH'[i++]))).replace(/\s+/g, ''); };
   const ASG = new Set(['x^{4}\\times x^{5}', 'y^{9}\\div y^{3}', '(m^{3})^{2}', 'n^{6}\\times n\\times n^{2}',
     '(2y)^{3}', '(\\dfrac{m}{4})^{2}', '(5ab)^{2}', '(\\dfrac{a}{b})^{6}',
     '(2x)^{3}', '(5y)^{2}', '(-3m)^{2}', '(4ab)^{2}', '(10w)^{3}', '(-2xy)^{3}',

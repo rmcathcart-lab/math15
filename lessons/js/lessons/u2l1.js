@@ -633,8 +633,8 @@ standup('u2l1', (() => {
       MAS: (r) => {
         const v = r.pick(LET);
         if (r.chance(0.5)) { // three powers, one of them a bare letter
-          const e1 = r.int(2, 7), e3 = r.int(2, 6), parts = r.shuffle([`${v}^{${e1}}`, v, `${v}^{${e3}}`]);
-          const ex = parts.map((p) => (p === v ? 1 : +p.match(/\{(\d+)\}/)[1]));
+          let parts, ex; // never n⁶ × n × n² (Assignment 3 #2(d))
+          do { const e1 = r.int(2, 7), e3 = r.int(2, 6); parts = r.shuffle([`${v}^{${e1}}`, v, `${v}^{${e3}}`]); ex = parts.map((p) => (p === v ? 1 : +p.match(/\{(\d+)\}/)[1])); } while (ex.join() === '6,1,2');
           return { text: 'Simplify.', q: parts.join('\\times '), a: [`=${v}^{${ex.join('+')}}`, `=${v}^{${ex[0] + ex[1] + ex[2]}}`], atext: `${tex(v)} by itself is ${tex(`${v}^{1}`)}.` };
         }
         const [val, cap] = r.pick([[2, 7], [-2, 6], [-1, 9], [3, 4], [-3, 4], [10, 6], [-10, 5], [1, 12]]);
