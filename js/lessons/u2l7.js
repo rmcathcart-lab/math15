@@ -398,7 +398,7 @@
         var L = r.pick(PAIRS), k = r.int(2, 5), p = r.int(2, 4), q = r.int(1, 2 * p - 1), s = r.int(1, 4);
         return qu(pw(mo(k, [[L[0], p], [L[1], 1]]), 2), mo(k * k, [[L[0], q], [L[1], -s]]));
       }, [H.steps, H.br])] },
-    { num: '10', stem: 'Evaluate without a calculator.', parts: [
+    { num: '10', stem: 'Simplify or evaluate without a calculator.', parts: [
       { id: '10a', level: 'EMG', make: function (r) { var pq = cop(r, 2, 7, { lt: true }); return fracBasePart(pq[0], pq[1], pq[1] <= 4 ? r.pick([2, 2, 3]) : 2); } },
       S('EMG', '10b', function (r) {
         var x = r.pick(LET1), k = r.int(2, 12);

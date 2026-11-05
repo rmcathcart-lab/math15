@@ -641,7 +641,7 @@ const finderN = Object.assign({}, finder, {
 });
 const E4 = {
   a: { dir: 'mix', spec: { n: 3, c: 320 } },
-  b: { dir: 'ent', spec: { n: 3, k: { c: Q(3) }, r: { c: Q(16) } } },
+  b: { dir: 'ent', spec: { n: 3, k: { c: Q(3) }, r: { c: Q(13) } } },
   c: { dir: 'mix', spec: { n: 4, c: 243 } },
   d: { dir: 'ent', spec: { n: 3, k: { c: Q(-3) }, r: { c: Q(10) } } }
 };
@@ -777,7 +777,7 @@ const suGrid = (items) => '\\def\\arraystretch{1.8}\\begin{array}{ll}' + items.m
 const suFree = (m, n) => { const f = {}; primeFactors(m).forEach((p) => (f[p] = (f[p] || 0) + 1)); return Object.values(f).every((e) => e < n); }; // no perfect n-th power factor
 /* entire radicands already used by the booklet (Lesson 7 notes, examples, assignment; Lesson 8 radicals): never asked here */
 const SU_USED = {
-  3: [16, 24, 32, 35, 40, 54, 56, 72, 81, 88, 104, 108, 128, 135, 152, 162, 189, 250, 256, 270, 272, 297, 248, 320, 384, 405, 432, 448, 500, 625, 686, 750, 1280, -16, -40, -48, -72, -81, -189, -270, -576, -686],
+  3: [16, 24, 32, 35, 40, 48, 324, 351, 192, -24, 54, 56, 72, 81, 88, 104, 108, 128, 135, 152, 162, 189, 250, 256, 270, 272, 297, 248, 320, 384, 405, 432, 448, 500, 625, 686, 750, 1280, -16, -40, -48, -72, -81, -189, -270, -576, -686],
   4: [32, 48, 64, 80, 96, 162, 243],
   5: [64, 96, 128, 160, 486]
 };

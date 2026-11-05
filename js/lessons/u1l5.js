@@ -168,6 +168,9 @@
       hints: ['Trap ' + t(F(n)) + ' between two perfect squares, then see which one it is nearer to.', 'Use the distances: e.g. ' + t('18') + ' is ' + t('2') + ' past ' + t('16') + ' out of the ' + t('9') + ' steps to ' + t('25') + ', so ' + t('\\sqrt{18}\\approx 4.2') + '.'], text: text || 'estimate sqrt ' + n,
       bad: [(Math.floor(x) + (x - Math.floor(x) < 0.5 ? 0.8 : 0.2)).toFixed(1), String(n / 2)] };
   }
+  /* square roots the lesson notes and examples work (§3 √40, Ex 3–4 √27 √95 √60, Ex 5 √55): kept out of Q4, Q9, Q12 */
+  var LESSON_SQ = [27, 40, 55, 60, 95];
+  function notEx(test) { return function (n) { return LESSON_SQ.indexOf(n) < 0 && (!test || test(n)); }; }
   function nonSqIn(r, lo, hi, test) { return gen(r, function () { return r.int(lo, hi); }, function (n) { return !isSq(n) && (!test || test(n)); }); }
   function nonCuIn(r, lo, hi, test) { return gen(r, function () { return r.int(lo, hi); }, function (n) { return !isCu(n) && (!test || test(n)); }); }
   /* clear-cut "closer": the two distances differ by at least 2 */
@@ -268,14 +271,13 @@
       /* ================= Part A — Perfect Squares and Perfect Cubes ================= */
       { num: '1', section: 'Part A — Perfect Squares and Perfect Cubes', stem: 'Evaluate each square root mentally.', parts: ['a', 'b', 'c', 'd', 'e', 'f'].map(function (L, i) {
         var big = i === 2 || i === 4 || i === 5;
-        return { id: '1' + L, level: big ? 'BEG' : 'LIM', make: function (r) { var k = big ? r.int(10, 15) : r.int(2, 9); return rootNum(2, k * k); } };
+        /* Example 1 works √16, √81, √1, √121, √49, √144: those are left out */
+        return { id: '1' + L, level: big ? 'BEG' : 'LIM', make: function (r) { var k = big ? r.pick([10, 13, 14, 15]) : r.pick([2, 3, 5, 6, 8]); return rootNum(2, k * k); } };
       }) },
-      { num: '2', stem: 'Evaluate each cube root mentally.', parts: [
-        { id: '2a', level: 'LIM', make: function (r) { return rootNum(3, Math.pow(r.int(1, 4), 3)); } },
-        { id: '2b', level: 'LIM', make: function (r) { return rootNum(3, Math.pow(r.int(2, 6), 3)); } },
-        { id: '2c', level: 'LIM', make: function (r) { return rootNum(3, Math.pow(r.int(4, 10), 3)); } },
-        { id: '2d', level: 'BEG', make: function (r) { var c = r.int(2, 5), s = r.int(2, 5); return rootNum(3, s * s * s, c); } },
-        { id: '2e', level: 'LIM', make: function (r) { return rootNum(3, Math.pow(r.int(2, 10), 3)); } }] },
+      /* the cubes of 6–10, each once (Example 2 works ∛1, ∛8, ∛27, ∛64, ∛125); booklet order 216, 343, 512, 729, 1000 */
+      { num: '2', stem: 'Evaluate each cube root mentally.', shared: function (r) { return r.shuffle([6, 7, 8, 9, 10]); }, parts: ['a', 'b', 'c', 'd', 'e'].map(function (L, i) {
+        return { id: '2' + L, level: 'LIM', make: function (r, sh) { return rootNum(3, Math.pow(sh ? sh[i] : 6 + i, 3)); } };
+      }) },
       { num: '3', stem: 'Is each number a <i>perfect square</i>, a <i>perfect cube</i>, <i>both</i>, or <i>neither</i>?', parts: [['a', 'sq'], ['b', 'both'], ['c', 'neither'], ['d', 'both'], ['e', 'neither'], ['f', 'cu']].map(function (x, i) {
         return { id: '3' + x[0], level: x[1] === 'both' ? 'BEG' : i < 3 ? 'LIM' : 'BEG', make: function (r) {
           var kind = x[1] === 'both' ? (r.chance(0.5) ? 'both' : r.pick(['sq', 'cu', 'neither'])) : r.chance(0.6) ? x[1] : r.pick(['sq', 'cu', 'neither', 'both']);
@@ -285,10 +287,10 @@
 
       /* ================= Part B — Estimating Square Roots ================= */
       { num: '4', section: 'Part B — Estimating Square Roots', outcome: 'AN2', stem: 'State the two consecutive whole numbers each root lies between, and which one it is closer to.', parts: [
-        { id: '4a', level: 'BEG', make: function (r) { return bracketPart(2, nonSqIn(r, 10, 48, clear(2))); } },
-        { id: '4b', level: 'BEG', make: function (r) { return bracketPart(2, nonSqIn(r, 50, 99, clear(2))); } },
-        { id: '4c', level: 'EMG', make: function (r) { return bracketPart(2, nonSqIn(r, 101, 224, clear(2))); } },
-        { id: '4d', level: 'BEG', make: function (r) { return bracketPart(2, nonSqIn(r, 26, 99, clear(2))); } }] },
+        { id: '4a', level: 'BEG', make: function (r) { return bracketPart(2, nonSqIn(r, 10, 48, notEx(clear(2)))); } },
+        { id: '4b', level: 'BEG', make: function (r) { return bracketPart(2, nonSqIn(r, 50, 99, notEx(clear(2)))); } },
+        { id: '4c', level: 'EMG', make: function (r) { return bracketPart(2, nonSqIn(r, 101, 224, notEx(clear(2)))); } },
+        { id: '4d', level: 'BEG', make: function (r) { return bracketPart(2, nonSqIn(r, 26, 99, notEx(clear(2)))); } }] },
       { num: '5', outcome: 'AN2', stem: 'Using the whole-number method (no calculator), estimate each square root to one decimal place.', parts: [
         { id: '5a', level: 'BEG', make: function (r) { return estimatePart(nonSqIn(r, 5, 48)); } },
         { id: '5b', level: 'EMG', make: function (r) { return estimatePart(nonSqIn(r, 50, 120)); } }] },
@@ -336,7 +338,7 @@
       /* ================= Part C — Applications and Review ================= */
       { num: '9', section: 'Part C — Applications and Review', outcome: 'AN2', stem: '', parts: [
         { id: '9', level: 'BEG', make: function (r) {
-          var A = nonSqIn(r, 20, 150, function (n) { var x = Math.sqrt(n); return Math.abs(x - Math.floor(x) - 0.5) > 0.12; }), x = Math.sqrt(A), unit = r.pick([['rug', 'ft'], ['rug', 'm'], ['garden', 'm'], ['tile', 'cm']]);
+          var seed = r.chance(0.1), A = seed ? 45 : nonSqIn(r, 20, 150, notEx(function (n) { var x = Math.sqrt(n); return Math.abs(x - Math.floor(x) - 0.5) > 0.12; })), x = Math.sqrt(A), unit = seed ? ['rug', 'ft'] : r.pick([['rug', 'ft'], ['rug', 'm'], ['garden', 'm'], ['tile', 'cm']]);
           var p = P.fields(squareFig('A = ' + A + ' ' + unit[1] + '²') + 'A square ' + unit[0] + ' covers an area of ' + t(A + '\\text{ ' + unit[1] + '}^{2}') + '. Estimate its side length to the nearest whole number, then use a calculator to find it to the nearest hundredth of a ' + (unit[1] === 'ft' ? 'foot' : unit[1] === 'm' ? 'metre' : 'centimetre') + '.',
             [{ name: 'Estimate', label: 'Estimate: ' + t('s\\approx'), after: unit[1] }, { name: 'Calculator', label: 'Calculator: ' + t('s\\approx'), after: unit[1] }],
             [K.number(Math.round(x), function (v) { if (v === A / 2 || v === A / 4) return { code: 'sqrt-halved', hint: 'The side of a square is the <b>square root</b> of its area: ' + t('s=\\sqrt{A}') + '.' }; return { code: 'u1l5-est-whole', hint: closerInfo(2, A).why + ' Which whole number is ' + t('\\sqrt{' + A + '}') + ' closest to?' }; }), calcCheck(x, 2, { diag: function (v) { return Math.abs(v - A / 4) < 0.01 ? { code: 'sqrt-halved', hint: 'Area isn’t four times the side. Use ' + t('s=\\sqrt{A}') + '.' } : null; } })],
@@ -370,7 +372,7 @@
         } }] },
       { num: '12', outcome: 'AN2', stem: '<i>(Multiple Choice)</i>', parts: [
         { id: '12', level: 'BEG', make: function (r) {
-          var n = nonSqIn(r, 10, 150), lo = Math.floor(Math.sqrt(n)), start = Math.max(1, lo - r.int(1, 2));
+          var n = nonSqIn(r, 10, 150, notEx()), lo = Math.floor(Math.sqrt(n)), start = Math.max(1, lo - r.int(1, 2));
           var opts = [0, 1, 2, 3].map(function (i) { var a = start + i; return { html: t(a) + ' and ' + t(a + 1), right: a === lo, why: a === lo ? null : t(a + '^{2}=' + a * a) + ' and ' + t((a + 1) + '^{2}=' + (a + 1) * (a + 1)) + (a > lo ? ': both are more than ' + t(n) + '.' : ': both are less than ' + t(n) + '.') }; });
           return P.mc(r, t('\\sqrt{' + n + '}') + ' lies between which two whole numbers?', r.shuffle(opts), t(lo + '^{2}=' + lo * lo) + ' and ' + t((lo + 1) + '^{2}=' + (lo + 1) * (lo + 1)) + ', and ' + t(lo * lo + '<' + n + '<' + (lo + 1) * (lo + 1)) + ', so ' + t(lo + '<\\sqrt{' + n + '}<' + (lo + 1)) + '.', ['Which two perfect squares is ' + t(n) + ' between?'], 'MC sqrt' + n + ' between', true);
         } }] },

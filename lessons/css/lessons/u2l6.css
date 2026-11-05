@@ -138,3 +138,8 @@
 .u2l6-rc-v .katex { font-size: 1.05em; }
 .u2l6-qhead { font-size: 22px; white-space: nowrap; color: var(--ink2); }
 .u2l6-qhead .katex { font-size: 1.3em; color: var(--ink); }
+
+/* Section 2: a negative base inside the "small, not negative" tip */
+.u2l6-negb { margin-top: 8px; }
+.u2l6-cn-r.tall { flex-direction: column; align-items: flex-start; gap: 2px; padding: 6px 14px 8px; }
+.u2l6-cn-r.tall .u2l6-cn-rl { width: auto; }

@@ -425,9 +425,18 @@ export const explainers = mountExplainers({ zstairs, zfold, zcancel, zfence, ztf
 standup('u2l5', (() => {
   const LET = ['x', 'y', 'a', 'b', 'm', 'n', 'p', 'k', 'r', 't'];
   const vt = (v, e) => (e === 1 ? v : `${v}^{${e}}`);
-  return {
-    intro: 'Simplify at your whiteboard station. Find every power of 0 first: what is the 0 attached to?',
-    levels: {
+  // Assignment 5 must not come up at the whiteboards. Compared by shape, so the same question with other letters
+  // counts too: (3x²y⁰)² × 2x³ and (3m²n⁰)² × 2m³ are the same question.
+  const shape = (q) => { const m = {}; let i = 0; return String(q).replace(/\\left|\\right/g, '').replace(/\\tfrac/g, '\\dfrac').replace(/\\[a-zA-Z]+|[a-zA-Z]/g, (t) => (t.length > 1 ? t : (m[t] = m[t] || 'ABCDEFGH'[i++]))).replace(/\s+/g, ''); };
+  const ASG = new Set(['6^{0}', '12^{0}', '(-9)^{0}', '(-12)^{0}', '1^{0}',
+    '3^{2}\\times3^{0}', '5^{0}\\times5^{3}', '10^{0}\\times10^{0}', '\\dfrac{7^{3}}{7^{3}}', '(2^{4})^{0}',
+    '-7^{0}', '(-7)^{0}', '-3\\times4^{0}', '(-3\\times4)^{0}',
+    'p^{0}', '8q^{0}', '(8q)^{0}', '\\dfrac{3}{r^{0}}', '(4s^{2})^{0}',
+    'x^{4}\\times x^{0}', '\\dfrac{y^{5}}{y^{5}}', '6a^{0}\\times3a^{2}', '\\dfrac{12b^{3}}{b^{3}}',
+    '(3x^{2})^{0}\\times5x^{3}', '2c^{4}\\times(5c^{2})^{0}', '(7e^{0})^{2}',
+    '(3x^{2}y^{0})^{2}\\times2x^{3}', '\\dfrac{(2a^{4}b^{0})^{3}}{4a^{5}}'].map(shape));
+  const avoid = (gen) => (r) => { let x, i = 0; do { x = gen(r); } while (ASG.has(shape(x.q)) && ++i < 60); return x; };
+  const lv = {
       BEG: (r) => { // Example 1 and 3: numbers to the power 0, inside or outside the fence
         const a = r.int(2, 15), b = r.int(2, 9), k = r.pick([2, 3, 4, 5, 6, 7, 8, 9, -2, -3, -5]);
         const t = r.pick(['neg', 'out', 'coef', 'sum', 'prod', 'quot', 'pp']);
@@ -467,7 +476,10 @@ standup('u2l5', (() => {
             a: [`${y}^{0}=1:\\quad\\dfrac{(${p}${vt(x, m)})^{${k}}}{${q}${vt(x, n)}}`, `=\\dfrac{${P}${vt(x, km)}}{${q}${vt(x, n)}}`, `=${P / q}${x}^{${km}-${n}}`, `=${P / q === 1 ? '' : P / q}${vt(x, e)}`] };
         }
       }
-    }
+  };
+  return {
+    intro: 'Simplify at your whiteboard station. Find every power of 0 first: what is the 0 attached to?',
+    levels: { BEG: avoid(lv.BEG), PRG: avoid(lv.PRG), MAS: avoid(lv.MAS) }
   };
 })());
 /* ============ end Stand Up Break! ============ */

@@ -236,7 +236,8 @@
   }
 
   /* ---------- pools (computed once) ---------- */
-  var P2 = pool(3, [2], 2, 31), P3 = pool(3, [3], 2, 25), P4a = pool(3, [2], 32, 63), P4b = pool(3, [4, 5, 6], 2, 15, 1000), P4d = pool(3, [3, 4, 5, 6, 7], 2, 6, 1100);
+  /* the warm-up works ∛16 and its follow-up ∛54, so Q2 and Q3 leave them out */
+  var P2 = pool(3, [2], 2, 31).filter(function (n) { return n !== 16; }), P3 = pool(3, [3], 2, 25).filter(function (n) { return n !== 54; }), P4a = pool(3, [2], 32, 63), P4b = pool(3, [4, 5, 6], 2, 15, 1000), P4d = pool(3, [3, 4, 5, 6, 7], 2, 6, 1100);
   var P7a = pool(4, [2], 2, 25), P7c = pool(5, [2], 2, 25), P9a = pool(3, [2], 11, 40), P9b = pool(3, [3], 5, 30);
   var CF = free(3, 2, 25), CF13 = free(3, 2, 13), F4 = free(4, 2, 20), F5 = free(5, 2, 20);
   function pairs(cs, ms, cap, n) { var o = []; cs.forEach(function (c) { ms.forEach(function (m) { if (!cap || pw(Math.abs(c), n || 3) * m <= cap) o.push([c, m]); }); }); return o; }
@@ -266,10 +267,10 @@
           return p;
         } }] },
       { num: '2', stem: 'Convert each radical to a mixed radical in simplest form.', parts: ['a', 'b', 'c', 'd'].map(function (s, i) {
-        return { id: '2' + s, level: 'BEG', make: function (r) { return mixPart(1, 3, pickB(r, P2, [16, 32, 104, 56][i])); } };
+        return { id: '2' + s, level: 'BEG', make: function (r) { return mixPart(1, 3, pickB(r, P2, [48, 32, 104, 56][i])); } };
       }) },
       { num: '3', stem: 'Convert each radical to a mixed radical in simplest form.', parts: ['a', 'b', 'c', 'd'].map(function (s, i) {
-        return { id: '3' + s, level: 'BEG', make: function (r) { return mixPart(1, 3, pickB(r, P3, [54, 81, 108, 297][i])); } };
+        return { id: '3' + s, level: 'BEG', make: function (r) { return mixPart(1, 3, pickB(r, P3, [324, 81, 108, 297][i])); } };
       }) },
       { num: '4', stem: 'Convert each radical to a mixed radical in simplest form.', parts: [
         { id: '4a', level: 'EMG', make: function (r) { return mixPart(1, 3, pickB(r, P4a, 248)); } },
@@ -597,7 +598,7 @@
           { id: 'e16a', level: 'EMG', make: function (r, sh) { var p = mixPart(1, 3, sh.V); p.prompt = 'Determine its exact edge length in simplest mixed radical form.'; p.input.after = t('\\text{cm}'); p.solution = 'Edge ' + t('=\\sqrt[3]{V}=\\sqrt[3]{' + F(sh.V) + '}') + '.<br>' + p.solution; return p; } },
           { id: 'e16b', level: 'EMG', make: function (r, sh) {
             var e = Math.cbrt(sh.V), f = ex.nthFactor(sh.V, 3), m = sh.V / pw(f, 3), lo = Math.floor(e);
-            return P.approx('State the edge length to the nearest tenth of a centimetre.', e, 1, { after: t('\\text{cm}'), diag: function (v) { if (Math.abs(v - sh.V / 3) < 0.06) return { code: 'u1l7-div-index', hint: 'The edge is the <b>cube root</b> of the volume, not the volume divided by 3.' }; if (Math.abs(v - Math.sqrt(sh.V)) < 0.06) return { code: 'square-thinking', hint: 'A cube’s edge is the <b>cube</b> root of its volume, not the square root.' }; return null; } },
+            return P.approx('State the edge length to the nearest tenth of a centimetre (use a calculator).', e, 1, { after: t('\\text{cm}'), diag: function (v) { if (Math.abs(v - sh.V / 3) < 0.06) return { code: 'u1l7-div-index', hint: 'The edge is the <b>cube root</b> of the volume, not the volume divided by 3.' }; if (Math.abs(v - Math.sqrt(sh.V)) < 0.06) return { code: 'square-thinking', hint: 'A cube’s edge is the <b>cube</b> root of its volume, not the square root.' }; return null; } },
               t('\\sqrt[3]{' + F(sh.V) + '}=' + f + '\\sqrt[3]{' + m + '}\\approx ' + f + '\\times ' + Math.cbrt(m).toFixed(3) + '\\approx ' + e.toFixed(1)) + ' cm. (Check: ' + t(lo + '^{3}=' + pw(lo, 3)) + ' and ' + t((lo + 1) + '^{3}=' + pw(lo + 1, 3)) + ', so the edge is between ' + t(lo) + ' and ' + t(lo + 1) + ' cm.)',
               ['Use a calculator for this part: ' + t('\\sqrt[3]{' + F(sh.V) + '}') + ', then round to one decimal place.', 'Check it’s sensible: ' + t(lo + '^{3}=' + pw(lo, 3)) + ' and ' + t((lo + 1) + '^{3}=' + pw(lo + 1, 3)) + '.'], 'cube edge to tenth ' + sh.V);
           } }] },

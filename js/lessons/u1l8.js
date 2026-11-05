@@ -560,7 +560,7 @@
       { num: '16', section: 'Part F — Simplifying Square-Root Radicals', stem: '', outcome: 'AN2', parts: [
         { id: '16', level: 'EMG', make: function (r) { var R = r.chance(0.1) ? 98 : r.pick(pool(2, [3, 4, 5, 6, 7, 8, 9], 2, 7, 400)); var p = mixPart(1, 2, R); p.prompt = 'Convert ' + t('\\sqrt{' + R + '}') + ' to a mixed radical in simplest form.'; return p; } }] },
       { num: '17', stem: '', outcome: 'AN2', parts: [
-        { id: '17', level: 'EMG', make: function (r) { var R = r.chance(0.1) ? 180 : r.pick(pool(2, [4, 6, 10, 12], 2, 7, 800).concat(pool(2, [6], 10, 14))); return factMixPart(2, R, { prompt: 'Use prime factorization to convert ' + t('\\sqrt{' + R + '}') + ' to a mixed radical in simplest form.' }); } }] },
+        { id: '17', level: 'EMG', make: function (r) { var R = r.chance(0.1) ? 252 : r.pick(pool(2, [4, 6, 10, 12], 2, 7, 800).concat(pool(2, [6], 10, 14)).filter(function (n) { return n !== 180; })); return factMixPart(2, R, { prompt: 'Use prime factorization to convert ' + t('\\sqrt{' + R + '}') + ' to a mixed radical in simplest form.' }); } }] },
       { num: '18', stem: '', outcome: 'AN2', parts: [
         { id: '18', level: 'EMG', make: function (r) { var c = r.int(2, 9), m = r.pick([2, 3, 5, 6, 7, 10, 11]); if (r.chance(0.1)) { c = 5; m = 6; } var p = entirePart(c, 2, m); p.prompt = 'Convert ' + t(c + '\\sqrt{' + m + '}') + ' to an entire radical.'; return p; } }] },
       { num: '19', stem: '', outcome: 'AN2', parts: [
@@ -753,24 +753,17 @@
       { num: '7', stem: function (sh) { return 'Simplify each expression to its exact value first. Then state whether the <i>result</i> is rational or irrational by ticking every set it belongs to.'; }, outcome: 'AN2',
         shared: function (r) {
           var a = r.pick([2, 3, 5]), k = r.int(2, 4), m = r.pick([2, 3, 5, 6, 7]), j = r.int(2, 5), c = r.int(2, 5), cm = r.pick([2, 3, 5, 6, 7]), d = r.int(2, 4), pq = properPair(r, [3, 4, 5, 6]);
-          if (r.chance(0.12)) { a = 2; k = 3; m = 3; j = 2; c = 2; cm = 2; d = 2; pq = [3, 4]; }
+          if (r.chance(0.12)) { a = 2; k = 3; m = 3; j = 2; c = 3; cm = 3; d = 2; pq = [3, 4]; }
           var swap = r.chance(0.5);
           return { A: { tex: swap ? '\\sqrt{' + a + '}\\times\\sqrt{' + a * k * k + '}' : '\\sqrt{' + a * k * k + '}\\times\\sqrt{' + a + '}', v: a * k, cls: 'nat' },
             B: { tex: '\\frac{\\sqrt{' + m * j * j + '}}{\\sqrt{' + m + '}}', v: j, cls: 'nat' },
-            C: { tex: '\\sqrt{' + c * c * cm + '}+\\sqrt{' + cm + '}', k: c + 1, m: cm, cls: 'irr', c: c },
+            C: { tex: '\\sqrt{' + c * c * cm + '}', N: c * c * cm, k: c, m: cm, cls: 'irr' },
             D: { tex: '\\sqrt[3]{-' + d * d * d + '}\\times\\frac{' + pq[0] + '}{' + pq[1] + '}', T: ex.norm(-d * pq[0], pq[1]), cls: null, d: d, pq: pq }, a: a, k: k, m: m, j: j };
         },
         parts: [
           { id: 'e7a', level: 'EMG', make: function (r, sh) { var A = sh.A; return P.number(t(A.tex) + ' = ?', A.v, function (v) { if (v === A.v * A.v) return { code: 'u1l8-not-root', hint: 'Multiply under one root: ' + t('\\sqrt{' + A.v * A.v + '}') + ' — then take the square root.' }; return null; }, t(A.tex + '=\\sqrt{' + sh.a + '\\times ' + sh.a * sh.k * sh.k + '}=\\sqrt{' + A.v * A.v + '}=' + A.v) + '.', ['Multiply the two numbers under one square root: ' + t('\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}') + '.'], 'sqrt product'); } },
           { id: 'e7b', level: 'EMG', make: function (r, sh) { var B = sh.B; return P.number(t(B.tex) + ' = ?', B.v, function (v) { if (v === B.v * B.v) return { code: 'u1l8-not-root', hint: 'Divide under one root: ' + t('\\sqrt{' + B.v * B.v + '}') + ' — then take the square root.' }; return null; }, t(B.tex + '=\\sqrt{\\frac{' + sh.m * sh.j * sh.j + '}{' + sh.m + '}}=\\sqrt{' + sh.j * sh.j + '}=' + sh.j) + '.', ['Divide the two numbers under one square root: ' + t('\\frac{\\sqrt{a}}{\\sqrt{b}}=\\sqrt{\\frac{a}{b}}') + '.'], 'sqrt quotient'); } },
-          { id: 'e7c', level: 'PRG', make: function (r, sh) {
-            var C = sh.C, key = C.k + '\\sqrt{' + C.m + '}';
-            var p = P.math(t(C.tex) + ' = ?', K.radical({ k: C.k, n: 2, m: C.m }, 'mixed', { diag: function (val, rr) { if (rr && rr.n === 2 && rr.m === C.c * C.c * C.m + C.m) return { code: 'u1l8-radicand-sum', hint: 'Radicands can’t be added: ' + t('\\sqrt{a}+\\sqrt{b}\\neq\\sqrt{a+b}') + '. Simplify ' + t('\\sqrt{' + C.c * C.c * C.m + '}') + ' first.' }; if (rr && rr.n === 2 && rr.m === C.m && Math.abs(rq(rr.k)) === C.c) return { code: 'coef-lost', hint: 'You simplified the first root to ' + t(C.c + '\\sqrt{' + C.m + '}') + '. Now add the ' + t('\\sqrt{' + C.m + '}') + ' (one more of them).' }; return null; } }), key,
-              t('\\sqrt{' + C.c * C.c * C.m + '}=\\sqrt{' + C.c * C.c + '}\\times\\sqrt{' + C.m + '}=' + C.c + '\\sqrt{' + C.m + '}') + '. These are like radicals: ' + t(C.c + '\\sqrt{' + C.m + '}+1\\sqrt{' + C.m + '}=' + key) + '.',
-              ['Simplify ' + t('\\sqrt{' + C.c * C.c * C.m + '}') + ' first.', 'Then ' + t('\\sqrt{' + C.m + '}') + 's add like ' + t('x') + 's: ' + t('2x+x=3x') + '.'], 'add like radicals', { keys: 'radical' });
-            p.bad = ['\\sqrt{' + (C.c * C.c * C.m + C.m) + '}'];
-            return p;
-          } },
+          { id: 'e7c', level: 'EMG', make: function (r, sh) { return mixPart(1, 2, sh.C.N, { prompt: t(sh.C.tex) + ' = ?', text: 'simplify sqrt ' + sh.C.N }); } },
           { id: 'e7d', level: 'EMG', make: function (r, sh) { var D = sh.D; return fracPart(t(D.tex) + ' = ?', D.T, function (v) { if (ex.eq(v, D.d * D.pq[0] / D.pq[1])) return { code: 'neg-root', hint: 'An odd root of a negative is negative: ' + t('\\sqrt[3]{-' + D.d * D.d * D.d + '}=-' + D.d) + '.' }; return null; }, t('\\sqrt[3]{-' + D.d * D.d * D.d + '}=-' + D.d) + ', so ' + t(D.tex + '=-' + D.d + '\\times\\frac{' + D.pq[0] + '}{' + D.pq[1] + '}=' + frT(D.T)) + '.', ['What number cubed gives ' + t('-' + D.d * D.d * D.d) + '?'], 'cbrt times fraction'); } },
           { id: 'e7e', level: 'EMG', make: function (r, sh) {
             var Dc = sh.D.T[1] === 1 ? 'negint' : 'frac';
@@ -882,10 +875,10 @@
           { id: 'e13a', level: 'EMG', make: function (r, sh) { var p = mixPart(1, 2, sh.A); p.prompt = 'Give the exact side length in simplest mixed radical form.'; p.input.after = t('\\text{cm}'); return p; } },
           { id: 'e13b', level: 'PRG', make: function (r, sh) {
             var x = Math.sqrt(sh.A), lo = Math.floor(x), hi = lo + 1;
-            var p = P.fields('Between which two consecutive whole numbers does the side length lie, and what is it to the nearest tenth of a centimetre?', [{ name: 'Smaller', label: 'Between', after: t('<s') }, { name: 'Larger', label: 'and', before: t('s<') }, { name: 'Nearest tenth', label: 'Nearest tenth', before: t('s\\approx'), after: 'cm' }],
-              [sideChk(lo, hi, true, 2, sh.A), sideChk(hi, lo, false, 2, sh.A), estChk(x, lo, hi)], [String(lo), String(hi), K.roundTo(x, 1).toFixed(1)], t(lo + '<s<' + hi) + ', ' + t('s\\approx ' + K.roundTo(x, 1).toFixed(1)) + ' cm',
-              t(lo + '^{2}=' + lo * lo + '<' + sh.A + '<' + hi * hi + '=' + hi + '^{2}') + ', so ' + t(lo + '<s<' + hi) + '. ' + t(sh.A) + ' is ' + t(sh.A - lo * lo) + ' past ' + t(lo * lo) + ' out of a gap of ' + t(hi * hi - lo * lo) + ', so ' + t('s\\approx ' + K.roundTo(x, 1).toFixed(1)) + ' cm (' + t('\\sqrt{' + sh.A + '}=' + x.toFixed(3) + '\\ldots') + ').',
-              ['Find the perfect squares on either side of ' + t(sh.A) + '.', 'How far is ' + t(sh.A) + ' past the lower perfect square, compared with the whole gap? (Answers within 0.1 cm are accepted.)'], 'tabletop bracket ' + sh.A);
+            var p = P.fields('Between which two consecutive whole numbers does the side length lie, and what is it to the nearest tenth of a centimetre (use a calculator)?', [{ name: 'Smaller', label: 'Between', after: t('<s') }, { name: 'Larger', label: 'and', before: t('s<') }, { name: 'Nearest tenth', label: 'Nearest tenth', before: t('s\\approx'), after: 'cm' }],
+              [sideChk(lo, hi, true, 2, sh.A), sideChk(hi, lo, false, 2, sh.A), calcChk(x, 1, { diag: function (v) { if (Math.abs(v - sh.A / 4) < 0.06) return { code: 'perimeter', hint: 'The side of a square is the <b>square root</b> of its area, not the area divided by 4.' }; if (Math.abs(v - sh.A / 2) < 0.06) return { code: 'u1l8-root-half', hint: 'The side is the square root of the area, not half of it.' }; return null; } })], [String(lo), String(hi), K.roundTo(x, 1).toFixed(1)], t(lo + '<s<' + hi) + ', ' + t('s\\approx ' + K.roundTo(x, 1).toFixed(1)) + ' cm',
+              t(lo + '^{2}=' + lo * lo + '<' + sh.A + '<' + hi * hi + '=' + hi + '^{2}') + ', so ' + t(lo + '<s<' + hi) + '.<br>Calculator: ' + t('s=\\sqrt{' + sh.A + '}=' + x.toFixed(4) + '\\ldots\\approx ' + K.roundTo(x, 1).toFixed(1)) + ' cm.',
+              ['Find the perfect squares on either side of ' + t(sh.A) + '.', 'On the calculator: ' + t('\\sqrt{' + sh.A + '}') + ', then round to one decimal place. Answers within 0.1 cm are accepted.'], 'tabletop bracket ' + sh.A);
             p.bad = [[String(hi), String(lo), K.roundTo(x, 1).toFixed(1)]];
             return p;
           } },

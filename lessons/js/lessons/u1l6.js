@@ -3,7 +3,7 @@
  * blanks for the booklet's fill-in lines, the perfect-squares strip, and the explainers:
  *   area    (cut a square of area n into equal smaller squares: its side is s copies of √r — √50 = 5√2, Example 1 check),
  *   finder  (which perfect squares divide n? the largest one comes out — notes √48, Example 1 check),
- *   pairs   (prime factors: each pair of matching primes leaves the root as one number — √108, Example 2, Example 5(b)),
+ *   pairs   (prime factors: each pair of matching primes leaves the root as one number — √180, Example 2, Example 5(b)),
  *   entire  (mixed → entire: the coefficient goes back in as its square — 2√5, Example 3 check),
  *   order   (write them all as entire radicals, then line them up — Example 4),
  *   again   (a smaller square first means going again; the largest square does it in one step — Example 5(a)).
@@ -88,7 +88,7 @@ const area = {
   height: 420,
   minW: 860,
   choices: [{ sep: 'Notes:' }, { v: 50, label: tex('\\sqrt{50}') }, { sep: 'Warm-up:' }, { v: 8, label: tex('\\sqrt{8}') }, { v: 12, label: tex('\\sqrt{12}') }, { v: 30, label: tex('\\sqrt{30}') },
-    { sep: 'Example 1 check:' }, { v: 18, label: tex('\\sqrt{18}') }, { v: 45, label: tex('\\sqrt{45}') }],
+    { sep: 'Example 1 check:' }, { v: 18, label: tex('\\sqrt{18}') }, { v: 20, label: tex('\\sqrt{20}') }, { v: 45, label: tex('\\sqrt{45}') }],
   custom: [2, 400],
   intro: (n) => `A square has area <b>${fmt(n)}</b>. Its side is ${tex(R(n))}. What does that side look like as a <b>mixed radical</b>?`,
   make(stage, n, ex) {
@@ -162,7 +162,7 @@ const finder = {
   height: 450,
   minW: 900,
   choices: [{ sep: 'Notes:' }, { v: 48, label: tex('\\sqrt{48}') }, { v: 72, label: tex('\\sqrt{72}') }, { v: 200, label: tex('\\sqrt{200}') }, { v: 70, label: tex('\\sqrt{70}') },
-    { sep: 'Example 1 check:' }, { v: 18, label: tex('\\sqrt{18}') }, { v: 50, label: tex('\\sqrt{50}') }, { v: 45, label: tex('\\sqrt{45}') }],
+    { sep: 'Example 1 check:' }, { v: 18, label: tex('\\sqrt{18}') }, { v: 20, label: tex('\\sqrt{20}') }, { v: 45, label: tex('\\sqrt{45}') }],
   custom: [4, 999],
   intro: (n) => `Which perfect squares divide <b>${fmt(n)}</b>? The <b>biggest</b> one is the one we want.`,
   make(stage, n, ex) {
@@ -232,7 +232,7 @@ const pairs = {
   title: 'Prime factors: each pair comes out as one number',
   height: 430,
   minW: 860,
-  choices: [{ sep: 'Notes:' }, { v: 108, label: tex('\\sqrt{108}') }, { v: 72, label: tex('\\sqrt{72}') }, { v: 200, label: tex('\\sqrt{200}') },
+  choices: [{ sep: 'Notes:' }, { v: 180, label: tex('\\sqrt{180}') }, { v: 72, label: tex('\\sqrt{72}') }, { v: 200, label: tex('\\sqrt{200}') },
     { sep: 'Example 2 check:' }, { v: 126, label: tex('\\sqrt{126}') }, { v: 150, label: tex('\\sqrt{150}') }, { v: 192, label: tex('\\sqrt{192}') },
     { sep: 'Example 5(b):' }, { v: 168, label: tex('\\sqrt{168}') }],
   custom: [4, 9999],
@@ -327,7 +327,7 @@ const pairs = {
 
 /* ============ 4. Mixed → entire: the coefficient goes back in as its square ============ */
 const mixLabel = (v) => { const [a, m] = v.split('|'); return tex(`${a}\\sqrt{${m}}`); };
-const ENT = ['sep:Notes:', '2|5', '3|2', '6|5', '2|11', 'sep:Example 3 check:', '4|3', '7|2', '5|5', '9|2'];
+const ENT = ['sep:Notes:', '2|5', '3|2', '6|5', '2|11', 'sep:Example 3 check:', '4|3', '2|13', '3|7', '9|2'];
 const entire = {
   title: 'Mixed → entire: the number outside goes in as its square',
   height: 380,
@@ -524,8 +524,8 @@ export const explainers = mountExplainers({ area, finder, pairs, entire, order, 
 
 /* ============ Stand Up Break! — entire ↔ mixed at the whiteboards (lessons/js/standup.js) ============ */
 const suLab = (i) => '\\text{(' + 'abc'[i] + ')}\\ ';
-const SKIPE = new Set([18, 50, 45, 48, 108, 126, 150, 192, 96, 168, 80, 54, 12, 28, 99, 147, 175, 132, 156, 196, 176, 75, 51, 98, 72, 200, 162]); // notes, examples, Assignment 6
-const SKIPM = new Set(['3|6', '4|7', '6|3', '8|2', '5|5', '4|6', '4|3', '2|10', '7|2', '9|2', '2|5', '3|2', '6|5', '2|11']);
+const SKIPE = new Set([18, 20, 180, 52, 63, 90, 50, 45, 48, 108, 126, 150, 192, 96, 168, 80, 54, 12, 28, 99, 147, 175, 132, 156, 196, 176, 75, 51, 98, 72, 200, 162]); // notes, examples, Assignment 6
+const SKIPM = new Set(['3|6', '4|7', '6|3', '8|2', '5|5', '4|6', '4|3', '2|10', '7|2', '9|2', '2|5', '3|2', '6|5', '2|11', '3|10', '2|13', '3|7']);
 function suEM(r, ks, ms, lo, hi) { for (;;) { const k = r.pick(ks), m = r.pick(ms), n = k * k * m; if (n >= lo && n <= hi && !SKIPE.has(n)) return [k, m, n]; } }
 const suToMixed = ([k, m, n]) => `\\sqrt{${tn(n)}}=\\sqrt{${k * k}\\times${m}}=\\sqrt{${k * k}}\\times\\sqrt{${m}}=${k}\\sqrt{${m}}`;
 const suPrimes = (n) => primeFactors(n).join('\\times');

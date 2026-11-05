@@ -612,7 +612,7 @@ const RINGS = { R: ['R', 'Real numbers', 14, 8, 986, 412], Q: ['Q', 'Rational', 
 const CHAIN = { N: ['N', 'W', 'I', 'Q', 'R'], W: ['W', 'I', 'Q', 'R'], I: ['I', 'Q', 'R'], Q: ['Q', 'R'], QB: ['QB', 'R'] };
 const SLOT = { N: [150, 296], W: [287, 290], I: [422, 280], Q: [566, 240], QB: [817, 230] };
 const SETNUM = {
-  kit: [['7', 'N', '7 is a counting number: <b>natural</b>.'], ['-\\sqrt{25}', 'I', '−√25 = −5: a negative integer, so not whole. Smallest set: <b>integers</b>.'], ['\\sqrt{20}', 'QB', '√20 = 4.472…: 20 is not a perfect square, so the decimal never ends or repeats: <b>irrational</b>.']],
+  kit: [['7', 'N', '7 is a counting number: <b>natural</b>.'], ['-\\sqrt{25}', 'I', '−√25 = −5: a negative integer, so not whole. Smallest set: <b>integers</b>.'], ['\\sqrt{30}', 'QB', '√30 = 5.477…: 30 is not a perfect square, so the decimal never ends or repeats: <b>irrational</b>.']],
   ex4: [['-10', 'I', '−10 is an integer, but negative, so not whole or natural.'], ['36', 'N', '36 is a counting number: <b>natural</b>.'], ['\\dfrac{5}{9}', 'Q', '5/9 is a fraction of integers (0.555…, repeating): <b>rational</b>, not an integer.'], ['-\\sqrt{81}', 'I', '−√81 = −9 exactly: an <b>integer</b> (negative, so not whole).'], ['\\sqrt{20}', 'QB', '√20 ≈ 4.472…: never ends, never repeats: <b>irrational</b>.'], ['0.\\overline{27}', 'Q', '0.272727… repeats, so it’s <b>rational</b> (it equals 27/99 = 3/11).']]
 };
 const SETNAME = { N: 'N', W: 'W', I: 'I', Q: 'Q', QB: '\\overline{Q}', R: 'R' };
@@ -620,7 +620,7 @@ const sets = {
   title: 'Drop each number into its smallest set',
   height: 420,
   minW: 1000,
-  choices: [{ v: 'kit', label: T('7,\\ -\\sqrt{25},\\ \\sqrt{20}') }, { sep: 'Example 4 check:' }, { v: 'ex4', label: 'all six numbers' }],
+  choices: [{ v: 'kit', label: T('7,\\ -\\sqrt{25},\\ \\sqrt{30}') }, { sep: 'Example 4 check:' }, { v: 'ex4', label: 'all six numbers' }],
   intro: (v) => `Classify ${SETNUM[v].map(([t]) => T(t)).join(', ')}: the <b>smallest</b> set first, then every set around it.`,
   make(stage, v, ex) {
     const rings = {};
@@ -693,7 +693,7 @@ const estimate = {
 /* ================= 7. Radicals: both directions on the radical board ================= */
 const RD = {
   a6: { dir: 'mix', spec: { n: 2, c: 80 }, l: '(a)' }, b6: { dir: 'mix', spec: { n: 2, c: 147 }, l: '(b)' }, c6: { dir: 'ent', spec: { n: 2, k: { c: Q(6) }, r: { c: Q(5) } }, l: '(c)' },
-  a7: { dir: 'mix', spec: { n: 3, c: 135 }, l: '(a)' }, b7: { dir: 'ent', spec: { n: 3, k: { c: Q(3) }, r: { c: Q(4) } }, l: '(b)' }, c7: { dir: 'mix', spec: { n: 4, c: 162 }, l: '(c)' },
+  a7: { dir: 'mix', spec: { n: 3, c: 135 }, l: '(a)' }, b7: { dir: 'ent', spec: { n: 3, k: { c: Q(4) }, r: { c: Q(3) } }, l: '(b)' }, c7: { dir: 'mix', spec: { n: 4, c: 162 }, l: '(c)' },
   ch1: { dir: 'mix', spec: { n: 2, c: 242 }, l: '' }
 };
 const rdLabel = (v) => { const e = RD[v]; return e.dir === 'mix' ? T(rt(e.spec.n, tn(e.spec.c))) : T(qTerm(e.spec.k.c, []) + rt(e.spec.n, qTerm(e.spec.r.c, []))); };
@@ -843,7 +843,7 @@ function suGcfLcm(r) {
   }
 }
 /* radicals and estimating */
-const SU_RAD_USED = { 2: [80, 147, 242, 98, 180, 288, 75, 12, 20, 45, 150], 3: [135, 250, 54, 108, 56, 16, 24] };
+const SU_RAD_USED = { 2: [80, 147, 242, 98, 180, 288, 75, 12, 20, 45, 150, 252, 30, 44, 27], 3: [135, 250, 54, 108, 56, 16, 24, 128, 192] };
 function suSimplify(r) {
   for (;;) {
     const n = r.chance(0.6) ? 2 : 3, k = n === 2 ? r.int(2, 9) : r.int(2, 4), m = r.pick(n === 2 ? [2, 3, 5, 6, 7, 10, 11] : [2, 3, 4, 5, 6, 7, 9, 10]), N = k ** n * m;

@@ -70,7 +70,7 @@ const tiles = {
   title: 'A perfect square is tiles that make a square',
   height: 380,
   minW: 860,
-  choices: [{ sep: 'Notes:' }, 36, 9, 25, 100, { v: 12, label: '12 (not a square)' }, { sep: 'Example 1 check:' }, 16, 81, 1, 121, 49, 144],
+  choices: [{ sep: 'Demo:' }, 25, 196, { v: 12, label: '12 (not a square)' }, { v: 20, label: '20 (not a square)' }, { sep: 'Example 1 check:' }, 16, 81, 1, 121, 49, 144],
   custom: [1, 225],
   intro: (n) => `Here are <b>${n}</b> square tiles. Can they make one solid square?`,
   make(stage, n, ex) {
@@ -132,7 +132,7 @@ const cubes = {
   title: 'A perfect cube is small cubes that stack into one big cube',
   height: 400,
   minW: 860,
-  choices: [{ sep: 'Notes:' }, 216, { v: 1000, label: '1 000' }, 343, { sep: 'Example 2 check:' }, 8, 27, 125, 1, 64],
+  choices: [{ sep: 'Example 2 check:' }, 8, 27, 125, 1, { v: 64, label: '64 (both!)' }],
   intro: (n) => `Can <b>${fmt(n)}</b> small cubes stack into one solid cube?`,
   make(stage, n, ex) {
     const W = ex.W, k = icbrt(n), u = Math.min(64, 165 / k), cs = Math.cos(Math.PI / 6);
@@ -193,7 +193,7 @@ const trap = {
   title: 'Trap the square root between two whole numbers',
   height: 400,
   minW: 860,
-  choices: [{ sep: 'Notes:' }, { v: 40, label: T('\\sqrt{40}') }, { v: 45, label: T('\\sqrt{45}') }, { v: 90, label: T('\\sqrt{90}') }, { v: 130, label: T('\\sqrt{130}') },
+  choices: [{ sep: 'Notes:' }, { v: 40, label: T('\\sqrt{40}') }, { v: 46, label: T('\\sqrt{46}') }, { v: 90, label: T('\\sqrt{90}') }, { v: 130, label: T('\\sqrt{130}') },
     { sep: 'Example 3 check:' }, { v: 27, label: T('\\sqrt{27}') }, { v: 95, label: T('\\sqrt{95}') }, { sep: 'Example 4(c):' }, { v: 60, label: T('\\sqrt{60}') }],
   custom: [2, 224],
   intro: (n) => `Which two whole numbers is ${T(`\\sqrt{${n}}`)} between? Which one is it closer to?`,
@@ -256,7 +256,7 @@ const zoom = {
   title: 'One decimal place: zoom in on the gap',
   height: 410,
   minW: 860,
-  choices: [{ sep: 'Notes:' }, { v: 40, label: T('\\sqrt{40}') }, { v: 45, label: T('\\sqrt{45}') }, { v: 90, label: T('\\sqrt{90}') }, { v: 130, label: T('\\sqrt{130}') },
+  choices: [{ sep: 'Notes:' }, { v: 40, label: T('\\sqrt{40}') }, { v: 46, label: T('\\sqrt{46}') }, { v: 90, label: T('\\sqrt{90}') }, { v: 130, label: T('\\sqrt{130}') },
     { sep: 'Example 3 check:' }, { v: 27, label: T('\\sqrt{27}') }, { v: 95, label: T('\\sqrt{95}') }, { sep: 'Example 4(c):' }, { v: 60, label: T('\\sqrt{60}') }],
   custom: [2, 224],
   intro: (n) => `Estimate ${T(`\\sqrt{${n}}`)} to <b>one decimal place</b>, without a calculator.`,
@@ -313,7 +313,7 @@ const round = {
   title: 'Estimate, key it in, then round',
   height: 320,
   minW: 860,
-  choices: [{ sep: 'Notes:' }, { v: '40|2', label: `${T('\\sqrt{40}')} hundredth` }, { v: '45|2', label: `${T('\\sqrt{45}')} hundredth` }, { v: '150|1', label: `${T('\\sqrt{150}')} tenth` },
+  choices: [{ sep: 'Notes:' }, { v: '40|2', label: `${T('\\sqrt{40}')} hundredth` }, { v: '46|2', label: `${T('\\sqrt{46}')} hundredth` }, { v: '150|1', label: `${T('\\sqrt{150}')} tenth` },
     { sep: 'Example 4 check:' }, { v: '27|2', label: `${T('\\sqrt{27}')} hundredth` }, { v: '95|2', label: `${T('\\sqrt{95}')} hundredth` }, { v: '60|1', label: `${T('\\sqrt{60}')} tenth` }],
   intro: (v) => { const [n, p] = v.split('|'); return `Evaluate ${T(`\\sqrt{${n}}`)} to the nearest <b>${PLACE[p]}</b>. Estimate first!`; },
   make(stage, v, ex) {
@@ -504,7 +504,7 @@ export const explainers = mountExplainers({ tiles, cubes, trap, zoom, round, gar
 /* ============ Stand Up Break! — roots in your head, trap it, one decimal (lessons/js/standup.js) ============ */
 const suLab = (i) => '\\text{(' + 'abc'[i] + ')}\\ ';
 const suGrid = (items) => items.map((x, j) => suLab(j) + '{' + x + '}').join('\\qquad ');
-const SKIP = new Set([27, 95, 60, 40, 55, 30, 70, 110, 18, 85, 50, 48]); // Examples 3–5 and Assignment 5 numbers
+const SKIP = new Set([27, 95, 60, 40, 55, 30, 70, 110, 18, 85, 50, 48, 58, 45, 68]); // Examples 3–5 and Assignment 5 numbers
 function suNon(r, lo, hi) { for (;;) { const n = r.int(lo, hi), a = isqrt(n); if (a * a !== n && !SKIP.has(n)) return n; } }
 function suTrap(n) {
   const a = isqrt(n), b = a + 1, d1 = n - a * a, d2 = b * b - n;
@@ -514,7 +514,9 @@ standup('u1l5', {
   intro: 'Use the perfect-square list: trap the number between two perfect squares, then see which one it is nearer to.',
   levels: {
     BEG: (r) => { // Examples 1–2: roots of perfect squares and cubes, in your head
-      let p, q, c; do { p = r.int(2, 15); q = r.int(2, 15); c = r.int(2, 10); } while (p === q);
+      // leave out the Assignment 5 roots (Q1: 3, 6, 10, 2, 13, 8; Q2: the cubes of 6–10)
+      const ASQ = new Set([2, 3, 6, 8, 10, 13]);
+      let p, q, c; do { p = r.int(4, 15); q = r.int(4, 15); c = r.int(2, 5); } while (p === q || ASQ.has(p) || ASQ.has(q));
       return { text: 'Evaluate each root in your head.', q: suGrid([`\\sqrt{${p * p}}`, `\\sqrt{${q * q}}`, `\\sqrt[3]{${tn(c ** 3)}}`]),
         a: [`\\text{(a)}\\ ${p}\\times${p}=${p * p},\\ \\text{so}\\ \\sqrt{${p * p}}=${p}`, `\\text{(b)}\\ ${q}\\times${q}=${q * q},\\ \\text{so}\\ \\sqrt{${q * q}}=${q}`, `\\text{(c)}\\ ${c}\\times${c}\\times${c}=${tn(c ** 3)},\\ \\text{so}\\ \\sqrt[3]{${tn(c ** 3)}}=${c}`] };
     },

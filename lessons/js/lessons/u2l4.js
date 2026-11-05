@@ -110,7 +110,7 @@ const CK = {
   e5: { t: '\\left(\\dfrac{18x^{6}y^{3}}{6x^{2}y}\\right)^{2}\\times x^{3}', lines: [
     ['=\\left(3x^{6-2}y^{3-1}\\right)^{2}\\times x^{3}', ['quot'], 1, '<b>Quotient Law</b> handles the inside', `The <b>Quotient Law</b> handles the division inside the bracket: ${T('18\\div6=3')}, ${T('x^{6-2}')}, ${T('y^{3-1}')}.`],
     ['=(3x^{4}y^{2})^{2}\\times x^{3}', [], 1, `${T('6-2=4')}, ${T('3-1=2')}`, `Inside is now ${T('3x^{4}y^{2}')}.`],
-    ['=9x^{8}y^{4}\\times x^{3}', ['pprod', 'ppow'], 1, '<b>Power of a Product</b> handles the outside', `The <b>Power of a Product Law</b> handles the power outside: the 3, the ${T('x^{4}')} and the ${T('y^{2}')} each get squared (multiply the exponents).`],
+    ['=9x^{8}y^{4}\\times x^{3}', ['pprod', 'ppow'], 1, '<b>Power of a Product</b> (and Power of a Power) handles the outside', `The <b>Power of a Product</b> (and <b>Power of a Power</b>) Law handles the power outside: the 3, the ${T('x^{4}')} and the ${T('y^{2}')} each get squared (multiply the exponents).`],
     ['=9x^{8+3}y^{4}', ['prod'], 2, 'same base ×: add', `<b>Step 2:</b> ${T('x^{8}\\times x^{3}')}: add the exponents.`],
     ['=9x^{11}y^{4}', [], 3, 'simplest form', `Answer: ${T('9x^{11}y^{4}')}. (Example 5.)`]] }
 };

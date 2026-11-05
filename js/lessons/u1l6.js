@@ -340,7 +340,8 @@
         } }] },
       { num: '13', stem: '<i>(Numerical Response)</i>', parts: [
         { id: '13', level: 'BEG', make: function (r) {
-          var c = r.int(2, 9), m = r.pick([2, 3, 5, 6, 7, 10, 11]), N = c * c * m;
+          /* not a lesson conversion: Example 3 (4√3, 2√13, 3√7, 9√2) or 4√6 (notes, Example 5(a)); booklet 3√10 → 90 */
+          var cm = gen(r, function () { return [r.int(2, 9), r.pick([2, 3, 5, 6, 7, 10, 11])]; }, function (v) { return ['4,3', '3,7', '9,2', '4,6'].indexOf(v.join()) < 0; }), c = cm[0], m = cm[1], N = c * c * m;
           return P.nr('Convert ' + t(c + sq(m)) + ' to an entire radical: ' + t('\\sqrt{\\ \\square\\ }') + '. The number under the root is ________.', N, function (v) { return v === c * m ? { code: 'no-square', hint: 'Square the ' + t(c) + ' first: ' + t(c + '^{2}=' + c * c) + ', then multiply by ' + t(m) + '.' } : v === 2 * c * m ? { code: 'doubled', hint: 'Squaring isn’t doubling: ' + t(c + '^{2}=' + c * c) + '.' } : null; },
             t(c + sq(m) + '=\\sqrt{' + c + '^{2}\\times ' + m + '}=\\sqrt{' + c * c + '\\times ' + m + '}=' + sq(N)) + '. Record ' + t(N) + '.', ['Square the coefficient and multiply it by the number under the root.'], 'NR entire of ' + c + 'sqrt' + m);
         } }] },

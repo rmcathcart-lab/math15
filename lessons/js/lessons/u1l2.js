@@ -708,6 +708,7 @@ const decimals = {
                 await anim(c, r.dot, [{ left: xa - 7 + 'px' }, { left: xb - 7 + 'px' }], 300);
                 const z = r.cells[r.ip + i]; if (z && z.classList.contains('u1l2-dzero')) await pop(c, z, 250);
               }
+              for (let i = 0; i < r.ip + sh - 1 && r.cells[i].textContent === '0'; i++) r.cells[i].classList.add('u1l2-dzero');   // leading zeros fade
               await show(c, r.tag);
             }
           } },

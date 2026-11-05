@@ -376,69 +376,99 @@ const nmove = {
 /* =====================================================================
  * 6. The quotient law gives a negative exponent: expand, cancel, compare
  * ===================================================================== */
-const CANCEL = { d1: ['2', 3, 5], d2: ['10', 1, 3], a: ['x', 2, 5], b: ['m', 3, 8], c: ['x', 2, 6, 12, 3] };
-const cLab = (k) => { const [b, m, n, p, q] = CANCEL[k]; return `${p || ''}${b}^{${m}}\\div ${q || ''}${b}^{${n}}`; };
+// each entry: { bs: [[base, top exponent, bottom exponent], …], co: [top coefficient, bottom coefficient], frac: write it stacked }
+const CANCEL = {
+  d1: { bs: [['2', 3, 5]] }, d2: { bs: [['10', 1, 3]] }, a: { bs: [['x', 2, 5]] }, b: { bs: [['m', 3, 8]] },
+  c: { bs: [['x', 2, 6]], co: [12, 3], frac: true },
+  d: { bs: [['x', 5, 2], ['y', 2, 6]], co: [20, 4], frac: true }
+};
+const vt = (b, e) => (e === 1 ? b : `${b}^{${e}}`);
+const cLab = (k) => {
+  const { bs, co, frac } = CANCEL[k], [p, q] = co || ['', ''];
+  const T = `${p}${bs.map(([b, m]) => `${b}^{${m}}`).join('')}`, B = `${q}${bs.map(([b, , n]) => `${b}^{${n}}`).join('')}`;
+  return frac ? `\\dfrac{${T}}{${B}}` : `${T}\\div ${B}`;
+};
+const cChip = (k) => cLab(k).replace('\\dfrac', '\\tfrac');
 const ncancel = {
   title: 'Expand, cancel, and compare with the quotient law',
   height: 400,
   minW: 860,
-  choices: [{ v: 'd1', label: tex(cLab('d1')) }, { v: 'd2', label: tex(cLab('d2')) }, { sep: 'Example 5 check:' }, ...['a', 'b', 'c'].map((k) => ({ v: k, label: `(${k})` }))],
+  choices: [{ v: 'd1', label: tex(cChip('d1')) }, { v: 'd2', label: tex(cChip('d2')) }, { sep: 'Example 5 check:' }, ...['a', 'b', 'c', 'd'].map((k) => ({ v: k, label: `(${k})` }))],
   intro: (k) => `Two ways to work out ${tex(cLab(k))}: write out every factor and cancel, or use the quotient law. They must give the <b>same answer</b>.`,
   make(stage, k, ex) {
-    const W = ex.W, [b, m, n, p, q] = CANCEL[k], d = n - m, cx = W * 0.29, TY = 132, BAR = 172, BY = 212, co = p ? p / q : null;
-    const letter = /[a-z]/.test(b), plural = letter ? `<i>${b}</i>’s` : `${b}’s`, one = letter ? `<i>${b}</i>` : b;
-    add(stage, h('div', 'u2l6-cn-head', K(cLab(k))), 24, 14);
-    const row = (count, y, coef) => {
-      const els = [];
-      if (coef) { const cf = h('div', 'u2l6-cn-f co', K(String(coef))); cf._c = true; els.push(cf, h('div', 'u2l6-cn-x', '×')); }
-      for (let i = 0; i < count; i++) { if (i) els.push(h('div', 'u2l6-cn-x', '×')); const f = h('div', 'u2l6-cn-f', K(b)); f._f = true; els.push(f); }
+    const W = ex.W, { bs, co: cf } = CANCEL[k], [p, q] = cf || [], multi = bs.length > 1, frac = CANCEL[k].frac;
+    const cx = W * 0.29, TY = frac ? 140 : 132, BAR = TY + 40, BY = TY + 80, co = p ? p / q : null;
+    const say = (b, n) => { const letter = /[a-z]/.test(b); return n === 1 ? `one ${letter ? `<i>${b}</i>` : b}` : `${WORD[n]} ${letter ? `<i>${b}</i>’s` : `${b}’s`}`; };
+    const head = add(stage, h('div', 'u2l6-cn-head', K(cLab(k))), 24, 14); if (frac) head.style.fontSize = '30px';
+    const row = (side, y, coef) => { // side 1 = top exponent, 2 = bottom exponent
+      const els = [], facs = bs.map(() => []);
+      if (coef) { const c0 = h('div', 'u2l6-cn-f co', K(String(coef))); c0._c = true; els.push(c0); }
+      bs.forEach((bb, j) => { for (let i = 0; i < bb[side]; i++) { if (els.length) els.push(h('div', 'u2l6-cn-x', '×')); const f = h('div', 'u2l6-cn-f', K(bb[0])); facs[j].push(f); els.push(f); } });
       els.forEach((e) => stage.appendChild(e));
       const ws = els.map((e) => e.offsetWidth), gap = 6, tot = ws.reduce((a, w) => a + w, 0) + gap * (els.length - 1);
       let x = cx - tot / 2; els.forEach((e, i) => { at(e, x, y - e.offsetHeight / 2); x += ws[i] + gap; });
-      return { els, facs: els.filter((e) => e._f), co: els.find((e) => e._c), tot };
+      return { els, facs, co: els.find((e) => e._c), tot };
     };
-    const top = row(m, TY, p), bot = row(n, BY, q);
+    const top = row(1, TY, p), bot = row(2, BY, q);
     const bar = add(stage, h('div', 'u2l6-cn-bar'), cx, BAR); bar.style.width = (Math.max(top.tot, bot.tot) + 30) + 'px';
     const left = [...top.els, ...bot.els, bar]; hide(...left);
     const slash = (f) => { const s = add(stage, h('div', 'u2l6-cn-slash'), parseFloat(f.style.left) + f.offsetWidth / 2, parseFloat(f.style.top) + f.offsetHeight / 2); s._f = f; hide(s); return s; };
-    const slashes = []; for (let i = 0; i < m; i++) slashes.push(slash(top.facs[i]), slash(bot.facs[i]));
+    const pairs = bs.map(([, m, n], j) => { const out = []; for (let i = 0; i < Math.min(m, n); i++) out.push(slash(top.facs[j][i]), slash(bot.facs[j][i])); return out; });
     const coSl = p ? [slash(top.co), slash(bot.co)] : [];
     const coNew = p ? add(stage, h('div', 'u2l6-cn-co', K(String(co))), parseFloat(top.co.style.left) + top.co.offsetWidth / 2, TY - 52) : null; if (coNew) hide(coNew);
     const oneEl = add(stage, h('div', 'u2l6-cn-one', '1'), cx + (p ? 30 : 0), TY - 50); hide(oneEl);
-    const rest = bot.facs.slice(m);
-    const brace = add(stage, svgEl('svg', { class: 'u2l6-cn-brace', width: 10, height: 30 }), 0, 0); hide(brace);
-    const braceL = add(stage, h('div', 'u2l6-cn-bl'), cx, BY + 72); hide(braceL);
+    // what is left after cancelling: top leftovers (m > n) and bottom leftovers (n > m), base by base
+    const upL = bs.map(([b, m, n], j) => (m > n ? { b, e: m - n, f: top.facs[j].slice(n) } : null)).filter(Boolean);
+    const dnL = bs.map(([b, m, n], j) => (n > m ? { b, e: n - m, f: bot.facs[j].slice(m) } : null)).filter(Boolean);
+    const braces = dnL.map(() => { const br = add(stage, svgEl('svg', { class: 'u2l6-cn-brace', width: 10, height: 30 }), 0, 0), bl = add(stage, h('div', 'u2l6-cn-bl'), cx, BY + 72); hide(br, bl); return { br, bl }; });
     const RX = W * 0.6, RW = W - RX - 20, cT = co ? String(co) : '';
-    const box = (y, lab, src, cls) => { const e = add(stage, h('div', 'u2l6-cn-r ' + (cls || ''), `<div class="u2l6-cn-rl">${lab}</div>${K(src)}`), RX, y); e.style.width = RW + 'px'; hide(e); return e; };
-    const fracT = `\\dfrac{${co || 1}}{${d === 1 ? b : `${b}^{${d}}`}}`;
-    const lA = box(16, 'Cancelling gives', fracT);
-    const lB = box(110, 'The quotient law gives', `${p ? `(${p}\\div${q})` : ''}${b}^{${m}-${n}}=${cT}${b}^{${-d}}`);
-    const lC = box(204, 'Same expression, so', `${cT}${b}^{${-d}}=${fracT}`, 'big');
+    const box = (y, lab, srcs, cls) => { const e = add(stage, h('div', 'u2l6-cn-r ' + (cls || '') + (multi ? ' tall' : ''), `<div class="u2l6-cn-rl">${lab}</div><div>${srcs.map((x) => K(x)).join('<br>')}</div>`), RX, y); e.style.width = RW + 'px'; hide(e); return e; };
+    const num = `${cT}${upL.map((l) => vt(l.b, l.e)).join('')}` || '1', den = dnL.map((l) => vt(l.b, l.e)).join('');
+    const fracT = den ? `\\dfrac{${num}}{${den}}` : num;
+    const negT = `${cT}${bs.map(([b, m, n]) => (m - n === 1 ? b : `${b}^{${m - n}}`)).join('')}`;
+    const subT = `${p ? `(${p}\\div${q})` : ''}${bs.map(([b, m, n]) => `${b}^{${m}-${n}}`).join('')}`;
+    const lA = box(16, 'Cancelling gives', [fracT]);
+    const lB = box(multi ? 112 : 110, 'The quotient law gives', multi ? [subT, `=${negT}`] : [`${subT}=${negT}`]);
+    const lC = box(multi ? 224 : 204, 'Same expression, so', [`${negT}=${fracT}`], 'big');
+    const desc = (side) => bs.map((bb) => say(bb[0], bb[side])).join(' and ');
     const steps = [{
-      cap: `Write out every factor${p ? ', numbers first' : ''}. ${tex(`${b}^{${m}}`)} is ${m === 1 ? `just one ${one}` : `${WORD[m]} ${plural}`} on top; ${tex(`${b}^{${n}}`)} is ${WORD[n]} ${plural} on the bottom.`,
+      cap: multi ? `Write out every factor, numbers first. On top: ${desc(1)}. On the bottom: ${desc(2)}.`
+        : `Write out every factor${p ? ', numbers first' : ''}. ${tex(`${bs[0][0]}^{${bs[0][1]}}`)} is ${bs[0][1] === 1 ? `just ${say(bs[0][0], 1)}` : say(bs[0][0], bs[0][1])} on top; ${tex(`${bs[0][0]}^{${bs[0][2]}}`)} is ${say(bs[0][0], bs[0][2])} on the bottom.`,
       run: (c) => Promise.all(left.map((e, i) => c.fadeIn(e, 350, { delay: Math.min(i * 35, 500) })))
     }];
     if (p) steps.push({ cap: `Numbers with numbers: ${tex(`${p}\\div${q}=${co}`)}.`, run: async (c) => { coSl.forEach((s) => { s._f.classList.add('gone'); }); await Promise.all([...coSl.map((s) => c.anim(s, [{ opacity: 0, transform: 'rotate(-58deg) scaleX(0)' }, { opacity: 1, transform: 'rotate(-58deg) scaleX(1)' }], 320)), c.pop(coNew, 380, { delay: 250 })]); } });
+    bs.forEach(([b, m, n], j) => {
+      const np = Math.min(m, n), one = /[a-z]/.test(b) ? `<i>${b}</i>` : b, an = /[a-z]/.test(b) ? 'an' : 'a';
+      steps.push({
+        cap: multi ? `Now the ${say(b, 2).replace(/^two /, '')}: each ${one} on top <b>cancels</b> with ${an} ${one} on the bottom. ${np === 1 ? 'One pair cancels' : `${WORD[np][0].toUpperCase() + WORD[np].slice(1)} pairs cancel`}, and ${m > n ? `${say(b, m - n)} stay on <b>top</b>` : `${say(b, n - m)} stay on the <b>bottom</b>`}.`
+          : `Each ${one} on top <b>cancels</b> with ${an} ${one} on the bottom. ${np === 1 ? 'One pair cancels.' : `${WORD[np][0].toUpperCase() + WORD[np].slice(1)} pairs cancel.`}`,
+        run: async (c) => { await Promise.all(pairs[j].map((s, i) => { s._f.classList.add('gone'); return c.anim(s, [{ opacity: 0, transform: 'rotate(-58deg) scaleX(0)' }, { opacity: 1, transform: 'rotate(-58deg) scaleX(1)' }], 320, { delay: Math.floor(i / 2) * 220 }); })); }
+      });
+    });
+    const leftWords = [p ? `<b>${co}</b>` : '', ...upL.map((l) => `<b>${say(l.b, l.e)}</b>`)].filter(Boolean).join(' and ') || '<b>1</b>';
     steps.push({
-      cap: `Each ${one} on top <b>cancels</b> with ${letter ? 'an' : 'a'} ${one} on the bottom. ${m === 1 ? 'One pair cancels.' : `${WORD[m][0].toUpperCase() + WORD[m].slice(1)} pairs cancel.`}`,
-      run: async (c) => { await Promise.all(slashes.map((s, i) => { s._f.classList.add('gone'); return c.anim(s, [{ opacity: 0, transform: 'rotate(-58deg) scaleX(0)' }, { opacity: 1, transform: 'rotate(-58deg) scaleX(1)' }], 320, { delay: Math.floor(i / 2) * 220 }); })); }
-    }, {
-      cap: `What’s left: ${p ? `<b>${co}</b>` : '<b>1</b>'} on top and <b>${WORD[d]} ${plural}</b> on the bottom, so the answer is ${tex(fracT)}.`,
+      cap: `What’s left: ${leftWords} on top and ${dnL.map((l) => `<b>${say(l.b, l.e)}</b>`).join(' and ')} on the bottom, so the answer is ${tex(fracT)}.`,
       run: async (c) => {
         const jobs = [p ? pulse(c, coNew, 1.2) : c.pop(oneEl, 380), c.fadeIn(lA, 400, { delay: 250 })];
-        const f0 = rest[0], f1 = rest[rest.length - 1], x1 = parseFloat(f0.style.left), x2 = parseFloat(f1.style.left) + f1.offsetWidth, w = x2 - x1;
-        brace.setAttribute('width', w + 4); brace.innerHTML = ''; brace.appendChild(svgEl('path', { d: `M2 2 Q2 12 ${w / 4} 12 L${w / 2 - 6} 12 Q${w / 2} 12 ${w / 2} 22 Q${w / 2} 12 ${w / 2 + 6} 12 L${w * 3 / 4} 12 Q${w} 12 ${w} 2`, class: 'u2l6-cn-bpath' }));
-        at(brace, x1 - 2, BY + 30); at(braceL, x1 + w / 2, BY + 74);
-        braceL.innerHTML = `${WORD[d]} ${plural} left = ${K(d === 1 ? b : `${b}^{${d}}`)}`;
-        rest.forEach((f) => f.classList.add('left'));
-        jobs.push(c.fadeIn(brace, 350, { delay: 150 }), c.fadeIn(braceL, 350, { delay: 300 }));
+        upL.forEach((l) => l.f.forEach((f) => f.classList.add('left')));
+        dnL.forEach((l, i) => {
+          const { br, bl } = braces[i], f0 = l.f[0], f1 = l.f[l.f.length - 1], x1 = parseFloat(f0.style.left), x2 = parseFloat(f1.style.left) + f1.offsetWidth, w = x2 - x1;
+          br.setAttribute('width', w + 4); br.innerHTML = ''; br.appendChild(svgEl('path', { d: `M2 2 Q2 12 ${w / 4} 12 L${w / 2 - 6} 12 Q${w / 2} 12 ${w / 2} 22 Q${w / 2} 12 ${w / 2 + 6} 12 L${w * 3 / 4} 12 Q${w} 12 ${w} 2`, class: 'u2l6-cn-bpath' }));
+          at(br, x1 - 2, BY + 30); at(bl, x1 + w / 2, BY + 74);
+          bl.innerHTML = `${say(l.b, l.e)} left = ${K(vt(l.b, l.e))}`;
+          l.f.forEach((f) => f.classList.add('left'));
+          jobs.push(c.fadeIn(br, 350, { delay: 150 }), c.fadeIn(bl, 350, { delay: 300 }));
+        });
         await Promise.all(jobs);
       }
-    }, {
-      cap: `Now the <b>quotient law</b>: subtract the exponents, ${tex(`${m}-${n}=${-d}`)}. The bigger exponent was on the bottom, so the answer has a <b>negative</b> exponent: ${tex(`${cT}${b}^{${-d}}`)}.`,
+    });
+    const negs = bs.filter(([, m, n]) => n > m);
+    steps.push({
+      cap: multi ? `Now the <b>quotient law</b>, one base at a time: ${bs.map(([b, m, n]) => tex(`${b}^{${m}-${n}}=${b}^{${m - n}}`)).join(' and ')}. ${tex(negs[0][0])} had the bigger exponent on the bottom, so its exponent is <b>negative</b>: ${tex(negT)}.`
+        : `Now the <b>quotient law</b>: subtract the exponents, ${tex(`${bs[0][1]}-${bs[0][2]}=${bs[0][1] - bs[0][2]}`)}. The bigger exponent was on the bottom, so the answer has a <b>negative</b> exponent: ${tex(negT)}.`,
       run: (c) => c.fadeIn(lB, 400)
     }, {
-      cap: `Same expression, so <b>${tex(`${cT}${b}^{${-d}}=${fracT}`)}</b>. Finish every quotient-law answer by making the exponent <b>positive</b>.`,
+      cap: `Same expression, so <b>${tex(`${negT}=${fracT}`)}</b>. Finish every quotient-law answer by making the exponent <b>positive</b>.`,
       run: (c) => c.pop(lC, 480)
     });
     return steps;
@@ -453,6 +483,9 @@ export const explainers = mountExplainers({ nstairs, nline, nrecip, nvar, ndiv, 
 standup('u2l6', (() => {
   const LET = ['x', 'y', 'a', 'b', 'm', 'n', 'p', 'k', 'r', 't', 'w'];
   const vt = (v, e) => (e === 1 ? v : `${v}^{${e}}`);
+  // Assignment 6 #8 (x²÷x⁶, a³÷a⁷, m÷m⁵, y⁴÷y⁹) and #9 (10x²/5x⁷, 18a³/6a⁸, 8y/2y⁶, 20b²/4b⁹) by their numbers, any letter;
+  // Example 5 too, so the whiteboards don't repeat it
+  const ASG = new Set(['2,6', '3,7', '1,5', '4,9', '2,5', '3,8', '10,2,5,7', '18,3,6,8', '8,1,2,6', '20,2,4,9', '12,2,3,6']);
   return {
     intro: 'Simplify at your whiteboard station. Take the reciprocal, make every exponent positive, and evaluate where you can.',
     levels: {
@@ -472,20 +505,22 @@ standup('u2l6', (() => {
         if (t === 'den') return { q: `\\dfrac{1}{${v}^{-${n}}}`, a: [`=${vt(v, n)}`] };
         return { q: `\\dfrac{${k}}{${v}^{-${n}}}`, a: [`=${k}\\times ${vt(v, n)}`, `=${k}${vt(v, n)}`] };
       },
-      MAS: (r) => { // Example 5: the quotient law gives a negative exponent
+      MAS: (r) => { for (;;) { // Example 5: the quotient law gives a negative exponent
         const [x, y] = r.pick([['x', 'y'], ['a', 'b'], ['m', 'n'], ['p', 'q'], ['r', 's']]);
         const t = r.pick(['one', 'coef', 'coef', 'two']);
-        if (t === 'one') { const m = r.int(1, 6), n = m + r.int(1, 6), d = n - m; return { q: `${vt(x, m)}\\div ${vt(x, n)}`, a: [`=${x}^{${m}-${n}}=${x}^{-${d}}`, `=\\dfrac{1}{${vt(x, d)}}`] }; }
+        if (t === 'one') { const m = r.int(1, 6), n = m + r.int(1, 6), d = n - m; if (ASG.has(`${m},${n}`)) continue; return { q: `${vt(x, m)}\\div ${vt(x, n)}`, a: [`=${x}^{${m}-${n}}=${x}^{-${d}}`, `=\\dfrac{1}{${vt(x, d)}}`] }; }
         if (t === 'coef') {
           const q = r.int(2, 6), c = r.int(2, 6), p = q * c, m = r.int(1, 5), n = m + r.int(1, 6), d = n - m;
-          return { q: `${p}${vt(x, m)}\\div ${q}${vt(x, n)}`, a: [`=(${p}\\div${q})${x}^{${m}-${n}}=${c}${x}^{-${d}}`, `=\\dfrac{${c}}{${vt(x, d)}}`] };
+          if (ASG.has(`${p},${m},${q},${n}`)) continue; // Assignment 6 #9, written stacked like the booklet
+          return { q: `\\dfrac{${p}${vt(x, m)}}{${q}${vt(x, n)}}`, a: [`=(${p}\\div${q})${x}^{${m}-${n}}=${c}${x}^{-${d}}`, `=\\dfrac{${c}}{${vt(x, d)}}`] };
         }
         // two letters: one exponent ends up positive, the other negative
         const q = r.int(2, 5), c = r.int(2, 5), p = q * c;
         const m = r.int(1, 4), n = m + r.int(1, 4), s = r.int(2, 6), u = r.int(1, s - 1), d = n - m, e = s - u;
-        return { q: `${p}${vt(x, m)}${vt(y, s)}\\div ${q}${vt(x, n)}${vt(y, u)}`,
+        if ((p === 15 && m === 2 && s === 4 && q === 3 && n === 6 && u === 1) || (p === 24 && m === 3 && s === 1 && q === 6 && n === 5 && u === 4)) continue; // Assignment 6 #10
+        return { q: `\\dfrac{${p}${vt(x, m)}${vt(y, s)}}{${q}${vt(x, n)}${vt(y, u)}}`,
           a: [`${p}\\div${q}=${c},\\quad ${x}^{${m}-${n}}=${x}^{-${d}},\\quad ${y}^{${s}-${u}}=${vt(y, e)}`, `=${c}${x}^{-${d}}${vt(y, e)}`, `=\\dfrac{${c}${vt(y, e)}}{${vt(x, d)}}`] };
-      }
+      } }
     }
   };
 })());

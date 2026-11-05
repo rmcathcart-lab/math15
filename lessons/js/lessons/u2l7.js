@@ -304,7 +304,7 @@ const hops = {
  * A (negative) outer power multiplies into every exponent inside
  * ===================================================================== */
 const OUT = {
-  n: { c: 3, f: [['x', 2]], n: -2 },
+  n: { c: 5, f: [['x', 3]], n: -2 },
   t: { c: 2, f: [['y', -4]], n: -3 },
   b: { c: 2, f: [['a', 3], ['b', 1]], n: 2 },
   c: { c: 1, f: [['x', -2], ['y', 3]], n: -3 },
