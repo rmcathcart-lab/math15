@@ -466,7 +466,7 @@
         { id: '10a', level: 'PRG', outcome: 'AN3', make: function (r) { var ls = L2(r), d = r.int(2, 6), q = r.int(2, 6), p = r.int(1, 4); return nchain(Dv(Mn(d * q, [[ls[0], p], [ls[1], r.int(3, 6)]]), Mn(d, [[ls[0], p + r.int(2, 5)], [ls[1], 1]]), 'pdiv'), { text: 'Aa^p b^q ÷ da^r b' }); } },
         { id: '10b', level: 'PRG', outcome: 'AN3', make: function (r) { var ls = L2(r), d = r.int(2, 8), q = r.int(2, 6), p = r.int(1, 4); return nchain(Dv(Mn(d * q, [[ls[0], p], [ls[1], 1]]), Mn(d, [[ls[0], p + r.int(1, 4)], [ls[1], r.int(2, 5)]]), 'pdiv'), { text: 'Ax^p y ÷ dx^r y^s' }); } }] },
       { num: '11', stem: function (sh) { return 'A student simplified ' + t(sh.b + '^{-' + sh.n + '}') + ' and wrote ' + t(sh.b + '^{-' + sh.n + '}=-' + (sh.b * sh.n)) + '.'; },
-        shared: function (r) { var b = r.int(2, 12); return { b: b, n: b <= 5 ? r.pick([2, 2, 3]) : 2 }; },
+        shared: function (r) { var b = r.int(2, 15); return { b: b, n: b <= 5 ? r.pick([2, 2, 3]) : 2 }; },
         parts: [
           { id: '11a', level: 'EMG', outcome: 'AN3', make: function (r, sh) {
             var b = sh.b, n = sh.n;
@@ -511,9 +511,9 @@
         parts: [
           { id: 'e2a', level: 'EMG', outcome: 'AN3', make: function (r, sh) { var a = sh.a, b = sh.b, V = R(a, b * b); return exP(t(a + '\\cdot ' + b + '^{-2}'), V, function (v) { if (near(v, 1 / (a * a * b * b))) return { code: 'not-raised', hint: 'The exponent is on ' + t(b) + ' only; the ' + t(a) + ' stays on top: ' + t(a + '\\times\\frac{1}{' + b * b + '}') + '.' }; if (near(v, 1 / (a * b * b))) return { code: 'coef-side', hint: 'The ' + t(a) + ' has no negative exponent, so it stays on top.' }; return null; }, t(a + '\\cdot ' + b + '^{-2}=' + a + '\\times\\frac{1}{' + b * b + '}=' + frTex(V)) + '.', [HONLY, HE], 'a·b^-2', { bad: ['\\frac{1}{' + a * a * b * b + '}', '\\frac{1}{' + a * b * b + '}'] }); } },
           { id: 'e2b', level: 'PRG', outcome: 'AN3', make: function (r, sh) { var a = sh.a, b = sh.b, ab = a * b, V = R(1, ab * ab); return exP(t('(' + a + '\\cdot ' + b + ')^{-2}'), V, function (v) { if (near(v, a / (b * b))) return { code: 'not-raised', hint: 'The bracket makes the whole product ' + t(a + '\\cdot ' + b + '=' + ab) + ' the base.' }; return null; }, t('(' + a + '\\cdot ' + b + ')^{-2}=' + ab + '^{-2}=\\frac{1}{' + ab + '^{2}}=' + frTex(V)) + '.', [HONLY, HE], '(a·b)^-2', { bad: [frTex(R(a, b * b)), String(-ab * ab)] }); } },
-          { id: 'e2c', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return signPowPart(sh.b, 2, 'neg-out'); } },
-          { id: 'e2d', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return signPowPart(sh.b, 2, 'neg-in'); } },
-          { id: 'e2e', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return fracBasePart(1, sh.b, 2); } }] },
+          { id: 'e2c', level: 'EMG', outcome: 'AN3', make: function (r) { return signPowPart(r.int(2, 15), 2, 'neg-out'); } },
+          { id: 'e2d', level: 'EMG', outcome: 'AN3', make: function (r) { return signPowPart(r.int(2, 15), 2, 'neg-in'); } },
+          { id: 'e2e', level: 'EMG', outcome: 'AN3', make: function (r) { return fracBasePart(1, r.int(2, 15), 2); } }] },
       { num: '3', stem: 'True or false? If false, choose the correct right side (positive exponents).',
         shared: function (r) { return { x: r.pick(['x', 'x', 'a', 'm', 'y', 'n', 'p']), k: r.int(2, 9), b: r.int(2, 9), pq: r.pick([[2, 5], [2, 5], [3, 4], [2, 3], [3, 5], [4, 7], [5, 8], [3, 7], [2, 9]]) }; },
         parts: [
@@ -527,7 +527,7 @@
         { id: 'e4b', level: 'EMG', outcome: 'AN3', make: function (r) { var b = r.int(2, 10); return signPowPart(b, b === 2 ? r.pick([3, 5, 7]) : 3, 'neg-in'); } },
         { id: 'e4c', level: 'EMG', outcome: 'AN3', make: function (r) { var q = r.int(2, 12); return fracBasePart(1, q, q <= 4 ? r.pick([2, 3]) : 2); } },
         { id: 'e4d', level: 'BEG', outcome: 'AN3', make: function (r) { var c = r.pick(TENS); return evalVal(c[0], c[1]); } },
-        { id: 'e4e', level: 'EMG', outcome: 'AN3', make: function (r) { var n = r.int(2, 11), V = n % 2 ? -1 : 1, tx = '(-1)^{-' + n + '}'; return exP(t(tx), [V, 1], function (v) { if (near(v, -V)) return { code: n % 2 ? 'odd-neg' : 'even-neg', hint: t('(-1)^{' + n + '}') + ' — is ' + t(n) + ' even or odd? And the reciprocal of ' + t('\\pm 1') + ' is itself.' }; if (near(v, -n) || near(v, n)) return { code: 'base-times-exp', hint: 'A power is repeated multiplication, not ' + t('-1\\times(-' + n + ')') + '.' }; return null; }, t(tx + '=\\frac{1}{(-1)^{' + n + '}}=\\frac{1}{' + V + '}=' + V) + ' (' + (n % 2 ? 'odd' : 'even') + ' power).', [HS, HN], '(-1)^-n', { bad: [String(-V), String(n)] }); } }] },
+        { id: 'e4e', level: 'EMG', outcome: 'AN3', make: function (r) { var n = r.int(2, 25), V = n % 2 ? -1 : 1, tx = '(-1)^{-' + n + '}'; return exP(t(tx), [V, 1], function (v) { if (near(v, -V)) return { code: n % 2 ? 'odd-neg' : 'even-neg', hint: t('(-1)^{' + n + '}') + ' — is ' + t(n) + ' even or odd? And the reciprocal of ' + t('\\pm 1') + ' is itself.' }; if (near(v, -n) || near(v, n)) return { code: 'base-times-exp', hint: 'A power is repeated multiplication, not ' + t('-1\\times(-' + n + ')') + '.' }; return null; }, t(tx + '=\\frac{1}{(-1)^{' + n + '}}=\\frac{1}{' + V + '}=' + V) + ' (' + (n % 2 ? 'odd' : 'even') + ' power).', [HS, HN], '(-1)^-n', { bad: [String(-V), String(n)] }); } }] },
       /* ================= Extra B ================= */
       { num: '5', section: 'Part B — Moving factors across the fraction bar', stem: 'A <b>factor</b> with a negative exponent may be moved to the other side of the fraction bar, and its exponent turns positive when it lands. Rewrite each expression using positive exponents only.', parts: [
         { id: 'e5a', level: 'EMG', outcome: 'AN3', make: function (r) { var ls = L2(r), k = r.int(2, 9); return nchain(Dv(Mn(k, [[ls[0], -r.int(2, 6)]]), Mn(1, [[ls[1], -r.int(2, 6)]])), { text: 'kx^-a / y^-b' }); } },

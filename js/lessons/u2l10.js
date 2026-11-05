@@ -20,7 +20,7 @@
     'no-root': 'Forgot the root (used the numerator only)', 'square-root': 'Used a square root for every denominator',
     'add-exp': 'Added exponents (should multiply)', 'coef-added': 'Added coefficients instead of multiplying', 'coef-not-raised': 'Didn’t raise the coefficient',
     'coef-sub': 'Subtracted coefficients instead of dividing', 'coef-zeroed': 'Applied the zero exponent to the coefficient too', 'div-exp': 'Divided exponents (should subtract)',
-    'mult-exp': 'Multiplied exponents (should add)', 'num-only': 'Raised only the numerator', 'sub-wrong': 'Added exponents (should subtract)',
+    'mult-exp': 'Multiplied exponents (should add)', 'num-only': 'Raised only the numerator', 'u2l10-add-not-sub': 'Added exponents (should subtract)',
     'zero-is-0': 'Thought a⁰ = 0', 'zero-is-base': 'Thought a⁰ = a', 'x-one': 'Forgot the factor x = x¹', 'coef-times': 'Multiplied the coefficient by the exponent',
     'coef-side': 'Number on the wrong side of the fraction bar (moved one with no negative exponent, or left one that has one)',
     opposite: 'Treated a negative exponent as a negative sign (opposite instead of reciprocal)', 'neg-power': 'Treated a negative exponent as a negative number',
@@ -33,7 +33,7 @@
     'u2l10-count': 'Divided the wrong way (how many fit)', 'u2l10-mult-back': 'Solved for the unknown exponent with the wrong operation', 'u2l10-only-one': 'Only one of the two values right',
     'u2l10-factor': 'Wrong scale factor (didn’t cube)', 'u2l10-forward': 'Moved forward in time instead of back'
   });
-  HW.addPartial({ 'u2l10-zero-part': 'b', 'u2l10-odd-root-sign': 's', 'u2l10-count': 'n', 'u2l10-mult-back': 'n', 'u2l10-only-one': 's', 'u2l10-factor': 'n', 'u2l10-forward': 'n' });
+  HW.addPartial({ 'u2l10-add-not-sub': 'b', 'u2l10-zero-part': 'b', 'u2l10-odd-root-sign': 's', 'u2l10-count': 'n', 'u2l10-mult-back': 'n', 'u2l10-only-one': 's', 'u2l10-factor': 'n', 'u2l10-forward': 'n' });
 
   /* ---------- exact arithmetic ---------- */
   function iroot(v, n) { // exact integer nth root of v (negative allowed for odd n), else null
@@ -509,7 +509,7 @@
       return parts.reduce(mmul);
     }
     A = EVT(n.div[0], mode); B = EVT(n.div[1], mode); if (!A || !B) return null;
-    if (mode === 'sub-wrong') return mmul(A, { c: qdiv(1, B.c), v: B.v });
+    if (mode === 'u2l10-add-not-sub') return mmul(A, { c: qdiv(1, B.c), v: B.v });
     if (mode === 'coef-sub') { var R = mdiv(A, B); R.c = qsub(A.c, B.c); return R.c[0] ? R : null; }
     return mdiv(A, B);
   }
@@ -519,7 +519,7 @@
     'coef-times': 'A number to a power is repeated multiplication: ' + t('3^{2}=3\\times 3=9') + ', not ' + t('3\\times 2') + '.',
     'mult-exp': 'Multiplying powers with the same base: <b>add</b> the exponents (product law) — don’t multiply them.',
     'coef-added': 'Coefficients <b>multiply</b> — don’t add them.',
-    'sub-wrong': 'Dividing powers with the same base: <b>subtract</b> the exponents (quotient law).',
+    'u2l10-add-not-sub': 'Dividing powers with the same base: <b>subtract</b> the exponents (quotient law).',
     'coef-sub': 'Coefficients <b>divide</b> — don’t subtract them.'
   };
   function hasNode(n, type) { if (n.m) return false; if (n[type]) return true; if (n.pow) return hasNode(n.pow, type); return (n.mul || n.div).some(function (x) { return hasNode(x, type); }); }
@@ -528,7 +528,7 @@
     Object.keys(MODES).forEach(function (mode) {
       if ((mode === 'add-exp' || mode === 'coef-not-raised' || mode === 'coef-times') && !hasNode(tree, 'pow')) return;
       if ((mode === 'mult-exp' || mode === 'coef-added') && !hasNode(tree, 'mul')) return;
-      if ((mode === 'sub-wrong' || mode === 'coef-sub') && !hasNode(tree, 'div')) return;
+      if ((mode === 'u2l10-add-not-sub' || mode === 'coef-sub') && !hasNode(tree, 'div')) return;
       var W = EVT(tree, mode); if (W) out.push([W, mode, MODES[mode]]);
     });
     if (!(A.c[0] === 1 && A.c[1] === 1) && A.c[0] > 0) out.push([{ c: Q(A.c[1], A.c[0]), v: A.v }, 'coef-side', 'Your letters are right, but the number is on the wrong side of the fraction bar. A number moves across the bar only if <i>it</i> has a negative exponent.']);
@@ -605,7 +605,7 @@
   function q4a(r) {
     var g = r.pick([[9, 6, 4], [2, 9, 4], [3, 7, 3], [5, 6, 3], [10, 8, 5], [4, 7, 4], [7, 5, 3], [6, 5, 3], [2, 12, 5], [3, 8, 4], [8, 7, 5], [11, 5, 3], [10, 9, 6], [2, 10, 3]]), b = g[0], m = g[1], n = g[2], V = Math.pow(b, m - n);
     var pr = '\\dfrac{' + b + '^{' + m + '}}{' + b + '^{' + n + '}}';
-    var p = numPart(t(pr), V, true, [[Math.pow(b, m + n), 'sub-wrong', MODES['sub-wrong']], [m % n === 0 ? Math.pow(b, m / n) : NaN, 'div-exp', 'Subtract the exponents — don’t divide them.'], [m - n === 1 ? NaN : b * (m - n), 'times-exp', t(b + '^{' + (m - n) + '}') + ' means ' + t(b) + ' multiplied by itself ' + (m - n) + ' times.']],
+    var p = numPart(t(pr), V, true, [[Math.pow(b, m + n), 'u2l10-add-not-sub', MODES['u2l10-add-not-sub']], [m % n === 0 ? Math.pow(b, m / n) : NaN, 'div-exp', 'Subtract the exponents — don’t divide them.'], [m - n === 1 ? NaN : b * (m - n), 'times-exp', t(b + '^{' + (m - n) + '}') + ' means ' + t(b) + ' multiplied by itself ' + (m - n) + ' times.']],
       'Quotient law: ' + t(pr + '=' + b + '^{' + m + '-' + n + '}=' + b + '^{' + (m - n) + '}=' + F(V)) + '.', ['Same base: subtract the exponents.'], 'quotient ' + b + '^' + m + '/' + b + '^' + n, F(V));
     p.good = [b + '^{' + (m - n) + '}'];
     return p;
@@ -741,7 +741,7 @@
   function e5d(r) { var b = r.pick([2, 2, 3, 10]), k = r.pick([2, 3, 4]), j = r.int(1, 3), e = k - j, pr = '\\dfrac{\\left(' + b + '^{-1}\\right)^{-' + k + '}}{' + b + '^{' + j + '}\\times ' + b + '^{0}}';
     if (e <= 0) { k = j + 2; e = 2; pr = '\\dfrac{\\left(' + b + '^{-1}\\right)^{-' + k + '}}{' + b + '^{' + j + '}\\times ' + b + '^{0}}'; }
     var V = Math.pow(b, e);
-    return numPart(t(pr), V, false, [[Math.pow(b, -k - j), 'neg-power', t('(-1)\\times(-' + k + ')=+' + k) + ': two negatives multiply to a positive.'], [Math.pow(b, k + j), 'sub-wrong', MODES['sub-wrong']], [0, 'zero-is-0', t(b + '^{0}=1') + '.']],
+    return numPart(t(pr), V, false, [[Math.pow(b, -k - j), 'neg-power', t('(-1)\\times(-' + k + ')=+' + k) + ': two negatives multiply to a positive.'], [Math.pow(b, k + j), 'u2l10-add-not-sub', MODES['u2l10-add-not-sub']], [0, 'zero-is-0', t(b + '^{0}=1') + '.']],
       t(pr + '=\\dfrac{' + b + '^{' + k + '}}{' + b + '^{' + j + '}\\times 1}=' + b + '^{' + k + '-' + j + '}=' + b + '^{' + e + '}=' + V) + '.', ['Power of a power: ' + t('(-1)\\times(-' + k + ')') + '.'], 'evaluate ' + pr, String(V)); }
   function e6shared(r) { return { p: r.pick([16, 16, 81, 625, 16]), q: -r.pick([8, 27, 27, 64, 125]), rr: r.int(2, 9) }; }
   function e6stem(sh) { return 'Let ' + t('p=' + sh.p) + ', ' + t('q=' + sh.q) + ' and ' + t('r=' + sh.rr) + '. Evaluate each expression exactly.'; }
@@ -890,7 +890,7 @@
     { num: '13', section: 'Extra practice E — Working backwards', stem: 'Determine the value of the unknown exponent that makes each statement true.', parts: [
       { id: 'e13a', level: 'ADV', make: function (r) {
         var a = r.int(3, 9), b = r.int(1, 4), want = r.int(1, 6), n = want - a - b, x = r.pick(['x', 'x', 'y']), pr = '\\dfrac{' + x + '^{' + a + '}\\cdot ' + x + '^{n}}{' + x + '^{-' + b + '}}=' + x + '^{' + want + '}';
-        return P.number(t(pr), n, function (v) { if (v === want - a + b) return { code: 'sub-wrong', hint: 'Dividing by ' + t(x + '^{-' + b + '}') + ' <b>subtracts</b> ' + t('-' + b) + ', i.e. adds ' + t(b) + ': ' + t(a + '+n-(-' + b + ')=' + want) + '.' }; if (v === -n) return { code: 'sign', hint: 'Check the sign when you solve ' + t((a + b) + '+n=' + want) + '.' }; return null; },
+        return P.number(t(pr), n, function (v) { if (v === want - a + b) return { code: 'u2l10-add-not-sub', hint: 'Dividing by ' + t(x + '^{-' + b + '}') + ' <b>subtracts</b> ' + t('-' + b) + ', i.e. adds ' + t(b) + ': ' + t(a + '+n-(-' + b + ')=' + want) + '.' }; if (v === -n) return { code: 'sign', hint: 'Check the sign when you solve ' + t((a + b) + '+n=' + want) + '.' }; return null; },
           'Combine the exponents on the left: ' + t(a + '+n-(-' + b + ')=' + (a + b) + '+n') + '. Set equal: ' + t((a + b) + '+n=' + want) + ', so ' + t('n=' + n) + '.', ['Write the left side as one power of ' + t(x) + ' with an exponent containing ' + t('n') + '.'], 'solve exponent ' + pr, { before: t('n=') });
       } },
       { id: 'e13b', level: 'ADV', make: function (r) {

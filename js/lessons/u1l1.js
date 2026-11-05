@@ -378,7 +378,7 @@
         { id: '14', level: 'EMG', make: function (r) {
           var T0 = -r.int(2, 12), up = r.int(5, 15), down = r.int(3, 12); if (down === up) down = up - 2; var ans = T0 + up - down, key = T0 + '+' + up + '-' + down;
           var h1 = r.pick(['7 a.m.', '6 a.m.', '8 a.m.']), h2 = r.pick(['1 p.m.', 'noon', '2 p.m.']), h3 = r.pick(['9 p.m.', '10 p.m.', '8 p.m.']);
-          var p = P.fields('The temperature was ' + t(T0 + '^{\\circ}\\text{C}') + ' at ' + h1 + '. By ' + h2 + ' it had risen ' + t(up + '^{\\circ}\\text{C}') + '. By ' + h3 + ' it had dropped ' + t(down + '^{\\circ}\\text{C}') + ' from the ' + h2 + ' temperature. Write an integer expression for the ' + h3 + ' temperature, then evaluate it.',
+          var p = P.fields('The temperature was ' + t(T0 + '^{\\circ}\\text{C}') + ' at ' + h1.replace(/\.$/, '') + '. By ' + h2 + ' it had risen ' + t(up + '^{\\circ}\\text{C}') + '. By ' + h3 + ' it had dropped ' + t(down + '^{\\circ}\\text{C}') + ' from the ' + h2 + ' temperature. Write an integer expression for the ' + h3 + ' temperature, then evaluate it.',
             [exprField(), { name: 'Temperature', label: 'Temperature at ' + h3, after: '°C' }],
             [exprChk(ans, [T0, up, down], { why: 'Rising is +, dropping is −.' }), K.number(ans, function (v) { if (v === T0 - up + down) return { code: 'u1l1-sub-pos', hint: 'Rising adds; dropping subtracts.' }; if (ans && v === -ans) return { code: 'sign', hint: 'Check the sign of your final temperature.' }; return null; })],
             [key, String(ans)], t(tx(key) + '=' + ans + '^{\\circ}\\text{C}'),

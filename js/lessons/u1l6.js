@@ -25,7 +25,7 @@
     'mc-why-wrong': 'Chose a wrong reason', 'mc-not-simplified': 'Said it isn’t simplified (it is)', 'mc-simplified': 'Said it is simplified (it isn’t)'
   });
   HW.addPartial({ 'no-power': 'b', 'not-entire': 'b', unfinished: 'n', 'u1l6-decimal': 's', 'u1l6-perimeter': 'b', 'u1l6-hyp': 'n', 'u1l6-like': 'n', 'u1l6-coef-sum': 's', 'u1l6-list': 'b', 'u1l6-count': 's',
-    'u1l6-square-whole': 'b', 'u1l6-product': 'b', 'u1l6-rational-pick': 'n' });
+    'u1l6-square-whole': 'b', 'add-radicands': 'n', doubled: 'n', 'u1l6-product': 'b', 'u1l6-rational-pick': 'n' });
 
   /* ---------- small helpers (from 10C u1l7) ---------- */
   function R(c) { return typeof c === 'number' ? [c, 1] : c; }
@@ -248,15 +248,15 @@
 
       /* ================= Part B — Entire Radicals to Mixed Radicals ================= */
       { num: '3', section: 'Part B — Entire Radicals to Mixed Radicals', stem: 'Convert each entire radical to a mixed radical in simplest form.',
-        shared: function (r) { return { n: distinct(r, [function () { return 4 * r.pick([3, 5, 6, 7, 10, 11, 13]); }, function () { return r.pick([4, 9]) * r.pick([2, 3, 5, 6, 7, 10, 11]); }, function () { return 9 * r.pick([2, 3, 5, 6, 7, 10, 11, 13]); }]) }; },
+        shared: function (r) { return { n: distinct(r, [function () { return 4 * r.pick([3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19]); }, function () { return r.pick([4, 9]) * r.pick([2, 3, 5, 6, 7, 10, 11]); }, function () { return 9 * r.pick([2, 3, 5, 6, 7, 10, 11, 13, 14, 15]); }]) }; },
         parts: [
           { id: '3a', level: 'BEG', make: function (r, sh) { return toMixed(1, sh.n[0]); } },
           { id: '3b', level: 'BEG', make: function (r, sh) { return toMixed(1, sh.n[1]); } },
           { id: '3c', level: 'BEG', make: function (r, sh) { return toMixed(1, sh.n[2]); } }] },
       { num: '4', stem: 'Convert each entire radical to a mixed radical in simplest form.', parts: [
-        { id: '4a', level: 'EMG', make: function (r) { return toMixed(1, 16 * r.pick([2, 3, 5, 6, 7])); } },
-        { id: '4b', level: 'EMG', make: function (r) { return toMixed(1, r.pick([36, 49]) * r.pick([2, 3, 5])); } },
-        { id: '4c', level: 'BEG', make: function (r) { return toMixed(1, 25 * r.pick([2, 3, 5, 6, 7])); } }] },
+        { id: '4a', level: 'EMG', make: function (r) { return toMixed(1, r.chance(0.8) ? 16 * r.pick([2, 3, 5, 6, 7, 10, 11, 13]) : 64 * r.pick([2, 3])); } },
+        { id: '4b', level: 'EMG', make: function (r) { return toMixed(1, r.pick([36, 49]) * r.pick([2, 3, 5, 6, 7])); } },
+        { id: '4c', level: 'BEG', make: function (r) { return toMixed(1, r.chance(0.8) ? 25 * r.pick([2, 3, 5, 6, 7, 10, 11]) : 100 * r.pick([2, 3])); } }] },
       { num: '5', stem: 'Use prime factorization to convert each entire radical to a mixed radical in simplest form.',
         shared: function (r) {
           var make = function () { var s = r.pick([2, 2, 3]), m = r.pick([2, 3, 5, 6]) * r.pick([11, 13, 17, 19]); return s * s * m; };
@@ -271,11 +271,11 @@
 
       /* ================= Part C — Mixed Radicals to Entire Radicals ================= */
       { num: '6', section: 'Part C — Mixed Radicals to Entire Radicals', stem: 'Convert each mixed radical to an entire radical.', parts: [
-        { id: '6a', level: 'BEG', make: function (r) { return toEntire(r.int(2, 3), r.pick([2, 3, 5, 6, 7])); } },
-        { id: '6b', level: 'BEG', make: function (r) { return toEntire(r.int(4, 5), r.pick([5, 6, 7, 10])); } },
-        { id: '6c', level: 'BEG', make: function (r) { return toEntire(r.int(5, 7), r.pick([2, 3, 5])); } }] },
+        { id: '6a', level: 'BEG', make: function (r) { return toEntire(r.int(2, 3), r.pick([2, 3, 5, 6, 7, 10, 11])); } },
+        { id: '6b', level: 'BEG', make: function (r) { return toEntire(r.int(4, 5), r.pick([5, 6, 7, 10, 11, 13])); } },
+        { id: '6c', level: 'BEG', make: function (r) { return toEntire(r.int(6, 7), r.pick([2, 3, 5, 6])); } }] },
       { num: '7', stem: 'Convert each mixed radical to an entire radical.', parts: [
-        { id: '7a', level: 'BEG', make: function (r) { return toEntire(r.int(7, 10), r.pick([2, 3])); } },
+        { id: '7a', level: 'BEG', make: function (r) { return toEntire(r.int(7, 12), r.pick([2, 3, 5])); } },
         { id: '7b', level: 'EMG', make: function (r) { var c = r.int(3, 7); return toEntire(c, r.chance(0.6) ? c : r.pick([5, 6, 7])); } }] },
 
       /* ================= Part D — Ordering, Applications, and Review ================= */
@@ -304,7 +304,7 @@
             return p;
           } }] },
       { num: '10', stem: function (sh) { return 'Simplify ' + t(sq(sh.k * sh.k)) + '.'; },
-        shared: function (r) { return { k: r.int(11, 15) }; },
+        shared: function (r) { return { k: r.int(11, 20) }; },
         parts: [
           { id: '10a', level: 'BEG', make: function (r, sh) {
             var n = sh.k * sh.k, p = toMixed(1, n, { prompt: t(sq(n)), hints: ['Is ' + t(n) + ' a perfect square? Check the table of perfect squares.'] });
@@ -448,7 +448,7 @@
       /* ================= Extra practice C — Multiplying and combining ================= */
       { num: '10', section: 'Extra practice C — Multiplying and Combining Radicals', stem: 'The rule ' + t('\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}') + ' works in both directions. Multiply, then write the result in simplest form.', parts: [
         { id: 'e10a', level: 'EMG', make: function (r) { var o = gen(r, function () { return r.sample([2, 3, 5, 6, 7, 10, 14, 15], 2); }, function (o) { var n = o[0] * o[1]; return big(n) > 1 && !isSq(n); }); return prodPart(o[0], o[1]); } },
-        { id: 'e10b', level: 'EMG', make: function (r) { var a = r.pick([2, 3, 5]), k = r.int(2, 4); return prodPart(a, a * k * k); } },
+        { id: 'e10b', level: 'EMG', make: function (r) { var a = r.pick([2, 3, 5, 6, 7]), k = r.int(2, 5); return prodPart(a, a * k * k); } },
         { id: 'e10c', level: 'EMG', make: function (r) {
           var c = r.int(2, 6), m = r.pick([2, 3, 5, 6, 7]), v = c * c * m;
           return P.number(t('\\left(' + c + sq(m) + '\\right)^{2}'), v, function (x) { if (x === c * m) return { code: 'u1l6-square-whole', hint: 'Square <b>both</b> parts: ' + t(c + '^{2}=' + c * c) + ' and ' + t('\\left(\\sqrt{' + m + '}\\right)^{2}=' + m) + '.' }; if (x === 2 * c * m) return { code: 'doubled', hint: 'Squaring isn’t doubling: ' + t('\\left(' + c + sq(m) + '\\right)^{2}=' + c + sq(m) + '\\times ' + c + sq(m)) + '.' }; if (x === c * c) return { code: 'u1l6-square-whole', hint: 'Don’t forget ' + t('\\left(\\sqrt{' + m + '}\\right)^{2}=' + m) + '.' }; return null; },
@@ -495,7 +495,7 @@
         { id: 'e13b', level: 'PRG', make: function (r) { var m = r.pick([3, 2, 5]), a = r.int(2, 3), b = r.int(2, 4); return likePart([{ s: 1, a: 3 }, { s: 1, a: b }], m, 'coefficient and like radicals', [a, 1]); } },
         { id: 'e13c', level: 'PRG', make: function (r) { var m = r.pick([6, 10, 5, 7]), ab = r.sample([2, 3, 4], 2); return likePart([{ s: 1, a: ab[0] }, { s: 1, a: ab[1] }], m, 'like radicals m=' + m); } }] },
       { num: '14', stem: function (sh) { return 'Is it true that ' + t('\\sqrt{a}+\\sqrt{b}=\\sqrt{a+b}') + '? Test it with ' + t('a=' + sh.a) + ' and ' + t('b=' + sh.b) + '.'; },
-        shared: function (r) { return r.pick([{ a: 9, b: 16 }, { a: 36, b: 64 }, { a: 25, b: 144 }, { a: 81, b: 144 }, { a: 16, b: 9 }, { a: 64, b: 36 }]); },
+        shared: function (r) { return r.pick([{ a: 9, b: 16 }, { a: 36, b: 64 }, { a: 25, b: 144 }, { a: 81, b: 144 }, { a: 16, b: 9 }, { a: 64, b: 36 }, { a: 144, b: 256 }, { a: 64, b: 225 }, { a: 49, b: 576 }, { a: 144, b: 25 }, { a: 225, b: 64 }, { a: 400, b: 225 }]); },
         parts: [
           { id: 'e14a', level: 'BEG', make: function (r, sh) {
             var a = sh.a, b = sh.b, L = Math.sqrt(a) + Math.sqrt(b), Rr = Math.sqrt(a + b);

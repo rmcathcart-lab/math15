@@ -31,7 +31,7 @@
     'mc-neg-root': 'Gave a real value for the square root of a negative', 'mc-sq-reason': 'Blamed the perfect square (not the negative sign)', 'mc-root': 'Said the root is larger', 'mc-dec': 'Said the decimal is larger', 'mc-equal': 'Said they are equal',
     'u1l5-est-whole': 'Whole-number estimate off', 'u1l5-both-next': 'Not the next number that is both a square and a cube', 'u1l5-four-sides': 'Perimeter: didn’t use four sides', 'u1l5-six-faces': 'Surface area: didn’t use six faces'
   });
-  HW.addPartial({ 'sqrt-halved': 'n', 'no-root': 'n', 'divided-by-index': 'n', 'said-not-perfect': 'n', 'said-perfect': 'n', 'root-value': 'n', 'bracket': 'n', 'estimate-far': 'n',
+  HW.addPartial({ 'used-square-root': 'n', 'used-cube-root': 'n', 'made-square': 'n', 'made-cube': 'n', 'sqrt-halved': 'n', 'no-root': 'n', 'divided-by-index': 'n', 'said-not-perfect': 'n', 'said-perfect': 'n', 'root-value': 'n', 'bracket': 'n', 'estimate-far': 'n',
     'u1l5-closer': 'b', 'u1l5-not-bound': 'n', 'u1l5-tenth': 'n', 'u1l5-tenth-square': 's', 'u1l5-perimeter': 'b', 'u1l5-sa': 'b', 'u1l5-face': 'b', 'u1l5-volume': 'b', 'u1l5-times': 'b', 'u1l5-doubled-vol': 'n',
     'u1l5-side-from-perim': 'n', 'u1l5-product': 's', 'u1l5-count': 's', 'u1l5-list': 'b', 'u1l5-sum-roots': 'n', 'u1l5-sqrt-neg': 'n', 'u1l5-cube-sign': 's', 'u1l5-est-whole': 'b', 'u1l5-both-next': 'n',
     'u1l5-four-sides': 'b', 'u1l5-six-faces': 'b' });
@@ -114,6 +114,7 @@
     var x = Math.pow(n, 1 / k), lo = Math.floor(x + 1e-9), hi = lo + 1, want = isLo ? lo : hi;
     return K.number(want, function (v) {
       if (!Number.isInteger(v)) return { code: 'bracket', hint: 'Give a whole number.' };
+      if (v > 3 && Math.pow(Math.round(Math.pow(v, 1 / k)), k) === v && v !== want) return { code: 'power-not-root', hint: t(v) + ' is a perfect ' + pw(k) + '. Give the whole number it comes from: ' + t(rootTex(k, v) + '=' + Math.round(Math.pow(v, 1 / k))) + '.' };
       if (v === Math.pow(want, k)) return { code: 'power-not-root', hint: t(Math.pow(want, k)) + ' is the perfect ' + pw(k) + '. Give the whole number it comes from: ' + t(rootTex(k, Math.pow(want, k)) + '=' + want) + '.' };
       if (isLo && v === hi) return { code: 'swapped-bounds', hint: 'That’s the larger whole number. The first box is the smaller one.' };
       if (!isLo && v === lo) return { code: 'swapped-bounds', hint: 'That’s the smaller whole number. The second box is the larger one.' };
@@ -201,7 +202,7 @@
       if (k === 3 && intRoot(w, 2) != null) return { code: 'made-square', hint: 'That makes a perfect <b>square</b>, but you need a perfect <b>cube</b>: every exponent must reach a multiple of ' + t('3') + '.' };
       if (k === 2 && intRoot(w, 3) != null) return { code: 'made-cube', hint: 'That makes a perfect <b>cube</b>, but you need a perfect <b>square</b>: every exponent must be even.' };
       if (m % v === 0) return { code: 'missed-prime', hint: 'Not quite: after multiplying by ' + t(F(v)) + ', some exponent is still not ' + test + '. Check every prime.' };
-      return null;
+      return { code: 'value', hint: t(F(n) + '=' + K.fac(n)) + '. Which exponents are not ' + test + '? Multiply by just enough of those primes to fix them.' };
     };
     var fN = nt.factor(n), fNN = nt.factor(N);
     var p = P.fields('Find the <b>smallest</b> whole number ' + t(F(n)) + ' can be multiplied by so that the product is a perfect ' + word + '. Give the product and its ' + word + ' root.',
@@ -564,12 +565,12 @@
               'The claim is <b>false</b>. A “for all” claim must work every time, so a single counterexample (like the one in (a)) disproves it. (The rule that does work is ' + t('\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}') + ' — for multiplication, not addition.)', ['What does “for all” promise?'], 'what a counterexample proves');
           } }] },
       { num: '16', stem: 'Square roots and cube roots behave differently with negative numbers.',
-        shared: function (r) { return { k: r.int(2, 9), c: r.int(2, 6), c2: r.int(2, 5), c3: r.pick([6, 7, 8, 9, 10]) }; },
+        shared: function (r) { return { k: r.int(2, 12), c: r.int(2, 10), c2: r.int(2, 5), c3: r.pick([6, 7, 8, 9, 10]) }; },
         parts: [
           { id: 'e16a', level: 'BEG', make: function (r, sh) {
             var k = sh.k;
             return P.mc(r, 'Why is there no real number equal to ' + t('\\sqrt{-' + k * k + '}') + '?', [
-              { html: 'Any real number times itself is positive or zero: positive × positive and negative × negative are both positive. So nothing squares to ' + t('-' + k * k) + '.', right: true, code: 'right' },
+              { html: 'Any real number times itself is positive or zero: positive × positive and negative × negative are both positive. So nothing squares to ' + t('-' + k * k) + '.', right: true },
               { html: 'Because ' + t('\\sqrt{-' + k * k + '}=-' + k) + '.', why: 'Check: ' + t('(-' + k + ')\\times(-' + k + ')=+' + k * k) + ', not ' + t('-' + k * k) + '.', code: 'neg-root' },
               { html: 'Because ' + t(k * k) + ' is a perfect square.', why: t(k * k) + ' being a perfect square is why ' + t('\\sqrt{' + k * k + '}=' + k) + '. The problem is the negative sign.', code: 'sq-reason' },
               { html: 'There is one: ' + t('\\sqrt{-' + k * k + '}=' + k) + '.', why: t(k + '\\times ' + k + '=' + k * k) + ', not ' + t('-' + k * k) + '.', code: 'neg-root' }],
