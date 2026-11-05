@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Negative Exponents · Math 15 2.6</title>
+<meta name="description" content="Math 15 Unit 2 Lesson 6: negative exponents. Keep dividing by the base past a⁰ = 1 to see that a⁻ⁿ = 1/aⁿ: take the reciprocal and make the exponent positive. A negative exponent makes a number small, not negative. Variable bases, negative exponents in the denominator (1/a⁻ⁿ = aⁿ), coefficients that stay put (6x⁻³ = 6/x³), and negative exponents that come out of the quotient law. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u2l6.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u2l6">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 2 Exponents · Lesson 6</div>
+  <h1>Negative Exponents</h1>
+  <p class="lede">Last lesson the pattern took us down to <span class="tex">a^0=1</span>. Today we keep going, <b>past zero</b>: <span class="tex">2^{-1}</span>, <span class="tex">2^{-2}</span>, <span class="tex">2^{-3}</span>… A negative exponent does <b>not</b> make a number negative. It means <b>take the reciprocal</b>: <span class="tex">2^{-3}=\dfrac{1}{2^3}=\dfrac18</span>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>continue the pattern of powers past <span class="tex">a^0=1</span> and explain what a negative exponent means</li>
+      <li>use the rule <span class="tex">a^{-n}=\dfrac{1}{a^n}</span> to write a power with a positive exponent, then evaluate it</li>
+      <li>flip a negative exponent up from the denominator: <span class="tex">\dfrac{1}{a^{-n}}=a^n</span></li>
+      <li>move <b>only</b> the base the exponent belongs to: <span class="tex">6x^{-3}=\dfrac{6}{x^3}</span></li>
+      <li>finish a quotient-law answer like <span class="tex">x^{-3}</span> by writing it with a positive exponent</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN3</b> Demonstrate an understanding of powers with integral and rational exponents.<br><span class="u2l6-today">Today: negative exponents.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Fridge Mould" style="--wf-side: 360px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Fridge Mould</h2>
+  <p class="wf-rule">A super-mould on a forgotten sandwich <b>triples</b> every hour. At <b>noon</b> it is <b>1 cm²</b>. <span class="muted">Tap a <b class="u2l6-cr">?</b> to reveal it.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l6-bread" id="u2l6-bread"></div>
+    <div class="u2l6-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How big is the spot at <b>4 pm</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>81 cm²</b>: triple 27.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>At what time does it reach <b>243 cm²</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>5 pm</b>: 81 × 3 = 243.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Run the clock <b>backwards</b>. How big was it at <b>11 am</b>? At <b>10 am</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Going back an hour <b>undoes</b> a tripling: divide by 3. 11 am: <span class="tex">1\div3=\tfrac13</span> cm²; 10 am: <span class="tex">\tfrac13\div3=\tfrac19</span> cm².</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Nobody saw any mould at <b>midnight</b>, 12 hours before noon. If it had been tripling all night, how big was the spot at midnight? <b>Guess first</b> (in cm²).</div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> <span class="tex">-36</span></div>
+        <div class="opt"><b>B</b> <span class="tex">0</span></div>
+        <div class="opt right"><b>C</b> <span class="tex">\dfrac{1}{531\,441}</span></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C.</b> Twelve hours back means dividing by 3 twelve times: <span class="tex">1\div3^{12}=\tfrac{1}{531\,441}</span> cm². As a square, its side is <span class="tex">\tfrac{1}{729}</span> cm, about 0.014 mm: much thinner than a hair. That’s why nobody saw it!<br><b>A</b> comes from “<span class="tex">3\times(-12)</span>”: a size can’t be negative. <b>B</b>: dividing by 3 never reaches 0.</div>
+    </div>
+  </div></div>
+  <p class="u2l6-social">Argue it with a neighbour: going back in time, does the spot <b>ever</b> shrink to exactly zero?</p>
+</section>
+
+<!-- ================= 1. The pattern past zero ================= -->
+<section class="card" data-ink="s1" data-section="1. Extending the Pattern Past Zero">
+  <div class="sec-h"><span class="badge">1</span><h2>Extending the Pattern Past Zero</h2></div>
+  <p>From Lesson 5, <span class="tex">a^0=1</span> for any nonzero base. Watch powers of 2 fall as the exponent drops by one: each one is the one before it <b>divided by 2</b>. Then keep dividing!</p>
+  <div class="u2l6-pat">
+    <div><span class="tex">2^3=8</span><small>&nbsp;</small></div>
+    <div><span class="tex">2^2=4</span><small><span class="tex">8\div2</span></small></div>
+    <div><span class="tex">2^1=2</span><small><span class="tex">4\div2</span></small></div>
+    <div class="z"><span class="tex">2^0=1</span><small><span class="tex">2\div2</span></small></div>
+    <div class="neg"><span class="tex">2^{-1}=\dfrac12=\dfrac{1}{2^1}</span><small><span class="tex">1\div2</span></small></div>
+    <div class="neg"><span class="tex">2^{-2}=\dfrac14=\dfrac{1}{2^2}</span><small><span class="tex">\tfrac12\div2</span></small></div>
+  </div>
+  <div class="explainer" data-explainer="nstairs"></div>
+  <p class="u2l6-after">A negative exponent gives the <b>reciprocal</b> (one over) of the matching positive power: <span class="tex">2^{-2}=\dfrac{1}{2^{2}}</span>.</p>
+</section>
+
+<!-- ================= 2. The rule ================= -->
+<section class="card" data-ink="s2" data-section="2. The Negative Exponent Rule">
+  <div class="sec-h"><span class="badge">2</span><h2>The Negative Exponent Rule</h2></div>
+  <div class="def u2l6-law"><b>Negative Exponent Rule</b> &nbsp;For any base <span class="tex">a\neq0</span>,
+    <div class="u2l6-rule"><span class="tex">a^{-n}=\dfrac{1}{a^{n}}</span></div>
+    <div class="u2l6-say">In words: <b>take the reciprocal</b> and <b>make the exponent positive</b>.</div></div>
+  <div class="explainer" data-explainer="nrecip"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Small, not negative">
+  <h3 class="sub">A negative exponent makes a number <b>small</b>, not negative</h3>
+  <div class="tip watch"><div class="tip-ic">!</div><div><span class="tex">2^{-3}=\dfrac{1}{2^3}=\dfrac18</span>. It is <b>not</b> <span class="tex">-8</span>, and it is <b>not</b> <span class="tex">-6</span>. With a whole-number base bigger than 1, the answer is always a <b>positive fraction less than 1</b>.</div></div>
+  <div class="explainer" data-explainer="nline"></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Check on the calculator.</b> For a negative exponent use the <b>negative key</b> <kbd>(−)</kbd>, not the subtract key: <span class="keys"><kbd>2</kbd><kbd>^</kbd><kbd>(−)</kbd><kbd>3</kbd><kbd>ENTER</kbd></span> gives 0.125. Then <kbd>2nd</kbd><kbd>F◂▸D</kbd> turns it into <b>1┘8</b>, which means <span class="tex">\tfrac18</span>.</div>
+    <button class="pill" data-keys="2 ^ (−) 3 = F◂▸D">Show me</button>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Positive exponent first, then evaluate</h3></div>
+  <p class="q">Write each power with a positive exponent, then evaluate.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">3^{-2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{1}{3^{2}}=\mathbf{\dfrac{1}{9}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">4^{-1}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{1}{4^{1}}=\mathbf{\dfrac{1}{4}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">5^{-3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{1}{5^{3}}=\mathbf{\dfrac{1}{125}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">10^{-2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{1}{10^{2}}=\dfrac{1}{100}</span><br><span class="tex">=\mathbf{0.01}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Which is bigger, <span class="tex">2^{-3}</span> or <span class="tex">2^{-4}</span>? Is either one negative?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2^{-3}=\tfrac18</span> is bigger than <span class="tex">2^{-4}=\tfrac1{16}</span>: one more step down the pattern halves it again. <b>Neither is negative</b>: both are small positive numbers.</div></div></div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Variable bases ================= -->
+<section class="card" data-ink="s3" data-section="3. Variable Bases">
+  <div class="sec-h"><span class="badge">3</span><h2>Variable Bases</h2></div>
+  <p>When the base is a variable, there is no final number to work out. Just apply the rule and <b>stop</b>: <span class="tex">x^{-3}=\dfrac{1}{x^{3}}</span>. It works the same with a letter for the exponent too: <span class="tex">a^{-n}=\dfrac{1}{a^{n}}</span>.</p>
+  <div class="explainer" data-explainer="nvar"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Variable bases</h3></div>
+  <p class="q">Write each expression with a positive exponent.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">x^{-3}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\mathbf{\dfrac{1}{x^{3}}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">y^{-5}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\mathbf{\dfrac{1}{y^{5}}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">m^{-1}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\mathbf{\dfrac{1}{m}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">a^{-n}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\mathbf{\dfrac{1}{a^{n}}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 4. In the denominator ================= -->
+<section class="card" data-ink="s4" data-section="4. Negative Exponents in the Denominator">
+  <div class="sec-h"><span class="badge">4</span><h2>Negative Exponents in the Denominator</h2></div>
+  <p>If the negative exponent is already in a <b>denominator</b>, use the rule twice: <span class="tex">\dfrac{1}{a^{-n}}</span> is 1 divided by <span class="tex">\dfrac{1}{a^{n}}</span>, which is <span class="tex">a^{n}</span>.</p>
+  <div class="def u2l6-law"><b>Reverse Rule</b> &nbsp;For any base <span class="tex">a\neq0</span>,
+    <div class="u2l6-rule"><span class="tex">\dfrac{1}{a^{-n}}=a^{n}</span></div>
+    <div class="u2l6-say">A negative exponent <b>downstairs</b> flips <b>up</b> to the numerator and turns positive.</div></div>
+  <div class="explainer" data-explainer="ndiv"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Flip it up from the denominator</h3></div>
+  <p class="q">Simplify each expression so the exponent is positive, then evaluate where possible.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">\dfrac{1}{2^{-3}}</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">=2^{3}</span><br><span class="tex">=\mathbf{8}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{1}{3^{-2}}</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">=3^{2}</span><br><span class="tex">=\mathbf{9}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\dfrac{1}{x^{-4}}</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">=\mathbf{x^{4}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">\dfrac{1}{y^{-6}}</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">=\mathbf{y^{6}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 5. Coefficients ================= -->
+<section class="card" data-ink="s5" data-section="5. Coefficients">
+  <div class="sec-h"><span class="badge">5</span><h2>Coefficients</h2></div>
+  <p>A negative exponent belongs <b>only</b> to the base written right beside it, never to the coefficient out front. In <span class="tex">6x^{-3}</span> the exponent <span class="tex">-3</span> belongs to <span class="tex">x</span> alone, so <span class="tex">6x^{-3}=6\times\dfrac{1}{x^{3}}=\dfrac{6}{x^{3}}</span>. The 6 stays upstairs.</p>
+  <div class="explainer" data-explainer="nmove"></div>
+  <div class="def gray"><b>Not the same:</b> &nbsp;<span class="tex">6x^{-3}\neq\dfrac{1}{6x^{3}}</span>. Only the factor the exponent <b>touches</b> moves across the fraction bar. Everything else stays where it is.</div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>The coefficient stays put</h3></div>
+  <p class="q">Simplify each expression, writing your answer with a positive exponent.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">6x^{-3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">6\times\dfrac{1}{x^{3}}=\mathbf{\dfrac{6}{x^{3}}}</span><br>The 6 does not move.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">2a^{-1}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2\times\dfrac{1}{a}=\mathbf{\dfrac{2}{a}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\dfrac{9}{y^{-2}}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">9\times y^{2}</span><br><span class="tex">=\mathbf{9y^{2}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">\dfrac{8}{b^{-4}}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">8\times b^{4}</span><br><span class="tex">=\mathbf{8b^{4}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u2l6"></section>
+
+<!-- ================= 6. From the quotient law ================= -->
+<section class="card" data-ink="s6" data-section="6. Negative Exponents from the Quotient Law">
+  <div class="sec-h"><span class="badge">6</span><h2>Negative Exponents from the Quotient Law</h2></div>
+  <p>You will often meet a negative exponent as the <b>answer</b> to a quotient-law question: whenever the exponent you subtract is the <b>bigger</b> one. Subtract as usual, then finish by rewriting the answer with a positive exponent.</p>
+  <div class="explainer" data-explainer="ncancel"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Subtract, then make it positive</h3></div>
+  <p class="q">Simplify using the quotient law, then rewrite the result with a positive exponent.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">x^{2}\div x^{5}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^{2-5}=x^{-3}</span><br><span class="tex">=\mathbf{\dfrac{1}{x^{3}}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">m^{3}\div m^{8}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m^{3-8}=m^{-5}</span><br><span class="tex">=\mathbf{\dfrac{1}{m^{5}}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">12x^{2}\div3x^{6}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(12\div3)x^{2-6}=4x^{-4}</span><br><span class="tex">=\mathbf{\dfrac{4}{x^{4}}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>The pattern keeps going past 0:</b> divide by the base each step. <span class="tex">2^0=1</span>, <span class="tex">2^{-1}=\tfrac12</span>, <span class="tex">2^{-2}=\tfrac14</span>.</div>
+    <div><b>The rule:</b> <span class="tex">a^{-n}=\dfrac{1}{a^{n}}</span>: take the reciprocal, make the exponent positive. <span class="tex">2^{-3}=\tfrac18</span>: small, <b>not negative</b>.</div>
+    <div><b>Downstairs flips up:</b> <span class="tex">\dfrac{1}{a^{-n}}=a^{n}</span>. Move <b>only</b> what the exponent touches: <span class="tex">6x^{-3}=\dfrac{6}{x^{3}}</span>.</div>
+    <div><b>Quotient law first, then positive:</b> <span class="tex">x^2\div x^5=x^{-3}=\dfrac{1}{x^3}</span>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u2l6">
+    <div><div class="kicker">Your turn</div><b>Assignment 6 — Negative Exponents</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l7/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 7 — Combining Zero, Negative and Positive Exponents</b><div class="muted">From 10 am to 2 pm the mould grew by <span class="tex">3^2\div3^{-2}</span>. What single power is that?</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u2l6.js';
+  boot({ key: 'u2l6', homeHref: '../../', title: '2.6 Negative Exponents' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

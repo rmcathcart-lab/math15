@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zero Exponents · Math 15 2.5</title>
+<meta name="description" content="Math 15 Unit 2 Lesson 5: zero exponents. Discover why any nonzero base to the power 0 is 1, from a pattern (divide by the base once more), from folding paper, and from the quotient law. Watch where the exponent is attached (5x⁰ = 5 but (5x)⁰ = 1), then use the zero exponent law inside bigger simplifications. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u2l5.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u2l5">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 2 Exponents · Lesson 5</div>
+  <h1>Zero Exponents</h1>
+  <p class="lede">An exponent counts how many times the base is multiplied. So what could <span class="tex">3^0</span> mean: 3 multiplied by itself <b>zero</b> times? Today we let a <b>pattern</b> answer that, then check it with the <b>quotient law</b>. The surprise: any nonzero base to the power 0 is <b>1</b>, not 0.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>use a pattern (divide by the base once more) to explain why <span class="tex">a^0=1</span></li>
+      <li>use the quotient law to show the same thing: <span class="tex">5^4\div5^4=5^0=1</span></li>
+      <li>evaluate a power with exponent 0, like <span class="tex">9^0</span> or <span class="tex">(-6)^0</span></li>
+      <li>see what the 0 is <b>attached to</b>: <span class="tex">5x^0=5</span>, but <span class="tex">(5x)^0=1</span></li>
+      <li>use the zero exponent law as one step in a bigger simplification</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN3</b> Demonstrate an understanding of powers with integral and rational exponents.<br><span class="u2l5-today">Today: the exponent 0.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Folding Challenge" style="--wf-side: 360px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Folding Challenge</h2>
+  <p class="wf-rule">Fold a sheet of paper in half. Then in half again. Then again… <span class="muted">Tap a <b class="u2l5-cr">?</b> to reveal it.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l5-stacks" id="u2l5-stacks"></div>
+    <div class="u2l5-ftab" id="u2l5-ftab"></div>
+    <div class="u2l5-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many layers after <b>4</b> folds? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>16 layers.</b> Each fold doubles the layers: 8 × 2 = 16.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How many folds make <b>64</b> layers? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>6 folds:</b> 2, 4, 8, 16, 32, 64.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>How many layers after <b>0</b> folds? Does the pattern agree with common sense? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>1 layer:</b> an unfolded sheet is one layer. The pattern agrees: going right, each step <b>halves</b> the layers, 8 → 4 → 2 → <b>1</b>.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Paper is about <b>0.1 mm</b> thick. If you <i>could</i> keep folding, how many folds until the stack reaches <b>the Moon</b> (384&#8239;400 km away)? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> 42</div>
+        <div class="opt"><b>B</b> 1&#8239;000</div>
+        <div class="opt"><b>C</b> 1&#8239;000&#8239;000</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A: just 42 folds!</b> After <span class="tex">n</span> folds there are <span class="tex">2^n</span> layers, so the stack is <span class="tex">2^n\times0.1</span> mm thick.<br>14 folds: about <b>1.6 m</b>, taller than most of you.<br>41 folds: about 219&#8239;900 km. Not there yet.<br>42 folds: about <b>439&#8239;800 km</b>. Past the Moon!<br>Doubling over and over grows unbelievably fast.</div>
+    </div>
+  </div></div>
+  <p class="u2l5-social">Try it with a real sheet: can anyone fold it in half more than <b>7</b> times?</p>
+</section>
+
+<!-- ================= 1. The laws so far ================= -->
+<section class="card" data-ink="s1" data-section="1. The Exponent Laws So Far">
+  <div class="sec-h"><span class="badge">1</span><h2>The Exponent Laws So Far</h2></div>
+  <p>Lessons 1–4 gave us these laws. <span class="muted">Tap a card to flip it.</span></p>
+  <div class="bk-flips u2l5-laws" style="--bk-cols:4">
+    <div class="bk-flip"><div class="bk-front"><b>Product Law</b><small>multiplying, same base</small></div><div class="bk-back"><span class="tex">a^{m}\times a^{n}=a^{m+n}</span><small><span class="tex">2^3\times2^4=2^7</span></small></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Quotient Law</b><small>dividing, same base</small></div><div class="bk-back"><span class="tex">a^{m}\div a^{n}=a^{m-n}</span><small><span class="tex">7^6\div7^2=7^4</span></small></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Power of a Power</b><small>a power, raised to a power</small></div><div class="bk-back"><span class="tex">(a^{m})^{n}=a^{mn}</span><small><span class="tex">(x^3)^2=x^6</span></small></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Power of a Product / Quotient</b><small>a bracket, raised to a power</small></div><div class="bk-back"><span class="tex">(ab)^{n}=a^{n}b^{n}</span><span class="tex">\left(\dfrac{a}{b}\right)^{n}=\dfrac{a^{n}}{b^{n}}</span></div></div>
+  </div>
+  <p>Every one of them used a <b>positive</b> exponent. Nothing yet tells us what <span class="tex">3^0</span> means. <span class="tex">3^2=3\times3</span> is easy to picture, but multiplying 3 by itself <b>0 times</b> is not an obvious idea.</p>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Make a guess before we find out: what should <span class="tex">3^0</span> be? 0? 1? 3? Something else?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Most people guess <b>0</b>. The pattern in Section 2 will show that <span class="tex">3^0=1</span>.</div></div></div>
+</section>
+
+<!-- ================= 2. The pattern ================= -->
+<section class="card" data-ink="s2" data-section="2. Discovering the Rule: A Pattern">
+  <div class="sec-h"><span class="badge">2</span><h2>Discovering the Rule: A Pattern</h2></div>
+  <p>Drop the exponent by one and you <b>divide by the base</b> one more time:</p>
+  <div class="u2l5-pat">
+    <div><span class="tex">3^4=81</span><small>&nbsp;</small></div>
+    <div><span class="tex">3^3=27</span><small><span class="tex">81\div3</span></small></div>
+    <div><span class="tex">3^2=9</span><small><span class="tex">27\div3</span></small></div>
+    <div><span class="tex">3^1=3</span><small><span class="tex">9\div3</span></small></div>
+    <div class="z"><span class="tex">3^0=\ ?</span><small><span class="tex">3\div3</span></small></div>
+  </div>
+  <div class="explainer" data-explainer="zstairs"></div>
+  <p class="u2l5-after">The same “divide by the base once more” works for <b>any</b> nonzero base, because <span class="tex">a^1=a</span>, and <span class="tex">a\div a</span> is always 1. The pattern predicts <span class="tex">a^0=1</span>.</p>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. The folding pattern">
+  <h3 class="sub">The warm-up said the same thing</h3>
+  <p>The number of folds <b>is</b> the exponent: 3 folds make <span class="tex">2^3=8</span> layers. Now unfold, one fold at a time.</p>
+  <div class="explainer" data-explainer="zfold"></div>
+</section>
+
+<!-- ================= 3. The quotient law ================= -->
+<section class="card" data-ink="s3" data-section="3. Confirming It with the Quotient Law">
+  <div class="sec-h"><span class="badge">3</span><h2>Confirming It with the Quotient Law</h2></div>
+  <p>Look at <span class="tex">5^4\div5^4</span> two ways. By the <b>quotient law</b> it is <span class="tex">5^{4-4}=5^0</span>. But it is also just a number divided by <b>itself</b>, which is <b>1</b>. Both describe the same expression, so <span class="tex">5^0=1</span>.</p>
+  <div class="explainer" data-explainer="zcancel"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. The Zero Exponent Law">
+  <p>In general, <span class="tex">a^n\div a^n=a^{n-n}=a^0</span>, and a number divided by itself is 1. That gives the law:</p>
+  <div class="def u2l5-law"><b>Zero Exponent Law</b> &nbsp;For any base <span class="tex">a\neq0</span>,
+    <div class="u2l5-rule"><span class="tex">a^{0}=1</span></div></div>
+  <div class="tip-row">
+    <div class="tip watch"><div class="tip-ic">!</div><div><b>It’s 1, not 0.</b> <span class="tex">3^0=1</span>. Zero factors of 3 leave nothing to multiply, and “nothing multiplied” is 1, the number that changes nothing.</div></div>
+    <div class="tip watch"><div class="tip-ic">!</div><div><b>The base can’t be 0.</b> Just like a denominator can’t be 0: <span class="tex">0^0</span> would mean <span class="tex">0\div0</span>, so <span class="tex">0^0</span> is <b>undefined</b>.</div></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Evaluating powers with exponent 0</h3></div>
+  <p class="q">Evaluate each power without a calculator.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">4^{0}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4^0=\mathbf{1}</span><br>Any nonzero base to the power 0.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">9^{0}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">9^0=\mathbf{1}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(-6)^{0}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-6)^0=\mathbf{1}</span><br>The base <span class="tex">-6</span> is nonzero, so the law applies.</div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">(-1)^{0}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-1)^0=\mathbf{1}</span></div></div></div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Check (c) afterwards.</b> Keep the brackets for a negative base: <span class="keys"><kbd>(</kbd><kbd>(−)</kbd><kbd>6</kbd><kbd>)</kbd><kbd>^</kbd><kbd>0</kbd><kbd>ENTER</kbd></span> gives 1. Without them, <span class="keys"><kbd>(−)</kbd><kbd>6</kbd><kbd>^</kbd><kbd>0</kbd></span> gives −1: only the 6 gets the exponent (more on that in Section 4).</div>
+    <div class="pill-col"><button class="pill" data-keys="( (−) 6 ) ^ 0 =">Show (−6)⁰</button><button class="pill" data-keys="(−) 6 ^ 0 =">Show −6⁰</button></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Variables ================= -->
+<section class="card" data-ink="s4" data-section="4. Zero Exponents on Variables">
+  <div class="sec-h"><span class="badge">4</span><h2>Zero Exponents on Variables</h2></div>
+  <p>The law works the same with a variable base: <span class="tex">x^0=1</span> when <span class="tex">x\neq0</span>. The danger is <b>what the exponent is attached to</b>. Picture a <b class="u2l5-ca">fence</b> around whatever the 0 reaches.</p>
+  <div class="u2l5-cmp">
+    <div><span class="tex u2l5-big">5x^{0}</span><span>The 0 sits only on <span class="tex">x</span>:<br><span class="tex">5x^0=5\times1=\mathbf{5}</span></span></div>
+    <div><span class="tex u2l5-big">(5x)^{0}</span><span>The brackets make <span class="tex">5x</span> the base:<br><span class="tex">(5x)^0=\mathbf{1}</span></span></div>
+  </div>
+  <div class="explainer" data-explainer="zfence"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Same numbers, different answers.</b> Always check: is the exponent on <b>one factor</b>, or on a <b>whole bracket</b>? A minus sign out front is outside the fence too: <span class="tex">-4^0=-(4^0)=-1</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Where is the 0 attached?</h3></div>
+  <p class="q">Simplify each expression.</p>
+  <div class="parts c5">
+    <div class="part"><div class="pl">(a) <span class="tex">x^{0}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^0=\mathbf{1}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">5x^{0}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">5\times1</span><br><span class="tex">=\mathbf{5}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(5x)^{0}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Whole bracket is the base.<br><span class="tex">=\mathbf{1}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">-2m^{0}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">-2\times1</span><br><span class="tex">=\mathbf{-2}</span></div></div></div>
+    <div class="part"><div class="pl">(e) <span class="tex">(-2m)^{0}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">=\mathbf{1}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>True or false?</h3></div>
+  <p class="q">Identify each statement as <b>true</b> or <b>false</b>.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">7y^{0}=1</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>False.</b> The 0 is only on <span class="tex">y</span>: <span class="tex">7y^0=7\times1=7</span>.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(7y)^{0}=1</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>True.</b> The brackets make <span class="tex">7y</span> the base.</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x^{0}=0</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>False.</b> <span class="tex">x^0=1</span> for any <span class="tex">x\neq0</span>.</div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">-4^{0}=-1</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>True.</b> Only the 4 is raised to 0: <span class="tex">-(4^0)=-1</span>.</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Test the statement">
+  <h3 class="sub">Test a statement: work out the left side, then compare</h3>
+  <div class="explainer" data-explainer="ztf"></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u2l5"></section>
+
+<!-- ================= 5. Combining ================= -->
+<section class="card" data-ink="s5" data-section="5. Combining with the Other Laws">
+  <div class="sec-h"><span class="badge">5</span><h2>Combining the Zero Exponent Law with the Other Laws</h2></div>
+  <p>Often the zero exponent is just <b>one step</b> inside a bigger simplification.</p>
+  <div class="u2l5-plan">
+    <div><span class="u2l5-pn">1</span><span><b>Spot</b> any factor raised to the power 0. Check what the 0 is attached to.</span></div>
+    <div><span class="u2l5-pn">2</span><span><b>Replace</b> that factor with 1.</span></div>
+    <div><span class="u2l5-pn">3</span><span><b>Finish</b> with the laws you know: product, quotient, power of a power.</span></div>
+  </div>
+  <div class="explainer" data-explainer="zsimp"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>One zero, then one more law</h3></div>
+  <p class="q">Simplify each expression.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">x^{5}\times x^{0}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^{5+0}=\mathbf{x^{5}}</span><br>(Or: <span class="tex">x^5\times1</span>.)</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{a^{6}}{a^{6}}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">a^{6-6}=a^{0}</span><br><span class="tex">=\mathbf{1}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">3b^{0}\times4b^{2}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3\times1\times4b^{2}</span><br><span class="tex">=\mathbf{12b^{2}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">(2c^{3})^{0}\times5c^{4}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">1\times5c^{4}</span><br><span class="tex">=\mathbf{5c^{4}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>The zero exponent inside a bigger problem</h3></div>
+  <p class="q">Simplify each expression completely.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">(2x^{3}y^{0})^{2}\times3x</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y^0=1</span>, so the bracket is <span class="tex">(2x^3)^2=4x^6</span>.<br><span class="tex">4x^{6}\times3x=(4\times3)x^{6+1}=\mathbf{12x^{7}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{(4a^{2}b^{0})^{2}}{2a^{3}}</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">b^0=1</span>, so the top is <span class="tex">(4a^2)^2=16a^4</span>.<br><span class="tex">\dfrac{16a^{4}}{2a^{3}}=8a^{4-3}=\mathbf{8a}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> In (a), what goes wrong if you forget that <span class="tex">y^0=1</span> and keep the <span class="tex">y</span> in your answer?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">You would write something like <span class="tex">12x^7y^0</span>. That isn’t <b>simplified</b>: <span class="tex">y^0</span> is just 1, so it disappears.</div></div></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>The pattern:</b> each step down the exponents divides by the base. <span class="tex">3^1=3</span>, then <span class="tex">3\div3=1</span>, so <span class="tex">3^0=1</span>.</div>
+    <div><b>The quotient law agrees:</b> <span class="tex">5^4\div5^4=5^0</span>, and a number divided by itself is 1. So <span class="tex">a^0=1</span> for any <span class="tex">a\neq0</span>.</div>
+    <div><b>What is the 0 attached to?</b> <span class="tex">5x^0=5</span>, but <span class="tex">(5x)^0=1</span>. And <span class="tex">-4^0=-1</span>, but <span class="tex">(-4)^0=1</span>.</div>
+    <div><b>In a bigger problem:</b> spot the power of 0, replace it with 1, then finish with the other laws.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u2l5">
+    <div><div class="kicker">Your turn</div><b>Assignment 5 — Zero Exponents</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l6/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 6 — Negative Exponents</b><div class="muted">Keep unfolding past 0 folds: what is <span class="tex">2^{-1}</span>?</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u2l5.js';
+  boot({ key: 'u2l5', homeHref: '../../', title: '2.5 Zero Exponents' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

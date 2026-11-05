@@ -1,0 +1,105 @@
+/* Math 15 · Unit 2 · Lesson 2 — The Quotient Law & Power of a Power: styles used only on this page.
+ * (Pieces adapted from the Math 10C twin, u2l1.css / u2l2.css, recoloured for Math 15's navy.) */
+
+.u2l2 .ex-cap { min-height: 104px; }
+.u2l2 .ex-cap .katex { font-size: 1.04em; }
+.u2l2 .chip .katex { font-size: 1em; }
+.u2l2 .parts.c4 { grid-template-columns: repeat(4, 1fr); }
+.u2l2 .ans .katex { font-size: 1.04em; }
+.u2l2 .def .katex { font-size: 1.06em; }
+.u2l2-nw { white-space: nowrap; }
+.u2l2-big { font-size: 26px; text-align: center; margin: 8px 0; }
+.u2l2-pcol { display: flex; flex-direction: column; gap: 6px; }
+
+/* ---------------- warm-up: Boxes Inside Boxes ---------------- */
+.u2l2-candy { background: #f7f5ef; border-radius: 14px; padding: 10px 10px 8px; }
+.u2l2-crow { display: flex; align-items: flex-end; justify-content: space-between; gap: 4px; }
+.u2l2-cit { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.u2l2-cit svg { display: block; }
+.u2l2-cname { font: 800 18px var(--font); margin-top: 6px; }
+.u2l2-csub { font-size: 15px; color: var(--ink2); line-height: 1.25; white-space: nowrap; }
+.u2l2-ccnt { font: 700 16px var(--font); color: var(--red); white-space: nowrap; }
+.u2l2-arr { font: 800 16px var(--round); color: var(--red); align-self: center; margin-bottom: 64px; white-space: nowrap; }
+.u2l2-cd { fill: #e2574c; }
+.u2l2-pk { fill: none; stroke: #c8902a; stroke-width: 1; }
+.u2l2-bxa { fill: #e6ecf7; } .u2l2-bxb { fill: #fff0cf; }
+.u2l2-bxl { fill: none; stroke: #6d7487; stroke-width: 1; }
+.u2l2-cs { fill: none; stroke: #c8902a; stroke-width: 2.2; }
+.u2l2-cr { fill: none; stroke: var(--ink); stroke-width: 3; }
+.u2l2-bn { font: 800 13px var(--round); fill: var(--brand); paint-order: stroke; stroke: #fff; stroke-width: 3px; opacity: 0; transition: opacity .25s; }
+.u2l2-cit.nums .u2l2-bn { opacity: 1; }
+.u2l2-cbtn { display: flex; gap: 8px; justify-content: center; align-items: center; margin-top: 6px; }
+.u2l2-wqs { display: grid; gap: 8px; margin-top: 8px; }
+.u2l2-wqs .bk-ans { color: var(--red); }
+.u2l2-social { margin: 10px 0 0 !important; font-size: 17px; font-style: italic; text-align: center; color: var(--ink2); }
+.wf .u2l2-wqs .q-line { font-size: 17px; gap: 10px; margin: 2px 0; }
+.wf .u2l2-wqs .q-num { width: 28px; height: 28px; font-size: 15px; }
+.wf .u2l2-wqs .bk-ans { font-size: 16px; }
+.wf .wf-poll .opt { font-size: 17px; padding: 6px 10px; }
+.wf .wf-poll:not(.revealed) .poll-ans { display: none; }
+
+/* ---------------- shared explainer pieces ---------------- */
+.u2l2-xt { display: grid; font-size: 30px; place-items: center; border-radius: 12px; border: 2.5px solid; background: #fff; }
+.u2l2-xt.co { background: var(--amber-soft); border-color: var(--amber); color: #8a560a; font-weight: 700; }
+.u2l2-xt.va { background: #e6ecf7; border-color: var(--brand2); color: var(--brand); }
+.u2l2-xt.va.lit { background: var(--brand2); color: #fff; }
+.u2l2-xt.va.lit .katex { color: #fff; }
+.u2l2-xt.out { background: #f3f3f0; border-color: #d3d0c8; color: #b9b6ae; transition: background .3s, border-color .3s, color .3s; }
+.u2l2-xt.wide { font-size: 21px; }
+.u2l2-xt-n { position: absolute; top: -11px; right: -9px; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: #fff; font: 800 13px/24px var(--round); text-align: center; }
+.u2l2-slash { position: absolute; left: -6px; right: -6px; top: calc(50% - 2px); height: 4px; background: var(--red); border-radius: 2px; rotate: -38deg; }
+.u2l2-bar { height: 4px; background: var(--ink); border-radius: 2px; }
+.u2l2-q { width: 44px; height: 44px; translate: -50% -50%; border-radius: 50%; background: var(--amber); color: #fff; display: grid; place-items: center; font-size: 22px; font-weight: 800; z-index: 2; }
+.u2l2-one { width: 28px; height: 28px; translate: -50% -50%; border-radius: 50%; background: var(--ok); color: #fff; display: grid; place-items: center; font: 800 16px var(--round); z-index: 2; }
+.u2l2-panel { background: #fff; border: 1.5px solid var(--line2); border-radius: 14px; padding: 10px 16px; }
+.u2l2-pexpr { font-size: 30px; text-align: center; margin-bottom: 6px; }
+.u2l2-prow { font-size: 21px; margin: 6px 0; white-space: nowrap; }
+.u2l2-pk { display: inline-block; min-width: 92px; font-size: 15px; font-weight: 800; color: var(--muted); }
+.u2l2-prow.res { font-size: 32px; text-align: center; color: var(--brand); }
+.u2l2-prow.val { font-size: 26px; text-align: center; }
+.u2l2-law { font-size: 20px; background: #fff; border: 3px solid var(--brand2); border-radius: 14px; padding: 4px 18px; white-space: nowrap; }
+.u2l2-law b { font: 800 18px var(--font); color: var(--brand); margin-right: 8px; }
+.u2l2-head { font-size: 44px; white-space: nowrap; }
+.u2l2-stamp { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font: 900 27px var(--round); color: #fff; z-index: 3; }
+.u2l2-stamp.ok { background: var(--ok); }
+.u2l2-stamp.no { background: var(--red); }
+
+/* power of a power: copies stacked as rows */
+.u2l2-rowbox { border: 2.5px dashed #a9bfe3; border-radius: 14px; background: rgba(43, 85, 160, .05); }
+.u2l2-rowlab { font-size: 24px; white-space: nowrap; color: var(--brand); translate: -100% -50%; }
+.u2l2-cnt { font: 800 19px var(--font); color: var(--ink2); white-space: nowrap; background: var(--amber-soft); border-radius: 10px; padding: 3px 12px; }
+.u2l2-bracev { width: 12px; border: 3px solid var(--amber); border-left: none; border-radius: 0 10px 10px 0; }
+.u2l2-braceh { height: 12px; border: 3px solid var(--brand2); border-bottom: none; border-radius: 10px 10px 0 0; }
+.u2l2-blab { font: 800 16px var(--font); white-space: nowrap; translate: -50% -100%; color: var(--brand); }
+.u2l2-blab.v { translate: 0 -50%; color: #9a5f06; }
+
+/* check with numbers */
+.u2l2-ck { height: 250px; background: #fff; border: 2px solid var(--line); border-radius: 14px; padding: 8px 12px; text-align: center; transition: background .3s, border-color .3s; }
+.u2l2-ck.good { border-color: var(--ok); background: #f0f9f4; }
+.u2l2-ck.bad { border-color: var(--red); background: #fff6f5; }
+.u2l2-ckh { font-weight: 800; font-size: 15px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.u2l2-cke { font-size: 30px; margin: 4px 0 6px; }
+.u2l2-cks { font-size: 22px; line-height: 1.7; }
+.u2l2-ckv { font-size: 30px; margin-top: 4px; }
+.u2l2-ckn { font-size: 15px; color: var(--ink2); margin-top: 4px; line-height: 1.3; }
+
+/* which law / chains */
+.u2l2-lc { height: 72px; border-radius: 12px; border: 2px solid #e4dfd3; border-top: 5px solid var(--lc); background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-align: center; transition: background .3s, opacity .3s, box-shadow .3s; }
+.u2l2-lc b { font: 800 15px var(--font); color: var(--lc); text-transform: uppercase; letter-spacing: .04em; }
+.u2l2-lc .katex { font-size: 1.15em; }
+.u2l2-lc.on { background: var(--lcs); box-shadow: 0 6px 16px rgba(20, 24, 33, .14); }
+.u2l2-lc.prod { --lc: #2b55a0; --lcs: #e6ecf7; }
+.u2l2-lc.quot { --lc: #b06a0a; --lcs: #fff4dd; }
+.u2l2-lc.ppow { --lc: #7b4fc4; --lcs: #f0e8fa; }
+.u2l2-cl { font-size: 32px; white-space: nowrap; display: flex; align-items: center; padding: 0 10px; border-radius: 12px; transition: background .3s; }
+.u2l2-cl.tall { font-size: 29px; }
+.u2l2-cl.now { background: #f2efe7; }
+.u2l2-cl.final { color: var(--brand); font-weight: 700; }
+.u2l2-cn { font-size: 20px; color: var(--ink2); display: flex; align-items: center; line-height: 1.3; }
+.u2l2-cn.start { color: var(--muted); font-style: italic; }
+
+/* tips */
+.u2l2-rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 8px 0; }
+.u2l2-rule { background: #fbfaf6; border: 1.5px solid var(--line); border-top: 5px solid var(--lc); border-radius: 14px; padding: 8px 14px; font-size: 18px; }
+.u2l2-rule b.k { display: block; font: 800 15px var(--font); text-transform: uppercase; letter-spacing: .05em; color: var(--lc); }
+.u2l2-rule.prod { --lc: #2b55a0; } .u2l2-rule.quot { --lc: #b06a0a; } .u2l2-rule.ppow { --lc: #7b4fc4; }

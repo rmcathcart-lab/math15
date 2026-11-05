@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rational Exponents and Radical Form · Math 15 2.9</title>
+<meta name="description" content="Math 15 Unit 2 Lesson 9: rational exponents and radical form. Why a fraction exponent is a root (the product law forces it), evaluating a^(1/n) and a^(m/n) without a calculator by taking the root first, converting between powers and radicals both ways, and using the exponent laws with fraction exponents. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u2l9.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u2l9">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 2 Exponents · Lesson 9</div>
+  <h1>Rational Exponents and Radical Form</h1>
+  <p class="lede">What could <span class="tex">25^{1/2}</span> or <span class="tex">8^{2/3}</span> mean? We can’t use 25 “half a time” as a factor. But if the exponent laws still work for fractions, there is only one answer: a fraction exponent is a <b>root</b>. Today we work out why, evaluate powers like these without a calculator, switch between powers and radicals, and use the laws with fraction exponents.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>explain, with the product law, why <span class="tex">25^{1/2}=\sqrt{25}</span>: the <b>denominator names the root</b></li>
+      <li>evaluate powers like <span class="tex">64^{1/3}</span> and <span class="tex">27^{2/3}</span> without a calculator, taking the <b>root first</b></li>
+      <li>write a power like <span class="tex">y^{2/3}</span> as a radical, and a radical like <span class="tex">\sqrt[4]{y^3}</span> as a power</li>
+      <li>use the exponent laws with fraction exponents: add, subtract or multiply the fractions, then simplify</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN3</b> Demonstrate an understanding of powers with integral and rational exponents.<br><span class="u2l9-today">Today: rational (fraction) exponents, radicals, and the exponent laws with fractions.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: How Big Is the Side?" style="--wf-side: 318px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>How Big Is the Side?</h2>
+  <p class="wf-rule">Square patios are built from <span class="tex">1\times1</span> tiles. Cube blocks are built from little cubes. <span class="muted">(Tap a picture to see its side.)</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l9-figs">
+      <div class="u2l9-fig" data-u2l9-fig="sq|4"><div class="u2l9-fsvg"></div><div class="u2l9-fl"><b>16 tiles</b></div><div class="u2l9-fs">side <span class="tex">=4</span></div></div>
+      <div class="u2l9-fig" data-u2l9-fig="sq|7"><div class="u2l9-fsvg"></div><div class="u2l9-fl"><b>49 tiles</b></div><div class="u2l9-fs u2l9-red">side = <span data-reveal><span class="tex">7</span></span></div></div>
+      <div class="u2l9-fig" data-u2l9-fig="cu|2"><div class="u2l9-fsvg"></div><div class="u2l9-fl"><b>8 cubes</b></div><div class="u2l9-fs">edge <span class="tex">=2</span></div></div>
+      <div class="u2l9-fig" data-u2l9-fig="cu|3"><div class="u2l9-fsvg"></div><div class="u2l9-fl"><b>27 cubes</b></div><div class="u2l9-fs u2l9-red">edge = <span data-reveal><span class="tex">3</span></span></div></div>
+    </div>
+    <div class="u2l9-strip">
+      <div class="u2l9-sbox">7</div>
+      <div class="u2l9-sarr"><div class="u2l9-sa-t">square it: <span class="tex">(\ \ )^{2}</span></div><div class="u2l9-sa-line"></div><div class="u2l9-sa-b">side → tiles</div></div>
+      <div class="u2l9-sbox">49</div>
+      <div class="u2l9-sarr u2l9-red"><div class="u2l9-sa-t">undo it: <span class="tex">(\ \ )</span><sup class="u2l9-sup"><span data-reveal><span class="tex">1/2</span></span></sup></div><div class="u2l9-sa-line"></div><div class="u2l9-sa-b">tiles → side</div></div>
+      <div class="u2l9-sbox u2l9-dash">7</div>
+    </div>
+    <div class="u2l9-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Side of a <b>49</b>-tile patio? A <b>100</b>-tile patio?</div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>7</b> (<span class="tex">7\times7=49</span>) and <b>10</b> (<span class="tex">10\times10=100</span>).</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Edge of a <b>27</b>-cube block? <b>64</b> cubes?</div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>3</b> (<span class="tex">3\times3\times3=27</span>) and <b>4</b> (<span class="tex">4\times4\times4=64</span>).</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>What exponent undoes squaring? Hint: <span class="u2l9-nw"><span class="tex">49^{\boxed{\phantom{0}}}\times49^{\boxed{\phantom{0}}}=49^{1}</span></span></div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><span class="tex">\tfrac12</span>: the two exponents add to 1, and <span class="tex">\tfrac12+\tfrac12=1</span>. So <span class="tex">49^{1/2}=7</span>.</div></div>
+    </div>
+    <div class="bk-wq u2l9-trick"><div class="q-line"><div class="q-num u2l9-qq">?</div><div><b>Trick question.</b> A square patio uses exactly <b>2</b> tiles (cutting allowed). Is its side a whole number?</div></div>
+      <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>No.</b> <span class="tex">1\times1=1</span> and <span class="tex">2\times2=4</span>, so the side is between 1 and 2: <span class="tex">\sqrt2\approx1.41</span>. Today we’ll write it as <span class="tex">2^{1/2}</span>.</div></div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A base-ten unit cube is <b>1 cm</b> on each edge. Stack <b>one million</b> of them into one giant cube. How tall is it? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> 1 m</div>
+        <div class="opt"><b>B</b> 10 m</div>
+        <div class="opt"><b>C</b> 10 km</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A, 1 m.</b> <span class="tex">100\times100\times100=1\,000\,000</span>, so the edge is 100 cubes <span class="tex">=100</span> cm <span class="tex">=1</span> m: about kitchen-counter height. A thousand block is only 10 cm tall, so <b>1000 times</b> the cubes makes the edge only <b>10 times</b> longer.</div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 1. a^(1/n) ================= -->
+<section class="card" data-ink="s1" data-section="1. What a^(1/n) means">
+  <div class="sec-h"><span class="badge">1</span><h2>Unit Fractional Exponents: What Does <span class="tex">a^{1/n}</span> Mean?</h2></div>
+  <p>The <b>product law</b> should keep working for fractions. Then <span class="tex">5^{1/2}\times5^{1/2}=5^{\frac12+\frac12}=5^{1}=5</span>. That is exactly what <span class="tex">\sqrt5\times\sqrt5</span> does, so <span class="tex">5^{1/2}=\sqrt5</span>. Likewise <span class="tex">3^{1/3}\times3^{1/3}\times3^{1/3}=3</span>, so <span class="tex">3^{1/3}=\sqrt[3]{3}</span>.</p>
+  <div class="explainer" data-explainer="whyRoot"></div>
+  <div class="def-grid u2l9-rulegrid">
+    <div class="def u2l9-rule"><b>A unit fraction exponent is a root</b> <span class="muted small u2l9-nw">(for <span class="tex">a\ge0</span>)</span>
+      <div class="u2l9-rule-tex"><span class="tex">a^{1/\textcolor{#13807a}{n}}=\sqrt[\textcolor{#13807a}{n}]{a}</span></div>
+      <div class="eg">The <b class="u2l9-tl">denominator names the root</b>: <span class="tex">\tfrac12</span> is a square root, <span class="tex">\tfrac13</span> a cube root, <span class="tex">\tfrac14</span> a fourth root.</div>
+    </div>
+    <div class="def gray u2l9-handy"><b>Handy powers to know</b> <span class="muted small">(no calculator on the test!)</span>
+      <div class="u2l9-hrow"><span class="u2l9-hk">squares</span><span class="tex">4,\ 9,\ 16,\ 25,\ 36,\ 49,\ 64,\ 81,\ 100,\ 121,\ 144</span></div>
+      <div class="u2l9-hrow"><span class="u2l9-hk">cubes</span><span class="tex">8,\ 27,\ 64,\ 125,\ 1\,000</span></div>
+      <div class="u2l9-hrow"><span class="u2l9-hk">4th powers</span><span class="tex">16,\ 81,\ 256,\ 625</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Hunt for the root">
+  <h3 class="sub">Evaluating <span class="tex">a^{1/n}</span>: which number, used <span class="tex">n</span> times, gives <span class="tex">a</span>?</h3>
+  <p>To find <span class="tex">64^{1/3}=\sqrt[3]{64}</span>, ask: <b>which number, used 3 times as a factor, gives 64?</b> Try 1, 2, 3, … until it fits.</p>
+  <div class="explainer" data-explainer="hunt"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Evaluating unit fractional exponents</h3></div>
+  <p class="q">Evaluate each power without using a calculator.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">25^{1/2}</span></div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">=\sqrt{25}</span><br><span class="tex">=\mathbf{5}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">64^{1/3}</span></div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">=\sqrt[3]{64}</span><br><span class="tex">=\mathbf{4}</span> (since <span class="tex">4^3=64</span>)</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">16^{1/4}</span></div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">=\sqrt[4]{16}</span><br><span class="tex">=\mathbf{2}</span> (since <span class="tex">2^4=16</span>)</div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">100^{1/2}</span></div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">=\sqrt{100}</span><br><span class="tex">=\mathbf{10}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Sam says <span class="tex">64^{1/3}=64\div3\approx21.3</span>. What went wrong?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The exponent <span class="tex">\tfrac13</span> means <b>cube root</b>, not “divide by 3”. Check: <span class="tex">4\times4\times4=64</span>, so <span class="tex">64^{1/3}=4</span>.</div></div></div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. a^(m/n) ================= -->
+<section class="card" data-ink="s2" data-section="2. General a^(m/n)">
+  <div class="sec-h"><span class="badge">2</span><h2>General Rational Exponents: <span class="tex">a^{m/n}</span></h2></div>
+  <p>The <b class="u2l9-am">numerator</b> is just an ordinary <b>power</b>. The <b class="u2l9-tl">denominator</b> is still the <b>root</b>. Think “<b>power over root</b>”.</p>
+  <div class="u2l9-anat">
+    <div class="u2l9-an-lab u2l9-an-m"><b>numerator <span class="tex">m</span></b><br>the <b>power</b></div>
+    <div class="u2l9-an-big"><span class="tex">a^{\textcolor{#c27a0e}{m}/\textcolor{#13807a}{n}}=\left(\sqrt[\textcolor{#13807a}{n}]{a}\right)^{\textcolor{#c27a0e}{m}}=\sqrt[\textcolor{#13807a}{n}]{a^{\textcolor{#c27a0e}{m}}}</span></div>
+    <div class="u2l9-an-lab u2l9-an-n"><b>denominator <span class="tex">n</span></b><br>the <b>root</b></div>
+    <div class="u2l9-an-tip">Like a plant: the <b class="u2l9-tl">root</b> is at the <b>bottom</b>, the <b class="u2l9-am">power</b> grows on top.</div>
+  </div>
+  <p>The power can come before or after the root. Both orders agree: <span class="tex">8^{2/3}=\left(\sqrt[3]{8}\right)^{2}=2^{2}=4</span> and <span class="tex">8^{2/3}=\sqrt[3]{8^{2}}=\sqrt[3]{64}=4</span>. But rooting <b>first</b> keeps the numbers small, so take that path whenever the base has a nice root.</p>
+  <div class="explainer" data-explainer="routes"></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Checking at home? Brackets around the fraction.</b> <span class="keys"><kbd>9</kbd><kbd>^</kbd><kbd>(</kbd><kbd>3</kbd><kbd>÷</kbd><kbd>2</kbd><kbd>)</kbd><kbd>ENTER</kbd></span> gives <b>27</b>. Without the brackets the calculator does <span class="tex">9^3\div2=364.5</span>. <span class="muted">(The unit test is no-calculator: root first by hand!)</span></div>
+    <div class="u2l9-pillcol"><button class="pill" data-keys="9 ^ ( 3 ÷ 2 ) =">With brackets</button><button class="pill" data-keys="9 ^ 3 ÷ 2 =">Without</button></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Root first, then the power</h3></div>
+  <p class="q">Evaluate each power without a calculator. Take the root first to keep the numbers small.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">9^{3/2}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\left(\sqrt{9}\right)^{3}=3^{3}</span><br><span class="tex">=\mathbf{27}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">27^{2/3}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\left(\sqrt[3]{27}\right)^{2}=3^{2}</span><br><span class="tex">=\mathbf{9}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">16^{3/4}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\left(\sqrt[4]{16}\right)^{3}=2^{3}</span><br><span class="tex">=\mathbf{8}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">4^{5/2}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\left(\sqrt{4}\right)^{5}=2^{5}</span><br><span class="tex">=\mathbf{32}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Do (b) the other way, power first: <span class="tex">\sqrt[3]{27^{2}}</span>. Which way was easier?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">27^2=729</span> and <span class="tex">\sqrt[3]{729}=9</span> (because <span class="tex">9^3=729</span>). Same answer, but who knows the cube root of 729? <b>Root first</b> was much easier.</div></div></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Converting ================= -->
+<section class="card" data-ink="s3" data-section="3. Converting both ways">
+  <div class="sec-h"><span class="badge">3</span><h2>Converting Between Radical Form and Rational Exponent Form</h2></div>
+  <p>The same match-up works for a <b>variable</b> base, in <b>both directions</b>: <span class="tex">x^{m/n}=\left(\sqrt[n]{x}\right)^{m}=\sqrt[n]{x^{m}}</span>, and any radical <span class="tex">\sqrt[n]{x^{m}}</span> can be rewritten as <span class="tex">x^{m/n}</span>. The <b class="u2l9-tl">index</b> becomes the <b class="u2l9-tl">denominator</b> and the <b class="u2l9-am">inside power</b> becomes the <b class="u2l9-am">numerator</b>. A <b class="u2l9-rd">negative</b> exponent still means “take the reciprocal”, just as in Lesson 6.</p>
+  <div class="u2l9-conv no-ink" id="u2l9-conv">
+    <div class="u2l9-cv-ctl">
+      <div class="u2l9-cv-h">Power over root: try it</div>
+      <div class="u2l9-cv-row"><span class="u2l9-cv-k">base</span><span class="u2l9-cv-btns" data-cv="base"><button type="button" data-v="x">x</button><button type="button" data-v="y">y</button><button type="button" data-v="64">64</button><button type="button" data-v="16">16</button></span></div>
+      <div class="u2l9-cv-row"><span class="u2l9-cv-k u2l9-am">numerator</span><button type="button" class="u2l9-cv-step" data-cv="m-">−</button><span class="u2l9-cv-val u2l9-am" data-cv="m">2</span><button type="button" class="u2l9-cv-step" data-cv="m+">+</button></div>
+      <div class="u2l9-cv-row"><span class="u2l9-cv-k u2l9-tl">denominator</span><button type="button" class="u2l9-cv-step" data-cv="n-">−</button><span class="u2l9-cv-val u2l9-tl" data-cv="n">3</span><button type="button" class="u2l9-cv-step" data-cv="n+">+</button></div>
+      <div class="u2l9-cv-row"><span class="u2l9-cv-k u2l9-rd">sign</span><span class="u2l9-cv-btns" data-cv="sign"><button type="button" data-v="1">positive</button><button type="button" data-v="-1">negative</button></span></div>
+    </div>
+    <div class="u2l9-cv-out">
+      <div class="u2l9-cv-pow"></div>
+      <div class="u2l9-cv-eq">=</div>
+      <div class="u2l9-cv-rad"></div>
+      <div class="u2l9-cv-note"></div>
+    </div>
+  </div>
+  <div class="explainer" data-explainer="conv1"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>From a power to a radical</h3></div>
+  <p class="q">Write each power as an equivalent radical.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">x^{1/5}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Denominator 5 is the index:<br><span class="tex">\boldsymbol{\sqrt[5]{x}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">y^{2/3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{\sqrt[3]{y^{2}}}</span><br>(or <span class="tex">\left(\sqrt[3]{y}\right)^{2}</span>)</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">w^{3/4}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{\sqrt[4]{w^{3}}}</span><br>(or <span class="tex">\left(\sqrt[4]{w}\right)^{3}</span>)</div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">z^{-1/2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Negative: take the reciprocal.<br><span class="tex">\boldsymbol{\dfrac{1}{\sqrt{z}}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Radical to power">
+  <h3 class="sub">Going back: from a radical to a power</h3>
+  <div class="def-grid">
+    <div class="def"><b>Radical → power</b><div class="u2l9-rule-tex"><span class="tex">\sqrt[\textcolor{#13807a}{n}]{x^{\textcolor{#c27a0e}{m}}}=x^{\textcolor{#c27a0e}{m}/\textcolor{#13807a}{n}}</span></div><div class="eg">A plain <span class="tex">\sqrt{\ }</span> has index <b>2</b>, even though the 2 isn’t written.</div></div>
+    <div class="def amber"><b>One over a radical</b><div class="u2l9-rule-tex"><span class="tex">\dfrac{1}{\sqrt[n]{x^{m}}}=\dfrac{1}{x^{m/n}}=x^{-m/n}</span></div><div class="eg">A power under the fraction bar moves up with a <b>negative</b> exponent.</div></div>
+  </div>
+  <div class="explainer" data-explainer="toPow"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t swap them.</b> The <b>index</b> goes on the <b>bottom</b> of the fraction: <span class="tex">\sqrt[5]{x^{2}}=x^{2/5}</span>, not <span class="tex">x^{5/2}</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>From a radical to a power</h3></div>
+  <p class="q">Write each radical as an equivalent power with a rational exponent.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">\sqrt[3]{x^{2}}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Index → denominator:<br><span class="tex">\boldsymbol{x^{2/3}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\sqrt[4]{y^{3}}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{y^{3/4}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\sqrt{z^{5}}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Index 2 is understood:<br><span class="tex">\boldsymbol{z^{5/2}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">\dfrac{1}{\sqrt[3]{w^{2}}}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{1}{w^{2/3}}=\boldsymbol{w^{-2/3}}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Write <span class="tex">\sqrt{k}</span> as a power. What are the hidden numbers?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{k}=k^{1/2}</span>: the hidden index is <b>2</b> and the hidden power is <b>1</b>.</div></div></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Math History box (brown) ================= -->
+<section class="card history" data-ink="hist" data-section="Math History: Newton’s letter">
+  <div class="hist-head"><span class="hist-tag">Math History</span><span class="hist-dates">1676</span></div>
+  <div class="hist-grid">
+    <div class="hist-text">
+      <h3 class="hist-title">Isaac Newton writes it down</h3>
+      <p>For a long time, roots were written only with root signs. In June 1676, <b>Isaac Newton</b> sent a letter (meant for the German mathematician Leibniz) explaining his new notation: since people write <span class="tex">a^2</span> and <span class="tex">a^3</span> for <span class="tex">aa</span> and <span class="tex">aaa</span>, he would write <span class="tex">a^{1/2}</span>, <span class="tex">a^{3/2}</span> and <span class="tex">a^{5/3}</span> for <span class="tex">\sqrt{a}</span>, <span class="tex">\sqrt{a^3}</span> and the cube root of <span class="tex">a^5</span>.</p>
+      <p>He wasn’t the first to think of fraction exponents (John Wallis used them in 1656), but this is the notation we still use: <b>power over root</b>.</p>
+      <div class="part hist-q"><div class="pl">Write Newton’s <span class="tex">a^{5/3}</span> as a radical, the way we would today.</div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Denominator 3 is the index, numerator 5 the power: <span class="tex">a^{5/3}=\sqrt[3]{a^{5}}</span>.</div></div></div>
+    </div>
+    <figure class="hist-anim">
+      <svg id="u2l9-hist" viewBox="0 0 600 300" role="img" aria-label="An old letter: three radicals, the square root of a, the square root of a cubed and the cube root of a to the fifth, each turn into Newton's powers a to the one half, a to the three halves and a to the five thirds."></svg>
+      <figcaption><button class="hist-play" type="button">Replay</button><span>Tap the picture to play it again.</span></figcaption>
+      <p class="hist-note">The same letter also writes <span class="tex">a^{-1},\ a^{-2}</span> for <span class="tex">\tfrac1a,\ \tfrac{1}{aa}</span>: negative exponents, as in Lesson 6.</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u2l9"></section>
+
+<!-- ================= 4. Laws ================= -->
+<section class="card" data-ink="s4" data-section="4. Exponent laws with fractions">
+  <div class="sec-h"><span class="badge">4</span><h2>Applying Exponent Laws to Rational Exponents</h2></div>
+  <p>Every law from this unit works <b>unchanged</b> on rational exponents. There is no need to change to radicals first. For the product law, add the exponents over a <b>common denominator</b>: <span class="tex">a^{1/2}\times a^{1/3}=a^{\frac36+\frac26}=a^{5/6}</span>. Change to radical form only at the very end, once the exponent is fully simplified.</p>
+  <div class="u2l9-laws">
+    <div class="u2l9-law"><div class="u2l9-law-n">Product law</div><span class="tex">a^m\times a^n=a^{m+n}</span><div class="u2l9-law-d"><b>add</b> the fractions</div></div>
+    <div class="u2l9-law"><div class="u2l9-law-n">Quotient law</div><span class="tex">a^m\div a^n=a^{m-n}</span><div class="u2l9-law-d"><b>subtract</b> the fractions</div></div>
+    <div class="u2l9-law"><div class="u2l9-law-n">Power of a power</div><span class="tex">(a^m)^n=a^{mn}</span><div class="u2l9-law-d"><b>multiply</b> the fractions</div></div>
+    <div class="u2l9-law"><div class="u2l9-law-n">Power of a product</div><span class="tex">(ab)^n=a^nb^n</span><div class="u2l9-law-d">every factor gets the power</div></div>
+  </div>
+  <div class="explainer" data-explainer="laws"></div>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Fraction toolbox">
+  <h3 class="sub">The fraction toolbox</h3>
+  <p>With fraction exponents, each law turns into a small <b>fraction calculation</b>. These are the moves you need:</p>
+  <div class="u2l9-fbox-grid">
+    <div class="u2l9-fbox"><div class="u2l9-fb-h">Add or subtract</div>Get a <b>common denominator</b> first.<div class="u2l9-fb-eg"><span class="tex">\tfrac14+\tfrac12=\tfrac14+\tfrac24=\tfrac34</span></div></div>
+    <div class="u2l9-fbox"><div class="u2l9-fb-h">Multiply</div><b>Top × top</b>, <b>bottom × bottom</b>. A whole number is over 1.<div class="u2l9-fb-eg"><span class="tex">\tfrac13\times6=\tfrac13\times\tfrac61=\tfrac63=2</span></div></div>
+    <div class="u2l9-fbox"><div class="u2l9-fb-h">Simplify</div>Always reduce the exponent at the end.<div class="u2l9-fb-eg"><span class="tex">c^{4/6}=c^{2/3}</span></div></div>
+    <div class="u2l9-fbox"><div class="u2l9-fb-h">Exponent 1</div><span class="tex">\tfrac22=\tfrac44=1</span>, and <span class="tex">p^1</span> is just <span class="tex">p</span>.<div class="u2l9-fb-eg"><span class="tex">q^{\frac12+\frac12}=q^{1}=q</span></div></div>
+  </div>
+  <div class="explainer" data-explainer="stepper"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>The outside power hits the number too.</b> In a bracket like <span class="tex">\left(4g^{1/2}\right)^{2}</span>, the 4 is squared as well: <span class="tex">4^{2}=16</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>The exponent laws with fraction exponents</h3></div>
+  <p class="q">Simplify each expression. Leave your answer as a power with a positive exponent.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">b^{1/4}\times b^{1/2}</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Add over a common denominator:<br><span class="tex">b^{\frac14+\frac24}=\boldsymbol{b^{3/4}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">c^{5/6}\div c^{1/6}</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">c^{\frac56-\frac16}=c^{4/6}</span><br><span class="tex">=\boldsymbol{c^{2/3}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\left(d^{1/3}\right)^{6}</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Multiply: <span class="tex">d^{\frac13\times6}</span><br><span class="tex">=\boldsymbol{d^{2}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">\left(4g^{1/2}\right)^{2}</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4^{2}g^{\frac12\times2}</span><br><span class="tex">=\boldsymbol{16g}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Why isn’t <span class="tex">c^{4/6}</span> a finished answer to (b)?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The fraction isn’t in lowest terms: <span class="tex">\tfrac46=\tfrac23</span>. Divide the top and the bottom by 2.</div></div></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>A fraction exponent is a root.</b> The product law forces it: <span class="tex">a^{1/2}\times a^{1/2}=a^1</span>, so <span class="tex">a^{1/2}=\sqrt{a}</span>. The <b>denominator names the root</b>.</div>
+    <div><b>Power over root:</b> <span class="tex">a^{m/n}=\left(\sqrt[n]{a}\right)^m=\sqrt[n]{a^m}</span>. Take the <b>root first</b>: <span class="tex">27^{2/3}=3^2=9</span>.</div>
+    <div><b>Both ways:</b> <span class="tex">y^{2/3}=\sqrt[3]{y^2}</span> and <span class="tex">\sqrt{z^5}=z^{5/2}</span> (index 2). Negative means reciprocal: <span class="tex">z^{-1/2}=\dfrac{1}{\sqrt z}</span>.</div>
+    <div><b>Same laws, fraction arithmetic:</b> add (common denominator), subtract, or multiply the exponents, then <b>simplify</b>: <span class="tex">c^{4/6}=c^{2/3}</span>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u2l9">
+    <div><div class="kicker">Your turn</div><b>Assignment 9 — Rational Exponents and Radical Form</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l10/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 10 — Unit Review: Exponents</b><div class="muted">Every law, zero and negative exponents, scientific notation and radicals: one last pass before the test</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u2l9.js';
+  boot({ key: 'u2l9', homeHref: '../../', title: '2.9 Rational Exponents and Radical Form' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

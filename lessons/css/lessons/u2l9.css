@@ -1,0 +1,199 @@
+/* Math 15 · Unit 2 · Lesson 9 — Rational Exponents and Radical Form: styles used only on this page (prefix u2l9-).
+ * Colours (as in the 10C twin): denominator / index / root teal #13807a, numerator / power amber #c27a0e,
+ * negative sign red. Explainer pieces adapted from the 10C u2l4 / u2l5 pages. */
+
+.u2l9 .ex-cap { min-height: 104px; }
+.u2l9 .ex-cap .katex { font-size: 1.04em; }
+.u2l9 .chip .katex { font-size: 1em; }
+.u2l9 .ans .katex { font-size: 1.04em; }
+.u2l9 h2 .katex, .u2l9 h3 .katex { font-size: .95em; }
+.u2l9 .parts.c4 { grid-template-columns: repeat(4, 1fr); }
+.u2l9-today { display: block; margin-top: 6px; font-size: .92em; color: var(--ink2); }
+.u2l9-tl { color: #13807a; } .u2l9-am { color: #c27a0e; } .u2l9-rd { color: var(--red); } .u2l9-ok { color: var(--ok); }
+.u2l9-red { color: var(--red); }
+.u2l9-nw { white-space: nowrap; }
+.u2l9-pillcol { display: flex; flex-direction: column; gap: 6px; }
+.u2l9-pillcol .pill { font-size: 15px; padding: 7px 14px; }
+
+/* ---------------- warm-up ---------------- */
+.u2l9-figs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; align-items: end; }
+.u2l9-fig { display: flex; flex-direction: column; align-items: center; cursor: pointer; border-radius: 12px; padding: 4px 2px 2px; transition: background .2s; }
+.u2l9-fig:nth-child(3) { border-left: 2px dashed #d6d2c6; border-radius: 0 12px 12px 0; }
+.u2l9-fig.on { background: #fff8e6; }
+.u2l9-fsvg { height: 132px; display: flex; align-items: flex-end; }
+.u2l9-fl { font-size: 19px; margin-top: 4px; }
+.u2l9-fs { font-size: 17px; min-height: 26px; }
+.u2l9-tile { fill: #ffecb3; stroke: #c88c14; stroke-width: .9; transition: fill .3s; }
+.u2l9-pat-out { fill: none; stroke: #8a5d08; stroke-width: 2.2; }
+.u2l9-fig.on .u2l9-tile.bot { fill: #f5b544; }
+.u2l9-blk .f-front { fill: #ffecb3; transition: fill .3s; } .u2l9-blk .f-top { fill: #fff3d0; } .u2l9-blk .f-side { fill: #f3d58c; }
+.u2l9-blk .gl { stroke: #c88c14; stroke-width: .9; }
+.u2l9-blk .out { fill: none; stroke: #8a5d08; stroke-width: 2.2; stroke-linejoin: round; }
+.u2l9-blk .edge { stroke: transparent; stroke-width: 6; stroke-linecap: round; transition: stroke .3s; }
+.u2l9-fig.on .u2l9-blk .edge { stroke: #e08a00; }
+.u2l9-strip { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0 4px; }
+.u2l9-sbox { font: 900 30px var(--round); background: var(--brand-soft); border-radius: 10px; min-width: 70px; text-align: center; padding: 6px 12px; }
+.u2l9-sbox.u2l9-dash { background: #fff; border: 2px dashed var(--red); color: var(--red); }
+.u2l9-sarr { display: flex; flex-direction: column; align-items: center; width: 190px; font-size: 17px; }
+.u2l9-sa-line { width: 100%; height: 3px; background: currentColor; position: relative; margin: 3px 0; }
+.u2l9-sa-line::after { content: ''; position: absolute; right: -2px; top: -6px; border: 7.5px solid transparent; border-left: 12px solid currentColor; border-right: 0; }
+.u2l9-sa-b { font-size: 15px; }
+.u2l9-sup { font-size: 15px; vertical-align: 12px; margin-left: 1px; }
+.u2l9-wqs { display: grid; grid-template-columns: 1fr 1fr 1.25fr; gap: 8px; margin-top: 6px; }
+.u2l9-wqs .bk-wq, .u2l9-trick { background: #fbfaf6; border: 1px solid var(--line2); border-radius: 12px; padding: 4px 10px 8px; }
+.u2l9-wqs .q-line, .u2l9-trick .q-line { font-size: 16.5px; margin: 4px 0 6px; gap: 8px; }
+.u2l9-wqs .q-num, .u2l9-trick .q-num { width: 26px; height: 26px; font-size: 15px; flex: none; }
+.u2l9-wqs .bk-ans, .u2l9-trick .bk-ans { font-size: 15.5px; min-height: 2.8em; }
+.u2l9-trick { margin-top: 10px; }
+.u2l9-qq { background: var(--brand2); }
+.u2l9 .wf-poll .poll-ans { min-height: 0; }
+.u2l9 .wf-poll:not(.revealed) .poll-ans { display: none; }
+
+/* ---------------- notes ---------------- */
+.u2l9-rulegrid { grid-template-columns: 1fr 1.15fr; margin-top: 10px; }
+.u2l9-rule-tex { font-size: 30px; margin: 6px 0 2px; text-align: center; }
+.u2l9-handy { font-size: 18px; }
+.u2l9-hrow { display: grid; grid-template-columns: 96px 1fr; align-items: baseline; gap: 6px; margin-top: 6px; font-size: 19px; }
+.u2l9-hk { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.u2l9-anat { display: grid; grid-template-columns: 180px 1fr 180px; align-items: center; gap: 10px 16px; background: #f6f5f1; border-radius: 14px; padding: 14px 20px; margin: 4px 0 14px; }
+.u2l9-an-big { font-size: 38px; text-align: center; }
+.u2l9-an-lab { font-size: 17px; line-height: 1.3; border-radius: 10px; padding: 8px 12px; background: #fff; }
+.u2l9-an-m { border-left: 5px solid #c27a0e; } .u2l9-an-m b:first-child { color: #c27a0e; }
+.u2l9-an-n { border-left: 5px solid #13807a; } .u2l9-an-n b:first-child { color: #13807a; }
+.u2l9-an-tip { grid-column: 1 / -1; text-align: center; font-size: 17px; color: var(--ink2); }
+
+/* the power-over-root converter */
+.u2l9-conv { display: grid; grid-template-columns: 360px 1fr; gap: 16px; background: #f6f5f1; border-radius: 14px; padding: 12px 16px; margin: 6px 0 14px; }
+.u2l9-cv-h { font: 800 17px var(--round); color: var(--brand); margin-bottom: 4px; }
+.u2l9-cv-row { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+.u2l9-cv-k { width: 112px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.u2l9-cv-k.u2l9-am { color: #c27a0e; } .u2l9-cv-k.u2l9-tl { color: #13807a; } .u2l9-cv-k.u2l9-rd { color: var(--red); }
+.u2l9-cv-btns { display: flex; gap: 5px; }
+.u2l9-cv-btns button, .u2l9-cv-step { font: 700 17px var(--font); min-width: 44px; height: 38px; border-radius: 10px; border: 1.5px solid var(--line2); background: #fff; color: var(--ink); cursor: pointer; padding: 0 10px; }
+.u2l9-cv-btns button.on { background: var(--brand); border-color: var(--brand); color: #fff; }
+.u2l9-cv-step { font-size: 22px; width: 44px; padding: 0; }
+.u2l9-cv-val { font: 900 26px var(--round); min-width: 34px; text-align: center; }
+.u2l9-cv-out { background: #fff; border-radius: 12px; padding: 10px 16px; display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 4px 16px; align-content: center; }
+.u2l9-cv-pow { font-size: 44px; }
+.u2l9-cv-eq { font-size: 36px; }
+.u2l9-cv-rad { font-size: 36px; white-space: nowrap; }
+.u2l9-cv-note { grid-column: 1 / -1; font-size: 17px; line-height: 1.4; color: var(--ink2); min-height: 3em; }
+
+.u2l9-laws { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 2px 0 10px; }
+.u2l9-law { background: var(--brand-soft); border-radius: 12px; padding: 8px 12px; font-size: 21px; text-align: center; }
+.u2l9-law-n { font-weight: 800; font-size: 16px; color: var(--brand); text-align: left; }
+.u2l9-law-d { font-size: 15px; color: var(--ink2); }
+.u2l9-fbox-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 4px 0 12px; }
+.u2l9-fbox { background: #f6f5f1; border-radius: 12px; padding: 10px 14px; font-size: 17px; line-height: 1.35; }
+.u2l9-fb-h { font: 800 19px var(--round); color: var(--brand); margin-bottom: 2px; }
+.u2l9-fb-eg { font-size: 20px; margin-top: 8px; line-height: 1.7; }
+
+/* ---------------- shared explainer pieces ---------------- */
+.u2l9-line { display: flex; align-items: center; white-space: nowrap; }
+.u2l9-line.u2l9-teal-l { color: var(--brand); }
+.u2l9-chain { display: flex; align-items: center; gap: .3em; white-space: nowrap; }
+.u2l9-piece { display: inline-block; }
+.u2l9-fly { z-index: 6; font-weight: 700; white-space: nowrap; pointer-events: none; text-shadow: 0 2px 8px rgba(194, 122, 14, .25); }
+.u2l9-res { font-size: 32px; border: 3px solid var(--brand2); background: #fff; border-radius: 14px; padding: 4px 20px; white-space: nowrap; }
+
+/* why a^(1/n) is a root */
+.u2l9-wr-sq { background: #ffecb3; border: 3px solid #c88c14; border-radius: 2px; }
+.u2l9-wr-in { font-size: 24px; text-align: center; line-height: 1.25; white-space: nowrap; }
+.u2l9-wr-side { font-size: 28px; color: #c27a0e; font-weight: 700; white-space: nowrap; }
+.u2l9-wr-side.q { font: 900 30px var(--round); color: var(--muted); }
+.u2l9-wr-cube .f-front { fill: #ffecb3; stroke: #c88c14; stroke-width: 3; }
+.u2l9-wr-cube .f-top { fill: #fff3d0; stroke: #c88c14; stroke-width: 3; stroke-linejoin: round; }
+.u2l9-wr-cube .f-side { fill: #f3d58c; stroke: #c88c14; stroke-width: 3; stroke-linejoin: round; }
+.u2l9-wr-cube .edge { stroke: #c27a0e; stroke-width: 6; stroke-linecap: round; }
+
+/* hunt for the root */
+.u2l9-hq { font-size: 22px; white-space: nowrap; }
+.u2l9-hs { pointer-events: none; }
+.u2l9-hs-ax { stroke: var(--ink); stroke-width: 2.5; stroke-linecap: round; }
+.u2l9-hs-n { font: 700 18px var(--font); fill: var(--ink2); text-anchor: middle; }
+.u2l9-hs-n.tg { fill: #13807a; font-weight: 800; font-size: 20px; }
+.u2l9-hs-tg { stroke: #13807a; stroke-width: 2.5; }
+.u2l9-hs-fl { fill: #13807a; }
+.u2l9-hs-pin circle { stroke: #fff; stroke-width: 2; }
+.u2l9-hs-pin text { font: 800 17px var(--font); text-anchor: middle; }
+.u2l9-hs-pin.lo circle { fill: #8b909b; } .u2l9-hs-pin.lo text { fill: #6b7080; }
+.u2l9-hs-pin.hi circle { fill: var(--red); } .u2l9-hs-pin.hi text { fill: var(--red); }
+.u2l9-hs-pin.hit circle { fill: var(--ok); } .u2l9-hs-pin.hit text { fill: var(--ok); }
+.u2l9-hc { border-radius: 14px; border: 2px solid var(--line2); background: #fff; padding: 10px 12px 14px; text-align: center; }
+.u2l9-hc-h { font: 800 20px var(--round); color: var(--muted); }
+.u2l9-hc-m { font-size: 30px; margin: 8px 0; white-space: nowrap; }
+.u2l9-hc-v { font: 800 21px var(--round); }
+.u2l9-hc.lo .u2l9-hc-v { color: #6b7080; }
+.u2l9-hc.hi { border-color: #f2c9c4; } .u2l9-hc.hi .u2l9-hc-v { color: var(--red); }
+.u2l9-hc.hit { border-color: var(--ok); background: #f1faf5; } .u2l9-hc.hit .u2l9-hc-v { color: var(--ok); }
+
+/* root first or power first */
+.u2l9-rt-head { font-size: 44px; }
+.u2l9-rt-lane { height: 262px; border-radius: 14px; border: 2px solid; background: #fff; }
+.u2l9-rt-lane.a { border-color: #9fd0c9; } .u2l9-rt-lane.b { border-color: #ecc98a; }
+.u2l9-rt-lt { font: 800 19px var(--round); padding: 8px 16px; }
+.u2l9-rt-lane.a .u2l9-rt-lt { color: #13807a; } .u2l9-rt-lane.b .u2l9-rt-lt { color: #c27a0e; }
+.u2l9-rt-note { font-size: 17px; color: var(--ink2); white-space: nowrap; }
+.u2l9-rt-bh { font-size: 15px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.u2l9-rt-bl { width: 150px; font-weight: 700; font-size: 17px; }
+.u2l9-rt-bl.a { color: #13807a; } .u2l9-rt-bl.b { color: #c27a0e; }
+.u2l9-rt-bar { height: 20px; border-radius: 6px; transform-origin: left center; }
+.u2l9-rt-bar.a { background: #13807a; } .u2l9-rt-bar.b { background: #c27a0e; }
+.u2l9-rt-bv { font: 800 20px var(--round); white-space: nowrap; }
+
+/* converting between powers and radicals */
+.u2l9-cx-lg { display: flex; flex-direction: column; gap: 6px; }
+.u2l9-cx-r { display: grid; grid-template-columns: 130px 1fr; align-items: center; gap: 8px; background: #fff; border-radius: 10px; padding: 5px 12px; font-size: 18px; border-left: 5px solid #a5a9b3; box-shadow: 0 0 0 1px var(--line2); }
+.u2l9-cx-k { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.u2l9-cx-r.b { border-left-color: var(--ink); } .u2l9-cx-r.s { border-left-color: var(--red); }
+.u2l9-cx-r.m { border-left-color: #c27a0e; } .u2l9-cx-r.n { border-left-color: #13807a; }
+.u2l9-cx-res { font-size: 28px; border: 3px solid var(--brand2); background: #fff; border-radius: 14px; padding: 8px 18px; }
+.u2l9-cx-alt { font-size: 17px; color: var(--muted); margin-top: 2px; }
+.u2l9-cx-alt .katex { font-size: 1.25em; color: var(--ink); }
+.u2l9-lit-b, .u2l9-lit-s, .u2l9-lit-m, .u2l9-lit-n { border-radius: 6px; padding: 0 2px; }
+.u2l9-lit-b { background: rgba(28, 34, 48, .08); box-shadow: 0 0 0 2px rgba(28, 34, 48, .5); }
+.u2l9-lit-s { background: rgba(201, 58, 51, .12); }
+.u2l9-lit-m { background: rgba(194, 122, 14, .16); }
+.u2l9-lit-n { background: rgba(19, 128, 122, .16); }
+
+/* same law, now with fractions */
+.u2l9-lw-ban { display: flex; align-items: center; gap: 18px; font-size: 28px; white-space: nowrap; background: #fff; border: 2px solid var(--brand2); border-radius: 14px; padding: 4px 22px; }
+.u2l9-lw-name { font: 800 20px var(--round); color: var(--brand); }
+.u2l9-lw-panel { border-radius: 14px; padding: 8px 14px; display: flex; flex-direction: column; }
+.u2l9-lw-panel.int { background: #f1f0ec; }
+.u2l9-lw-panel.frac { background: #eef2fa; box-shadow: inset 0 0 0 2px #c4d2ee; }
+.u2l9-lw-h { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); height: 26px; }
+.u2l9-lw-panel.frac .u2l9-lw-h { color: var(--brand); }
+.u2l9-lw-row { height: 74px; display: flex; align-items: center; gap: 14px; font-size: 25px; white-space: nowrap; }
+.u2l9-lw-help { font-size: 15px; color: #c27a0e; background: #fff; border-radius: 8px; padding: 2px 8px; border: 1.5px solid #ecd2a6; }
+.u2l9-lw-win .u2l9-lw-t { background: #fff; border: 2px solid var(--brand2); border-radius: 10px; padding: 0 10px; }
+.u2l9-lw-chk { display: flex; align-items: center; gap: 14px; font-size: 21px; background: #fff; border: 1.5px solid #cfe5d9; border-radius: 12px; padding: 8px 16px; white-space: nowrap; }
+.u2l9-lw-chk-h { font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: .05em; color: var(--ok); }
+
+/* the stepper */
+.u2l9-st-final > .katex { display: inline-block; background: var(--brand-soft); box-shadow: inset 0 0 0 2px var(--brand2); border-radius: 10px; padding: 2px 12px; }
+.u2l9-st-law { background: #fff; border: 1.5px solid var(--line2); border-radius: 12px; padding: 6px 14px 8px; height: 104px; }
+.u2l9-st-law-h, .u2l9-st-fw-h { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u2l9-st-law-b { display: flex; flex-direction: column; gap: 2px; font-size: 24px; }
+.u2l9-st-law-b b { font: 800 19px var(--round); color: var(--brand); }
+.u2l9-st-law-b.muted { font-size: 20px; padding-top: 14px; }
+.u2l9-st-fw { background: #fffaf0; border: 1.5px solid #ecd2a6; border-radius: 12px; padding: 6px 14px; }
+.u2l9-st-fw-h { color: #c27a0e; }
+.u2l9-st-fw-l { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+.u2l9-st-fw-r { font-size: 25px; min-height: 48px; display: flex; align-items: center; white-space: nowrap; transition: opacity .3s; }
+.u2l9-st-fw-r.old { opacity: .4 !important; }
+
+/* ---------------- Math History: Newton's letter ---------------- */
+.u2l9h-paper { fill: #fbf3df; stroke: #b99a6a; stroke-width: 1.5; }
+.u2l9h-rule { stroke: rgba(150, 120, 80, .22); stroke-width: 1; }
+.u2l9h-head { font: italic 600 17px Georgia, serif; color: #6b4a22; }
+.u2l9h-g { opacity: 0; transition: opacity .6s; }
+.u2l9h-g.on { opacity: 1; }
+.u2l9h-old { font-size: 30px; color: #4a2c14; text-align: center; line-height: 60px; }
+.u2l9h-new { font-size: 32px; color: #8a3b12; text-align: center; line-height: 60px; font-weight: 700; }
+.u2l9h-arr { stroke: #8a5d08; stroke-width: 2.5; }
+.u2l9h-ah { fill: #8a5d08; }
+.u2l9h-sig { font: italic 700 24px Georgia, serif; color: #4a2c14; text-align: right; }
+.u2l9h-key { background: #fff; border: 2px solid #c8a46a; border-radius: 12px; padding: 10px 12px; text-align: center; font-size: 26px; }
+.u2l9h-kh { font: 800 14px var(--round); color: #8a5d08; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+.u2l9h-ks { font-size: 14px; color: #6b4a22; margin-top: 6px; }

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Combining Exponent Laws · Math 15 2.4</title>
+<meta name="description" content="Math 15 Unit 2 Lesson 4: no new law, just the five you have, used in the right order. A three-step checklist: clear the brackets (the coefficient and every variable), combine matching bases, then the coefficients. Two variable bases one at a time, and brackets that hold a division. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u2l4.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u2l4">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 2 Exponents · Lesson 4</div>
+  <h1>Combining Exponent Laws</h1>
+  <p class="lede">No new law today. You already have all <b>five</b>. The skill is choosing which one to use <b>first</b>, second and third. A short <b>checklist</b> does the choosing for you: brackets first, then matching bases, then the numbers.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>name the five exponent laws and spot which one fits</li>
+      <li>use the checklist: <b>(1)</b> clear the brackets, <b>(2)</b> combine matching bases, <b>(3)</b> coefficients last</li>
+      <li>simplify expressions with two variable bases, one base at a time</li>
+      <li>simplify <b>inside</b> a bracket first when it holds a division, then apply the outer power</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN3</b> Demonstrate an understanding of powers with integral and rational exponents.<br><span class="u2l4-today">Today: using two or three exponent laws in one expression, in a sensible order.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Power Maze" style="--wf-side: 400px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Power Maze</h2>
+  <p class="wf-rule">Start with <b>4</b>. Move only <b>right</b> or <b>down</b>. Do each tile as you land on it. <span class="muted">Tap a tile next to you to move, or play a named route.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l4-mz">
+      <div class="u2l4-maze" id="u2l4-maze"></div>
+      <div class="u2l4-mzside">
+        <div class="u2l4-routes">
+          <div class="u2l4-rh">Named routes</div>
+          <button type="button" class="u2l4-rt" data-u2l4-route="RRDD"><b>Top road</b><span>→ → ↓ ↓</span></button>
+          <button type="button" class="u2l4-rt" data-u2l4-route="DDRR"><b>Bottom road</b><span>↓ ↓ → →</span></button>
+          <button type="button" class="u2l4-rt" data-u2l4-route="RDRD"><b>Zig-zag A</b><span>→ ↓ → ↓</span></button>
+          <button type="button" class="u2l4-rt" data-u2l4-route="DRDR"><b>Zig-zag B</b><span>↓ → ↓ →</span></button>
+          <button type="button" class="pill small u2l4-reset" id="u2l4-reset">Start again</button>
+        </div>
+        <div class="u2l4-run" id="u2l4-run"></div>
+      </div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u2l4-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Where does the <b>Top road</b> finish? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u2l4-wa"><div class="bk-ans"><b>16:</b> <span class="tex">4\times4=16</span>, <span class="tex">\times2=32</span>, <span class="tex">\div2=16</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which route finishes on <b>1024</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u2l4-wa"><div class="bk-ans"><b>→ ↓ ↓ →:</b> <span class="tex">4\times4=16</span>, square <span class="tex">=256</span>, <span class="tex">\times4=1024</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>The <b>Bottom road</b> uses the same tiles as the Top road, in reverse order. Same finish, or different? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u2l4-wa"><div class="bk-ans"><b>Same: 16.</b> <span class="tex">4\div2=2</span>, <span class="tex">\times2=4</span>, <span class="tex">\times4=16</span>. Multiplying and dividing can go in <b>any</b> order.</div></div></div>
+    </div>
+    <div class="poll wf-poll u2l4-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> <b>Zig-zag A</b> and <b>Zig-zag B</b> also use the <em>same three tiles</em> (×4, square it, ÷2), just in reverse order. How do their finishes compare? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> exactly the same</div>
+        <div class="opt"><b>B</b> off by a little</div>
+        <div class="opt right"><b>C</b> one is 8 times the other</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: 8 times.</b> Zig-zag A: <span class="tex">4\times4=16</span>, square <span class="tex">=256</span>, <span class="tex">\div2=128</span>. Zig-zag B: <span class="tex">4\div2=2</span>, square <span class="tex">=4</span>, <span class="tex">\times4=16</span>. Once a <b>square</b> is in the route, order matters: the square hits <b>everything</b> done before it.</div>
+    </div>
+  </div></div>
+  <p class="u2l4-social">Race your neighbour: find the route with the biggest finish, and the smallest. <span data-reveal="tap to see"><b>Biggest 1024</b> (→ ↓ ↓ →), <b>smallest 2</b> (↓ → → ↓: <span class="tex">4\div2=2</span>, square <span class="tex">=4</span>, <span class="tex">\div2=2</span>).</span></p>
+</section>
+
+<!-- ================= 1. The laws and the order ================= -->
+<section class="card" data-ink="s1" data-section="1. The Laws So Far">
+  <div class="sec-h"><span class="badge">1</span><h2>The Laws So Far, and the Order to Use Them</h2></div>
+  <p>No new law here, just the five you already have. <span class="muted">(Tap a card to see its law.)</span></p>
+  <div class="bk-flips u2l4-flips" style="--bk-cols:5">
+    <div class="bk-flip"><div class="bk-front"><b>Product</b></div><div class="bk-back"><span class="tex">a^{m}\times a^{n}=a^{m+n}</span></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Quotient</b></div><div class="bk-back"><span class="tex">a^{m}\div a^{n}=a^{m-n}</span></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Power of a Power</b></div><div class="bk-back"><span class="tex">(a^{m})^{n}=a^{mn}</span></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Power of a Product</b></div><div class="bk-back"><span class="tex">(ab)^{n}=a^{n}b^{n}</span></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Power of a Quotient</b></div><div class="bk-back"><span class="tex">\left(\dfrac{a}{b}\right)^{n}=\dfrac{a^{n}}{b^{n}}</span></div></div>
+  </div>
+  <div class="explainer" data-explainer="which"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. The checklist">
+  <h3 class="sub">The checklist: work it the same way every time</h3>
+  <div class="u2l4-check">
+    <div class="u2l4-ci"><span class="u2l4-cn">1</span><div><b>Clear any bracket</b> with an outer exponent. Raise the coefficient <b>and</b> every variable to that power.</div></div>
+    <div class="u2l4-ci"><span class="u2l4-cn">2</span><div><b>Combine matching bases.</b> Add the exponents when multiplying, subtract when dividing.</div></div>
+    <div class="u2l4-ci"><span class="u2l4-cn">3</span><div><b>Coefficients last.</b> Multiply or divide the numbers.</div></div>
+  </div>
+  <p class="display"><span class="tex">(2x^{3})^{2}\times3x^{5}=4x^{6}\times3x^{5}=(4\times3)\,x^{6+5}=12x^{11}</span></p>
+  <div class="explainer" data-explainer="checklist"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Name the step</h3></div>
+  <p class="q">Simplify <span class="tex">(3x^{2})^{3}\times2x^{4}</span>, naming the checklist step you use at each stage.</p>
+  <div class="parts c1">
+    <div class="part"><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Step 1</b>, clear the bracket: <span class="tex">(3x^{2})^{3}=3^{3}x^{2\times3}=27x^{6}</span>, so the expression is <span class="tex">27x^{6}\times2x^{4}</span>.<br><b>Step 2</b>, combine matching bases: <span class="tex">x^{6}\times x^{4}=x^{6+4}=x^{10}</span>.<br><b>Step 3</b>, coefficients last: <span class="tex">27\times2=54</span>. &nbsp;Answer: <span class="tex">\boldsymbol{54x^{10}}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Kai wrote <span class="tex">(3x^{2})^{3}=3x^{6}</span>. What did he forget?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">To cube the <b>3</b>. It is inside the brackets, so it gets the exponent too: <span class="tex">3^{3}=27</span>, and <span class="tex">(3x^{2})^{3}=27x^{6}</span>.</div></div></div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Bracket, then divide</h3></div>
+  <p class="q">Simplify <span class="tex">\dfrac{(3x^{4})^{2}}{x^{3}}</span>. Clear the bracket first, then use the quotient law.</p>
+  <div class="parts c1">
+    <div class="part"><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Bracket first: <span class="tex">(3x^{4})^{2}=3^{2}x^{8}=9x^{8}</span>.<br>Then the Quotient Law on the <span class="tex">x</span>’s: <span class="tex">\dfrac{9x^{8}}{x^{3}}=9x^{8-3}=\boldsymbol{9x^{5}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s1c" data-section="1. Why brackets first?">
+  <h3 class="sub">Why brackets first? Back to the maze</h3>
+  <p>Write every maze number as a power of 2: <span class="tex">4=2^{2}</span>, <span class="tex">\times4=\times2^{2}</span>, <span class="tex">\div2=\div2^{1}</span>. Now every tile <b>is</b> an exponent law. The “square it” tile acts like a <b>bracket with an outer exponent</b>: it squares everything that came before it.</p>
+  <div class="explainer" data-explainer="maze"></div>
+</section>
+
+<section class="card" data-ink="s1d" data-section="1. Common slips">
+  <h3 class="sub">Common slips: spot the mistake</h3>
+  <p>Each student made one classic mistake. Find it before you press Next.</p>
+  <div class="explainer" data-explainer="slips"></div>
+</section>
+
+<!-- ================= 2. Two variable bases ================= -->
+<section class="card" data-ink="s2" data-section="2. Two Variable Bases">
+  <div class="sec-h"><span class="badge">2</span><h2>Expressions with Two Variable Bases</h2></div>
+  <p>When two different letters appear, treat each base <b>separately</b>. Clear the bracket by raising <b>every</b> factor inside it to the outer power. Then combine the <span class="tex">x</span>’s with the <span class="tex">x</span>’s and the <span class="tex">y</span>’s with the <span class="tex">y</span>’s. The coefficients are handled on their own at the end.</p>
+  <div class="explainer" data-explainer="columns"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Two variable bases</h3></div>
+  <p class="q">Simplify. Each part uses two or three of the exponent laws.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">(2a^{3}b)^{2}\times3a^{2}b^{4}</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(2a^{3}b)^{2}=4a^{6}b^{2}</span><br><span class="tex">4a^{6}b^{2}\times3a^{2}b^{4}</span><br><span class="tex">=(4\times3)a^{6+2}b^{2+4}</span><br><span class="tex">=\boldsymbol{12a^{8}b^{6}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{(4x^{2}y^{3})^{2}}{2xy^{2}}</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Top: <span class="tex">(4x^{2}y^{3})^{2}=16x^{4}y^{6}</span><br><span class="tex">\dfrac{16x^{4}y^{6}}{2xy^{2}}=(16\div2)x^{4-1}y^{6-2}</span><br><span class="tex">=\boldsymbol{8x^{3}y^{4}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(x^{2}y^{3})^{3}\times(xy^{2})^{2}</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(x^{2}y^{3})^{3}=x^{6}y^{9}</span><br><span class="tex">(xy^{2})^{2}=x^{2}y^{4}</span><br><span class="tex">x^{6+2}y^{9+4}=\boldsymbol{x^{8}y^{13}}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Part (c) has no numbers in front. Which checklist step has nothing to do?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Step 3.</b> Every coefficient is an understood <b>1</b>, and <span class="tex">1\times1=1</span>, so there is nothing to multiply.</div></div></div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u2l4"></section>
+
+<!-- ================= 3. Brackets that contain a division ================= -->
+<section class="card" data-ink="s3" data-section="3. Brackets That Contain a Division">
+  <div class="sec-h"><span class="badge">3</span><h2>Brackets That Contain a Division</h2></div>
+  <p>If a bracket has a fraction inside it and a power outside it, simplify <b>inside</b> the bracket first with the quotient law. Then apply the outer power to what is left. Doing the division first keeps the numbers small, and it prevents the most common error: forgetting to raise the coefficient.</p>
+  <div class="explainer" data-explainer="race"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Step by step">
+  <h3 class="sub">Step by step, one law at a time</h3>
+  <p>The same checklist, with one extra move: when a bracket holds a division, do that division first.</p>
+  <div class="explainer" data-explainer="checklist2"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Brackets, bases, coefficients</h3></div>
+  <p class="q">Simplify. Brackets first, then matching bases, then the coefficients.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">\dfrac{(3x^{2})^{3}\times x^{4}}{9x^{7}}</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(3x^{2})^{3}=27x^{6}</span>, so the top is <span class="tex">27x^{6}\times x^{4}=27x^{10}</span>.<br><span class="tex">\dfrac{27x^{10}}{9x^{7}}=(27\div9)x^{10-7}=\boldsymbol{3x^{3}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\left(\dfrac{6a^{4}b^{2}}{2a^{2}b}\right)^{2}\times a^{3}</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Inside first: <span class="tex">\dfrac{6a^{4}b^{2}}{2a^{2}b}=3a^{2}b</span>.<br>Outer power: <span class="tex">(3a^{2}b)^{2}=9a^{4}b^{2}</span>.<br>Then <span class="tex">9a^{4}b^{2}\times a^{3}=\boldsymbol{9a^{7}b^{2}}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> In (b), try the outer power <b>first</b> instead. Do you get the same answer?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes</b>, but with bigger numbers: <span class="tex">\dfrac{36a^{8}b^{4}}{4a^{4}b^{2}}=9a^{4}b^{2}</span>, then <span class="tex">\times a^{3}=9a^{7}b^{2}</span>. Inside first keeps the numbers small.</div></div></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Which step does what?</h3></div>
+  <p class="q">Simplify <span class="tex">\left(\dfrac{18x^{6}y^{3}}{6x^{2}y}\right)^{2}\times x^{3}</span>. <em>Hint: which step handles the division inside the bracket, and which handles the power outside it?</em></p>
+  <div class="parts c1">
+    <div class="part"><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The <b>Quotient Law</b> handles the inside; the <b>Power of a Product Law</b> handles the outside.<br>Inside: <span class="tex">\dfrac{18x^{6}y^{3}}{6x^{2}y}=3x^{4}y^{2}</span>. &nbsp;Outside: <span class="tex">(3x^{4}y^{2})^{2}=9x^{8}y^{4}</span>.<br>Finally <span class="tex">9x^{8}y^{4}\times x^{3}=\boldsymbol{9x^{11}y^{4}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Five laws, no new ones.</b> Same base ×: add. Same base ÷: subtract. Power of a power: multiply. A power of a product or quotient goes to <b>every</b> factor.</div>
+    <div><b>The checklist:</b> (1) clear the brackets, raising the coefficient <b>and</b> every variable; (2) combine matching bases; (3) coefficients last.</div>
+    <div><b>Two letters?</b> One base at a time: the <span class="tex">x</span>’s with the <span class="tex">x</span>’s, the <span class="tex">y</span>’s with the <span class="tex">y</span>’s, the numbers on their own.</div>
+    <div><b>A division inside a bracket?</b> Simplify inside first, then apply the outer power. Smaller numbers, fewer slips.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u2l4">
+    <div><div class="kicker">Your turn</div><b>Assignment 4 — Combining Exponent Laws</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l5/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 5 — Zero Exponents</b><div class="muted">Add a “÷4” tile to the maze: <span class="tex">2^{2}\div2^{2}=2^{0}</span>. But <span class="tex">4\div4=1</span>… so what is <span class="tex">2^{0}</span>?</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u2l4.js';
+  boot({ key: 'u2l4', homeHref: '../../', title: '2.4 Combining Exponent Laws' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+/* Math 15 · Unit 2 · Lesson 10 — Unit Review: Exponents: styles used only on this page (prefix u2l10-).
+ * Colours: base teal #13807a, exponent amber #c27a0e, coefficient purple #8a58c9, a wrong claim red, a right one green.
+ * Explainer pieces adapted from the 10C u2l6 page (anatomy, flip, sci, radical). */
+
+.u2l10 .ex-cap { min-height: 104px; }
+.u2l10 .ex-cap .katex { font-size: 1.04em; }
+.u2l10 .chip .katex { font-size: 1em; }
+.u2l10 .ans .katex { font-size: 1.04em; }
+.u2l10 h2 .katex, .u2l10 h3 .katex { font-size: .95em; }
+.u2l10-today { display: block; margin-top: 6px; font-size: .92em; color: var(--ink2); }
+.u2l10-tl { color: #13807a; } .u2l10-am { color: #c27a0e; }
+.u2l10-ok { color: var(--ok); } .u2l10-x { color: var(--red); }
+
+/* ---------------- warm-up: the sticky-note wall ---------------- */
+.u2l10-wall { background: #c99a5b; border-radius: 12px; padding: 8px; margin: 2px 0 10px; box-shadow: inset 0 0 0 4px #a8783c; }
+.u2l10-notes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px 12px; background: #e8cfa3; border-radius: 8px; padding: 12px 14px; }
+.u2l10-note { position: relative; height: 128px; border: 1px solid #c88c14; background: #ffecb3; border-top: 16px solid #f0cf7a; border-radius: 2px; box-shadow: 2px 4px 6px rgba(0, 0, 0, .22); transform: rotate(var(--r, 0deg)); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 4px 6px 4px; font: inherit; color: var(--ink); transition: transform .25s; }
+.u2l10-note:hover { transform: rotate(0deg) scale(1.03); }
+.u2l10-pin { position: absolute; top: -12px; left: 50%; translate: -50% 0; width: 12px; height: 12px; border-radius: 50%; background: var(--red); box-shadow: inset -2px -2px 0 rgba(0, 0, 0, .25); }
+.u2l10-nl { position: absolute; top: -16px; left: 6px; font: 800 14px var(--round); color: #8a5d08; }
+.u2l10-nq { font-size: 25px; line-height: 1.25; margin-top: 2px; white-space: nowrap; }
+.u2l10-na { font-size: 23px; line-height: 1.25; white-space: nowrap; transition: color .25s; }
+.u2l10-nfix { font-size: 14px; line-height: 1.25; text-align: center; visibility: hidden; margin-top: 2px; }
+.u2l10-nfix .katex { font-size: 1.05em; }
+.u2l10-nlaw { font-weight: 700; color: #6b4a22; }
+.u2l10-nstamp { position: absolute; right: 4px; top: -2px; font: 900 28px var(--round); visibility: hidden; }
+.u2l10-note.on .u2l10-nfix, .u2l10-note.on .u2l10-nstamp { visibility: visible; }
+.u2l10-note.on.ok .u2l10-nstamp { color: var(--ok); } .u2l10-note.on.bad .u2l10-nstamp { color: var(--red); }
+.u2l10-note.on.bad .u2l10-na { color: var(--red); text-decoration: line-through; text-decoration-thickness: 2px; }
+.u2l10-note.on.ok { background: #eef8e8; }
+.u2l10-tally { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 6px; font-size: 16px; color: #3a2508; font-weight: 600; }
+.u2l10-tally .pill.small { margin: 0; background: #fff8e6; }
+.u2l10-wqs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.u2l10-wqs .bk-wq { background: #fbfaf6; border: 1px solid var(--line2); border-radius: 12px; padding: 4px 10px 6px; }
+.u2l10-wqs .q-line { font-size: 16.5px; margin: 4px 0 6px; gap: 8px; }
+.u2l10-wqs .q-num { width: 26px; height: 26px; font-size: 15px; flex: none; }
+.u2l10-wqs .bk-ans { font-size: 15.5px; min-height: 2.6em; }
+.u2l10 .wf-poll .poll-ans { min-height: 0; }
+.u2l10 .wf-poll:not(.revealed) .poll-ans { display: none; }
+.u2l10-popts .opt { font-size: 19px; }
+.u2l10-social { text-align: center; font-style: italic; color: var(--ink2); font-size: 17px; margin: 10px 0 0 !important; }
+
+/* ---------------- notes ---------------- */
+.u2l10-deck .bk-front, .u2l10-deck .bk-back { min-height: 96px; padding: 10px 14px; }
+.u2l10-deck .bk-back { background: #fff8e6; font-size: 23px; font-weight: 400; }
+.u2l10-deck small { display: block; font-size: 15px; color: var(--ink2); margin-top: 2px; }
+.u2l10-rule { font-size: 28px; text-align: center; margin: 6px 0 2px; }
+.u2l10-order { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 0 12px; }
+.u2l10-ord { display: flex; align-items: flex-start; gap: 10px; background: #f6f5f1; border-radius: 12px; padding: 10px 14px; font-size: 17px; line-height: 1.35; }
+.u2l10-on { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; font: 800 16px var(--round); }
+.u2l10-pat { display: flex; align-items: center; justify-content: center; gap: 12px; background: #f6f5f1; border-radius: 12px; padding: 10px 16px; margin: 0 0 12px; font-size: 22px; flex-wrap: wrap; }
+.u2l10-pa { font: 800 15px var(--round); color: var(--amber); }
+
+/* ---------------- shared explainer pieces ---------------- */
+.u2l10-line { display: flex; align-items: center; white-space: nowrap; }
+.u2l10-fly { z-index: 6; font-weight: 700; white-space: nowrap; pointer-events: none; color: #c27a0e; }
+.u2l10-stamp { font: 900 34px var(--round); letter-spacing: .06em; padding: 4px 20px 6px; border: 5px solid; border-radius: 14px; background: rgba(255, 255, 255, .92); white-space: nowrap; }
+.u2l10-stamp.yes { color: var(--ok); } .u2l10-stamp.no { color: var(--red); }
+
+/* counting factors */
+.u2l10-tile { display: grid; place-items: center; border-radius: 10px; background: #fff; border: 2px solid #1e2d46; font-size: 30px; z-index: 2; transition: background .3s; }
+.u2l10-tile .katex { font-size: 1em; }
+.u2l10-tile.a { background: #e8f0fc; } .u2l10-tile.b { background: #fff4dd; border-color: #b06e08; }
+.u2l10-tile.lit { background: #e3f4ea; border-color: var(--ok); }
+.u2l10-tlab { font-size: 18px; font-weight: 700; color: var(--ink2); white-space: nowrap; }
+.u2l10-times { font-size: 30px; font-weight: 700; color: var(--muted); }
+.u2l10-qbar { height: 4px; background: var(--ink); border-radius: 2px; }
+.u2l10-slash { width: 4px; background: var(--red); border-radius: 2px; transform: rotate(18deg); z-index: 3; }
+.u2l10-grp { border: 2px dashed #7aa7d8; border-radius: 14px; background: rgba(232, 240, 252, .5); }
+.u2l10-grp-l { position: absolute; top: -34px; left: 50%; translate: -50% 0; font-size: 22px; color: #3b78d8; white-space: nowrap; }
+.u2l10-cend { font-size: 22px; line-height: 1.4; }
+.u2l10-cend .katex { font-size: 1.25em; }
+
+/* every factor gets the power */
+.u2l10-dsvg { left: 0; top: 0; pointer-events: none; overflow: visible; }
+.u2l10-dbig { font-size: 84px; white-space: nowrap; }
+.u2l10-dline { font-size: 52px; white-space: nowrap; }
+.u2l10-lit { background: rgba(19, 128, 122, .14); border-radius: 6px; box-shadow: 0 0 0 2px rgba(19, 128, 122, .5); }
+.u2l10-litk { color: #c27a0e; background: #fff2b8; border-radius: 6px; }
+.u2l10-darr { fill: none; stroke: #c27a0e; stroke-width: 3.5; stroke-linecap: round; }
+.u2l10-dhead { fill: #c27a0e; }
+.u2l10-dnote { font-size: 22px; background: #fff; border: 1.5px solid var(--line2); border-radius: 12px; padding: 8px 16px; }
+.u2l10-dnote .katex { font-size: 1.2em; }
+
+/* the stepper */
+.u2l10-st-final > .katex { display: inline-block; background: var(--brand-soft); box-shadow: inset 0 0 0 2px var(--brand2); border-radius: 10px; padding: 2px 12px; }
+.u2l10-st-law { background: #fff; border: 1.5px solid var(--line2); border-radius: 12px; padding: 6px 14px 8px; height: 104px; }
+.u2l10-st-law-h, .u2l10-st-fw-h { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u2l10-st-law-b { display: flex; flex-direction: column; gap: 2px; font-size: 24px; }
+.u2l10-st-law-b b { font: 800 19px var(--round); color: var(--brand); }
+.u2l10-st-law-b.muted { font-size: 20px; padding-top: 14px; }
+.u2l10-st-fw { background: #fffaf0; border: 1.5px solid #ecd2a6; border-radius: 12px; padding: 6px 14px; }
+.u2l10-st-fw-h { color: #c27a0e; }
+.u2l10-st-fw-l { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+.u2l10-st-fw-r { font-size: 25px; min-height: 46px; display: flex; align-items: center; white-space: nowrap; transition: opacity .3s; }
+.u2l10-st-fw-r.old { opacity: .4 !important; }
+
+/* what is the 0 attached to? */
+.u2l10-an-main { font-size: 54px; white-space: nowrap; }
+.u2l10-an-main .katex { font-size: 1em; }
+.u2l10-an-chips { display: flex; gap: 14px; white-space: nowrap; }
+.u2l10-an-chip { display: inline-flex; align-items: baseline; gap: 8px; padding: 6px 16px; border-radius: 22px; font-size: 24px; font-weight: 700; border: 2px solid; background: #fff; }
+.u2l10-an-chip small { font-size: 14px; text-transform: uppercase; letter-spacing: .05em; font-weight: 800; }
+.u2l10-an-chip.b { color: #13807a; border-color: #13807a; background: #eaf6f4; }
+.u2l10-an-chip.e { color: #c27a0e; border-color: #c27a0e; background: #fff4dd; }
+.u2l10-an-chip.k { color: #8a58c9; border-color: #8a58c9; background: #f4effb; }
+.u2l10-an-chip .katex { font-size: 1.05em; }
+.u2l10-an-line { font-size: 32px; white-space: nowrap; opacity: 0; }
+.u2l10-an-line .katex { font-size: 1em; }
+
+/* negative exponents cross the bar */
+.u2l10-fl-t { font-size: 46px; white-space: nowrap; padding: 0 4px; border-radius: 10px; transition: background .3s, color .3s; }
+.u2l10-fl-t .katex { font-size: 1em; }
+.u2l10-fl-t.neg { background: #fbe3e0; color: var(--red); }
+.u2l10-fl-t.stay { background: #eef0f3; }
+.u2l10-fl-t.pos { background: #e3f4ea; color: var(--ok); }
+.u2l10-fl-t.one { color: var(--muted); }
+.u2l10-fl-bar { height: 4px; background: var(--ink); border-radius: 2px; translate: -50% -50%; width: 120px; }
+.u2l10-fl-fin { font-size: 34px; white-space: nowrap; color: var(--ok); }
+.u2l10-fl-fin .katex { font-size: 1em; }
+.u2l10-fl-side { background: #fff1ef; border: 2px solid #f0b8b1; border-radius: 14px; padding: 12px 16px; font-size: 17px; }
+.u2l10-fl-wrong { font-size: 32px; color: var(--red); margin-bottom: 4px; }
+.u2l10-fl-wrong .katex { font-size: 1em; }
+
+/* scientific notation */
+.u2l10-sn-main { font-size: 36px; white-space: nowrap; }
+.u2l10-sn-main .katex { font-size: 1em; }
+.u2l10-sn-col { height: 200px; border-radius: 14px; background: #fff; border: 1.5px solid var(--line2); }
+.u2l10-cl-h { text-align: center; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--brand2); padding-top: 8px; }
+.u2l10-cl-l { font-size: 27px; white-space: nowrap; }
+.u2l10-cl-l .katex { font-size: 1em; }
+.u2l10-sn-big { display: flex; align-items: center; height: 64px; }
+.u2l10-sn-digits { position: relative; height: 64px; }
+.u2l10-sn-d { position: absolute; top: 0; width: 30px; text-align: center; font: 800 48px/64px var(--round); font-variant-numeric: tabular-nums; }
+.u2l10-sn-pt { position: absolute; top: 0; width: 16px; text-align: center; font: 900 52px/64px var(--round); color: var(--red); }
+.u2l10-sn-tail { font-size: 40px; white-space: nowrap; margin-left: 8px; }
+.u2l10-sn-tail .katex { font-size: 1em; }
+.u2l10-sn-e { display: inline-block; font: 800 28px var(--round); color: var(--brand); vertical-align: 26px; line-height: 1; }
+.u2l10-sn-check { font-size: 22px; font-weight: 700; white-space: nowrap; }
+.u2l10-sn-check.ok { color: var(--ok); } .u2l10-sn-check.red { color: var(--red); }
+.u2l10-sn-fin { font-size: 30px; white-space: nowrap; color: var(--ok); }
+.u2l10-sn-fin .katex { font-size: 1em; }
+
+/* power ↔ radical */
+.u2l10-rd-svg { left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.u2l10-rd-sign { fill: none; stroke: var(--ink); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.u2l10-rd-base, .u2l10-rd-rad { font-size: 62px; white-space: nowrap; }
+.u2l10-rd-base .katex, .u2l10-rd-rad .katex { font-size: 1em; }
+.u2l10-rd-par { font: 300 82px "KaTeX_Main", Georgia, serif; color: var(--ink); }
+.u2l10-rd-ex { font: 700 32px var(--round); min-width: 30px; text-align: center; border-radius: 8px; transition: background .3s; }
+.u2l10-rd-ex.m { color: #c27a0e; }
+.u2l10-rd-ex.n { color: #13807a; }
+.u2l10-rd-ex.neg { color: var(--red); }
+.u2l10-rd-ex.lit { background: #fff2b8; }
+.u2l10-rd-ex.idx { font-size: 26px; background: none; }
+.u2l10-rd-sbar { width: 30px; height: 3px; background: var(--ink2); border-radius: 2px; }
+.u2l10-rd-eq { font-size: 54px; color: var(--muted); }
+.u2l10-rd-line { font-size: 30px; white-space: nowrap; }
+.u2l10-rd-line .katex { font-size: 1em; }
+.u2l10-rd-badge { font-size: 18px; font-weight: 700; color: var(--red); background: #fff1ef; border: 1.5px solid #f0b8b1; border-radius: 10px; padding: 4px 12px; white-space: nowrap; }
+
+/* ---------------- summary: up next, the unit test ---------------- */
+.u2l10-review { margin-top: 16px; border: 2px dashed #cfc7b5; border-radius: 14px; padding: 12px 16px 14px; }
+.u2l10-review-h { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 10px; font-size: 19px; }
+.u2l10-review-h .muted { font-size: 16px; }
+.u2l10-review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.u2l10-review-grid a { display: block; text-decoration: none; color: var(--ink); background: #f6f5f1; border-radius: 10px; padding: 8px 12px; font-size: 16px; font-weight: 600; line-height: 1.3; }
+.u2l10-review-grid .rn { display: block; font-weight: 800; color: var(--brand2); font-size: 14px; }
+.u2l10-review-grid small { display: block; color: var(--muted); font-weight: 500; font-size: 14px; }
+.u2l10-review-grid .test { grid-column: 1 / -1; display: block; background: #fff8e6; border: 1.5px solid #e9cf8f; border-radius: 10px; padding: 8px 12px; font-size: 16px; font-weight: 600; line-height: 1.3; }
+.u2l10-review-grid .test .rn { color: var(--amber); }

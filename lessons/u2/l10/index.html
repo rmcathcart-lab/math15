@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unit Review: Exponents · Math 15 2.10</title>
+<meta name="description" content="Math 15 Unit 2 Lesson 10: unit review of exponents. The product and quotient laws, power of a power, power of a product and of a quotient, combining laws, zero and negative exponents, scientific notation, and rational exponents and radicals: one quick refresher for each, then mixed challenges like the unit test. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u2l10.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u2l10">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 2 Exponents · Lesson 10</div>
+  <h1>Unit Review: Exponents</h1>
+  <p class="lede">Every law, zero and negative exponents, scientific notation and radicals: one last pass before the test. Each law is still just <b>counting factors</b>, and zero, negative and fraction exponents are the same patterns carried on. Nine quick refreshers, then three mixed challenges like the ones on the unit test.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>use the <b>product</b>, <b>quotient</b>, <b>power of a power</b>, <b>power of a product</b> and <b>power of a quotient</b> laws, and combine them</li>
+      <li>evaluate <b>zero</b> and <b>negative</b> exponents, and write answers with positive exponents only</li>
+      <li>multiply and divide in <b>scientific notation</b>, and fix a leading number that isn’t between 1 and 10</li>
+      <li>switch between <b>rational exponents</b> and <b>radicals</b>, and evaluate them root first</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN3</b> Demonstrate an understanding of powers with integral and rational exponents.<br><span class="u2l10-today">Today: the whole unit, one section at a time, then mixed questions like the unit test (no calculator).</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Sticky-Note Wall" style="--wf-side: 300px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Sticky-Note Wall</h2>
+  <p class="wf-rule">Ten exponent “facts” on the wall. Some are right… some are <i>very</i> wrong. <span class="muted">(Vote thumbs up or down, then tap a note to check it.)</span></p></div>
+  <div class="u2l10-wall" id="u2l10-wall">
+    <div class="u2l10-tally no-ink"><span id="u2l10-tally">0 of 10 checked</span><button class="pill small" type="button" id="u2l10-all">Check all</button><button class="pill small" type="button" id="u2l10-reset">Reset</button></div>
+  </div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l10-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Note <b>A</b>: <span class="tex">2^3=8</span>, <span class="tex">2^4=16</span>. Is <span class="tex">8\times16</span> really <span class="tex">2^7</span>?</div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>Yes:</b> <span class="tex">8\times16=128=2^7</span>. That’s the product law.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Mark each note ✓ or ✗. How many are <b>wrong</b>?</div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>5 wrong:</b> B, D, F, H, J. (A, C, E, G, I are right.)</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div><b>A</b> and <b>J</b> can’t both be right. Which is?</div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>A.</b> Same base: keep the base, <b>add</b> the exponents. J changed the base too.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>Fix every wrong note so it tells the truth.</div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans">Tap each note: the fix appears on it. <span class="tex">5^0=1</span>, <span class="tex">x^6</span>, <span class="tex">\tfrac18</span>, <span class="tex">8x^3</span>, <span class="tex">2^7</span>.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A new note says: “<span class="tex">100^{10}</span> is the biggest of these!” Which really is? <b>Guess first.</b></div></div>
+      <div class="poll-opts u2l10-popts">
+        <div class="opt right"><b>A</b> <span class="tex">2^{100}</span></div>
+        <div class="opt"><b>B</b> <span class="tex">10^{30}</span></div>
+        <div class="opt"><b>C</b> <span class="tex">100^{10}</span></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A, <span class="tex">2^{100}</span></b>, just barely. <span class="tex">2^{10}=1024</span> is a bit more than <span class="tex">10^3</span>, so <span class="tex">2^{100}=(2^{10})^{10}</span> is a bit more than <span class="tex">(10^3)^{10}=10^{30}</span>. And the note’s “winner” is last: <span class="tex">100^{10}=(10^2)^{10}=10^{20}</span>.</div>
+    </div>
+  </div></div>
+  <p class="u2l10-social">Vote on each note: thumbs up for true, thumbs down for false, then defend your vote!</p>
+</section>
+
+<!-- ================= laws at a glance ================= -->
+<section class="card" data-ink="deck" data-section="The laws at a glance">
+  <div class="sec-h"><span class="badge">★</span><h2>The Unit on One Card</h2></div>
+  <p>Tap a card to flip it. Can you say the rule <b>before</b> you flip?</p>
+  <div class="bk-flips u2l10-deck" style="--bk-cols:3">
+    <div class="bk-flip"><div class="bk-front"><b>Product law</b><small>multiplying, same base</small></div><div class="bk-back"><span class="tex">a^m\times a^n=a^{m+n}</span><small>add the exponents</small></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Quotient law</b><small>dividing, same base</small></div><div class="bk-back"><span class="tex">a^m\div a^n=a^{m-n}</span><small>subtract the exponents</small></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Power of a power</b><small>a power inside brackets</small></div><div class="bk-back"><span class="tex">(a^m)^n=a^{mn}</span><small>multiply the exponents</small></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Power of a product</b><small>a product in brackets</small></div><div class="bk-back"><span class="tex">(ab)^n=a^nb^n</span><small>every factor gets the power</small></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Power of a quotient</b><small>a fraction in brackets</small></div><div class="bk-back"><span class="tex">\left(\dfrac{a}{b}\right)^n=\dfrac{a^n}{b^n}</span><small>top and bottom</small></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Zero exponent</b><small>any nonzero base</small></div><div class="bk-back"><span class="tex">a^0=1</span><small>check what the 0 is attached to</small></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Negative exponent</b><small>reciprocal</small></div><div class="bk-back"><span class="tex">a^{-n}=\dfrac{1}{a^n}</span><small>never makes the value negative</small></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Scientific notation</b><small>very big or very small</small></div><div class="bk-back"><span class="tex">a\times10^n,\ 1\le a&lt;10</span><small>n is an integer</small></div></div>
+    <div class="bk-flip"><div class="bk-front"><b>Rational exponent</b><small>power over root</small></div><div class="bk-back"><span class="tex">a^{m/n}=\sqrt[n]{a^m}</span><small>denominator = index</small></div></div>
+  </div>
+</section>
+
+<!-- ================= 1–2. product, quotient, power of a power ================= -->
+<section class="card" data-ink="s1" data-section="1. The Product Law">
+  <div class="sec-h"><span class="badge">1</span><h2>The Product Law</h2></div>
+  <p>Multiplying powers with the <b>same base</b>: keep the base and <b>add</b> the exponents, <span class="tex">a^{m}\cdot a^{n}=a^{m+n}</span>. Multiply any coefficients separately. The reason: an exponent <b>counts factors</b>, and multiplying just puts all the factors in one row.</p>
+  <div class="explainer" data-explainer="count"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>The product law</h3></div>
+  <p class="q">Evaluate or simplify.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Evaluate <span class="tex">6^{2}\times6^{3}</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">6^{2+3}=6^{5}=\mathbf{7\,776}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Simplify <span class="tex">5t^{4}\times3t^{2}</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(5\times3)t^{4+2}=\boldsymbol{15t^{6}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2" data-section="2. Quotient Law and Power of a Power">
+  <div class="sec-h"><span class="badge">2</span><h2>Quotient Law and Power of a Power</h2></div>
+  <div class="def-grid">
+    <div class="def"><b>Quotient law</b><div class="u2l10-rule"><span class="tex">a^{m}\div a^{n}=a^{m-n}</span></div><div class="eg">Dividing powers with the same base: <b>subtract</b> the exponents. (Matching factors cancel.)</div></div>
+    <div class="def amber"><b>Power of a power</b><div class="u2l10-rule"><span class="tex">(a^{m})^{n}=a^{mn}</span></div><div class="eg">A power raised to another power: <b>multiply</b> the exponents. (<span class="tex">n</span> copies of <span class="tex">m</span> factors.)</div></div>
+  </div>
+  <p class="muted">Replay the counting with the <b>Example 2 check</b> chips in the explainer above.</p>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Quotient law and power of a power</h3></div>
+  <p class="q">Simplify, using the quotient law, the power of a power law, or both.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">k^{11}\div k^{5}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">k^{11-5}=\boldsymbol{k^{6}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(t^{3})^{4}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">t^{3\times4}=\boldsymbol{t^{12}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\dfrac{(g^{2})^{5}}{g^{4}}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{g^{10}}{g^{4}}=g^{10-4}=\boldsymbol{g^{6}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. power of a product / quotient ================= -->
+<section class="card" data-ink="s3" data-section="3. Power of a Product and of a Quotient">
+  <div class="sec-h"><span class="badge">3</span><h2>Power of a Product and Power of a Quotient</h2></div>
+  <p>Raise <b>each</b> factor to the outside power: <span class="tex">(ab)^{n}=a^{n}b^{n}</span>, and <span class="tex">\left(\dfrac{a}{b}\right)^{n}=\dfrac{a^{n}}{b^{n}}</span>: numerator and denominator both.</p>
+  <div class="explainer" data-explainer="dist"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Every factor gets the power</h3></div>
+  <p class="q">Simplify each expression.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">(4h)^{2}</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4^{2}h^{2}=\boldsymbol{16h^{2}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\left(\dfrac{r}{5}\right)^{3}</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{r^{3}}{5^{3}}=\boldsymbol{\dfrac{r^{3}}{125}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. combining ================= -->
+<section class="card" data-ink="s4" data-section="4. Combining Exponent Laws">
+  <div class="sec-h"><span class="badge">4</span><h2>Combining Exponent Laws</h2></div>
+  <div class="u2l10-order">
+    <div class="u2l10-ord"><span class="u2l10-on">1</span><b>Brackets first.</b> Clear any bracket with an outside exponent.</div>
+    <div class="u2l10-ord"><span class="u2l10-on">2</span><b>Matching bases.</b> Product or quotient law.</div>
+    <div class="u2l10-ord"><span class="u2l10-on">3</span><b>Coefficients last.</b> Multiply or divide the numbers.</div>
+  </div>
+  <div class="explainer" data-explainer="steps1"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>The outside power hits the coefficient too.</b> <span class="tex">(2t^3)^2=4t^6</span>, not <span class="tex">2t^6</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Brackets first, then matching bases</h3></div>
+  <p class="q">Simplify each expression.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">(2t^{3})^{2}\times5t^{4}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(2t^{3})^{2}=4t^{6}</span><br><span class="tex">4t^{6}\times5t^{4}=(4\times5)t^{6+4}=\boldsymbol{20t^{10}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{(2w^{3})^{2}}{4w^{2}}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(2w^{3})^{2}=4w^{6}</span><br><span class="tex">\dfrac{4w^{6}}{4w^{2}}=w^{6-2}=\boldsymbol{w^{4}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= 5. zero ================= -->
+<section class="card" data-ink="s5" data-section="5. Zero Exponents">
+  <div class="sec-h"><span class="badge">5</span><h2>Zero Exponents</h2></div>
+  <p>Any nonzero base to the exponent 0 equals 1: <span class="tex">a^{0}=1</span>. Check what the 0 is <b>attached to</b>: <span class="tex">8k^{0}</span> raises only <span class="tex">k</span>, but <span class="tex">(8k)^{0}</span> raises the whole product.</p>
+  <div class="u2l10-pat">
+    <span class="tex">5^3=125</span><span class="u2l10-pa">÷5</span><span class="tex">5^2=25</span><span class="u2l10-pa">÷5</span><span class="tex">5^1=5</span><span class="u2l10-pa">÷5</span><span class="tex">5^0=\mathbf{1}</span><span class="u2l10-pa">÷5</span><span class="tex">5^{-1}=\tfrac15</span>
+  </div>
+  <div class="explainer" data-explainer="anatomy"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>What is the 0 attached to?</h3></div>
+  <p class="q">Evaluate each pair, and explain why they differ.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">8k^{0}</span> and <span class="tex">(8k)^{0}</span></div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">8k^{0}=8\times1=\mathbf{8}</span>: the exponent is on <span class="tex">k</span> only.<br><span class="tex">(8k)^{0}=\mathbf{1}</span>: the brackets make <span class="tex">8k</span> the base.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">-9^{0}</span> and <span class="tex">(-9)^{0}</span></div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">-9^{0}=-(9^{0})=\mathbf{-1}</span>: the minus is not part of the base.<br><span class="tex">(-9)^{0}=\mathbf{1}</span>: here <span class="tex">-9</span> is the base.</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= 6. negative ================= -->
+<section class="card" data-ink="s6" data-section="6. Negative Exponents">
+  <div class="sec-h"><span class="badge">6</span><h2>Negative Exponents</h2></div>
+  <p>A negative exponent means “<b>reciprocal</b>, then make the exponent positive”: <span class="tex">a^{-n}=\dfrac{1}{a^{n}}</span>. It never makes the value negative, and it never moves a coefficient outside the power.</p>
+  <div class="explainer" data-explainer="flip"></div>
+</section>
+
+<section class="card example" data-ink="ex6" data-section="Example 6">
+  <div class="ex-head"><span class="ex-tag">Example 6</span><h3>Reciprocal, then positive</h3></div>
+  <p class="q">Evaluate, or rewrite with a positive exponent.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Evaluate <span class="tex">4^{-2}</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{1}{4^{2}}=\boldsymbol{\dfrac{1}{16}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Rewrite <span class="tex">9t^{-3}</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">9\times\dfrac{1}{t^{3}}=\boldsymbol{\dfrac{9}{t^{3}}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Evaluate <span class="tex">\dfrac{1}{5^{-2}}</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">=5^{2}=\mathbf{25}</span></div></div></div>
+  </div>
+  <div class="space" id="ex6-space"></div>
+  <button class="more" data-more="ex6-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u2l10"></section>
+
+<!-- ================= 7. combining zero, negative, positive ================= -->
+<section class="card" data-ink="s7" data-section="7. Zero, Negative and Positive Together">
+  <div class="sec-h"><span class="badge">7</span><h2>Combining Zero, Negative, and Positive Exponents</h2></div>
+  <p>Same checklist as before (brackets, then matching bases), with zero and negative exponents <b>cleaned up last</b> so the final answer has positive exponents only.</p>
+  <div class="explainer" data-explainer="steps2"></div>
+</section>
+
+<section class="card example" data-ink="ex7" data-section="Example 7">
+  <div class="ex-head"><span class="ex-tag">Example 7</span><h3>Positive exponents in the final answer</h3></div>
+  <p class="q">Simplify. Write each answer with a positive exponent.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">\dfrac{15w^{-2}}{3w^{4}}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Coefficients: <span class="tex">15\div3=5</span>.<br><span class="tex">w^{-2-4}=w^{-6}</span>, so <span class="tex">5w^{-6}=\boldsymbol{\dfrac{5}{w^{6}}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(2t^{-3})^{2}\times t^{5}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(2t^{-3})^{2}=4t^{-6}</span><br><span class="tex">4t^{-6}\times t^{5}=4t^{-1}=\boldsymbol{\dfrac{4}{t}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex7-space"></div>
+  <button class="more" data-more="ex7-space">+ More space</button>
+</section>
+
+<!-- ================= 8. scientific notation ================= -->
+<section class="card" data-ink="s8" data-section="8. Scientific Notation">
+  <div class="sec-h"><span class="badge">8</span><h2>Scientific Notation</h2></div>
+  <p>Scientific notation is <span class="tex">a\times10^{n}</span> with <span class="tex">1\le a&lt;10</span> and <span class="tex">n</span> an integer. To multiply, multiply the leading numbers and <b>add</b> the exponents of 10, then move <span class="tex">a</span> back into range.</p>
+  <div class="explainer" data-explainer="sci"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Fix the leading number last.</b> Each hop of the decimal point <b>left</b> makes the exponent of 10 one <b>bigger</b>: <span class="tex">24.8\times10^{-4}=2.48\times10^{-3}</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex8" data-section="Example 8">
+  <div class="ex-head"><span class="ex-tag">Example 8</span><h3>Multiplying and dividing in scientific notation</h3></div>
+  <p class="q">Answer each question, giving results in proper scientific notation where asked.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Evaluate <span class="tex">(6.2\times10^{3})\times(4.0\times10^{-7})</span>, and write the answer in proper scientific notation.</div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">6.2\times4.0=24.8</span>, <span class="tex">10^{3+(-7)}=10^{-4}</span><br><span class="tex">24.8\times10^{-4}</span> is not proper, so <span class="tex">=\boldsymbol{2.48\times10^{-3}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) A grain of pollen has a diameter of about <span class="tex">2.5\times10^{-5}</span> m. About how many grains, laid end to end, would span a length of <span class="tex">0.5</span> m?</div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{0.5}{2.5\times10^{-5}}=\dfrac{5\times10^{-1}}{2.5\times10^{-5}}=2\times10^{4}</span><br>About <b>20 000 grains</b>.</div></div></div>
+  </div>
+  <div class="space" id="ex8-space"></div>
+  <button class="more" data-more="ex8-space">+ More space</button>
+</section>
+
+<!-- ================= 9. rational exponents ================= -->
+<section class="card" data-ink="s9" data-section="9. Rational Exponents and Radical Form">
+  <div class="sec-h"><span class="badge">9</span><h2>Rational Exponents and Radical Form</h2></div>
+  <p>A fraction exponent is a root and a power together: <span class="tex">a^{m/n}=\sqrt[n]{a^{m}}</span>. The <b class="u2l10-tl">denominator is the index</b>, the <b class="u2l10-am">numerator is the power</b>. A negative rational exponent still means reciprocal.</p>
+  <div class="explainer" data-explainer="radical"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>A negative base under a cube root is fine.</b> <span class="tex">(-2)^3=-8</span>, so <span class="tex">\sqrt[3]{-8}=-2</span>. (An odd number of negatives multiplies to a negative.)</div></div>
+</section>
+
+<section class="card example" data-ink="ex9" data-section="Example 9">
+  <div class="ex-head"><span class="ex-tag">Example 9</span><h3>Radical form, and evaluating root first</h3></div>
+  <p class="q">Rewrite in radical form, then evaluate.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Express <span class="tex">t^{3/8}</span> in radical form.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Denominator 8 is the index, numerator 3 the power:<br><span class="tex">\boldsymbol{\sqrt[8]{t^{3}}}</span> (or <span class="tex">\left(\sqrt[8]{t}\right)^{3}</span>)</div></div></div>
+    <div class="part"><div class="pl">(b) If <span class="tex">p=16</span> and <span class="tex">q=-8</span>, evaluate <span class="tex">p^{3/2}-q^{-2/3}</span>.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">16^{3/2}=\left(\sqrt{16}\right)^{3}=4^{3}=64</span><br><span class="tex">(-8)^{-2/3}=\dfrac{1}{\left(\sqrt[3]{-8}\right)^{2}}=\dfrac{1}{(-2)^{2}}=\dfrac14</span><br><span class="tex">64-\dfrac14=\mathbf{63.75}</span></div></div></div>
+  </div>
+  <div class="space" id="ex9-space"></div>
+  <button class="more" data-more="ex9-space">+ More space</button>
+</section>
+
+<!-- ================= 10. mixed review ================= -->
+<section class="card" data-ink="s10" data-section="10. Mixed Review">
+  <div class="sec-h"><span class="badge">10</span><h2>Mixed Review: Putting It All Together</h2></div>
+  <p>Each question below combines more than one skill from the unit: exactly the kind of question that shows up on the unit test. Try each one by hand first, then check it with the <b>Challenge</b> chips in the Section 7 stepper and the Section 8 scientific-notation explainer.</p>
+</section>
+
+<section class="card example" data-ink="ch1" data-section="Challenge 1">
+  <div class="ex-head"><span class="ex-tag">Challenge 1</span><h3>Every kind of exponent in one expression</h3></div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">Simplify <span class="tex">\dfrac{(2t^{3})^{-2}\times8t^{5}}{4t^{-3}}</span>, expressing your answer with a positive exponent.</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(2t^{3})^{-2}=2^{-2}t^{-6}=\dfrac{t^{-6}}{4}</span>. Numerator: <span class="tex">\dfrac{t^{-6}}{4}\times8t^{5}=2t^{-1}</span>.<br>Divide: <span class="tex">\dfrac{2t^{-1}}{4t^{-3}}=\dfrac12\,t^{-1-(-3)}=\boldsymbol{\dfrac{t^{2}}{2}}</span></div></div></div>
+  </div>
+  <div class="space" id="ch1-space"></div>
+  <button class="more" data-more="ch1-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ch2" data-section="Challenge 2">
+  <div class="ex-head"><span class="ex-tag">Challenge 2</span><h3>Rational exponents and scientific notation</h3></div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">Simplify <span class="tex">s^{5/6}\times s^{1/6}</span>. Then, if <span class="tex">s=4\,000\,000</span>, express the numeric value of the result in scientific notation.</div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">s^{\frac56+\frac16}=s^{1}=s</span>. So the value is <span class="tex">4\,000\,000=\boldsymbol{4\times10^{6}}</span>.</div></div></div>
+  </div>
+  <div class="space" id="ch2-space"></div>
+  <button class="more" data-more="ch2-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ch3" data-section="Challenge 3">
+  <div class="ex-head"><span class="ex-tag">Challenge 3</span><h3>A square garden bed</h3></div>
+  <p class="q">The area of a square garden bed is <span class="tex">(3\times10^{2})^{2}\text{ cm}^{2}</span>.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Express the area in proper scientific notation.</div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(3\times10^{2})^{2}=3^{2}\times10^{2\times2}</span><br><span class="tex">=\boldsymbol{9\times10^{4}}\text{ cm}^{2}</span> (proper: <span class="tex">1\le9&lt;10</span>)</div></div></div>
+    <div class="part"><div class="pl">(b) The bed is divided into square tiles, each with an area of <span class="tex">9\times10^{2}\text{ cm}^{2}</span>. How many tiles cover the bed?</div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{9\times10^{4}}{9\times10^{2}}=1\times10^{2}</span><br><span class="tex">=\mathbf{100}</span> tiles</div></div></div>
+  </div>
+  <div class="space" id="ch3-space"></div>
+  <button class="more" data-more="ch3-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>An exponent counts factors.</b> Multiply: <b>add</b> exponents. Divide: <b>subtract</b>. Power of a power: <b>multiply</b>. A bracket’s power goes to <b>every factor</b>.</div>
+    <div><b>Zero and negative exponents are the pattern carried on.</b> <span class="tex">a^0=1</span>, <span class="tex">a^{-n}=\dfrac{1}{a^n}</span>. Check what the exponent is attached to.</div>
+    <div><b>Scientific notation:</b> <span class="tex">a\times10^n</span> with <span class="tex">1\le a&lt;10</span>. Numbers with numbers, powers of 10 with powers of 10, then fix <span class="tex">a</span>.</div>
+    <div><b>Power over root:</b> <span class="tex">a^{m/n}=\sqrt[n]{a^m}</span>. Take the root first. Final answers: <b>positive exponents</b>, fractions in lowest terms.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u2l10">
+    <div><div class="kicker">Your turn</div><b>Assignment 10 — Unit Review: Exponents</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <div class="u2l10-review">
+    <div class="u2l10-review-h"><span class="kicker">Up next</span><b>Unit 2 test.</b> <span class="muted">Shaky on an idea today? Go back to its lesson.</span></div>
+    <div class="u2l10-review-grid">
+      <a href="../l1/"><span class="rn">2.1</span>Powers and the product law <small>Example 1, Challenge 2</small></a>
+      <a href="../l2/"><span class="rn">2.2</span>Quotient law, power of a power <small>Example 2</small></a>
+      <a href="../l3/"><span class="rn">2.3</span>Power of a product, of a quotient <small>Example 3, Challenge 3(a)</small></a>
+      <a href="../l4/"><span class="rn">2.4</span>Combining exponent laws <small>Example 4, Challenge 1</small></a>
+      <a href="../l5/"><span class="rn">2.5</span>Zero exponents <small>Example 5</small></a>
+      <a href="../l6/"><span class="rn">2.6</span>Negative exponents <small>Example 6, Challenge 1</small></a>
+      <a href="../l7/"><span class="rn">2.7</span>Zero, negative and positive together <small>Example 7, Challenge 1</small></a>
+      <a href="../l8/"><span class="rn">2.8</span>Scientific notation <small>Example 8, Challenges 2, 3</small></a>
+      <a href="../l9/"><span class="rn">2.9</span>Rational exponents and radicals <small>Example 9, Challenge 2</small></a>
+      <div class="test"><span class="rn">Test</span>Unit 2 test: AN3 <small>no calculator · every idea from today’s review</small></div>
+    </div>
+  </div>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u2l10.js';
+  boot({ key: 'u2l10', homeHref: '../../', title: '2.10 Unit Review: Exponents' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

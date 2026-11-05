@@ -40,7 +40,7 @@ ids.forEach(function (lid) {
   var levels = {};
   L.items.forEach(function (it) {
     levels[it.level] = (levels[it.level] || 0) + 1;
-    if (!it.outcome || !/^(AN|RF|M)\d$|^EXT$/.test(it.outcome)) err(it.id + ': outcome "' + it.outcome + '"');
+    if (!it.outcome || !/^(AN|RF|M)\d$|^EXT$|^REV$/.test(it.outcome)) err(it.id + ': outcome "' + it.outcome + '"');
     if (BOX[it.level] == null) err(it.id + ': level "' + it.level + '"');
     var seen = {}, type = null, fails = 0;
     for (var i = 0; i < RUNS; i++) {

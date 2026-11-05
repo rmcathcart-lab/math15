@@ -1,0 +1,114 @@
+/* Math 15 · Unit 1 · Lesson 1 — Integer Operations and Order of Operations: styles used only on this page (prefix u1l1-).
+ * Colours: positive yellow/amber, negative red, highlights amber, BEDMAS ladder navy. */
+.u1l1 { --u1l1-pos: #e8a01e; --u1l1-neg: #c93a33; }
+.ex-cap .katex { font-size: 1.04em; }
+.pl .katex { font-size: 1.1em; }
+.ans .katex { font-size: 1.04em; }
+.u1l1 .katex { white-space: nowrap; }
+.u1l1 .parts.c4 { grid-template-columns: repeat(4, 1fr); }
+.u1l1-cy { color: #b07800; }
+.u1l1-cr, .u1l1-cr2 { color: var(--red); }
+.u1l1-figcap { text-align: center; margin: 0 0 12px; font-size: 18px; color: var(--ink2); }
+.u1l1-nlfig { display: flex; justify-content: center; }
+
+/* ---------------- warm-up ---------------- */
+.u1l1-post { background: #fff; border: 2px solid #c88c14; border-radius: 16px; padding: 10px 16px 8px; }
+.u1l1-phd { display: flex; gap: 10px; align-items: center; font-size: 17px; line-height: 1.2; }
+.u1l1-phd .muted { font-size: 14px; }
+.u1l1-av { display: inline-grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%; color: #fff; font: 800 18px var(--round); }
+.u1l1-avq { background: var(--red); }
+.u1l1-pt { text-align: center; font: 800 22px var(--round); margin: 4px 0 6px; }
+.u1l1-pexp { background: #ffecb3; border: 1.5px solid #c88c14; border-radius: 10px; text-align: center; padding: 10px 0 12px; font-size: 38px; }
+.u1l1-pf { display: flex; gap: 26px; font: 700 15px var(--round); color: var(--ink2); margin-top: 6px; border-top: 1px solid var(--line2); padding-top: 5px; }
+.u1l1-coms { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.u1l1-com { position: relative; display: flex; gap: 8px; align-items: flex-start; background: #e8f0fc; border-radius: 12px; padding: 7px 10px 18px; font-size: 16px; line-height: 1.3; }
+.u1l1-like { position: absolute; right: 10px; bottom: 3px; font: 800 13px var(--round); color: var(--red); }
+.wf .u1l1-wqs .q-line { margin: 4px 0 0; font-size: 17px; gap: 10px; line-height: 1.36; }
+.wf .u1l1-wqs .q-line .pill.small { margin-left: 4px; padding: 2px 10px; vertical-align: 1px; }
+.wf .u1l1-wqs .bk-ans { font-size: 16px; line-height: 1.36; margin-top: 2px; }
+.u1l1-wa { margin: 0 0 4px 40px; }
+.wf .u1l1-poll { margin-top: 8px; }
+.wf .u1l1-poll .poll-opts { grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 0 0 8px; }
+.wf .u1l1-poll .opt { padding: 4px 8px; text-align: center; white-space: nowrap; }
+.u1l1-social { margin: 8px 0 0; font-size: 18px; font-style: italic; color: var(--ink2); text-align: center; }
+
+/* ---------------- section cards ---------------- */
+.u1l1-bedmas { display: grid; grid-template-columns: 1fr 1fr 1.5fr 1.5fr; gap: 8px; margin: 4px 0 14px; }
+.u1l1-bedmas > div { background: var(--brand-soft); border-radius: 12px; padding: 8px 12px; font-size: 19px; line-height: 1.25; }
+.u1l1-bedmas span { display: block; font-size: 15px; color: var(--muted); }
+.u1l1-L { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: var(--brand); color: #fff; font: 800 18px var(--round); margin-right: 2px; }
+
+/* ---------------- explainers: shared ---------------- */
+.u1l1-head { font-size: 34px; white-space: nowrap; }
+.u1l1-sub { font-size: 28px; color: var(--ink2); white-space: nowrap; }
+.u1l1-ans { color: var(--red); font-weight: 700; margin-left: 4px; }
+.u1l1-panel { background: #fff; border: 1px solid var(--line2); border-radius: 14px; padding: 10px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; }
+.u1l1-ph { font: 800 15px var(--round); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.u1l1-line { font-size: 23px; line-height: 1.35; }
+.u1l1-big { font-size: 27px; font-weight: 700; }
+
+/* chips */
+.u1l1-chip { position: absolute; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; font: 900 26px var(--round); box-sizing: border-box; box-shadow: 0 2px 0 rgba(0, 0, 0, .18); }
+.u1l1-chy { background: #ffd34d; border: 3px solid #c88c14; color: #7a5200; }
+.u1l1-chr { background: #e0564c; border: 3px solid #9e2a22; color: #fff; }
+.u1l1-rowlab { position: absolute; font: 800 22px var(--round); }
+.u1l1-tray { position: absolute; overflow: visible; pointer-events: none; }
+.u1l1-ring { fill: none; stroke: var(--brand2); stroke-width: 3; stroke-dasharray: 7 5; }
+
+/* signs */
+.u1l1-val { position: absolute; font-size: 28px; font-weight: 700; white-space: nowrap; }
+.u1l1-stab { position: absolute; display: grid; grid-auto-rows: 66px; gap: 6px; }
+.u1l1-sth { display: grid; place-items: center; font: 800 26px var(--round); color: var(--muted); }
+.u1l1-stc { display: grid; place-items: center; font: 900 34px var(--round); border-radius: 12px; border: 2px solid var(--line2); background: #fff; transition: background .25s, border-color .25s; }
+.u1l1-stc.u1l1-sp { color: var(--brand2); }
+.u1l1-stc.u1l1-sn { color: var(--red); }
+.u1l1-stc.u1l1-on { background: #fff3d6; border-color: var(--amber); box-shadow: 0 0 0 4px rgba(194, 122, 14, .22); }
+.u1l1-tnote { position: absolute; font-size: 20px; line-height: 1.4; background: var(--brand-soft); border-radius: 10px; padding: 6px 12px; }
+
+/* pattern */
+.u1l1-hlneg { background: #fde3e1 !important; }
+.u1l1-hlpos { background: #e3f4ea !important; }
+
+/* bedmas */
+.u1l1-ladder { position: absolute; display: flex; flex-direction: column; gap: 10px; width: 210px; }
+.u1l1-rung { display: flex; align-items: center; gap: 10px; border: 2px solid var(--line2); border-radius: 12px; padding: 8px 12px; background: #fff; color: var(--muted); font-size: 17px; transition: background .25s, border-color .25s, color .25s; }
+.u1l1-rung b { display: inline-grid; place-items: center; min-width: 46px; height: 40px; border-radius: 10px; background: var(--line2); color: #fff; font: 900 22px var(--round); }
+.u1l1-rung.used b { background: var(--brand2); }
+.u1l1-rung.on { background: #fff3d6; border-color: var(--amber); color: var(--ink); box-shadow: 0 0 0 4px rgba(194, 122, 14, .2); }
+.u1l1-rung.on b { background: var(--amber); }
+.u1l1-bline { position: absolute; display: flex; align-items: center; font-size: 30px; white-space: nowrap; }
+.u1l1-bnote { position: absolute; display: flex; align-items: center; height: 56px; }
+.u1l1-tag { font: 800 14px var(--round); text-transform: uppercase; letter-spacing: .04em; color: var(--amber); background: var(--amber-soft); border-radius: 8px; padding: 3px 8px; }
+.u1l1-op { background: #ffe08a; border-radius: 6px; box-shadow: 0 0 0 3px #ffe08a; }
+.u1l1-new { color: var(--red); }
+.u1l1-final { color: var(--red); font-weight: 700; }
+
+/* comments */
+.u1l1-pok { background: #f6fbf8; border-color: #bfe3cf; }
+.u1l1-slip.u1l1-mark { background: #fde3e1; border-radius: 8px; box-shadow: 0 0 0 2px var(--red); }
+.u1l1-why { display: none; font-size: 16px; color: var(--red); line-height: 1.2; }
+.u1l1-mark .u1l1-why { display: block; }
+.u1l1-slip { padding: 0 6px; }
+
+/* negsq */
+.u1l1-nsp { align-items: center; overflow: visible; }
+.u1l1-nsx { font-size: 54px; margin-top: 50px; position: relative; }
+.u1l1-nsl { font-size: 30px; }
+.u1l1-minus.u1l1-wait { color: var(--red); }
+.u1l1-hug { border: 3.5px solid var(--amber); border-bottom: none; border-radius: 12px 12px 0 0; box-sizing: border-box; }
+.u1l1-hugt { font: 800 16px var(--round); color: var(--amber); white-space: nowrap; }
+
+/* sub */
+.u1l1-sea { position: absolute; overflow: visible; }
+.u1l1-seanum { font: 700 17px var(--round); fill: var(--ink2); }
+.u1l1-sealab { font: italic 600 15px var(--font); fill: #4f7fa7; }
+.u1l1-seamv { font: 800 18px var(--round); }
+.u1l1-pill { position: absolute; font: 800 19px var(--round); border-radius: 10px; padding: 1px 9px; white-space: nowrap; background: #fff; border: 2.5px solid currentColor; }
+.u1l1-pink { color: var(--ink); }
+.u1l1-pred { color: var(--red); }
+.u1l1-stlab { position: absolute; font: 700 15px var(--round); color: var(--muted); white-space: nowrap; }
+.u1l1-stv { writing-mode: vertical-rl; transform: rotate(180deg); }
+.u1l1-pt .bk-td, .u1l1-pt .bk-th { font-size: 22px; }
+.u1l1-gray { color: var(--muted); border-bottom: 1px solid var(--line2); padding-bottom: 2px; }
+.u1l1-nocase { text-transform: none; }
+.u1l1-tag { white-space: nowrap; }

@@ -1,0 +1,157 @@
+/* Math 15 · Unit 2 · Lesson 8 — Scientific Notation: styles used only on this page. */
+.u2l8 { --u2l8-co: #b86e08; --u2l8-pw: #0f6f69; --u2l8-paper: #ffecb3; --u2l8-edge: #c88c14; }
+.u2l8 .chip .katex { font-size: 1em; }
+.u2l8-co { color: var(--u2l8-co); } .u2l8-pw, .u2l8-ex { color: var(--u2l8-pw); }
+.u2l8 .parts.c4 { grid-template-columns: repeat(4, 1fr); }
+.u2l8 .parts.c4 .ans { font-size: 17px; }
+.u2l8-arr { color: var(--brand2); }
+
+/* ---------------- warm-up: Tiny to Titanic ---------------- */
+.u2l8-pics { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; margin: 4px 0 2px; }
+.u2l8-scale { font-size: 13.5px; font-style: italic; color: var(--muted); margin: 0 0 6px; }
+.u2l8-pic { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0; padding: 4px 2px 4px; border: 2px solid transparent; border-radius: 12px; background: #e8f0fc; cursor: pointer; font: inherit; color: var(--ink); transition: border-color .3s, background .3s; }
+.u2l8-pic svg { width: 74px; height: 66px; }
+.u2l8-pl { position: absolute; left: 7px; top: 3px; font: 900 20px var(--round); color: var(--red); }
+.u2l8-pn { font: 700 14.5px var(--round); white-space: nowrap; }
+.u2l8-pc { visibility: hidden; font: 800 13px var(--round); color: #fff; background: var(--u2l8-edge); border-radius: 8px; padding: 0 7px; margin-top: 2px; }
+.u2l8-pic.open { border-color: var(--u2l8-edge); background: #fffaf0; }
+.u2l8-pic.open .u2l8-pc { visibility: visible; animation: fadeUp .3s; }
+.u2l8-cardsh { font: 800 15px var(--round); margin: 2px 0 4px; }
+.u2l8-cardsh .muted { font-weight: 600; font-size: 13.5px; }
+.u2l8-cards { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; }
+.u2l8-card { position: relative; display: grid; place-items: center; height: 48px; background: var(--u2l8-paper); border: 2px solid var(--u2l8-edge); border-radius: 9px; font-size: 17px; transition: box-shadow .3s; }
+.u2l8-cn { position: absolute; left: -7px; top: -9px; width: 21px; height: 21px; border-radius: 50%; background: #fff; border: 1.5px solid var(--u2l8-edge); font: 800 12.5px/18px var(--round); color: #9a6a0c; text-align: center; }
+.u2l8-cl { position: absolute; right: 3px; top: 3px; min-width: 21px; height: 21px; border-radius: 50%; font: 900 13px/21px var(--round); color: #fff; text-align: center; }
+.u2l8-card.hit { box-shadow: 0 0 0 3px rgba(201, 58, 51, .35); }
+.u2l8-card.hit .u2l8-cl { background: var(--red); }
+.u2l8-rulerrow { display: flex; align-items: flex-end; gap: 10px; margin-top: 8px; }
+.u2l8-ruler { flex: 1; height: 100px; background: #fbfaf6; border-radius: 12px; }
+.u2l8-rsvg { display: block; }
+.u2l8-rax { stroke: var(--ink2); stroke-width: 2.4; }
+.u2l8-rtk { stroke: var(--ink2); stroke-width: 1.8; } .u2l8-rtk.z { stroke-width: 3; }
+.u2l8-rtl { font: 600 13.5px var(--font); fill: var(--ink2); } .u2l8-rtl.z { font-weight: 800; fill: var(--ink); }
+.u2l8-rcap { font: 700 11.5px var(--font); fill: var(--muted); letter-spacing: .05em; text-transform: uppercase; }
+.u2l8-rmk { opacity: 0; transition: opacity .4s; }
+.u2l8-rmk.on { opacity: 1; }
+.u2l8-rmkl { stroke: var(--red); stroke-width: 2; }
+.u2l8-rmkc { fill: #fff; stroke: var(--red); stroke-width: 2; }
+.u2l8-rmkt { font: 900 13px var(--round); fill: var(--red); }
+.u2l8-wbtns { display: flex; flex-direction: column; gap: 6px; padding-bottom: 4px; }
+.u2l8-wbtns .pill.small { margin-left: 0; }
+.wf .u2l8-wqs .q-line { margin: 6px 0 0; font-size: 17px; gap: 10px; line-height: 1.36; }
+.wf .u2l8-wqs .q-num { width: 30px; height: 30px; font-size: 16px; }
+.wf .u2l8-wqs .q-line .pill.small { margin-left: 4px; padding: 2px 10px; vertical-align: 1px; }
+.wf .u2l8-wqs .bk-ans { font-size: 16px; line-height: 1.36; margin-top: 2px; }
+.u2l8-wa { margin: 0 0 4px 40px; }
+.wf .u2l8-poll .poll-opts { grid-template-columns: repeat(3, 1fr); }
+.wf .u2l8-poll .opt { font-size: 17px; white-space: nowrap; padding: 6px 8px; }
+.wf .u2l8-poll:not(.revealed) .poll-ans { display: none; }
+.u2l8-social { margin: 10px 0 0 !important; font-size: 18px; font-style: italic; color: var(--ink2); text-align: center; }
+
+/* ---------------- 1–2 ---------------- */
+.u2l8-pair { display: flex; justify-content: center; gap: 70px; font-size: 27px; margin: 2px 0 16px; }
+.u2l8-tens { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin: 0 0 16px; }
+.u2l8-tens > div { display: flex; flex-direction: column; align-items: center; background: #f6f5f1; border-radius: 10px; padding: 6px 0; font-size: 21px; }
+.u2l8-tens > div small { font-size: 17px; color: var(--ink2); }
+.u2l8-tens > div.one { background: #edf1f7; }
+.u2l8-tens > div.neg small { color: #6a4fb0; }
+.u2l8-defl { margin: 6px 0 2px; padding-left: 24px; }
+.u2l8-defl li { margin: 2px 0; }
+.u2l8-yesno { display: grid; grid-template-columns: 1fr 1.4fr; gap: 12px; margin: 0 0 16px; }
+.u2l8-yesno > div { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; border-radius: 12px; padding: 10px 16px; font-size: 22px; }
+.u2l8-yesno > div > b { font: 800 17px var(--round); }
+.u2l8-yesno small { font-size: 16px; color: var(--ink2); margin-left: -12px; }
+.u2l8-yesno .yes { background: #ecf7f1; } .u2l8-yesno .yes > b { color: var(--ok); }
+.u2l8-yesno .no { background: #fff1ef; } .u2l8-yesno .no > b { color: var(--red); }
+.u2l8-recipe { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 0 12px; }
+.u2l8-recipe > div { display: flex; gap: 10px; align-items: flex-start; background: #fff; border: 2px solid var(--line); border-radius: 12px; padding: 8px 12px; font-size: 18px; line-height: 1.35; }
+.u2l8-rn { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: var(--brand2); font: 800 16px var(--round); }
+.u2l8-eg { font-size: 20px; text-align: center; }
+
+/* places */
+.u2l8-pv-h { display: flex; flex-direction: column; align-items: center; background: #f6f5f1; border-radius: 10px; padding: 4px 0; font-size: 21px; }
+.u2l8-pv-h small { font-size: 14px; color: var(--ink2); white-space: nowrap; }
+.u2l8-pv-h.one { background: #edf1f7; }
+.u2l8-pv-h.neg small { color: #6a4fb0; }
+.u2l8-pv-c { border: 2px dashed #d9d3c4; border-radius: 10px; background: #fff; }
+.u2l8-pv-pt { width: 14px; height: 14px; border-radius: 50%; background: var(--red); z-index: 3; }
+.u2l8-pv-ptl { font: 700 13px var(--round); color: var(--red); white-space: nowrap; }
+.u2l8-pv-d { font: 700 56px KaTeX_Main, "Times New Roman", serif; color: var(--u2l8-co); z-index: 2; }
+.u2l8-pv-z { font: 56px KaTeX_Main, "Times New Roman", serif; color: #a7abb4; }
+.u2l8-pv-tag { font: 800 17px var(--round); color: var(--brand2); background: #fbfaf6; border-radius: 8px; padding: 0 6px; white-space: nowrap; }
+.u2l8-pv-tag.left { color: var(--amber); }
+.u2l8-pv-read, .u2l8-pv-sci { display: flex; flex-direction: column; gap: 4px; font-size: 38px; white-space: nowrap; }
+.u2l8-pv-rl { font: 800 14px var(--round); color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.u2l8-pv-sci.done .katex { background: var(--brand-soft); border-radius: 12px; padding: 0 12px; box-shadow: inset 0 0 0 2.5px var(--brand2); }
+
+/* is it scientific notation? */
+.u2l8-is-big { font-size: 46px; white-space: nowrap; }
+.u2l8-is-zone { fill: #e2f3e9; stroke: #9ed2b4; stroke-width: 1.5; }
+.u2l8-is-ax { stroke: var(--ink2); stroke-width: 2.5; }
+.u2l8-is-ah { fill: var(--ink2); }
+.u2l8-is-tk { stroke: var(--ink2); stroke-width: 2; }
+.u2l8-is-tl { font: 600 17px var(--font); fill: var(--ink2); } .u2l8-is-tl.b { font-weight: 800; fill: var(--ok); }
+.u2l8-is-end { stroke: var(--ok); stroke-width: 3; } .u2l8-is-end.closed { fill: var(--ok); } .u2l8-is-end.open { fill: #fff; }
+.u2l8-is-zl { font: 700 17px var(--round); color: var(--ok); white-space: nowrap; }
+.u2l8-is-dot { width: 24px; height: 24px; border-radius: 50%; border: 3px solid #fff; z-index: 3; }
+.u2l8-is-dot.ok { background: var(--u2l8-co); box-shadow: 0 0 0 2px var(--u2l8-co); }
+.u2l8-is-dot.no { background: var(--red); box-shadow: 0 0 0 2px var(--red); }
+.u2l8-is-dl { font-size: 24px; white-space: nowrap; font-weight: 600; }
+.u2l8-is-dl.no { color: var(--red); } .u2l8-is-dl.ok { color: var(--u2l8-co); }
+.u2l8-is-fix { font-size: 34px; white-space: nowrap; }
+.u2l8-is-fix.done .katex { background: var(--brand-soft); border-radius: 12px; padding: 0 12px; box-shadow: inset 0 0 0 2.5px var(--brand2); }
+.u2l8-stamp { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font: 900 34px var(--round); color: #fff; z-index: 3; }
+.u2l8-stamp.ok { background: var(--ok); } .u2l8-stamp.no { background: var(--red); }
+
+/* hop the decimal point (from 10C 2.3) */
+.u2l8-sn-svg { left: 0; top: 0; overflow: visible; pointer-events: none; }
+.u2l8-sn-cell { display: grid; place-items: center; font-family: KaTeX_Main, "Times New Roman", serif; color: var(--ink); transition: color .3s, opacity .3s; }
+.u2l8-sn-cell.lead { color: var(--u2l8-co); font-weight: 700; }
+.u2l8-sn-cell.ph { color: #a7abb4; }
+.u2l8-sn-ring, .u2l8-sn-dot { width: 14px; height: 14px; border-radius: 50%; z-index: 2; }
+.u2l8-sn-ring { border: 3px solid var(--ink); background: #fbfaf6; }
+.u2l8-sn-dot { background: var(--red); box-shadow: 0 0 0 3px rgba(201, 58, 51, .18); }
+.u2l8-sn-dot.ghost { background: var(--ink); box-shadow: none; }
+.u2l8-sn-arc { fill: none; stroke: var(--brand2); stroke-width: 3; stroke-linecap: round; }
+.u2l8-sn-arc.left, .u2l8-sn-head.left { stroke: var(--amber); }
+.u2l8-sn-head { fill: none; stroke: var(--brand2); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.u2l8-sn-tag { font: 800 16px var(--round); color: var(--brand); white-space: nowrap; }
+.u2l8-sn-tag.left { color: var(--amber); }
+.u2l8-sn-task { font-size: 26px; font-weight: 600; }
+.u2l8-sn-task .katex { font-size: 1.1em; }
+.u2l8-sn-legend { font-size: 15px; color: var(--muted); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+.u2l8-sn-ring-i, .u2l8-sn-dot-i { display: inline-block; width: 13px; height: 13px; border-radius: 50%; vertical-align: -1px; }
+.u2l8-sn-ring-i { border: 2.5px solid var(--ink); } .u2l8-sn-dot-i { background: var(--red); }
+.u2l8-sn-lab { width: 210px; font-weight: 800; font-size: 15px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.u2l8-sn-math { font-size: 30px; white-space: nowrap; }
+.u2l8-sn-math.out.done { color: var(--ok); }
+
+/* ladder */
+.u2l8-ld-shelf rect { fill: #eef2f8; transition: fill .3s; }
+.u2l8-ld-shelf.alt rect { fill: #fbf1dc; }
+.u2l8-ld-shelf.alt.on rect { fill: #f6e2b6; }
+.u2l8-ld-shelf.on rect { fill: #dcebf8; }
+.u2l8-ld-ax { stroke: var(--ink2); stroke-width: 2.5; }
+.u2l8-ld-tk { stroke: var(--ink2); stroke-width: 2; }
+.u2l8-ld-tl { font-size: 20px; color: var(--u2l8-pw); white-space: nowrap; }
+.u2l8-ld-tv { font-size: 14px; color: var(--muted); white-space: nowrap; }
+.u2l8-ld-pin { width: 18px; height: 18px; border-radius: 50%; background: var(--red); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--red); z-index: 3; }
+.u2l8-ld-stem { width: 2px; background: var(--red); opacity: .55; }
+.u2l8-ld-lab { display: flex; flex-direction: column; align-items: center; background: #fff; border: 2px solid #f0c3bf; border-radius: 10px; padding: 2px 10px; font-size: 22px; white-space: nowrap; z-index: 2; }
+.u2l8-ld-lab b { font: 800 14px var(--round); color: var(--ink2); }
+.u2l8-ld-lab.sm { font-size: 17px; padding: 1px 6px; }
+.u2l8-ld-lab.sm b { font-size: 12.5px; }
+.u2l8-ld-ord.sm { font-size: 21px; }
+.u2l8-ld-ord { font-size: 30px; white-space: nowrap; background: var(--brand-soft); border-radius: 12px; padding: 4px 16px; }
+
+/* history animation */
+.u2l8h-cap { font: italic 700 22px Georgia, serif; fill: #4a2c14; }
+.u2l8h-note { font: 15px Georgia, serif; fill: #7a4a26; }
+.u2l8h-dig { font: 28px Georgia, serif; fill: #4a2c14; }
+.u2l8h-dig.one { fill: #b07a12; font-weight: 700; }
+.u2l8h-count { font: 700 22px Georgia, serif; fill: #7a4a26; }
+.u2l8h-count.gold { fill: #b07a12; }
+.u2l8h-big { font: 700 64px Georgia, serif; fill: #4a2c14; }
+.u2l8h-exp { font: 700 38px Georgia, serif; fill: #b07a12; }
+.u2l8h-sub { font: italic 18px Georgia, serif; fill: #7a4a26; }
+#u2l8-hist { cursor: pointer; }

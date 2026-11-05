@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unit Review: Number Sense · Math 15 1.8</title>
+<meta name="description" content="Math 15 Unit 1 Lesson 8: the Unit 1 review. Integers and BEDMAS, fractions and decimals, prime factorization with GCF and LCM, the real number sets, perfect powers and estimating roots, and entire and mixed radicals, with mixed practice for the unit test. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u1l8.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u1l8">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 1 Number · Lesson 8</div>
+  <h1>Unit Review: Number Sense</h1>
+  <p class="lede">Every Unit 1 rule on one summary page, then mixed practice for the unit test. Each example below is one row of the <b>toolkit</b>: if one feels shaky, the toolkit tells you which lesson to go back to.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>work with <b>integers</b> and use the <b>order of operations</b> (BEDMAS), including <span class="tex">-n^2</span> versus <span class="tex">(-n)^2</span></li>
+      <li>add, subtract, multiply and divide <b>fractions</b>, and change a decimal to a fraction</li>
+      <li>write a <b>prime factorization</b> and use it to find the <b>GCF</b> and the <b>LCM</b></li>
+      <li>sort a number into <b>every</b> number set it belongs to</li>
+      <li>evaluate perfect squares and cubes, <b>estimate</b> a square root, and convert between <b>entire</b> and <b>mixed radicals</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN1</b> Demonstrate an understanding of factors of whole numbers by determining the prime factors, greatest common factor, least common multiple, square root and cube root.</div>
+  <div class="outcome u1l8-out2"><b>AN2</b> Demonstrate an understanding of irrational numbers by representing, identifying and simplifying irrational numbers, and by ordering irrational numbers.<br><span class="u1l8-today">Today: review of the whole unit (Lessons 1 and 2 are Grade 9 review).</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Which One Doesn't Belong?" id="wu" style="--wf-side: 360px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Which One Doesn’t Belong?</h2>
+  <p class="wf-rule">Each grid has four number cards. Find the card that doesn’t fit! <span class="muted">Tap a card to kick it out.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u1l8-grids">
+      <div class="u1l8-grid"><span class="u1l8-gl">A</span>
+        <button class="u1l8-card" type="button"><span class="tex">7</span></button><button class="u1l8-card" type="button"><span class="tex">11</span></button><button class="u1l8-card" type="button"><span class="tex">15</span></button><button class="u1l8-card" type="button"><span class="tex">13</span></button></div>
+      <div class="u1l8-grid"><span class="u1l8-gl">B</span>
+        <button class="u1l8-card" type="button"><span class="tex">\sqrt{2}</span></button><button class="u1l8-card" type="button"><span class="tex">\pi</span></button><button class="u1l8-card" type="button"><span class="tex">0.5</span></button><button class="u1l8-card" type="button"><span class="tex">\sqrt{3}</span></button></div>
+      <div class="u1l8-grid"><span class="u1l8-gl">C</span>
+        <button class="u1l8-card" type="button"><span class="tex">2\sqrt{3}</span></button><button class="u1l8-card" type="button"><span class="tex">\sqrt{12}</span></button><button class="u1l8-card" type="button"><span class="tex">\sqrt{4\cdot 3}</span></button><button class="u1l8-card" type="button"><span class="tex">3\sqrt{2}</span></button></div>
+      <div class="u1l8-grid d"><span class="u1l8-gl">D</span>
+        <button class="u1l8-card" type="button"><span class="tex">16</span></button><button class="u1l8-card" type="button"><span class="tex">27</span></button><button class="u1l8-card" type="button"><span class="tex">-9</span></button><button class="u1l8-card" type="button"><span class="tex">\sqrt{12}</span></button></div>
+    </div>
+    <div class="u1l8-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Grid A: which card is <b>not</b> a prime number? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>15</b> <span class="tex">=3\times5</span>, so it is composite. 7, 11 and 13 have only the factors 1 and themselves.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Grid B: only <b>one</b> card is rational. Which one? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>0.5</b> <span class="tex">=\tfrac{5}{10}=\tfrac12</span>, a terminating decimal. <span class="tex">\sqrt2</span>, <span class="tex">\pi</span> and <span class="tex">\sqrt3</span> never end and never repeat.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Grid C: three cards are the <b>same number</b> in disguise. Which one is different? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b><span class="tex">3\sqrt2</span></b>. <span class="tex">\sqrt{12}=\sqrt{4\cdot3}=2\sqrt3\approx3.46</span>, but <span class="tex">3\sqrt2=\sqrt{18}\approx4.24</span>.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one: Grid D.</b> No hint this time. For how many of its cards can you give a <b>good math reason</b> why <i>that</i> card doesn’t belong? <b>Guess first.</b></div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b> just 1</div>
+        <div class="opt"><b>B</b> 2</div>
+        <div class="opt"><b>C</b> 3</div>
+        <div class="opt right"><b>D</b> all 4</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D: all 4 cards!</b> Every card has a solid reason:<br><b>16</b>: the only <b>perfect square</b> (<span class="tex">4^2</span>), and the only even number.<br><b>27</b>: the only <b>perfect cube</b> (<span class="tex">3^3</span>).<br><b>−9</b>: the only <b>negative</b>: an integer, but not whole or natural.<br><b><span class="tex">\sqrt{12}</span></b>: the only <b>irrational</b> number (<span class="tex">\approx3.46</span>).<br>What matters is the <b>reason</b>. And no, <span class="tex">-9</span> is not a perfect square: <span class="tex">(-3)^2=+9</span>.</div>
+    </div>
+  </div></div>
+  <p class="u1l8-social">Pick a card in Grid D and defend it to a neighbour. Can they argue for a <b>different</b> card?</p>
+</section>
+
+<!-- ================= 1. Toolkit ================= -->
+<section class="card" data-ink="kit" data-section="1. The Unit 1 Toolkit">
+  <div class="sec-h"><span class="badge">1</span><h2>The Unit 1 Toolkit: Everything from Lessons 1–7</h2></div>
+  <p class="small muted">Say each example’s answer before you tap it.</p>
+  <div class="u1l8-kit">
+    <div class="u1l8-kh">Topic</div><div class="u1l8-kh">The rule</div><div class="u1l8-kh">Example</div>
+    <div class="u1l8-kt"><b>Integers &amp; BEDMAS</b><a href="../l1/">Lesson 1</a></div>
+    <div class="u1l8-kr">Same signs add and keep the sign; different signs subtract and keep the sign of the larger. Subtracting is adding the opposite. Like signs multiply/divide to <span class="tex">+</span>, unlike to <span class="tex">-</span>. Order: brackets, exponents, <span class="tex">\times\div</span> left to right, <span class="tex">+-</span> left to right. Brackets matter: <span class="tex">-n^{2}\neq(-n)^{2}</span>.</div>
+    <div class="u1l8-ke"><span class="tex">-5-(-8)=</span><span data-reveal><span class="tex">3</span></span><br><span class="tex">(-6)(4)=</span><span data-reveal><span class="tex">-24</span></span><br><span class="tex">-4^{2}=</span><span data-reveal><span class="tex">-16</span></span> but <span class="tex">(-4)^{2}=</span><span data-reveal><span class="tex">16</span></span></div>
+    <div class="u1l8-kt"><b>Fractions &amp; decimals</b><a href="../l2/">Lesson 2</a></div>
+    <div class="u1l8-kr">Adding or subtracting needs a common denominator; multiplying does not (cancel common factors first); dividing means multiply by the reciprocal. Fraction to decimal: divide. Terminating decimal to fraction: place value, then reduce.</div>
+    <div class="u1l8-ke"><span class="tex">\tfrac{2}{3}+\tfrac{1}{4}=</span><span data-reveal><span class="tex">\tfrac{11}{12}</span></span><br><span class="tex">\tfrac{3}{4}\div\tfrac{1}{2}=\tfrac{3}{4}\times\tfrac{2}{1}=</span><span data-reveal><span class="tex">\tfrac{3}{2}</span></span><br><span class="tex">0.35=\tfrac{35}{100}=</span><span data-reveal><span class="tex">\tfrac{7}{20}</span></span></div>
+    <div class="u1l8-kt"><b>Primes, GCF, LCM</b><a href="../l3/">Lesson 3</a></div>
+    <div class="u1l8-kr">A factor tree breaks a composite number into one unique product of primes. The <b>GCF</b> multiplies only the primes in <b>both</b> numbers, at the <b>lowest</b> shared power; the <b>LCM</b> multiplies every prime in <b>either</b> number, at the <b>highest</b> power present.</div>
+    <div class="u1l8-ke"><span class="tex">90=</span><span data-reveal><span class="tex">2\times3^{2}\times5</span></span><br>GCF<span class="tex">(12,18)=</span><span data-reveal><span class="tex">2\times3=6</span></span><br>LCM<span class="tex">(12,18)=</span><span data-reveal><span class="tex">2^{2}\times3^{2}=36</span></span></div>
+    <div class="u1l8-kt"><b>The number sets</b><a href="../l4/">Lesson 4</a></div>
+    <div class="u1l8-kr">The sets nest: <span class="tex">N\subset W\subset I\subset Q\subset R</span>, and <span class="tex">\overline{Q}</span> (irrational: a decimal that never ends and never repeats) holds the only reals outside that chain. A root is rational only when the radicand is a perfect power.</div>
+    <div class="u1l8-ke"><span class="tex">7</span>: <span data-reveal><span class="tex">N,W,I,Q,R</span></span><br><span class="tex">-\sqrt{25}=-5</span>: <span data-reveal><span class="tex">I,Q,R</span></span><br><span class="tex">\sqrt{20}</span>: <span data-reveal><span class="tex">\overline{Q},R</span></span></div>
+    <div class="u1l8-kt"><b>Radicals</b><a href="../l5/">Lessons 5–7</a></div>
+    <div class="u1l8-kr">Entire to mixed: pull out the largest perfect <span class="tex">n</span>th-power factor (use prime factorization when it is not obvious). Mixed to entire: raise the coefficient to the power <span class="tex">n</span> and multiply it back into the radicand. An odd index absorbs a negative; an even index cannot.</div>
+    <div class="u1l8-ke"><span class="tex">\sqrt{80}=\sqrt{16}\cdot\sqrt{5}=</span><span data-reveal><span class="tex">4\sqrt{5}</span></span><br><span class="tex">\sqrt[3]{54}=</span><span data-reveal><span class="tex">3\sqrt[3]{2}</span></span><br><span class="tex">6\sqrt{5}=\sqrt{36\times5}=</span><span data-reveal><span class="tex">\sqrt{180}</span></span></div>
+  </div>
+</section>
+
+<section class="card" data-ink="ref" data-section="Reference strip">
+  <h3 class="sub">Reference strip: perfect squares and perfect cubes</h3>
+  <p class="small muted">Tap a row to highlight it.</p>
+  <div class="u1l8-ptable" id="u1l8-ptable"></div>
+</section>
+
+<!-- ================= Integers and BEDMAS ================= -->
+<section class="card" data-ink="s2" data-section="2. Integers and BEDMAS">
+  <div class="sec-h"><span class="badge">2</span><h2>Integers and the Order of Operations</h2></div>
+  <div class="u1l8-bedmas">
+    <div><b class="n">B</b>Brackets</div><div><b class="n">E</b>Exponents</div><div><b class="n">D M</b><span class="tex">\times\ \div</span> left to right</div><div><b class="n">A S</b><span class="tex">+\ -</span> left to right</div>
+  </div>
+  <div class="explainer" data-explainer="bedmas"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Integers and order of operations</h3></div>
+  <p class="q">Evaluate each expression, showing every step in order.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">-15+6\times(-3)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">Multiply first:<br><span class="tex">=-15+(-18)</span><br><span class="tex">=\boldsymbol{-33}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(4-9)^{2}\div(-5)+2</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">=(-5)^{2}\div(-5)+2</span><br><span class="tex">=25\div(-5)+2</span><br><span class="tex">=-5+2</span><br><span class="tex">=\boldsymbol{-3}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">-6^{2}+(-6)^{2}</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">No bracket, so only the 6 is squared:<br><span class="tex">=-36+36</span><br><span class="tex">=\boldsymbol{0}</span></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space" type="button">+ More space</button>
+</section>
+
+<!-- ================= Fractions and decimals ================= -->
+<section class="card" data-ink="s3" data-section="3. Fractions and Decimals">
+  <div class="sec-h"><span class="badge">3</span><h2>Fractions and Decimals</h2></div>
+  <p><b>Adding or subtracting</b> needs a common denominator: cut the pieces to the same size first.</p>
+  <div class="explainer" data-explainer="bars"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Multiply, divide, decimals">
+  <h3 class="sub">Multiplying, dividing, and decimals to fractions</h3>
+  <p><b>Multiplying</b> needs no common denominator: cancel common factors first. <b>Dividing</b> means multiply by the reciprocal. A terminating <b>decimal</b> becomes a fraction by place value, then reduce.</p>
+  <div class="explainer" data-explainer="cancelDec"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Fractions and decimals</h3></div>
+  <p class="q">Evaluate, using the correct order of operations. Cancel common factors first in (b).</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">\dfrac{5}{6}-\dfrac{1}{4}</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">LCD <span class="tex">=12</span>:<br><span class="tex">=\frac{10}{12}-\frac{3}{12}</span><br><span class="tex">=\boldsymbol{\frac{7}{12}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{3}{10}\times\dfrac{4}{9}</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">Cancel 3 with 9, and 4 with 10:<br><span class="tex">=\frac{1}{5}\times\frac{2}{3}</span><br><span class="tex">=\boldsymbol{\frac{2}{15}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\dfrac{2}{3}+\dfrac{1}{2}\times\dfrac{1}{4}</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">Multiply first:<br><span class="tex">=\frac{2}{3}+\frac{1}{8}</span><br><span class="tex">=\frac{16}{24}+\frac{3}{24}</span><br><span class="tex">=\boldsymbol{\frac{19}{24}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) Convert <span class="tex">0.35</span> to a fraction in lowest terms.</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">35 hundredths:<br><span class="tex">0.35=\frac{35}{100}</span><br><span class="tex">=\boldsymbol{\frac{7}{20}}</span> (divide by 5)</div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space" type="button">+ More space</button>
+</section>
+
+<!-- ================= Primes, GCF, LCM ================= -->
+<section class="card" data-ink="s4" data-section="4. Primes, GCF and LCM">
+  <div class="sec-h"><span class="badge">4</span><h2>Prime Factorization, GCF, and LCM</h2></div>
+  <p>Split a number into any two factors, and keep splitting until every branch ends in a <b>prime</b>. Every way of splitting ends with the <b>same</b> primes. <span class="muted">Tap a number in the tree to split it.</span></p>
+  <div class="u1l8-treebar no-ink"><span class="muted">Start with:</span>
+    <button class="pill small on" type="button" data-u1l8-tree="90">90 <span class="u1l8-tag">Ex. 3(a)</span></button>
+    <button class="pill small" type="button" data-u1l8-tree="40">40</button>
+    <button class="pill small" type="button" data-u1l8-tree="60">60</button>
+    <button class="pill small" type="button" data-u1l8-tree="72">72</button>
+  </div>
+  <div class="u1l8-tree" id="u1l8-tree"></div>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. GCF and LCM: a Venn of primes">
+  <h3 class="sub">GCF and LCM, straight from the primes</h3>
+  <p>Put each number’s primes in its own circle; primes they <b>share</b> go in the overlap. <b>GCF</b> = multiply the overlap. <b>LCM</b> = multiply everything in the picture.</p>
+  <div class="explainer" data-explainer="venn"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Prime factorization, GCF, and LCM</h3></div>
+  <p class="q">Use prime factorization for each.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Find the prime factorization of <span class="tex">90</span>.</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">90=2\times45</span><br><span class="tex">=2\times3\times15</span><br><span class="tex">=2\times3\times3\times5</span><br><span class="tex">=\boldsymbol{2\times3^{2}\times5}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Find the GCF of <span class="tex">40</span> and <span class="tex">60</span>.</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">40=2^{3}\times5</span><br><span class="tex">60=2^{2}\times3\times5</span><br>Shared primes, lowest power:<br>GCF <span class="tex">=2^{2}\times5=\boldsymbol{20}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Find the LCM of <span class="tex">9</span> and <span class="tex">15</span>.</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">9=3^{2}</span><br><span class="tex">15=3\times5</span><br>Every prime, highest power:<br>LCM <span class="tex">=3^{2}\times5=\boldsymbol{45}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space" type="button">+ More space</button>
+</section>
+
+<!-- ================= Number sets ================= -->
+<section class="card" data-ink="s5" data-section="5. The Number Sets">
+  <div class="sec-h"><span class="badge">5</span><h2>Classifying Real Numbers</h2></div>
+  <p>Drop each number into the <b>smallest</b> set it fits. It then belongs to that set <b>and every set around it</b>. Simplify first: <span class="tex">-\sqrt{25}</span> is really <span class="tex">-5</span>.</p>
+  <div class="explainer" data-explainer="sets"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Classifying real numbers</h3></div>
+  <p class="q">Place a checkmark in <b>every</b> set that each number below belongs to. <span class="muted">Tap a box to tick it.</span></p>
+  <div class="part u1l8-clspart">
+    <table class="u1l8-cls">
+      <tr><th>Number</th><th><span class="tex">N</span></th><th><span class="tex">W</span></th><th><span class="tex">I</span></th><th><span class="tex">Q</span></th><th><span class="tex">\overline{Q}</span></th><th><span class="tex">R</span></th>
+        <th class="gap">Number</th><th><span class="tex">N</span></th><th><span class="tex">W</span></th><th><span class="tex">I</span></th><th><span class="tex">Q</span></th><th><span class="tex">\overline{Q}</span></th><th><span class="tex">R</span></th></tr>
+      <tr data-u1l8-row="-10|001101 36|111101"></tr>
+      <tr data-u1l8-row="\dfrac{5}{9}|000101 -\sqrt{81}|001101"></tr>
+      <tr data-u1l8-row="\sqrt{20}|000011 0.\overline{27}|000101"></tr>
+    </table>
+    <div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">-\sqrt{81}=-9</span> and <span class="tex">36</span> are exact, so they are integers; <span class="tex">\sqrt{20}\approx4.472\ldots</span> never ends or repeats, so it is irrational; <span class="tex">0.\overline{27}</span> repeats, so it is rational.</div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space" type="button">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u1l8"></section>
+
+<!-- ================= Perfect powers and estimating ================= -->
+<section class="card" data-ink="s6" data-section="6. Perfect Powers and Estimating Roots">
+  <div class="sec-h"><span class="badge">6</span><h2>Perfect Powers and Estimating Roots</h2></div>
+  <p>A perfect square or cube has a whole-number root: <b>use the reference strip</b>. Any other square root is <b>trapped</b> between two consecutive whole numbers: find the perfect squares just below and just above, then see which one it is nearer to.</p>
+  <div class="explainer" data-explainer="estimate"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Perfect powers and estimating roots</h3></div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Evaluate <span class="tex">\sqrt{100}</span> and <span class="tex">\sqrt[3]{216}</span> mentally.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">10\times10=100</span>, so <span class="tex">\sqrt{100}=\boldsymbol{10}</span>.<br><span class="tex">6\times6\times6=216</span>, so <span class="tex">\sqrt[3]{216}=\boldsymbol{6}</span>.</div></div></div>
+    <div class="part"><div class="pl">(b) Estimate <span class="tex">\sqrt{70}</span>: state the two consecutive whole numbers it lies between, state which one it is closer to, and give a one-decimal estimate.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">64&lt;70&lt;81</span>, so <span class="tex">\boldsymbol{8}&lt;\sqrt{70}&lt;\boldsymbol{9}</span>.<br><span class="tex">70-64=6</span> but <span class="tex">81-70=11</span>, so it is closer to <b>8</b>.<br>Estimate: <span class="tex">\sqrt{70}\approx\boldsymbol{8.4}</span><br><span class="small muted">Check: <span class="tex">8.4^{2}=70.56</span>, just over 70. ✓</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space" type="button">+ More space</button>
+</section>
+
+<!-- ================= Radicals ================= -->
+<section class="card" data-ink="s7" data-section="7. Simplifying Radicals">
+  <div class="sec-h"><span class="badge">7</span><h2>Simplifying Radicals</h2></div>
+  <p>The index is the <b>group size</b>: pairs for a square root, groups of three for a cube root, four for a fourth root. Each full group of equal prime factors comes out as <b>one</b> number. Going back in, the coefficient goes in <b>as its <span class="tex">n</span>th power</b>.</p>
+  <div class="explainer" data-explainer="radicals"></div>
+</section>
+
+<section class="card example" data-ink="ex6" data-section="Examples 6 and 7">
+  <div class="ex-head"><span class="ex-tag">Examples 6 and 7</span><h3>Simplifying radicals</h3></div>
+  <p class="q">Write each radical in the form asked for, in simplest form.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl"><b>6.</b> (a) Convert <span class="tex">\sqrt{80}</span> to a mixed radical.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">Largest square factor of 80 is 16:<br><span class="tex">\sqrt{80}=\sqrt{16}\times\sqrt{5}</span><br><span class="tex">=\boldsymbol{4\sqrt{5}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Use prime factorization to convert <span class="tex">\sqrt{147}</span> to a mixed radical.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">147=3\times7^{2}</span><br><span class="tex">\sqrt{147}=\sqrt{7^{2}}\times\sqrt{3}</span><br><span class="tex">=\boldsymbol{7\sqrt{3}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Convert <span class="tex">6\sqrt{5}</span> to an entire radical.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">Square the coefficient: <span class="tex">6^{2}=36</span>.<br><span class="tex">6\sqrt{5}=\sqrt{36\times5}</span><br><span class="tex">=\boldsymbol{\sqrt{180}}</span></div></div></div>
+  </div>
+  <div class="parts c3">
+    <div class="part"><div class="pl"><b>7.</b> (a) Convert <span class="tex">\sqrt[3]{135}</span> to a mixed radical.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">135=27\times5</span> and 27 is a perfect cube:<br><span class="tex">\sqrt[3]{135}=\sqrt[3]{27}\times\sqrt[3]{5}</span><br><span class="tex">=\boldsymbol{3\sqrt[3]{5}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Convert <span class="tex">3\sqrt[3]{4}</span> to an entire radical.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">Index 3, so cube the coefficient: <span class="tex">3^{3}=27</span>.<br><span class="tex">3\sqrt[3]{4}=\sqrt[3]{27\times4}</span><br><span class="tex">=\boldsymbol{\sqrt[3]{108}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Convert <span class="tex">\sqrt[4]{162}</span> to a mixed radical.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">162=81\times2</span> and <span class="tex">81=3^{4}</span>:<br><span class="tex">\sqrt[4]{162}=\sqrt[4]{81}\times\sqrt[4]{2}</span><br><span class="tex">=\boldsymbol{3\sqrt[4]{2}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex6-space"></div>
+  <button class="more" data-more="ex6-space" type="button">+ More space</button>
+</section>
+
+<!-- ================= Challenges ================= -->
+<section class="card example" data-ink="ch1" data-section="Challenges 1 and 2">
+  <div class="ex-head"><span class="ex-tag">Challenges 1 and 2</span><h3>Mixed skills</h3></div>
+  <div class="parts c2">
+    <div class="part"><div class="pl"><b>1.</b> Simplify <span class="tex">\sqrt{242}</span> to a mixed radical. Then state whether the simplified value is rational or irrational, and explain how you know.</div><div class="work" style="--h:430px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">242=2\times11^{2}</span>, so 121 is the largest square factor:<br><span class="tex">\sqrt{242}=\sqrt{121}\times\sqrt{2}=\boldsymbol{11\sqrt{2}}</span><br>It is <b>irrational</b>. <span class="tex">\sqrt2</span> is left over, and 2 is not a perfect square, so <span class="tex">\sqrt{2}=1.41421356\ldots</span> never ends and never repeats. Multiplying by 11 can’t fix that, so <span class="tex">11\sqrt2</span> can’t be written as a fraction of two integers.</div></div></div>
+    <div class="u1l8-ch2">
+      <div class="part"><div class="pl"><b>2.</b> A rectangular field measuring <span class="tex">75</span> m by <span class="tex">90</span> m is going to be tiled with the largest possible identical square sections, with no leftover strip along either side.<br>(a) Use the GCF of <span class="tex">75</span> and <span class="tex">90</span> to find the side length of the largest possible square section.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">75=3\times5^{2}</span>, <span class="tex">90=2\times3^{2}\times5</span><br>GCF <span class="tex">=3\times5=15</span>, so the squares are <b>15 m</b> on a side.<br><span class="small muted">Check: <span class="tex">75\div15=5</span> and <span class="tex">90\div15=6</span>, both whole. ✓</span></div></div></div>
+      <div class="part"><div class="pl">(b) A second square section has an area of <span class="tex">75\text{ m}^{2}</span>. Is its side length rational or irrational? Estimate it to the nearest tenth of a metre.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">Side <span class="tex">=\sqrt{75}</span>, and 75 is not a perfect square, so it is <b>irrational</b>.<br><span class="tex">\sqrt{75}=5\sqrt{3}</span>, with <span class="tex">64&lt;75&lt;81</span>, so it is between 8 and 9.<br><span class="tex">\sqrt{75}\approx\boldsymbol{8.7}</span> m <span class="small muted">Check: <span class="tex">8.7^{2}=75.69</span>. ✓</span></div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ch-space"></div>
+  <button class="more" data-more="ch-space" type="button">+ More space</button>
+</section>
+
+<section class="card" data-ink="chk" data-section="Challenge 2 check">
+  <h3 class="sub">Challenge 2 check: the biggest square that fits</h3>
+  <div class="explainer" data-explainer="field"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Fixed rules, same answer.</b> Signs follow the integer rules, and BEDMAS sets the order. Brackets matter: <span class="tex">-4^2=-16</span> but <span class="tex">(-4)^2=16</span>.</div>
+    <div><b>Fractions:</b> common denominator to add or subtract; cancel, then multiply; flip and multiply to divide. Fractions and decimals are the same numbers written two ways.</div>
+    <div><b>Primes first.</b> Every whole number is one product of primes. GCF = the <b>shared</b> primes; LCM = <b>every</b> prime, highest power.</div>
+    <div><b>Sets and roots.</b> <span class="tex">N\subset W\subset I\subset Q\subset R</span>, irrationals beside the rationals. A radical simplifies by pulling out its largest perfect square (or cube, …).</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u1l8">
+    <div><div class="kicker">Your turn</div><b>Assignment 8 — Unit Review: Number Sense</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <div class="u1l8-review">
+    <div class="u1l8-review-h"><span class="kicker">Up next</span><b>Unit 1 test.</b> <span class="muted">Shaky on an idea today? Go back to its lesson.</span></div>
+    <div class="u1l8-review-grid">
+      <a href="../l1/"><span class="rn">1.1</span>Integers and order of operations <small>Example 1</small></a>
+      <a href="../l2/"><span class="rn">1.2</span>Fractions and decimals <small>Example 2</small></a>
+      <a href="../l3/"><span class="rn">1.3</span>Prime factorization, GCF, LCM <small>Example 3, Challenge 2(a)</small></a>
+      <a href="../l4/"><span class="rn">1.4</span>Classifying real numbers <small>Example 4, Challenges 1, 2(b)</small></a>
+      <a href="../l5/"><span class="rn">1.5</span>Perfect powers, estimating roots <small>Example 5, Challenge 2(b)</small></a>
+      <a href="../l6/"><span class="rn">1.6</span>Entire and mixed radicals <small>Example 6, Challenge 1</small></a>
+      <a href="../l7/"><span class="rn">1.7</span>Higher-index radicals <small>Example 7</small></a>
+      <div class="test"><span class="rn">Test</span>Unit 1 test: AN1, AN2 <small>no calculator · every idea from today’s review</small></div>
+    </div>
+  </div>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u1l8.js';
+  boot({ key: 'u1l8', homeHref: '../../', title: '1.8 Unit 1 Review' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>
