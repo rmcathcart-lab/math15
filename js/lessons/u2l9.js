@@ -17,7 +17,7 @@
     'neg-exp-sign': 'Read a negative exponent as a negative answer', 'no-recip': 'Forgot the reciprocal (negative exponent)',
     'times-exp': 'Multiplied the base by the exponent', swap: 'Swapped the root index and the power', 'root-only': 'Took the root but not the power',
     'no-root': 'Forgot the root (used the numerator only)', 'square-root': 'Used a square root for every denominator',
-    entire: 'Not written as an entire radical', 'root-first': 'Not written root-first', 'coef-inside': 'Moved the coefficient under the radical',
+    entire: 'Not written as an entire radical', 'u2l9-coef-root': 'Moved the coefficient under the radical as an entire radical (radical form keeps it outside)', 'root-first': 'Not written root-first', 'coef-inside': 'Moved the coefficient under the radical',
     'coef-outside': 'Left the bracketed coefficient outside the radical', 'coef-not-powered': 'Didn’t raise the coefficient to the power', 'coef-times': 'Multiplied the coefficient by the exponent',
     'coef-flipped': 'Moved the coefficient to the denominator too', 'same-base': 'Used the number itself as the base',
     exponent: 'Used a different exponent', 'six-faces': 'Forgot the cube has 6 faces', 'not-squared': 'Didn’t square the edge for the area',
@@ -525,6 +525,7 @@
     var v = r.pick(['b', 'b', 'x', 'a', 'm', 'y', 'k']);
     var g = pickWhere(r, function () { return [r.pick([[1, 2], [1, 3], [2, 3], [1, 4], [1, 5]]), r.pick([[1, 2], [1, 3], [1, 4], [1, 6], [1, 5], [2, 5], [3, 4]]), r.int(2, 5), r.int(2, 5)]; },
       function (x) { var e = qadd(x[0], x[1]); return x[0][1] !== x[1][1] && e[1] > 1 && e[0] < e[1] && x[2] + x[3] !== x[2] * x[3]; }) || [[1, 2], [1, 4], 2, 3];
+    if (r.chance(0.15)) { v = 'b'; g = [[1, 2], [1, 4], 2, 3]; }
     var a = Q(g[0]), b = Q(g[1]), c1 = g[2], c2 = g[3], C = c1 * c2, e = qadd(a, b), m = e[0], n = e[1];
     var pr = c1 + pw(v, a) + '\\times ' + c2 + pw(v, b), powT = C + pw(v, e), radT = C + rootTex(n, m === 1 ? v : v + '^{' + m + '}');
     var pchk = K.expo(powT, { form: 'power', diag: function (an) {
@@ -534,11 +535,17 @@
       return null;
     } });
     var rchk = convCheck(radT, { form: 'radical', index: n, cands: [[C + rootTex(m, v + '^{' + n + '}'), 'swap', 'The <b>denominator</b> ' + t(n) + ' is the index of the root and the <b>numerator</b> ' + t(m) + ' is the power.'], [(c1 + c2) + rootTex(n, m === 1 ? v : v + '^{' + m + '}'), 'coef-added', 'Multiply the coefficients: ' + t(c1 + '\\times ' + c2 + '=' + C) + '.'], [rootTex(n, C + (m === 1 ? v : v + '^{' + m + '}')), 'coef-inside', 'The exponent belongs to ' + t(v) + ' only, so ' + t(C) + ' stays <b>outside</b> the radical.']] });
+    var rchk0 = rchk;
+    rchk = function (resp) {   /* radical form keeps the coefficient outside: an entire radical such as ⁴√(1296b³) is the right value in the wrong form */
+      var res = rchk0(resp); if (res.v !== 'correct') return res;
+      var a = K.read(resp); if (!a.res && strip(a.ast).t === 'root') return form('u2l9-coef-root', 'Right value — but in radical form only ' + t(v) + ' goes under the root; the coefficient ' + t(C) + ' stays outside: ' + t(radT) + '.');
+      return res;
+    };
     var p = P.fields(t(pr), [{ name: 'Power', label: 'power', before: t('='), mode: 'math', keys: 'expo', vars: [v] }, { name: 'Radical form', label: 'radical form', before: t('='), mode: 'math', keys: 'expo', vars: [v] }], [pchk, rchk], [powT, radT],
       t(pr + '=' + powT + '=' + radT),
       'Multiply the coefficients and <b>add</b> the exponents (product law):<br>' + t(pr + '=(' + c1 + '\\times ' + c2 + ')' + v + '^{' + eS(a) + '+' + eS(b) + '}') + ', and ' + t(expSum(a, b, '+').join('=')) + ', so the power is ' + t(powT) + '.<br>Radical form — the denominator ' + t(n) + ' is the index, the numerator ' + t(m) + ' the power, and the ' + t(C) + ' stays outside: ' + t(powT + '=' + radT) + '.',
       ['Coefficients multiply; exponents add (common denominator).', 'In ' + t('x^{m/n}') + ' the denominator ' + t('n') + ' is the index of the root and ' + t('m') + ' is the power.'], '2-form product ' + pr);
-    p.bad = [[(c1 + c2) + pw(v, e), radT], [powT, C + rootTex(m, v + '^{' + n + '}')]];
+    p.bad = [[(c1 + c2) + pw(v, e), radT], [powT, C + rootTex(m, v + '^{' + n + '}')], [powT, rootTex(n, F(Math.pow(C, n)) + (m === 1 ? v : v + '^{' + m + '}'))]];
     return p;
   }
 
@@ -948,7 +955,7 @@
       { num: '13', stem: '', parts: [{ id: '13', level: 'PRG', make: q13 }] },
       { num: '14', stem: '', parts: [{ id: '14', level: 'ADV', make: q14 }] },
       { num: '15', stem: 'Simplify. Leave your answer as a power with a positive exponent.', parts: [
-        { id: '15', level: 'PRG', make: function (r) { var ab = pickWhere(r, function () { return [r.pick([[1, 2], [1, 3], [2, 3], [1, 4], [3, 4], [1, 5], [2, 5]]), r.pick([[1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [2, 3]])]; }, function (x) { return x[0][1] !== x[1][1] && gcd(x[0][1], x[1][1]) === 1 && qadd(x[0], x[1])[1] > 1; }) || [[1, 2], [1, 3]]; return prodPart(r.pick(LETS), ab[0], ab[1]); } }] },
+        { id: '15', level: 'PRG', make: function (r) { var ab = pickWhere(r, function () { return [r.pick([[1, 2], [1, 3], [2, 3], [1, 4], [3, 4], [1, 5], [2, 5]]), r.pick([[1, 2], [1, 3], [1, 4], [1, 5], [1, 6], [2, 3]])]; }, function (x) { return x[0][1] !== x[1][1] && gcd(x[0][1], x[1][1]) === 1 && qadd(x[0], x[1])[1] > 1 && !(x[0][0] === 1 && x[1][0] === 1 && x[0][1] * x[1][1] === 6); }) || [[2, 3], [1, 4]]; if (r.chance(0.15)) ab = [[2, 3], [1, 4]]; return prodPart(r.chance(0.15) ? 'a' : r.pick(LETS), ab[0], ab[1]); } }] },
       { num: '16', stem: 'Simplify. Write your answer as a power with a positive exponent, and then in radical form.', parts: [{ id: '16', level: 'ADV', make: q16 }] }
     ],
     extra: EXTRA

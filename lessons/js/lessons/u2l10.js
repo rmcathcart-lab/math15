@@ -621,7 +621,7 @@ standup('u2l10', (() => {
   const big = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\\,');
   // the assignment's own questions (signatures) are left out
   const AV = new Set(['P|5|2|5|2', 'P|2|3|2|4', 'PV|8|3|1|5', 'PV|4|2|5|3', 'PV|3|1|7|4', 'QN|9|6|4', 'QV|1|12|1|5', 'PPN|3|2|3', 'PPV|4|3', 'PRV|5|2', 'PRV|2|4', 'PRV|-3|2', 'PQ1|3|2', 'PQ2|3|3',
-    'Z|7', 'ZN|4', 'ZC|9', 'ZB|9', 'NN|6|2', 'NR|4|3', 'NV|8|2', 'NRV|5|4', 'SC|58000', 'SC|0.00047', 'SS|6.3|4', 'SS|9|-5']);
+    'Z|7', 'ZN|4', 'ZC|9', 'ZB|9', 'ZP|12', 'ZP|9', 'NN|6|2', 'NR|4|3', 'NV|8|2', 'NRV|5|4', 'SC|58000', 'SC|0.00047', 'SS|6.3|4', 'SS|9|-5']);
   return {
     intro: 'At your whiteboard station, no calculator: name the law, then simplify. Final answers with positive exponents.',
     levels: {

@@ -1,6 +1,6 @@
 /* Math 15 · Unit 2 · Lesson 8 — Scientific Notation.
  * Warm-up (Tiny to Titanic: six pictures, six shuffled size cards, a powers-of-ten ruler they line up on) and the explainers:
- *   places     (place values are powers of ten: a digit slides left ×10, right ×10⁻¹ — the notes' 0.0004 and the hair 0.00006),
+ *   places     (place values are powers of ten: a digit slides left ×10, right ×10⁻¹ — the notes' 0.0004 and the hair 0.00007),
  *   isSci      (is it scientific notation? the coefficient must land in 1 ≤ a < 10 on a number line; fix 52 × 10³ and 0.5 × 10⁻²),
  *   toSci      (hop the decimal point: big numbers → positive exponent — notes 47 000, Example 1 checks; from 10C 2.3),
  *   toSciSmall (the same for numbers less than 1 → negative exponent — notes 0.0004, Example 2 checks),
@@ -106,13 +106,13 @@ function mountTiny() {
 const PL = {
   L: { d: '4', hops: 4, dir: 1, lbl: '4\\ \\text{moves left}' },
   R: { d: '4', hops: 4, dir: -1, lbl: '4\\ \\text{moves right}' },
-  H: { d: '6', hops: 5, dir: -1, lbl: '\\text{a hair: }0.00006' }
+  H: { d: '7', hops: 5, dir: -1, lbl: '\\text{a hair: }0.00007' }
 };
 const places = {
   title: 'Every place is a power of ten',
   height: 400,
   choices: ['L', 'R', 'H'].map((k) => ({ v: k, label: T(PL[k].lbl) })),
-  intro: (k) => (k === 'H' ? `Where does the 6 in ${T('0.00006')} sit? Slide it there one place at a time.` : `Slide the digit ${PL[k].d} one place at a time, to the <b>${PL[k].dir > 0 ? 'left' : 'right'}</b>. Watch its value.`),
+  intro: (k) => (k === 'H' ? `Where does the 7 in ${T('0.00007')} sit? Slide it there one place at a time.` : `Slide the digit ${PL[k].d} one place at a time, to the <b>${PL[k].dir > 0 ? 'left' : 'right'}</b>. Watch its value.`),
   make(stage, k, ex) {
     const it = PL[k], W = ex.W, cols = 11, cw = (W - 40) / cols, x0 = 20, colX = (p) => x0 + (5 - p) * cw; // column for 10^p, p = 5 … −5
     for (let p = 5; p >= -5; p--) {
@@ -432,7 +432,7 @@ const ladder = {
     }));
     const same = new Set(es).size === 1;
     if (k === 'b') steps.push({
-      cap: `City B’s 8 is a big coefficient, but ${T('8\\times10^{5}=800\\,000')} is still <b>below</b> ${T('10^{6}=1\\,000\\,000')}, where City A’s shelf starts. The bigger exponent wins.`,
+      cap: `City B’s 8 is a big coefficient, but ${T('8\\times10^{5}=800\\,000')} is still <b>below</b> ${T('10^{6}=1\\,000\\,000')}, where City A’s shelf starts. Both numbers are in scientific notation, so the bigger exponent wins.`,
       run: (c) => Promise.all(marks.map((m) => c.anim(m.lab, [{ transform: 'scale(1)' }, { transform: 'scale(1.1)' }, { transform: 'scale(1)' }], 420)))
     });
     steps.push({

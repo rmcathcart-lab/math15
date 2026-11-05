@@ -397,7 +397,7 @@ const ncancel = {
   intro: (k) => `Two ways to work out ${tex(cLab(k))}: write out every factor and cancel, or use the quotient law. They must give the <b>same answer</b>.`,
   make(stage, k, ex) {
     const W = ex.W, { bs, co: cf } = CANCEL[k], [p, q] = cf || [], multi = bs.length > 1, frac = CANCEL[k].frac;
-    const cx = W * 0.29, TY = frac ? 140 : 132, BAR = TY + 40, BY = TY + 80, co = p ? p / q : null;
+    const cx = W * 0.29, TY = frac ? 166 : 132, BAR = TY + 40, BY = TY + 80, co = p ? p / q : null;
     const say = (b, n) => { const letter = /[a-z]/.test(b); return n === 1 ? `one ${letter ? `<i>${b}</i>` : b}` : `${WORD[n]} ${letter ? `<i>${b}</i>’s` : `${b}’s`}`; };
     const head = add(stage, h('div', 'u2l6-cn-head', K(cLab(k))), 24, 14); if (frac) head.style.fontSize = '30px';
     const row = (side, y, coef) => { // side 1 = top exponent, 2 = bottom exponent
@@ -421,15 +421,15 @@ const ncancel = {
     const upL = bs.map(([b, m, n], j) => (m > n ? { b, e: m - n, f: top.facs[j].slice(n) } : null)).filter(Boolean);
     const dnL = bs.map(([b, m, n], j) => (n > m ? { b, e: n - m, f: bot.facs[j].slice(m) } : null)).filter(Boolean);
     const braces = dnL.map(() => { const br = add(stage, svgEl('svg', { class: 'u2l6-cn-brace', width: 10, height: 30 }), 0, 0), bl = add(stage, h('div', 'u2l6-cn-bl'), cx, BY + 72); hide(br, bl); return { br, bl }; });
-    const RX = W * 0.6, RW = W - RX - 20, cT = co ? String(co) : '';
-    const box = (y, lab, srcs, cls) => { const e = add(stage, h('div', 'u2l6-cn-r ' + (cls || '') + (multi ? ' tall' : ''), `<div class="u2l6-cn-rl">${lab}</div><div>${srcs.map((x) => K(x)).join('<br>')}</div>`), RX, y); e.style.width = RW + 'px'; hide(e); return e; };
+    const RX = W * 0.6, RW = W - RX - 20, cT = co ? String(co) : '', tall = multi || !!p;
+    const box = (y, lab, srcs, cls) => { const e = add(stage, h('div', 'u2l6-cn-r ' + (cls || '') + (tall ? ' tall' : ''), `<div class="u2l6-cn-rl">${lab}</div><div>${srcs.map((x) => K(x)).join('<br>')}</div>`), RX, y); e.style.width = RW + 'px'; hide(e); return e; };
     const num = `${cT}${upL.map((l) => vt(l.b, l.e)).join('')}` || '1', den = dnL.map((l) => vt(l.b, l.e)).join('');
     const fracT = den ? `\\dfrac{${num}}{${den}}` : num;
     const negT = `${cT}${bs.map(([b, m, n]) => (m - n === 1 ? b : `${b}^{${m - n}}`)).join('')}`;
     const subT = `${p ? `(${p}\\div${q})` : ''}${bs.map(([b, m, n]) => `${b}^{${m}-${n}}`).join('')}`;
     const lA = box(16, 'Cancelling gives', [fracT]);
-    const lB = box(multi ? 112 : 110, 'The quotient law gives', multi ? [subT, `=${negT}`] : [`${subT}=${negT}`]);
-    const lC = box(multi ? 224 : 204, 'Same expression, so', [`${negT}=${fracT}`], 'big');
+    const lB = box(tall ? 122 : 110, 'The quotient law gives', multi ? [subT, `=${negT}`] : [`${subT}=${negT}`]);
+    const lC = box(multi ? 240 : tall ? 214 : 204, 'Same expression, so', [`${negT}=${fracT}`], 'big');
     const desc = (side) => bs.map((bb) => say(bb[0], bb[side])).join(' and ');
     const steps = [{
       cap: multi ? `Write out every factor, numbers first. On top: ${desc(1)}. On the bottom: ${desc(2)}.`
@@ -438,7 +438,7 @@ const ncancel = {
     }];
     if (p) steps.push({ cap: `Numbers with numbers: ${tex(`${p}\\div${q}=${co}`)}.`, run: async (c) => { coSl.forEach((s) => { s._f.classList.add('gone'); }); await Promise.all([...coSl.map((s) => c.anim(s, [{ opacity: 0, transform: 'rotate(-58deg) scaleX(0)' }, { opacity: 1, transform: 'rotate(-58deg) scaleX(1)' }], 320)), c.pop(coNew, 380, { delay: 250 })]); } });
     bs.forEach(([b, m, n], j) => {
-      const np = Math.min(m, n), one = /[a-z]/.test(b) ? `<i>${b}</i>` : b, an = /[a-z]/.test(b) ? 'an' : 'a';
+      const np = Math.min(m, n), one = /[a-z]/.test(b) ? `<i>${b}</i>` : b, an = /^[aefhilmnorsx]$/.test(b) ? 'an' : 'a';
       steps.push({
         cap: multi ? `Now the ${say(b, 2).replace(/^two /, '')}: each ${one} on top <b>cancels</b> with ${an} ${one} on the bottom. ${np === 1 ? 'One pair cancels' : `${WORD[np][0].toUpperCase() + WORD[np].slice(1)} pairs cancel`}, and ${m > n ? `${say(b, m - n)} stay on <b>top</b>` : `${say(b, n - m)} stay on the <b>bottom</b>`}.`
           : `Each ${one} on top <b>cancels</b> with ${an} ${one} on the bottom. ${np === 1 ? 'One pair cancels.' : `${WORD[np][0].toUpperCase() + WORD[np].slice(1)} pairs cancel.`}`,

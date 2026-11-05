@@ -144,12 +144,12 @@ const whyRoot = {
 /* ============ 1. Hunt for the root: which number, used n times, gives a? ============ */
 const HUNT = { // a | n | the tries, in order (the last one fits)
   e1a: [25, 2, [3, 6, 5]], e1b: [64, 3, [2, 3, 4]], e1c: [16, 4, [3, 2]], e1d: [100, 2, [5, 10]],
-  d81: [81, 2, [8, 10, 9]], d125: [125, 3, [4, 5]]
+  d81: [81, 2, [8, 10, 9]], d216: [216, 3, [5, 7, 6]]
 };
 const hunt = {
   title: 'Hunt for the root: try a number, check, adjust',
   height: 420,
-  choices: [{ v: 'd81', label: tex('81^{1/2}') }, { v: 'd125', label: tex('125^{1/3}') }, { sep: 'Example 1 check:' },
+  choices: [{ v: 'd81', label: tex('81^{1/2}') }, { v: 'd216', label: tex('216^{1/3}') }, { sep: 'Example 1 check:' },
     { v: 'e1a', label: '(a)' }, { v: 'e1b', label: '(b)' }, { v: 'e1c', label: '(c)' }, { v: 'e1d', label: '(d)' }],
   intro: (v) => { const [a, n] = HUNT[v]; return `Evaluate ${tex(`${a}^{1/${n}}`)} without a calculator.`; },
   make(stage, v, ex) {
@@ -640,8 +640,8 @@ standup('u2l9', (() => {
   /* every perfect power a = r^n (Math 15 sizes) */
   const PP = [];
   [[2, [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]], [3, [2, 3, 4, 5, 10]], [4, [2, 3, 4, 5]], [5, [2, 3]]].forEach(([n, rs]) => rs.forEach((r) => PP.push({ r, n, a: r ** n })));
-  // the assignment's own questions are left out: Q1 49, 121 (½), 27, 1000 (⅓), 81 (¼), 32 (⅕); Q2 8^{4/3} 9^{5/2} 25^{3/2} 16^{5/4} 64^{2/3} 4^{7/2}
-  const A1 = new Set(['49|2', '121|2', '27|3', '1000|3', '81|4', '32|5']);
+  // the assignment's own questions are left out: Q1 64, 121 (½), 125, 1000 (⅓), 81 (¼), 32 (⅕), and 27 (⅓, Q9's cube); Q2 8^{4/3} 9^{5/2} 25^{3/2} 16^{5/4} 64^{2/3} 4^{7/2}
+  const A1 = new Set(['64|2', '121|2', '125|3', '27|3', '1000|3', '81|4', '32|5']);
   const A2 = new Set(['8|4|3', '9|5|2', '25|3|2', '16|5|4', '64|2|3', '4|7|2']);
   const LET = ['a', 'b', 'c', 'd', 'g', 'h', 'k', 'x', 'y', 'z', 'w', 'v'];
   // Q4/Q5 (exponent signatures, any letter) and Q6–Q8, Q15, Q16 (law questions) are left out too
@@ -689,7 +689,7 @@ standup('u2l9', (() => {
             const L = e1[1] * e2[1] / gcd(e1[1], e2[1]), a1 = e1[0] * L / e1[1], a2 = e2[0] * L / e2[1], tot = kind === 'P' ? a1 + a2 : a1 - a2, res = fr(tot, L);
             if (tot === 0 || L > 12) continue;
             const key = kind + ex(e1) + ',' + ex(e2);
-            if (['P1/3,1/6', 'P2/5,1/5', 'P1/4,3/4', 'P1/2,1/2', 'Q5/6,1/6', 'Q3/4,1/4', 'Q7/8,3/8', 'Q1/2,3/2', 'P1/2,1/3', 'P1/2,1/4'].includes(key)) continue;
+            if (['P1/3,1/6', 'P2/5,1/5', 'P1/4,3/4', 'P1/2,1/2', 'Q7/10,1/10', 'Q5/6,1/6', 'Q3/4,1/4', 'Q7/8,3/8', 'Q1/2,3/2', 'P2/3,1/4', 'P1/4,2/3', 'P1/2,1/3', 'P1/2,1/4'].includes(key)) continue;
             const op = kind === 'P' ? '\\times ' : '\\div ', sg = kind === 'P' ? '+' : '-';
             const same = e1[1] === e2[1];
             const lines = ['=' + v + '^{' + ft(e1) + sg + ft(e2) + '}'];
@@ -707,7 +707,7 @@ standup('u2l9', (() => {
           }
           // PR: a number and a fraction power in a bracket, raised to a whole number
           const [c, k] = r.pick([[2, 2], [3, 2], [5, 2], [6, 2], [9, 2], [10, 2], [2, 3], [3, 3], [2, 4], [4, 3]]), d = r.pick([2, 3, 4, 6]), n0 = r.int(1, d - 1), e = fr(n0, d);
-          if (e[1] === 1 || (c === 4 && k === 2 && ex(e) === '1/2')) continue;
+          if (e[1] === 1 || (k === 2 && ex(e) === '1/2' && (c === 4 || c === 3))) continue; // Example 5(d), Assignment 9 #8(c)
           const res = fr(e[0] * k, e[1]);
           return { q: '\\left(' + c + v + '^{' + ex(e) + '}\\right)^{' + k + '}', a: ['=' + c + '^{' + k + '}\\,' + v + '^{' + ft(e) + '\\times' + k + '}', '=' + (c ** k) + posAns(v, res)] };
         }

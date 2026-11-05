@@ -431,12 +431,14 @@ standup('u2l4', (() => {
   return {
     intro: 'Simplify at your whiteboard station. Use the checklist: (1) clear the brackets, (2) combine matching bases, (3) coefficients last.',
     levels: {
-      BEG: (r) => { // two laws, one letter
+      BEG: function beg(r) { // two laws, one letter
         const v = r.pick(L), kind = r.pick(['mul', 'mulc', 'div', 'divc']);
         const n = r.pick([2, 2, 3]), k = r.pick(n === 2 ? [2, 3, 4, 5] : [2, 3]), m = r.int(2, 4), K2 = Math.pow(k, n);
         if (kind === 'mul') { const p = r.int(1, 5); return { q: `(${k}${v}^{${m}})^{${n}}\\times ${P(v, p)}`, a: [`=${K2}${v}^{${m * n}}\\times ${P(v, p)}`, `=${K2}${v}^{${m * n}+${p}}`, `=${K2}${v}^{${m * n + p}}`] }; }
         if (kind === 'mulc') { const p = r.int(1, 5), c = r.int(2, 5); return { q: `(${k}${v}^{${m}})^{${n}}\\times ${c}${P(v, p)}`, a: [`=${K2}${v}^{${m * n}}\\times ${c}${P(v, p)}`, `=(${K2}\\times${c})\\,${v}^{${m * n}+${p}}`, `=${K2 * c}${v}^{${m * n + p}}`] }; }
-        if (kind === 'div') { const p = r.int(1, m * n - 1); return { q: `\\dfrac{(${k}${v}^{${m}})^{${n}}}{${P(v, p)}}`, a: [`=\\dfrac{${K2}${v}^{${m * n}}}{${P(v, p)}}`, `=${K2}${v}^{${m * n}-${p}}`, `=${K2}${P(v, m * n - p)}`] }; }
+        if (kind === 'div') { const p = r.int(1, m * n - 1);
+          if (k === 2 && p === 4 && ((m === 3 && n === 2) || (m === 2 && n === 3))) return beg(r); // Assignment 3 #8(b), #8(d)
+          return { q: `\\dfrac{(${k}${v}^{${m}})^{${n}}}{${P(v, p)}}`, a: [`=\\dfrac{${K2}${v}^{${m * n}}}{${P(v, p)}}`, `=${K2}${v}^{${m * n}-${p}}`, `=${K2}${P(v, m * n - p)}`] }; }
         const kk = n === 2 ? r.pick([2, 3, 4, 6]) : k, KK = Math.pow(kk, n), cc = r.pick([2, 3, 4, 6, 8, 9, 12].filter((x) => KK % x === 0 && x < KK)), p = r.int(1, m * n - 1);
         return { q: `\\dfrac{(${kk}${v}^{${m}})^{${n}}}{${cc}${P(v, p)}}`, a: [`=\\dfrac{${KK}${v}^{${m * n}}}{${cc}${P(v, p)}}`, `=(${KK}\\div${cc})\\,${v}^{${m * n}-${p}}`, `=${KK / cc}${P(v, m * n - p)}`] };
       },

@@ -7,7 +7,7 @@
  * EVT(tree, mode) re-evaluates the tree with one classic misconception applied everywhere (added the exponents in a
  * power of a power, didn't raise / multiplied the coefficient by the exponent, multiplied exponents in a product, added
  * coefficients, added exponents in a quotient, subtracted coefficients) and lawPart turns each into a diagnosis.
- * Math 15 pitch: no calculator except where the booklet's item needs one (Extra 9 and 15(b), marked); small numbers.
+ * Math 15 pitch: no calculator except where the booklet's item needs one (Extra 9 and 15(b) = site e15c, marked "(calculator)"); small numbers.
  * Levels: BEG one law; EMG two laws / zero exponent / coefficient traps; PRG negative exponents, quotient brackets,
  * scientific notation in context; ADV multi-law with negative exponents, working backwards; MAS extra 3, 13(c), 19. */
 (function (root) {
@@ -675,25 +675,29 @@
   }
   function sciTexOf(x) { var p = K.sciParts(x); return p.a + '\\times 10^{' + p.n + '}'; }
   function anyNumDiag(x, rows) { var base = anyNum(x); return function (resp) { var res = base(resp); if (res.v === 'correct') return res; var a = K.read(resp); if (a.ast) for (var i = 0; i < rows.length; i++) if (releq(a.val, rows[i][0])) return wrong(rows[i][1], rows[i][2]); return res; }; }
-  function q22(r) {
-    var a = r.int(2, 10), c = r.pick([2, 2, 3, 4, 5, 5, 10]), p = a * a, q = -c * c * c, V = Q(a * a * a * c * c - 1, c * c), term = Q(1, c * c);
-    var dec = c !== 3, keyTex = dec ? String(Number((qv(V)).toFixed(6))) : ex.texRat(V);
-    var p2 = P.math('If ' + t('p=' + p) + ' and ' + t('q=' + q) + ', determine the exact value of ' + t('p^{3/2}-q^{-2/3}') + '.', K.fraction(V, { decimalOk: true, diag: function (v) {
-      if (releq(v, a * a * a + qv(term))) return { code: 'u2l10-odd-root-sign', hint: t('(' + q + ')^{-2/3}=\\dfrac{1}{\\left(' + rootTex(3, q) + '\\right)^{2}}=\\dfrac{1}{(-' + c + ')^{2}}=+\\dfrac{1}{' + c * c + '}') + ': the square makes it positive, and it is subtracted.' };
-      if (releq(v, a * a * a - c * c) || releq(v, a * a * a + c * c)) return { code: 'no-recip', hint: 'The exponent on ' + t('q') + ' is negative: take the <b>reciprocal</b>, ' + t('q^{-2/3}=\\frac{1}{q^{2/3}}') + '.' };
-      if (releq(v, Math.pow(a, 3))) return { code: 'value', hint: 'You have ' + t('p^{3/2}') + '. Now subtract ' + t('q^{-2/3}') + '.' };
+  function q22(r) {   // numerical response: p^{3/2} + q^{2/3} with p a perfect square, q a negative perfect cube (whole-number answer)
+    var a = r.int(2, 10), c = r.pick([2, 3, 4, 5, 5, 6, 10]); if (r.chance(0.15)) { a = 6; c = 5; }
+    var p = a * a, q = -c * c * c, A3 = a * a * a, C2 = c * c, V = A3 + C2;
+    var p2 = P.number('If ' + t('p=' + p) + ' and ' + t('q=' + F(q)) + ', the value of ' + t('p^{3/2}+q^{2/3}') + ' is ____.', V, function (v) {
+      if (v === A3 - C2) return { code: 'u2l10-odd-root-sign', hint: t(rootTex(3, F(q)) + '=-' + c) + ', and then the power ' + t('2') + ' squares it: ' + t('(-' + c + ')^{2}=+' + C2) + '. So ' + t('q^{2/3}') + ' is positive.' };
+      if (v === A3) return { code: 'value', hint: 'You have ' + t('p^{3/2}=' + A3) + '. Now add ' + t('q^{2/3}') + '.' };
+      if (v === C2) return { code: 'value', hint: 'You have ' + t('q^{2/3}=' + C2) + '. Now add ' + t('p^{3/2}') + '.' };
+      if (v === a + C2 || v === A3 - c || v === A3 + c) return { code: 'root-only', hint: 'Take the root, then raise it to the power (the numerator): ' + t('p^{3/2}=\\left(\\sqrt{' + p + '}\\right)^{3}') + ' and ' + t('q^{2/3}=\\left(' + rootTex(3, F(q)) + '\\right)^{2}') + '.' };
+      if (v === p * 3 / 2 + q * 2 / 3) return { code: 'times-exp', hint: 'A rational exponent isn’t a multiplier: ' + t('p^{3/2}') + ' means the square root of ' + t('p') + ', cubed.' };
       return null;
-    } }), keyTex,
-      t('p^{3/2}=' + p + '^{3/2}=\\left(\\sqrt{' + p + '}\\right)^{3}=' + a + '^{3}=' + a * a * a) + '<br>' + t('q^{-2/3}=(' + q + ')^{-2/3}=\\dfrac{1}{\\left(' + rootTex(3, String(q)) + '\\right)^{2}}=\\dfrac{1}{(-' + c + ')^{2}}=\\dfrac{1}{' + c * c + '}') + ' (the cube root of a negative number is negative; squaring makes it positive)<br>' + t(a * a * a + '-\\dfrac{1}{' + c * c + '}=' + ex.texRat(V) + (dec ? '=' + keyTex : '')),
-      ['Substitute, then evaluate each power root first. A negative exponent means reciprocal.', 'The cube root of a negative number is negative: ' + t(rootTex(3, '-8') + '=-2') + '.'], 'p^3/2-q^-2/3 at ' + p + ',' + q, { keys: 'fraction' });
-    p2.good = [ex.texRat(V)]; p2.bad = [String(Number((a * a * a + qv(term)).toFixed(6)))];
+    },
+      t('p^{3/2}=' + p + '^{3/2}=\\left(\\sqrt{' + p + '}\\right)^{3}=' + a + '^{3}=' + A3) + '<br>' + t('q^{2/3}=(' + F(q) + ')^{2/3}=\\left(' + rootTex(3, F(q)) + '\\right)^{2}=(-' + c + ')^{2}=' + C2) + ' (the cube root of a negative number is negative; squaring makes it positive)<br>' + t(A3 + '+' + C2 + '=' + V),
+      ['Substitute, then take each root first and raise it to the power.', 'The cube root of a negative number is negative: ' + t(rootTex(3, '-8') + '=-2') + '.'], 'p^3/2+q^2/3 at ' + p + ',' + q);
+    p2.bad = [String(A3 - C2), String(A3)];
     return p2;
   }
   function q24shared(r) { var e = r.pick([[7, -3, 4], [5, -2, 3], [9, -5, 4], [3, -1, 2], [8, -3, 5], [5, -3, 2], [7, -4, 3], [11, -7, 4]]), s = pickWhere(r, function () { return r.int(11, 99) * Math.pow(10, r.int(2, 5)); }, function (x) { return String(x).replace(/0+$/, '').length === 2; }) || 810000; return { a: [e[0], e[2]], b: [e[1], e[2]], s: s, v: r.pick(['s', 's', 'x', 'k']) }; }
-  function q25shared(r) {
-    return pickWhere(r, function () { var a = r.pick([2, 3, 4, 5, 6, 8]), k = r.pick([1, 2, 3]), R = r.pick([128, 64, 250, 400, 120, 32, 75, 160, 48, 200, 25, 80, 36]); return { a: a, k: k, R: R, A: a * a * Math.pow(10, 2 * k), N: R * a * a * Math.pow(10, 2 * k), what: r.pick(['transistors', 'transistors', 'sensors', 'memory cells']) }; },
-      function (o) { var s = String(K.sciParts(o.N).a); return s.replace('.', '').length <= 3 && o.N < 1e12; }) || { a: 5, k: 2, R: 128, A: 250000, N: 3.2e7, what: 'transistors' };
+  function q25shared(r) {   // square chip (a × 10^k mm)²; count N = R × area with R a whole number and N's coefficient a short exact decimal, so N ÷ area is a calculator-free division
+    if (r.chance(0.15)) return { a: 5, k: 2, R: 200, A: 250000, N: 5e7, what: 'transistors' };
+    return pickWhere(r, function () { var a = r.pick([2, 3, 4, 5, 6, 8]), k = r.pick([1, 2, 3]), R = r.pick([20, 30, 40, 50, 60, 80, 200, 300, 400, 500, 600, 800, 2000, 3000, 4000]); return { a: a, k: k, R: R, A: a * a * Math.pow(10, 2 * k), N: R * a * a * Math.pow(10, 2 * k), what: r.pick(['transistors', 'transistors', 'sensors', 'memory cells']) }; },
+      function (o) { var Na = K.sciParts(o.N).a, Aa = K.sciParts(o.A).a, q = Na / Aa; return String(Na).replace('.', '').length <= 2 && o.N < 1e12 && o.N >= 1e4 && Math.abs(q * 10 - Math.round(q * 10)) < 1e-9; }) || { a: 5, k: 2, R: 200, A: 250000, N: 5e7, what: 'transistors' };
   }
+
 
   /* ================= Extra Practice 10 ================= */
   function e1a(r) { // ((c x^p)^k · x^{-q}) / (d x^0)
@@ -770,7 +774,7 @@
       'Write the root as the exponent ' + t('\\frac{1}{2}') + (odd ? ' and make the exponent of 10 even first: ' + t(inner + '\\times 10^{' + ie + '}=' + s * s + '\\times 10^{' + (-2 * j) + '}') : '') + '.<br>' + t('\\left(' + s * s + '\\times 10^{' + (-2 * j) + '}\\right)^{1/2}=' + s + '\\times 10^{' + (-j) + '}') + '.', ['A square root is the power ' + t('\\frac{1}{2}') + ': halve the exponent of 10.'], 'sci ' + pr); }
   var MASS = [{ big: 'A proton', bm: [1.67, -27], small: 'an electron', sm: [9.11, -31] }, { big: 'A neutron', bm: [1.68, -27], small: 'an electron', sm: [9.11, -31] }, { big: 'Earth', bm: [5.97, 24], small: 'the Moon', sm: [7.35, 22] }, { big: 'The Sun', bm: [1.99, 30], small: 'Earth', sm: [5.97, 24] }, { big: 'Jupiter', bm: [1.9, 27], small: 'Earth', sm: [5.97, 24] }, { big: 'Saturn', bm: [5.68, 26], small: 'Earth', sm: [5.97, 24] }];
   function e9(r) { var o = r.pick(MASS), x = o.bm[0] / o.sm[0] * Math.pow(10, o.bm[1] - o.sm[1]), bt = o.bm[0] + '\\times 10^{' + o.bm[1] + '}', st = o.sm[0] + '\\times 10^{' + o.sm[1] + '}';
-    var p = sciPart(o.big + ' has a mass of about ' + t(bt) + ' kg, and ' + o.small + ' about ' + t(st) + ' kg. How many times more massive is ' + o.big.charAt(0).toLowerCase() + o.big.slice(1) + ' than ' + o.small + '? Give your answer in scientific notation, rounded to three significant digits. <i>(You may use a calculator for the division.)</i>', x, { sig: 3 },
+    var p = sciPart('<i>(calculator)</i> ' + o.big + ' has a mass of about ' + t(bt) + ' kg, and ' + o.small + ' about ' + t(st) + ' kg. How many times more massive is ' + (/^(A|The) /.test(o.big) ? o.big.charAt(0).toLowerCase() + o.big.slice(1) : o.big) + ' than ' + o.small + '? Give your answer in scientific notation, rounded to three significant digits.', x, { sig: 3 },
       'Divide: ' + t('\\dfrac{' + bt + '}{' + st + '}=\\dfrac{' + o.bm[0] + '}{' + o.sm[0] + '}\\times 10^{' + o.bm[1] + '-(' + o.sm[1] + ')}\\approx ' + Number((o.bm[0] / o.sm[0]).toPrecision(4)) + '\\times 10^{' + (o.bm[1] - o.sm[1]) + '}\\approx ' + K.sciTex(x, 3)) + '.', ['Divide the coefficients (calculator) and subtract the exponents of 10.', 'Renormalize if the coefficient is less than 1.'], 'ratio ' + o.big);
     return p; }
 
@@ -921,7 +925,7 @@
         { id: 'e15a', level: 'EMG', make: function (r, sh) { return P.number('Find ' + t('P') + ' when ' + t('t=0') + '.', sh.P0, function (v) { if (v === 0) return { code: 'zero-is-0', hint: t('(' + sh.g + ')^{0}=1') + ', not ' + t('0') + '.' }; if (releq(v, sh.P0 * Number(sh.g))) return { code: 'zero-is-base', hint: t('(' + sh.g + ')^{0}=1') + ', not ' + t(sh.g) + '.' }; return null; }, t('P=' + F(sh.P0) + '(' + sh.g + ')^{0}=' + F(sh.P0) + '(1)=' + F(sh.P0)) + ' dollars: at ' + t('t=0') + ' the value is just the amount invested.', ['What is any nonzero number to the power 0?'], 'P at t=0', { before: '$' }); } },
         { id: 'e15b', level: 'EMG', make: function (r, sh) { return mc(r, 'Which exponent law makes that calculation immediate?', [{ html: 'The <b>zero exponent law</b>: ' + t('a^{0}=1') + ' for ' + t('a\\ne 0') + '.', right: true }, { html: 'The <b>product law</b>.', why: 'Nothing is being multiplied as powers here; the key fact is ' + t('(' + sh.g + ')^{0}=1') + '.' }, { html: 'The <b>negative exponent law</b>.', why: 'The exponent is ' + t('0') + ', not negative.' }, { html: 'The <b>power of a power law</b>.', why: 'There is only one exponent, ' + t('0') + '.' }], t('(' + sh.g + ')^{0}=1') + ' by the zero exponent law.', ['What is special about the exponent ' + t('0') + '?'], 'which law t=0'); } },
         { id: 'e15c', level: 'PRG', make: function (r, sh) { var x = sh.P0 * Math.pow(Number(sh.g), -sh.y), fwd = sh.P0 * Math.pow(Number(sh.g), sh.y);
-          return P.approx('Write an expression with a negative exponent for the value ' + t(sh.y) + ' years <b>before</b> the investment was made, and evaluate it to the nearest cent. <i>(Calculator.)</i>', x, 2, { before: '$', diag: function (v) { if (Math.abs(v - fwd) < 0.01) return { code: 'u2l10-forward', hint: 'That’s ' + t(sh.y) + ' years <b>after</b>. Before the investment, ' + t('t=-' + sh.y) + '.' }; if (Math.abs(v + x) < 0.01) return { code: 'neg-power', hint: 'A negative exponent means reciprocal, not a negative amount.' }; return null; } },
+          return P.approx('<i>(calculator)</i> Write an expression with a negative exponent for the value ' + t(sh.y) + ' years <b>before</b> the investment was made, and evaluate it to the nearest cent.', x, 2, { before: '$', diag: function (v) { if (Math.abs(v - fwd) < 0.01) return { code: 'u2l10-forward', hint: 'That’s ' + t(sh.y) + ' years <b>after</b>. Before the investment, ' + t('t=-' + sh.y) + '.' }; if (Math.abs(v + x) < 0.01) return { code: 'neg-power', hint: 'A negative exponent means reciprocal, not a negative amount.' }; return null; } },
             t('t=-' + sh.y) + ': ' + t('P=' + F(sh.P0) + '(' + sh.g + ')^{-' + sh.y + '}=\\dfrac{' + F(sh.P0) + '}{(' + sh.g + ')^{' + sh.y + '}}\\approx ' + K.roundTo(x, 2).toFixed(2)) + ' dollars.', ['Before the investment, ' + t('t') + ' is negative.', 'A negative exponent means divide: ' + t('a^{-n}=\\frac{1}{a^{n}}') + '.'], 'P at t=-' + sh.y); } }] },
     { num: '16', stem: function (sh) { return 'A cube has an edge length of ' + t(sh.edge) + ' centimetres.'; }, shared: function (r) { var c = r.pick([2, 3]), p = r.int(1, 2), q = r.int(1, 3), L = r.pick([['x', 'y'], ['x', 'y'], ['a', 'b']]), f = r.pick([2, 2, 3, 4]); var v = {}; v[L[0]] = -p; v[L[1]] = q; var A = M(c, v); return { A: A, L: L, f: f, edge: rawTex(A, L) }; },
       parts: [
@@ -1029,18 +1033,18 @@
       { num: '21', stem: 'Express each power in radical form.', parts: [
         { id: '21a', level: 'EMG', make: function (r) { var mn = r.pick([[2, 5], [2, 3], [3, 4], [3, 5], [4, 5], [2, 7], [3, 7]]); return genRad(r.pick(['t', 't', 'x', 'a']), mn[0], mn[1], 'entire'); } },
         { id: '21b', level: 'EMG', make: function (r) { var mn = r.pick([[5, 6], [5, 8], [3, 8], [7, 8], [4, 9], [5, 7]]); return genRad(r.pick(['g', 'g', 'y', 'k']), mn[0], mn[1], 'entire'); } }] },
-      { num: '22', stem: '', parts: [{ id: '22', level: 'ADV', make: q22 }] },
+      { num: '22', stem: '<i>(Numerical Response)</i>', parts: [{ id: '22', level: 'ADV', make: q22 }] },
       { num: '23', section: 'Part D — Mixed Challenge', stem: 'Simplify, expressing your answer with a positive exponent.', parts: [
         { id: '23', level: 'ADV', make: function (r) { var g = pickWhere(r, function () { return { c: r.pick([2, 3]), p: r.int(1, 3), d: r.pick([4, 6, 8, 12, 18]), q: r.int(3, 7), e: r.pick([2, 3]), f: r.int(1, 2) }; }, function (o) { var k = o.d / (o.c * o.e); return k === Math.round(k) && k >= 1 && (o.q - o.p + o.f) !== 0; }) || { c: 3, p: 2, d: 6, q: 5, e: 2, f: 1 }; var v = r.pick(LETS);
           return treePart(Dv(Mu(Pw(Lf(g.c, mono(v, g.p).v), -1), Lf(g.d, mono(v, g.q).v)), Lf(g.e, mono(v, -g.f).v))); } }] },
       { num: '24', stem: function (sh) { return 'Consider ' + t(pw(sh.v, sh.a) + '\\times ' + pw(sh.v, sh.b)) + '.'; }, shared: q24shared, parts: [
         { id: '24a', level: 'PRG', make: function (r, sh) { return prodPart(sh.v, sh.a, sh.b); } },
         { id: '24b', level: 'PRG', make: function (r, sh) { var x = sh.s; return sciPart('If ' + t(sh.v + '=' + F(x)) + ', express the numeric value of the result in scientific notation.', x, {}, 'The expression simplifies to ' + t(sh.v) + ', so its value is ' + t(F(x) + '=' + sciTexOf(x)) + '.', ['Use your simplified answer from part (a).'], 'sci of ' + x); } }] },
-      { num: '25', stem: function (sh) { return '<i>(Written Response)</i> A rectangular data-storage chip has an area of ' + t('\\left(' + sh.a + '\\times 10^{' + sh.k + '}\\right)^{2}') + ' mm' + t('^{2}') + '.'; }, shared: q25shared, parts: [
+      { num: '25', stem: function (sh) { return '<i>(Written Response)</i> A square data-storage chip has an area of ' + t('\\left(' + sh.a + '\\times 10^{' + sh.k + '}\\right)^{2}') + ' mm' + t('^{2}') + '.'; }, shared: q25shared, parts: [
         { id: '25a', level: 'EMG', make: function (r, sh) { var x = sh.A; return sciPart('Express the area of the chip in proper scientific notation.', x, { diag: function (v) { if (releq(v, sciVal(2 * sh.a, 2 * sh.k))) return { code: 'coef-times', hint: 'Square the ' + t(sh.a) + ': ' + t(sh.a + '^{2}=' + sh.a * sh.a) + '.' }; if (releq(v, sciVal(sh.a * sh.a, sh.k + 2))) return { code: 'add-exp', hint: MODES['add-exp'] }; return null; } },
           t('\\left(' + sh.a + '\\times 10^{' + sh.k + '}\\right)^{2}=' + sh.a + '^{2}\\times 10^{' + sh.k + '\\times 2}=' + sh.a * sh.a + '\\times 10^{' + 2 * sh.k + '}' + (sh.a * sh.a >= 10 ? '=' + sciTexOf(x) : '')) + ' mm².', ['Power of a product: square the number and double the exponent of 10.', 'Renormalize so the coefficient is between 1 and 10.'], 'chip area'); } },
-        { id: '25b', level: 'PRG', make: function (r, sh) { var Nt = K.sciTex(sh.N), At = sciTexOf(sh.A);
-          return P.number('The chip contains ' + t(Nt) + ' ' + sh.what + ', spread evenly over its surface. Determine, to the nearest whole number, how many ' + sh.what + ' there are per square millimetre.', sh.R, function (v) { if (releq(v, sh.A / sh.N) || releq(v, Math.round(sh.A / sh.N))) return { code: 'u2l10-count', hint: 'Per square millimetre: divide the number of ' + sh.what + ' by the area.' }; var lg = Math.log10(v / sh.R); if (isFinite(lg) && Math.abs(lg - Math.round(lg)) < 1e-9 && Math.round(lg) !== 0) return { code: 'power-off', hint: 'The digits are right but the power of 10 is off. Subtract the exponents carefully.' }; return null; },
+        { id: '25b', level: 'PRG', make: function (r, sh) { var Np = K.sciParts(sh.N), Nt = (Np.a % 1 === 0 ? Np.a.toFixed(1) : String(Np.a)) + '\\times 10^{' + Np.n + '}', At = sciTexOf(sh.A);
+          return P.number('The chip contains ' + t(Nt) + ' ' + sh.what + ', spread evenly over its surface. Determine how many ' + sh.what + ' there are per square millimetre of area.', sh.R, function (v) { if (releq(v, sh.A / sh.N) || releq(v, Math.round(sh.A / sh.N))) return { code: 'u2l10-count', hint: 'Per square millimetre: divide the number of ' + sh.what + ' by the area.' }; var lg = Math.log10(v / sh.R); if (isFinite(lg) && Math.abs(lg - Math.round(lg)) < 1e-9 && Math.round(lg) !== 0) return { code: 'power-off', hint: 'The digits are right but the power of 10 is off. Subtract the exponents carefully.' }; return null; },
             t('\\dfrac{' + Nt + '}{' + At + '}=' + Number((K.sciParts(sh.N).a / K.sciParts(sh.A).a).toFixed(6)) + '\\times 10^{' + (K.sciParts(sh.N).n - K.sciParts(sh.A).n) + '}=' + sh.R) + ' ' + sh.what + ' per mm².', ['Divide the count by the area: divide the coefficients and subtract the exponents of 10.'], 'per mm2'); } }] }
     ],
     extra: EXTRA
