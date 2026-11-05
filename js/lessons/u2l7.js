@@ -613,7 +613,7 @@
         S('PRG', 'e11b', function (r, sh) { return [sh.node, { prompt: 'Simplify ' + t(tx(sh.node)) + ' correctly. Write the answer with positive exponents.', alts: [[M(1, V(sh.x, sh.claim)), 'repeat-error', 'That’s Kalvin’s answer — the substitution showed it’s wrong. Watch the signs: ' + t('-' + 2 * sh.g.a + '-(-' + sh.g.b + ')') + '.']] }]; }, [H.steps, H.signs])] },
     { num: '12', stem: function (sh) {
         var a = sh, top = tx(a.node.num), bot = tx(a.node.den), s1 = rawTex(M(a.k, V(a.x, 2 * a.a, a.y, -2))), dev = M(R(a.k, a.m), V(a.x, 2 * a.a, a.y, a.b - 2));
-        return '<b>Error analysis.</b> Deven simplified ' + t(tx(a.node)) + ' like this. Exactly <b>one</b> step is wrong.\\[\\begin{array}{ll}\\text{Step 1:}&' + top + '=' + s1 + '\\\\[4pt]\\text{Step 2:}&\\dfrac{' + s1 + '}{' + bot + '}\\\\[8pt]\\text{Step 3:}&=' + posTex(dev) + '\\end{array}\\]';
+        return '<b>Error analysis.</b> Deven simplified ' + t(tx(a.node)) + ' like this. Exactly <b>one</b> step is wrong.\\[\\begin{array}{ll}\\text{Step 1:}&' + top + '=' + s1 + '\\\\[4pt]\\text{Step 2:}&\\dfrac{' + s1 + '}{' + bot + '}\\\\[8pt]\\text{Step 3:}&=' + posTex(dev).replace(/\\frac/g, '\\dfrac') + '\\end{array}\\]';
       },
       shared: function (r) {
         var g = pickWhere(function () { return { k: r.pick([2, 2, 3]), a: r.int(2, 4), m: r.pick([2, 4, 4, 3]), b: r.int(3, 6) }; }, function (g) { return g.k !== g.m; });

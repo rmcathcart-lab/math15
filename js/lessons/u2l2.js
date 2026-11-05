@@ -375,7 +375,7 @@
           return chain([[o[0], [['x', x[1]]], o[1]]], [[o[2], [['x', x[2]]], o[3]]]); } },
         { id: 'e9b', level: 'ADV', make: function (r) { var vw = lets(r, 2).sort(), x = pickWhere(function () { return [r.int(2, 4), r.int(2, 4), r.int(2, 3), r.int(2, 5), r.int(2, 6), r.int(2, 3)]; }, function (x) { var e1 = x[0] * x[2] - x[3] * x[5], e2 = x[1] * x[2] - x[4] * x[5]; return x[2] > x[5] && e1 >= 1 && e2 >= 1 && e1 <= 8 && e2 <= 8; });
           return chain([[1, [[vw[0], x[0]], [vw[1], x[1]]], x[2]]], [[1, [[vw[0], x[3]], [vw[1], x[4]]], x[5]]]); } },
-        { id: 'e9c', level: 'ADV', make: function (r) { var vw = lets(r, 2).sort(), c = r.pick([2, 2, 3]), a = r.int(3, 5), b = r.int(1, 2); return chain([[c, [[vw[0], a], [vw[1], b]], 3]], [[c, [[vw[0], r.int(1, a)], [vw[1], b]], 2]]); } }] },
+        { id: 'e9c', level: 'ADV', make: function (r) { var vw = lets(r, 2).sort(), c = r.pick([2, 2, 3]), a = r.int(3, 5), b = r.int(1, 2); return chain([[c, [[vw[0], a], [vw[1], b]], 3]], [[c, [[vw[0], r.int(1, a - 1)], [vw[1], b]], 2]]); } }] },
 
       /* ===================== Part D ===================== */
       { num: '10', section: 'Part D — Error Analysis', stem: 'In each part, a student has made one mistake. Name the mistake, then give the correct simplified answer.',
@@ -526,7 +526,7 @@
             'Numerator: ' + t(pw(par(c + pw('x', a) + 'y'), 3) + '\\times ' + k + pw('x', f) + '=' + mTex(mPow(M(c, [['x', a], ['y', 1]]), 3)) + '\\times ' + k + pw('x', f) + '=' + mTex(top)) + '. Denominator: ' + t(pw(par(c + pw('x', g)), 2) + '\\times y=' + mTex(bot)) + '. Quotient: ' + t(fr(mTex(top), mTex(bot)) + '=' + res) + '.',
             ['Numerator first: clear the bracket (raise every factor), then multiply by ' + t(k + pw('x', f)) + '.', 'Then the denominator, then divide: coefficients divide, exponents subtract.'], 'stretch quotient'); } }] },
       { num: '22', stem: function (sh) { return '<b>Stretch.</b> Without a calculator, decide which is larger: ' + t(pw(par(pw(2, sh.a)), sh.b)) + ' or ' + t(pw(par(pw(2, sh.c)), sh.d)) + '. Justify your choice by rewriting each as a single power of ' + t(2) + '.'; },
-        shared: function (r) { var x = pickWhere(function () { return [r.int(2, 6), r.int(2, 6), r.int(2, 6), r.int(2, 6)]; }, function (x) { var A = x[0] * x[1], B = x[2] * x[3]; return A !== B && Math.abs(A - B) <= 6 && !(x[0] === x[3] && x[1] === x[2]); }); if (r.chance(0.2)) x = [4, 3, 3, 5]; return { a: x[0], b: x[1], c: x[2], d: x[3] }; },
+        shared: function (r) { var x = pickWhere(function () { return [r.int(2, 6), r.int(2, 6), r.int(2, 6), r.int(2, 6)]; }, function (x) { var A = x[0] * x[1], B = x[2] * x[3]; return A !== B && Math.abs(A - B) <= 6 && x[0] !== x[2] && x[1] !== x[3] && !(x[0] === x[3] && x[1] === x[2]); }); if (r.chance(0.2)) x = [4, 3, 3, 5]; return { a: x[0], b: x[1], c: x[2], d: x[3] }; },
         parts: [
           { id: 'e22', level: 'ADV', make: function (r, s) { var A = s.a * s.b, B = s.c * s.d, big = A > B ? pw(par(pw(2, s.c)), s.d) : pw(par(pw(2, s.a)), s.b), D = Math.abs(A - B);
             var fl = [fld('First', t(pw(par(pw(2, s.a)), s.b) + '='), true), fld('Second', t(pw(par(pw(2, s.c)), s.d) + '='), true), fld('By', 'the larger one is larger by a factor of', true)];

@@ -36,7 +36,7 @@
     'u1l8-dec-digits': 'Wrote the fraction’s digits as a decimal', 'u1l8-place': 'Wrong place value converting a decimal', 'u1l8-hm': 'Minutes not converted to hours and minutes correctly',
     'u1l8-closer': 'Chose the wrong closer whole number', 'u1l8-estimate': 'Estimate too far off', 'u1l8-not-root': 'Gave the area or volume instead of the root', 'u1l8-em': 'Mixed up entire and mixed radicals',
     'u1l8-bracket-sign': 'Sign slip inside the brackets', 'u1l8-pow-frac': 'Squared a fraction wrongly', 'u1l8-root-half': 'Halved the number instead of taking the root',
-    'u1l8-ratio-flip': 'Ratio upside down', 'square-root': 'Used the square root instead of cube root', 'not-smallest': 'Works, but not the smallest', 'u1l8-squared': 'Squared the coefficient instead of cubing it', 'u1l8-whole-plot': 'Gave the side length instead of the count', 'u1l8-radicand-sum': 'Added the radicands'
+    'u1l8-ratio-flip': 'Ratio upside down', 'square-root': 'Used the square root instead of cube root', 'gave-gcf': 'Used the GCF (should be LCM)', 'mc-said-entire': 'Called a mixed radical entire', 'mc-said-mixed': 'Called an entire radical mixed', 'not-smallest': 'Works, but not the smallest', 'u1l8-squared': 'Squared the coefficient instead of cubing it', 'u1l8-whole-plot': 'Gave the side length instead of the count', 'u1l8-radicand-sum': 'Added the radicands'
   });
   HW.addPartial({ 'u1l8-int-add': 'b', 'u1l8-sub-neg': 'b', 'u1l8-left-right': 'b', 'u1l8-neg-square': 'b', 'u1l8-times-2': 'n', 'u1l8-add-across': 'n', 'u1l8-den-only': 'b',
     'u1l8-no-flip': 'b', 'u1l8-cross': 'n', 'u1l8-dec-digits': 'n', 'u1l8-place': 'b', 'u1l8-hm': 's', 'u1l8-closer': 's', 'u1l8-estimate': 'b', 'u1l8-not-root': 'b', 'u1l8-em': 'n',
@@ -190,6 +190,7 @@
     var A = Math.abs(R), cA = Math.abs(rq(c)), V = rq(k) * pw(m, 1 / n), hasC = !(c[0] === 1 && c[1] === 1);
     return function (val, r) {
       if (R < 0 && ex.eq(val, -V)) return { code: 'neg-root', hint: 'Watch the sign: an odd root of a negative number is negative.' };
+      if (hasC && cA === 1 && ex.eq(val, -V)) return { code: 'sign', hint: 'Don’t lose the minus sign in front of the root.' };
       if (hasC && ex.eq(val, V / rq(c))) return { code: 'coef-lost', hint: 'You simplified ' + t(rt(n, F(R))) + ' correctly — now multiply by the ' + t(ratTex(c)) + ' in front.' };
       if (!r || r.n !== n) return null;
       var g = Math.abs(rq(r.k)) / cA;
@@ -210,7 +211,8 @@
     var sol = 'The largest perfect ' + POW[n] + ' that divides ' + t(F(A)) + ' is ' + t(F(pw(f, n)) + '=' + f + '^{' + n + '}') + ', because ' + t(F(A) + '=' + F(pw(f, n)) + '\\times ' + F(m)) + '.<br>';
     if (R < 0) sol += 'The index is odd, so the negative sign comes out of the root.<br>';
     sol += t(rt(n, F(R)) + '=' + (sg < 0 ? '-' : '') + rt(n, F(pw(f, n)) + '\\times ' + F(m)) + '=' + (sg < 0 ? '-' : '') + rt(n, F(pw(f, n))) + '\\times ' + rt(n, F(m)) + '=' + inner) + '.';
-    if (hasC) sol += '<br>Multiply by the number in front: ' + t(ratTex(c) + '\\times ' + (sg < 0 ? '(-' + f + ')' : f) + '=' + ratTex(k)) + ', so ' + t(given(c, n, R) + '=' + key) + '.';
+    if (hasC && c[1] === 1 && Math.abs(c[0]) === 1) sol += '<br>Keep the minus sign in front: ' + t(given(c, n, R) + '=' + key) + '.';
+    else if (hasC) sol += '<br>Multiply by the number in front: ' + t(ratTex(c) + '\\times ' + (sg < 0 ? '(-' + f + ')' : f) + '=' + ratTex(k)) + ', so ' + t(given(c, n, R) + '=' + key) + '.';
     var good = [], bad = [];
     if (n % 2 && k[0] < 0 && k[1] === 1) good.push((Math.abs(k[0]) === 1 ? '' : String(Math.abs(k[0]))) + rt(n, '-' + m));
     if (f > 1) bad.push(coefTex(ex.norm(c[0] * sg * pw(f, n), c[1])) + rt(n, F(m)));
@@ -337,6 +339,16 @@
   }
 
   /* ---------- small part makers ---------- */
+  /* calculator answer: the correctly rounded value, or one hundredth either side of it (calculators and rounding differ) */
+  function calcChk(x, dp, opt) {
+    var base = K.approx(x, dp, opt), tol = Math.pow(10, -dp) * 1.01;
+    return function (resp) {
+      var r = base(resp); if (r.v === 'correct') return r;
+      var p = HW.parse.number(resp); if (!p.ok) return r;
+      var dec = (String(HW.parse.plain(resp)).replace(/\s/g, '').split('.')[1] || '').length;
+      return dec <= dp && Math.abs(p.value - x) <= tol ? ok() : r;
+    };
+  }
   function intPart(tex, ans, diag, sol, hints, text) { var p = P.number(t(tex), ans, diag, sol, hints, text || tex); return p; }
   function emPart(r, tex, isEntire) {
     var p = P.mc(r, 'Is ' + t(tex) + ' an entire radical or a mixed radical?', [{ html: '<b>Entire</b>', right: isEntire, why: isEntire ? null : t(tex) + ' has a number multiplying the root from outside, so it is <b>mixed</b>.', code: 'said-entire' }, { html: '<b>Mixed</b>', right: !isEntire, why: isEntire ? t(tex) + ' has only a number under the root and nothing in front, so it is <b>entire</b>.' : null, code: 'said-mixed' }],
@@ -538,10 +550,10 @@
           var p = P.fields('A square patio has an area of ' + t(A + '\\text{ ft}^{2}') + '. Estimate the side length to the nearest whole number, then <b>use a calculator</b> to find it to the nearest hundredth of a foot.',
             [{ name: 'Estimate', label: 'Estimate', before: t('s\\approx'), after: 'ft' }, { name: 'Calculator', label: 'Calculator', before: t('s\\approx'), after: 'ft' }],
             [K.number(w, function (v) { if (v === Math.floor(A / 4) || v === Math.round(A / 4)) return { code: 'perimeter', hint: 'The side of a square is the <b>square root</b> of its area, not the area divided by 4.' }; if (v === Math.round(A / 2)) return { code: 'u1l8-root-half', hint: 'The side is the square root of the area, not half of it.' }; if (v === w + 1 || v === w - 1) return { code: 'u1l8-closer', hint: 'Which perfect square is ' + t(A) + ' closer to?' }; return null; }),
-              K.approx(x, 2, { diag: function (v) { if (Math.abs(v - A / 4) < 0.01) return { code: 'perimeter', hint: 'Use the square root key: the side is ' + t('\\sqrt{' + A + '}') + '.' }; return null; } })],
+              calcChk(x, 2, { diag: function (v) { if (Math.abs(v - A / 4) < 0.01) return { code: 'perimeter', hint: 'Use the square root key: the side is ' + t('\\sqrt{' + A + '}') + '.' }; return null; } })],
             [String(w), K.roundTo(x, 2).toFixed(2)], t('s\\approx ' + w) + ' ft; ' + t('s\\approx ' + K.roundTo(x, 2).toFixed(2)) + ' ft',
             'Side ' + t('=\\sqrt{' + A + '}') + '. ' + t(Math.floor(x) * Math.floor(x) + '<' + A + '<' + Math.ceil(x) * Math.ceil(x)) + ', and ' + t(A) + ' is closer to ' + t(w * w) + ', so the side is about ' + t(w) + ' ft.<br>Calculator: ' + t('\\sqrt{' + A + '}=' + x.toFixed(5) + '\\ldots\\approx ' + K.roundTo(x, 2).toFixed(2)) + ' ft.',
-            ['The side of a square is the square root of its area. Which perfect square is ' + t(A) + ' closest to?', 'On the calculator: ' + t('\\sqrt{\\ }') + ', ' + t(A) + ', =, then round to two decimal places.'], 'patio side ' + A);
+            ['The side of a square is the square root of its area. Which perfect square is ' + t(A) + ' closest to?', 'On the calculator: ' + t('\\sqrt{\\ }') + ', ' + t(A) + ', =, then round to two decimal places. Answers within 0.01 are accepted.'], 'patio side ' + A);
           p.bad = [[String(Math.round(A / 4)), (A / 4).toFixed(2)]];
           return p;
         } }] },
@@ -704,7 +716,7 @@
         { id: 'e6a', level: 'PRG', make: function (r) {
           var o = []; [[2, 3], [2, 5], [3, 5], [2, 7]].forEach(function (pq) { [2, 4, 6].forEach(function (a) { [2, 4].forEach(function (b) { var N = pw(pq[0], a) * pw(pq[1], b); if (N <= 3600) o.push([pq[0], a, pq[1], b]); }); }); });
           var f = pickB(r, o, [2, 4, 3, 2]), N = pw(f[0], f[1]) * pw(f[2], f[3]), root = Math.sqrt(N), ft = f[0] + '^{' + f[1] + '}\\times ' + f[2] + '^{' + f[3] + '}';
-          var p = P.fields('A number’s prime factorization is ' + t(ft) + '. Is it a perfect square? Give its square root.', [{ name: 'Number', label: 'Number', before: t('N=') }, { name: 'Perfect square?', label: 'Perfect square?', mode: 'text', placeholder: 'yes or no' }, { name: 'Square root', label: 'Square root', before: t('\\sqrt{N}=') }],
+          var p = P.fields('A number’s prime factorization is ' + t(ft) + '. Is it a perfect square? Give its square root.', [{ name: 'Number', label: 'Number', before: t('N=') }, { name: 'Perfect square?', label: 'Perfect square?', mode: 'text', placeholder: 'yes/no', wide: true }, { name: 'Square root', label: 'Square root', before: t('\\sqrt{N}=') }],
             [K.number(N, function (v) { if (v === f[0] * f[1] * f[2] * f[3] || v === f[0] * f[1] + f[2] * f[3]) return { code: 'value', hint: 'An exponent means repeated multiplication: ' + t(f[0] + '^{' + f[1] + '}=' + pw(f[0], f[1])) + '.' }; return null; }),
               yesNoChk(true, '', 'Every exponent is even, so the primes split into two equal groups — it <b>is</b> a perfect square.'),
               K.number(root, function (v) { if (v === N / 2) return { code: 'u1l8-root-half', hint: 'Halve the <b>exponents</b>, not the number: ' + t('\\sqrt{N}=' + f[0] + '^{' + f[1] / 2 + '}\\times ' + f[2] + '^{' + f[3] / 2 + '}') + '.' }; return null; })],
@@ -717,7 +729,7 @@
         { id: 'e6b', level: 'PRG', make: function (r) {
           var o = [[2, 3, 5, 3], [2, 3, 3, 3], [2, 6, 3, 3], [3, 3, 5, 3], [2, 3, 7, 3], [2, 6, 5, 3], [3, 6, 2, 3], [2, 9, 3, 3], [5, 3, 2, 6], [2, 3, 11, 3]];
           var f = pickB(r, o, [2, 3, 5, 3]), N = pw(f[0], f[1]) * pw(f[2], f[3]), root = Math.round(Math.cbrt(N)), ft = f[0] + '^{' + f[1] + '}\\times ' + f[2] + '^{' + f[3] + '}';
-          var p = P.fields('A number’s prime factorization is ' + t(ft) + '. Is it a perfect cube? Give its cube root.', [{ name: 'Number', label: 'Number', before: t('N=') }, { name: 'Perfect cube?', label: 'Perfect cube?', mode: 'text', placeholder: 'yes or no' }, { name: 'Cube root', label: 'Cube root', before: t('\\sqrt[3]{N}=') }],
+          var p = P.fields('A number’s prime factorization is ' + t(ft) + '. Is it a perfect cube? Give its cube root.', [{ name: 'Number', label: 'Number', before: t('N=') }, { name: 'Perfect cube?', label: 'Perfect cube?', mode: 'text', placeholder: 'yes/no', wide: true }, { name: 'Cube root', label: 'Cube root', before: t('\\sqrt[3]{N}=') }],
             [K.number(N), yesNoChk(true, '', 'Every exponent is a multiple of 3, so the primes split into three equal groups — it <b>is</b> a perfect cube.'),
               K.number(root, function (v) { if (v === N / 3) return { code: 'u1l8-root-half', hint: 'Divide the <b>exponents</b> by 3, not the number.' }; if (v === Math.round(Math.sqrt(N))) return { code: 'square-root', hint: 'That’s the square root. For the cube root, divide each exponent by 3.' }; return null; })],
             [String(N), 'yes', String(root)], t('N=' + F(N)) + '; yes; ' + t('\\sqrt[3]{N}=' + root),
@@ -730,7 +742,7 @@
           var o = [[2, 3, 3, 4], [2, 3, 3, 2], [2, 5, 3, 2], [2, 2, 3, 3], [2, 4, 3, 3], [2, 2, 5, 3], [2, 3, 5, 2], [2, 5, 5, 2], [3, 3, 5, 2], [2, 4, 5, 3], [2, 1, 3, 4], [2, 3, 7, 2], [3, 2, 2, 5]];
           var f = pickB(r, o, [2, 3, 3, 4]), N = pw(f[0], f[1]) * pw(f[2], f[3]), mp = mixPart(1, 2, N), ft = f[0] + (f[1] > 1 ? '^{' + f[1] + '}' : '') + '\\times ' + f[2] + '^{' + f[3] + '}';
           var odd = f[1] % 2 ? f[0] : f[2];
-          var p = P.fields('A number’s prime factorization is ' + t(ft) + '. Is it a perfect square? Simplify its square root anyway.', [{ name: 'Number', label: 'Number', before: t('N=') }, { name: 'Perfect square?', label: 'Perfect square?', mode: 'text', placeholder: 'yes or no' }, { name: 'Square root', label: 'Square root', before: t('\\sqrt{N}='), mode: 'math', keys: 'radical' }],
+          var p = P.fields('A number’s prime factorization is ' + t(ft) + '. Is it a perfect square? Simplify its square root anyway.', [{ name: 'Number', label: 'Number', before: t('N=') }, { name: 'Perfect square?', label: 'Perfect square?', mode: 'text', placeholder: 'yes/no', wide: true }, { name: 'Square root', label: 'Square root', before: t('\\sqrt{N}='), mode: 'math', keys: 'radical' }],
             [K.number(N), yesNoChk(false, 'Look at the exponent on ' + t(odd) + ': it is odd, so the ' + t(odd) + 's can’t split into two equal groups. It is <b>not</b> a perfect square.', ''), mp.check],
             [String(N), 'no', mp.key], t('N=' + F(N)) + '; no; ' + t('\\sqrt{N}=' + mp.key),
             t('N=' + ft + '=' + F(N)) + '. The exponent on ' + t(odd) + ' is odd, so ' + t('N') + ' is <b>not</b> a perfect square.<br>Every pair of equal primes comes out as one copy: ' + mp.solution,
@@ -811,7 +823,7 @@
             { html: '<b>Step 3</b>: the subtraction is wrong.', why: 'Check: ' + t(S.Ftex + '-' + S.c * S.c / 2 + '-' + S.s + '=' + frT(S.wrongT)) + ' is right for that line. The mistake is earlier.' }],
             'Step 1 is wrong: ' + t('(-' + S.c + ')^{2}=(-' + S.c + ')(-' + S.c + ')=+' + S.c * S.c) + '.', ['Check each step one at a time. Is ' + t('(-' + S.c + ')^{2}') + ' positive or negative?'], 'error BEDMAS step', true);
         } },
-        { id: 'e10a2', sub: 'a(ii)', level: 'PRG', outcome: 'REV', make: function (r, sh) { var S = sh.a; return fracPart('Give the correct final answer to (a).', S.T, function (v) { if (ex.eq(v, S.wrongT[0] / S.wrongT[1])) return { code: 'u1l8-neg-square', hint: 'That’s the student’s answer. Redo it with ' + t('(-' + S.c + ')^{2}=+' + S.c * S.c) + '.' }; return null; }, t(S.Ftex + '+\\frac{1}{2}\\times ' + S.c * S.c + '-' + S.s + '=' + S.Ftex + '+' + S.c * S.c / 2 + '-' + S.s + '=' + frT(S.T)) + '.', ['Fix Step 1, then carry on.'], 'error BEDMAS answer'); } },
+        { id: 'e10a2', sub: 'a(ii)', level: 'PRG', outcome: 'REV', make: function (r, sh) { var S = sh.a; return fracPart('Evaluate ' + t(S.expr) + ' correctly.', S.T, function (v) { if (ex.eq(v, S.wrongT[0] / S.wrongT[1])) return { code: 'u1l8-neg-square', hint: 'That’s the student’s answer. Redo it with ' + t('(-' + S.c + ')^{2}=+' + S.c * S.c) + '.' }; return null; }, t(S.Ftex + '+\\frac{1}{2}\\times ' + S.c * S.c + '-' + S.s + '=' + S.Ftex + '+' + S.c * S.c / 2 + '-' + S.s + '=' + frT(S.T)) + '.', ['Fix Step 1, then carry on.'], 'error BEDMAS answer'); } },
         { id: 'e10b1', sub: 'b(i)', level: 'PRG', outcome: 'AN2', make: function (r, sh) {
           var S = sh.b;
           return P.mc(r, S.show + '<br>Which step is wrong, and why?', [
@@ -987,8 +999,9 @@
   function e10a(r) {
     var pq = properPair(r, [3, 4, 5, 6]), c = r.pick([2, 2, 4]), s = r.int(2, 5); if (r.chance(0.12)) { pq = [3, 4]; c = 2; s = 3; }
     var F0 = ex.norm(pq[0], pq[1]), Ftex = frT(F0), half = c * c / 2, T = ex.norm(pq[0] + (half - s) * pq[1], pq[1]), wrongT = ex.norm(pq[0] + (-half - s) * pq[1], pq[1]);
-    var show = 'Evaluate ' + t(Ftex + '+\\frac{1}{2}\\times(-' + c + ')^{2}-\\sqrt{' + s * s + '}') + '.<br>Step 1: ' + t('=' + Ftex + '+\\frac{1}{2}\\times(-' + c * c + ')-' + s) + '<br>Step 2: ' + t('=' + Ftex + '-' + half + '-' + s) + '<br>Step 3: ' + t('=' + frT(wrongT));
-    return { c: c, s: s, Ftex: Ftex, T: T, wrongT: wrongT, show: show };
+    var expr = Ftex + '+\\frac{1}{2}\\times(-' + c + ')^{2}-\\sqrt{' + s * s + '}';
+    var show = 'Evaluate ' + t(expr) + '.<br>Step 1: ' + t('=' + Ftex + '+\\frac{1}{2}\\times(-' + c * c + ')-' + s) + '<br>Step 2: ' + t('=' + Ftex + '-' + half + '-' + s) + '<br>Step 3: ' + t('=' + frT(wrongT));
+    return { c: c, s: s, Ftex: Ftex, T: T, wrongT: wrongT, show: show, expr: expr };
   }
   function e10b(r) {
     var o = []; [2, 4].forEach(function (e2) { [3, 5, 7].forEach(function (p) { [3, 5, 7, 11, 13].forEach(function (q) { if (q === p) return; var N = pw(2, e2) * p * p * q; if (N <= 2500) o.push({ e2: e2, p: p, q: q, N: N }); }); }); });

@@ -43,12 +43,12 @@ function stampIn(c, el) { return c.anim(el, [{ opacity: 0, transform: 'scale(1.9
 /* ======================= 1. Which law? Spot the clue ======================= */
 const LAWCARDS = [['Product', 'a^{m}\\times a^{n}=a^{m+n}'], ['Quotient', 'a^{m}\\div a^{n}=a^{m-n}'], ['Power of a Product', '(ab)^{n}=a^{n}b^{n}'], ['Power of a Quotient', '\\left(\\frac{a}{b}\\right)^{n}=\\frac{a^{n}}{b^{n}}'], ['Power of a Power', '\\left(a^{m}\\right)^{n}=a^{mn}']];
 const WHICH = [
-  { v: 'w1', ex: 'x^{5}\\times x^{2}', law: [0], clue: 'same base · multiplied', cap: 'Same base (x), <b>multiplied</b>: the <b>Product Law</b>. Add the exponents.', lines: [['=x^{5+2}', 'Keep the base x and add the exponents.'], ['=x^{7}', '5 + 2 = 7.']] },
-  { v: 'w2', ex: '\\dfrac{k^{8}}{k^{3}}', law: [1], clue: 'same base · divided', cap: 'Same base (k), <b>divided</b>: the <b>Quotient Law</b>. Subtract the exponents.', lines: [['=k^{8-3}', 'Top exponent minus bottom exponent.'], ['=k^{5}', '8 − 3 = 5.']] },
-  { v: 'w3', ex: '\\left(a^{3}\\right)^{4}', law: [4], clue: 'a power, raised to a power', cap: 'A power in brackets, raised to another power: the <b>Power of a Power Law</b>. Multiply.', lines: [['=a^{3\\times4}', 'Keep the base a and multiply the exponents.'], ['=a^{12}', 'Four groups of three a’s make twelve.']] },
-  { v: 'w4', ex: '(3y)^{2}', law: [2], clue: 'a product in brackets', cap: 'A <b>product</b> (3 times y) in brackets: the <b>Power of a Product Law</b>.', lines: [['=3^{2}y^{2}', 'Both the 3 and the y are inside, so each gets the 2.'], ['=9y^{2}', `${T('3^{2}=9')}.`]] },
+  { v: 'w1', ex: 'x^{5}\\times x^{2}', law: [0], clue: 'same base · multiplied', cap: `Same base, ${T('x')}, <b>multiplied</b>: the <b>Product Law</b>. Add the exponents.`, lines: [['=x^{5+2}', `Keep the base ${T('x')} and add the exponents.`], ['=x^{7}', '5 + 2 = 7.']] },
+  { v: 'w2', ex: '\\dfrac{k^{8}}{k^{3}}', law: [1], clue: 'same base · divided', cap: `Same base, ${T('k')}, <b>divided</b>: the <b>Quotient Law</b>. Subtract the exponents.`, lines: [['=k^{8-3}', 'Top exponent minus bottom exponent.'], ['=k^{5}', '8 − 3 = 5.']] },
+  { v: 'w3', ex: '\\left(a^{3}\\right)^{4}', law: [4], clue: 'a power, raised to a power', cap: 'A power in brackets, raised to another power: the <b>Power of a Power Law</b>. Multiply.', lines: [['=a^{3\\times4}', `Keep the base ${T('a')} and multiply the exponents.`], ['=a^{12}', `Four groups of three ${T('a')}’s make twelve.`]] },
+  { v: 'w4', ex: '(3y)^{2}', law: [2], clue: 'a product in brackets', cap: `A <b>product</b> (3 times ${T('y')}) in brackets: the <b>Power of a Product Law</b>.`, lines: [['=3^{2}y^{2}', `Both the 3 and the ${T('y')} are inside, so each gets the 2.`], ['=9y^{2}', `${T('3^{2}=9')}.`]] },
   { v: 'w5', ex: '\\left(\\dfrac{m}{5}\\right)^{2}', law: [3], clue: 'a fraction in brackets', cap: 'A <b>fraction</b> in brackets: the <b>Power of a Quotient Law</b>.', lines: [['=\\dfrac{m^{2}}{5^{2}}', 'The top and the bottom each get the 2.'], ['=\\dfrac{m^{2}}{25}', `${T('5^{2}=25')}.`]] },
-  { v: 'w6', ex: '(2x^{3})^{2}', law: [2, 4], clue: 'a product in brackets · a power inside', cap: 'Two clues! A product in brackets (<b>Power of a Product</b>), and one factor is already a power (<b>Power of a Power</b>). Two laws.', lines: [['=2^{2}\\left(x^{3}\\right)^{2}', 'Power of a Product: the 2 and the x³ each get squared.'], ['=4x^{6}', `${T('2^{2}=4')}, and Power of a Power: ${T('3\\times2=6')}.`]] }
+  { v: 'w6', ex: '(2x^{3})^{2}', law: [2, 4], clue: 'a product in brackets · a power inside', cap: 'Two clues! A product in brackets (<b>Power of a Product</b>), and one factor is already a power (<b>Power of a Power</b>). Two laws.', lines: [['=2^{2}\\left(x^{3}\\right)^{2}', `Power of a Product: the 2 and the ${T('x^{3}')} each get squared.`], ['=4x^{6}', `${T('2^{2}=4')}, and Power of a Power: ${T('3\\times2=6')}.`]] }
 ];
 const which = {
   title: 'Spot the clue, then use the law',
@@ -150,7 +150,7 @@ function mkChecklist(choices) {
     }
   };
 }
-const checklist = mkChecklist([{ v: 'nt', label: T(CK.nt.t) }, { sep: 'Example 1 check:' }, { v: 'e1', label: T(CK.e1.t) }, { sep: 'Example 2 check:' }, { v: 'e2', label: T('\\tfrac{(3x^{4})^{2}}{x^{3}}') }]);
+const checklist = mkChecklist([{ v: 'nt', label: T(CK.nt.t) }, { sep: 'Example check:' }, { v: 'e1', label: 'Example 1' }, { v: 'e2', label: 'Example 2' }]);
 const checklist2 = mkChecklist([{ sep: 'Example 4 check:' }, { v: 'e4a', label: '(a)' }, { v: 'e4b', label: '(b)' }, { sep: 'Example 5 check:' }, { v: 'e5', label: 'Example 5' }]);
 
 /* ======================= 1. Why brackets first? The maze in powers of 2 ======================= */
@@ -223,7 +223,7 @@ const SLIPS = [
   { v: 'pp', who: 'Ben', q: '(x^{4})^{3}', bad: 'x^{7}', good: ['x^{4\\times3}', 'x^{12}'], f: (x) => (x ** 4) ** 3, fb: (x) => x ** 7, sub: '16^{3}', badS: '2^{7}', law: 'Power of a Power', why: 'A power of a power <b>multiplies</b> the exponents. Adding is for the Product Law.' },
   { v: 'prod', who: 'Cy', q: 'x^{4}\\times x^{3}', bad: 'x^{12}', good: ['x^{4+3}', 'x^{7}'], f: (x) => x ** 7, fb: (x) => x ** 12, sub: '16\\times8', badS: '2^{12}', law: 'Product', why: 'Multiplying powers with the same base <b>adds</b> the exponents. Multiplying them is for a power of a power.' },
   { v: 'quot', who: 'Dee', q: '\\dfrac{x^{8}}{x^{2}}', bad: 'x^{4}', good: ['x^{8-2}', 'x^{6}'], f: (x) => x ** 6, fb: (x) => x ** 4, sub: '256\\div4', badS: '2^{4}', law: 'Quotient', why: 'Dividing powers <b>subtracts</b> the exponents. It does not divide them.' },
-  { v: 'out', who: 'Eli', q: '3(2x)^{2}', bad: '36x^{2}', good: ['3\\times2^{2}x^{2}', '12x^{2}'], f: (x) => 3 * (2 * x) ** 2, fb: (x) => 36 * x * x, sub: '3\\times4^{2}=3\\times16', badS: '36\\times4', law: 'Power of a Product', why: 'The 3 is <b>outside</b> the brackets, so it is <b>not</b> squared. Only the 2 and the x are.' },
+  { v: 'out', who: 'Eli', q: '3(2x)^{2}', bad: '36x^{2}', good: ['3\\times2^{2}x^{2}', '12x^{2}'], f: (x) => 3 * (2 * x) ** 2, fb: (x) => 36 * x * x, sub: '3\\times4^{2}=3\\times16', badS: '36\\times4', law: 'Power of a Product', why: `The 3 is <b>outside</b> the brackets, so it is <b>not</b> squared. Only the 2 and the ${T('x')} are.` },
   { v: 'base', who: 'Fay', q: '2^{3}\\times2^{4}', bad: '4^{7}', good: ['2^{3+4}', '2^{7}'], f: () => 128, fb: () => 16384, sub: '8\\times16', badS: '', law: 'Product', why: 'Keep the <b>base</b>. Only the exponents change: the answer is still a power of 2.' }
 ];
 const slips = {
@@ -255,7 +255,7 @@ const slips = {
       { cap: `${s.who} wrote ${T(s.q + '=' + s.bad)}. Look closely. <b>What went wrong?</b>`, run: (c) => c.fadeIn(bad, 400) },
       { cap: `${s.why}`, run: (c) => Promise.all([c.pop(ring, 400), stampIn(c, xs)]) },
       { cap: `The fix: ${T(s.q + '=' + s.good.join('='))}. (${s.law}${/Law$/.test(s.law) ? '' : ' Law'}.)`, run: async (c) => { await c.fadeIn(fix, 400); await Promise.all([stampIn(c, ok), c.fadeIn(lawT, 300)]); } },
-      { cap: num ? `Work out each one: the question is ${tn(s.f(x))}, ${s.who}’s answer is ${tn(s.fb(x))}. Not equal, so it can’t be right.` : `Not sure? Put in ${T('x=2')}. The question gives ${tn(s.f(x))}; ${s.who}’s answer gives ${tn(s.fb(x))}. Only the fixed answer matches.`,
+      { cap: num ? `Work out each one: the question is ${fmt(s.f(x))}, ${s.who}’s answer is ${fmt(s.fb(x))}. Not equal, so it can’t be right.` : `Not sure? Put in ${T('x=2')}. The question gives ${fmt(s.f(x))}; ${s.who}’s answer gives ${fmt(s.fb(x))}. Only the fixed answer matches.`,
         run: (c) => Promise.all([c.fadeIn(chk, 300), ...rowsC.map((e, i) => c.fadeIn(e, 350, { delay: 200 + i * 300 }))]) }
     ];
   }
@@ -304,8 +304,8 @@ const columns = {
     const P = (k, s) => `\\htmlClass{u2l4-p u2l4-pk${M.hasNum ? k : k - 1}}{${tc(colOf(k), s)}}`;
     const q = add(stage, h('div', 'u2l4-oq', K(d.q)), W / 2, frac ? 2 : 8); q.style.translate = '-50% 0';
     const cl = add(stage, h('div', 'u2l4-oh', K('=' + d.e(P))), W / 2, frac ? 82 : 62); cl.style.translate = '-50% 0'; hide(cl);
-    const N = M.cols.length, gap = 16, cw = Math.min(280, (W - 40 - gap * (N - 1)) / N), x0 = (W - (cw * N + gap * (N - 1))) / 2, cy = frac ? 184 : 140, chh = frac ? 254 : 256;
-    const ry = frac ? [64, 128, 188] : [54, 122, 190];
+    const N = M.cols.length, gap = 16, cw = Math.min(280, (W - 40 - gap * (N - 1)) / N), x0 = (W - (cw * N + gap * (N - 1))) / 2, cy = frac ? 182 : 140, chh = frac ? 240 : 256;
+    const ry = frac ? [60, 120, 178] : [54, 122, 190];
     const cols = M.cols.map((col, i) => {
       const box = add(stage, h('div', 'u2l4-col'), x0 + i * (cw + gap), cy); box.style.width = cw + 'px'; box.style.height = chh + 'px'; box.style.setProperty('--cc', colOf(col.k));
       box.innerHTML = `<div class="u2l4-colh">${col.k ? K(col.head) : col.head}</div><div class="u2l4-coll">${col.law}</div>`;

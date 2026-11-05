@@ -169,14 +169,14 @@ const dist = {
   make(stage, v, ex) {
     const W = ex.W, d = DIST[v], prod = !!d.f, k = d.k, a = prod ? d.f : d.q;
     const svg = add(stage, svgEl('svg', { class: 'u2l10-dsvg', width: W, height: 420 }), 0, 0);
-    const yM = prod ? 150 : 130;
+    const yM = prod ? 150 : 178;
     const big = add(stage, h('div', 'u2l10-dbig', K(distExpr(d, true))), 50, yM); big.style.translate = '0 -50%';
     const L2src = prod ? `=${a[0]}^{\\htmlClass{u2l10-p0}{${k}}}${a[1]}^{\\htmlClass{u2l10-p1}{${k}}}` : `=\\dfrac{${a[0]}^{\\htmlClass{u2l10-p0}{${k}}}}{${a[1]}^{\\htmlClass{u2l10-p1}{${k}}}}`;
     const bw = big.offsetWidth || 200;
     const L2 = add(stage, h('div', 'u2l10-dline', K(L2src)), 50 + bw + 50, yM); L2.style.translate = '0 -50%'; hide(L2);
     const L3 = add(stage, h('div', 'u2l10-dline', K('=' + d.res)), 50 + bw + 50 + (L2.offsetWidth || 200) + 40, yM); L3.style.translate = '0 -50%'; hide(L3);
-    const note = add(stage, h('div', 'u2l10-dnote'), 60, 290); note.style.width = (W - 120) + 'px'; hide(note);
-    const stamp = d.tag ? add(stage, h('div', 'u2l10-stamp ' + (d.ok ? 'yes' : 'no'), `NOTE ${d.tag} ${d.ok ? '✓' : '✗'}`), W - 40, 300) : null; if (stamp) { stamp.style.translate = '-100% 0'; hide(stamp); }
+    const note = add(stage, h('div', 'u2l10-dnote'), 60, 310); note.style.width = (W - 120) + 'px'; hide(note);
+    const stamp = d.tag ? add(stage, h('div', 'u2l10-stamp ' + (d.ok ? 'yes' : 'no'), `NOTE ${d.tag} ${d.ok ? '✓' : '✗'}`), W - 40, 318) : null; if (stamp) { stamp.style.translate = '-100% 0'; hide(stamp); }
     const arrows = [];
     const tok = (cls) => big.querySelector('.u2l10-' + cls);
     const mkArrows = () => {
@@ -428,6 +428,7 @@ const SCI = {
   c3b: { op: 'div', A: ['9', 4], B: ['9', 2], tag: 'Challenge 3(b)', std: '100', unit: '<b>100 tiles</b> cover the bed.' }
 };
 const sciT = (a, n) => `${a}\\times10^{${n}}`;
+const sciLine = (d) => (d.op === 'div' ? `${d.plain || sciT(...d.A)}\\div(${sciT(...d.B)})` : sciExpr(d));
 const sciExpr = (d) => (d.op === 'mul' ? `(${sciT(...d.A)})\\times(${sciT(...d.B)})` : d.op === 'pow' ? `(${sciT(...d.A)})^{${d.k}}` : `\\dfrac{${d.plain || sciT(...d.A)}}{${sciT(...d.B)}}`);
 const sci = {
   title: 'Scientific notation: numbers, then powers of 10, then fix it',
@@ -495,7 +496,7 @@ const sci = {
     const ans = sciT(lead === 0 ? cs : a2, lead === 0 ? eV : e2);
     steps.push({
       cap: `${d.tag ? '<b>' + d.tag + ':</b> ' : ''}${T(sciExpr(d) + '=' + ans + (d.std ? '=' + d.std : ''))}.${d.unit ? ' ' + (d.op === 'pow' ? `The area is ${T(ans)} ` + d.unit : d.unit) : ''}`,
-      run: async (c) => { fin.innerHTML = T(sciExpr(d) + '=' + ans + (d.std ? '=' + d.std : '')); await c.fadeIn(fin, 450); }
+      run: async (c) => { fin.innerHTML = T(sciLine(d) + '=' + ans + (d.std ? '=' + d.std : '')); await c.fadeIn(fin, 450); }
     });
     return steps;
   }
@@ -545,7 +546,7 @@ const radical = {
       run: async (c) => { badge.innerHTML = `${T('-')} → reciprocal at the end`; await Promise.all([c.anim(minus, [{ opacity: 1 }, { opacity: 0.18 }], 500), c.fadeIn(badge, 400, { delay: 200 })]); }
     });
     steps.push({
-      cap: d.n === 2 ? `The <b>denominator 2</b> is the index of the root: a <b>square root</b>. (Index 2 isn’t written.)` : `The <b>denominator ${d.n}</b> becomes the <b>index</b> of the root: a ${d.n === 3 ? 'cube' : d.n + 'th'} root of ${T(d.rad)}.`,
+      cap: d.n === 2 ? `The <b>denominator 2</b> is the index of the root: a <b>square root</b>. (Index 2 isn’t written.)` : `The <b>denominator ${d.n}</b> becomes the <b>index</b> of the root: ${d.n === 3 ? 'a cube' : d.n === 8 ? 'an 8th' : 'a ' + d.n + 'th'} root of ${T(d.rad)}.`,
       run: async (c) => {
         nT.classList.add('lit');
         await Promise.all([flyEl(c, nT, idx), draw(c, sign, 700, { delay: 250 }), c.anim(sign, [{ opacity: 1 }, { opacity: 1 }], 10), c.fadeIn(rad, 400, { delay: 450 }), d.sym ? Promise.resolve() : Promise.all([c.fadeIn(lp, 300, { delay: 500 }), c.fadeIn(rp, 300, { delay: 500 })])]);
@@ -596,7 +597,7 @@ function mountWall() {
   const tally = document.getElementById('u2l10-tally');
   const rot = [3, -2, 2, -3, 2, -2, 3, -3, 2, -2];
   const els = NOTES.map(([L, q, a, ok, law, fix], i) => {
-    const b = h('button', 'u2l10-note', `<span class="u2l10-pin"></span><span class="u2l10-nl">${L}</span><span class="u2l10-nq">${T(q)}</span><span class="u2l10-na">${T(a)}</span><span class="u2l10-nfix">${ok ? '<b class="u2l10-ok">✓</b> ' : '<b class="u2l10-x">✗</b> '}<span class="u2l10-nlaw">${law}</span>${ok ? '' : `<br>${law === 'product law' ? 'keep the base: ' + T('2^7=128') : T(fix)}`}</span><span class="u2l10-nstamp">${ok ? '✓' : '✗'}</span>`);
+    const b = h('button', 'u2l10-note', `<span class="u2l10-pin"></span><span class="u2l10-nl">${L}</span><span class="u2l10-nq">${T(q)}</span><span class="u2l10-na">${T(a)}</span><span class="u2l10-nfix">${ok ? '<b class="u2l10-ok">✓</b> ' : '<b class="u2l10-x">✗</b> '}<span class="u2l10-nlaw">${law}</span>${ok ? '' : `<br>${law === 'product law' ? 'keep the base: ' + T('2^{7}') : T(fix)}`}</span><span class="u2l10-nstamp">${ok ? '✓' : '✗'}</span>`);
     b.type = 'button'; b.style.setProperty('--r', rot[i] + 'deg'); b.classList.add(ok ? 'ok' : 'bad'); b.dataset.u2l10Note = L;
     b.addEventListener('click', () => { b.classList.toggle('on'); upd(); });
     grid.appendChild(b); return b;

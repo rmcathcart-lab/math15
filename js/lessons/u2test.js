@@ -25,8 +25,8 @@
  *           L6 Q5, Q9a, Q10, Q15 · L7 Q9, Q13, Q15 · L8 Q6 · L9 Q7, Q12, Q16 · L10 (review) Q11.
  * Conversions to online: “state the base and exponent” → two boxes; “identify the incorrect step and explain” → select
  * the statement that describes the error (the decoys describe steps that are fine, with why), then type the correct
- * answer; “find x” → a box after n =; “how many fit” → a whole number (scientific notation also accepted). The paper-free
- * Mastery box keeps multiple choice out (the error question is a select of reasoned statements, as in the 10C test).
+ * answer; “find x” → a box after n =; “how many fit” → a whole number (scientific notation also accepted). No multiple
+ * choice anywhere (the error question is a select of reasoned statements, as in the 10C test).
  * Helpers (rationals, monomials, the exponent/radical checkers, evaluating b^{m/n}, converting powers ↔ radicals) are
  * copied from the Math 10C u2test.js. */
 (function (root) {
@@ -1000,7 +1000,7 @@
             : g.err === 'signexp' ? 'Step 1: ' + t('(-' + p + ')\\times(-2)=+' + 2 * p) + ', so the bracket gives ' + t(k + '^{-2}' + pw(x, 2 * p)) + ', not ' + t(pwx(x, -2 * p)) + '.'
             : g.err === 'mult' ? 'Step 2: multiplying powers adds the exponents: ' + t(pw(x, 2 * p) + '\\times ' + pw(x, q) + '=' + pw(x, E)) + ', not ' + t(pw(x, 2 * p * q)) + '.'
             : 'Step 3: ' + t(k + '^{-2}=\\frac{1}{' + K2 + '}') + ', so ' + t(c + '\\times ' + k + '^{-2}' + pw(x, E) + '=\\frac{' + c + pw(x, E) + '}{' + K2 + '}') + ', not ' + t(L.l3) + '.';
-          return selectPart(r, 'Select the statement that describes the error.', items, fix + '<br>Correct answer: ' + t(L.orig + '=' + k + '^{-2}' + pw(x, 2 * p) + '\\times ' + c + pw(x, q) + '=' + posTex(L.right)),
+          return selectPart(r, 'Select the statement that describes the error (only one of them is true).', items, fix + '<br>Correct answer: ' + t(L.orig + '=' + k + '^{-2}' + pw(x, 2 * p) + '\\times ' + c + pw(x, q) + '=' + posTex(L.right)),
             ['Redo each step yourself and compare: bracket first (every factor gets the exponent ' + t(-2) + '), then add the exponents, then positive exponents.', 'A negative exponent means reciprocal, and ' + t('(-a)\\times(-2)') + ' is positive.'], 'error in ' + L.orig);
         } },
         { id: '15b', outcome: 'AN3', level: 'MAS', make: function (r, g) {

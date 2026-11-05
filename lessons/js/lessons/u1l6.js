@@ -9,7 +9,8 @@
  *   again   (a smaller square first means going again; the largest square does it in one step — Example 5(a)).
  * Adapted from the Math 10C twin (u1l7: area, finder, pairs, entire, numline), at Math 15 level: whole-number
  * coefficients only, no fractions or negatives in front. */
-import { h, tex, fmt, factors, primeFactors } from '../explain.js';
+import { h, fmt, primeFactors } from '../explain.js';
+import { tex } from '../tex.js';
 import { mountExplainers, svgEl } from '../blocks.js';
 import { standup } from '../standup.js';
 
@@ -91,7 +92,7 @@ const area = {
   custom: [2, 400],
   intro: (n) => `A square has area <b>${fmt(n)}</b>. Its side is ${tex(R(n))}. What does that side look like as a <b>mixed radical</b>?`,
   make(stage, n, ex) {
-    const W = ex.W, L = 300, x0 = 100, y0 = 26, { s, r } = sqPart(n), S = s * s, cell = L / s;
+    const W = ex.W, L = 300, x0 = 100, y0 = 40, { s, r } = sqPart(n), S = s * s, cell = L / s;
     const sqd = add(stage, h('div', 'u1l6-arsq'), x0, y0); sqd.style.width = sqd.style.height = L + 'px';
     const areaL = add(stage, h('div', 'u1l6-ararea c', `Area = <b>${fmt(n)}</b>`), x0 + L / 2, y0 + L / 2);
     const sideL = add(stage, h('div', 'u1l6-arside', K(R(n))), x0 - 14, y0 + L / 2); sideL.style.translate = '-100% -50%'; hide(sideL);
@@ -413,12 +414,12 @@ function againPlan(n) {
 }
 const again = {
   title: 'Not finished? Go again — or use the largest square',
-  height: 420,
+  height: 350,
   minW: 900,
   choices: [{ sep: 'Example 5(a) check:' }, { v: 96, label: tex('\\sqrt{96}') }, { sep: 'More:' }, { v: 72, label: tex('\\sqrt{72}') }, { v: 200, label: tex('\\sqrt{200}') }, { v: 162, label: tex('\\sqrt{162}') }],
   intro: (n) => { const P = againPlan(n); return `Simplify ${tex(R(n))}. What if you start with the perfect square <b>${P.k * P.k}</b> instead of the largest one?`; },
   make(stage, n, ex) {
-    const W = ex.W, P = againPlan(n), { s, r, k, m, s2, S2 } = P, half = W / 2, fs = 27, lh = 60;
+    const W = ex.W, P = againPlan(n), { s, r, k, m, s2, S2 } = P, half = W / 2, fs = 30, lh = 64;
     const hL = add(stage, h('div', 'u1l6-agh', `Start with <b>${k * k}</b>`), 30, 14), hR = add(stage, h('div', 'u1l6-agh best', `Start with the largest, <b>${s * s}</b>`), half + 20, 14);
     hide(hR);
     const BL = board(stage, { x: 30, y: 62, lh, fs }), BR = board(stage, { x: half + 20, y: 62, lh, fs });
@@ -427,10 +428,10 @@ const again = {
     const L3 = BL.line(`=${k}\\times${s2}${R(r)}=\\mathbf{${mixT(s, r)}}`);
     const Rr1 = BR.line(`${R(n)}=\\sqrt{${s * s}\\times${r}}`);
     const Rr2 = BR.line(`=${R(s * s)}\\times${R(r)}=\\mathbf{${mixT(s, r)}}`);
-    const st = stampEl(stage, `NOT FINISHED<small>${m} = ${S2} × ${r}</small>`, 60, 250);
-    const ok = add(stage, h('div', 'u1l6-agok'), half + 20, 200); ok.style.width = (half - 50) + 'px'; hide(ok);
+    const st = stampEl(stage, `NOT FINISHED<small>${m} = ${S2} × ${r}</small>`, 60, 262);
+    const ok = add(stage, h('div', 'u1l6-agok'), half + 20, 210); ok.style.width = (half - 50) + 'px'; hide(ok);
     ok.innerHTML = `<b class="u1l6-ok">Same answer ✓</b> in one step. ${r} has no perfect-square factor, so ${K(mixT(s, r))} is finished.`;
-    const sepl = add(stage, h('div', 'u1l6-agsep'), half, 14); sepl.style.height = '390px'; hide(sepl);
+    const sepl = add(stage, h('div', 'u1l6-agsep'), half, 14); sepl.style.height = '320px'; hide(sepl);
     return [{
       cap: `Pull out ${k * k} first: ${tex(`${R(n)}=\\sqrt{${k * k}\\times${m}}=${k}${R(m)}`)}. That is <b>true</b>…`,
       run: (c) => showRow(c, stage, L1)

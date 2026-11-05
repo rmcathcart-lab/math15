@@ -536,7 +536,7 @@
     var rchk = convCheck(radT, { form: 'radical', index: n, cands: [[C + rootTex(m, v + '^{' + n + '}'), 'swap', 'The <b>denominator</b> ' + t(n) + ' is the index of the root and the <b>numerator</b> ' + t(m) + ' is the power.'], [(c1 + c2) + rootTex(n, m === 1 ? v : v + '^{' + m + '}'), 'coef-added', 'Multiply the coefficients: ' + t(c1 + '\\times ' + c2 + '=' + C) + '.'], [rootTex(n, C + (m === 1 ? v : v + '^{' + m + '}')), 'coef-inside', 'The exponent belongs to ' + t(v) + ' only, so ' + t(C) + ' stays <b>outside</b> the radical.']] });
     var p = P.fields(t(pr), [{ name: 'Power', label: 'power', before: t('='), mode: 'math', keys: 'expo', vars: [v] }, { name: 'Radical form', label: 'radical form', before: t('='), mode: 'math', keys: 'expo', vars: [v] }], [pchk, rchk], [powT, radT],
       t(pr + '=' + powT + '=' + radT),
-      'Multiply the coefficients and <b>add</b> the exponents (product law):<br>' + t(pr + '=(' + c1 + '\\times ' + c2 + ')' + v + '^{' + expSum(a, b, '+').join('=') + '}') + ', so the power is ' + t(powT) + '.<br>Radical form — the denominator ' + t(n) + ' is the index, the numerator ' + t(m) + ' the power, and the ' + t(C) + ' stays outside: ' + t(powT + '=' + radT) + '.',
+      'Multiply the coefficients and <b>add</b> the exponents (product law):<br>' + t(pr + '=(' + c1 + '\\times ' + c2 + ')' + v + '^{' + eS(a) + '+' + eS(b) + '}') + ', and ' + t(expSum(a, b, '+').join('=')) + ', so the power is ' + t(powT) + '.<br>Radical form — the denominator ' + t(n) + ' is the index, the numerator ' + t(m) + ' the power, and the ' + t(C) + ' stays outside: ' + t(powT + '=' + radT) + '.',
       ['Coefficients multiply; exponents add (common denominator).', 'In ' + t('x^{m/n}') + ' the denominator ' + t('n') + ' is the index of the root and ' + t('m') + ' is the power.'], '2-form product ' + pr);
     p.bad = [[(c1 + c2) + pw(v, e), radT], [powT, C + rootTex(m, v + '^{' + n + '}')]];
     return p;
@@ -718,7 +718,7 @@
       return wrong('value', null);
     };
     var pT = cf(a, 'x^{1/2}'), qT = (s < 0 ? '-' : '') + cf(b, 'x^{-1/2}');
-    var p = P.math('Expand ' + t(e22tex(sh)) + ' and simplify, with positive exponents only.', check, tgt,
+    var p = P.math('Expand and simplify. Write the answer with positive exponents only.', check, tgt,
       'Use ' + t('(p+q)^{2}=p^{2}+2pq+q^{2}') + ' with ' + t('p=' + pT) + ' and ' + t('q=' + qT) + ':<br>' + t('p^{2}=' + (a === 1 ? '' : a + '^{2}') + '\\left(x^{1/2}\\right)^{2}=' + cf(A2, 'x')) + '<br>' + t('2pq=2(' + pT + ')(' + qT + ')=' + mid + 'x^{0}=' + mid) + '<br>' + t('q^{2}=' + (b === 1 ? '' : b + '^{2}') + '\\left(x^{-1/2}\\right)^{2}=' + cf(B2, 'x^{-1}') + '=\\frac{' + B2 + '}{x}') + '<br>So ' + t(e22tex(sh) + '=' + tgt) + '.',
       ['Write it as ' + t('(p+q)(p+q)') + ' or use ' + t('(p+q)^{2}=p^{2}+2pq+q^{2}') + '.', 'Power of a power: ' + t('\\left(x^{1/2}\\right)^{2}=x') + '. Product law: ' + t('x^{1/2}\\cdot x^{-1/2}=x^{0}=1') + '.'], 'expand ' + e22tex(sh), { keys: 'expo', vars: ['x'] });
     p.bad = W.map(function (w) { return w.tex; }).concat([e22tex(sh)]);

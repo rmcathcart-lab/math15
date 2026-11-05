@@ -43,7 +43,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Power Maze" style="--wf-side: 400px">
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Power Maze" style="--wf-side: 360px">
   <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Power Maze</h2>
   <p class="wf-rule">Start with <b>4</b>. Move only <b>right</b> or <b>down</b>. Do each tile as you land on it. <span class="muted">Tap a tile next to you to move, or play a named route.</span></p></div>
   <div class="wf-grid"><div class="wf-main">
@@ -51,7 +51,7 @@
       <div class="u2l4-maze" id="u2l4-maze"></div>
       <div class="u2l4-mzside">
         <div class="u2l4-routes">
-          <div class="u2l4-rh">Named routes</div>
+          <div class="u2l4-rhead">Named routes</div>
           <button type="button" class="u2l4-rt" data-u2l4-route="RRDD"><b>Top road</b><span>→ → ↓ ↓</span></button>
           <button type="button" class="u2l4-rt" data-u2l4-route="DDRR"><b>Bottom road</b><span>↓ ↓ → →</span></button>
           <button type="button" class="u2l4-rt" data-u2l4-route="RDRD"><b>Zig-zag A</b><span>→ ↓ → ↓</span></button>
@@ -60,15 +60,6 @@
         </div>
         <div class="u2l4-run" id="u2l4-run"></div>
       </div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u2l4-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Where does the <b>Top road</b> finish? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u2l4-wa"><div class="bk-ans"><b>16:</b> <span class="tex">4\times4=16</span>, <span class="tex">\times2=32</span>, <span class="tex">\div2=16</span>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which route finishes on <b>1024</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u2l4-wa"><div class="bk-ans"><b>→ ↓ ↓ →:</b> <span class="tex">4\times4=16</span>, square <span class="tex">=256</span>, <span class="tex">\times4=1024</span>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>The <b>Bottom road</b> uses the same tiles as the Top road, in reverse order. Same finish, or different? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u2l4-wa"><div class="bk-ans"><b>Same: 16.</b> <span class="tex">4\div2=2</span>, <span class="tex">\times2=4</span>, <span class="tex">\times4=16</span>. Multiplying and dividing can go in <b>any</b> order.</div></div></div>
     </div>
     <div class="poll wf-poll u2l4-poll">
       <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> <b>Zig-zag A</b> and <b>Zig-zag B</b> also use the <em>same three tiles</em> (×4, square it, ÷2), just in reverse order. How do their finishes compare? <b>Guess first.</b></div></div>
@@ -79,6 +70,15 @@
       </div>
       <button class="pill" type="button" data-poll-reveal>Reveal</button>
       <div class="poll-ans"><b>C: 8 times.</b> Zig-zag A: <span class="tex">4\times4=16</span>, square <span class="tex">=256</span>, <span class="tex">\div2=128</span>. Zig-zag B: <span class="tex">4\div2=2</span>, square <span class="tex">=4</span>, <span class="tex">\times4=16</span>. Once a <b>square</b> is in the route, order matters: the square hits <b>everything</b> done before it.</div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u2l4-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Where does the <b>Top road</b> finish? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u2l4-wa"><div class="bk-ans"><b>16:</b> <span class="tex">4\times4=16</span>, <span class="tex">\times2=32</span>, <span class="tex">\div2=16</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which route finishes on <b>1024</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u2l4-wa"><div class="bk-ans"><b>→ ↓ ↓ →:</b> <span class="tex">4\times4=16</span>, square <span class="tex">=256</span>, <span class="tex">\times4=1024</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>The <b>Bottom road</b> uses the same tiles as the Top road, in reverse order. Same finish, or different? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u2l4-wa"><div class="bk-ans"><b>Same: 16.</b> <span class="tex">4\div2=2</span>, <span class="tex">\times2=4</span>, <span class="tex">\times4=16</span>. Multiplying and dividing can go in <b>any</b> order.</div></div></div>
     </div>
   </div></div>
   <p class="u2l4-social">Race your neighbour: find the route with the biggest finish, and the smallest. <span data-reveal="tap to see"><b>Biggest 1024</b> (→ ↓ ↓ →), <b>smallest 2</b> (↓ → → ↓: <span class="tex">4\div2=2</span>, square <span class="tex">=4</span>, <span class="tex">\div2=2</span>).</span></p>

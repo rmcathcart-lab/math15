@@ -65,6 +65,7 @@
     var A = Math.abs(R), cA = Math.abs(rq(c)), V = rq(k) * pw(m, 1 / n), hasC = !(c[0] === 1 && c[1] === 1);
     return function (val, r) {
       if (R < 0 && ex.eq(val, -V)) return { code: 'neg-root', hint: 'Watch the sign: an odd root of a negative number is negative, e.g. ' + t(rt(n, '-' + pw(f, n)) + '=-' + f) + '.' };
+      if (hasC && cA === 1 && ex.eq(val, -V)) return { code: 'sign', hint: 'Don’t lose the minus sign in front of the root.' };
       if (hasC && ex.eq(val, V / rq(c))) return { code: 'coef-lost', hint: 'You simplified ' + t(rt(n, F(R))) + ' correctly — now multiply by the ' + t(ratTex(c)) + ' in front.' };
       if (!r || r.n !== n) return null;
       var g = Math.abs(rq(r.k)) / cA;
@@ -85,7 +86,8 @@
     var sol = 'The largest perfect ' + POW[n] + ' that divides ' + t(F(A)) + ' is ' + t(F(pw(f, n)) + '=' + f + '^{' + n + '}') + ', because ' + t(F(A) + '=' + F(pw(f, n)) + '\\times ' + F(m)) + '.<br>';
     if (R < 0) sol += 'The index is odd, so the negative sign comes out of the root: ' + t(rt(n, F(R)) + '=-' + rt(n, F(A))) + '.<br>';
     sol += t(rt(n, F(R)) + '=' + (sg < 0 ? '-' : '') + rt(n, F(pw(f, n)) + '\\times ' + F(m)) + '=' + (sg < 0 ? '-' : '') + rt(n, F(pw(f, n))) + '\\times ' + rt(n, F(m)) + '=' + inner) + '.';
-    if (hasC) sol += '<br>Multiply by the number in front: ' + t(ratTex(c) + '\\times ' + (sg < 0 ? '(-' + f + ')' : f) + '=' + ratTex(k)) + ', so ' + t(given(c, n, R) + '=' + key) + '.';
+    if (hasC && c[1] === 1 && Math.abs(c[0]) === 1) sol += '<br>Keep the minus sign in front: ' + t(given(c, n, R) + '=' + key) + '.';
+    else if (hasC) sol += '<br>Multiply by the number in front: ' + t(ratTex(c) + '\\times ' + (sg < 0 ? '(-' + f + ')' : f) + '=' + ratTex(k)) + ', so ' + t(given(c, n, R) + '=' + key) + '.';
     var good = [], bad = [];
     if (n % 2 && k[0] < 0 && k[1] === 1) good.push((Math.abs(k[0]) === 1 ? '' : String(Math.abs(k[0]))) + rt(n, '-' + m));
     if (f > 1) bad.push(coefTex(ex.norm(c[0] * sg * pw(f, n), c[1])) + rt(n, F(m)));
@@ -183,7 +185,16 @@
     o.hints || ['Which number, used as a factor ' + t(n) + ' times, gives the number under the root?', n % 2 ? 'The index is odd, so a negative radicand gives a negative root.' : 'Try the perfect ' + POW[n] + 's: ' + t(LIST[n] || '') + '.'], 'evaluate ' + e);
   }
   /* a number box whose answer may be calculator-rounded */
-  function calcChk(x, dp) { return K.approx(x, dp); }
+  /* calculator answer: the correctly rounded value, or one hundredth either side of it (calculators and rounding differ) */
+  function calcChk(x, dp, opt) {
+    var base = K.approx(x, dp, opt), tol = Math.pow(10, -dp) * 1.01;
+    return function (resp) {
+      var r = base(resp); if (r.v === 'correct') return r;
+      var p = HW.parse.number(resp); if (!p.ok) return r;
+      var dec = (String(HW.parse.plain(resp)).replace(/\s/g, '').split('.')[1] || '').length;
+      return dec <= dp && Math.abs(p.value - x) <= tol ? ok() : r;
+    };
+  }
 
   /* ---------- Mastery: every whole number a with L < a·∛m < U (compare a³m with L³ and U³) — from Math 10C u1l8 ---------- */
   function betweenPart(r) {
@@ -351,7 +362,7 @@
         shared: function (r) {
           var simp = [];
           [2, 3, 5, 7].forEach(function (p) { [2, 3, 5, 7].forEach(function (q) { if (q <= p) return; for (var a = 1; a <= 4; a++) for (var b = 1; b <= 4; b++) { var v = pw(p, a) * pw(q, b); if (v >= 300 && v <= 4000 && (a >= 3 || b >= 3)) simp.push(v); } }); });
-          var s1 = pool(5, [3], 2, 16), s2 = pool(5, [2], 3, 60).filter(function (R) { return R >= 200; });
+          var s1 = pool(5, [3], 2, 16), s2 = pool(5, [2], 3, 60).filter(function (R) { return R >= 200 && nt.factor(R).every(function (pe) { return pe[0] <= 7; }); });
           var A = r.chance(0.15) ? 486 : r.pick(s1.concat(s2)), B, S = r.chance(0.15) ? 2500 : r.pick(simp);
           for (var g = 0; g < 50; g++) { B = r.chance(0.15) ? 1944 : r.pick(s1.concat(s2)); if (B !== A) break; }
           var items = [{ R: A, simp: false }, { R: -B, simp: false }, { R: S, simp: true }];
@@ -398,7 +409,7 @@
             var p = P.fields('<b>Use a calculator.</b> Evaluate both expressions to the nearest hundredth.', [{ name: t('-' + c + '\\sqrt[4]{' + m + '}'), before: t('-' + c + '\\sqrt[4]{' + m + '}\\approx') }, { name: t('\\sqrt[4]{' + M + '}'), before: t('\\sqrt[4]{' + M + '}\\approx') }],
               [calcChk(v1, 2), calcChk(v2, 2)], [d2(v1), d2(v2)], t('-' + c + '\\sqrt[4]{' + m + '}\\approx ' + d2(v1)) + ' and ' + t('\\sqrt[4]{' + M + '}\\approx ' + d2(v2)),
               t('\\sqrt[4]{' + m + '}\\approx ' + Math.pow(m, 0.25).toFixed(4)) + ', so ' + t('-' + c + '\\sqrt[4]{' + m + '}\\approx ' + d2(v1)) + '. But ' + t('\\sqrt[4]{' + M + '}\\approx ' + d2(v2)) + ' is <b>positive</b>. Same size, opposite signs — so Jonah is wrong.',
-              ['On the calculator, a fourth root is ' + t('x^{1/4}') + ' or the ' + t('\\sqrt[x]{\\ }') + ' key with ' + t('x=4') + '. Answers within the last digit are fine.', 'Multiply the fourth root of ' + t(m) + ' by ' + t('-' + c) + '.'], 'Jonah calc');
+              ['On the calculator, a fourth root is ' + t('x^{1/4}') + ' or the ' + t('\\sqrt[x]{\\ }') + ' key with ' + t('x=4') + '. Answers within 0.01 of the calculator value are accepted.', 'Multiply the fourth root of ' + t(m) + ' by ' + t('-' + c) + '.'], 'Jonah calc');
             p.bad = [[d2(-v1), d2(v2)]];
             return p;
           } },
@@ -574,9 +585,9 @@
             var right = cLess ? c + '<' + s + '=' + f : s + '=' + f + '<' + c;
             return P.mc(r, 'Which order is correct, and what is the surprise?', [
               { html: t(right) + ' — the surprise: ' + t(s) + ' and ' + t(f) + ' are the same number.', right: true },
-              { html: t(cLess ? c + '<' + s + '<' + f : s + '<' + f + '<' + c) + ', with no ties.', why: t(s) + ' and ' + t(f) + ' have the same 12th power, so they are equal: ' + t(f + '=\\sqrt{\\sqrt{' + a * a + '}}=' + s) + '.' },
-              { html: t(cLess ? f + '<' + s + '<' + c : c + '<' + f + '<' + s) + '.', why: 'Compare the 12th powers: ' + t(F(A)) + ' and ' + t(F(B)) + '.' },
-              { html: t(cLess ? s + '=' + f + '<' + c : c + '<' + s + '=' + f) + '.', why: 'Check which 12th power is larger: ' + t(F(B) + (cLess ? '<' : '>') + F(A)) + '.' }],
+              { html: t(cLess ? c + '<' + s + '<' + f : s + '<' + f + '<' + c) + ' — the surprise: ' + t(f) + ' is larger than ' + t(s) + ', even though ' + t(a * a) + ' is under a fourth root.', why: t(s) + ' and ' + t(f) + ' have the same 12th power, so they are equal: ' + t(f + '=\\sqrt{\\sqrt{' + a * a + '}}=' + s) + '.' },
+              { html: t(cLess ? f + '<' + s + '<' + c : c + '<' + f + '<' + s) + ' — the surprise: ' + t(c) + ' is the ' + (cLess ? 'largest' : 'smallest') + '.', why: 'Compare the 12th powers: ' + t(F(A)) + ' and ' + t(F(B)) + '.' },
+              { html: t(cLess ? s + '=' + f + '<' + c : c + '<' + s + '=' + f) + ' — the surprise: ' + t(s) + ' and ' + t(f) + ' are the same number.', why: 'The tie is right, but check which 12th power is larger: ' + t(F(B) + (cLess ? '<' : '>') + F(A)) + '.' }],
               '12th powers: ' + t(s + '\\to ' + F(A)) + ', ' + t(c + '\\to ' + F(B)) + ', ' + t(f + '\\to ' + F(A)) + '. So ' + t(right) + '.<br>The surprise: ' + t(f + '=\\sqrt{\\sqrt{' + a * a + '}}=\\sqrt{' + a + '}') + ' — the same number written two ways.',
               ['Use your three answers to (a). Two of them are equal.'], 'order sqrt, cbrt, 4th root');
           } }] },

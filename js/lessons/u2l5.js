@@ -63,8 +63,12 @@
   function Dv(a, b, s) { return { t: '/', a: a, b: b, s: s || 'frac' }; }
   function tex(n) {
     if (n.t === 'm') return qTex(n.m);
-    if (n.t === 'p') return (n.a.t === '/' && n.a.s === 'frac' ? '\\left(' + tex(n.a) + '\\right)' : '(' + tex(n.a) + ')') + '^{' + n.n + '}';
-    if (n.t === '*') return n.xs.map(function (x) { return (n.sep === '' && x.t === 'm') || (x.t === '/' && x.s === 'div') ? '(' + tex(x) + ')' : tex(x); }).join(n.sep);
+    if (n.t === 'p') {
+      if (n.a.t === 'm' && !Object.keys(n.a.m.v).length && n.a.m.c[1] === 1 && n.a.m.c[0] > 0) return F(n.a.m.c[0]) + '^{' + n.n + '}';
+      return (n.a.t === '/' && n.a.s === 'frac' ? '\\left(' + tex(n.a) + '\\right)' : '(' + tex(n.a) + ')') + '^{' + n.n + '}';
+    }
+    if (n.t === '*') return n.xs.map(function (x, i) { return (n.sep === '' && x.t === 'm' && i > 0 && !(x.m.c[0] === 1 && x.m.c[1] === 1)) || (x.t === '/' && x.s === 'div') ? '(' + tex(x) + ')' : tex(x); }).join(n.sep);
+    if (n.s === 'pdiv') return '(' + tex(n.a) + ')\\div(' + tex(n.b) + ')';
     return n.s === 'div' ? tex(n.a) + '\\div ' + tex(n.b) : '\\dfrac{' + tex(n.a) + '}{' + tex(n.b) + '}';
   }
   function lettersOf(n, acc) { acc = acc || []; if (n.t === 'm') Object.keys(n.m.v).forEach(function (x) { if (acc.indexOf(x) < 0) acc.push(x); }); else if (n.t === 'p') lettersOf(n.a, acc); else if (n.t === '*') n.xs.forEach(function (x) { lettersOf(x, acc); }); else { lettersOf(n.a, acc); lettersOf(n.b, acc); } return acc; }
@@ -126,7 +130,7 @@
       var negIn = Object.keys(inner.v).some(function (x) { return inner.v[x] < 0; });
       if ((negIn && !o.neg) || inner.c[1] !== 1) { L.push('Power law (raise the top and the bottom): ' + t(shownIn + '=' + rawT(res, o.neg)) + '.'); return res; }
       var parts = []; if (!(inner.c[0] === 1 && inner.c[1] === 1)) parts.push(cP(inner.c) + '^{' + n.n + '}');
-      Object.keys(inner.v).forEach(function (x) { parts.push(x + '^{' + (inner.v[x] < 0 ? '(' + inner.v[x] + ')' : inner.v[x]) + '\\times ' + n.n + '}'); });
+      Object.keys(inner.v).forEach(function (x) { parts.push(x + '^{' + (inner.v[x] < 0 ? '(' + inner.v[x] + ')' : inner.v[x]) + '\\times ' + (n.n < 0 ? '(' + n.n + ')' : n.n) + '}'); });
       L.push('Power law: ' + t(shownIn + '=' + parts.join('') + '=' + rawT(res, o.neg)) + '.');
       return res;
     }
@@ -632,8 +636,8 @@
             p.bad = [[String(PT), String(PT)], [String(PT + 1), String(f)]];
             return p;
           } }] },
-      { num: '17', stem: function (sh) { return 'Evaluate ' + t('\\left(' + sh.b + '^{0}+' + sh.b + '^{1}\\right)^{' + sh.n + '}') + '. A student claimed the answer was ' + t(sh.b + '^{0}+' + sh.b + '^{' + sh.n + '}=' + F(1 + Math.pow(sh.b, sh.n))) + ' by “raising each term to the power ' + sh.n + '.”'; },
-        shared: function (r) { var b = r.int(2, 12); return { b: b, n: b <= 4 ? r.pick([2, 2, 3]) : 2 }; },
+      { num: '17', stem: function (sh) { var tm = sh.sw ? [sh.b + '^{1}', sh.b + '^{0}'] : [sh.b + '^{0}', sh.b + '^{1}'], st = sh.sw ? [sh.b + '^{' + sh.n + '}', sh.b + '^{0}'] : [sh.b + '^{0}', sh.b + '^{' + sh.n + '}']; return 'Evaluate ' + t('\\left(' + tm.join('+') + '\\right)^{' + sh.n + '}') + '. A student claimed the answer was ' + t(st.join('+') + '=' + F(1 + Math.pow(sh.b, sh.n))) + ' by “raising each term to the power ' + sh.n + '.”'; },
+        shared: function (r) { var b = r.int(2, 12); return { b: b, n: b <= 4 ? r.pick([2, 2, 3]) : 2, sw: r.chance(0.4) }; },
         parts: [
           { id: 'e17a', level: 'EMG', outcome: 'AN3', make: function (r, sh) { var V = Math.pow(1 + sh.b, sh.n); return numP('What is the correct value?', V, zdiag(function (v) { return v === 1 + Math.pow(sh.b, sh.n) ? { code: 'split-sum', hint: 'That’s the student’s answer. Add inside the bracket first: ' + t(sh.b + '^{0}+' + sh.b + '^{1}=1+' + sh.b + '=' + (1 + sh.b)) + '.' } : v === Math.pow(sh.b, sh.n) ? { code: 'zero-power', hint: t(sh.b + '^{0}=1') + ', not ' + t('0') + '.' } : null; }), t('\\left(' + sh.b + '^{0}+' + sh.b + '^{1}\\right)^{' + sh.n + '}=(1+' + sh.b + ')^{' + sh.n + '}=' + (1 + sh.b) + '^{' + sh.n + '}=' + F(V)) + '.', ['Inside the brackets first.'], '(b^0+b^1)^n', [1 + Math.pow(sh.b, sh.n)]); } },
           { id: 'e17b', level: 'EMG', outcome: 'AN3', make: function (r, sh) {

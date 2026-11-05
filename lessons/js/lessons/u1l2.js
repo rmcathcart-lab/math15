@@ -65,16 +65,16 @@ function mountCups() {
   });
   const clr = h('button', 'pill u1l2-clr', 'Empty the bowl'); clr.type = 'button'; clr.onclick = () => { scoops.length = 0; draw(); };
   bowl.innerHTML = '<div class="u1l2-bh">The bowl</div>';
-  const W = 520, Hh = 56, bar = h('div', 'u1l2-bbar'); bar.style.width = W + 'px'; bar.style.height = Hh + 'px'; bowl.appendChild(bar);
+  const W = 520, Hh = 50, bar = h('div', 'u1l2-bbar'); bar.style.width = W + 'px'; bar.style.height = Hh + 'px'; bowl.appendChild(bar);
   const ticks = h('div', 'u1l2-bticks'); ticks.style.width = W + 'px'; bowl.appendChild(ticks);
-  for (let q = 0; q <= MAX * 4; q++) { const t = h('span', 'u1l2-btick' + (q % 4 === 0 ? ' big' : ''), q % 4 === 0 ? String(q / 4) : q % 2 === 0 ? T('\\tfrac12') : ''); t.style.left = (W * q / (MAX * 4)) + 'px'; ticks.appendChild(t); }
+  for (let q = 0; q <= MAX * 4; q++) { const t = h('span', 'u1l2-btick' + (q % 4 === 0 ? ' big' : ''), q % 4 === 0 ? String(q / 4) : q % 2 === 0 ? T((q > 4 ? '1' : '') + '\\tfrac12') : ''); t.style.left = (W * q / (MAX * 4)) + 'px'; ticks.appendChild(t); }
   const out = h('div', 'u1l2-btot'); bowl.append(out, clr);
   const COL = { 1: '#c27a0e', 2: '#e8a01e', 3: '#7b4fc4', 4: '#1f5bd6' };
   function draw(anim) {
     bar.innerHTML = ''; let at = 0;
     scoops.forEach(([n, d], i) => { const w = W * (n / d) / MAX, s = h('div', 'u1l2-bseg', d === 1 ? '1' : T(`\\tfrac{${n}}{${d}}`)); s.style.left = at + 'px'; s.style.width = w + 'px'; s.style.background = COL[d]; bar.appendChild(s); at += w; if (anim && i === scoops.length - 1) s.animate([{ transform: 'scaleX(0)', transformOrigin: 'left' }, { transform: 'none', transformOrigin: 'left' }], 300); });
     const tw = scoops.reduce((s, q) => s + L * q[0] / q[1], 0);
-    out.innerHTML = scoops.length ? `${scoops.length} scoop${scoops.length > 1 ? 's' : ''}: ${K(scoops.map(([n, d]) => (d === 1 ? '1' : F(n, d))).join('+') + '=' + mixT(tw, L))} cup${tw === L ? '' : 's'}` : '<span class="muted">Tap a cup to pour a scoop.</span>';
+    out.innerHTML = scoops.length ? `${scoops.length} scoop${scoops.length > 1 ? 's' : ''}: ${K(scoops.map(([n, d]) => (d === 1 ? '1' : F(n, d))).join('+') + '=' + mixT(tw, L))} cup${tw <= L ? '' : 's'}` : '<span class="muted">Tap a cup to pour a scoop.</span>';
   }
   draw();
 }
@@ -377,13 +377,13 @@ const improper = {
   make(stage, k, ex) {
     const d = IMP[k], W = ex.W, nb = d.w + 1, gap = 18, bw = Math.min(260, (W - 60 - gap * (nb - 1)) / nb), N = d.w * d.d + d.n;
     const bars = [];
-    for (let i = 0; i < nb; i++) { const B = new FBar(stage, { x: 30 + i * (bw + gap), y: 70, w: bw, h: 76 }); B.shade(0, i < d.w ? 1 : d.n, i < d.w ? 1 : d.d, FA); bars.push(B); }
-    lab(stage, W / 2, 30, K(`${d.w}\\frac{${d.n}}{${d.d}}`), 'u1l2-flab');
+    for (let i = 0; i < nb; i++) { const B = new FBar(stage, { x: 30 + i * (bw + gap), y: 80, w: bw, h: 72 }); B.shade(0, i < d.w ? 1 : d.n, i < d.w ? 1 : d.d, FA); bars.push(B); }
+    lab(stage, W / 2, 38, K(`${d.w}\\frac{${d.n}}{${d.d}}`), 'u1l2-flab');
     bars[d.w].cuts(d.d, { width: 2.5 });
     const cuts = bars.slice(0, d.w).map((B) => hide(B.cuts(d.d, { dash: '6 4', width: 2, color: '#555' })));
     const nums = [];
     for (let i = 0; i < nb; i++) for (let j = 0; j < (i < d.w ? d.d : d.n); j++) { const t = bars[i].num(j, d.d, String(i * d.d + j + 1)); hide(t); nums.push(t); }
-    const wl = bars.slice(0, d.w).map((B, i) => { const e = lab(stage, 30 + i * (bw + gap) + bw / 2, 168, '1 whole', 'u1l2-wlab'); return e; });
+    const wl = bars.slice(0, d.w).map((B, i) => { const e = lab(stage, 30 + i * (bw + gap) + bw / 2, 170, '1 whole', 'u1l2-wlab'); return e; });
     void wl;
     const P = add(stage, box(h('div', 'u1l2-panel'), W - 40, d.times ? 200 : 100), 20, 192);
     const pl = (html, cls = '') => { const e = hide(h('div', 'u1l2-line ' + cls, html)); P.appendChild(e); return e; };
@@ -425,7 +425,7 @@ function decTeX(e) {
 const LD = [['3/4', 'Notes: 3/4'], ['3/8', 'Example 4 check: (a)(i)'], ['4/5', '(a)(ii)'], ['2/3', '(c)'], ['5/6', 'Demo: 5/6']];
 const longdiv = {
   title: 'Long division, one digit at a time',
-  height: 470,
+  height: 390,
   capH: 104,
   minW: 920,
   choices: LD.map(([v, label]) => ({ v, label })),
@@ -628,7 +628,7 @@ const fbedmas = {
   choices: Object.keys(FB_).map((k) => ({ v: k, label: FB_[k].label })),
   intro: (k) => `Evaluate ${T(FB_[k].items.map((x) => (typeof x === 'string' ? OPT[x] : itT(x))).join(''))}. Press <b>Next</b>.`,
   make(stage, k, ex) {
-    let cur = FB_[k].items.slice(); const W = ex.W, X = 40, lh = 78;
+    let cur = FB_[k].items.slice(); const W = ex.W, X = 40, lh = 96;
     const toT = (L, hi, fresh) => L.map((x, i) => {
       let t = typeof x === 'string' ? OPT[x] : itT(x);
       if (fresh === i) t = `\\htmlClass{u1l2-new}{${t}}`;
@@ -773,13 +773,13 @@ const decimals = {
     for (;;) {
       const op = r.pick(['\\times', '\\div']), b = r.int(2, 9), d = r.int(2, 9), a = r.int(1, b - 1), c = r.int(1, d - 1);
       if (gcd(a, b) > 1 || gcd(c, d) > 1) continue;
-      const mixQ = r.chance(0.35), w = mixQ ? r.int(1, 3) : 0, an = w * b + a;
+      const mixQ = r.chance(0.35) && b <= 6 && d <= 6, w = mixQ ? r.int(1, 3) : 0, an = w * b + a;
       const key = `${a}/${b}${op === '\\times' ? '*' : '/'}${c}/${d}`; if (!mixQ && ASG.has(key)) continue;
       const [cn, cd] = op === '\\times' ? [c, d] : [d, c], N = an * cn, D = b * cd, [rn, rd] = red(N, D);
       if (rd === 1 && rn > 12) continue;
       const first = mixQ ? `${w}${F(a, b)}` : F(an, b), lines = [];
       if (mixQ) lines.push(`${w}${F(a, b)}=${F(an, b)}`);
-      if (op === '\\div') lines.push(`${F(an, b)}\\times${F(cn, cd)}`);
+      lines.push(`${mixQ || op === '\\div' ? '=' : ''}${F(an, b)}\\times${F(cn, cd)}`);
       lines.push(`=${F(N, D)}${simpT(N, D)}`);
       if (rn > rd && rd > 1) lines.push(`=${mixT(rn, rd)}`);
       return { text: mixQ ? 'Evaluate. (Mixed number: improper first.) Simplify your answer.' : 'Evaluate. Simplify your answer.', q: `${first}${op}${F(c, d)}`, a: lines };

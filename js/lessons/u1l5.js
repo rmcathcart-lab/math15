@@ -165,12 +165,14 @@
     var x = Math.sqrt(n);
     return { prompt: t('\\sqrt{' + F(n) + '}'), input: { type: 'number', before: t('\\sqrt{' + F(n) + '}\\approx') }, check: estChk(n), key: fx(x, 1), answer: t('\\sqrt{' + F(n) + '}\\approx ' + fx(x, 1)), solution: estSol(n),
       hints: ['Trap ' + t(F(n)) + ' between two perfect squares, then see which one it is nearer to.', 'Use the distances: e.g. ' + t('18') + ' is ' + t('2') + ' past ' + t('16') + ' out of the ' + t('9') + ' steps to ' + t('25') + ', so ' + t('\\sqrt{18}\\approx 4.2') + '.'], text: text || 'estimate sqrt ' + n,
-      bad: [String(Math.floor(x) + 0.5 > x + 0.15 ? Math.floor(x) + 0.5 : Math.floor(x) + 0.9), String(n / 2)] };
+      bad: [(Math.floor(x) + (x - Math.floor(x) < 0.5 ? 0.8 : 0.2)).toFixed(1), String(n / 2)] };
   }
   function nonSqIn(r, lo, hi, test) { return gen(r, function () { return r.int(lo, hi); }, function (n) { return !isSq(n) && (!test || test(n)); }); }
   function nonCuIn(r, lo, hi, test) { return gen(r, function () { return r.int(lo, hi); }, function (n) { return !isCu(n) && (!test || test(n)); }); }
   /* clear-cut "closer": the two distances differ by at least 2 */
-  function clear(k) { return function (n) { var c = closerInfo(k, n); return Math.abs(c.dLo - c.dHi) >= 2; }; }
+  /* (for cube roots the distance method can disagree with the actual root near the middle, e.g. ∛93 ≈ 4.53 though 93 is
+     nearer 64 than 125 — such numbers are left out) */
+  function clear(k) { return function (n) { var c = closerInfo(k, n), x = Math.pow(n, 1 / k); return Math.abs(c.dLo - c.dHi) >= 2 && Math.abs(x - c.lo - 0.5) > 0.08 && (x - c.lo < 0.5 ? c.lo : c.hi) === c.near; }; }
 
   /* ---------- perfect-power test by prime factorization (from 10C u1l3) ---------- */
   function powerTestPart(n, k) {
@@ -302,7 +304,7 @@
         return { id: '7' + L, level: 'BEG', make: function (r) {
           var n = nonSqIn(r, i ? 50 : 5, i ? 120 : 48), x = Math.sqrt(n);
           var p = P.approx(t('\\sqrt{' + n + '}'), x, 1, { before: t('\\sqrt{' + n + '}\\approx') }, t('\\sqrt{' + n + '}=' + cut(x, 4) + '\\ldots\\approx ' + fx(x, 1)) + '.', ['Calculator: ' + t('\\sqrt{' + n + '}') + ', then round to one decimal place. ' + TOL_HINT[1]], 'calc sqrt ' + n + ' to 0.1');
-          p.check = calcCheck(x, 1); p.bad = [fx(x + 0.25, 1), String(Math.round(x))];
+          p.check = calcCheck(x, 1); p.bad = [fx(x + 0.25, 1), String(n / 2)];
           return p;
         } };
       }) },
@@ -395,13 +397,13 @@
       /* ================= Extra practice A — Testing big numbers with prime factorization ================= */
       { num: '1', section: 'Extra practice A — Testing Big Numbers with Prime Factorization', stem: 'A number is a <b>perfect square</b> exactly when <b>every</b> exponent in its prime factorization is even.', parts: [
         { id: 'e1a', level: 'EMG', make: function (r) { return powerTestPart(Math.pow(r.pick([42, 36, 24, 30, 28, 44, 48, 40, 45, 32, 26, 34, 38, 46, 22, 33, 39, 35, 27, 50]), 2), 2); } },
-        { id: 'e1b', level: 'EMG', make: function (r) { return powerTestPart(Math.pow(r.pick([35, 25, 45, 55, 65, 15, 75, 21, 33, 39, 51, 57, 63, 69, 77, 85, 49, 91, 95, 99]), 2), 2); } },
+        { id: 'e1b', level: 'EMG', make: function (r) { return powerTestPart(Math.pow(r.pick([35, 25, 45, 55, 65, 15, 75, 21, 33, 39, 51, 57, 63, 69, 49, 27, 35, 45, 55, 65]), 2), 2); } },
         { id: 'e1c', level: 'EMG', make: function (r) { return powerTestPart(r.pick([600, 720, 540, 1000, 1200, 800, 360, 1500, 2000, 450, 500, 980, 1350, 1250, 2400, 1800, 288, 392, 3000, 1440].filter(function (n) { return !isSq(n); })), 2); } },
         { id: 'e1d', level: 'BEG', make: function (r) { return powerTestPart(Math.pow(r.pick([21, 14, 18, 15, 22, 26, 12, 24, 16, 20, 28, 30, 17, 19, 23, 25, 27, 13, 11, 29]), 2), 2); } }] },
       { num: '2', stem: 'A number is a <b>perfect cube</b> exactly when every exponent in its prime factorization is a multiple of ' + t('3') + '.', parts: [
-        { id: 'e2a', level: 'EMG', make: function (r) { return powerTestPart(Math.pow(r.pick([12, 15, 14, 18, 20, 21, 24, 10, 16, 30, 22, 28, 11, 13, 25, 26, 33, 35, 36, 40]), 3), 3); } },
+        { id: 'e2a', level: 'EMG', make: function (r) { return powerTestPart(Math.pow(r.pick([12, 15, 14, 18, 20, 21, 10, 16, 11, 13, 17, 19]), 3), 3); } },
         { id: 'e2b', level: 'EMG', make: function (r) { return powerTestPart(r.pick([2000, 1080, 500, 1500, 864, 4000, 2400, 6000, 1350, 720, 3000, 1600, 2500, 5000, 1200, 900, 1800, 4500, 7200, 640].filter(function (n) { return !isCu(n); })), 3); } },
-        { id: 'e2c', level: 'EMG', make: function (r) { return powerTestPart(Math.pow(r.pick([15, 12, 14, 18, 21, 24, 20, 30, 10, 16, 22, 28, 35, 36, 45, 42, 11, 13, 17, 19]), 3), 3); } },
+        { id: 'e2c', level: 'EMG', make: function (r) { return powerTestPart(Math.pow(r.pick([15, 12, 14, 18, 21, 20, 10, 16, 11, 13, 17, 19]), 3), 3); } },
         { id: 'e2d', level: 'EMG', make: function (r) { return powerTestPart(r.pick([1080, 2000, 540, 1350, 3600, 1440, 2160, 1200, 4320, 6480, 7000, 3375 * 2, 1728 * 5, 250, 432, 1125, 2700, 8100, 1000 * 3, 5400].filter(function (n) { return !isCu(n); })), 3); } }] },
       { num: '3', stem: 'Find the <b>smallest</b> whole number each value could be multiplied by so that the product is a perfect square. State the product and its square root.', parts: ['a', 'b', 'c', 'd'].map(function (L, i) {
         return { id: 'e3' + L, level: i === 3 ? 'PRG' : 'EMG', make: function (r) {
@@ -653,11 +655,11 @@
     var N = Math.pow(k, 6), s = Math.pow(k, 3), c = k * k;
     var p = P.fields('Show that ' + t(F(N)) + ' is both a perfect square and a perfect cube: give ' + t('\\sqrt{' + F(N) + '}') + ', ' + t('\\sqrt[3]{' + F(N) + '}') + ' and the prime factorization.',
       [{ name: 'Square root', label: t('\\sqrt{' + F(N) + '}=') }, { name: 'Cube root', label: t('\\sqrt[3]{' + F(N) + '}=') }, { name: 'Prime factorization', label: t(F(N) + '='), mode: 'math', wide: true }],
-      [valChk(s, rootDiag(N, 2)), valChk(c, rootDiag(N, 3)), K.product(N, 'either')], [String(s), String(c), k + '^6'],
+      [valChk(s, rootDiag(N, 2)), valChk(c, rootDiag(N, 3)), K.product(N, 'either')], [String(s), String(c), plainFac(N)],
       t('\\sqrt{' + F(N) + '}=' + s) + ', ' + t('\\sqrt[3]{' + F(N) + '}=' + c) + ', ' + t(F(N) + '=' + K.fac(N)),
       t(s + '\\times ' + s + '=' + F(N)) + ', so ' + t('\\sqrt{' + F(N) + '}=' + s) + '. ' + t(c + '\\times ' + c + '\\times ' + c + '=' + F(N)) + ', so ' + t('\\sqrt[3]{' + F(N) + '}=' + c) + '.<br>' + t(F(N) + '=' + K.fac(N)) + '.',
       ['Use prime factorization: halve the exponents for the square root, divide them by 3 for the cube root.'], 'both square and cube: ' + N);
-    p.bad = [[String(c), String(s), k + '^6']];
+    p.bad = [[String(c), String(s), plainFac(N)]];
     return p;
   }
   function justifyPart(n) {

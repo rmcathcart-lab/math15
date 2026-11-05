@@ -60,7 +60,7 @@ function drawNest(stage, g, o = {}) {
     const words = o.long && o.long[k] ? `<span class="u1l4-nd">${o.long[k]}</span>` : '';
     const name = o.rooms ? SETS[k].room : SETS[k].name.replace(' numbers', '');
     const html = k === 'Qb' ? `<span class="u1l4-nm">${name}</span>${T(SETS[k].sym)}` : `${T(SETS[k].sym)}<span class="u1l4-nm">${name}</span>${words}`;
-    const lab = add(stage, h('div', 'u1l4-nl k-' + k.toLowerCase() + (k === 'Qb' ? ' c' : ''), html), k === 'Qb' ? r.x + r.w / 2 : r.x + 10, r.y + (k === 'R' ? 8 : k === 'Qb' ? 22 : 12));
+    const lab = add(stage, h('div', 'u1l4-nl k-' + k.toLowerCase() + (k === 'Qb' ? ' c' : ''), html), k === 'Qb' ? r.x + r.w / 2 : r.x + 10, r.y + (k === 'R' ? 8 : k === 'Qb' ? 30 : 12));
     parts[k] = [rect, lab];
   });
   return { svg, parts };

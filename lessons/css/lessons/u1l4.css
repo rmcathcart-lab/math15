@@ -163,7 +163,7 @@
 .u1l4-ld-minus { color: var(--muted); width: 20px; }
 .u1l4-ld-line { height: 2.5px; background: var(--ink2); border-radius: 2px; transform-origin: left; }
 .u1l4-ld-bar { height: 3.5px; background: var(--amber); border-radius: 2px; transform-origin: left; }
-.u1l4-ld-svg { position: absolute; left: 0; top: 0; width: 100%; height: 1200px; overflow: visible; pointer-events: none; }
+.u1l4-ld-svg { position: absolute; left: 0; top: 0; width: 100%; height: 160px; overflow: visible; pointer-events: none; }
 .u1l4-ld-br { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
 .u1l4-ld-res { font: 700 28px var(--round); white-space: nowrap; }
 .u1l4-ld-res .new { color: var(--brand2); background: var(--brand-soft); border-radius: 6px; padding: 0 3px; }

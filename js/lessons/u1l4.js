@@ -564,8 +564,8 @@
     extra: [
       /* ================= Extra practice A — Evaluate first, then classify ================= */
       { num: '1', section: 'Extra practice A — Evaluate First, Then Classify', stem: 'Evaluate each expression <b>first</b>, then check every set the result belongs to.', parts: [
-        { id: 'e1a', level: 'BEG', make: function (r) { return memberPart(sqrtPerfect(r.int(2, 20))); } },
-        { id: 'e1b', level: 'BEG', make: function (r) { return memberPart(negSqrt(r.int(2, 20))); } },
+        { id: 'e1a', level: 'BEG', make: function (r) { return memberPart(sqrtPerfect(r.int(2, 15))); } },
+        { id: 'e1b', level: 'BEG', make: function (r) { return memberPart(negSqrt(r.int(2, 15))); } },
         { id: 'e1c', level: 'BEG', make: function (r) { var q = r.int(2, 9), k = r.int(2, 9), tx = '\\frac{' + k * q + '}{' + q + '}'; return memberPart(item(tx, 'nat', t(tx + '=' + k) + ', a counting number.', { whyRat: t(tx + '=' + k) + ', an integer — rational.' })); } },
         { id: 'e1d', level: 'EMG', make: function (r) { return memberPart(decSqItem(gen(r, function () { return r.int(1, 19); }, function (k) { return k % 10 !== 0; }))); } }] },
       { num: '2', stem: 'Evaluate or simplify each one as far as you can, then check every set it belongs to. (' + t('\\sqrt[3]{-27}') + ' means the number that multiplies by itself <i>three</i> times to give ' + t('-27') + '.)', parts: [
@@ -728,7 +728,7 @@
         } }] },
 
       /* ================= Extra practice C — Between-ness, ordering, MC ================= */
-      { num: '11', section: 'Extra practice C — Between-ness, Ordering, and Multiple Choice', stem: function (sh) { return 'Evaluate the endpoints first: ' + t('\\sqrt{' + sh.k * sh.k + '}') + ' and ' + t('\\sqrt{' + (sh.k + 1) * (sh.k + 1) + '}') + '.'; },
+      { num: '11', section: 'Extra practice C — Between-ness, Ordering, and Multiple Choice', stem: 'Answer each. For (a) and (b), evaluate the endpoints first.',
         shared: function (r) { return { k: r.int(2, 9), a: r.pick([2, 3, 5, 6, 7, 10, 11, 12, 13]) }; },
         parts: [
           { id: 'e11a', level: 'EMG', make: function (r, sh) {

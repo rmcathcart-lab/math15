@@ -606,13 +606,11 @@ function newtonLetter() {
     const fn = when(mk('foreignObject', { x: 238, y, width: 110, height: 60, class: 'u2l9h-g' }), 1300 + i * 1500);
     fn.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml" class="u2l9h-new">${K(p)}</div>`;
   });
-  const sig = when(mk('foreignObject', { x: 150, y: 270 - 40, width: 190, height: 40, class: 'u2l9h-g' }), 5400);
-  sig.innerHTML = '<div xmlns="http://www.w3.org/1999/xhtml" class="u2l9h-sig">Is. Newton</div>';
   // the key on the right
-  const key = when(mk('g', { class: 'u2l9h-g' }), 6200);
+  const key = when(mk('g', { class: 'u2l9h-g' }), 5400);
   const fk = mk('foreignObject', { x: 362, y: 70, width: 230, height: 170 }, key);
   fk.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml" class="u2l9h-key"><div class="u2l9h-kh">power over root</div>${K(`a^{${cA('m')}/${cT('n')}}=\\sqrt[${cT('n')}]{a^{${cA('m')}}}`)}<div class="u2l9h-ks">the same rule we use today</div></div>`;
-  const END = 7000;
+  const END = 6200;
   let t0 = 0, raf = 0;
   const draw = (ms) => steps.forEach((s) => s.el.classList.toggle('on', s.t <= ms));
   function frame(now) { if (!t0) t0 = now; const ms = now - t0; draw(ms); if (ms < END) raf = requestAnimationFrame(frame); }

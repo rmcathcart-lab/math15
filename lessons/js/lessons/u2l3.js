@@ -235,7 +235,7 @@ const pprod = {
     ];
     if (d.numeric) steps.push({ cap: `Work it out: ${T('2^{2}\\times3^{2}=4\\times9=36')}. And the short way, ${T('(2\\times3)^{2}=6^{2}=36')}. <b>Same answer!</b>`, run: (c) => Promise.all([c.fadeIn(res, 400), c.fadeIn(res2, 400, { delay: 400 })]) });
     else if (hasNum) steps.push({ cap: (numF[0] === '-' ? `${T(`(${numF})^{${n}}=(${numF})(${numF})=${Math.pow(+numF, n)}`)}: two negatives make a <b>positive</b>.` : `Work out the number: ${T(`${numF}^{${n}}=${Array(n).fill(numF).join('\\times ')}=${tn(Math.pow(+numF, n))}`)}.`) + ` So ${T(`${ppHead(d)}=${finalT}`)}.${d.ex ? ` (Example 2${d.ex}.)` : ''}`, run: (c) => c.fadeIn(res, 400) });
-    else steps.push({ cap: `So ${T(`${ppHead(d)}=${powsT}`)}.`, run: (c) => c.fadeIn(res, 400) });
+    else steps[2].run = (c) => Promise.all([...unders.map((e, i) => c.fadeIn(e, 350, { delay: i * 150 })), c.fadeIn(res, 400, { delay: 300 })]);
     steps.push({ cap: '<b>Power of a Product Law:</b> give the outer exponent to <b>each factor</b> inside the brackets, numbers too.', run: (c) => c.pop(lb, 450) });
     return steps;
   }
@@ -282,7 +282,7 @@ const supersize = {
     const svg = add(stage, svgEl('svg', { width: P + 80, height: P + 70, viewBox: `-40 -10 ${P + 80} ${P + 70}`, class: 'u2l3-ssvg' }), X0 - 40, Y0 - 10);
     const g = svgEl('g', {}, svg);
     const lines = (arr, gap = 70) => arr.map((src, i) => { const e = add(stage, h('div', 'u2l3-ssl', K(src)), TX, 40 + i * gap); hide(e); return e; });
-    const lb = add(stage, h('div', 'u2l3-line law', '<b>Power of a ' + (d.half ? 'Quotient' : 'Product') + ' Law</b> ' + K(d.half ? '\\left(\\dfrac{a}{b}\\right)^{n}=\\dfrac{a^{n}}{b^{n}}' : '(ab)^{n}=a^{n}b^{n}')), TX, d.half ? 340 : d.cube ? 336 : 270); hide(lb);
+    const lb = add(stage, h('div', 'u2l3-line law', '<b>Power of a ' + (d.half ? 'Quotient' : 'Product') + ' Law</b> ' + K(d.half ? '\\left(\\dfrac{a}{b}\\right)^{n}=\\dfrac{a^{n}}{b^{n}}' : '(ab)^{n}=a^{n}b^{n}')), TX, d.half ? 340 : d.cube ? 336 : 384); hide(lb);
     if (d.cube) {
       const s = 110, bx = 60, by = 300, one = die(g, bx, by, s); hide(one);
       const lab1 = add(stage, h('div', 'u2l3-sstag', 'one die: volume ' + K('s^{3}')), X0 + 20, Y0 + 300); hide(lab1);
@@ -366,12 +366,12 @@ function fenceRows(terms) {
   return multi ? [r1, r2] : [r1];
 }
 const FENCE = [
-  { v: 'a1', terms: [O('2'), E('x', 2)], fc: 'No brackets, so the exponent <b>2</b> reaches only the <b>x</b>. The 2 in front sits outside the fence: it is a coefficient.', res: '=2x^{2}', rc: `Only the x is repeated. The 2 appears <b>once</b>: ${T('2x^{2}=2\\times x\\times x')}.` },
-  { v: 'a2', terms: [E(['2', 'x'], 2, true)], fc: 'The brackets put <b>2x</b> inside the fence, so the exponent 2 reaches the 2 <b>and</b> the x.', res: '=(2\\times2)(x\\times x)=4x^{2}', rc: `Group the like factors: two 2s make 4 and two x’s make ${T('x^{2}')}. So ${T('(2x)^{2}=4x^{2}')}, not ${T('2x^{2}')}!` },
-  { v: 'a3', terms: [O('5'), E('m', 3)], fc: 'No brackets: the exponent <b>3</b> reaches only the <b>m</b>. The 5 is outside the fence.', res: '=5m^{3}', rc: `${T('5m^{3}=5\\times m\\times m\\times m')}: one 5, three m’s.` },
-  { v: 'a4', terms: [E(['5', 'm'], 3, true)], fc: 'The brackets put <b>5m</b> inside the fence: the 5 and the m both get cubed.', res: '=(5\\times5\\times5)(m\\times m\\times m)=125m^{3}', rc: `Three 5s make 125: ${T('(5m)^{3}=125m^{3}')}. Compare ${T('5m^{3}')}: the brackets make all the difference.` },
-  { v: 'c1', terms: [O('-4'), E('y', 2)], fc: 'No brackets: the exponent <b>2</b> reaches only the <b>y</b>. The −4 sits outside the fence.', res: '=-4y^{2}', rc: `${T('-4y^{2}=-4\\times y\\times y')}. The −4 is used once, so the answer stays negative.` },
-  { v: 'c2', terms: [E(['-4', 'y'], 2, true, ['(-4)', 'y'])], fc: 'The brackets put <b>−4y</b> inside the fence: the −4 <b>and</b> the y get squared.', res: '=(-4)(-4)(y\\times y)=16y^{2}', rc: `Two negatives make a positive: ${T('(-4)^{2}=16')}. So ${T('(-4y)^{2}=16y^{2}')}. That’s Example 2(c).` }
+  { v: 'a1', terms: [O('2'), E('x', 2)], fc: `No brackets, so the exponent <b>2</b> reaches only the ${T('x')}. The 2 in front sits outside the fence: it is a coefficient.`, res: '=2x^{2}', rc: `Only the ${T('x')} is repeated. The 2 appears <b>once</b>: ${T('2x^{2}=2\\times x\\times x')}.` },
+  { v: 'a2', terms: [E(['2', 'x'], 2, true)], fc: `The brackets put ${T('2x')} inside the fence, so the exponent 2 reaches the 2 <b>and</b> the ${T('x')}.`, res: '=(2\\times2)(x\\times x)=4x^{2}', rc: `Group the like factors: two 2s make 4 and two ${T('x')}’s make ${T('x^{2}')}. So ${T('(2x)^{2}=4x^{2}')}, not ${T('2x^{2}')}!` },
+  { v: 'a3', terms: [O('5'), E('m', 3)], fc: `No brackets: the exponent <b>3</b> reaches only the ${T('m')}. The 5 is outside the fence.`, res: '=5m^{3}', rc: `${T('5m^{3}=5\\times m\\times m\\times m')}: one 5, three ${T('m')}’s.` },
+  { v: 'a4', terms: [E(['5', 'm'], 3, true)], fc: `The brackets put ${T('5m')} inside the fence: the 5 and the ${T('m')} both get cubed.`, res: '=(5\\times5\\times5)(m\\times m\\times m)=125m^{3}', rc: `Three 5s make 125: ${T('(5m)^{3}=125m^{3}')}. Compare ${T('5m^{3}')}: the brackets make all the difference.` },
+  { v: 'c1', terms: [O('-4'), E('y', 2)], fc: `No brackets: the exponent <b>2</b> reaches only the ${T('y')}. The −4 sits outside the fence.`, res: '=-4y^{2}', rc: `${T('-4y^{2}=-4\\times y\\times y')}. The −4 is used once, so the answer stays negative.` },
+  { v: 'c2', terms: [E(['-4', 'y'], 2, true, ['(-4)', 'y'])], fc: `The brackets put ${T('-4y')} inside the fence: the −4 <b>and</b> the ${T('y')} get squared.`, res: '=(-4)(-4)(y\\times y)=16y^{2}', rc: `Two negatives make a positive: ${T('(-4)^{2}=16')}. So ${T('(-4y)^{2}=16y^{2}')}. That’s Example 2(c).` }
 ];
 const fence = {
   title: 'Where does the exponent reach?',
@@ -461,12 +461,12 @@ const pquot = {
         run: (c) => Promise.all([...bars.map((e, i) => c.fadeIn(e, 300, { delay: i * 160 })), ...dots.map((e, i) => c.fadeIn(e, 300, { delay: 200 + i * 160 })), ...tops.map((t, i) => c.pop(t, 300, { delay: i * 160 })), ...bots.map((t, i) => c.pop(t, 300, { delay: 80 + i * 160 }))]) },
       { cap: 'To multiply fractions, multiply the <b>tops</b> together and the <b>bottoms</b> together.',
         run: (c) => Promise.all([...bars, ...dots].map((e) => c.anim(e, [{ opacity: 1 }, { opacity: 0 }], 300)).concat(tops.map((t, i) => mv(c, t, F[i], yT, 700, 150 + i * 70)), bots.map((t, i) => mv(c, t, F[i], yB, 700, 200 + i * 70)), [c.anim(big, [{ opacity: 0, transform: 'scaleX(.2)' }, { opacity: 1, transform: 'none' }], 400, { delay: 800 })], [...xT, ...xB].map((e) => c.fadeIn(e, 300, { delay: 900 })))) },
-      { cap: `${n} on top, ${n} on the bottom: ${T(`${pqHead(d, 'tfrac')}=\\tfrac{${d.t}^{${n}}}{${d.b}^{${n}}}`)}.`,
-        run: (c) => Promise.all([c.fadeIn(lT, 350, { from: 'translateX(-8px)' }), c.fadeIn(lB, 350, { delay: 150, from: 'translateX(-8px)' })]) },
-      { cap: anyNum ? `Work out the number${numBits.length > 1 ? 's' : ''}: ${numBits.map(T).join(' and ')}. So ${T(`${pqHead(d, 'tfrac')}=${finT.replace('dfrac', 'tfrac')}`)}.${d.ex ? ` (Example 3${d.ex}.)` : ''}` : `So ${T(`${pqHead(d, 'tfrac')}=\\tfrac{${d.t}^{${n}}}{${d.b}^{${n}}}`)}.${d.ex ? ` (Example 3${d.ex}.)` : ''}`,
-        run: (c) => c.fadeIn(res, 400) },
+      { cap: `${n} on top, ${n} on the bottom: ${T(`${pqHead(d, 'tfrac')}=\\tfrac{${d.t}^{${n}}}{${d.b}^{${n}}}`)}.${!anyNum && d.ex ? ` (Example 3${d.ex}.)` : ''}`,
+        run: (c) => Promise.all([c.fadeIn(lT, 350, { from: 'translateX(-8px)' }), c.fadeIn(lB, 350, { delay: 150, from: 'translateX(-8px)' }), anyNum ? null : c.fadeIn(res, 400, { delay: 300 })]) },
+      anyNum ? { cap: `Work out the number${numBits.length > 1 ? 's' : ''}: ${numBits.map(T).join(' and ')}. So ${T(`${pqHead(d, 'tfrac')}=${finT.replace('dfrac', 'tfrac')}`)}.${d.ex ? ` (Example 3${d.ex}.)` : ''}`,
+        run: (c) => c.fadeIn(res, 400) } : null,
       { cap: '<b>Power of a Quotient Law:</b> the exponent goes to the top <b>and</b> to the bottom. (The bottom can’t be 0.)', run: (c) => c.pop(lb, 450) }
-    ];
+    ].filter(Boolean);
     return steps;
   }
 };

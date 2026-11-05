@@ -287,7 +287,7 @@
     { num: '1', section: 'Part A — Converting between forms', stem: 'Complete the table, converting each number to the missing form.', parts: [
       { id: '1a', level: 'BEG', make: function (r) {
         var ds = r.chance(0.12) ? [D(91, 3), D(27, -5), D(59, -1)] : [S(mant(r, 2), r.int(3, 6)), S(mant(r, 2), -r.int(3, 6)), S(mant(r, r.pick([2, 2, 3])), 0)];
-        var p = P.fields('Standard notation → scientific notation.', ds.map(function (d) { return { name: std(d), before: t(stdTex(d) + '='), mode: 'math', keys: 'sci' }; }),
+        var p = P.fields('Write ' + ds.map(function (d) { return t(stdTex(d)); }).join(', ') + ' in scientific notation.', ds.map(function (d) { return { name: std(d), before: t(stdTex(d) + '='), mode: 'math', keys: 'sci' }; }),
           ds.map(function (d) { return sciChk(d, sciDiag(d)); }), ds.map(sciT), ds.map(function (d) { return t(stdTex(d) + '=' + sciT(d)); }).join('<br>'),
           ds.map(sciSol).join('<br><br>'), SCI_HINTS, 'table: to scientific');
         p.bad = [ds.map(function (d) { return sciT(sh(d, -2 * sN(d) || 1)); })];
@@ -295,7 +295,7 @@
       } },
       { id: '1b', level: 'BEG', make: function (r) {
         var ds = r.chance(0.12) ? [D(63, 4), D(4, -3), D(815, 0)] : [S(mant(r, 2), r.int(3, 6)), S(mant(r, 1), -r.int(2, 5)), S(mant(r, 3), 2)];
-        var p = P.fields('Scientific notation → standard notation.', ds.map(function (d) { return { name: sciPlain(d), before: t(sciT(d) + '='), wide: true }; }),
+        var p = P.fields('Write ' + ds.map(function (d) { return t(sciT(d)); }).join(', ') + ' in standard notation.', ds.map(function (d) { return { name: sciPlain(d), before: t(sciT(d) + '='), wide: true }; }),
           ds.map(function (d) { return stdChk(d); }), ds.map(std), ds.map(function (d) { return t(sciT(d) + '=' + stdTex(d)); }).join('<br>'),
           ds.map(stdSol).join('<br><br>'), STD_HINTS, 'table: to standard');
         p.good = [ds.map(stdPlain)];
@@ -309,14 +309,14 @@
       { id: '2d', level: 'BEG', make: function (r) { return toSci(r.chance(0.12) ? D(725, 4) : S(mant(r, 3), r.int(6, 7))); } },
       { id: '2e', level: 'BEG', make: function (r) { return toSci(r.chance(0.12) ? D(96, 0) : S(mant(r, 2), 1)); } }] },
     { num: '3', stem: 'Write each number in scientific notation.', parts: [
-      { id: '3a', level: 'BEG', make: function (r) { return toSci(r.chance(0.12) ? D(5, -3) : S(r.int(1, 9), -r.int(3, 4))); } },
+      { id: '3a', level: 'BEG', make: function (r) { return toSci(r.chance(0.12) ? D(5, -3) : S(r.int(1, 9), -r.int(2, 5))); } },
       { id: '3b', level: 'BEG', make: function (r) { return toSci(r.chance(0.12) ? D(61, -5) : S(mant(r, 2), -r.int(3, 5))); } },
       { id: '3c', level: 'BEG', make: function (r) { return toSci(r.chance(0.12) ? D(34, -7) : S(mant(r, 2), -r.int(5, 7))); } },
-      { id: '3d', level: 'BEG', make: function (r) { return toSci(r.chance(0.12) ? D(8, -2) : S(r.int(1, 9), -r.int(1, 2))); } },
+      { id: '3d', level: 'BEG', make: function (r) { return toSci(r.chance(0.12) ? D(8, -2) : S(r.int(1, 9), -r.int(1, 3))); } },
       { id: '3e', level: 'BEG', make: function (r) { return toSci(r.chance(0.12) ? D(9, -6) : S(r.int(1, 9), -r.int(5, 7))); } }] },
     { num: '4', stem: 'Express each quantity in scientific notation.', parts: [
       { id: '4a', level: 'BEG', make: function (r) {
-        if (r.chance(0.12)) { var d0 = D(41, 6); return toSci(d0, 'The average distance from Earth to Venus is about ' + t(stdTex(d0)) + ' km.', { after: 'km' }); }
+        if (r.chance(0.12)) { var d0 = D(41, 6); return toSci(d0, 'At its closest, Venus comes within about ' + t(stdTex(d0)) + ' km of Earth.', { after: 'km' }); }
         var d = S(mant(r, 2), r.int(6, 9)); return toSci(d, BIG_CTX[0](d), { after: 'km' });
       } },
       { id: '4b', level: 'BEG', make: function (r) {
@@ -360,7 +360,7 @@
       { id: '9b2', sub: 'b ii', level: 'EMG', make: function (r, sh0) { return fixPart(sh0.b.a, sh0.b.n); } },
       { id: '9c', sub: 'c i', level: 'EMG', make: function (r, sh0) { return verdictMC(r, sh0.c.a, sh0.c.n, 'small'); } },
       { id: '9c2', sub: 'c ii', level: 'EMG', make: function (r, sh0) { return fixPart(sh0.c.a, sh0.c.n); } },
-      { id: '9d', level: 'EMG', make: function (r) { var a = r.chance(0.25) ? '1' : std(D(mant(r, r.pick([1, 2])), r.chance(0.5) ? -1 : 0)); return verdictMC(r, a, 0, 'ok'); } }],
+      { id: '9d', sub: 'd', level: 'EMG', make: function (r) { var a = r.chance(0.25) ? '1' : std(D(mant(r, r.pick([1, 2])), r.chance(0.5) ? -1 : 0)); return verdictMC(r, a, 0, 'ok'); } }],
       shared: function (r) {
         var b = r.chance(0.12) ? { a: '47', n: 3 } : { a: String(r.int(11, 99)).replace(/0$/, '5'), n: r.int(2, 7) };
         var c = r.chance(0.12) ? { a: '0.8', n: -2 } : { a: '0.' + r.int(1, 9), n: -r.int(2, 6) };
@@ -369,11 +369,11 @@
     { num: '10', stem: 'Order each set of numbers from smallest to largest.', parts: [
       { id: '10a', level: 'EMG', make: function (r) {
         var ds = r.chance(0.12) ? [D(6, -5), D(3, -3), D(9, -7)] : (function () { var es = r.sample([-2, -3, -4, -5, -6, -7, -8], 3).sort(function (a, b) { return b - a; }), cs = r.sample([1, 2, 3, 4, 5, 6, 7, 8, 9], 3).sort(function (a, b) { return a - b; }); return es.map(function (e, i) { return D(cs[i], e); }); })();
-        return orderPart(r, ds, 'Order from <b>smallest</b> to <b>largest</b>.');
+        return orderPart(r, ds, 'Order from <b>smallest</b> to <b>largest</b>: ' + ds.map(function (d) { return t(sciT(d)); }).join(', ') + '.');
       } },
       { id: '10b', level: 'PRG', make: function (r) {
         var ds = r.chance(0.12) ? [D(21, 3), D(5, 3), D(86, 3)] : (function () { var e = r.int(2, 6), c1v, c2v; do { c1v = r.int(11, 49); c2v = r.int(51, 99); } while (c1v % 10 === 0 || c2v % 10 === 0); return [D(c1v, e - 1), D(r.int(c2v > 60 ? 5 : 6, 9), e - 1), D(c2v, e - 1)]; })();
-        return orderPart(r, ds, 'Order from <b>smallest</b> to <b>largest</b>.');
+        return orderPart(r, ds, 'Order from <b>smallest</b> to <b>largest</b>: ' + ds.map(function (d) { return t(sciT(d)); }).join(', ') + '.');
       } }] },
     { num: '11', stem: 'Convert each number to the other form (scientific notation ↔ standard notation).', parts: [
       { id: '11a', level: 'BEG', make: function (r) { return toSci(r.chance(0.12) ? D(27, 3) : S(mant(r, 2), r.int(3, 6))); } },
@@ -500,8 +500,8 @@
       { id: 'e6c', level: 'PRG', make: function (r) { var v = find(r, function () { var b = r.int(2, 9), q = D(r.int(1, 9), -1), a = mul(q, D(b, 0)); return [A_(a, -r.int(2, 5)), A_(b, r.int(3, 6))]; }, function (v) { return inRange(v[0].c) && nd(v[0].c) <= 2; }, [A_('1.2', -3), A_(4, 5)]); return opPart(v[0], v[1], 'frac'); } },
       { id: 'e6d', level: 'EMG', make: function (r) { var v = find(r, function () { var b = c2(r), q = D(r.int(2, 6), 0), a = mul(q, b); return [A_(a, r.int(6, 9)), A_(b, -r.int(2, 4))]; }, function (v) { return inRange(v[0].c) && nd(v[0].c) <= 2; }, [A_('9.6', 8), A_('1.6', -3)]); return opPart(v[0], v[1], 'frac'); } }] },
     { num: '7', stem: 'Evaluate each power. Apply the exponent to <b>both</b> the coefficient and the power of ten, then renormalise.', parts: [
-      { id: 'e7a', level: 'PRG', make: function (r) { return r.chance(0.12) ? powPart(A_(3, -4), 3) : powPart(A_(r.pick([2, 3, 4]), -r.int(2, 5)), 3); } },
-      { id: 'e7b', level: 'PRG', make: function (r) { return r.chance(0.12) ? powPart(A_(2, 5), 4) : powPart(A_(r.pick([2, 3]), r.int(2, 6)), 4); } },
+      { id: 'e7a', level: 'PRG', make: function (r) { return r.chance(0.12) ? powPart(A_(3, -4), 3) : powPart(A_(r.pick([2, 3, 4, 5]), -r.int(1, 6)), 3); } },
+      { id: 'e7b', level: 'PRG', make: function (r) { return r.chance(0.12) ? powPart(A_(2, 5), 4) : powPart(A_(r.pick([2, 3, 4, 5]), r.int(1, 7)), 4); } },
       { id: 'e7c', level: 'PRG', make: function (r) { return r.chance(0.12) ? powPart(A_(5, -3), 2) : powPart(A_(r.int(4, 9), r.pick([1, -1]) * r.int(2, 6)), 2); } }] },
     { num: '8', stem: '<b>Comparing magnitudes.</b> “How many times larger?” is a division question. Divide the larger number by the smaller one and leave the answer in scientific notation.', parts: [
       { id: 'e8a', level: 'EMG', make: function (r) { var v = find(r, function () { var q = r.int(2, 4), b = r.int(2, 3); return [A_(q * b, r.int(6, 10)), A_(b, r.int(2, 5))]; }, function (v) { return v[0].c.m < 10; }, [A_(6, 8), A_(2, 5)]); return timesPart(v[0], v[1]); } },
@@ -527,7 +527,7 @@
           var a = Math.min(cs[0], cs[1]), b = Math.max(cs[0], cs[1]);
           return [D(b, e1), D(cs[4], e2 + 1), D(cs[2], e1 - 2), D(a * 10 + 5, e1 - 1), D(cs[5], e2), D(cs[3], e1 - 1)];
         })();
-        return orderPart(r, ds, 'Order from <b>smallest</b> to <b>largest</b>.');
+        return orderPart(r, ds, 'Order from <b>smallest</b> to <b>largest</b>: ' + ds.map(function (d) { return t(sciT(d)); }).join(', ') + '.');
       } },
       { id: 'e12b', level: 'PRG', make: function (r) {
         var ds = r.chance(0.12) ? [D(62, -7), D(62, -6), D(59, -6), D(7, -6)] : (function () {
@@ -536,7 +536,7 @@
           if (val(c) <= val(a)) c = D(9, 0);
           return [sh(a, e), sh(a, e + 1), sh(b, e + 1), sh(c, e)];
         })();
-        return orderPart(r, ds, 'Order from <b>smallest</b> to <b>largest</b>.');
+        return orderPart(r, ds, 'Order from <b>smallest</b> to <b>largest</b>: ' + ds.map(function (d) { return t(sciT(d)); }).join(', ') + '.');
       } }] },
     { num: '13', stem: 'Determine the missing value in each statement.', parts: [
       { id: 'e13a', level: 'EMG', make: function (r) { var d = r.chance(0.12) ? D(34, 4) : S(mant(r, 2), r.int(3, 7)), n = sN(d), a = std(coef(d)); return P.number(t('n\\times 10^{' + n + '}=' + stdTex(d)), Number(a), function (v) { if (relEq(v, val(d))) return { code: 'value', hint: t('n') + ' is the coefficient: the number in front of ' + t('10^{' + n + '}') + '.' }; if (relEq(v, Number(a) * 10) || relEq(v, Number(a) / 10)) return { code: 'places', hint: 'Check the decimal point: moving it ' + pl(n, 'place') + ' right from ' + t('n') + ' must give ' + t(stdTex(d)) + '.' }; return null; }, t(stdTex(d) + '=' + sciT(d)) + ', so ' + t('n=' + a) + '.', SCI_HINTS, 'missing coef ' + std(d), { before: t('n=') }); } },
@@ -549,7 +549,8 @@
         { id: 'e14a', level: 'EMG', make: function (r, sh0) { var A = A_(sh0.lo.m < 10 && sh0.lo.e === 0 ? sh0.lo : coef(sh0.lo), sh0.p); A = A_(dec(std(sh0.lo)), sh0.p); var Rr = sh(mul(A.c, D(2, 0)), A.p); return sciPart('Double ' + t(cTex(A)) + ' and write the result in scientific notation.', Rr, cands([[sh(A.c, A.p + 1), 'u2l8-doublings', 'Doubling multiplies the number by ' + t('2') + ', not by ' + t('10') + ': double the coefficient.'], [sh(A.c, 2 * A.p), 'mult-exp', 'Doubling doesn’t touch the exponent unless the coefficient reaches ' + t('10') + '.']]), t('2\\times ' + cTex(A) + '=' + pt(mul(A.c, D(2, 0)), A.p)) + '. The coefficient doubled and is still less than ' + t('10') + ', so the exponent is unchanged.', ['Doubling means multiplying by ' + t('2') + ': double the coefficient.'], 'double ' + sciPlain(full(A))); } },
         { id: 'e14b', level: 'PRG', make: function (r, sh0) { var A = A_(dec(std(sh0.hi)), sh0.p), C = mul(A.c, D(2, 0)), Rr = sh(C, A.p); var p = sciPart('Double ' + t(cTex(A)) + ' and write the result in scientific notation.', Rr, cands([renormItem(C, A.p, Rr)]), t('2\\times ' + cTex(A) + '=' + pt(C, A.p)) + '. ' + renormText(C, A.p, Rr) + ' This time the coefficient doubled past ' + t('10') + ', so renormalising raised the exponent by ' + t('1') + '.', ['Double the coefficient, then check: is it still less than ' + t('10') + '?'], 'double ' + sciPlain(full(A))); p.bad.push(stdTex(C) + '\\times10^{' + A.p + '}'); return p; } },
         { id: 'e14c', level: 'MAS', make: function (r, sh0) {
-          return P.number('Doubling ' + t('a\\times 10^{b}') + ' raises the exponent exactly when ' + t('a\\ge') + ' some value. What is that value? (Use (a) and (b): why did the exponent change in one but not the other?)', 5, function (v) {
+          var lo2 = std(sh0.lo), hi2 = std(sh0.hi);
+          return P.number('Doubling ' + t(lo2 + '\\times 10^{' + sh0.p + '}') + ' kept the exponent, but doubling ' + t(hi2 + '\\times 10^{' + sh0.p + '}') + ' raised it. In general, doubling ' + t('a\\times 10^{b}') + ' raises the exponent exactly when ' + t('a\\ge') + ' some value. What is that value?', 5, function (v) {
             if (v === 10) return { code: 'value', hint: 'It is the <b>doubled</b> coefficient that has to reach ' + t('10') + ': ' + t('2a\\ge 10') + '.' };
             if (v > 5 && v < 10) return { code: 'value', hint: 'Try ' + t('a=5') + ': ' + t('2\\times 5=10') + ', which already needs renormalising. Solve ' + t('2a\\ge 10') + '.' };
             if (v < 5 && v >= 1) return { code: 'value', hint: 'Try ' + t('a=' + v) + ': ' + t('2\\times ' + v + '=' + 2 * v) + ' is still less than ' + t('10') + ', so the exponent doesn’t change.' };
@@ -599,10 +600,12 @@
           ['How many 20-minute (or ' + g.T + '-minute) blocks fit into the time? That is the number of doublings.', 'Doubling ' + t('n') + ' times multiplies by ' + t('2^{n}') + '.'], 'bacteria doubling');
         return p;
       } }] },
-    { num: '18', stem: '<b>Unit conversion required.</b> Answer each question in scientific notation.', shared: function (r) { var dd = r.chance(0.15) ? ['1.2', 12, 4, 7] : [std(D(r.int(11, 49), -1)), 12, r.int(2, 6), r.int(6, 8)]; return { debt: dd }; },
+    { num: '18', stem: '<b>Unit conversion required.</b> Answer each question in scientific notation.', shared: function (r) { if (r.chance(0.15)) return { debt: ['1.2', 12, 4, 7] };
+        var b = r.int(2, 9), q, c; do { q = D(r.int(1, 9), -r.int(0, 1)); c = mul(q, D(b, 0)); } while (!inRange(c) || nd(c) > 2);
+        return { debt: [std(c), 12, b, r.int(6, 8)] }; },
       parts: [
         { id: 'e18a', level: 'EMG', make: function (r) {
-          var c = r.chance(0.15) ? ['Red light', 700] : r.pick([['Red light', r.pick([650, 680, 700, 720])], ['Green light', r.pick([510, 520, 530, 550])], ['Blue light', r.pick([450, 460, 470, 480])], ['Violet light', r.pick([400, 410, 420])], ['Orange light', r.pick([600, 610, 620])], ['Yellow light', r.pick([570, 580, 590])]]);
+          var c = r.chance(0.15) ? ['Red light', 700] : r.pick([['Red light', 10 * r.int(64, 74)], ['Green light', 10 * r.int(50, 56)], ['Blue light', 10 * r.int(45, 49)], ['Violet light', 10 * r.int(39, 44)], ['Orange light', 10 * r.int(59, 62)], ['Yellow light', 10 * r.int(57, 59)]]);
           var d = D(c[1], -9);
           return sciPart(c[0] + ' has a wavelength of about ' + t(c[1]) + ' nanometres. Given that ' + t('1\\text{ nm}=1\\times 10^{-9}') + ' m, express this wavelength in metres.', d, cands([[D(c[1], -6), 'u2l8-unit', 'A nanometre is ' + t('10^{-9}') + ' m.'], [D(c[1], 9), 'exp-sign', 'A nanometre is tiny: ' + t('1\\text{ nm}=10^{-9}') + ' m, so the answer is much less than ' + t('1') + ' m.'], [D(c[1] / Math.pow(10, String(c[1]).length - 1), -9), 'renorm-dir', 'Write ' + t(c[1]) + ' itself in scientific notation first: ' + t(c[1] + '=' + sciT(D(c[1], 0))) + '. Then add the exponents.']]),
             t(c[1] + '\\times(1\\times 10^{-9})=' + sciT(D(c[1], 0)) + '\\times 10^{-9}=' + sciT(d)) + ' m.', ['Multiply the number of nanometres by ' + t('10^{-9}') + '.', 'Write ' + t(c[1]) + ' in scientific notation first, then add the exponents.'], 'nm to m', { after: 'm' });
@@ -659,7 +662,7 @@
         var per = r.chance(0.3) ? ['a 365-day year', 365] : r.pick([['a 366-day leap year', 366], ['a 30-day month', 30], ['a 31-day month', 31], ['a 28-day February', 28], ['one week', 7], ['two weeks', 14], ['a 90-day term', 90], ['100 days', 100], ['a 180-day school year', 180], ['1000 days', 1000], ['a 60-day summer', 60], ['four weeks', 28], ['10 days', 10], ['a 120-day semester', 120], ['a 200-day trip', 200], ['500 days', 500], ['three weeks', 21], ['a 45-day project', 45], ['a 75-day season', 75], ['a 270-day mission', 270]]);
         var n = per[1] * 86400, d = D(n, 0);
         var p = P.fields('Determine the number of seconds in ' + per[0] + '. Write the exact value in standard notation and then in scientific notation.', [{ name: 'Standard', label: 'Standard notation:', wide: true, after: 's' }, { name: 'Scientific', label: 'Scientific notation:', mode: 'math', keys: 'sci', after: 's' }],
-          [stdChk(d, function (v) { if (relEq(v, per[1] * 24 * 60)) return { code: 'value', hint: 'That’s the number of <b>minutes</b>. Multiply by ' + t('60') + ' once more for seconds.' }; if (relEq(v, per[1] * 24 * 3600 / 60)) return { code: 'value', hint: 'Multiply by ' + t('60') + ' twice (minutes, then seconds).' }; return null; }), sciChk(d, sciDiag(d))],
+          [stdChk(d, function (v) { if (relEq(v, per[1] * 24 * 60)) return { code: 'u2l8-unit', hint: 'That’s the number of <b>minutes</b>. Multiply by ' + t('60') + ' once more for seconds.' }; if (relEq(v, per[1] * 24 * 3600 / 60)) return { code: 'u2l8-unit', hint: 'Multiply by ' + t('60') + ' twice (minutes, then seconds).' }; return null; }), sciChk(d, sciDiag(d))],
           [std(d), sciT(d)], t(stdTex(d)) + ' s ' + t('=' + sciT(d)) + ' s',
           t(per[1] + '\\times 24\\times 60\\times 60=' + stdTex(d)) + ' s. In scientific notation: ' + t(sciT(d)) + ' s.', ['Days → hours (×24) → minutes (×60) → seconds (×60).', 'For scientific notation, move the decimal point to just after the first digit and count the places.'], 'seconds in ' + per[0]);
         p.good = [[stdPlain(d), sciT(d)]]; p.bad = [[std(D(per[1] * 1440, 0)), sciT(D(per[1] * 1440, 0))]];

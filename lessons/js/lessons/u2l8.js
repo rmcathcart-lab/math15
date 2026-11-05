@@ -510,7 +510,7 @@ standup('u2l8', (() => {
   const hopsBack = (e) => (e >= 0 ? `\\text{${e} place${e === 1 ? '' : 's'} right}` : `\\text{${-e} place${e === -1 ? '' : 's'} left}`);
   const sci = (sig, e) => snSciP(snCoef(sig), e);
   const ITEMS = [['A bee is about', 'm long', [-2]], ['A grain of pollen is about', 'm wide', [-5, -4]], ['A virus is about', 'm across', [-7]], ['The distance to Mars is about', 'km', [7, 8]],
-    ['A city has about', 'people', [5, 6]], ['A teaspoon of water has about', 'L', [-3]], ['A country’s budget is about', 'dollars', [9, 10]], ['A dust speck is about', 'm wide', [-5]], ['A mountain is about', 'm tall', [3]]];
+    ['A city has about', 'people', [5, 6]], ['A raindrop has a mass of about', 'g', [-2]], ['A country’s budget is about', 'dollars', [9, 10]], ['A dust speck is about', 'm wide', [-5]], ['A mountain is about', 'm tall', [3]]];
   return {
     intro: 'Convert at your whiteboard station. Count the hops of the decimal point, and say which way: left for big numbers, right for small ones.',
     levels: {
@@ -546,7 +546,7 @@ standup('u2l8', (() => {
           const n = r.int(-6, 7), A = mkSig(r), B = String(r.int(6, 9)) + (r.chance(0.5) ? String(r.int(1, 9)) : '');
           const [x, y] = r.shuffle([[A, n], [B, n - 1]]);
           return { text: 'Which number is larger? Justify with the exponents.', q: sci(x[0], x[1]) + '\\quad\\text{or}\\quad ' + sci(y[0], y[1]),
-            a: [sci(A, n) + '\\ \\text{is larger: exponent }' + n + '\\gt' + (n - 1), sci(A, n) + '=' + snStdT(A, n) + ',\\quad ' + sci(B, n - 1) + '=' + snStdT(B, n - 1)] };
+            a: [sci(A, n) + '\\ \\text{is larger: exponent }{' + n + '}\\gt{' + (n - 1) + '}', sci(A, n) + '=' + snStdT(A, n) + ',\\quad ' + sci(B, n - 1) + '=' + snStdT(B, n - 1)] };
         }
         const [pre, unit, opts] = r.pick(ITEMS), e = r.pick(opts), sig = mkSig(r), toStd = r.chance(0.5);
         const u = '\\ \\text{' + unit.replace('’', "'") + '}';

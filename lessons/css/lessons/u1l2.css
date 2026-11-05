@@ -14,15 +14,16 @@
 .u1l2-recipe .n { display: inline-grid; place-items: center; width: 26px; height: 26px; margin-right: 6px; border-radius: 50%; background: var(--brand2); color: #fff; font-size: 15px; }
 
 /* ---------------- warm-up ---------------- */
-.u1l2-wtop { display: grid; grid-template-columns: 250px 1fr; gap: 14px; align-items: start; }
+.u1l2-wtop { display: grid; grid-template-columns: 236px 1fr; gap: 12px; align-items: start; }
+.u1l2-wmain { display: flex; flex-direction: column; gap: 10px; }
 .u1l2-card { background: #fff; border: 2px solid #c88c14; border-radius: 12px; overflow: hidden; box-shadow: 4px 4px 0 rgba(0, 0, 0, .1); }
 .u1l2-card-h { background: var(--red); color: #fff; font: 800 18px var(--round); text-align: center; padding: 6px 4px; }
 .u1l2-ing { display: grid; grid-template-columns: 92px 1fr; align-items: baseline; border-bottom: 1px solid var(--line2); padding: 5px 12px; font-size: 18px; font-weight: 700; }
-.u1l2-ing i { font-style: normal; font-weight: 400; grid-column: 2; grid-row: 1; }
+.u1l2-ing i { font-style: normal; font-weight: 400; }
 .u1l2-ing .katex { font-size: 1.15em; }
 .u1l2-drawer { display: flex; flex-direction: column; gap: 8px; }
-.u1l2-cups { display: flex; gap: 8px; justify-content: space-between; background: #fdf3dc; border: 2px solid #c88c14; border-radius: 12px; padding: 6px 8px; }
-.u1l2-cup { display: flex; flex-direction: column; align-items: center; gap: 0; background: #fff; border: 2px solid var(--line); border-radius: 12px; padding: 4px 6px; cursor: pointer; font: 700 16px var(--round); color: var(--ink); min-width: 92px; }
+.u1l2-cups { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: #fdf3dc; border: 2px solid #c88c14; border-radius: 12px; padding: 6px 8px; }
+.u1l2-cup { display: flex; flex-direction: column; align-items: center; gap: 0; background: #fff; border: 2px solid var(--line); border-radius: 12px; padding: 2px 6px; cursor: pointer; font: 700 17px var(--round); color: var(--ink); }
 .u1l2-cup svg { width: calc(76px * var(--s, 1)); height: calc(56px * var(--s, 1)); }
 .u1l2-cup:active { transform: scale(.95); }
 .u1l2-bowl { background: #fff; border: 1.5px solid var(--line2); border-radius: 12px; padding: 6px 12px 10px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
@@ -131,3 +132,6 @@
 .u1l2-dsub { font-size: 30px; white-space: nowrap; }
 .u1l2-dbadge { font-size: 22px; white-space: nowrap; background: var(--amber-soft); border: 2px solid var(--amber); border-radius: 12px; padding: 2px 12px; }
 .u1l2-ddot { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--red); }
+.u1l2-dh { font: 800 15px var(--round); color: var(--ink2); }
+.u1l2-dh .muted { font-weight: 600; font-size: 14px; }
+.u1l2-ing { grid-template-columns: 92px 1fr; padding: 4px 10px; font-size: 17px; }

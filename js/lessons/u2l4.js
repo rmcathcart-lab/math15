@@ -63,8 +63,12 @@
   function Dv(a, b, s) { return { t: '/', a: a, b: b, s: s || 'frac' }; }
   function tex(n) {
     if (n.t === 'm') return qTex(n.m);
-    if (n.t === 'p') return (n.a.t === '/' && n.a.s === 'frac' ? '\\left(' + tex(n.a) + '\\right)' : '(' + tex(n.a) + ')') + '^{' + n.n + '}';
-    if (n.t === '*') return n.xs.map(function (x) { return (n.sep === '' && x.t === 'm') || (x.t === '/' && x.s === 'div') ? '(' + tex(x) + ')' : tex(x); }).join(n.sep);
+    if (n.t === 'p') {
+      if (n.a.t === 'm' && !Object.keys(n.a.m.v).length && n.a.m.c[1] === 1 && n.a.m.c[0] > 0) return F(n.a.m.c[0]) + '^{' + n.n + '}';
+      return (n.a.t === '/' && n.a.s === 'frac' ? '\\left(' + tex(n.a) + '\\right)' : '(' + tex(n.a) + ')') + '^{' + n.n + '}';
+    }
+    if (n.t === '*') return n.xs.map(function (x, i) { return (n.sep === '' && x.t === 'm' && i > 0 && !(x.m.c[0] === 1 && x.m.c[1] === 1)) || (x.t === '/' && x.s === 'div') ? '(' + tex(x) + ')' : tex(x); }).join(n.sep);
+    if (n.s === 'pdiv') return '(' + tex(n.a) + ')\\div(' + tex(n.b) + ')';
     return n.s === 'div' ? tex(n.a) + '\\div ' + tex(n.b) : '\\dfrac{' + tex(n.a) + '}{' + tex(n.b) + '}';
   }
   function lettersOf(n, acc) { acc = acc || []; if (n.t === 'm') Object.keys(n.m.v).forEach(function (x) { if (acc.indexOf(x) < 0) acc.push(x); }); else if (n.t === 'p') lettersOf(n.a, acc); else if (n.t === '*') n.xs.forEach(function (x) { lettersOf(x, acc); }); else { lettersOf(n.a, acc); lettersOf(n.b, acc); } return acc; }
@@ -126,7 +130,7 @@
       var negIn = Object.keys(inner.v).some(function (x) { return inner.v[x] < 0; });
       if ((negIn && !o.neg) || inner.c[1] !== 1) { L.push('Power law (raise the top and the bottom): ' + t(shownIn + '=' + rawT(res, o.neg)) + '.'); return res; }
       var parts = []; if (!(inner.c[0] === 1 && inner.c[1] === 1)) parts.push(cP(inner.c) + '^{' + n.n + '}');
-      Object.keys(inner.v).forEach(function (x) { parts.push(x + '^{' + (inner.v[x] < 0 ? '(' + inner.v[x] + ')' : inner.v[x]) + '\\times ' + n.n + '}'); });
+      Object.keys(inner.v).forEach(function (x) { parts.push(x + '^{' + (inner.v[x] < 0 ? '(' + inner.v[x] + ')' : inner.v[x]) + '\\times ' + (n.n < 0 ? '(' + n.n + ')' : n.n) + '}'); });
       L.push('Power law: ' + t(shownIn + '=' + parts.join('') + '=' + rawT(res, o.neg)) + '.');
       return res;
     }
@@ -477,11 +481,11 @@
             return chain(T, { prompt: 'Give the correct simplified form of ' + t(sh.shown) + '.', text: 'Bree corrected' });
           } }] },
       { num: '8', stem: '<b>The substitution check.</b> If two expressions are really equal, then substituting the same number into each must give the same value. Simplify each expression, then substitute the given value into the <i>original</i> and into your <i>simplified</i> form to confirm they agree.', parts: [
-        { id: 'e8a', level: 'PRG', outcome: 'AN3', make: function (r) { var l = L1(r), k = r.pick([2, 2, 3]), p = r.pick([2, 3]), q = r.int(1, 2), s = r.int(2 * p + q - 3, 2 * p + q - 1); return subsPart(Dv(Mul([Pw(Mn(k, [[l, p]]), 2), Mn(1, [[l, q]])]), Mn(k * k, [[l, s]])), l, 2); } },
+        { id: 'e8a', level: 'PRG', outcome: 'AN3', make: function (r) { var l = L1(r), k = r.pick([2, 2, 3]), p = k === 3 ? 2 : r.pick([2, 3]), q = r.int(1, 2), s = r.int(2 * p + q - 3, 2 * p + q - 1); return subsPart(Dv(Mul([Pw(Mn(k, [[l, p]]), 2), Mn(1, [[l, q]])]), Mn(k * k, [[l, s]])), l, 2); } },
         { id: 'e8b', level: 'PRG', outcome: 'AN3', make: function (r) { var l = L1(r), k = r.pick([2, 3, 3]), p = r.int(2, 3), s = r.int(2 * p - 3, 2 * p - 1); return subsPart(Dv(Pw(Mn(k, [[l, p]]), 2), Mn(k * k, [[l, s]])), l, 2); } }] },
       { num: '9', stem: '', parts: [
         { id: 'e9', level: 'PRG', outcome: 'AN3', make: function (r) {
-          var l = L1(r), k = r.pick([2, 2, 3]), p = r.int(2, 3), s = r.int(2, 3 * p - 2), T = Dv(Pw(Mn(k, [[l, p]]), 3), Mn(k, [[l, s]])), res = ev(T), ali = 3 * p - s;
+          var l = L1(r), k = 2, p = r.pick([1, 2, 2]), s = r.int(1, 3 * p - 1), T = Dv(Pw(Mn(k, [[l, p]]), 3), Mn(k, [[l, s]])), res = ev(T), ali = 3 * p - s;
           var orig = Math.pow(k * Math.pow(2, p), 3) / (k * Math.pow(2, s)), aliV = Math.pow(2, ali);
           var ws = cleanWrongs(chainWrongs(T, res), posTex(res));
           var p2 = P.fields('Ali claims that ' + t(tex(T) + '=' + vt(l, ali)) + '. Use the substitution check with ' + t(l + '=2') + ' to show that his answer cannot be right, then give the correct simplified form.', [

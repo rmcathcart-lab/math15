@@ -43,7 +43,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Supersize It!" style="--wf-side: 420px">
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Supersize It!" style="--wf-side: 380px">
   <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Supersize It!</h2>
   <p class="wf-rule">Blow up the picture: <b>2 times as wide</b> <em>and</em> <b>2 times as tall</b>. Then 3 times… <span class="muted">Tap a size to see the picture.</span></p></div>
   <div class="wf-grid"><div class="wf-main">
@@ -62,6 +62,19 @@
       <div class="u2l3-zth">Times as wide</div><div>1</div><div>2</div><div>3</div><div>4</div><div>10</div>
       <div class="u2l3-zth">Tiles</div><div>1</div><div>4</div><div>9</div><div><span data-reveal><b class="u2l3-red">16</b></span></div><div><span data-reveal><b class="u2l3-red">100</b></span></div>
     </div>
+    <div class="poll wf-poll u2l3-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A <b>giant die</b> is 10 times as long, 10 times as wide <em>and</em> 10 times as tall as a normal die. How many normal dice fit inside? <b>Guess first.</b></div></div>
+      <div class="u2l3-pollrow">
+        <div class="poll-opts">
+          <div class="opt"><b>A</b> 30</div>
+          <div class="opt"><b>B</b> 100</div>
+          <div class="opt right"><b>C</b> 1&#8239;000</div>
+        </div>
+        <div class="u2l3-dice"><div id="u2l3-dice"></div><div class="u2l3-dicecap">2 times: 8 dice</div></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: 1 000 dice.</b> Think in layers, like the 8 dice (2 layers of <span class="tex">2\times2</span>). One floor layer is <span class="tex">10\times10=100</span> dice, and there are 10 layers: <span class="tex">100\times10=1\,000=10^{3}</span>. Making it bigger in <b>every</b> direction multiplies in every direction.</div>
+    </div>
   </div><div class="wf-side">
     <div class="u2l3-wqs">
       <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many tiles in the <b>4 times</b> picture? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
@@ -70,19 +83,6 @@
         <div class="u2l3-wa"><div class="bk-ans"><b>100 tiles</b>: 10 rows of 10.</div></div></div>
       <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Sam says, “3 times as wide means 3 times the tiles.” Is Sam right? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
         <div class="u2l3-wa"><div class="bk-ans"><b>No.</b> The 3 times picture has <b>9</b> tiles. Three tiles only fill the bottom row, and there are 3 rows. Wider <em>and</em> taller: <span class="tex">3\times3=9</span>.</div></div></div>
-    </div>
-    <div class="poll wf-poll u2l3-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A <b>giant die</b> is 10 times as long, 10 times as wide <em>and</em> 10 times as tall as a normal die. How many normal dice fit inside? <b>Guess first.</b></div></div>
-      <div class="u2l3-pollrow">
-        <div class="poll-opts">
-          <div class="opt"><b>A</b> 30</div>
-          <div class="opt"><b>B</b> 100</div>
-          <div class="opt right"><b>C</b> 1 000</div>
-        </div>
-        <div class="u2l3-dice"><div id="u2l3-dice"></div><div class="u2l3-dicecap">2 times: 8 dice</div></div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>C: 1 000 dice.</b> Think in layers, like the 8 dice (2 layers of <span class="tex">2\times2</span>). One floor layer is <span class="tex">10\times10=100</span> dice, and there are 10 layers: <span class="tex">100\times10=1\,000=10^{3}</span>. Making it bigger in <b>every</b> direction multiplies in every direction.</div>
     </div>
   </div></div>
   <p class="u2l3-social">Ask a neighbour: is a pizza twice as wide really just twice as much pizza? <span data-reveal="tap to see"><b>No: about 4 times as much</b> (2 times as wide and 2 times as tall: <span class="tex">2\times2=4</span>).</span></p>
