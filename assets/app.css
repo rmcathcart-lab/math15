@@ -823,3 +823,47 @@ button.ulv:hover { border-color: var(--brand); }
 /* test-mode question list: where the Beginning / Progressing / Mastery boxes start */
 .tm-nav-sec { font-size: 12px; font-weight: 700; color: var(--muted); margin: 8px 3px 2px; padding-top: 6px; border-top: 1px solid rgba(0,0,0,.08); }
 .tm-nav-list > .tm-nav-sec:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+
+/* ---- a labelled rectangle and a "Show me a similar example" box (Math 15 4.5 Q5; usable by any question) ---- */
+.q-rect { position: relative; width: min(300px, 82%); margin: 10px auto 30px; padding: 26px 70px 4px 4px; box-sizing: content-box; }
+.q-rect-box { position: relative; height: 120px; border: 2.5px solid var(--brand); border-radius: 3px; background: var(--brand-soft); display: flex; align-items: center; justify-content: center; text-align: center; padding: 6px; }
+.q-rect-in { font-size: 15px; color: var(--ink); }
+.q-rect-top, .q-rect-side, .q-rect-bot, .q-rect-left { position: absolute; font-size: 14px; font-weight: 600; color: var(--brand); white-space: nowrap; }
+.q-rect-top { top: 0; left: 4px; right: 70px; text-align: center; }
+.q-rect-bot { bottom: -24px; left: 4px; right: 70px; text-align: center; }
+.q-rect-side { right: 0; top: 50%; transform: translate(0, -20%); width: 66px; white-space: normal; line-height: 1.25; }
+.q-rect-left { left: 0; top: 50%; transform: translate(0, -20%); width: 62px; text-align: right; }
+.q-rect-sm { width: min(240px, 70%); }
+.q-rect-sm .q-rect-box { height: 92px; }
+.q-rect:has(.q-rect-left) { padding-left: 70px; width: min(240px, calc(100% - 140px)); }
+.q-rect:has(.q-rect-left) .q-rect-top, .q-rect:has(.q-rect-left) .q-rect-bot { left: 70px; }
+/* the four sides light up one after another (perimeter) */
+.q-side { position: absolute; background: #e8a33a; border-radius: 3px; opacity: 0; animation: q-side .45s ease forwards; animation-delay: calc(var(--d, 0) * 1s + var(--i0, 0s)); }
+.q-side.s1 { top: -4px; left: -4px; right: -4px; height: 6px; --d: 0; }
+.q-side.s2 { top: -4px; bottom: -4px; right: -4px; width: 6px; --d: .6; }
+.q-side.s3 { bottom: -4px; left: -4px; right: -4px; height: 6px; --d: 1.2; }
+.q-side.s4 { top: -4px; bottom: -4px; left: -4px; width: 6px; --d: 1.8; }
+@keyframes q-side { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+.q-howto { margin: 12px 0 4px; border: 1.5px solid #d9d2c0; border-radius: 12px; background: #fffdf7; }
+.q-howto summary { cursor: pointer; list-style: none; padding: 8px 14px; font-weight: 700; font-size: 14px; color: var(--brand2); }
+.q-howto summary::-webkit-details-marker { display: none; }
+.q-howto summary::before { content: '▶'; display: inline-block; margin-right: 8px; font-size: 11px; transition: transform .2s; }
+.q-howto[open] summary::before { transform: rotate(90deg); }
+.q-howto .q-howto-close, .q-howto[open] .q-howto-open { display: none; }
+.q-howto[open] .q-howto-close { display: inline; }
+.q-howto-body { padding: 2px 16px 12px; font-size: 15px; }
+.q-howto-lead { margin: 0 0 8px; font-weight: 600; }
+.q-hs { opacity: 0; transform: translateY(6px); animation: q-step .5s ease forwards; animation-delay: calc(var(--i) * 1.6s + .2s); margin: 6px 0; }
+.q-hs .q-side { --i0: calc(var(--i) * 1.6s + .5s); }
+@keyframes q-step { to { opacity: 1; transform: none; } }
+.q-howto-replay { margin: 8px 0 0; font-size: 12px; color: var(--ink2); opacity: 0; animation: q-step .4s ease forwards; animation-delay: 8.4s; }
+.q-solve > div { display: grid; grid-template-columns: 8.5em minmax(0, 1fr); align-items: baseline; gap: 10px; padding: 3px 0; font-size: 16px; }
+.q-solve .q-op { justify-self: start; }
+.q-solve > div > :first-child { white-space: nowrap; }
+.q-op { font-size: 13px; color: #b06a00; background: #fff1d6; border-radius: 6px; padding: 1px 8px; }
+.q-rect-fill .q-rect-top, .q-rect-fill .q-rect-side { animation: q-pop .5s ease both; }
+.q-rect-fill .q-rect-side { animation-delay: .3s; }
+@keyframes q-pop { from { opacity: 0; transform: translateY(-8px) scale(.9); } }
+.q-rect-fill .q-rect-side { transform: translate(0, -20%); }
+@media (max-width: 600px) { .q-rect { padding-right: 62px; } .q-rect:has(.q-rect-left) { padding-left: 62px; width: calc(100% - 124px); } .q-rect:has(.q-rect-left) .q-rect-top, .q-rect:has(.q-rect-left) .q-rect-bot { left: 62px; } .q-rect-left { width: 56px; font-size: 13px; } .q-rect-side { width: 58px; font-size: 13px; } .q-hs { animation-delay: calc(var(--i) * 1.3s + .2s); } }
+@media (prefers-reduced-motion: reduce) { .q-hs, .q-howto-replay, .q-side, .q-rect-fill .q-rect-top, .q-rect-fill .q-rect-side { animation: none; opacity: 1; transform: none; } .q-howto-replay { display: none; } }
