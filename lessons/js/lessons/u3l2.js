@@ -104,7 +104,7 @@ const mono = (c, e) => ({ c, v: { x: e } });
 const mmQ = (k) => { const [a, b] = MM[k].map(([c, e]) => mono(c, e)); return `${termT(a, true)}\\times ${fT(b)}`; };
 const monoMul = {
   title: 'Multiply the numbers, add the exponents',
-  height: 372,
+  height: 350,
   minW: 820,
   value: 'd1',
   choices: [{ v: 'd1', label: tex(mmQ('d1')) }, { v: 'd2', label: tex(mmQ('d2')) }, { sep: 'Example 1 check:' }, ...'abcd'.split('').map((k) => ({ v: k, label: '(' + k + ')' }))],
@@ -115,19 +115,19 @@ const monoMul = {
     const cT = (c) => (c < 0 ? `(${c})` : String(c));
     const q = `\\htmlClass{u3l2-mc}{${A.c === -1 ? '-' : A.c === 1 ? '' : A.c}}\\htmlClass{u3l2-mv}{x${ea > 1 ? `^{${ea}}` : ''}}\\times ${B.c < 0 ? '(' : ''}\\htmlClass{u3l2-mc}{${B.c === -1 ? '-' : B.c === 1 ? '' : B.c}}\\htmlClass{u3l2-mv}{x${eb > 1 ? `^{${eb}}` : ''}}${B.c < 0 ? ')' : ''}`;
     const row0 = add(stage, h('div', 'u3l2-mm0 c', K(q)), W / 2, 44);
-    const L1 = `=\\htmlClass{u3l2-mcol}{(${cT(cA)}\\times ${cT(cB)})}\\htmlClass{u3l2-mvol}{(x^{${ea}}\\cdot x^{${eb}})}`;
+    const L1 = `=\\htmlClass{u3l2-mcol}{(${cA}\\times ${cT(cB)})}\\htmlClass{u3l2-mvol}{(x^{${ea}}\\cdot x^{${eb}})}`;
     const row1 = add(stage, h('div', 'u3l2-mm1', K(L1)), 70, 116);
     const pc = row1.querySelector('.u3l2-mcol'), pv = row1.querySelector('.u3l2-mvol'); hide(pc, pv);
     hide(row1);
     // the x's written out, in two groups
     const xs = [], xw = 46, gap = 30, tot = (ea + eb) * xw + gap, x0 = Math.max(60, (W - tot) / 2 - 120);
-    for (let i = 0; i < ea + eb; i++) { const e = add(stage, h('div', 'u3l2-mx c' + (i < ea ? '' : ' b'), K('x')), x0 + i * xw + (i >= ea ? gap : 0) + xw / 2, 214); hide(e); xs.push(e); }
-    const brA = add(stage, h('div', 'u3l2-mbr c', K(`x^{${ea}}`)), x0 + ea * xw / 2, 258); hide(brA);
-    const brB = add(stage, h('div', 'u3l2-mbr c b', K(`x^{${eb}}`)), x0 + ea * xw + gap + eb * xw / 2, 258); hide(brB);
-    const cnt = add(stage, h('div', 'u3l2-mcnt', `<b>${ea + eb}</b> factors of ${K('x')}`), x0 + tot + 24, 196); hide(cnt);
+    for (let i = 0; i < ea + eb; i++) { const e = add(stage, h('div', 'u3l2-mx c' + (i < ea ? '' : ' b'), K('x')), x0 + i * xw + (i >= ea ? gap : 0) + xw / 2, 200); hide(e); xs.push(e); }
+    const brA = add(stage, h('div', 'u3l2-mbr c', K(`x^{${ea}}`)), x0 + ea * xw / 2, 242); hide(brA);
+    const brB = add(stage, h('div', 'u3l2-mbr c b', K(`x^{${eb}}`)), x0 + ea * xw + gap + eb * xw / 2, 242); hide(brB);
+    const cnt = add(stage, h('div', 'u3l2-mcnt', `<b>${ea + eb}</b> factors of ${K('x')}`), x0 + tot + 24, 200); hide(cnt);
     const ncard = add(stage, h('div', 'u3l2-mcard amb', `<small>numbers multiply</small>${K(`${cT(cA)}\\times ${cT(cB)}=${cP}`)}`), W - 250, 92); hide(ncard);
-    const vcard = add(stage, h('div', 'u3l2-mcard blu', `<small>exponents add</small>${K(`${ea}+${eb}=${ea + eb}`)}`), x0 + tot + 24, 238); hide(vcard);
-    const res = add(stage, h('div', 'u3l2-mres c', K(`${mmQ(key)}=${termT(P, true)}`)), W / 2, 330); hide(res);
+    const vcard = add(stage, h('div', 'u3l2-mcard blu', `<small>exponents add</small>${K(`${ea}+${eb}=${ea + eb}`)}`), x0 + tot + 170, 168); hide(vcard);
+    const res = add(stage, h('div', 'u3l2-mres c', K(`${mmQ(key)}=${termT(P, true)}`)), W / 2, 312); hide(res);
     const sgn = cA < 0 && cB < 0 ? ' Negative × negative is <b>positive</b>.' : cA < 0 || cB < 0 ? ' One negative: the answer is <b>negative</b>.' : '';
     return [{
       cap: `Multiplying works in any order, so <b>regroup</b>: the numbers together, the letters together.${(cA === 1 || cB === 1) ? ` (A bare ${T('x')} has coefficient ${T('1')}.)` : ''}`,
@@ -136,7 +136,7 @@ const monoMul = {
       cap: `<b>Numbers multiply:</b> ${T(`${cT(cA)}\\times ${cT(cB)}=${cP}`)}.${sgn}`,
       run: (c) => c.pop(ncard, 380)
     }, {
-      cap: `<b>Letters:</b> ${T(`x^{${ea}}`)} is ${WORD[ea]} ${T('x')}’s multiplied${ea === 1 ? ` (${T('x')} means ${T('x^1')})` : ''}, and ${T(`x^{${eb}}`)} is ${WORD[eb]} more. Count them: ${T(`${ea}+${eb}=${ea + eb}`)}. Same base, so <b>add the exponents</b> (the Product Law).`,
+      cap: `<b>Letters:</b> ${ea === 1 ? `${T('x')} is one ${T('x')} (${T('x=x^1')})` : `${T(`x^{${ea}}`)} is ${WORD[ea]} ${T('x')}’s multiplied`}, and ${eb === 1 ? `${T('x')} is one more` : `${T(`x^{${eb}}`)} is ${WORD[eb]} more`}. Count them: ${T(`${ea}+${eb}=${ea + eb}`)}. Same base, so <b>add the exponents</b> (the Product Law).`,
       run: async (c) => {
         await Promise.all([...xs.map((e, i) => c.pop(e, 300, { delay: i * 70 })), c.fadeIn(brA, 300, { delay: 200 }), c.fadeIn(brB, 300, { delay: 300 })]);
         await Promise.all([c.fadeIn(cnt, 300), c.pop(vcard, 380, { delay: 150 })]);
@@ -245,7 +245,7 @@ function makeDist(title, choices, first, height = 360) {
       const rEls = chunks.map((ch, i) => spans(row1, 'u3l2-r' + i)), req = spans(row1, 'u3l2-req');
       hide(...req, ...rEls.flat());
       const fin = collect(chunks.map((ch) => ch.t)), likes = likeGroups(chunks.map((ch) => ch.t));
-      const row2 = add(stage, h('div', 'u3l2-ds1 u3l2-ans', K('=' + polyT(fin))), 44, 276); hide(row2);
+      const row2 = likes.length ? add(stage, h('div', 'u3l2-ds1 u3l2-ans', K('=' + polyT(fin))), 44, 276) : null; hide(row2);
       const steps = [];
       const arrs = [];
       groups.forEach((g, gi) => {
@@ -331,7 +331,7 @@ const areaGrid = {
     const ly = gy + hh0 + ch + 56;
     const line = add(stage, h('div', 'u3l2-ds1', K(`${termT(m, true)}(${polyT(P)})=` + prods.map((p, k) => `\\htmlClass{u3l2-q${k}}{${k ? (p.c < 0 ? '-' : '+') : ''}${tc(p.c < 0 ? RED : PCOL[k], k ? bodyT(p) : termT(p, true))}}`).join(''))), gx, ly);
     const qEls = prods.map((p, k) => spans(line, 'u3l2-q' + k)); hide(...qEls.flat());
-    const tally = add(stage, h('div', 'u3l2-tally'), gx + GW - 4, ly + 56); tally.style.translate = '-100% -50%'; tally.innerHTML = `<b>${n}</b> terms in the bracket → <b>${n}</b> terms in the answer`; hide(tally);
+    const tally = add(stage, h('div', 'u3l2-tally'), gx + GW - 4, ly + 76); tally.style.translate = '-100% -50%'; tally.innerHTML = `<b>${n}</b> terms in the bracket → <b>${n}</b> terms in the answer`; hide(tally);
     const steps = [{
       cap: `Make a grid: ${T(termT(m, true))} down the side, and <b>one column for each term</b> in the bracket: ${P.map((t) => T(termT(t, true))).join(', ')}. Each cell will hold one product.`,
       run: (c) => Promise.all([pulse(c, side, 1.08), ...heads.map((e, i) => pulse(c, e, 1.08).then(() => c.sleep(i * 60)))])
@@ -462,7 +462,8 @@ mountFigures(); mountCalc(); mountExplainers();
           const p = mulT(a, b), ca = a.c < 0 ? `(${a.c})` : a.c, cb = b.c < 0 ? `(${b.c})` : b.c;
           return { q: `${termT(a, true)}\\times ${fT(b)}`, a: [`=(${ca}\\times ${cb})\\,${v}^{${a.v[v]}+${b.v[v]}}`, '=' + termT(p, true)] };
         }
-        return dist(mt(nz(r, -9, 9), v, 0), [mt(1, v, 1), mt(nz(r, -9, 9), v, 0)]);
+        let k = 0; while (Math.abs(k) < 2) k = r.int(-9, 9);
+        return dist(mt(k, v, 0), [mt(1, v, 1), mt(nz(r, -9, 9), v, 0)]);
       },
       /* a monomial with a variable times a binomial, signs mixed (Example 2 (c), (d)) */
       PRG: (r) => {

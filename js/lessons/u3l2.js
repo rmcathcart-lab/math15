@@ -117,7 +117,7 @@
     return '<div class="fig"><svg class="fig-svg" viewBox="0 0 340 200" width="100%" style="max-width:340px" role="img" aria-label="rectangle ' + L + ' by ' + Wd + ' with a ' + l + ' by ' + w + ' rectangle cut out">' +
       '<rect x="40" y="25" width="220" height="140" fill="rgba(110,150,200,0.18)" stroke="currentColor" stroke-width="2"/>' +
       '<rect x="40" y="25" width="100" height="60" fill="var(--bg, #fff)" stroke="currentColor" stroke-width="1.6" stroke-dasharray="6 4"/>' +
-      svgText(150, 188, L) + svgText(268, 100, Wd, 'start') + svgText(90, 61, l) + svgText(148, 60, w, 'start') + '</svg></div>';
+      svgText(150, 188, L) + svgText(268, 100, Wd, 'start') + svgText(90, 18, l) + svgText(148, 60, w, 'start') + '</svg></div>';
   }
 
   /* ---------- question makers ---------- */
@@ -219,7 +219,7 @@
       { id: 'e2c', level: 'EMG', make: function (r) { var k = r.int(2, 4), a = r.int(2, 3), c = r.int(2, 6); if (r.chance(0.15)) { k = 3; a = 2; c = 6; } return expandMono(M(k, { m: 2, n: 1 }), [M(a, { m: 1, n: 1 }), M(-1, { n: 2 }), N(c)]); } }] },
     { num: '3', stem: 'Expand. Each monomial has a fraction as its coefficient, but the rule is unchanged: multiply the fraction by every coefficient inside.', parts: [
       { id: 'e3a', level: 'EMG', make: function (r) { var a = r.int(1, 4) * 2, b = r.int(1, 3) * 2, c = r.int(1, 5) * 2; if (r.chance(0.15)) { a = 6; b = 4; c = 10; } return fracPart(M([1, 2], { x: 1 }), [xm(a, 2), xm(-b), N(c)]); } },
-      { id: 'e3b', level: 'PRG', make: function (r) { var a = r.int(1, 3) * 3, b = r.int(1, 3) * 3, c = r.int(1, 2) * 3; if (r.chance(0.15)) { a = 6; b = 9; c = 3; } return fracPart(M([-2, 3], { a: 2 }), [xm(-a, 2, 'a'), xm(b, 1, 'a'), N(c)]); } },
+      { id: 'e3b', level: 'PRG', make: function (r) { var a = r.int(1, 3) * 3, b = r.int(1, 3) * 3, c = r.int(1, 3) * 3; if (r.chance(0.15)) { a = 6; b = 9; c = 3; } return fracPart(M([-2, 3], { a: 2 }), [xm(-a, 2, 'a'), xm(b, 1, 'a'), N(c)]); } },
       { id: 'e3c', level: 'EMG', make: function (r) { var a = r.int(1, 3) * 4, b = r.int(1, 4) * 4 * (r.chance(0.3) ? -1 : 1), c = r.pick([4, 4, 8]); if (r.chance(0.15)) { a = 8; b = 12; c = 4; } return fracPart(M([1, 4], { x: 1 }), [xm(a, 2), xm(b), N(-c)]); } }] },
     { num: '4', section: 'Extra practice B — Distribute, Then Collect', stem: 'Two brackets means two separate distributions. Expand the first completely and write it down before you touch the second — then collect like terms.<br>For example ' + t('3x(x-2)+4x(2x+1)=3x^{2}-6x+8x^{2}+4x=11x^{2}-2x') + '.<br>Expand and simplify.', parts: [
       { id: 'e4a', level: 'EMG', make: function (r) { var a = r.int(2, 4), b = r.int(1, 3), c = r.int(2, 5), d = r.int(2, 5); if (r.chance(0.15)) { a = 2; b = 1; c = 5; d = 4; } return twoProducts(xm(a), [xm(3), N(b)], xm(c), [xm(1), N(-d)]); } },
@@ -440,7 +440,7 @@
     questions: [
       /* ================= Part A ================= */
       { num: '1', section: 'Part A — Monomials and Binomials', stem: 'Multiply the monomials.', parts: [
-        { id: '1a', level: 'LIM', make: function (r) { var a = r.int(2, 6), b = r.int(2, 5), e = r.int(2, 4), f = r.int(2, 5); if (r.chance(0.15)) { a = 3; b = 4; e = 2; f = 3; } return monoProd(a, e, b, f); } },
+        { id: '1a', level: 'LIM', make: function (r) { var a = r.int(2, 6), b = r.int(2, 5), e = r.int(2, 4), f = r.int(2, 5); if (a === 2 && b === 2) b = 3; if (r.chance(0.15)) { a = 3; b = 4; e = 2; f = 3; } return monoProd(a, e, b, f); } },
         { id: '1b', level: 'BEG', make: function (r) { var a = r.int(2, 5), b = r.int(2, 7), f = r.int(2, 5); if (r.chance(0.15)) { a = 2; b = 6; f = 4; } return monoProd(-a, 1, b, f); } },
         { id: '1c', level: 'LIM', make: function (r) { var a = r.int(2, 9), e = r.int(2, 5), f = r.int(2, 4); if (r.chance(0.15)) { a = 5; e = 3; f = 2; } return monoProd(a, e, 1, f); } },
         { id: '1d', level: 'BEG', make: function (r) { var a = r.int(2, 5), b = r.int(2, 5), e = r.int(2, 4), f = r.int(2, 6); if (r.chance(0.15)) { a = 4; b = 3; e = 2; f = 5; } return monoProd(-a, e, -b, f); } }] },
@@ -525,7 +525,7 @@
             return pos ? { m1: -p, s1: -s, m2: p + q, s2: u } : { m1: -(q + r.int(1, 3)), s1: s, m2: q, s2: -u };
           }, function (o) {
             var T = add(mul(xm(o.m1), add(xm(1), N(o.s1))), mul(xm(o.m2), add(xm(1), N(o.s2)))), a = PL.coef(T, { x: 2 })[0], b = PL.coef(T, { x: 1 })[0];
-            return a && b && a * b > 0 && a * b <= 999 && o.m1 !== -o.m2;
+            return a && b && a * b > 0 && a * b <= 200 && o.m1 !== -o.m2;
           });
           if (r.chance(0.15)) o = { m1: -4, s1: 2, m2: 3, s2: -5 };
           var A = mul(xm(o.m1), add(xm(1), N(o.s1))), Bm = mul(xm(o.m2), add(xm(1), N(o.s2))), T = add(A, Bm), a = PL.coef(T, { x: 2 })[0], b = PL.coef(T, { x: 1 })[0], ans = a * b;

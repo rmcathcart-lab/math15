@@ -31,7 +31,7 @@
 .u3l4-cn-top { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
 .u3l4-cn-l { font-weight: 700; color: var(--muted); font-size: 16px; margin-right: 4px; }
 .u3l4-cn-top .chip.on { background: var(--brand); border-color: var(--brand); color: #fff; }
-.u3l4-cn-pic { display: flex; justify-content: center; min-height: 270px; align-items: center; }
+.u3l4-cn-pic { display: flex; justify-content: center; min-height: 230px; align-items: center; }
 .u3l4-cn-svg { overflow: visible; }
 .u3l4-cn-p.y { fill: #ffecb3; } .u3l4-cn-p.b { fill: #bed4f5; } .u3l4-cn-p.r { fill: #f6cfc9; }
 .u3l4-cn-gl { fill: none; stroke-width: 1; }
@@ -63,6 +63,7 @@
 .u3l4 .wf .wf-poll:not(.revealed) .poll-ans { display: none; }
 .u3l4 .wf .poll-ans { font-size: 15.5px; line-height: 1.35; }
 .u3l4-bigq { font-size: 30px; font-weight: 800; text-align: center; margin: 2px 0 4px; font-family: var(--round); }
+.u3l4 .wf .wf-main .wf-poll { margin-top: 12px; }
 .u3l4-social { text-align: center; font-style: italic; font-size: 18px; color: var(--ink2); margin: 12px 0 0 !important; }
 
 .u3l4 {
@@ -212,3 +213,4 @@
 /* FOIL head */
 .u3l4-fo0 { font-size: 42px; white-space: nowrap; }
 
+.u3l4 [data-ink=ex5] .ans { min-height: 78px; }

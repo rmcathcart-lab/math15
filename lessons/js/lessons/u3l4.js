@@ -619,7 +619,7 @@ function mountCorner() {
   const pic = host.querySelector('.u3l4-cn-pic'), say = host.querySelector('.u3l4-cn-say');
   const st = { i: 0, s: 0 };
   const draw = () => {
-    const [N, k] = SIZES[st.i], u = Math.min(30, 330 / (N + k)), P = 34, W = P * 2 + (N + k) * u, H = P + 18 + N * u;
+    const [N, k] = SIZES[st.i], u = Math.min(26, 300 / (N + k)), P = 34, W = P * 2 + (N + k) * u, H = P + 26 + N * u;
     const grid = (x0, y0, w, hh, cls) => {
       let g = `<rect class="u3l4-cn-p ${cls}" x="${x0 * u}" y="${y0 * u}" width="${w * u}" height="${hh * u}"/>`;
       for (let i = 1; i < w; i++) g += `<path class="u3l4-cn-gl ${cls}" d="M${(x0 + i) * u} ${y0 * u}v${hh * u}"/>`;
@@ -683,7 +683,7 @@ function suNo(m, v, b, p, d) { // (mv + b)(pv + d), not a pattern
     a: [`=${polyS(m * p, 0, 0, v)}${polyS(0, m * d, 0, v).replace(/^(?=[^-])/, '+')}${polyS(0, b * p, 0, v).replace(/^(?=[^-])/, '+')}${polyS(0, 0, b * d, v).replace(/^(?=[^-])/, '+')}`, '=' + polyS(m * p, m * d + b * p, b * d, v)] };
 }
 standup('u3l4', {
-  intro: 'At your whiteboard station: first <b>name the pattern</b> (difference of squares, perfect square trinomial, or neither), then expand.',
+  intro: 'At your whiteboard station: first name the pattern (difference of squares, perfect square trinomial, or neither), then expand.',
   levels: {
     /* x only: (x + a)(x − a), (x ± a)² */
     BEG: (r) => {
@@ -699,14 +699,14 @@ standup('u3l4', {
     /* mixed: decide first; some are neither pattern */
     MAS: (r) => {
       const v = r.pick(['x', 'x', 'a', 'y']), k = r.pick(['sd', 'sq', 'no', 'no', 'sq']);
-      if (k === 'no') {
+      if (k === 'no') { // a near miss: looks like a pattern, but the numbers differ
         for (;;) {
-          const m = r.int(1, 4), b = r.int(-9, 9), d = r.int(-9, 9);
-          if (!b || !d || b === d || b === -d || m * d + b * m === 0) continue;
+          const m = r.int(1, 4), b = r.int(2, 9) * r.sign(), d = -Math.sign(b) * (Math.abs(b) + r.pick([-1, 1, 2, 3]));
+          if (!d || Math.abs(d) === Math.abs(b)) continue;
           return suNo(m, v, b, m, d);
         }
       }
-      const m = r.int(1, 6), a = r.int(1, 9);
+      const m = r.int(2, 6), a = r.int(1, 9);
       return k === 'sd' ? suSd(m, v, a, r.chance(0.5)) : suSq(m, v, a * r.sign());
     }
   }

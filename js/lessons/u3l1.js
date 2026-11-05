@@ -182,7 +182,7 @@
   /* EP3: degree of each term, degree of the polynomial, name (terms shown in the booklet's order) */
   function twoVarPart(terms) {
     var Sp = S(terms), d = P.degree(Sp), n = terms.length;
-    var fl = terms.map(function (q, i) { return { name: 'Degree of term ' + (i + 1), label: 'Degree of ' + t(tx(q)) }; }).concat([{ name: 'Degree of the polynomial', label: 'Degree of the polynomial' }, { name: 'Name', label: 'Name', mode: 'text', placeholder: 'e.g. binomial' }]);
+    var fl = terms.map(function (q, i) { return { name: 'Degree of term ' + (i + 1), label: 'Degree of ' + t(tx(q)) }; }).concat([{ name: 'Degree of the polynomial', label: 'Degree of the polynomial' }, { name: 'Name', label: 'Name', mode: 'text', placeholder: 'e.g. binomial', wide: true }]);
     var chks = terms.map(function (q) { return K.number(P.degree(q), degTermDiag(q)); }).concat([K.number(d, function (v) { var all = terms.reduce(function (s, q) { return s + P.degree(q); }, 0); return v === all ? { code: 'deg-sum-all', hint: 'The degree of the polynomial is the degree of its <b>highest</b> term, not the total.' } : v === n && n !== d ? { code: 'deg-terms', hint: 'That’s the number of terms. The degree of the polynomial is its highest term degree.' } : null; }), nameChk(n)]);
     return KP.fields(t(W(terms)), fl, chks, terms.map(function (q) { return String(P.degree(q)); }).concat([String(d), nameOf(n)]),
       terms.map(function (q) { return t(tx(q)) + ': ' + t(P.degree(q)); }).join(', ') + '; degree ' + t(d) + '; ' + nameOf(n),
@@ -612,7 +612,7 @@
           { html: 'It can’t be known without the actual polynomials.', why: 'Only like terms can cancel, and the first polynomial has no term of degree ' + t(q) + '.' }],
           'Only like terms combine. The first polynomial has no term of degree ' + t(q) + ', so the second polynomial’s degree-' + t(q) + ' term survives, and nothing higher can appear. The sum has degree ' + t(q) + '.', ['Can the highest term of the second polynomial cancel with anything?'], 'degree of a sum');
       } },
-      { id: 'e17d', level: 'PRG', make: function (r) {
+      { id: 'e17d', sub: 'd i', level: 'PRG', make: function (r) {
         return KP.mc(r, '(d) Two polynomials of degree ' + t('5') + ' are added. What is the <b>highest possible</b> degree of the sum?', [
           { html: t('5') + ', and it can be lower if the two ' + t('x^{5}') + '-terms are opposites and cancel.', right: true },
           { html: t('10') + ', because ' + t('5+5=10') + '.', why: 'Adding never adds exponents: ' + t('2x^{5}+3x^{5}=5x^{5}') + '.' },
@@ -643,7 +643,7 @@
     var parts = [{ s: 1, a: A }, { s: op, a: Bq }], ans = op < 0 ? P.sub(S(A), S(Bq)) : P.add(S(A), S(Bq)), d = P.degree(ans), n = P.count(ans);
     var raw = P.add(S(A), op < 0 ? P.neg(S(Bq)) : S(Bq)), d0 = Math.max(P.degree(S(A)), P.degree(S(Bq))), n0 = Math.max(P.count(S(A)), P.count(S(Bq)));
     var noChange = P.add(S(A), S(Bq)), firstOnly = op < 0 ? P.add(S(A), P.neg(Bq[0]), S(Bq.slice(1))) : null;
-    var fl = [{ name: 'Simplified', label: 'Simplified', mode: 'math', keys: 'poly', vars: P.vars(raw).length ? P.vars(raw) : ['x'], placeholder: PH, wide: true }, { name: 'Degree', label: 'Degree' }, { name: 'Name', label: 'Name', mode: 'text', placeholder: 'e.g. binomial' }];
+    var fl = [{ name: 'Simplified', label: 'Simplified', mode: 'math', keys: 'poly', vars: P.vars(raw).length ? P.vars(raw) : ['x'], placeholder: PH, wide: true }, { name: 'Degree', label: 'Degree' }, { name: 'Name', label: 'Name', mode: 'text', placeholder: 'e.g. binomial', wide: true }];
     var pc = K.poly(ans, { wrong: wl(ans, [op < 0 ? { is: noChange, code: 'no-change', hint: 'The second bracket is subtracted: change the sign of every term inside it.' } : null, firstOnly ? { is: firstOnly, code: 'sub-first', hint: 'Change the sign of <b>every</b> term in the subtracted bracket.' } : null]) });
     var dc = K.number(d, function (v) { return v === d0 && d0 !== d ? { code: 'u3l1-deg-early', hint: 'That’s the degree <b>before</b> simplifying. After collecting, the highest terms cancel — what is the highest power left?' } : null; });
     var expr = bracketsTex(parts);

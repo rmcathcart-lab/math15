@@ -788,7 +788,7 @@ function mountFruit() {
   const ORDER = { a: 0, o: 1, b3: 2 };
   place(els);
   let sorted = false;
-  const render = () => { host.classList.toggle('sorted', sorted); read.innerHTML = sorted ? `Same fruit side by side: ${K('a+a+a+o+o+3b=3a+2o+3b')}` : ''; };
+  const render = () => { host.classList.toggle('sorted', sorted); read.innerHTML = sorted ? `Like fruit together: ${K('3a+2o+3b')} <span class="muted">(${K('a')} apple, ${K('o')} orange, ${K('b')} one banana)</span>` : ''; };
   host.querySelector('[data-f=sort]').addEventListener('click', () => { sorted = true; place([...els].sort((p, q) => ORDER[p._f] - ORDER[q._f])); render(); });
   host.querySelector('[data-f=reset]').addEventListener('click', () => { sorted = false; place(els); render(); });
   render();

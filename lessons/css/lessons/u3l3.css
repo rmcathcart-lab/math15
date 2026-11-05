@@ -126,3 +126,4 @@
 .u3l3-cb-line { background: var(--ink2); border-radius: 2px; }
 .u3l3-cb-sum { font-size: 30px; font-weight: 700; white-space: nowrap; color: var(--brand); }
 .u3l3-cb-sum.zero { color: #a3a7b0; }
+.u3l3 .wf .wf-main .wf-poll { margin-top: 12px; }
