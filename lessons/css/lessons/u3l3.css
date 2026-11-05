@@ -1,0 +1,128 @@
+/* Math 15 · Unit 3 · Lesson 3 — Multiplying Two Binomials: styles used only on this page.
+ * (Explainer pieces adapted from the Math 10C twin u3l2 / u3l3.) Area-model cells use the FOIL colours:
+ * F teal, O amber, I purple, L blue; a negative product is hatched. */
+.u3l3 .ex-cap { min-height: 128px; }
+.u3l3 .ex-cap .katex { font-size: 1.04em; }
+.u3l3 .chip .katex { font-size: 1em; }
+.u3l3 .pl .katex { font-size: 1.12em; }
+.u3l3 .ans .katex { font-size: 1.04em; }
+.u3l3 .lede .katex, .u3l3 .def .katex { font-size: 1.05em; }
+.u3l3-today { display: block; margin-top: 4px; font-size: 17px; color: var(--ink2); }
+.u3l3-red { color: var(--red); }
+.u3l3-big { font-size: 25px; margin: 6px 0 12px !important; text-align: center; }
+.u3l3-step { display: inline-block; font: 800 14px var(--round); color: var(--brand); text-transform: uppercase; letter-spacing: .04em; margin-right: 6px; }
+
+/* FOIL key cards */
+.u3l3-foil-key { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 6px 0 10px; }
+.u3l3-fk { border-radius: 12px; padding: 8px 14px; font-size: 19px; display: flex; align-items: baseline; justify-content: space-between; gap: 8px; border: 2px solid var(--pc); background: color-mix(in srgb, var(--pc) 9%, #fff); }
+.u3l3-fk b { color: var(--pc); font-size: 26px; font-family: var(--round); }
+.u3l3-fk .katex { font-size: 1.2em; }
+.u3l3-fk.f { --pc: #13807a; } .u3l3-fk.o { --pc: #c27a0e; } .u3l3-fk.i { --pc: #7b4fc4; } .u3l3-fk.l { --pc: #2f6fd0; }
+.u3l3-signs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 6px 0 10px; }
+.u3l3-sg { background: #f6f5f1; border-radius: 12px; padding: 8px 12px; text-align: center; font-size: 20px; }
+.u3l3-sg small { display: block; font-size: 16px; color: var(--muted); }
+
+/* ---------------- warm-up: the Calendar Trick ---------------- */
+.u3l3-calw { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; }
+.u3l3-cal-l { flex: none; }
+.u3l3-cal-m { background: #1e2d46; color: #fff; text-align: center; font: 800 19px var(--round); border-radius: 10px 10px 0 0; padding: 4px 0; }
+.u3l3-cal-dn { display: flex; font: 800 14px var(--round); color: var(--ink2); }
+.u3l3-cal-dn span { text-align: center; padding: 3px 0; }
+.u3l3-cal-g { position: relative; background: #fff; }
+.u3l3-cd { position: absolute; box-sizing: border-box; border: 1px solid #c9cdd6; background: #fff; font: 600 20px var(--font); color: var(--ink); padding: 0; cursor: pointer; }
+.u3l3-cd.empty { background: #eef0f4; cursor: default; }
+.u3l3-cd.in { background: #fff1c9; }
+.u3l3-cd.red { color: var(--red); font-weight: 800; }
+.u3l3-cd.ink { font-weight: 800; }
+.u3l3-cal-blk { position: absolute; border: 3.5px solid #c88c14; border-radius: 3px; pointer-events: none; transition: left .25s, top .25s, width .25s, height .25s; }
+.u3l3-cal-r { flex: 1; min-width: 170px; }
+.u3l3-cal-sz { display: flex; gap: 8px; margin-bottom: 6px; }
+.u3l3-cal-sz .pill.on { background: #c88c14; border-color: #c88c14; color: #fff; }
+.u3l3-cal-hint { font-size: 15.5px; color: var(--ink2); line-height: 1.3; margin-bottom: 8px; }
+.u3l3-cal-out { background: #fffdf6; border: 2px solid #e8c77a; border-radius: 12px; padding: 8px 12px; font-size: 19px; line-height: 1.55; white-space: nowrap; }
+.u3l3-cal-res { border-top: 1.5px solid #e8c77a; margin-top: 4px; padding-top: 2px; }
+.u3l3-cal-res b { font-size: 24px; color: var(--brand); }
+.u3l3-cal-res .muted { white-space: normal; font-size: 15px; }
+.u3l3-wqs { display: flex; flex-direction: column; gap: 8px; }
+.u3l3 .wf .bk-wq .q-line { font-size: 17px; margin: 2px 0; }
+.u3l3 .wf .bk-wq .bk-ans { font-size: 15.5px; line-height: 1.3; margin-left: 40px; min-height: 2.6em; }
+.u3l3 .wf .wf-poll .poll-opts { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.u3l3 .wf .wf-poll .poll-opts .opt { font-size: 17px; padding: 6px 2px; text-align: center; white-space: nowrap; }
+.u3l3 .wf .wf-poll:not(.revealed) .poll-ans { display: none; }
+.u3l3 .wf .poll-ans { font-size: 15.5px; line-height: 1.35; }
+.u3l3-social { text-align: center; font-style: italic; font-size: 18px; color: var(--ink2); margin: 12px 0 0 !important; }
+
+/* ---------------- shared explainer pieces ---------------- */
+.u3l3-arcs { left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 3; }
+.u3l3-arclab { font: 900 22px var(--round); }
+.u3l3-lab { font-size: 26px; font-weight: 600; white-space: nowrap; }
+.u3l3-dim { height: 0; border-top: 2px solid #8b909b; }
+.u3l3-dim::before, .u3l3-dim::after { content: ""; position: absolute; top: -7px; width: 2px; height: 12px; background: #8b909b; }
+.u3l3-dim::before { left: 0; } .u3l3-dim::after { right: 0; }
+.u3l3-vdim { width: 0; border-left: 2px solid #8b909b; }
+.u3l3-vdim::before, .u3l3-vdim::after { content: ""; position: absolute; left: -7px; height: 2px; width: 12px; background: #8b909b; }
+.u3l3-vdim::before { top: 0; } .u3l3-vdim::after { bottom: 0; }
+.u3l3-wl { font-size: 28px; white-space: nowrap; }
+.u3l3-ans { color: var(--ok); }
+.u3l3-ans .katex { font-weight: 700; }
+.u3l3-hot { background: #fff1c9; border-radius: 6px; box-shadow: 0 0 0 3px #fff1c9; }
+.u3l3-negt { color: var(--red); }
+
+/* area-model cells and four-cell grids */
+.u3l3-gc { --fillc: color-mix(in srgb, var(--pc) 17%, #fff); background: #fff; border: 2px solid var(--ink); display: grid; place-items: center; overflow: hidden; transition: background-color .35s, box-shadow .3s; }
+.u3l3-gc.on { background: var(--fillc); }
+.u3l3-gc.neg.on, .u3l3-gg.in.neg.on { background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--pc) 22%, #fff) 0 8px, #fff 8px 13px); }
+.u3l3-gc.like { box-shadow: inset 0 0 0 4px #c2417a; }
+.u3l3-gc.hot { box-shadow: inset 0 0 0 4px var(--red); }
+.u3l3-gcl { position: absolute; inset: 0; display: grid; place-items: center; font-size: 26px; font-weight: 700; color: var(--pc); white-space: nowrap; }
+.u3l3-gc.neg .u3l3-gcl { color: var(--red); }
+.u3l3-gg { --fillc: color-mix(in srgb, var(--pc) 17%, #fff); border: 1.5px solid #9aa0ab; background: #fff; display: grid; place-items: center; font-size: 24px; transition: background-color .35s, box-shadow .3s; }
+.u3l3-gg.hd { background: #eceae4; font-weight: 700; color: var(--ink2); }
+.u3l3-gg.hd.x { color: var(--muted); }
+.u3l3-gg.in > span { font-weight: 700; color: var(--pc, var(--ink)); white-space: nowrap; }
+.u3l3-gg.in.neg > span { color: var(--red); }
+.u3l3-gg.on { background: var(--fillc); }
+.u3l3-gg.like { box-shadow: inset 0 0 0 4px #c2417a; }
+.u3l3-gg.in > i { position: absolute; left: 5px; top: 2px; font: 900 15px var(--round); font-style: normal; color: var(--pc); }
+.u3l3-gt { font: 800 14px var(--font); color: var(--muted); text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; }
+.u3l3-gl { font-size: 28px; }
+
+/* FOIL head */
+.u3l3-fo0 { font-size: 42px; white-space: nowrap; }
+
+/* skipped O and I: the counting grid */
+.u3l3-cell { border-radius: 4px; background: #e9e5da; transition: background .3s, border-color .3s; border: 1.5px solid transparent; }
+.u3l3-cell.F { background: #9fd6cf; border-color: #13807a; }
+.u3l3-cell.O { background: #f3c46a; border-color: #c27a0e; }
+.u3l3-cell.I { background: #cdb8ee; border-color: #7b4fc4; }
+.u3l3-cell.L { background: #b6cdf2; border-color: #2f6fd0; }
+.u3l3-cell.ghost { background: #fff; border: 1.5px dashed #c9c3b5; }
+.u3l3-clab { font: 900 30px var(--round); text-shadow: 0 0 6px #fff, 0 0 3px #fff, 0 0 2px #fff; pointer-events: none; z-index: 2; }
+.u3l3-dim2 { font-size: 21px; font-weight: 600; white-space: nowrap; }
+.u3l3-eq { font-size: 25px; white-space: nowrap; line-height: 1.3; }
+.u3l3-eq.big { font-size: 32px; }
+.u3l3-eq.bad { color: var(--red); }
+.u3l3-eq.good { color: var(--ok); }
+.u3l3-boxed { background: #fff; border: 3px solid var(--brand2); border-radius: 14px; padding: 4px 18px; }
+.u3l3-tag { display: inline-block; font: 800 14px var(--round); text-transform: uppercase; letter-spacing: .04em; color: #fff; background: var(--brand2); border-radius: 10px; padding: 2px 10px; vertical-align: 4px; white-space: nowrap; }
+.u3l3-tag.amb { background: #c27a0e; }
+.u3l3-stamp2 { font: 900 28px var(--round); border: 4px solid; border-radius: 12px; padding: 0 12px; background: rgba(255, 255, 255, .92); white-space: nowrap; color: var(--red); }
+.u3l3-ok { color: var(--ok); }
+
+/* collecting O and I on a number line */
+.u3l3-mrow { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.u3l3-mq { font-size: 32px; }
+.u3l3-mchip { display: inline-flex; flex-direction: column; align-items: center; font-size: 28px; border: 2.5px solid var(--pc); color: var(--pc); border-radius: 12px; padding: 2px 14px 0; background: #fff; transition: opacity .3s; }
+.u3l3-mchip small { font: 800 14px var(--round); color: var(--muted); }
+.u3l3-mchip.dim { opacity: .35; }
+
+/* combine: expand, flip, collect */
+.u3l3-cb-lab { font-size: 25px; white-space: nowrap; height: 46px; display: flex; align-items: center; }
+.u3l3-cb-br { font-size: 30px; height: 46px; display: flex; align-items: center; }
+.u3l3-cb-br.neg { color: var(--red); font-weight: 700; }
+.u3l3-tc { height: 46px; display: flex; align-items: center; font-size: 25px; white-space: nowrap; background: #fff; border: 2px solid #d9d3c5; border-radius: 10px; padding: 0 10px; transition: background .3s, border-color .3s, color .3s; }
+.u3l3-tc.flip { border-color: var(--red); background: #fff6f5; color: var(--red); }
+.u3l3-cb-h { font: 800 16px var(--round); letter-spacing: .02em; color: var(--muted); white-space: nowrap; }
+.u3l3-cb-line { background: var(--ink2); border-radius: 2px; }
+.u3l3-cb-sum { font-size: 30px; font-weight: 700; white-space: nowrap; color: var(--brand); }
+.u3l3-cb-sum.zero { color: #a3a7b0; }
