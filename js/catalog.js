@@ -7,7 +7,9 @@
   /* lessons that have a lesson page under lessons/ (examples + the teacher's class notes); the home page and the
    * lesson sidebar link to it as lessons/u1/l7/?class=<block> */
   root.HW.TEACHING = { base: 'lessons/',
-    lessons: ['u4l1', 'u4l2', 'u4l3', 'u4l4', 'u4l5', 'u4l6', 'u4l7', 'u4l8', 'u4l9', 'u4l10',
+    lessons: ['u1l1', 'u1l2', 'u1l3', 'u1l4', 'u1l5', 'u1l6', 'u1l7', 'u1l8',
+      'u2l1', 'u2l2', 'u2l3', 'u2l4', 'u2l5', 'u2l6', 'u2l7', 'u2l8', 'u2l9', 'u2l10',
+      'u4l1', 'u4l2', 'u4l3', 'u4l4', 'u4l5', 'u4l6', 'u4l7', 'u4l8', 'u4l9', 'u4l10',
       'u5l1', 'u5l2', 'u5l3', 'u5l4', 'u5l5', 'u5l6', 'u5l7', 'u5l8', 'u5l9', 'u5l10', 'u5l11', 'u5l12',
       'u6l1', 'u6l2', 'u6l3', 'u6l4', 'u6l5', 'u6l6', 'u6l7', 'u6l8', 'u6l9', 'u6l10',
       'u7l1', 'u7l2', 'u7l3', 'u7l4', 'u7l5', 'u7l6', 'u7l7', 'u7l8', 'u7l9', 'u7l10',
