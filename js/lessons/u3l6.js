@@ -137,7 +137,7 @@
     var ws = []; (wr || []).forEach(function (w) { if (w && w.is && !P.eq(w.is, target) && !ws.some(function (q) { return P.eq(q.is, w.is); })) ws.push(w); });
     var p = B.math(prompt, piCheck(target, ws), piTex(target), sol, hints, text, { keys: 'poly', vars: ['x', PISYM] });
     p.bad = ws.map(function (w) { return piTex(w.is); });
-    var pr = piParts(target); p.good = [P.tex(P.mul(pr[1], P.v('\\pi')))];
+    var pr = piParts(target); p.good = [P.sorted(pr[1]).map(function (T, i) { var c = T.c[0], a = Math.abs(c), m = P.monoTex(T.v); return (c < 0 ? '-' : i ? '+' : '') + (a === 1 ? '' : a) + '\\pi ' + m; }).join('')];
     return p;
   }
 
