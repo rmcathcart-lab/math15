@@ -470,17 +470,17 @@
           var v = find(function () { return { a: r.int(1, 9), b: r.int(2, 9) }; }, function (v) { return v.a !== v.b && v.a * v.b <= 45; }, { a: 3, b: 5 });
           var A = xm(1), B = N(v.a), C = xm(1), D = N(v.b), f = foil(A, B, C, D), pr = '(x+' + v.a + ')(x+' + v.b + ')';
           var rd = function (s) { var q = readT(s); return q; };
-          var Fchk = function (val) { var q = rd(val); if (!q) return wrong('u3t-foil-box', 'Type the product of the First terms.'); if (PL.eq(q, f.F)) return ok(); return wrong('u3t-foil-box', 'First: ' + t('x\\cdot x=x^{2}') + '.'); };
+          var Fchk = function (val) { var q = rd(val); if (!q) return wrong('u3t-foil-box', 'Type the product of the First terms.'); if (PL.eq(q, f.F)) return ok(); return wrong('u3t-foil-box', 'Multiply the first terms: ' + t('x\\cdot x=x^{2}') + '.'); };
           var midChk = function (i) { return function (val, all) {
             var o = rd(all[1]), n = rd(all[2]), mine = i === 1 ? o : n;
             if (o && n && ((PL.eq(o, f.O) && PL.eq(n, f.I)) || (PL.eq(o, f.I) && PL.eq(n, f.O)))) return ok();
             if (mine && (PL.eq(mine, f.O) || PL.eq(mine, f.I)) && !(o && n && PL.eq(o, n))) return ok();
-            return wrong('u3t-foil-box', (i === 1 ? 'Outside: the outside terms are ' + t('x') + ' and ' + t(v.b) + ': ' + t('x\\cdot ' + v.b + '=' + v.b + 'x') : 'Inside: the inside terms are ' + t(v.a) + ' and ' + t('x') + ': ' + t(v.a + '\\cdot x=' + v.a + 'x')) + '.');
+            return wrong('u3t-foil-box', (i === 1 ? 'The outside terms are ' + t('x') + ' and ' + t(v.b) + ': ' + t('x\\cdot ' + v.b + '=' + v.b + 'x') : 'The inside terms are ' + t(v.a) + ' and ' + t('x') + ': ' + t(v.a + '\\cdot x=' + v.a + 'x')) + '.');
           }; };
-          var Lchk = function (val) { var q = rd(val); if (q && PL.eq(q, f.L)) return ok(); if (q && PL.eq(q, N(v.a + v.b))) return wrong('u3t-foil-box', 'Last: <b>multiply</b> the last terms, ' + t(v.a + '\\cdot ' + v.b) + '.'); return wrong('u3t-foil-box', 'Last: ' + t(v.a + '\\cdot ' + v.b + '=' + v.a * v.b) + '.'); };
+          var Lchk = function (val) { var q = rd(val); if (q && PL.eq(q, f.L)) return ok(); if (q && PL.eq(q, N(v.a + v.b))) return wrong('u3t-foil-box', '<b>Multiply</b> the last terms, ' + t(v.a + '\\cdot ' + v.b) + '.'); return wrong('u3t-foil-box', 'Multiply the last terms: ' + t(v.a + '\\cdot ' + v.b + '=' + v.a * v.b) + '.'); };
           var prod = polyChk(f.res, binWrongs(A, B, C, D));
           var keys = [tx(f.F), tx(f.O), tx(f.I), tx(f.L), tx(f.res)];
-          var fb = function (lb) { return pbox(lb, ['x'], { wide: false }); };
+          var fb = function (lb) { return pbox(lb, ['x'], { wide: false, placeholder: 'one term' }); };
           return boxes('Expand ' + t(pr) + ' by filling in each FOIL product, then add them and collect like terms.',
             [fb('First:'), fb('Outside:'), fb('Inside:'), fb('Last:'), pbox('Product (simplified):', ['x'], { before: t(pr + '=') })],
             [Fchk, midChk(1), midChk(2), Lchk, function (val) { return prod(val); }], keys,
@@ -530,7 +530,7 @@
         } }] },
 
       /* ======================= Progressing ======================= */
-      { num: '8', outcome: 'AN4', stem: 'Subtract.', parts: [
+      { num: '8', outcome: 'AN4', stem: 'Subtracting a polynomial means subtracting <b>every</b> one of its terms.', parts: [
         { id: '8', outcome: 'AN4', level: 'PRG', make: function (r) {
           var v = find(function () { return { a1: r.int(3, 9), b1: nz(r, 1, 8), c1: nz(r, 1, 9), a2: r.int(1, 6), b2: nz(r, 1, 8), c2: nz(r, 1, 9) }; },
             function (v) { return v.a1 !== v.a2 && v.b1 !== v.b2 && v.c1 !== v.c2 && (v.b2 < 0 || v.c2 < 0) && v.b1 + v.b2 !== 0; }, { a1: 6, b1: -2, c1: 5, a2: 2, b2: -4, c2: -3 });
@@ -579,8 +579,8 @@
         } }] },
       { num: '11', outcome: 'AN4', stem: 'Expand using the perfect square pattern, ' + t('(a\\pm b)^{2}=a^{2}\\pm 2ab+b^{2}') + '.', parts: [
         { id: '11a', outcome: 'AN4', level: 'PRG', make: function (r) {
-          var a = r.int(2, 12), s = r.pick([1, -1, -1]), A = xm(1), B = N(s * a), T = mul(add(A, B), add(A, B)), pr = '(x' + sg(s * a) + ')^{2}';
-          return pp(t(pr), T, sqWrongs(A, B), sqSol(A, B), ['Square the first term, double the product of the two terms, square the last term.', 'The last term is a square, so it is positive.'], 'expand ' + pr);
+          var a = r.int(2, 12), s = r.pick([1, -1, -1]), v = r.pick(['x', 'x', 'x', 'y', 'm', 'a']), A = xm(1, 1, v), B = N(s * a), T = mul(add(A, B), add(A, B)), pr = '(' + v + sg(s * a) + ')^{2}';
+          return pp(t(pr), T, sqWrongs(A, B), sqSol(A, B), ['Square the first term, double the product of the two terms, square the last term.', 'The last term is a square, so it is positive.'], 'expand ' + pr, { vars: [v] });
         } },
         { id: '11b', outcome: 'AN4', level: 'PRG', make: function (r) {
           var v = find(function () { return { p: r.int(2, 5), q: r.int(1, 7), s: r.pick([1, -1]) }; }, function (v) { return HW.ex.gcd(v.p, v.q) === 1 && v.p * v.q <= 21; }, { p: 2, q: 3, s: -1 });
@@ -657,7 +657,7 @@
             ['Expand ' + t(bp(F1) + bp(F2)) + ' and multiply it by ' + t(v.k) + '; expand the square separately.', 'Put the square in brackets and subtract every term, then collect like terms.'], 'expand ' + plain(pr));
         } },
         { id: '16b', outcome: 'AN4', level: 'MAS', make: function (r) {
-          var v = find(function () { return { a: nz(r, 1, 4), b: nz(r, 1, 4), c: nz(r, 1, 6), d: nz(r, 1, 6), e: nz(r, 1, 9), plus: r.chance(0.35) }; }, function (v) {
+          var v = find(function () { return { a: nz(r, 1, 4), b: nz(r, 1, 4), c: nz(r, 1, 6), d: nz(r, 1, 6), e: nz(r, 1, 9), plus: false }; }, function (v) {
             var s = v.plus ? 1 : -1, x2 = v.a + v.b + s, x1 = v.a * v.b + v.c + s * v.d, x0 = v.a * v.c + s * v.e; return x2 !== 0 && x1 !== 0 && x0 !== 0 && Math.abs(v.c) !== 1 && (v.a < 0 || v.b < 0 || v.c < 0); }, { a: 4, b: -2, c: 3, d: 5, e: -6, plus: false });
           var A = lin(1, v.a), Q = add(xm(1, 2), xm(v.b), N(v.c)), R = add(xm(1, 2), xm(v.d), N(v.e)), P = mul(A, Q), T = v.plus ? add(P, R) : sub(P, R), pr = bp(A) + bp(Q) + (v.plus ? '+' : '-') + bp(R);
           var ws = v.plus ? [{ is: add(add(mul(xm(1), Q), N(v.a)), R), code: 'first-only', hint: 'Multiply ' + t(v.a) + ' by every term of ' + t(bp(Q)) + ' too.' }, { is: sub(P, R), code: 'sign', hint: 'The trinomial is <b>added</b>: its signs don’t change.' }, { is: add(add(xm(1, 3), N(v.a * v.c)), R), code: 'fl-only', hint: 'Every term of ' + t(bp(A)) + ' multiplies every term of ' + t(bp(Q)) + ': six products.' }]
@@ -734,7 +734,7 @@
             var true2 = s.kind === 'kfirst' ? 'Line 2 is wrong: the ' + t(k) + ' must multiply <b>every</b> term in the bracket, not just ' + t('x^{2}') + '.' : 'Line 2 is wrong: the ' + t(k) + ' must multiply the last term too: ' + t(k + '\\times ' + a * a + '=' + k * a * a) + '.';
             var c3 = mid2 + s.m, wrong3 = mid2 - s.m;
             var true3 = 'Line 3 is wrong: ' + t(seq([xm(mid2), xm(s.m)]) + '=' + tx(xm(c3))) + ', not ' + t(tx(xm(wrong3))) + '.';
-            var false1 = 'Line 1 is wrong: ' + t(bt) + ' should be ' + t('x^{2}' + (a * a > 0 ? '-' : '+') + a * a) + '.';
+            var false1 = 'Line 1 is wrong: ' + t(bt) + ' should be ' + t('x^{2}' + (s.s < 0 ? '-' : '+') + a * a) + '.';
             var false2 = 'Line 2 is wrong: ' + t(k + '\\times ' + a * a) + ' should be ' + t('(' + k + '\\times ' + a + ')^{2}=' + k * k * a * a) + '.';
             var false3 = 'Line 3 is wrong: ' + t(tx(xm(s.line === 1 ? 1 : mid2))) + ' and ' + t(tx(xm(s.m))) + ' are not like terms, so they can’t be combined.';
             if (s.line === 1) false3 = 'Line 3 is wrong: the ' + t('x') + '-terms are not like terms, so they can’t be combined.';
@@ -770,16 +770,16 @@
           return P1;
         } },
         { id: '20b', outcome: 'AN4', level: 'MAS', make: function (r) {
-          var p = r.pick([1, 1, 1, 2]), q = p === 1 ? nz(r, 2, 9) : 2 * nz(r, 1, 4), k = -q / p, F2 = lin(p, q), Fk = lin(1, k), T = mul(Fk, F2), P0 = p === 1 ? '' : String(p);
-          var shown = '(x+k)(' + P0 + 'x' + sg(q) + ')';
-          var kAlts = altVals(k, [{ v: -k, code: 'u3t-k-sign', hint: 'The two ' + t('x') + '-terms, ' + t(tx(xm(q))) + ' and ' + t((p === 1 ? '' : p) + 'kx') + ', cancel only when they are <b>opposites</b>.' }, p !== 1 ? { v: -q, code: 'u3t-k-coef', hint: 'The Outside product is ' + t('x\\cdot ' + cnum(q)) + ' and the Inside product is ' + t('k\\cdot ' + p + 'x=' + p + 'kx') + ': solve ' + t(q + '+' + p + 'k=0') + '.' } : null]);
+          var m = r.pick([1, 1, 1, 2, 3]), q = m === 1 ? nz(r, 2, 9) : nz(r, 1, 4), k = -m * q, Fk = lin(m, k), F2 = lin(1, q), T = mul(Fk, F2), M0 = m === 1 ? '' : String(m);
+          var shown = '(' + M0 + 'x+k)(x' + sg(q) + ')';
+          var kAlts = altVals(k, [{ v: -k, code: 'u3t-k-sign', hint: 'The two ' + t('x') + '-terms, ' + t(tx(xm(m * q))) + ' and ' + t('kx') + ', cancel only when they are <b>opposites</b>.' }, m !== 1 ? { v: -q, code: 'u3t-k-coef', hint: 'The Outside product is ' + t(M0 + 'x\\cdot ' + cnum(q) + '=' + tx(xm(m * q))) + ': include the ' + t(m) + '. Solve ' + t(m * q + '+k=0') + '.' } : null]);
           var P1 = KP.fields('Find the value of ' + t('k') + ' so that the expansion of ' + t(shown) + ' has <b>no</b> ' + t('x') + '-term. Then expand the product using your value of ' + t('k') + '.',
             [nbox(t('k=')), pbox('Expansion:', ['x'], { before: t('(' + tx(Fk) + ')(' + tx(F2) + ')=') })],
-            [numChk(k, kAlts), polyChk(T, [{ is: add(T, xm(2 * q)), code: 'sd-middle', hint: 'With this ' + t('k') + ' the Outside and Inside products cancel: there is no ' + t('x') + '-term.' }, { is: add(xm(p, 2), N(k * k)), code: 'sd-plus', hint: 'The last product is ' + t(cnum(k) + '\\cdot ' + cnum(q)) + ', which is negative.' }])],
+            [numChk(k, kAlts), polyChk(T, [{ is: add(T, xm(2 * m * q)), code: 'sd-middle', hint: 'With this ' + t('k') + ' the Outside and Inside products cancel: there is no ' + t('x') + '-term.' }, { is: add(xm(m, 2), N(-k * q)), code: 'sd-plus', hint: 'The last product is ' + t(cnum(k) + '\\cdot ' + cnum(q)) + ', which is negative.' }])],
             [String(k), tx(T)], t('k=' + k) + '; ' + t('(' + tx(Fk) + ')(' + tx(F2) + ')=' + tx(T)),
-            'The ' + t('x') + '-terms come from the Outside and Inside products: ' + t('x\\cdot ' + cnum(q) + '=' + tx(xm(q))) + ' and ' + t('k\\cdot ' + P0 + 'x=' + (p === 1 ? '' : p) + 'kx') + '.<br>They cancel when ' + t(q + (p === 1 ? '+k' : '+' + p + 'k') + '=0') + ', so ' + t('k=' + k) + '.<br>' + t('(' + tx(Fk) + ')(' + tx(F2) + ')=' + seq(prods(Fk, F2)) + '=' + tx(T)) + ' — only two terms.',
+            'The ' + t('x') + '-terms come from the Outside and Inside products: ' + t(M0 + 'x\\cdot ' + cnum(q) + '=' + tx(xm(m * q))) + ' and ' + t('k\\cdot x=kx') + '.<br>They cancel when ' + t(m * q + '+k=0') + ', so ' + t('k=' + k) + '.<br>' + t('(' + tx(Fk) + ')(' + tx(F2) + ')=' + seq(prods(Fk, F2)) + '=' + tx(T)) + ' — only two terms.',
             ['Write the two products that give ' + t('x') + '-terms; they must add to ' + t('0') + '.', 'Then expand with that ' + t('k') + ': the middle terms cancel.'], 'no x-term: ' + shown);
-          P1.bad = kAlts.map(function (x) { return [String(x.v), tx(T)]; }).concat([[String(k), tx(add(T, xm(2 * q)))]]);
+          P1.bad = kAlts.map(function (x) { return [String(x.v), tx(T)]; }).concat([[String(k), tx(add(T, xm(2 * m * q)))]]);
           return P1;
         } }] }
     ]
