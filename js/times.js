@@ -1,4 +1,4 @@
-/* Multiplication table: a floating 12 × 12 table opened from the icon button beside the Calculator button.
+/* Multiplication table: a floating 20 × 20 table opened from the icon button beside the Calculator button.
  * Pointing at a product (mouse hover, or a tap on touch screens) highlights its whole row and column, fills the two
  * headers and the product, and shows the fact in the title bar ("7 × 8 = 56"). A click or tap keeps that fact
  * highlighted after the pointer moves away; tapping it again lets it go. Drag the title bar to move the window.
@@ -6,7 +6,7 @@
 (function (root) {
   'use strict';
   var HW = root.HW = root.HW || {};
-  var N = 12;
+  var N = 20;
   HW.TIMES_ICON = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18M9 3v18" stroke="currentColor" stroke-width="1.6"/><path d="M12.6 12.6l5 5M17.6 12.6l-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
 
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
@@ -27,7 +27,8 @@
       }
       tbl.appendChild(tr);
     }
-    box.appendChild(head); box.appendChild(tbl);
+    var scroll = el('div', 'tt-scroll'); scroll.appendChild(tbl);
+    box.appendChild(head); box.appendChild(scroll);
     document.body.appendChild(box);
 
     var shown = null, pinned = null;
