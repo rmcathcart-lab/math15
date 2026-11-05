@@ -64,13 +64,14 @@
   function tex(n) {
     if (n.t === 'm') return qTex(n.m);
     if (n.t === 'p') {
-      if (n.a.t === 'm' && !Object.keys(n.a.m.v).length && n.a.m.c[1] === 1 && n.a.m.c[0] > 0) return F(n.a.m.c[0]) + '^{' + n.n + '}';
+      if (plainNum(n)) return F(n.a.m.c[0]) + '^{' + n.n + '}';
       return (n.a.t === '/' && n.a.s === 'frac' ? '\\left(' + tex(n.a) + '\\right)' : '(' + tex(n.a) + ')') + '^{' + n.n + '}';
     }
     if (n.t === '*') return n.xs.map(function (x, i) { return (n.sep === '' && x.t === 'm' && i > 0 && !(x.m.c[0] === 1 && x.m.c[1] === 1)) || (x.t === '/' && x.s === 'div') ? '(' + tex(x) + ')' : tex(x); }).join(n.sep);
     if (n.s === 'pdiv') return '(' + tex(n.a) + ')\\div(' + tex(n.b) + ')';
     return n.s === 'div' ? tex(n.a) + '\\div ' + tex(n.b) : '\\dfrac{' + tex(n.a) + '}{' + tex(n.b) + '}';
   }
+  function plainNum(n) { return n.t === 'p' && n.a.t === 'm' && !Object.keys(n.a.m.v).length && n.a.m.c[1] === 1 && n.a.m.c[0] > 0; }
   function lettersOf(n, acc) { acc = acc || []; if (n.t === 'm') Object.keys(n.m.v).forEach(function (x) { if (acc.indexOf(x) < 0) acc.push(x); }); else if (n.t === 'p') lettersOf(n.a, acc); else if (n.t === '*') n.xs.forEach(function (x) { lettersOf(x, acc); }); else { lettersOf(n.a, acc); lettersOf(n.b, acc); } return acc; }
   /* evaluate; md switches on one misconception (for the typical wrong answers) */
   function powM(m, n, md) {
@@ -124,7 +125,17 @@
     }
     if (n.t === 'p') {
       if (n.n === 0) { L.push('Zero exponent: ' + t(tex(n) + '=1') + ' (anything except ' + t('0') + ' to the power ' + t('0') + ' is ' + t('1') + ').'); return M(1, {}); }
+      if (n.n < 0 && n.a.t === '/' && o.neg) {
+        var fa = ev(n.a.a), fb = ev(n.a.b), noNeg = function (m) { return Object.keys(m.v).every(function (x) { return m.v[x] >= 0; }); };
+        if (noNeg(fa) && noNeg(fb)) {
+          var m2 = -n.n, flipT = '\\left(\\frac{' + qTex(fb) + '}{' + qTex(fa) + '}\\right)^{' + m2 + '}', fr = powM(quo(fb, fa), m2);
+          L.push('Negative exponent on a fraction: flip it and make the exponent positive, ' + t(tex(n) + '=' + flipT) + '.');
+          L.push('Power law (raise the top and the bottom): ' + t(flipT + '=\\frac{' + posTex(powM(fb, m2)) + '}{' + posTex(powM(fa, m2)) + '}' + (sameTex(posTex(fr), '\\frac{' + posTex(powM(fb, m2)) + '}{' + posTex(powM(fa, m2)) + '}') && posTex(fr) === '\\frac{' + posTex(powM(fb, m2)) + '}{' + posTex(powM(fa, m2)) + '}' ? '' : '=' + posTex(fr))) + '.');
+          return fr;
+        }
+      }
       var inner = solve(n.a, L, o), res = powM(inner, n.n);
+      if (!Object.keys(inner.v).length) { L.push((n.n < 0 ? 'Negative exponent (reciprocal): ' : 'Power: ') + t((plainNum(n) ? tex(n) : '\\left(' + cT(inner.c) + '\\right)^{' + n.n + '}') + '=' + (n.n < -1 ? '\\frac{1}{' + cP(inner.c) + '^{' + (-n.n) + '}}=' : '') + cT(res.c)) + '.'); return res; }
       var plainIn = n.a.t === 'm' && !Object.keys(n.a.m.v).some(function (x) { return n.a.m.v[x] === 0; });
       var shownIn = plainIn ? tex(n) : '\\left(' + rawT(inner, o.neg) + '\\right)^{' + n.n + '}';
       var negIn = Object.keys(inner.v).some(function (x) { return inner.v[x] < 0; });
@@ -157,7 +168,7 @@
   }
   function solText(tree, o) {
     o = o || {}; var L = [], res = solve(tree, L, o);
-    if (o.neg && Object.keys(res.v).some(function (x) { return res.v[x] < 0; })) L.push('Positive exponents: ' + t(rawNeg(res) + '=' + posTex(res)) + '.');
+    if (o.neg && Object.keys(res.v).some(function (x) { return res.v[x] < 0; }) && L[L.length - 1].indexOf('=' + posTex(res) + '\\)') < 0) L.push('Positive exponents: ' + t(rawNeg(res) + '=' + posTex(res)) + '.');
     L.push('So ' + t(tex(tree) + '=' + posTex(res)) + '.');
     return L.join('<br>');
   }
@@ -636,17 +647,17 @@
             p.bad = [[String(PT), String(PT)], [String(PT + 1), String(f)]];
             return p;
           } }] },
-      { num: '17', stem: function (sh) { var tm = sh.sw ? [sh.b + '^{1}', sh.b + '^{0}'] : [sh.b + '^{0}', sh.b + '^{1}'], st = sh.sw ? [sh.b + '^{' + sh.n + '}', sh.b + '^{0}'] : [sh.b + '^{0}', sh.b + '^{' + sh.n + '}']; return 'Evaluate ' + t('\\left(' + tm.join('+') + '\\right)^{' + sh.n + '}') + '. A student claimed the answer was ' + t(st.join('+') + '=' + F(1 + Math.pow(sh.b, sh.n))) + ' by “raising each term to the power ' + sh.n + '.”'; },
-        shared: function (r) { var b = r.int(2, 12); return { b: b, n: b <= 4 ? r.pick([2, 2, 3]) : 2, sw: r.chance(0.4) }; },
+      { num: '17', stem: function (sh) { return 'Evaluate ' + t(sh.br) + '. A student claimed the answer was ' + t(sh.st + '=' + F(1 + Math.pow(sh.b, sh.n))) + ' by “raising each term to the power ' + sh.n + '.”'; },
+        shared: function (r) { var b = r.int(2, 12), n = b <= 4 ? r.pick([2, 2, 3]) : 2, sw = r.chance(0.4), tm = sw ? [b + '^{1}', b + '^{0}'] : [b + '^{0}', b + '^{1}'], st = sw ? [b + '^{' + n + '}', b + '^{0}'] : [b + '^{0}', b + '^{' + n + '}']; return { b: b, n: n, br: '\\left(' + tm.join('+') + '\\right)^{' + n + '}', sum: sw ? b + '+1' : '1+' + b, st: st.join('+') }; },
         parts: [
-          { id: 'e17a', level: 'EMG', outcome: 'AN3', make: function (r, sh) { var V = Math.pow(1 + sh.b, sh.n); return numP('What is the correct value?', V, zdiag(function (v) { return v === 1 + Math.pow(sh.b, sh.n) ? { code: 'split-sum', hint: 'That’s the student’s answer. Add inside the bracket first: ' + t(sh.b + '^{0}+' + sh.b + '^{1}=1+' + sh.b + '=' + (1 + sh.b)) + '.' } : v === Math.pow(sh.b, sh.n) ? { code: 'zero-power', hint: t(sh.b + '^{0}=1') + ', not ' + t('0') + '.' } : null; }), t('\\left(' + sh.b + '^{0}+' + sh.b + '^{1}\\right)^{' + sh.n + '}=(1+' + sh.b + ')^{' + sh.n + '}=' + (1 + sh.b) + '^{' + sh.n + '}=' + F(V)) + '.', ['Inside the brackets first.'], '(b^0+b^1)^n', [1 + Math.pow(sh.b, sh.n)]); } },
+          { id: 'e17a', level: 'EMG', outcome: 'AN3', make: function (r, sh) { var V = Math.pow(1 + sh.b, sh.n); return numP('What is the correct value?', V, zdiag(function (v) { return v === 1 + Math.pow(sh.b, sh.n) ? { code: 'split-sum', hint: 'That’s the student’s answer. Add inside the bracket first: ' + t(sh.b + '^{0}+' + sh.b + '^{1}=1+' + sh.b + '=' + (1 + sh.b)) + '.' } : v === Math.pow(sh.b, sh.n) ? { code: 'zero-power', hint: t(sh.b + '^{0}=1') + ', not ' + t('0') + '.' } : null; }), t(sh.br + '=(' + sh.sum + ')^{' + sh.n + '}=' + (1 + sh.b) + '^{' + sh.n + '}=' + F(V)) + '.', ['Inside the brackets first.'], '(b^0+b^1)^n', [1 + Math.pow(sh.b, sh.n)]); } },
           { id: 'e17b', level: 'EMG', outcome: 'AN3', make: function (r, sh) {
             return P.mc(r, 'Why is the student’s method wrong?', [
               { html: 'The bracket holds a <b>sum</b>, not a product. The power-of-a-product law ' + t('(ab)^{n}=a^{n}b^{n}') + ' doesn’t apply to ' + t('(a+b)^{n}') + '.', right: true },
               { html: 'The student should have multiplied the exponents ' + t('0') + ' and ' + t('1') + ' by ' + t(sh.n) + ' and then added, which gives the same answer.', why: 'That is what the student did. It doesn’t work for a sum.' },
               { html: t(sh.b + '^{0}') + ' should be ' + t('0') + ', so the answer is ' + t(Math.pow(sh.b, sh.n)) + '.', why: HZ },
               { html: 'Nothing is wrong: exponents always distribute over brackets.', why: 'They distribute over a product, never over a sum. Check: ' + t(F(Math.pow(1 + sh.b, sh.n)) + '\\neq ' + F(1 + Math.pow(sh.b, sh.n))) + '.' }],
-              'Exponents distribute over multiplication, not addition. ' + t('\\left(' + sh.b + '^{0}+' + sh.b + '^{1}\\right)^{' + sh.n + '}=' + (1 + sh.b) + '^{' + sh.n + '}=' + F(Math.pow(1 + sh.b, sh.n))) + ', and ' + t(F(Math.pow(1 + sh.b, sh.n)) + '\\neq ' + F(1 + Math.pow(sh.b, sh.n))) + '.', ['Is the bracket a product or a sum?'], 'why not split sum');
+              'Exponents distribute over multiplication, not addition. ' + t(sh.br + '=' + (1 + sh.b) + '^{' + sh.n + '}=' + F(Math.pow(1 + sh.b, sh.n))) + ', and ' + t(F(Math.pow(1 + sh.b, sh.n)) + '\\neq ' + F(1 + Math.pow(sh.b, sh.n))) + '.', ['Is the bracket a product or a sum?'], 'why not split sum');
           } }] },
       { num: '18', stem: '<i>(Stretch)</i>', parts: [
         { id: 'e18', level: 'PRG', outcome: 'AN3', make: function (r) { var ls = L2(r), k = r.pick([2, 2, 3]), p = r.int(2, 5), q = r.int(2, 5); return chain(Dv(Mul([Pw(Mn(1, [[ls[0], p], [ls[1], q]]), 0), Pw(Mn(k, [[ls[0], 1], [ls[1], 1]]), 2)], ''), Mn(k * k, [[ls[0], 2], [ls[1], 2]])), { prompt: 'Simplify ' + t(tex(Dv(Mul([Pw(Mn(1, [[ls[0], p], [ls[1], q]]), 0), Pw(Mn(k, [[ls[0], 1], [ls[1], 1]]), 2)], ''), Mn(k * k, [[ls[0], 2], [ls[1], 2]])))) + ', where ' + t(ls[0] + '\\neq 0') + ' and ' + t(ls[1] + '\\neq 0') + ', and state the single number it equals.', hints: [HO, HW_], text: '(a^p b^q)^0(kab)^2/k²a²b²' }); } }] },

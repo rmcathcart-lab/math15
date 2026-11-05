@@ -247,22 +247,22 @@ const chips = {
             gone.forEach((e) => e.remove()); rings.forEach((g) => g.remove());
             await slide(c);
           } });
-      } else steps.push({ cap: `All the chips are the <b>same colour</b>, so there are no zero pairs. Just count them.`, run: async () => {} });
+      } else steps.push({ cap: `All the chips are the <b>same colour</b>, so there are no zero pairs. Just count them.`, run: async (c) => { await Promise.all([...rows.Y, ...rows.R].map((e, i) => pulse(c, e, 1.12))); } });
     } else {
       const have = d.a !== 0 && ka === kb ? na : 0, need = Math.max(0, nb - have);
-      steps.push({ cap: `Subtract ${T(neg(d.b))}: <b>take away</b> ${word(kb, nb)} chips.${need ? ` But there ${have === 1 ? 'is' : 'are'} only ${have}!` : ''}`,
-        run: async (c) => { await show(c, pline(K(exprTex(d.a, '-', d.b)))); } });
+      const takeAway = async (c) => {
+        const list = rows[kb], gone = list.slice(list.length - nb); rows[kb] = list.slice(0, list.length - nb);
+        await Promise.all(gone.map((e, i) => anim(c, e, [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-60px) scale(.6)' }], 420, { delay: i * 40 })));
+        gone.forEach((e) => e.remove()); await slide(c);
+      };
+      steps.push({ cap: `Subtract ${T(neg(d.b))}: <b>take away</b> ${word(kb, nb)} chips.${need ? (have ? ` But there ${have === 1 ? 'is' : 'are'} only ${have}!` : ` But there are no ${kb === 'Y' ? 'yellow' : 'red'} chips!`) : ''}`,
+        run: async (c) => { await show(c, pline(K(exprTex(d.a, '-', d.b)))); if (!need) await takeAway(c); } });
       if (need) steps.push({ cap: `Add <b>${need} zero pairs</b>. They are worth 0, so the value is still ${mn(d.a)}. Now there are enough ${kb === 'Y' ? 'yellow' : 'red'} chips.`,
         run: async (c) => {
           const at = Math.max(rows.Y.length, rows.R.length);
           await Promise.all([addChips(c, 'Y', need, { at }), addChips(c, 'R', need, { at })]);
         } });
-      steps.push({ cap: `Take away the ${word(kb, nb)} chips.`,
-        run: async (c) => {
-          const list = rows[kb], gone = list.slice(list.length - nb); rows[kb] = list.slice(0, list.length - nb);
-          await Promise.all(gone.map((e, i) => anim(c, e, [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-60px) scale(.6)' }], 420, { delay: i * 40 })));
-          gone.forEach((e) => e.remove()); await slide(c);
-        } });
+      if (need) steps.push({ cap: `Take away the ${word(kb, nb)} chips.`, run: takeAway });
     }
     steps.push({ cap: `What’s left: ${r === 0 ? 'nothing' : word(r > 0 ? 'Y' : 'R', Math.abs(r)) + ' chips'}. So ${T(`${exprTex(d.a, d.op, d.b)}=${r}`)}.`
         + (d.op === '-' ? ` <span class="muted">Same as adding the opposite: ${T(`${exprTex(d.a, '+', -d.b)}=${r}`)}.</span>` : ''),
@@ -586,7 +586,7 @@ const sub = {
       parts.push(m > 0 ? '+' + m : String(m));
       const sofar = parts.join('');
       steps.push({
-        cap: `It <b>${d.words[i]}</b>: ${up ? 'up is <b>+</b>' : 'down is <b>−</b>'}, so ${T(up ? '+' + m : String(m))}. ${T(`${a}${up ? '+' + m : m}=${b}`)}.`,
+        cap: `The ${d.who} <b>${d.words[i]}</b>: ${up ? 'up is <b>+</b>' : 'down is <b>−</b>'}, so ${T(up ? '+' + m : String(m))}. ${T(`${a}${up ? '+' + m : m}=${b}`)}.`,
         run: async (c) => {
           const ar = svgEl('line', { x1: 60 + 26 + i * 52, y1: Y(a), x2: 60 + 26 + i * 52, y2: Y(a), stroke: up ? POS : NEG, 'stroke-width': 6, 'stroke-linecap': 'round' }, svg);
           const tl = svgEl('text', { x: 60 + 36 + i * 52, y: (Y(a) + Y(b)) / 2 + 6, class: 'u1l1-seamv' }, svg); tl.textContent = up ? '+' + m : '−' + -m; tl.setAttribute('fill', up ? AMB : RED); hide(tl);

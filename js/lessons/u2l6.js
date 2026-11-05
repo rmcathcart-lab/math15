@@ -68,13 +68,14 @@
   function tex(n) {
     if (n.t === 'm') return qTex(n.m);
     if (n.t === 'p') {
-      if (n.a.t === 'm' && !Object.keys(n.a.m.v).length && n.a.m.c[1] === 1 && n.a.m.c[0] > 0) return F(n.a.m.c[0]) + '^{' + n.n + '}';
+      if (plainNum(n)) return F(n.a.m.c[0]) + '^{' + n.n + '}';
       return (n.a.t === '/' && n.a.s === 'frac' ? '\\left(' + tex(n.a) + '\\right)' : '(' + tex(n.a) + ')') + '^{' + n.n + '}';
     }
     if (n.t === '*') return n.xs.map(function (x, i) { return (n.sep === '' && x.t === 'm' && i > 0 && !(x.m.c[0] === 1 && x.m.c[1] === 1)) || (x.t === '/' && x.s === 'div') ? '(' + tex(x) + ')' : tex(x); }).join(n.sep);
     if (n.s === 'pdiv') return '(' + tex(n.a) + ')\\div(' + tex(n.b) + ')';
     return n.s === 'div' ? tex(n.a) + '\\div ' + tex(n.b) : '\\dfrac{' + tex(n.a) + '}{' + tex(n.b) + '}';
   }
+  function plainNum(n) { return n.t === 'p' && n.a.t === 'm' && !Object.keys(n.a.m.v).length && n.a.m.c[1] === 1 && n.a.m.c[0] > 0; }
   function lettersOf(n, acc) { acc = acc || []; if (n.t === 'm') Object.keys(n.m.v).forEach(function (x) { if (acc.indexOf(x) < 0) acc.push(x); }); else if (n.t === 'p') lettersOf(n.a, acc); else if (n.t === '*') n.xs.forEach(function (x) { lettersOf(x, acc); }); else { lettersOf(n.a, acc); lettersOf(n.b, acc); } return acc; }
   /* evaluate; md switches on one misconception (for the typical wrong answers) */
   function powM(m, n, md) {
@@ -128,7 +129,17 @@
     }
     if (n.t === 'p') {
       if (n.n === 0) { L.push('Zero exponent: ' + t(tex(n) + '=1') + ' (anything except ' + t('0') + ' to the power ' + t('0') + ' is ' + t('1') + ').'); return M(1, {}); }
+      if (n.n < 0 && n.a.t === '/' && o.neg) {
+        var fa = ev(n.a.a), fb = ev(n.a.b), noNeg = function (m) { return Object.keys(m.v).every(function (x) { return m.v[x] >= 0; }); };
+        if (noNeg(fa) && noNeg(fb)) {
+          var m2 = -n.n, flipT = '\\left(\\frac{' + qTex(fb) + '}{' + qTex(fa) + '}\\right)^{' + m2 + '}', fr = powM(quo(fb, fa), m2);
+          L.push('Negative exponent on a fraction: flip it and make the exponent positive, ' + t(tex(n) + '=' + flipT) + '.');
+          L.push('Power law (raise the top and the bottom): ' + t(flipT + '=\\frac{' + posTex(powM(fb, m2)) + '}{' + posTex(powM(fa, m2)) + '}' + (sameTex(posTex(fr), '\\frac{' + posTex(powM(fb, m2)) + '}{' + posTex(powM(fa, m2)) + '}') && posTex(fr) === '\\frac{' + posTex(powM(fb, m2)) + '}{' + posTex(powM(fa, m2)) + '}' ? '' : '=' + posTex(fr))) + '.');
+          return fr;
+        }
+      }
       var inner = solve(n.a, L, o), res = powM(inner, n.n);
+      if (!Object.keys(inner.v).length) { L.push((n.n < 0 ? 'Negative exponent (reciprocal): ' : 'Power: ') + t((plainNum(n) ? tex(n) : '\\left(' + cT(inner.c) + '\\right)^{' + n.n + '}') + '=' + (n.n < -1 ? '\\frac{1}{' + cP(inner.c) + '^{' + (-n.n) + '}}=' : '') + cT(res.c)) + '.'); return res; }
       var plainIn = n.a.t === 'm' && !Object.keys(n.a.m.v).some(function (x) { return n.a.m.v[x] === 0; });
       var shownIn = plainIn ? tex(n) : '\\left(' + rawT(inner, o.neg) + '\\right)^{' + n.n + '}';
       var negIn = Object.keys(inner.v).some(function (x) { return inner.v[x] < 0; });
@@ -161,7 +172,7 @@
   }
   function solText(tree, o) {
     o = o || {}; var L = [], res = solve(tree, L, o);
-    if (o.neg && Object.keys(res.v).some(function (x) { return res.v[x] < 0; })) L.push('Positive exponents: ' + t(rawNeg(res) + '=' + posTex(res)) + '.');
+    if (o.neg && Object.keys(res.v).some(function (x) { return res.v[x] < 0; }) && L[L.length - 1].indexOf('=' + posTex(res) + '\\)') < 0) L.push('Positive exponents: ' + t(rawNeg(res) + '=' + posTex(res)) + '.');
     L.push('So ' + t(tex(tree) + '=' + posTex(res)) + '.');
     return L.join('<br>');
   }
@@ -393,6 +404,7 @@
   /* no-calculator powers b^n (n >= 2) with b^n <= 1000, for picking varied numbers */
   function powPool(test) { var out = []; for (var b = 2; b <= 31; b++) for (var n = 2; Math.pow(b, n) <= 1024; n++) if (!test || test(b, n)) out.push([b, n]); return out; }
   var TENS = [[10, 1], [10, 2], [10, 2], [10, 3], [10, 3], [10, 4], [10, 5], [10, 6], [100, 1], [100, 2], [100, 3], [1000, 1], [1000, 2], [20, 2], [20, 3], [30, 2], [40, 2], [50, 2], [60, 2], [70, 2], [80, 2], [90, 2], [200, 2]];
+  function fracOf(v) { for (var d = 1; d <= 100000; d++) { var k = Math.round(v * d); if (Math.abs(v * d - k) < 1e-7) return R(k, d); } return R(Math.round(v * 1e6), 1e6); }
   function vOf(tx) { return ex.value(ex.parse(tx.replace(/\\tfrac/g, '\\frac')).ast); }
 
   HW.defineLesson({
@@ -486,7 +498,7 @@
         parts: [
           { id: 'e1a', level: 'BEG', outcome: 'AN3', make: function (r, sh) { return coefNeg(sh.k, sh.x, sh.n, false); } },
           { id: 'e1b', level: 'EMG', outcome: 'AN3', make: function (r, sh) { return nchain(Pw(Mn(sh.k, [[sh.x, 1]]), -sh.n), { wrongs: [W('\\frac{' + sh.k + '}{' + vt(sh.x, sh.n) + '}', 'not-raised', 'The bracket makes ' + t(sh.k) + ' part of the base: ' + t(sh.k + '^{-' + sh.n + '}=\\frac{1}{' + Math.pow(sh.k, sh.n) + '}') + ' too.'), W('\\frac{1}{' + sh.k + vt(sh.x, sh.n) + '}', 'not-raised', 'Raise the ' + t(sh.k) + ' to the power ' + t(sh.n) + ' as well: ' + t(sh.k + '^{' + sh.n + '}=' + Math.pow(sh.k, sh.n)) + '.')], hint: HONLY, text: '(kx)^-n' }); } },
-          { id: 'e1c', level: 'LIM', outcome: 'AN3', make: function (r, sh) { return nchain(Mn(-sh.k, [[sh.x, sh.n]]), { wrongs: [W('-\\frac{' + sh.k + '}{' + vt(sh.x, sh.n) + '}', 'opposite', 'There is no negative <b>exponent</b> here — the minus is a sign in front, so nothing moves.'), W('\\frac{1}{' + sh.k + vt(sh.x, sh.n) + '}', 'opposite', 'There is no negative exponent here: ' + t('-' + sh.k + vt(sh.x, sh.n)) + ' is already simplified.')], hints: ['A minus <b>sign</b> in front is not a negative <b>exponent</b>. Is there anything to move?', HONLY], text: '-kx^n (already simple)' }); } },
+          { id: 'e1c', level: 'LIM', outcome: 'AN3', make: function (r, sh) { return nchain(Mn(-sh.k, [[sh.x, sh.n]]), { pre: 'There is no negative <b>exponent</b> here: the minus is a <b>sign</b> in front, and the exponent ' + t(sh.n) + ' is positive. Nothing moves — the expression is already simplified.', wrongs: [W('-\\frac{' + sh.k + '}{' + vt(sh.x, sh.n) + '}', 'opposite', 'There is no negative <b>exponent</b> here — the minus is a sign in front, so nothing moves.'), W('\\frac{1}{' + sh.k + vt(sh.x, sh.n) + '}', 'opposite', 'There is no negative exponent here: ' + t('-' + sh.k + vt(sh.x, sh.n)) + ' is already simplified.')], hints: ['A minus <b>sign</b> in front is not a negative <b>exponent</b>. Is there anything to move?', HONLY], text: '-kx^n (already simple)' }); } },
           { id: 'e1d', level: 'BEG', outcome: 'AN3', make: function (r, sh) { return nchain(Pw(Mn(sh.k, [[sh.x, 1]]), sh.n), { hint: HONLY, text: '(kx)^n' }); } },
           { id: 'e1e', level: 'BEG', outcome: 'AN3', make: function (r, sh) { return nchain(Mul([Mn(sh.k, []), Mn(1, [[sh.x, -sh.n]])]), { prompt: t(sh.k + '\\left(' + vt(sh.x, -sh.n) + '\\right)'), wrongs: [W('\\frac{1}{' + sh.k + vt(sh.x, sh.n) + '}', 'coef-side', 'The bracket holds only ' + t(vt(sh.x, -sh.n)) + '; the ' + t(sh.k) + ' has no negative exponent, so it stays on top.')], hint: HONLY, text: 'k(x^-n)' }); } },
           { id: 'e1f', level: 'EMG', outcome: 'AN3', make: function (r, sh) {
@@ -638,7 +650,7 @@
             var all = [neg, big].concat(pick); all.forEach(function (x, i) { x.v = vOf(x.tex); x.id = 'o' + i; }); return all;
           }, function (all) { var vs = all.map(function (x) { return x.v; }).sort(); return vs.every(function (v, i) { return !i || Math.abs(v - vs[i - 1]) > 1e-9; }); });
           var sorted = items.slice().sort(function (a, b) { return a.v - b.v; });
-          return orderPart(r, 'Arrange from least to greatest: ' + items.map(function (x) { return t(x.tex); }).join(', ') + '.', items, sorted.map(function (x) { return t(x.tex + '=' + frTex(R(Math.round(x.v * 720720), 720720))); }).join(', ') + '.<br>So ' + t(sorted.map(function (x) { return x.tex; }).join('<')) + '.', [HN, 'A negative base to an odd power is negative — it is the smallest. A fraction to the power ' + t('-1') + ' flips to a whole number.'], 'order negative powers', function (x, y) { return { code: 'order', hint: t(x.tex + '=' + frTex(R(Math.round(x.v * 720720), 720720))) + ' is bigger than ' + t(y.tex + '=' + frTex(R(Math.round(y.v * 720720), 720720))) + '. Write each as a fraction before comparing.' }; });
+          return orderPart(r, 'Arrange from least to greatest: ' + items.map(function (x) { return t(x.tex); }).join(', ') + '.', items, sorted.map(function (x) { return t(x.tex + '=' + frTex(fracOf(x.v))); }).join(', ') + '.<br>So ' + t(sorted.map(function (x) { return x.tex; }).join('<')) + '.', [HN, 'A negative base to an odd power is negative — it is the smallest. A fraction to the power ' + t('-1') + ' flips to a whole number.'], 'order negative powers', function (x, y) { return { code: 'order', hint: t(x.tex + '=' + frTex(fracOf(x.v))) + ' is bigger than ' + t(y.tex + '=' + frTex(fracOf(y.v))) + '. Write each as a fraction before comparing.' }; });
         } }] },
       { num: '17', stem: 'Without a calculator, arrange the following from <b>least to greatest</b>. Exactly two of them are equal.',
         shared: function (r) {
@@ -652,13 +664,13 @@
         parts: [
           { id: 'e17a', level: 'PRG', outcome: 'AN3', make: function (r, sh) {
             var sorted = sh.items.slice().sort(function (a, b) { return a.v - b.v; });
-            return orderPart(r, 'Arrange from least to greatest: ' + sh.items.map(function (x) { return t(x.tex); }).join(', ') + '. (The two equal ones may go in either order.)', sh.items.map(function (x) { return { id: x.id, tex: x.tex, v: x.v }; }), sorted.map(function (x) { return t(x.tex + '=' + frTex(R(Math.round(x.v * 720720), 720720))); }).join(', ') + '.<br>So ' + t(sorted.map(function (x) { return x.tex; }).join('\\le ')) + '.', [HN, 'Write each one as a fraction. With the same top, the bigger the bottom, the smaller the fraction.'], 'order with a tie');
+            return orderPart(r, 'Arrange from least to greatest: ' + sh.items.map(function (x) { return t(x.tex); }).join(', ') + '. (The two equal ones may go in either order.)', sh.items.map(function (x) { return { id: x.id, tex: x.tex, v: x.v }; }), sorted.map(function (x) { return t(x.tex + '=' + frTex(fracOf(x.v))); }).join(', ') + '.<br>So ' + t(sorted.map(function (x) { return x.tex; }).join('\\le ')) + '.', [HN, 'Write each one as a fraction. With the same top, the bigger the bottom, the smaller the fraction.'], 'order with a tie');
           } },
           { id: 'e17b', level: 'EMG', outcome: 'AN3', make: function (r, sh) {
             var p = sh.p, others = sh.items.filter(function (x) { return x.tex !== sh.A && x.tex !== sh.B; });
             return P.mc(r, 'Which two of ' + sh.items.map(function (x) { return t(x.tex); }).join(', ') + ' are equal, and why?', [
               { html: t(sh.A) + ' and ' + t(sh.B) + ', because ' + t(p + '^{2}=' + p * p) + ', so both are ' + t('\\frac{1}{' + p * p + '}') + '.', right: true },
-              { html: t(others[0].tex) + ' and ' + t(others[1].tex) + ', because both have a negative exponent.', why: 'Work each out: ' + t(others[0].tex + '=' + frTex(R(Math.round(others[0].v * 720720), 720720))) + ' and ' + t(others[1].tex + '=' + frTex(R(Math.round(others[1].v * 720720), 720720))) + '.' },
+              { html: t(others[0].tex) + ' and ' + t(others[1].tex) + ', because both have a negative exponent.', why: 'Work each out: ' + t(others[0].tex + '=' + frTex(fracOf(others[0].v))) + ' and ' + t(others[1].tex + '=' + frTex(fracOf(others[1].v))) + '.' },
               { html: t(sh.A) + ' and ' + t(sh.B) + ', because ' + t('-2=-1\\times 2') + '.', why: 'The reason is the value: both equal ' + t('\\frac{1}{' + p * p + '}') + ' because ' + t(p + '^{2}=' + p * p) + '.' },
               { html: 'None of them are equal; different bases always give different values.', why: 'Different bases can give the same value: ' + t(p + '^{2}=' + p * p) + '.' }],
               t(sh.A + '=\\frac{1}{' + p + '^{2}}=\\frac{1}{' + p * p + '}') + ' and ' + t(sh.B + '=\\frac{1}{' + p * p + '}') + ': equal, because ' + t(p + '^{2}=' + p * p) + '.', [HN], 'which two equal');

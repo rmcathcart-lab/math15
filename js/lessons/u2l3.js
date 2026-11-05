@@ -293,7 +293,7 @@
           var top = M(o[0], [[x, a], [y, 1]]), bot = M(o[1], [[x, 1], [y, b]]), inside = mDiv(top, bot), R = mPow(inside, n), insT = mTex(inside), res = mTex(R);
           var big = dfr(mTex(mPow(top, n)), mTex(mPow(bot, n))), tex = pw(par(dfr(mT(o[0], [[x, a], [y, 1]]), mT(o[1], [[x, 1], [y, b]]))), n);
           var fl = [fld('Inside', 'the fraction inside, reduced:', true, [x, y]), fld('Answer', 'the answer:', true, [x, y])];
-          return P.fields(t(tex), fl, [expoCk(insT, [[cFr(o[0], o[1] / o[1]), 'coef-not-raised', 'Reduce the numbers too: ' + t(fr(o[0], o[1])) + '.']]), expoCk(res, [[cFr(1, o[1] / o[0]), 'coef-not-raised', 'Raise the number part to the power too: ' + t(pw(par(fr(1, o[1] / o[0])), n) + '=' + fr(1, Math.pow(o[1] / o[0], n))) + '.'], [eIs(y, -(b - 1) - n), 'add-exp', 'Multiply the exponents by ' + t(n) + '.']])],
+          return P.fields(t(tex), fl, [expoCk(insT, []), expoCk(res, [[cFr(1, o[1] / o[0]), 'coef-not-raised', 'Raise the number part to the power too: ' + t(pw(par(fr(1, o[1] / o[0])), n) + '=' + fr(1, Math.pow(o[1] / o[0], n))) + '.'], [eIs(y, -(b - 1) - n), 'add-exp', 'Multiply the exponents by ' + t(n) + '.']])],
             [insT, res], t(insT) + '; ' + t(res),
             '<b>Way 1:</b> reduce inside first: ' + t(dfr(mT(o[0], [[x, a], [y, 1]]), mT(o[1], [[x, 1], [y, b]])) + '=' + insT) + ' (the ' + t(y) + '’s leave ' + t(vt(y, b - 1)) + ' on the bottom), then ' + t(pw(par(insT), n) + '=' + res) + '. <b>Way 2:</b> raise first: ' + t(tex + '=' + big) + ', then reduce: ' + t('=' + res) + '. The answers match.',
             ['Reduce the numbers and cancel matching letters inside the bracket first.', 'Then raise everything that is left — top and bottom — to the power.'], plain(tex)); } }] },
@@ -441,7 +441,7 @@
               { html: 'An exponent spreads only onto the first thing inside the brackets.', why: 'In ' + t('(xy)^{2}') + ' both factors are squared.' }],
               'The product test agreed and the sum test did not. True version: an exponent spreads onto every <b>factor</b> inside the brackets (multiplication and division), never over addition or subtraction.', ['Which of your two tests agreed?'], 'Ravi rewrite'); } }] },
       { num: '22', stem: '<b>Stretch.</b> Without a calculator, decide which is largest. Show the single power of a number each one reduces to before you compare.', parts: [
-        { id: 'e22', level: 'ADV', make: function (r) { var o = r.pick([[2, 3, 2, 3, 12, 2], [2, 3, 2, 3, 12, 2], [3, 2, 2, 4, 16, 2], [2, 3, 2, 5, 30, 3], [2, 2, 2, 3, 15, 3], [3, 2, 2, 5, 20, 2], [2, 3, 3, 3, 18, 2], [2, 4, 3, 5, 30, 2]]), n = r.pick([3, 4, 4, 5]); if (r.chance(0.2)) { o = [2, 3, 2, 3, 12, 2]; n = 4; }
+        { id: 'e22', level: 'ADV', make: function (r) { var o = r.pick([[2, 3, 2, 3, 12, 2], [2, 3, 2, 3, 12, 2], [3, 2, 2, 4, 16, 2], [2, 3, 2, 5, 30, 6], [2, 2, 2, 3, 15, 3], [3, 2, 2, 5, 20, 4], [2, 3, 3, 3, 18, 3], [2, 4, 3, 5, 30, 2], [2, 2, 2, 2, 10, 2], [2, 3, 3, 2, 14, 2]]), n = r.pick([3, 4, 4, 5]); if (r.chance(0.2)) { o = [2, 3, 2, 3, 12, 2]; n = 4; }
           var p = o[0], q = o[1], a = o[2], b = o[3], t1 = o[4], t2 = o[5], A = Math.pow(p, q), B = a * b, C = t1 / t2, vals = [A, B, C], mx = Math.max(A, B, C);
           var E = [pw(par(pw(p, q)), n), pw(par(a + '\\times ' + b), n), pw(par(dfr(t1, t2)), n)], keys = [pw(A, n), pw(B, n), pw(C, n)];
           var fl = E.map(function (e, i) { return fld('E' + i, t(e + '='), true); }).concat([fld('Largest', 'the largest is', true)]);
@@ -459,7 +459,7 @@
   function both2(f, g) { return function (an) { return f(an) && g(an); }; }
   function numCheck(kind, a, b, n) {
     var inside = kind === 'prod' ? a * b : a / b, V = Math.pow(inside, n), A = Math.pow(a, n), B = Math.pow(b, n);
-    var tex = kind === 'prod' ? pw(par(signed(a) + '\\times ' + b), n) : pw(par(dfr(a, b)), n), law = kind === 'prod' ? pw(signed(a), n) + '\\times ' + pw(b, n) : dfr(pw(a, n), pw(b, n));
+    var tex = kind === 'prod' ? pw(par(a + '\\times ' + b), n) : pw(par(dfr(a, b)), n), law = kind === 'prod' ? pw(signed(a), n) + '\\times ' + pw(b, n) : dfr(pw(a, n), pw(b, n));
     var fl = [fld('Inside', 'inside first: ' + t(pw(signed(inside), n) + '=')), fld('Law', 'by the law: ' + t(law + '='))];
     return P.fields(t(tex), fl, [numCk(V, [[inside * n, 'times-exp', t(pw(signed(inside), n)) + ' means ' + t(signed(inside)) + ' multiplied by itself ' + n + ' times.'], [-V, 'sign', n % 2 ? 'An odd power of a negative is negative.' : 'An even power of a negative is positive.']]), numCk(V, [[kind === 'prod' ? A + B : A - B, 'u2l3-sum', kind === 'prod' ? 'Multiply the two powers.' : 'Divide the two powers.'], [-V, 'sign', 'Check the sign.']])],
       [String(V), String(V)], t(tex + '=' + F(V)),
@@ -469,7 +469,7 @@
   function simpEval(f, x, v) {
     var R = fMono(f), res = mTex(R), tex = fTex(f), C = R.c[0], E = R.e[v], V = C * Math.pow(x, E), fl = [fld('Simplified', 'simplified:', true, [v]), fld('Value', 'value at ' + t(v + '=' + x) + ':')];
     var rows = []; if (f.n > 1) { rows.push([cIs(-C), f.neg ? 'fence' : 'sign', f.neg ? 'The minus sign is outside the brackets, so it is never raised to the power: it stays.' : 'The ' + t('-' + Math.abs(f.c)) + ' is inside the brackets: an even power makes it positive.']); rows.push([cIs(f.neg ? -f.c : f.c), 'coef-not-raised', 'Raise the number inside the brackets to the power too.']); }
-    else rows.push([cIs(Math.pow(Math.abs(f.c), f.ps[0][1]) * (f.c < 0 ? -1 : 1)), 'coef-not-raised', 'No brackets: only ' + t(v) + ' carries the exponent; the ' + t(f.c) + ' is not raised.']);
+    else rows.push([cIs(Math.pow(Math.abs(f.c), f.ps[0][1]) * (f.c < 0 ? -1 : 1)), 'fence', 'No brackets: only ' + t(v) + ' carries the exponent; the ' + t(f.c) + ' is not raised.'], [cIs(Math.pow(-f.c, f.ps[0][1])), 'fence', 'No brackets: only ' + t(v) + ' carries the exponent, and the minus sign stays in front.']);
     return P.fields(t(tex), fl, [expoCk(res, rows), numCk(V, [[-V, 'sign', 'Check the sign: is the minus sign inside or outside the brackets?']])], [res, String(V)], t(res) + '; ' + t(F(V)),
       (f.n > 1 ? (f.neg ? 'The minus sign is outside the brackets: ' + t(tex + '=-(' + pw(Math.abs(f.c), f.n) + pw(v, f.n) + ')=' + res) : 'The ' + t(signed(f.c)) + ' is inside the brackets: ' + t(tex + '=' + pw(signed(f.c), f.n) + pw(v, f.n) + '=' + res)) : 'No brackets: only ' + t(v) + ' is raised to the power, so ' + t(tex) + ' is already simplified.') + ' At ' + t(v + '=' + x) + ': ' + t(cT(C, pw('(' + x + ')', E)) + '=' + F(V)) + '.',
       ['Is the minus sign inside the brackets or outside? Only what is inside is raised to the power.'], plain(tex) + ' at ' + v + '=' + x);

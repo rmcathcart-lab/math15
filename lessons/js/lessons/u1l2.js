@@ -390,7 +390,7 @@ const improper = {
     const l1 = pl(K(`${d.w}\\frac{${d.n}}{${d.d}}=${F(`${d.w}\\times${d.d}+${d.n}`, d.d)}=\\boldsymbol{${F(N, d.d)}}`), 'u1l2-big');
     const steps = [
       { cap: `${T(`${d.w}\\frac{${d.n}}{${d.d}}`)} is ${d.w} whole${d.w > 1 ? 's' : ''} and ${T(F(d.n, d.d))} more.`, run: async (c) => { await pulse(c, bars[d.w].svg, 1.04); } },
-      { cap: `Cut every whole into <b>${ord(d.d)}</b>: each whole is ${T(F(d.d, d.d))}, so ${d.w} wholes are ${T(`${d.w}\\times${d.d}=${d.w * d.d}`)} pieces.`,
+      { cap: `Cut every whole into <b>${ord(d.d)}</b>: each whole is ${T(F(d.d, d.d))}, so ${d.w} whole${d.w > 1 ? 's are' : ' is'} ${T(`${d.w}\\times${d.d}=${d.w * d.d}`)} pieces.`,
         run: async (c) => { await Promise.all(cuts.map((g) => appear(c, g, 400))); } },
       { cap: `Count all the pieces: ${T(`${d.w}\\times${d.d}+${d.n}=${N}`)} ${ord(d.d)}. So ${T(`${d.w}\\frac{${d.n}}{${d.d}}=${F(N, d.d)}`)}.`,
         run: async (c) => { for (const t of nums) await appear(c, t, 70); await show(c, l1); } }
