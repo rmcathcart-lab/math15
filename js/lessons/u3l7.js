@@ -62,7 +62,7 @@
   function co(p, v, e) { var o = {}; if (e) o[v || 'x'] = e; var c = Y.coef(p, o); return c[0] / c[1]; }
   function pf(p) { var s = tx(p); return Y.count(p) > 1 || s.charAt(0) === '-' ? '(' + s + ')' : s; }  // a factor in a product line
   function pfs(p) { var s = tx(p); return /^([a-z]|\d+)$/.test(s) ? s : '(' + s + ')'; }               // a base under a square
-  function dot(a, b) { return pf(a) + pf(b); }
+  function dot(a, b) { return pf(a) + '\\cdot ' + pf(b); }
   function par(n) { return n < 0 ? '(' + n + ')' : String(n); }
   function sgn(n) { return n < 0 ? '-' + (-n) : '+' + n; }
   function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var q = a % b; a = b; b = q; } return a; }
@@ -100,7 +100,7 @@
       if (c < 0) wr.push({ p: S([prods[0]].concat(terms.slice(1).map(function (q) { return Y.mul(Y.neg(m), q); }))), code: 'neg-first', hint: 'The negative sign belongs to ' + t(mt) + ', so it multiplies <b>every</b> term in the bracket — a negative times a negative is positive.' });
       if (Y.vars(m).length) wr.push({ p: S([prods[0]].concat(terms.slice(1).map(function (q) { return Y.mul(N(c), q); }))), code: 'var-first', hint: 'The variable in ' + t(mt) + ' multiplies every term in the bracket too, not just the first one.' });
     }
-    var l1 = terms.map(function (q, i) { var s = pf(m) + pf(q); return i ? '+' + s : s; }).join(''), l2 = seq(prods);
+    var l1 = terms.map(function (q, i) { var s = dot(m, q); return i ? '+' + s : s; }).join(''), l2 = seq(prods);
     return { tex: mtex + br(terms), val: val, wr: wr, sol: t(mtex + br(terms) + '=' + l1 + '=' + l2 + (l2 !== tx(val) ? '=' + tx(val) : '')) };
   }
   function foilOf(A, B, C, D) { var f = { F: Y.mul(A, C), O: Y.mul(A, D), I: Y.mul(B, C), L: Y.mul(B, D) }; f.res = S([f.F, f.O, f.I, f.L]); return f; }
@@ -342,10 +342,10 @@
     c.add('<path d="M' + f1(c.X(0)) + ' ' + f1(c.Y(0)) + 'H' + f1(c.X(OW)) + 'V' + f1(c.Y(OH)) + 'H' + f1(c.X(0)) + 'Z M' + f1(c.X(w)) + ' ' + f1(c.Y(w)) + 'H' + f1(c.X(w + gw)) + 'V' + f1(c.Y(w + gh)) + 'H' + f1(c.X(w)) + 'Z" fill="' + SH + '" fill-rule="evenodd"/>');
     c.rect(0, 0, OW, OH, 'none'); c.rect(w, w, gw, gh, 'none');
     var top = c.Y(w + gh), bot = c.Y(w), lft = c.X(w), rgt = c.X(w + gw);
-    c.add(arrowEl(lft + 2, top + 12, rgt - 2, top + 12)); c.ptext((lft + rgt) / 2, top + 28, lw);
-    c.add(arrowEl(lft + 12, top + 34, lft + 12, bot - 2)); c.ptext(lft + 28, (top + 34 + bot) / 2 + 4, lh, { rot: true });
-    c.ptext((lft + rgt) / 2 + 20, (top + bot) / 2 + 20, '\\text{garden}', { size: 14 });
-    var yA = c.Y(OH * 0.55), xL = c.X(0); c.add(arrowEl(xL + 1, yA, lft - 1, yA)); c.ptext((xL + lft) / 2, yA - 9, lpath, { size: 13 });
+    c.add(arrowEl(lft + 2, top + 12, rgt - 2, top + 12)); c.ptext((lft + rgt - 30) / 2, top + 28, lw);
+    c.add(arrowEl(rgt - 14, top + 2, rgt - 14, bot - 2)); c.ptext(rgt - 30, (top + bot) / 2 + 6, lh, { rot: true });
+    c.ptext((lft + rgt) / 2 - 10, (top + bot) / 2 + 22, '\\text{garden}', { size: 14 });
+    var xA = c.X(OW * 0.22), yT = c.Y(OH); c.add(arrowEl(xA, yT + 1, xA, top - 1)); c.ptext(xA + 6, (yT + top) / 2 + 1, lpath, { size: 13, anchor: 'start' });
     return c.svg('rectangular garden with a path around it', 380);
   }
   /* cardboard sheet L × W with squares of side x cut from the corners */
@@ -359,7 +359,13 @@
     s += textEl(180, y0 + h + 47, '\\text{shaded squares are cut out; fold up along the dashed lines}', { size: 12 });
     return s + '</svg>';
   }
-  function sideBySide(svgs) { return '<div style="display:flex;flex-wrap:wrap;align-items:flex-end;gap:6px 18px;max-width:460px">' + svgs.map(function (s) { return '<div style="flex:1 1 150px;min-width:130px;max-width:220px">' + s + '</div>'; }).join('') + '</div>'; }
+  /* rectangle A (aw × ah) and square B (side bs) side by side in one drawing, labelled below and on the left */
+  function figAB(aw, ah, bs, la, lh, lb) {
+    var gap = 0.9, c = canvas(aw + gap + bs, Math.max(ah, bs), { pw: 330, ph: 140, m: [10, 10, 30, 34] });
+    c.rect(0, 0, aw, ah, SH2); c.hlab(0, aw, 0, la, 'below'); c.vlab(0, ah, 0, lh, 'left'); c.text(aw / 2, ah / 2, '\\text{A}');
+    var x0 = aw + gap; c.rect(x0, 0, bs, bs, SH2); c.hlab(x0, x0 + bs, 0, lb, 'below'); c.vlab(0, bs, x0, lb, 'left'); c.text(x0 + bs / 2, bs / 2, '\\text{B}');
+    return c.svg('rectangle A and square B', 420);
+  }
 
   /* ---------------- assignment generators ---------------- */
   /* Q1: a x² + b x + c + d x² + e x + f */
@@ -630,21 +636,21 @@
           { id: '22a', sub: 'a', level: 'EMG', make: function (r, sh) {
             var k = sh.k, p = sh.p;
             return mc(r, '(a) What error did Malik make?', [
-              { html: 'He multiplied the ' + t(k) + ' into the bracket <b>before</b> squaring. The square comes first (order of operations): writing ' + t('(' + k + 'x-' + k * p + ')^{2}') + ' multiplies by ' + t(k + '^{2}=' + k * k) + ' instead of ' + t(k) + '.', right: true },
+              { html: 'He multiplied the ' + t(k) + ' into the bracket before squaring it.', right: true },
               { html: 'He expanded ' + t('(' + k + 'x-' + k * p + ')^{2}') + ' incorrectly.', why: 'Check it: ' + t('(' + k + 'x)^{2}-2(' + k + 'x)(' + k * p + ')+' + k * p + '^{2}=' + seq([M(k * k, 'x', 2), M(-2 * k * k * p, 'x'), N(k * k * p * p)])) + ' — that line is right. The mistake is earlier.', code: 'm-expand' },
               { html: 'He left out the middle term when he squared.', why: 'His third line has the middle term ' + t(tx(M(-2 * k * k * p, 'x'))) + '. Look at his second line.', code: 'm-middle' },
               { html: 'He collected the ' + t('x') + '-terms incorrectly.', why: t(tx(M(-2 * k * k * p, 'x')) + sh.qt + '=' + tx(M(-2 * k * k * p + co(sh.Q, 'x', 1), 'x'))) + ' — that step is right. Look at his second line.', code: 'm-collect' }],
-              'Malik’s second line, ' + t('(' + k + 'x-' + k * p + ')^{2}') + ', squares the ' + t(k) + ' as well. ' + t(k + '(x-' + p + ')^{2}') + ' means: square ' + t('(x-' + p + ')') + ' first, then multiply by ' + t(k) + '. Every term of his answer is ' + t(k) + ' times too big (apart from ' + t(sh.qt.replace(/^\+/, '')) + ').',
+              'Malik’s second line, ' + t('(' + k + 'x-' + k * p + ')^{2}') + ', squares the ' + t(k) + ' as well: it multiplies by ' + t(k + '^{2}=' + k * k) + ' instead of ' + t(k) + '. ' + t(k + '(x-' + p + ')^{2}') + ' means: square ' + t('(x-' + p + ')') + ' first, then multiply by ' + t(k) + '. Every term of his answer is ' + t(k) + ' times too big (apart from ' + t(sh.qt.replace(/^\+/, '')) + ').',
               ['Compare Malik’s second line with the first. What does ' + t(k + '(x-' + p + ')^{2}') + ' mean, in order of operations?'], 'Malik error');
           } },
           { id: '22b', sub: 'b', level: 'EMG', make: function (r, sh) {
             var k = sh.k, p = sh.p;
             return mc(r, '(b) What error did Sana make?', [
-              { html: 'She expanded ' + t('(x-' + p + ')^{2}') + ' as ' + t('x^{2}-' + (p === 1 ? '' : p) + 'x+' + p * p) + '. The middle term must be <b>doubled</b>: ' + t('(x-' + p + ')^{2}=x^{2}-' + 2 * p + 'x+' + p * p) + '.', right: true },
+              { html: 'She did not double the middle term of ' + t('(x-' + p + ')^{2}') + '.', right: true },
               { html: 'She multiplied the ' + t(k) + ' into the bracket before squaring.', why: 'She kept the ' + t(k) + ' outside until the bracket was expanded — that is correct. Check her bracket against ' + t('(a-b)^{2}=a^{2}-2ab+b^{2}') + '.', code: 's-k' },
               { html: 'The last term of her bracket should be ' + t(-p * p) + ', not ' + t('+' + p * p) + '.', why: t('(-' + p + ')^{2}=+' + p * p) + ': a square is never negative. Look at the middle term.', code: 's-last' },
-              { html: 'She multiplied the ' + t(k) + ' into only the first term of the bracket.', why: 'Her third line multiplies all three terms by ' + t(k) + '. Look at the middle term of her bracket.', code: 's-k-first' }],
-              'Sana’s second line has ' + t('x^{2}-' + (p === 1 ? '' : p) + 'x+' + p * p) + ': the Outer and Inner products of ' + t('(x-' + p + ')(x-' + p + ')') + ' are both ' + t('-' + (p === 1 ? '' : p) + 'x') + ', so the middle term is ' + t('-' + 2 * p + 'x') + '.',
+              { html: 'She multiplied the ' + t(k) + ' into only one term of the bracket.', why: 'Her third line multiplies all three terms by ' + t(k) + '. Look at the middle term of her bracket.', code: 's-k-first' }],
+              'Sana’s second line has ' + t('x^{2}-' + (p === 1 ? '' : p) + 'x+' + p * p) + ', but ' + t('(x-' + p + ')^{2}=x^{2}-' + 2 * p + 'x+' + p * p) + ': the Outer and Inner products of ' + t('(x-' + p + ')(x-' + p + ')') + ' are both ' + t('-' + (p === 1 ? '' : p) + 'x') + ', so the middle term is ' + t('-' + 2 * p + 'x') + '.',
               ['Expand ' + t('(x-' + p + ')(x-' + p + ')') + ' with FOIL and compare it with Sana’s bracket.'], 'Sana error');
           } },
           { id: '22c', sub: 'c', level: 'PRG', make: function (r, sh) {
@@ -745,6 +751,7 @@
       { num: '5', stem: 'Expand and simplify. Notice that the first term is a binomial times a trinomial and the second is a monomial times a perfect square.', parts: [
         { id: 'e5', level: 'ADV', make: function (r) {
           var s = pickWhere(function () { return { a: r.int(2, 3), e: nz(r, -3, 3), b: r.int(1, 5), c: r.int(1, 6), d: r.int(2, 6) }; }, function (s) {
+            if (gcd(s.a, s.e) !== 1) return false;
             var R = Y.sub(Y.mul(lin(s.a, s.e), S([M(1, 'x', 2), M(-s.b, 'x'), N(s.c)])), Y.mul(M(1, 'x'), Y.pow(lin(1, -s.d), 2))); return Y.count(R) === 4;
           });
           if (r.chance(0.12)) s = { a: 2, e: 1, b: 3, c: 4, d: 5 };
@@ -1192,7 +1199,7 @@
               ['Substitute into your expansion, or multiply the three dimensions: ' + t(sh.L + '-2(' + x + ')') + ', ' + t(sh.W + '-2(' + x + ')') + ' and ' + t(x) + '.'], 'box volume at x', { after: t('\\text{cm}^{3}') });
             p.bad = [String(l * w)]; return p;
           } }] },
-      { num: '18', stem: function (sh) { return '<b>Path around a garden.</b> A rectangular garden measures ' + t('(x+' + sh.p + ')') + ' m by ' + t('(x+' + sh.q + ')') + ' m. A uniform path ' + t(sh.w) + ' m wide is laid all the way around the outside of the garden.' + figPath(2 + sh.p / 5, 1.3 + sh.q / 5, 0.45, 'x+' + sh.p, 'x+' + sh.q, sh.w + '\\text{ m}'); },
+      { num: '18', stem: function (sh) { return '<b>Path around a garden.</b> A rectangular garden measures ' + t('(x+' + sh.p + ')') + ' m by ' + t('(x+' + sh.q + ')') + ' m. A uniform path ' + t(sh.w) + ' m wide is laid all the way around the outside of the garden.' + figPath(2 + sh.p / 5, 1.3 + sh.q / 5, 0.55, 'x+' + sh.p, 'x+' + sh.q, sh.w + '\\text{ m}'); },
         shared: function (r) { var s = pickWhere(function () { return { p: r.int(3, 9), q: r.int(1, 7), w: r.int(1, 3) }; }, function (s) { return s.p > s.q; }); if (r.chance(0.12)) s = { p: 5, q: 3, w: 2 }; return s; },
         parts: [
           { id: 'e18a', sub: 'a', level: 'EMG', make: function (r, sh) {
@@ -1231,7 +1238,7 @@
               'The ' + t('x^{2}') + ' terms cancel, so the path’s area has degree ' + t(1) + ': it grows in proportion to the garden’s perimeter.',
               ['Look at your answer to (c): what is the highest power of ' + t('x') + '?'], 'degree of path area');
           } }] },
-      { num: '19', stem: function (sh) { return '<b>Comparing two areas.</b> Rectangle A has length ' + t('(x+' + sh.a + ')') + ' cm and width ' + t('(x+' + sh.b + ')') + ' cm. Rectangle B is a square with side length ' + t('(x+' + sh.m + ')') + ' cm.' + sideBySide([figRect(1.4 + sh.a / 8, 0.9 + sh.b / 8, 'x+' + sh.a, 'x+' + sh.b, 'rectangle A', '\\text{A}'), figRect(1.2 + sh.m / 8, 1.2 + sh.m / 8, 'x+' + sh.m, 'x+' + sh.m, 'square B', '\\text{B}')]); },
+      { num: '19', stem: function (sh) { return '<b>Comparing two areas.</b> Rectangle A has length ' + t('(x+' + sh.a + ')') + ' cm and width ' + t('(x+' + sh.b + ')') + ' cm. Rectangle B is a square with side length ' + t('(x+' + sh.m + ')') + ' cm.' + figAB(1.4 + sh.a / 8, 0.9 + sh.b / 8, 1.2 + sh.m / 8, 'x+' + sh.a, 'x+' + sh.b, 'x+' + sh.m); },
         shared: function (r) { var s = pickWhere(function () { return { a: r.int(3, 12), b: r.int(1, 9) }; }, function (s) { return s.a > s.b + 1 && (s.a + s.b) % 2 === 0; }); if (r.chance(0.12)) s = { a: 7, b: 1 }; s.m = (s.a + s.b) / 2; s.D = s.m * s.m - s.a * s.b; return s; },
         parts: [
           { id: 'e19a', sub: 'a', level: 'BEG', make: function (r, sh) {

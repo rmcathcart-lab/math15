@@ -88,8 +88,8 @@
   function likeTerms(a, b) { var ta = P.terms(a)[0], tb = P.terms(b)[0]; return !!(ta && tb && ta.key === tb.key); }
   /* the classic wrong answers for (A + B)(C + D) */
   function binWrongs(A, B, C, D) {
-    var f = foil(A, B, C, D), out = [], both = cof(B) < 0 && cof(D) < 0, oneMid = 'You have only one of the two middle products. Find both the Outside product ' + t(dot(A, D)) + ' and the Inside product ' + t(dot(B, C)) + '.';
-    out.push({ is: P.add(f.F, f.L), code: 'fl-only', hint: 'You multiplied only the <b>First</b> terms and the <b>Last</b> terms. Two binomials give <b>four</b> products — the Outside and Inside products make the middle term.' });
+    var f = foil(A, B, C, D), out = [], both = cof(B) < 0 && cof(D) < 0, oneMid = 'You have only one of the two middle products. Find both the Outer product ' + t(dot(A, D)) + ' and the Inner product ' + t(dot(B, C)) + '.';
+    out.push({ is: P.add(f.F, f.L), code: 'fl-only', hint: 'You multiplied only the <b>First</b> terms and the <b>Last</b> terms. Two binomials give <b>four</b> products — the Outer and Inner products make the middle term.' });
     out.push({ is: P.add(f.F, f.O, f.L), code: 'one-middle', hint: oneMid });
     out.push({ is: P.add(f.F, f.I, f.L), code: 'one-middle', hint: oneMid });
     out.push({ is: P.add(f.F, f.O, f.I, P.neg(f.L)), code: 'last-sign', hint: 'Check the sign of the Last product: ' + t(dot(B, D) + '=' + tx(f.L)) + '.' + (both ? ' A negative times a negative is <b>positive</b>.' : '') });
@@ -108,7 +108,7 @@
     var f = foil(A, B, C, D), c = tx(P.add(C, D)), s4 = seq([f.F, f.O, f.I, f.L]), bs = tx(B);
     return t(pf(P.add(A, B)) + '(' + c + ')=' + pf(A) + '(' + c + ')' + (bs.charAt(0) === '-' ? '' : '+') + bs + '(' + c + ')') + '<br>' + t('=' + s4 + (s4 !== tx(f.res) ? '=' + tx(f.res) : ''));
   }
-  var HB = ['Two binomials give <b>four</b> products — First, Outside, Inside, Last — then collect the like terms (usually the Outside and Inside products).', 'Check: put a small number such as ' + t('x=1') + ' into the product and into your answer — the two values must match.'];
+  var HB = ['Two binomials give <b>four</b> products — First, Outer, Inner, Last — then collect the like terms (usually the Outer and Inner products).', 'Check: put a small number such as ' + t('x=1') + ' into the product and into your answer — the two values must match.'];
   function expandBin(A, B, C, D, opt) {
     opt = opt || {};
     var f = foil(A, B, C, D), prodTex = br([A, B]) + br([C, D]);
@@ -219,13 +219,17 @@
     var ox = L + fr * S, oy = Tp + fr * S, w = W * S, h = H * S, tw = L + (W + 2 * fr) * S + R, th = Tp + (H + 2 * fr) * S + Bt, s = '';
     if (fr) s += '<rect x="' + L + '" y="' + Tp + '" width="' + (W + 2 * fr) * S + '" height="' + (H + 2 * fr) * S + '" fill="rgba(150,150,150,0.30)" stroke="currentColor" stroke-width="2"/>';
     s += '<rect x="' + ox + '" y="' + oy + '" width="' + w + '" height="' + h + '" fill="' + (o.fill || 'rgba(110,150,200,0.18)') + '" stroke="currentColor" stroke-width="2"/>';
-    s += '<text x="' + (ox + w / 2) + '" y="' + (oy + h + (fr ? 18 : 24)) + '" text-anchor="middle" font-size="16" fill="currentColor">' + svgLab(wLab) + '</text>';
-    s += '<text x="' + (ox + w + (fr ? 6 : 8)) + '" y="' + (oy + h / 2) + '" dominant-baseline="middle" font-size="16" fill="currentColor">' + svgLab(hLab) + '</text>';
-    if (o.inner) s += '<text x="' + (ox + w / 2) + '" y="' + (oy + h / 2) + '" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="currentColor">' + o.inner + '</text>';
-    if (fr) {
-      s += '<text x="' + (L + (W + 2 * fr) * S + 6) + '" y="' + (Tp + 12) + '" font-size="14" fill="currentColor">' + (o.frameLab || '') + '</text>';
-      s += '<line x1="' + (ox + w) + '" y1="' + (oy - 8) + '" x2="' + (ox + w + fr * S) + '" y2="' + (oy - 8) + '" stroke="currentColor" stroke-width="1.2"/>';
-      s += '<text x="' + (ox + w + fr * S / 2) + '" y="' + (oy - 12) + '" text-anchor="middle" font-size="12" fill="currentColor">' + (o.frLab || '') + '</text>';
+    if (fr) { // garden labels just inside the garden's edges, so they don't sit on the path
+      s += '<text x="' + (ox + w / 2) + '" y="' + (oy + h - 10) + '" text-anchor="middle" font-size="15" fill="currentColor">' + svgLab(wLab) + '</text>';
+      s += '<text x="' + (ox + w - 8) + '" y="' + (oy + h / 2) + '" text-anchor="end" dominant-baseline="middle" font-size="15" fill="currentColor">' + svgLab(hLab) + '</text>';
+    } else {
+      s += '<text x="' + (ox + w / 2) + '" y="' + (oy + h + 24) + '" text-anchor="middle" font-size="16" fill="currentColor">' + svgLab(wLab) + '</text>';
+      s += '<text x="' + (ox + w + 8) + '" y="' + (oy + h / 2) + '" dominant-baseline="middle" font-size="16" fill="currentColor">' + svgLab(hLab) + '</text>';
+    }
+    if (o.inner) s += '<text x="' + (ox + w * 0.35) + '" y="' + (oy + h * 0.3) + '" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="currentColor">' + o.inner + '</text>';
+    if (fr) { // the path's width, marked across the top band
+      s += '<line x1="' + (ox + w / 2) + '" y1="' + Tp + '" x2="' + (ox + w / 2) + '" y2="' + oy + '" stroke="currentColor" stroke-width="1.2"/>';
+      s += '<text x="' + (ox + w / 2 + 6) + '" y="' + (Tp + fr * S / 2) + '" dominant-baseline="middle" font-size="12" fill="currentColor">path ' + (o.frLab || '') + '</text>';
     }
     return '<svg class="fig-svg" viewBox="0 0 ' + Math.ceil(tw) + ' ' + Math.ceil(th) + '" style="max-width:' + Math.round(Math.min(380, tw * 1.05)) + 'px" role="img" aria-label="' + (o.aria || 'rectangle') + '">' + s + '</svg>';
   }
@@ -245,10 +249,10 @@
   /* Q15(ii): the four FOIL products, then the product */
   function foilFields(prompt, A, B, C, D, opt) {
     opt = opt || {};
-    var f = foil(A, B, C, D), vs = P.vars(f.res), fields = ['First', 'Outside', 'Inside', 'Last'].map(function (n) { return pbox(n, vs); }).concat([pbox(opt.lastLabel || 'Product', vs, { after: opt.after })]);
+    var f = foil(A, B, C, D), vs = P.vars(f.res), fields = ['First', 'Outer', 'Inner', 'Last'].map(function (n) { return pbox(n, vs); }).concat([pbox(opt.lastLabel || 'Product', vs, { after: opt.after })]);
     var p = KP.fields(prompt, fields, [K.poly(f.F), K.poly(f.O), K.poly(f.I), K.poly(f.L), chk(f.res, binWrongs(A, B, C, D))],
       [tx(f.F), tx(f.O), tx(f.I), tx(f.L), tx(f.res)], 'F ' + t(tx(f.F)) + ', O ' + t(tx(f.O)) + ', I ' + t(tx(f.I)) + ', L ' + t(tx(f.L)) + '; ' + t(tx(f.res)),
-      foilSol(A, B, C, D) + (opt.solPost || ''), ['First: first × first. Outside: first × last. Inside: last × first. Last: last × last.'], opt.text || 'FOIL step by step');
+      foilSol(A, B, C, D) + (opt.solPost || ''), ['First: first × first. Outer: first × last. Inner: last × first. Last: last × last.'], opt.text || 'FOIL step by step');
     p.bad = [[tx(f.F), tx(f.O), tx(f.I), tx(f.L), tx(P.add(f.F, f.L))]];
     return p;
   }
@@ -268,9 +272,9 @@
   function errMC(r, A, B, C, D, kind, shown) {
     var f = foil(A, B, C, D), prod = br([A, B]) + br([C, D]), mid = P.add(f.O, f.I);
     var R = {
-      fl: 'Only the <b>First</b> and <b>Last</b> products were found — the Outside ' + t(tx(f.O)) + ' and Inside ' + t(tx(f.I)) + ' products (the middle term) were skipped.',
+      fl: 'Only the <b>First</b> and <b>Last</b> products were found — the Outer ' + t(tx(f.O)) + ' and Inner ' + t(tx(f.I)) + ' products (the middle term) were skipped.',
       mid: 'The middle products were combined with the wrong sign: ' + t(tx(f.O) + (cof(f.I) < 0 ? '' : '+') + tx(f.I) + '=' + tx(mid)) + ', not ' + t(tx(P.sub(shown, P.add(f.F, f.L)))) + '.',
-      cancel: 'The Outside and Inside products are ' + t(tx(f.O)) + ' and ' + t(tx(f.I)) + ': they <b>cancel</b>, so there is no middle term.',
+      cancel: 'The Outer and Inner products are ' + t(tx(f.O)) + ' and ' + t(tx(f.I)) + ': they <b>cancel</b>, so there is no middle term.',
       last: 'Sign error on the <b>Last</b> product: ' + t(dot(B, D) + '=' + tx(f.L)) + '.',
       lastadd: 'The <b>Last</b> terms were added instead of multiplied: ' + t(dot(B, D) + '=' + tx(f.L)) + ', not ' + t(tx(P.add(B, D))) + '.'
     }[kind];
@@ -341,7 +345,7 @@
   /* ================================================================================================ */
   HW.defineLesson({
     id: 'u3l3', unit: 3, num: '3', title: 'Multiplying Two Binomials', outcome: 'AN4',
-    blurb: 'Distribute twice, or use FOIL — First, Outside, Inside, Last — then collect the like terms. Watch every sign.',
+    blurb: 'Distribute twice, or use FOIL — First, Outer, Inner, Last — then collect the like terms. Watch every sign.',
     questions: [
       { num: '1', section: 'Part A — Distributing and FOIL', stem: '<i>(Recall)</i> Use the distributive property to expand.', parts: [
         { id: '1a', level: 'BEG', make: function (r) { var a = r.int(2, 9), b = r.int(2, 9); return expandMono(V(a), [X, V(b)]); } },
@@ -408,7 +412,7 @@
           if (r.chance(0.12)) o = { a: 2, b: 3, c: 4 };
           var A = V(o.a, 'x'), B = V(-o.b), C = X, D = V(o.c), f = foil(A, B, C, D), x2 = V(o.a, { x: 2 }), L = V(-o.b * o.c);
           var opts = [{ html: t(tx(f.res)), right: true },
-            { html: t(tx(P.add(x2, V(o.a * o.c + o.b, 'x'), L))), why: 'The Inside product is ' + t(dot(B, C) + '=' + tx(f.I)) + ' — it is negative, so it is subtracted from the Outside product ' + t(tx(f.O)) + '.' },
+            { html: t(tx(P.add(x2, V(o.a * o.c + o.b, 'x'), L))), why: 'The Inner product is ' + t(dot(B, C) + '=' + tx(f.I)) + ' — it is negative, so it is subtracted from the Outer product ' + t(tx(f.O)) + '.' },
             { html: t(tx(P.add(x2, V(-(o.a * o.c - o.b), 'x'), L))), why: 'Check the sign of the middle term: ' + t(tx(f.O) + tx(f.I) + '=' + tx(P.add(f.O, f.I))) + '.' },
             { html: t(tx(P.add(x2, V(o.a * o.c - o.b, 'x'), V(o.b * o.c)))), why: 'Check the Last product: ' + t(dot(B, D) + '=' + tx(f.L)) + ' — a negative times a positive is negative.' }];
           return KP.mc(r, 'Which of the following is the correct expansion of ' + t(br([A, B]) + br([C, D])) + '?', opts, foilSol(A, B, C, D), ['Find all four FOIL products, each with its sign, then collect the middle terms.'], 'MC correct expansion');
@@ -437,19 +441,19 @@
           var T0 = P.add(P.mul(lin(1, a[0]), lin(1, a[1])), P.mul(lin(1, b[0]), lin(1, b[1]))), A2 = 2, B1 = a[0] + a[1] + b[0] + b[1], C0 = a[0] * a[1] + b[0] * b[1], ans = A2 + B1 + C0;
           var ex0 = br([X, V(a[0])]) + br([X, V(a[1])]) + '+' + br([X, V(b[0])]) + br([X, V(b[1])]);
           return KP.nr('The expression ' + t(ex0) + ' can be written in the form ' + t('ax^{2}+bx+c') + '. The value of ' + t('a+b+c') + ' is ____.', ans,
-            numDiag([[A2 + C0, 'fl-only', 'Each product needs its middle term too: the Outside and Inside products give the ' + t('x') + '-terms.'], [1 + a[0] + a[1] + a[0] * a[1], 'asked-other', 'That is only the first product. Expand <b>both</b> products and add them.'], [1 + B1 + C0, 'asked-other', 'Check ' + t('a') + ': there is an ' + t('x^{2}') + ' in <b>each</b> product, so ' + t('a=2') + '.']]),
+            numDiag([[A2 + C0, 'fl-only', 'Each product needs its middle term too: the Outer and Inner products give the ' + t('x') + '-terms.'], [1 + a[0] + a[1] + a[0] * a[1], 'asked-other', 'That is only the first product. Expand <b>both</b> products and add them.'], [1 + B1 + C0, 'asked-other', 'Check ' + t('a') + ': there is an ' + t('x^{2}') + ' in <b>each</b> product, so ' + t('a=2') + '.']]),
             t(br([X, V(a[0])]) + br([X, V(a[1])]) + '=' + tx(P.mul(lin(1, a[0]), lin(1, a[1])))) + ' and ' + t(br([X, V(b[0])]) + br([X, V(b[1])]) + '=' + tx(P.mul(lin(1, b[0]), lin(1, b[1])))) + '.<br>Sum: ' + t(tx(T0)) + ', so ' + t('a=2,\\ b=' + B1 + ',\\ c=' + C0) + ' and ' + t('a+b+c=' + ans) + '.',
             ['Expand both products with FOIL, add them and collect like terms.', 'Then read off ' + t('a') + ', ' + t('b') + ' and ' + t('c') + ' and add them.'], 'NR a+b+c');
         } }] },
       { num: '15', stem: function (sh) { return rectFig('x+' + sh.a, 'x+' + sh.b, { aria: 'deck' }) + 'A rectangular deck has length ' + t('(x+' + sh.a + ')') + ' m and width ' + t('(x+' + sh.b + ')') + ' m. Determine an expression for its area, in ' + t('\\text{m}^{2}') + ', by each method. Both methods must agree.'; },
-        shared: function (r) { var ab = two(r, 2, 9); if (r.chance(0.12)) ab = [9, 4]; return { a: Math.max(ab[0], ab[1]), b: Math.min(ab[0], ab[1]) }; },
+        shared: function (r) { var ab = two(r, 2, 9); if (r.chance(0.12)) ab = [8, 5]; return { a: Math.max(ab[0], ab[1]), b: Math.min(ab[0], ab[1]) }; },
         parts: [
           { id: '15i', sub: 'i', level: 'BEG', make: function (r, sh) { return distSteps('(i) Use the distributive property: ' + t('(x+' + sh.a + ')(x+' + sh.b + ')=x(x+' + sh.b + ')+' + sh.a + '(x+' + sh.b + ')') + '.', X, V(sh.a), X, V(sh.b), { lastLabel: 'Area', after: t('\\text{ m}^{2}'), text: 'deck area by distributing' }); } },
           { id: '15ii', sub: 'ii', level: 'BEG', make: function (r, sh) { return foilFields('(ii) Use FOIL on ' + t('(x+' + sh.a + ')(x+' + sh.b + ')') + '.', X, V(sh.a), X, V(sh.b), { lastLabel: 'Area', after: t('\\text{ m}^{2}'), solPost: ' m². Both methods give the same area — FOIL is just a checklist for the same four products.', text: 'deck area by FOIL' }); } }] },
       { num: '16', stem: '<i>(Numerical Response)</i>', parts: [
         { id: '16', level: 'BEG', make: function (r) {
           var o = pickWhere(function () { return two(r, 1, 8); }, function (v) { return v[0] + v[1] < 10 && v[0] * v[1] < 10; });
-          if (r.chance(0.12)) o = [2, 4];
+          if (r.chance(0.12)) o = [1, 6];
           var p = o[0] + o[1], q = o[0] * o[1];
           var part = KP.fields('The area of a rectangle with length ' + t('(x+' + o[0] + ')') + ' cm and width ' + t('(x+' + o[1] + ')') + ' cm can be written as ' + t('x^{2}+px+q') + ', where ' + t('p') + ' and ' + t('q') + ' are natural numbers less than ' + t('10') + '. Enter ' + t('p') + ' and ' + t('q') + '.', [nbox(t('p')), nbox(t('q'))],
             [K.number(p, numDiag([[q, 'swap', 'That is the constant term. ' + t('p') + ' is the coefficient of ' + t('x') + ': ' + t(o[0] + 'x+' + o[1] + 'x') + '.'], [o[0], 'one-middle', 'The ' + t('x') + '-term comes from <b>two</b> products: ' + t('x\\cdot ' + o[1]) + ' and ' + t(o[0] + '\\cdot x') + '.'], [o[1], 'one-middle', 'The ' + t('x') + '-term comes from <b>two</b> products: ' + t('x\\cdot ' + o[1]) + ' and ' + t(o[0] + '\\cdot x') + '.']])),
@@ -472,7 +476,7 @@
         { id: 'e2b', level: 'PRG', make: function (r) { var o = pickWhere(function () { return { a: r.int(2, 5), b: r.int(1, 4), c: r.int(2, 4) }; }, function (o) { return o.a !== o.b * o.c; }); return expandBin(V(o.a, 'a'), V(-o.b, 'b'), V(o.c, 'a'), V(1, 'b')); } },
         { id: 'e2c', level: 'PRG', make: function (r) { var o = pickWhere(function () { return { a: r.int(2, 4), b: r.int(1, 5), c: r.int(2, 3), d: r.int(1, 6) }; }, function (o) { return o.a * o.d !== o.b * o.c; }); return expandBin(V(o.a, 'm'), V(o.b, 'n'), V(o.c, 'm'), V(-o.d, 'n')); } }] },
       { num: '3', stem: 'Expand and simplify.', parts: [
-        { id: 'e3a', level: 'PRG', make: function (r) { var ab = two(r, 2, 9); return expandBin(V(ab[0], 'p'), V(-ab[1], 'q'), V(ab[0], 'p'), V(ab[1], 'q'), { hints: ['Use FOIL. Look closely at the Outside and Inside products before you collect them.', HB[1]] }); } },
+        { id: 'e3a', level: 'PRG', make: function (r) { var ab = two(r, 2, 9); return expandBin(V(ab[0], 'p'), V(-ab[1], 'q'), V(ab[0], 'p'), V(ab[1], 'q'), { hints: ['Use FOIL. Look closely at the Outer and Inner products before you collect them.', HB[1]] }); } },
         { id: 'e3b', level: 'PRG', make: function (r) { var a = r.int(2, 4), b = r.int(1, 9), c = r.int(1, 6); return expandBin(V(a, { x: 2 }), V(b), X, V(-c), { hints: ['Use FOIL: ' + t(a + 'x^{2}\\cdot x=' + a + 'x^{3}') + ' (add the exponents).', 'None of the four products are like terms, so the answer has four terms.'] }); } },
         { id: 'e3c', level: 'PRG', make: function (r) { var a = r.int(1, 9), b = r.int(1, 9); return expandBin(X, V(a), V(1, { x: 2 }), V(-b), { hints: ['Use FOIL: ' + t('x\\cdot x^{2}=x^{3}') + '.', 'None of the four products are like terms, so the answer has four terms (write them in descending order of degree if you like).'] }); } }] },
       { num: '4', section: 'Extra practice B — A Monomial in Front', stem: 'Each expression is a monomial multiplied by <b>two</b> binomials. Expand the two binomials first, then distribute the monomial through the trinomial you get.', parts: [
@@ -548,7 +552,7 @@
             return KP.mc(r, 'In (a), ' + t('(x+' + sh.a[0] + ')(x+' + sh.a[1] + ')-(x+' + sh.b[0] + ')(x+' + sh.b[1] + ')') + ' lost its ' + t('x^{2}') + ' term. Why does subtracting any two products of the form ' + t('(x+a)(x+b)-(x+c)(x+d)') + ' always remove the ' + t('x^{2}') + ' term?', [
               { html: 'Each First product is ' + t('x\\cdot x=x^{2}') + ', so both expansions start with the same ' + t('x^{2}') + '; subtracting removes it.', right: true },
               { html: 'Because the Last products ' + t('ab') + ' and ' + t('cd') + ' always cancel.', why: 'The Last products are usually different numbers — in (a) they don’t cancel. Look at the First products.' },
-              { html: 'Because the Outside and Inside products cancel.', why: 'Those make the ' + t('x') + '-terms, not the ' + t('x^{2}') + ' term. Look at the First products.' },
+              { html: 'Because the Outer and Inner products cancel.', why: 'Those make the ' + t('x') + '-terms, not the ' + t('x^{2}') + ' term. Look at the First products.' },
               { html: 'It only happens when ' + t('a+b=c+d') + '.', why: 'In (a) the ' + t('x^{2}') + ' terms cancelled with different sums. Look at the First products.' }],
               'The First product of each is ' + t('x\\cdot x=x^{2}') + '. So ' + t('(x+a)(x+b)-(x+c)(x+d)=(x^{2}+\\ldots)-(x^{2}+\\ldots)') + ' and the ' + t('x^{2}') + ' terms always cancel, leaving at most a linear expression.', ['Which FOIL product makes the ' + t('x^{2}') + ' term? Is it the same in both products?'], 'why x^2 cancels (MC)');
           } }] },
@@ -557,11 +561,11 @@
         parts: [
           { id: 'e10a', sub: 'a', level: 'BEG', make: function (r, sh) {
             return KP.mc(r, 'Which two of the four FOIL products were left out?', [
-              { html: 'The <b>Outside</b> and <b>Inside</b> products, ' + t(sh.b + 'x') + ' and ' + t(sh.a + 'x') + '.', right: true },
+              { html: 'The <b>Outer</b> and <b>Inner</b> products, ' + t(sh.b + 'x') + ' and ' + t(sh.a + 'x') + '.', right: true },
               { html: 'The <b>First</b> and <b>Last</b> products.', why: 'Those are the two the student <b>did</b> find: ' + t('x^{2}') + ' and ' + t(sh.a * sh.b) + '.' },
-              { html: 'The <b>First</b> and <b>Outside</b> products.', why: 'The First product ' + t('x^{2}') + ' is in the student’s answer.' },
-              { html: 'The <b>Inside</b> and <b>Last</b> products.', why: 'The Last product ' + t(sh.a * sh.b) + ' is in the student’s answer.' }],
-              'F ' + t('x^{2}') + ' and L ' + t(sh.a * sh.b) + ' are there; the Outside product ' + t('x\\cdot ' + sh.b + '=' + sh.b + 'x') + ' and the Inside product ' + t(sh.a + '\\cdot x=' + sh.a + 'x') + ' are missing.', ['Write out all four FOIL products and tick off the ones in the student’s answer.'], 'which products were left out (MC)');
+              { html: 'The <b>First</b> and <b>Outer</b> products.', why: 'The First product ' + t('x^{2}') + ' is in the student’s answer.' },
+              { html: 'The <b>Inner</b> and <b>Last</b> products.', why: 'The Last product ' + t(sh.a * sh.b) + ' is in the student’s answer.' }],
+              'F ' + t('x^{2}') + ' and L ' + t(sh.a * sh.b) + ' are there; the Outer product ' + t('x\\cdot ' + sh.b + '=' + sh.b + 'x') + ' and the Inner product ' + t(sh.a + '\\cdot x=' + sh.a + 'x') + ' are missing.', ['Write out all four FOIL products and tick off the ones in the student’s answer.'], 'which products were left out (MC)');
           } },
           { id: 'e10b', sub: 'b', level: 'BEG', make: function (r, sh) { return expandBin(X, V(sh.a), X, V(sh.b), { pre: 'Give the correct expansion of ', text: 'correct (x+a)(x+b)' }); } },
           { id: 'e10c', sub: 'c', level: 'BEG', make: function (r, sh) {
@@ -638,14 +642,14 @@
       { num: '14', stem: '<b>A shortcut to come.</b> Expand each product the long way with FOIL.', parts: [
         { id: 'e14a', level: 'BEG', make: function (r) { var n = r.int(2, 12), v = r.pick(['x', 'x', 'y', 'a', 'm']); return expandBin(V(1, v), V(n), V(1, v), V(n)); } },
         { id: 'e14b', level: 'EMG', make: function (r) { var n = r.int(2, 12), v = r.pick(['x', 'x', 'y', 'a', 'm']); return expandBin(V(1, v), V(-n), V(1, v), V(-n)); } },
-        { id: 'e14c', level: 'EMG', make: function (r) { var o = pickWhere(function () { return { a: r.int(2, 5), b: r.int(1, 7) }; }, function (o) { return HW.ex.gcd(o.a, o.b) === 1; }); return expandBin(V(o.a, 'x'), V(o.b), V(o.a, 'x'), V(o.b)); } },
+        { id: 'e14c', level: 'EMG', make: function (r) { var o = pickWhere(function () { return { a: r.int(2, 6), b: r.int(1, 7) }; }, function (o) { return HW.ex.gcd(o.a, o.b) === 1; }); return expandBin(V(o.a, 'x'), V(o.b), V(o.a, 'x'), V(o.b)); } },
         { id: 'e14d', level: 'EMG', make: function (r) {
           var a = r.int(2, 9);
           return KP.mc(r, 'Look at your three answers beside the binomials that produced them. Which rule describes ' + t('(a+b)(a+b)') + '?', [
             { html: t('a^{2}+2ab+b^{2}') + ': square the first term, square the second term, and the middle term is <b>twice</b> their product.', right: true },
             { html: t('a^{2}+b^{2}') + ': square each term.', why: 'Check with (a): ' + t('(x+' + a + ')(x+' + a + ')') + ' has a middle term ' + t(2 * a + 'x') + '.' },
-            { html: t('a^{2}+ab+b^{2}') + ': the middle term is the product of the two terms.', why: 'The Outside and Inside products are <b>both</b> ' + t('ab') + ', so the middle term is ' + t('2ab') + '.' },
-            { html: t('a^{2}-b^{2}') + ': the middle terms cancel.', why: 'They cancel only when one bracket has a minus sign and the other a plus. Here both Outside and Inside are ' + t('ab') + ', so they add.' }],
+            { html: t('a^{2}+ab+b^{2}') + ': the middle term is the product of the two terms.', why: 'The Outer and Inner products are <b>both</b> ' + t('ab') + ', so the middle term is ' + t('2ab') + '.' },
+            { html: t('a^{2}-b^{2}') + ': the middle terms cancel.', why: 'They cancel only when one bracket has a minus sign and the other a plus. Here both Outer and Inner are ' + t('ab') + ', so they add.' }],
             'In ' + t('(a+b)(a+b)') + ': F ' + t('=a^{2}') + ', O ' + t('=ab') + ', I ' + t('=ab') + ', L ' + t('=b^{2}') + ', so ' + t('(a+b)(a+b)=a^{2}+2ab+b^{2}') + '. For example ' + t('(x+' + a + ')(x+' + a + ')=x^{2}+' + 2 * a + 'x+' + a * a) + '. This is the shortcut you will meet in Lesson 4.', ['Compare the middle term of each answer with the two terms of its binomial.'], 'the square pattern (MC)');
         } }] },
       { num: '15', section: 'Extra practice E — Working Backwards', stem: 'Find the numbers ' + t('a') + ' and ' + t('b') + ' in each case. <i>Hint:</i> the last number is ' + t('ab') + ' and the middle coefficient is ' + t('a+b') + ' — look for a factor pair of the last number that adds to the middle coefficient.', parts: [
@@ -696,18 +700,18 @@
             var cols = [{ id: 'two', html: '2 terms' }, { id: 'three', html: '3 terms' }, { id: 'four', html: '4 terms' }], want = {};
             var R = rows.map(function (q, i) { var id = String.fromCharCode(97 + i); want[id] = q.w; return { id: id, html: '(' + id + ') ' + t(q.q) }; });
             var expand = function (q) { return t(q.q + '=' + tx(q.p)); };
-            return KP.grid('After expanding and collecting like terms, how many terms does each product have?', R, cols, want, { why: function (row) { var q = rows[row.charCodeAt(0) - 97]; return { code: 'row', hint: 'Expand ' + t(q.q) + ' with FOIL and collect: ' + (q.w === 'four' ? 'the Outside and Inside products have different letters, so nothing collects.' : q.w === 'two' ? 'the Outside and Inside products are opposites — they cancel.' : 'the Outside and Inside products are like terms that don’t cancel.') }; } },
-              rows.map(function (q, i) { return '(' + String.fromCharCode(97 + i) + ') ' + expand(q) + ' — <b>' + q.w + '</b> terms'; }).join('<br>') + '<br>Three terms when the Outside and Inside products are like terms that don’t cancel; two when they cancel; four when they are not like terms.',
-              ['Find the Outside and Inside products. Are they like terms? Do they cancel?'], 'how many terms (table)');
+            return KP.grid('After expanding and collecting like terms, how many terms does each product have?', R, cols, want, { why: function (row) { var q = rows[row.charCodeAt(0) - 97]; return { code: 'row', hint: 'Expand ' + t(q.q) + ' with FOIL and collect: ' + (q.w === 'four' ? 'the Outer and Inner products have different letters, so nothing collects.' : q.w === 'two' ? 'the Outer and Inner products are opposites — they cancel.' : 'the Outer and Inner products are like terms that don’t cancel.') }; } },
+              rows.map(function (q, i) { return '(' + String.fromCharCode(97 + i) + ') ' + expand(q) + ' — <b>' + q.w + '</b> terms'; }).join('<br>') + '<br>Three terms when the Outer and Inner products are like terms that don’t cancel; two when they cancel; four when they are not like terms.',
+              ['Find the Outer and Inner products. Are they like terms? Do they cancel?'], 'how many terms (table)');
           } },
           { id: 'e19b', sub: 'b', level: 'EMG', make: function (r, sh) {
             var n = sh.n;
             return KP.mc(r, 'When does the product of two binomials collapse to only <b>two</b> terms?', [
-              { html: 'When the Outside and Inside products are opposites and cancel — the same two terms, once added and once subtracted, as in ' + t('(x+' + n + ')(x-' + n + ')=x^{2}-' + n * n) + ' (a difference of squares).', right: true },
-              { html: 'When both binomials are the same, as in ' + t('(x+' + n + ')(x+' + n + ')') + '.', why: t('(x+' + n + ')(x+' + n + ')=x^{2}+' + 2 * n + 'x+' + n * n) + ' — three terms: the Outside and Inside products add.' },
+              { html: 'When the Outer and Inner products are opposites and cancel — the same two terms, once added and once subtracted, as in ' + t('(x+' + n + ')(x-' + n + ')=x^{2}-' + n * n) + ' (a difference of squares).', right: true },
+              { html: 'When both binomials are the same, as in ' + t('(x+' + n + ')(x+' + n + ')') + '.', why: t('(x+' + n + ')(x+' + n + ')=x^{2}+' + 2 * n + 'x+' + n * n) + ' — three terms: the Outer and Inner products add.' },
               { html: 'When the binomials have different letters, as in ' + t('(x+' + n + ')(y+1)') + '.', why: 'Different letters give <b>four</b> terms: nothing can be collected.' },
               { html: 'Never — the answer always has at least three terms.', why: 'Try ' + t('(x+' + n + ')(x-' + n + ')') + ': the ' + t(n + 'x') + ' terms cancel.' }],
-              t('(x+' + n + ')(x-' + n + ')=x^{2}-' + n + 'x+' + n + 'x-' + n * n + '=x^{2}-' + n * n) + ': the Outside and Inside products are opposites, so only two terms remain. This is called a <b>difference of squares</b>.', ['Which kind of pair makes the two middle products cancel?'], 'two terms (MC)');
+              t('(x+' + n + ')(x-' + n + ')=x^{2}-' + n + 'x+' + n + 'x-' + n * n + '=x^{2}-' + n * n) + ': the Outer and Inner products are opposites, so only two terms remain. This is called a <b>difference of squares</b>.', ['Which kind of pair makes the two middle products cancel?'], 'two terms (MC)');
           } }] },
       { num: '20', section: 'Extra practice F — Area Applications and a Stretch', stem: function (sh) { return rectFig(sh.l, sh.w, { aria: 'rectangle', W: 4.6, H: 3 }) + 'A rectangle has length ' + t('(' + sh.l + ')') + ' cm and width ' + t('(' + sh.w + ')') + ' cm.'; },
         shared: function (r) { var o = pickWhere(function () { return { a: r.int(2, 3), b: r.int(1, 3), c: r.int(1, 6), x: r.int(3, 6) }; }, function (o) { var x = o.x; return (o.a * x - o.b) * (x + o.c) !== 2 * (o.a * x - o.b + x + o.c); }); if (r.chance(0.12)) o = { a: 2, b: 1, c: 3, x: 4 }; o.l = o.a + 'x-' + o.b; o.w = 'x+' + o.c; o.L = lin(o.a, -o.b); o.W = lin(1, o.c); o.A = P.mul(o.L, o.W); o.P = P.scale(P.add(o.L, o.W), 2); return o; },

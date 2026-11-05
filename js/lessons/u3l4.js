@@ -128,7 +128,7 @@
         add(P.sub(B2, A2), 'sign-all', 'Which term is squared and which is subtracted? In ' + t(D) + ' the term that keeps the <b>same</b> sign in both brackets is ' + t('a') + ' (here ' + t(P.tex(A)) + '); the one whose sign changes is ' + t('b') + '. The answer is ' + t('a^{2}-b^{2}') + '.');
       }
     } else if (cl.kind === 'foil') {
-      var a0 = cl.a[0], a1 = cl.a[1], b0 = cl.b[0], b1 = cl.b[1], Fp = P.mul(a0, b0), O = P.mul(a0, b1), I = P.mul(a1, b0), L = P.mul(a1, b1), oneMid = 'You have only one of the two middle products. ' + t(cl.T) + ' needs both the Outside and the Inside products.';
+      var a0 = cl.a[0], a1 = cl.a[1], b0 = cl.b[0], b1 = cl.b[1], Fp = P.mul(a0, b0), O = P.mul(a0, b1), I = P.mul(a1, b0), L = P.mul(a1, b1), oneMid = 'You have only one of the two middle products. ' + t(cl.T) + ' needs both the Outer and the Inner products.';
       add(P.add(Fp, L), 'fl-only', 'You have only the <b>First</b> and <b>Last</b> products. ' + t(cl.T) + ' is not a special product, so it also needs the <b>Outer</b> and <b>Inner</b> products — together they make the middle term.');
       add(P.add(Fp, O, L), 'one-middle', oneMid); add(P.add(Fp, I, L), 'one-middle', oneMid);
       add(P.add(Fp, O, I, P.neg(L)), 'last-sign', 'Check the sign of the Last product: ' + t('(' + P.tex(a1) + ')(' + P.tex(b1) + ')=' + P.tex(L)) + '.');
@@ -278,11 +278,11 @@
   var FILL = 'rgba(110,150,200,0.18)', CUT = 'rgba(192,57,43,0.10)';
   /* a square of side (x+n) with an n×n corner cut away (top right) */
   function cornerFig(n) {
-    var S = 150, c = 46, L = 20, Tp = 16, s = '';
+    var S = 150, c = 46, L = 64, Tp = 26, s = '';
     s += '<polygon points="' + [[L, Tp], [L + S - c, Tp], [L + S - c, Tp + c], [L + S, Tp + c], [L + S, Tp + S], [L, Tp + S]].map(function (p) { return p.join(','); }).join(' ') + '" fill="' + FILL + '" stroke="currentColor" stroke-width="2"/>';
     s += '<rect x="' + (L + S - c) + '" y="' + Tp + '" width="' + c + '" height="' + c + '" fill="' + CUT + '" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="5 3"/>';
-    s += txt(L + S / 2, Tp + S + 18, lab('x+' + n)) + txt(L + S + 8, Tp + c + (S - c) / 2, lab('x+' + n), { a: 'start' }) + txt(L + S - c / 2, Tp + c / 2, String(n), { fs: 13 }) + txt(L + S - c / 2, Tp + c + 12, String(n), { fs: 12 });
-    return svgWrap(L + S + 70, Tp + S + 34, s, 'square with a corner cut out');
+    s += txt(L + S / 2, Tp + S + 18, lab('x+' + n)) + txt(L - 8, Tp + S / 2, lab('x+' + n), { a: 'end' }) + txt(L + S - c / 2, Tp - 10, String(n), { fs: 13 }) + txt(L + S + 6, Tp + c / 2, String(n), { a: 'start', fs: 13 }) + txt(L + S - c / 2, Tp + c / 2, 'cut', { fs: 11 });
+    return svgWrap(L + S + 40, Tp + S + 34, s, 'square with a corner cut out');
   }
   /* a square garden of side s, extended by n on two sides */
   function growFig(n) {
@@ -398,7 +398,7 @@
         A1('e4d', 'PRG', function (r) { var n = r.int(2, 12), lp = r.pick([['a', 'b'], ['a', 'b'], ['x', 'y'], ['m', 'n'], ['p', 'q']]), v = {}; v[lp[0]] = 1; v[lp[1]] = 1; return ex([T(1, 1, [bin(V(1, v), V(n)), bin(V(1, v), V(-n))])]); })] },
       { num: '5', section: 'Extra practice B — Deciding Which Pattern Applies', stem: 'For each product, first decide which case it is — <b>difference of squares</b>, <b>perfect square</b>, or <b>neither</b> — then expand and simplify.',
         shared: function (r) {
-          var a = pickWhere(function () { return { p: r.int(2, 6), q: r.int(3, 11) }; }, function (o) { return gcd(o.p, o.q) === 1; }), b = r.int(2, 9), bq = r.pick([1, 1, 1, 2, 3]), c = two(r, 2, 9), d = pickWhere(function () { return { p: r.int(2, 6), q: r.int(2, 11) }; }, function (o) { return gcd(o.p, o.q) === 1 && o.p !== a.p; }), e = pickWhere(function () { return { p: r.int(2, 7), q: r.int(1, 9) }; }, function (o) { return gcd(o.p, o.q) === 1; }), f = pickWhere(function () { return two(r, 1, 9); }, function (v) { return v[0] % 2 === 1 || v[1] % 2 === 1; });
+          var a = pickWhere(function () { return { p: r.int(2, 6), q: r.int(3, 11) }; }, function (o) { return gcd(o.p, o.q) === 1; }), b = r.int(2, 10), bq = r.pick([1, 1, 1, 2, 3]), c = two(r, 2, 9), d = pickWhere(function () { return { p: r.int(2, 6), q: r.int(2, 11) }; }, function (o) { return gcd(o.p, o.q) === 1 && o.p !== a.p; }), e = pickWhere(function () { return { p: r.int(2, 7), q: r.int(1, 9) }; }, function (o) { return gcd(o.p, o.q) === 1; }), f = pickWhere(function () { return two(r, 1, 9); }, function (v) { return v[0] % 2 === 1 || v[1] % 2 === 1; });
           if (gcd(b, bq) !== 1) bq = 1;
           if (r.chance(0.12)) { a = { p: 4, q: 9 }; b = 5; bq = 1; c = [7, 3]; d = { p: 3, q: 8 }; e = { p: 6, q: 5 }; f = [7, 5]; }
           var list = [[T(1, 1, [bin(V(a.p, 'x'), V(a.q)), bin(V(a.p, 'x'), V(-a.q))])], [SQb(b, -bq)], [PR(1, c[0], 1, -c[1])], [T(1, 1, [bin(V(d.p, 'x'), V(-d.q)), bin(V(d.p, 'x'), V(d.q))])], [SQb(e.p, e.q)], [PR(2, -f[0], 2, f[1])]];

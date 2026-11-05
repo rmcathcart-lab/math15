@@ -568,9 +568,9 @@
           var A = lin(1, -g.a), B = quad(1, g.b, -g.c), k = M(-g.m, 'x'), AB = P.mul(sum(A), sum(B));
           return expandPart(A, B, { k: k, lead: tx(k) + br(A) + br(B), wrong: [{ is: P.mul(N(-g.m), AB), code: 'no-x', hint: 'Don’t forget the ' + t('x') + ' in ' + t(tx(k)) + '.' }, { is: P.mul(M(g.m, 'x'), AB), code: 'sign', hint: 'The monomial is ' + t(tx(k)) + ' — negative — so every sign changes.' }, { is: AB, code: 'const-lost', hint: 'Multiply every term by ' + t(tx(k)) + ' at the end.' }] });
         } }] },
-      { num: '13', stem: function () { return '<b>Cubing a binomial.</b> ' + t('(x+2)^{3}') + ' means ' + t('(x+2)(x+2)(x+2)') + '. Square first using the Lesson 4 special product, which turns it into a binomial times a trinomial: ' + t('(x+2)^{3}=(x+2)(x^{2}+4x+4)') + '.'; },
+      { num: '13', stem: function () { return '<b>Cubing a binomial.</b> ' + t('(x+1)^{3}') + ' means ' + t('(x+1)(x+1)(x+1)') + '. Square first using the Lesson 4 special product, which turns it into a binomial times a trinomial: ' + t('(x+1)^{3}=(x+1)(x^{2}+2x+1)') + '.'; },
         parts: [
-          { id: 'e13a', level: 'EMG', make: function (r) { var v = r.pick(LETTERS); return cubeStages(lin(1, r.int(1, 6), v), v); } },
+          { id: 'e13a', level: 'EMG', make: function (r) { var v = r.pick(LETTERS); return cubeStages(lin(1, r.int(2, 6), v), v); } },
           { id: 'e13b', level: 'EMG', make: function (r) { var v = r.pick(LETTERS); return cubeStages(lin(1, -r.int(1, 5), v), v); } }] },
       { num: '14', stem: 'Cube each binomial with the same two-stage method. Take care with the coefficients when you square.', parts: [
         { id: 'e14a', level: 'PRG', make: function (r) { var v = r.pick(LETTERS), pq = pickWhere(function () { return [r.int(2, 3), r.int(1, 3)]; }, function (a) { return gcd(a[0], a[1]) === 1; }); return cubeStages(lin(pq[0], -pq[1], v), v); } },

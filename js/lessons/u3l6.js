@@ -460,7 +460,7 @@
       { num: '5', section: 'Part B — Composite Areas and Equal Areas', stem: function (sh) {
           var X = 3, OW = at(sh.o1, X), OH = at(sh.o2, X), I = at(sh.i, X);
           return 'A rectangular picture, including its wooden frame, has outer dimensions ' + t(bt(sh.o1)) + ' cm by ' + t(bt(sh.o2)) + ' cm. The opening inside the frame is a square of side ' + t(bt(sh.i)) + ' cm. The shaded wood is the frame.' +
-            figFrame(OW, OH, clamp(I, 0.4 * OW, 0.75 * OW), clamp(I, 0.4 * OH, 0.75 * OH), { top: tx(sh.o1), left: tx(sh.o2), inW: tx(sh.i), label: 'picture frame', pw: 240, ph: 190 });
+            figFrame(OW, OH, clamp(I, 0.4 * Math.min(OW, OH), 0.75 * Math.min(OW, OH)), clamp(I, 0.4 * Math.min(OW, OH), 0.75 * Math.min(OW, OH)), { top: tx(sh.o1), left: tx(sh.o2), inW: tx(sh.i), label: 'picture frame', pw: 240, ph: 190 });
         },
         shared: function (r) { return gen(function () { var a = r.int(5, 10), b = r.int(3, 8), c = r.int(1, 3), X = r.int(2, 5); if (b > a || c > b - 2 || (a === 7 && b === 5 && c === 1) || a + b - 2 * c <= 0) return null; var o1 = lin(1, a), o2 = lin(1, b), i = lin(1, c); return { a: a, b: b, c: c, X: X, o1: o1, o2: o2, i: i, O: P.mul(o1, o2), I: P.pow(i, 2) }; }); },
         parts: [
@@ -695,7 +695,7 @@
       { num: '2', stem: function (sh) {
           var X = sh.X, W = at(sh.W, X), H = at(sh.H, X), I = at(sh.i, X);
           return 'A rectangular sheet of metal ' + t(bt(sh.W)) + ' cm by ' + t(bt(sh.H)) + ' cm has a square hole of side ' + t(bt(sh.i)) + ' cm punched out of the middle.' +
-            figFrame(W, H, clamp(I, 0.3 * W, 0.6 * W), clamp(I, 0.35 * H, 0.65 * H), { top: tx(sh.W), left: tx(sh.H), inW: tx(sh.i), label: 'metal sheet with a square hole', pw: 240, ph: 160 });
+            figFrame(W, H, clamp(I, 0.35 * Math.min(W, H), 0.65 * Math.min(W, H)), clamp(I, 0.35 * Math.min(W, H), 0.65 * Math.min(W, H)), { top: tx(sh.W), left: tx(sh.H), inW: tx(sh.i), label: 'metal sheet with a square hole', pw: 240, ph: 160 });
         },
         shared: function (r) { return gen(function () { var p = r.int(3, 7), q = r.int(2, 6), s = r.int(1, 4), X = r.int(2, 5); if (s >= q) return null; var W = lin(2, p), H = lin(1, q), i = lin(1, s); return { X: X, W: W, H: H, i: i, O: P.mul(W, H), I: P.pow(i, 2) }; }); },
         parts: [
@@ -846,7 +846,7 @@
           } }] },
       /* ---------- EP Part B ---------- */
       { num: '7', section: 'Extra practice B — Volume and surface area', stem: function (sh) { return '<b>The open-top box.</b> A rectangular sheet of cardboard measures ' + t(sh.L) + ' cm by ' + t(sh.W) + ' cm. A square of side ' + t('x') + ' cm is cut from each corner, and the four flaps are folded up to form an open-top box.' + sheetSvg(sh.L, sh.W, 'cm'); },
-        shared: function (r) { var W = r.pick([12, 14, 16, 16, 18, 20]), L = W + r.pick([2, 4, 4, 6, 8]); return { L: L, W: W, X: r.int(2, Math.min(4, W / 2 - 2)) }; },
+        shared: function (r) { var W = r.pick([10, 12, 14, 16, 16, 18, 20, 22]), L = W + r.pick([2, 4, 4, 6, 8, 10]); return { L: L, W: W, X: r.int(2, Math.min(4, W / 2 - 2)) }; },
         parts: [
           { id: 'e7a', level: 'EMG', make: function (r, sh) {
             var oc = function (n) { return [{ is: lin(-1, n), code: 'one-cut', hint: 'A square is cut from <b>both</b> ends of each side: subtract ' + t('2x') + '.' }]; };
@@ -879,23 +879,23 @@
               'Two squares of side ' + t('x') + ' come off the ' + t(sh.W) + ' cm side, so the box is ' + t(sh.W + '-2x') + ' wide. That must be positive: ' + t('2x<' + sh.W) + ', so ' + t('x<' + m) + '.',
               ['What happens to the width ' + t(sh.W + '-2x') + ' as ' + t('x') + ' grows?'], 'why x < W/2');
           } }] },
-      { num: '8', stem: function (sh) { return 'A square sheet of tin measures ' + t(sh.S) + ' in by ' + t(sh.S) + ' in. A square of side ' + t('x') + ' in is cut from each corner and the flaps are folded up to make an open-top box.' + sheetSvg(sh.S, sh.S, 'in'); },
-        shared: function (r) { var S = r.pick([12, 16, 18, 20, 24, 24, 30]); return { S: S, X: r.int(2, Math.min(5, S / 2 - 2)) }; },
+      { num: '8', stem: function (sh) { return 'A square sheet of tin measures ' + t(sh.S) + ' ' + sh.u + ' by ' + t(sh.S) + ' ' + sh.u + '. A square of side ' + t('x') + ' ' + sh.u + ' is cut from each corner and the flaps are folded up to make an open-top box.' + sheetSvg(sh.S, sh.S, sh.u); },
+        shared: function (r) { var S = r.pick([12, 14, 16, 18, 20, 22, 24, 24, 26, 28, 30, 32]); return { S: S, u: r.pick(['in', 'in', 'cm']), X: r.int(2, Math.min(5, S / 2 - 2)) }; },
         parts: [
           { id: 'e8a', level: 'PRG', make: function (r, sh) {
             var b = lin(-2, sh.S), sq = P.pow(b, 2), V = P.mul(sq, mono(1));
             return polyPart('Write the volume as a simplified polynomial in ' + t('x') + '.', V, [{ is: sq, code: 'face-area', hint: 'That is the base. Multiply by the height ' + t('x') + '.' }, { is: P.mul(sqNoMid(b), mono(1)), code: 'no-middle', hint: t('(' + sh.S + '-2x)^{2}') + ' has a middle term.' }, { is: P.mul(P.pow(lin(-1, sh.S), 2), mono(1)), code: 'one-cut', hint: 'Each side loses ' + t('2x') + '.' }],
-              t('V=x(' + sh.S + '-2x)^{2}') + '<br>' + t('(' + sh.S + '-2x)^{2}=' + tx(sq)) + '<br>' + t('V=' + tx(V)) + ' in³',
+              t('V=x(' + sh.S + '-2x)^{2}') + '<br>' + t('(' + sh.S + '-2x)^{2}=' + tx(sq)) + '<br>' + t('V=' + tx(V)) + ' ' + sh.u + '³',
               ['The base is ' + t('(' + sh.S + '-2x)') + ' by ' + t('(' + sh.S + '-2x)') + '; the height is ' + t('x') + '.', 'Square the binomial first, then multiply by ' + t('x') + '.'], 'tin box volume', { before: t('V=') });
           } },
           { id: 'e8b', level: 'EMG', make: function (r, sh) {
             var X = sh.X, b = sh.S - 2 * X, V = b * b * X;
-            return numPart('Determine the volume when ' + t('x=' + X) + ' in.', V, [[b * b, 'face-area', 'Multiply by the height.'], [(sh.S - X) * (sh.S - X) * X, 'one-cut', 'Each side loses ' + t('2x') + '.']],
-              'The box is ' + t(b + '\\times ' + b + '\\times ' + X) + ': ' + t('V=' + V) + ' in³.', ['Base side ' + t(sh.S + '-2x') + ' at ' + t('x=' + X) + ', then multiply.'], 'tin box at x=' + X, 'in³');
+            return numPart('Determine the volume when ' + t('x=' + X) + ' ' + sh.u + '.', V, [[b * b, 'face-area', 'Multiply by the height.'], [(sh.S - X) * (sh.S - X) * X, 'one-cut', 'Each side loses ' + t('2x') + '.']],
+              'The box is ' + t(b + '\\times ' + b + '\\times ' + X) + ': ' + t('V=' + V) + ' ' + sh.u + '³.', ['Base side ' + t(sh.S + '-2x') + ' at ' + t('x=' + X) + ', then multiply.'], 'tin box at x=' + X, sh.u + '³');
           } },
           { id: 'e8c', level: 'EMG', make: function (r, sh) {
             var h = sh.S / 2;
-            return mcPart(r, 'Which values of ' + t('x') + ' give a real box?', [
+            return mcPart(r, 'For the ' + t(sh.S) + ' ' + sh.u + ' sheet, which values of ' + t('x') + ' give a real box?', [
               { html: t('0<x<' + h), right: true },
               { html: t('0<x<' + sh.S), why: 'Two cuts come off each side: ' + t(sh.S + '-2x>0') + '.' },
               { html: t('0<x<' + sh.S / 4), why: 'Solve ' + t(sh.S + '-2x>0') + ': ' + t('x<' + h) + '.' },
@@ -924,7 +924,7 @@
               ['Substitute into each dimension, then multiply.'], 'check by dimensions');
           } }] },
       { num: '10', stem: function (sh) { return '<b>Surface area.</b> A closed rectangular box has length ' + t(bt(sh.l)) + ' cm, width ' + t(bt(sh.w)) + ' cm and height ' + t(bt(sh.h)) + ' cm. The surface area of a closed box is ' + t('SA=2\\ell w+2\\ell h+2wh') + '.' + prismAt(sh.l, sh.w, sh.h, 2, {}); },
-        shared: function (r) { var v = r.sample([1, 2, 3, 4, 5], 3).sort(function (a, b) { return b - a; }); return { l: lin(1, v[0]), w: lin(1, v[1]), h: lin(1, v[2]), X: r.int(2, 4) }; },
+        shared: function (r) { var v = r.sample([1, 2, 3, 4, 5, 6, 7], 3).sort(function (a, b) { return b - a; }); return { l: lin(1, v[0]), w: lin(1, v[1]), h: lin(1, v[2]), X: r.int(2, 4) }; },
         parts: [
           { id: 'e10a', level: 'PRG', make: function (r, sh) {
             var lw = P.mul(sh.l, sh.w), lh = P.mul(sh.l, sh.h), wh = P.mul(sh.w, sh.h), S = saOf(sh.l, sh.w, sh.h);
@@ -946,8 +946,8 @@
               'At ' + t('x=' + X) + ': ' + t('\\ell=' + l + ',\\ w=' + w + ',\\ h=' + h) + '.<br>Closed ' + t('2(' + l * w + '+' + l * h + '+' + w * h + ')=' + S) + '; open ' + t(S + '-' + l * w + '=' + O) + '.<br>The difference ' + t(l * w) + ' cm² is the lid, ' + t(l + '\\times ' + w) + ' ✓',
               ['Substitute ' + t('x=' + X) + ' into your answers to (a) and (b).'], 'SA at x=' + X);
           } }] },
-      { num: '11', stem: function (sh) { return '<b>Stretch.</b> A cube has edge length ' + t('x') + ' cm. Every edge is then increased by ' + t(sh.k) + ' cm.'; },
-        shared: function (r) { return { k: r.int(1, 4), X: r.int(2, 6) }; },
+      { num: '11', stem: function (sh) { return '<b>Stretch.</b> A ' + sh.obj + ' has edge length ' + t('x') + ' cm. Every edge is then increased by ' + t(sh.k) + ' cm.'; },
+        shared: function (r) { return { k: r.int(1, 5), X: r.int(2, 6), obj: r.pick(['cube', 'cube', 'wooden cube', 'storage cube', 'cube of ice', 'metal cube']) }; },
         parts: [
           { id: 'e11a', level: 'PRG', make: function (r, sh) {
             var e = lin(1, sh.k), sq = P.pow(e, 2), V = P.pow(e, 3);
@@ -966,7 +966,7 @@
               t(atTex(I, X) + '=' + v) + '<br>' + t(N2 + '^{3}-' + X + '^{3}=' + N2 * N2 * N2 + '-' + X * X * X + '=' + v) + ' ✓', ['Substitute ' + t('x=' + X) + ' into your answer to (b).'], 'increase at x=' + X);
           } }] },
       { num: '12', stem: function (sh) { return '<b>Stretch.</b> A cylinder has radius ' + t('(x+' + sh.a + ')') + ' cm and height ' + t(sh.h) + ' cm, so its volume is ' + t('V=\\pi r^{2}h') + '. Leave ' + t('\\pi') + ' in your answers.' + figCylinder('x+' + sh.a, sh.h + '\\text{ cm}'); },
-        shared: function (r) { return { a: r.int(1, 4), h: r.int(2, 6) }; },
+        shared: function (r) { return { a: r.int(1, 5), h: r.int(2, 7) }; },
         parts: [
           { id: 'e12a', level: 'PRG', make: function (r, sh) {
             var R = lin(1, sh.a), T = P.scale(P.pow(R, 2), sh.h);
@@ -1108,8 +1108,8 @@
               ['Miguel’s expression ' + t('4x+' + 2 * s) + ' really is the perimeter: set it equal to ' + t(sh.P) + '.', 'Then find the length and width and multiply.'], 'perimeter → x → area');
           } }] },
       /* ---------- EP Part D ---------- */
-      { num: '19', section: 'Extra practice D — Comparing, reversing, and proving', stem: function (sh) { return 'Rectangle P measures ' + t('(x+' + (sh.a + 1) + ')') + ' by ' + t('(x+' + (sh.a - 1) + ')') + ', and Square Q has side ' + t('(x+' + sh.a + ')') + '.'; },
-        shared: function (r) { var a = r.int(2, 8), b; do { b = r.int(3, 10); } while (b === a); return { a: a, b: b, X1: r.pick([10, 10, 20, 50]), X2: r.int(1, 3) }; },
+      { num: '19', section: 'Extra practice D — Comparing, reversing, and proving', stem: function (sh) { return 'Two shapes are built from nearly the same numbers: rectangular ' + sh.obj + ' P measures ' + t('(x+' + (sh.a + 1) + ')') + ' by ' + t('(x+' + (sh.a - 1) + ')') + ', and square ' + sh.obj + ' Q has side ' + t('(x+' + sh.a + ')') + '.'; },
+        shared: function (r) { var a = r.int(2, 12), b; do { b = r.int(3, 10); } while (b === a); return { a: a, b: b, X1: r.pick([10, 10, 20, 50]), X2: r.int(1, 3), obj: r.pick(['tile', 'rug', 'garden', 'patio', 'poster']) }; },
         parts: [
           { id: 'e19a', level: 'BEG', make: function (r, sh) {
             var a = sh.a, Pp = P.mul(lin(1, a + 1), lin(1, a - 1)), Q = P.pow(lin(1, a), 2);
@@ -1186,7 +1186,7 @@
           } },
           { id: 'e21d', level: 'EMG', make: function (r, sh) {
             var n = sh.n;
-            return mcPart(r, 'Why is ' + t('2' + n + '+1') + ' always odd?', [
+            return mcPart(r, 'Why is ' + t('2' + n + '+1') + ' always odd (for example ' + t('2(' + sh.N + ')+1=' + (2 * sh.N + 1)) + ')?', [
               { html: t('2' + n) + ' is even (it is ' + t('2') + ' times a whole number), and one more than an even number is odd.', right: true },
               { html: 'Because ' + t(n) + ' is odd.', why: t(n) + ' can be any whole number, even or odd. ' + t('2' + n) + ' is always even.' },
               { html: 'Because ' + t('2' + n + '+1') + ' is a prime number.', why: t('2(4)+1=9') + ' is odd but not prime.' },
