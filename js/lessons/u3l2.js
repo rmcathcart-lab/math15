@@ -143,14 +143,17 @@
     C1.line = seq([xm(a), N(-a * b), xm(-cc), N(-cc * b)]); C1.given = add(xm(a - cc), N(-(a + cc) * b)); C1.shown = C1.lhs + '=' + C1.line + '=' + tx(C1.given);
     return { a: A1, b: B1, c: C1 };
   }
+  function q7aWhy(o) { // the booklet's explanation for 7(a)
+    return 'The ' + t('x') + ' of ' + t(o.k + 'x') + ' was dropped from both products: ' + t(o.k + 'x\\cdot ' + o.m + 'x=' + o.k * o.m + 'x^{2}') + ' and ' + t(o.k + 'x\\cdot ' + o.c + '=' + o.k * o.c + 'x') + '. Correct: ' + t(tx(o.T)) + '.';
+  }
   function q7Err(r, sh, w) {
     var o = sh[w], pre = 'A student wrote ' + t(o.shown) + '.<br>Which statement describes the error?', opts, sol;
     if (w === 'a') {
-      opts = [{ html: 'The ' + t('x') + ' of ' + t(o.k + 'x') + ' was left out of both products: ' + t(o.k + 'x\\cdot ' + o.m + 'x=' + o.k * o.m + 'x^{2}') + ' and ' + t(o.k + 'x\\cdot ' + o.c + '=' + o.k * o.c + 'x') + '.', right: true },
+      opts = [{ html: 'The ' + t('x') + ' of ' + t(o.k + 'x') + ' was dropped from both products: ' + t(o.k + 'x\\cdot ' + o.m + 'x=' + o.k * o.m + 'x^{2}') + ' and ' + t(o.k + 'x\\cdot ' + o.c + '=' + o.k * o.c + 'x') + '.', right: true },
         { html: 'The coefficients should have been added: ' + t((o.k + o.m) + 'x') + '.', why: 'In a product, coefficients <b>multiply</b>: ' + t(o.k + '\\times ' + o.m + '=' + o.k * o.m) + '. That part was right.' },
         { html: 'Only the second term is wrong: it should be ' + t(o.k * o.c + 'x') + '.', why: 'That one is wrong, but so is the first: what is ' + t('x\\cdot x') + '?' },
         { html: 'There is no error.', why: 'Substitute ' + t('x=1') + ' into both sides: do they agree?' }];
-      sol = 'Each product must keep the ' + t('x') + ' from ' + t(o.k + 'x') + ': ' + t(o.k + 'x\\cdot ' + o.m + 'x=' + o.k * o.m + 'x^{2}') + ' (exponents add) and ' + t(o.k + 'x\\cdot ' + o.c + '=' + o.k * o.c + 'x') + '. The student multiplied only the numbers.';
+      sol = q7aWhy(o);
     } else if (w === 'b') {
       opts = [{ html: t('x^{' + o.p + '}\\cdot x^{' + o.q + '}') + ' is ' + t('x^{' + (o.p + o.q) + '}') + ', not ' + t('x^{' + o.p * o.q + '}') + ': exponents <b>add</b> when you multiply powers.', right: true },
         { html: 'The second term should be ' + t('-' + o.A + 'x^{' + o.p + '}') + '.', why: t('x^{' + o.p + '}\\cdot(-' + o.A + 'x)=-' + o.A + 'x^{' + (o.p + 1) + '}') + ' — that term is right (' + t('x') + ' means ' + t('x^{1}') + ').' },
@@ -168,7 +171,7 @@
   }
   function q7Fix(sh, w) {
     var o = sh[w], ws, sol;
-    if (w === 'a') { ws = [{ is: o.given, code: 'kept-error', hint: 'That’s the student’s answer. Keep the ' + t('x') + ' in both products: ' + t('x\\cdot x=x^{2}') + '.' }, { is: add(xm(o.k * o.m, 2), N(o.k * o.c)), code: 'u3l2-drop-var', hint: 'Nearly — ' + t(o.k + 'x\\cdot ' + o.c) + ' keeps its ' + t('x') + ': ' + t(o.k * o.c + 'x') + '.' }]; sol = t(o.lhs + '=' + o.k + 'x(' + o.m + 'x)+' + o.k + 'x(' + o.c + ')=' + tx(o.T)); }
+    if (w === 'a') { ws = [{ is: o.given, code: 'kept-error', hint: 'That’s the student’s answer. Keep the ' + t('x') + ' in both products: ' + t('x\\cdot x=x^{2}') + '.' }, { is: add(xm(o.k * o.m, 2), N(o.k * o.c)), code: 'u3l2-drop-var', hint: 'Nearly — ' + t(o.k + 'x\\cdot ' + o.c) + ' keeps its ' + t('x') + ': ' + t(o.k * o.c + 'x') + '.' }]; sol = q7aWhy(o) + '<br>' + t(o.lhs + '=' + o.k + 'x(' + o.m + 'x)+' + o.k + 'x(' + o.c + ')=' + tx(o.T)); }
     else if (w === 'b') { ws = [{ is: o.given, code: 'mult-exp', hint: 'That’s the student’s answer. When you multiply powers, <b>add</b> the exponents.' }]; sol = t(o.lhs + '=x^{' + o.p + '}\\cdot x^{' + o.q + '}-' + o.A + 'x^{' + o.p + '}\\cdot x=' + tx(o.T)); }
     else { ws = [{ is: o.given, code: 'kept-error', hint: 'That’s the student’s answer. Check the sign of ' + t('(-' + o.c + ')(-' + o.b + ')') + '.' }]; sol = t(o.lhs + '=' + seq([xm(o.a), N(-o.a * o.b), xm(-o.c), N(o.c * o.b)]) + '=' + tx(o.T)); }
     return pp('Give the correct simplification of ' + t(o.lhs) + '.', o.T, ws, sol, ['Multiply the monomial by each term: coefficients multiply, exponents add.', 'A negative times a negative is positive.'], 'correct: ' + o.lhs);

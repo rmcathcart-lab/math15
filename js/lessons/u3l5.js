@@ -185,13 +185,19 @@
   /* ---------------- Q15 / EP7 / EP8 student work ---------------- */
   function errLineMC(r) {
     var g = pickWhere(function () { return { k: r.int(2, 5), b: r.int(2, 5), c: r.int(1, 6) }; }, function (g) { return g.k !== g.b && g.k * g.b !== g.k + g.b; });
-    var kind = r.pick(['L3', 'L3', 'L3', 'L2', 'L2', 'L1', 'OK']);
+    var kind = r.pick(['L3', 'L3', 'L3', 'L2', 'L2', 'L1', 'OK']), bk = r.chance(0.12);
+    if (bk) { g = { k: 3, b: 2, c: 1 }; kind = 'L3'; } // the booklet's version: (x+3)(x^2+2x+1), Line 3 has 6x — answer C
     var A = lin(1, g.k), B = quad(1, g.b, g.c), lead = br(A) + br(B), T = P.mul(sum(A), sum(B));
     var row1 = B.map(function (m) { return P.mul(A[0], m); }), row2 = B.map(function (m) { return P.mul(A[1], m); });
     var l1 = 'x' + br(B) + '+' + g.k + br(B), six = row1.concat(row2), l3 = T, note = '';
     if (kind === 'L1') { l1 = 'x' + br(B) + '+' + g.k + br([B[0], B[1]]); six = row1.concat(row2.slice(0, 2)); l3 = sum(six); note = 'In Line 1 the ' + t(g.k) + ' was multiplied by only ' + t(br([B[0], B[1]])) + ' — the ' + t('+' + g.c) + ' was dropped from the second bracket. Lines 2 and 3 follow correctly from that mistake, so the error is in <b>Line 1</b>.'; }
     if (kind === 'L2') { six = row1.concat([row2[0], M(g.k + g.b, 'x'), row2[2]]); l3 = sum(six); note = 'In Line 2, ' + t(g.k + '\\cdot ' + g.b + 'x') + ' was written as ' + t((g.k + g.b) + 'x') + ' (added instead of multiplied); it should be ' + t(g.k * g.b + 'x') + '. Line 3 collects Line 2 correctly, so the error is in <b>Line 2</b>.'; }
-    if (kind === 'L3') { var off = r.pick([1, -1]), which = r.pick(['x', 'x', 'x2']); l3 = P.add(T, which === 'x' ? M(off, 'x') : M(off, 'x', 2)); note = 'Lines 1 and 2 are correct, but the ' + (which === 'x' ? t('x') : t('x^{2}')) + ' terms were collected wrongly in Line 3: ' + (which === 'x' ? t(g.c + 'x+' + g.k * g.b + 'x=' + (g.c + g.k * g.b) + 'x') : t(g.b + 'x^{2}+' + g.k + 'x^{2}=' + (g.b + g.k) + 'x^{2}')) + '. The error is in <b>Line 3</b>; it should read ' + t(tx(T)) + '.'; }
+    if (kind === 'L3') {
+      var off = r.pick([1, -1]), which = r.pick(['x', 'x', 'x2']); if (bk) { off = -1; which = 'x'; }
+      var got = which === 'x' ? g.c + g.k * g.b + off : g.b + g.k + off, gotT = which === 'x' ? tx(M(got, 'x')) : tx(M(got, 'x', 2));
+      l3 = P.add(T, which === 'x' ? M(off, 'x') : M(off, 'x', 2));
+      note = 'Lines 1 and 2 are right, but the ' + (which === 'x' ? t('x') : t('x^{2}')) + ' terms were collected as ' + t(gotT) + ': ' + (which === 'x' ? t(tx(M(g.c, 'x')) + '+' + g.k * g.b + 'x=' + (g.c + g.k * g.b) + 'x') : t(g.b + 'x^{2}+' + g.k + 'x^{2}=' + (g.b + g.k) + 'x^{2}')) + ', not ' + t(gotT) + '. The error is in <b>Line 3</b>; it should read ' + t(tx(T)) + '.';
+    }
     if (kind === 'OK') note = 'Line 1 distributes both terms, Line 2 has all six products with the right signs, and Line 3 collects them correctly: ' + t(lead + '=' + tx(T)) + '. The expansion is <b>correct</b>.';
     var work = workTable([[lead, ''], ['=' + l1, 'Line 1'], ['=' + seq(six), 'Line 2'], ['=' + tx(l3), 'Line 3']]);
     var right = { L1: 0, L2: 1, L3: 2, OK: 3 }[kind];

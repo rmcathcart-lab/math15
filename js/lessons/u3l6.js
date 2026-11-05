@@ -399,7 +399,7 @@
     questions: [
       /* ---------- Part A ---------- */
       { num: '1', section: 'Part A — Area and Volume of Simple Shapes', stem: function (sh) { return 'A rectangular window has length ' + t(bt(sh.l)) + ' ft and width ' + t(bt(sh.w)) + ' ft.' + figRect(at(sh.l, sh.X), clamp(at(sh.w, sh.X), 0.3 * at(sh.l, sh.X), at(sh.l, sh.X)), { bottom: tx(sh.l) + '\\text{ ft}', left: tx(sh.w) + '\\text{ ft}', pw: 190, ph: 100 }).svg('window', 300); },
-        shared: function (r) { return gen(function () { var a = r.int(3, 9), b = r.int(1, 5), X = r.int(2, 7); return a > b && !(a === 5 && b === 3) ? { l: lin(1, a), w: lin(1, b), a: a, b: b, X: X } : null; }); },
+        shared: function (r) { if (r.chance(0.12)) return { l: lin(1, 3), w: lin(1, 1), a: 3, b: 1, X: 5 }; /* the booklet's window: (x+3)(x+1), 48 ft² at x = 5 */ return gen(function () { var a = r.int(3, 9), b = r.int(1, 5), X = r.int(2, 7); return a > b && !(a === 5 && b === 3) ? { l: lin(1, a), w: lin(1, b), a: a, b: b, X: X } : null; }); },
         parts: [
           { id: '1a', level: 'BEG', make: function (r, sh) {
             return polyPart('Write the area as a simplified trinomial (in ft²).' + howtoArea(), P.mul(sh.l, sh.w), areaWrongs(sh.l, sh.w), 'Area = length × width:<br>' + areaSol(sh.l, sh.w, 'ft²'),
@@ -555,6 +555,7 @@
             if (den <= 0 || num <= 0 || num % den || (a === 3 && b === 1 && c === 6)) return null;
             var x0 = num / den; if (x0 > 9) return null; return { a: a, b: b, c: c, x0: x0, den: den, num: num };
           });
+          if (r.chance(0.12)) s = { a: 4, b: 2, c: 7, x0: 2, den: 1, num: 2 }; // the booklet's version: (x+4)^2 = (x+2)(x+7), x = 2, each area 36 m²
           var Sq = P.pow(lin(1, s.a), 2), R = P.mul(lin(1, s.b), lin(1, s.c)), x0 = s.x0, xs = N(x0);
           var noMid = s.c + s.b !== 0 ? (s.a * s.a - s.b * s.c) / (s.b + s.c - s.a) : NaN;
           return solvePart('A square has side length ' + t('(x+' + s.a + ')') + ' m. A rectangle has dimensions ' + t('(x+' + s.b + ')') + ' m by ' + t('(x+' + s.c + ')') + ' m. The square and the rectangle have the same area. Determine the value of ' + t('x') + '.' + howtoSq(), x0,
@@ -1202,10 +1203,10 @@
               t('2' + n + '(2' + n + '+2)=4' + n + '^{2}+4' + n), ['Distribute ' + t('2' + n) + ' to both terms.'], 'product of consecutive evens', { vars: [n] });
           } },
           { id: 'e22b', level: 'PRG', make: function (r, sh) {
-            var n = sh.n, T = P.add(mono(1, n, 2), mono(1, n));
-            return polyPart('Fill the bracket to show the product is a multiple of ' + t('4') + ':', T, [{ is: P.add(mono(1, n, 2), mono(4, n)), code: 'u3l6-div-one', hint: 'Divide <b>both</b> terms by 4: ' + t('4' + n + '\\div 4=' + n) + '.' }, { is: P.add(mono(4, n, 2), mono(4, n)), code: 'value', hint: 'What times 4 gives ' + t('4' + n + '^{2}+4' + n) + '? Divide each term by 4.' }],
-              t('4' + n + '^{2}+4' + n + '=4(' + n + '^{2}+' + n + ')') + ' — check by expanding: ' + t('4\\cdot ' + n + '^{2}+4\\cdot ' + n) + ' ✓. It is 4 times a whole number, so it is a multiple of 4.',
-              ['What times 4 gives each term? Check by expanding your answer.'], 'write as 4(…)', { vars: [n], before: t('4' + n + '^{2}+4' + n + '=4\\left('), after: t('\\right)') });
+            var n = sh.n, T = P.add(mono(4, n, 2), mono(4, n));
+            return polyPart('Show that ' + t('4' + n + '^{2}+4' + n + '=4(' + n + '^{2}+' + n + ')') + ' by expanding the right side, so the product is always a multiple of ' + t('4') + '.', T, [{ is: P.add(mono(4, n, 2), mono(1, n)), code: 'only-first', hint: 'Multiply the ' + t('4') + ' into <b>both</b> terms: ' + t('4\\cdot ' + n + '=4' + n) + '.' }, { is: P.add(mono(1, n, 2), mono(4, n)), code: 'only-last', hint: 'Multiply the ' + t('4') + ' into <b>both</b> terms: ' + t('4\\cdot ' + n + '^{2}=4' + n + '^{2}') + '.' }],
+              t('4(' + n + '^{2}+' + n + ')=4\\cdot ' + n + '^{2}+4\\cdot ' + n + '=4' + n + '^{2}+4' + n) + ' ✓, the same as (a). So the product is ' + t('4') + ' times the integer ' + t(n + '^{2}+' + n + '=' + n + '(' + n + '+1)') + ': always a multiple of ' + t('4') + '.',
+              ['Distribute the ' + t('4') + ' to both terms in the bracket.', 'Compare with your answer to (a).'], 'expand 4(n^2+n)', { vars: [n], before: t('4(' + n + '^{2}+' + n + ')=') });
           } },
           { id: 'e22c', level: 'ADV', make: function (r, sh) {
             var n = sh.n;

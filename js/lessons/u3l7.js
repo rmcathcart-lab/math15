@@ -807,7 +807,7 @@
             return wrong('value', 'Expand ' + t('(\\square+' + m + ')(\\square-' + m + ')=\\square^{2}-' + m * m) + ', so ' + t('\\square^{2}') + ' must be ' + t(a * a + 'x^{2}') + '.');
           };
           var p = KP.math('Find the term that goes in <b>both</b> blanks: ' + t('\\left(\\square+' + m + '\\right)\\left(\\square-' + m + '\\right)=' + a * a + 'x^{2}-' + m * m), chk, a + 'x',
-            'A sum times a difference: ' + t('(\\square+' + m + ')(\\square-' + m + ')=\\square^{2}-' + m * m) + '. So ' + t('\\square^{2}=' + a * a + 'x^{2}') + ' and ' + t('\\square=' + a + 'x') + ' (since ' + t('(' + a + 'x)^{2}=' + a * a + 'x^{2}') + ').',
+            'A sum times a difference: ' + t('(\\square+' + m + ')(\\square-' + m + ')=\\square^{2}-' + m * m) + '. So ' + t('\\square^{2}=' + a * a + 'x^{2}') + ' and ' + t('\\square=' + a + 'x') + ' (since ' + t('(' + a + 'x)^{2}=' + a * a + 'x^{2}') + '; ' + t('-' + a + 'x') + ' also works).',
             ['The product is ' + t('\\square^{2}-' + m + '^{2}') + '. What squared gives ' + t(a * a + 'x^{2}') + '?'], 'missing a in (a+m)(a−m)', { keys: 'poly', vars: ['x'], before: t('\\square=') });
           p.bad = [a * a + 'x^{2}', String(a), a + 'x^{2}']; p.good = ['-' + a + 'x'];
           return p;
@@ -860,7 +860,7 @@
             p.check = chk; p.bad = [[String(P1), String(P2), String(val)], [String(a), String(b), String(a * a + b * b)]];
             return p;
           } }] },
-      { num: '9', stem: 'Multiply each binomial by the trinomial beside it. Six products, then collect — and watch how much collapses.',
+      { num: '9', stem: '<b>Stretch.</b> Multiply each binomial by the trinomial beside it. Six products, then collect — and watch how much collapses.',
         shared: function (r) {
           var L = r.pick(LETTERS2), rev = r.chance(0.3); if (r.chance(0.12)) { L = ['x', 'y']; rev = false; }
           var u = L[0], w = L[1], sq = function (z) { return z + '^{2}'; };
@@ -1122,7 +1122,7 @@
             ['A sum times a difference: ' + t('(a+b)(a-b)=a^{2}-b^{2}') + '. What squared gives ' + t(m * m) + '?'], 'find m in sum × difference', { keys: 'expr', before: t('m=') });
           p.input.type = 'number'; delete p.input.keys; p.good = [String(-m)]; p.bad = [String(m * m)]; return p;
         } }] },
-      { num: '16', stem: 'Solve each equation. Expand <b>both</b> sides first — the ' + t('x^{2}') + ' terms will disappear, leaving a linear equation.',
+      { num: '16', stem: 'Solve each equation. Expand <b>both</b> sides first — the ' + t('x^{2}') + ' terms will disappear, leaving a linear equation. (If the ' + t('x') + '-terms cancel as well, there is no value of ' + t('x') + ' that works: the equation has no solution.)',
         shared: function (r) {
           var A = pickWhere(function () { return { p: r.int(1, 7), q: r.int(1, 7), u: r.int(1, 6), w: r.int(1, 6) }; }, function (s) { var den = (s.p - s.q) - (s.u + s.w), num = s.u * s.w + s.p * s.q; return den !== 0 && num % den === 0 && num / den !== 0 && Math.abs(num / den) <= 20 && s.u !== s.w; });
           var B = pickWhere(function () { return { a: r.int(2, 4), b: r.int(1, 6), c: r.int(1, 5), d: r.int(1, 6) }; }, function (s) { var den = s.a * s.b - s.a * s.d + s.c; return den !== 0 && (s.c * s.d) % den === 0 && s.c * s.d / den !== 0 && Math.abs(s.c * s.d / den) <= 20; });
@@ -1311,7 +1311,7 @@
             p.bad = [String((v + k) * (v - k))]; return p;
           } }] },
       /* ---------- Part F ---------- */
-      { num: '21', section: 'Part F — Challenge', stem: function (sh) { return '<b>Grouping.</b> A trinomial in brackets can sometimes be treated as a binomial in disguise. For example, ' + t('(' + sh.u + '+' + sh.w + '+' + sh.k + ')^{2}') + ' can be written as ' + t('\\big[(' + sh.u + '+' + sh.w + ')+' + sh.k + '\\big]^{2}') + ', a perfect square whose “first term” is the whole quantity ' + t('(' + sh.u + '+' + sh.w + ')') + '.'; },
+      { num: '21', section: 'Part F — Challenge', stem: function (sh) { return '<b>Stretch: Grouping.</b> A trinomial in brackets can sometimes be treated as a binomial in disguise. For example, ' + t('(' + sh.u + '+' + sh.w + '+' + sh.k + ')^{2}') + ' can be written as ' + t('\\big[(' + sh.u + '+' + sh.w + ')+' + sh.k + '\\big]^{2}') + ', a perfect square whose “first term” is the whole quantity ' + t('(' + sh.u + '+' + sh.w + ')') + '.'; },
         shared: function (r) { var L = r.pick(LETTERS2), k = r.int(2, 6), j = r.int(2, 7); if (r.chance(0.12)) { L = ['x', 'y']; k = 2; j = 3; } return { u: L[0], w: L[1], k: k, j: j }; },
         parts: [
           { id: 'e21a', sub: 'a', level: 'ADV', make: function (r, sh) {

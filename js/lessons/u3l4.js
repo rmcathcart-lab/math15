@@ -369,7 +369,7 @@
       })] },
       { num: '16', stem: '<i>(Numerical Response)</i>', parts: [A1('16', 'PRG', function (r) {
         var a = r.int(2, 20), x = r.pick(['x', 'x', 'y', 'm', 't', 'n']); if (r.chance(0.12)) { a = 8; x = 'x'; }
-        return KP.nr('Given that ' + t('(' + x + '+a)(' + x + '-a)=' + x + '^{2}-' + a * a) + ' for every value of ' + t(x) + ', and ' + t('a>0') + ', the value of ' + t('a') + ' must be ____.', a,
+        return KP.nr('Given that ' + t('(' + x + '+a)(' + x + '-a)=' + x + '^{2}-' + a * a) + ' for every value of ' + t(x) + ' and that ' + t('a>0') + ', the value of ' + t('a') + ' is ____.', a,
           numDiag([[a * a, 'asked-other', t(a * a) + ' is ' + t('a^{2}') + '. Find ' + t('a') + ': which positive number squared gives ' + t(a * a) + '?'], [a * a / 2, 'not-sq', t('a^{2}') + ' means ' + t('a\\times a') + ', not ' + t('2a') + '.']]),
           t('(' + x + '+a)(' + x + '-a)=' + x + '^{2}-a^{2}') + ', so ' + t('a^{2}=' + a * a) + ' and, since ' + t('a>0') + ', ' + t('a=' + a) + '.', ['Expand ' + t('(' + x + '+a)(' + x + '-a)') + ' with the difference of squares pattern and compare.'], 'NR find a');
       })] }
@@ -552,7 +552,7 @@
             [K.number(b * b, numDiag([[b, 'not-sq', t('c') + ' is the last term ' + t('b^{2}') + ': square ' + t(b) + '.'], [2 * b, 'not-sq', t('b^{2}') + ' means ' + t(b + '\\times ' + b) + '.'], [a * b, 'asked-other', 'Find ' + t('b') + ' from the middle term ' + t('2(' + a + 'x)(b)=' + 2 * a * b + 'x') + ', then ' + t('c=b^{2}') + '.']])),
               function (resp) { var v = cB2(resp); return v.v === 'correct' ? v : cB(resp); }],
             [String(b * b), tx(B0)], t('c=' + b * b) + '; ' + t('(' + tx(B0) + ')^{2}'),
-            'The first term is ' + t(a * a + 'x^{2}=(' + a + 'x)^{2}') + ', so ' + t('a=' + a + 'x') + '. The middle term is ' + t('2ab') + ': ' + t('2(' + a + 'x)(b)=' + 2 * a * b + 'x') + ', so ' + t('b=' + b) + '. Then ' + t('c=b^{2}=' + b * b) + ' and the trinomial is ' + t('(' + tx(B0) + ')^{2}') + '.<br>Check: ' + t('(' + tx(B0) + ')^{2}=' + tx(P.pow(B0, 2))) + ' ✓',
+            'The first term is ' + t(a * a + 'x^{2}=(' + a + 'x)^{2}') + ', so ' + t('a=' + a + 'x') + '. The middle term is ' + t('2ab') + ': ' + t('2(' + a + 'x)(b)=' + 2 * a * b + 'x') + ', so ' + t('b=' + b) + '. Then ' + t('c=b^{2}=' + b * b) + ' and the trinomial is ' + t('(' + tx(B0) + ')^{2}') + ' (or ' + t('(' + tx(P.neg(B0)) + ')^{2}') + ').<br>Check: ' + t('(' + tx(B0) + ')^{2}=' + tx(P.pow(B0, 2))) + ' ✓',
             ['The first term tells you ' + t('a') + '; the middle term ' + t('2ab') + ' then tells you ' + t('b') + '.', 'The last term is ' + t('b^{2}') + '.'], 'find c and the binomial');
           p.good = [[String(b * b), tx(P.neg(B0))]]; p.bad = [[String(b), tx(B0)], [String(b * b), tx(P.add(V(a, 'x'), V(-b)))]];
           return p; })] },

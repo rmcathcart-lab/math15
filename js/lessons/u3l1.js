@@ -689,7 +689,7 @@
         { id: '3b', level: 'BEG', make: function (r, sh) {
           var ws = [[sh.a, 'x^{3}'], [-sh.b, 'x^{2}'], [sh.sx, 'x']];
           var fl = ws.map(function (w) { return { name: 'Coefficient of the ' + w[1] + '-term', label: 'Coefficient of the ' + t(w[1]) + '-term' }; });
-          return KP.fields('(b) the coefficient of each term with a variable.', fl, ws.map(function (w) { return K.number(w[0], function (v) { if (v === -w[0]) return { code: 'coef-sign', hint: 'A term keeps the sign in front of it: the coefficient is ' + t(w[0]) + '.' }; if (Math.abs(w[0]) === 1 && v === 0) return { code: 'u3l1-coef-hidden', hint: 'An unwritten coefficient is ' + t('1') + ' (or ' + t('-1') + ' for ' + t('-x') + ').' }; return null; }); }),
+          return KP.fields('(b) the coefficient of each variable term.', fl, ws.map(function (w) { return K.number(w[0], function (v) { if (v === -w[0]) return { code: 'coef-sign', hint: 'A term keeps the sign in front of it: the coefficient is ' + t(w[0]) + '.' }; if (Math.abs(w[0]) === 1 && v === 0) return { code: 'u3l1-coef-hidden', hint: 'An unwritten coefficient is ' + t('1') + ' (or ' + t('-1') + ' for ' + t('-x') + ').' }; return null; }); }),
             ws.map(function (w) { return String(w[0]); }), ws.map(function (w) { return t(w[0]); }).join(', '),
             'The coefficients are the numbers multiplying the variables, signs included: ' + ws.map(function (w) { return t(tx(T(w[0], 'x', w[1] === 'x' ? 1 : +w[1].replace(/\D/g, '')))) + ' → ' + t(w[0]); }).join(', ') + (Math.abs(sh.sx) === 1 ? ' (an unwritten coefficient is ' + t(sh.sx > 0 ? '1' : '-1') + ')' : '') + '.', ['Each term keeps the sign in front of it.', 'An ' + t('x') + ' with no number in front has coefficient ' + t('1') + '.'], 'coefficients');
         } },
@@ -820,8 +820,8 @@
             if (g === 0 && r.chance(0.15)) { a = 5; b = 3; c = 1; d = 2; e = 4; f = 6; }
             var X = function (p, q, s) { return S([T(p, 'x', 2), T(q, 'x', 1), T(s)]); };
             opts = [{ v: X(a - d, -b - e, c + f), right: true },
-              { v: X(a - d, -b + e, c - f), why: 'This changes the sign of only the <b>first</b> term of the second bracket.' },
-              { v: X(a - d, -b - e, c - f), why: 'Check the constant: ' + t('-(' + -f + ')=+' + f) + '. Every sign in the second bracket changes.' },
+              { v: X(a - d, -b + e, c - f), why: 'This flips only the ' + t(tx(T(d, 'x', 2))) + '. Every term of the second bracket changes sign.' },
+              { v: X(a - d, -b - e, c - f), why: 'This forgets to flip the ' + t(-f) + ', so ' + t(c + '-' + f + '=' + (c - f)) + '. But ' + t('-(' + -f + ')=+' + f) + ': every sign in the second bracket changes.' },
               { v: X(a + d, -b + e, c - f), why: 'This <b>adds</b> the second bracket. To subtract, change the sign of every term in it.' }];
             g++;
           } while (g < 100 && opts.some(function (o, i) { return opts.some(function (q, j) { return j > i && P.eq(o.v, q.v); }) || P.count(o.v) < 3; }));

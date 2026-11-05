@@ -2,6 +2,7 @@
  * (Explainer pieces adapted from the Math 10C twin u3l2 / u3l3.) Area-model cells use the FOIL colours:
  * F teal, O amber, I purple, L blue; a negative product is hatched. */
 .u3l3 .ex-cap { min-height: 128px; }
+.u3l3 .parts.c4 { grid-template-columns: repeat(4, 1fr); } /* Example 3: four parts in one row, like the booklet */
 .u3l3 .ex-cap .katex { font-size: 1.04em; }
 .u3l3 .chip .katex { font-size: 1em; }
 .u3l3 .pl .katex { font-size: 1.12em; }

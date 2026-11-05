@@ -117,7 +117,7 @@ kbd { display: inline-block; min-width: 26px; padding: 1px 6px; margin: 0 1px; b
 .ex-tag { background: var(--amber); color: #fff; font-weight: 800; font-size: 15px; letter-spacing: .05em; text-transform: uppercase; padding: 4px 10px; border-radius: 8px; white-space: nowrap; }
 .q { font-size: 20px; }
 .parts { display: grid; gap: 14px; margin: 0 0 18px; }
-.parts.c1 { grid-template-columns: 1fr; } .parts.c2 { grid-template-columns: 1fr 1fr; } .parts.c3 { grid-template-columns: repeat(3, 1fr); } .parts.c5 { grid-template-columns: repeat(5, 1fr); }
+.parts.c1 { grid-template-columns: 1fr; } .parts.c2 { grid-template-columns: 1fr 1fr; } .parts.c3 { grid-template-columns: repeat(3, 1fr); } .parts.c4 { grid-template-columns: repeat(4, 1fr); } .parts.c5 { grid-template-columns: repeat(5, 1fr); }
 .part { display: flex; flex-direction: column; border: 1.5px dashed #ddd6c6; border-radius: 12px; padding: 10px 12px; }
 .pl { font-weight: 700; font-size: 20px; }
 .work { flex: 1; min-height: var(--h, 200px); }
