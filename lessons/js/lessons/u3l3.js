@@ -204,16 +204,16 @@ const FO = {
   gen: { f1: 'a+b', f2: 'c+d', mode: 'foil' }, dmF: { f1: 'x+2', f2: 'x+5', mode: 'foil' },
   a2: { f1: '2x+1', f2: 'x+5', mode: 'foil' }, b2: { f1: '3x+2', f2: 'x+4', mode: 'foil' }, c2: { f1: '2x+5', f2: '3x+1', mode: 'foil' },
   dmN: { f1: 'x+3', f2: 'x-5', mode: 'foil' },
-  a3: { f1: 'x-4', f2: 'x+6', mode: 'foil' }, b3: { f1: 'x-2', f2: 'x-7', mode: 'foil' }, c3: { f1: '2x-3', f2: 'x-5', mode: 'foil' },
+  a3: { f1: 'x-4', f2: 'x+6', mode: 'foil' }, b3: { f1: 'x-2', f2: 'x-7', mode: 'foil' }, c3: { f1: '2x-3', f2: 'x-5', mode: 'foil' }, d3: { f1: 'x+3y', f2: 'x-2y', mode: 'foil' },
   a4: { f1: '3x-2', f2: '2x-5', mode: 'foil' }, b4: { f1: '4x+1', f2: '2x-3', mode: 'foil' }
 };
-const FOIL = [['F', 'First', 0, 0, 1], ['O', 'Outside', 0, 1, 1], ['I', 'Inside', 1, 0, -1], ['L', 'Last', 1, 1, -1]]; // letter, word, term of f1, term of f2, above/below
+const FOIL = [['F', 'First', 0, 0, 1], ['O', 'Outer', 0, 1, 1], ['I', 'Inner', 1, 0, -1], ['L', 'Last', 1, 1, -1]]; // letter, word, term of f1, term of f2, above/below
 const foilCol = (L) => ({ F: CELL[0][0], O: CELL[0][1], I: CELL[1][0], L: CELL[1][1] })[L];
 function makeFoil(title, choices, first, signs) {
   return {
     title, height: 420, choices, value: first,
     minW: 860, // drawn this wide and scaled to fit beside the sidebar
-    intro: (k) => { const d = FO[k]; return d.mode === 'foil' ? `Use <b>FOIL</b> on ${T(`(${d.f1})(${d.f2})`)}: First, Outside, Inside, Last.` : `Use the <b>distributive property</b> on ${T(`(${d.f1})(${d.f2})`)}: distribute the whole first binomial, then each of its terms.`; },
+    intro: (k) => { const d = FO[k]; return d.mode === 'foil' ? `Use <b>FOIL</b> on ${T(`(${d.f1})(${d.f2})`)}: First, Outer, Inner, Last.` : `Use the <b>distributive property</b> on ${T(`(${d.f1})(${d.f2})`)}: distribute the whole first binomial, then each of its terms.`; },
     make(stage, key, ex) {
       const W = ex.W, d = FO[key], A = parsePoly(d.f1), B = parsePoly(d.f2), foilM = d.mode === 'foil';
       const fac = (P, n) => P.map((t, k) => (k === 0 ? `\\htmlClass{u3l3-f${n}${k}}{${termT(t, true)}}` : `\\mathbin{\\htmlClass{u3l3-s${n}${k}}{${t.c < 0 ? '-' : '+'}}}\\htmlClass{u3l3-f${n}${k}}{${bodyT(t)}}`)).join('');
@@ -257,7 +257,7 @@ function makeFoil(title, choices, first, signs) {
       }
       if (foilM) {
         FOIL.forEach(([L, word], n) => steps.push({
-          cap: `<b>${L}</b>${word.slice(1)}: the ${word.toLowerCase()} terms, ${pc(n)}.` + (n === 1 ? ' Outside = the two ends.' : n === 2 ? ' Inside = the two middle terms.' : '') + sn(n),
+          cap: `<b>${L}</b>${word.slice(1)}: the ${word.toLowerCase()} terms, ${pc(n)}.` + (n === 1 ? ' Outer = the two ends.' : n === 2 ? ' Inner = the two middle terms.' : '') + sn(n),
           run: (c) => go(c, n)
         }));
       } else {
@@ -279,7 +279,7 @@ function makeFoil(title, choices, first, signs) {
 }
 const distTwice = makeFoil('Distribute twice', [{ v: 'dmD', label: tex('(x+2)(x+5)') }, { v: 'genD', label: tex('(a+b)(c+d)') }, { sep: 'Example 1 check:' }, { v: 'a1', label: '(a)' }, { v: 'b1', label: '(b)' }], 'dmD', false);
 const foil = makeFoil('FOIL: four arrows, four cells', [{ v: 'gen', label: tex('(a+b)(c+d)') }, { v: 'dmF', label: tex('(x+2)(x+5)') }, { sep: 'Example 2 check:' }, { v: 'a2', label: '(a)' }, { v: 'b2', label: '(b)' }, { v: 'c2', label: '(c)' }], 'gen', false);
-const foilNeg = makeFoil('FOIL with negative terms', [{ v: 'dmN', label: tex('(x+3)(x-5)') }, { sep: 'Example 3 check:' }, { v: 'a3', label: '(a)' }, { v: 'b3', label: '(b)' }, { v: 'c3', label: '(c)' }, { sep: 'Example 4 check:' }, { v: 'a4', label: '(a)' }, { v: 'b4', label: '(b)' }], 'dmN', true);
+const foilNeg = makeFoil('FOIL with negative terms', [{ v: 'dmN', label: tex('(x+3)(x-5)') }, { sep: 'Example 3 check:' }, { v: 'a3', label: '(a)' }, { v: 'b3', label: '(b)' }, { v: 'c3', label: '(c)' }, { v: 'd3', label: '(d)' }, { sep: 'Example 4 check:' }, { v: 'a4', label: '(a)' }, { v: 'b4', label: '(b)' }], 'dmN', true);
 
 /* ============ 2. What if you skip O and I? Count the squares ============ */
 const MISS = { a: { p: 3, q: 2, x: 6 }, b: { p: 4, q: 1, x: 5 } };
@@ -325,7 +325,7 @@ const missing = {
         await stampIn(c, st);
       }
     }, {
-      cap: `What got left out? Two strips: the <b>Outside</b> product ${T(`x\\cdot${q}=${qx}`)} (${x * q} squares) and the <b>Inside</b> product ${T(`${p}\\cdot x=${pxx}`)} (${p * x} squares).`,
+      cap: `What got left out? Two strips: the <b>Outer</b> product ${T(`x\\cdot${q}=${qx}`)} (${x * q} squares) and the <b>Inner</b> product ${T(`${p}\\cdot x=${pxx}`)} (${p * x} squares).`,
       run: async (c) => {
         const rs = [...by('O'), ...by('I')]; rs.forEach((e) => { e.classList.remove('ghost'); e.classList.add(e.dataset.r); });
         await Promise.all([...rs.map((e, i) => c.anim(e, [{ transform: 'scale(1)' }, { transform: 'scale(1.18)' }, { transform: 'scale(1)' }], 380, { delay: i * 8 })), c.pop(lab.O, 380, { delay: 250 }), c.pop(lab.I, 380, { delay: 400 }), c.fadeIn(L3, 400, { delay: 300 })]);

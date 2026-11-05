@@ -291,7 +291,7 @@ const anatomy = {
     { const ws = boxes.map((b) => b.offsetWidth - 20), tot = ws.reduce((a, b) => a + b, 0); let x = (W - tot) / 2; boxes.forEach((b, i) => { b.style.left = (x + ws[i] / 2) + 'px'; x += ws[i]; }); }
     const cols = d.map((t, i) => {
       const cx = x0 + cw * (i + 0.5);
-      const coef = add(stage, h('div', 'u3l1-ancoef c', K(t.c) + (t.hid ? `<small>${K(bare(t.t))} means ${K(t.c === '-1' ? '-1' + bare(t.t).slice(1) : '1' + bare(t.t))}</small>` : !t.v.length ? '<small>itself</small>' : '')), cx, 126);
+      const coef = add(stage, h('div', 'u3l1-ancoef c', (t.v.length ? K(t.c) : '<span class="muted">—</span>') + (t.hid ? `<small>${K(bare(t.t))} means ${K(t.c === '-1' ? '-1' + bare(t.t).slice(1) : '1' + bare(t.t))}</small>` : !t.v.length ? '<small>constant term</small>' : '')), cx, 126);
       const list = add(stage, h('div', 'u3l1-dglist u3l1-antop'), cx, 160);
       list.innerHTML = t.v.length ? t.v.map(([v, e]) => `<div>${K(v)}<i class="ar">→</i><b>${e}</b>${e === 1 ? '<em>hidden 1</em>' : ''}</div>`).join('') : '<div class="muted">no variable</div>';
       if (t.v.length > 1) list.innerHTML += `<div class="u3l1-ansum">${K(t.v.map(([, e]) => e).join('+') + '=' + degs[i])}</div>`;
@@ -312,7 +312,7 @@ const anatomy = {
     d.forEach((t, i) => {
       const x = cols[i], b = bare(t.t);
       let cap;
-      if (!t.v.length) cap = `${T(b)} has no variable: it’s the <b>constant term</b>. Its coefficient is just ${T(b)} itself, and its degree is <b>0</b>.`;
+      if (!t.v.length) cap = `${T(b)} has no variable: it’s the <b>constant term</b>, not a variable term (so it isn’t listed as a coefficient). Its degree is <b>0</b>.`;
       else {
         cap = `${T(b)}: the <b>coefficient</b> is ${T(t.c)}${t.hid ? ` (no number is written, so it’s ${T(t.c)}: ${T(b)} means ${T(t.c === '-1' ? '-1' + b.slice(1) : '1' + b)})` : ''}. `;
         cap += t.v.length > 1 ? `Its <b>degree</b> is the sum of its exponents: ${T(t.v.map(([, e]) => e).join('+') + '=' + degs[i])}.` : `Its <b>degree</b> is ${degs[i]}${t.v[0][1] === 1 ? ` (${T(t.v[0][0])} means ${T(t.v[0][0] + '^1')})` : ''}.`;
