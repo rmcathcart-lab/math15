@@ -195,14 +195,14 @@
       { num: '7', section: 'Part B — Combining Laws', stem: 'Simplify each expression using two exponent laws.', parts: [
         { id: '7a', level: 'EMG', make: function (r) { var v = r.pick(LET), c = r.int(2, 6); return xPart([Fc(c, [[v, 1]], 2), Fc(1, [[v, r.int(2, 6)]])], []); } },
         { id: '7b', level: 'EMG', make: function (r) { var v = r.pick(LET), a = r.int(2, 4), n = r.int(2, 4), d = r.int(1, a * n - 1); return xPart([Fc(1, [[v, a]], n)], [Fc(1, [[v, d]])], { div: true }); } },
-        { id: '7c', level: 'EMG', make: function (r) { var v = r.pick(LET), c = r.pick([2, 2, 3, 4, 5]); return xPart([Fc(c, [[v, 1]], 3), Fc(1, [[v, r.int(2, 6)]])], []); } },
+        { id: '7c', level: 'EMG', make: function (r) { var v = r.pick(LET), c = r.pick([2, 2, 3, 4, 5]), q = r.int(2, 6); if (c === 2 && q === 2) q = r.int(3, 6); /* (2x)³ × x² is Lesson Example 4(a) */ return xPart([Fc(c, [[v, 1]], 3), Fc(1, [[v, q]])], []); } },
         { id: '7d', level: 'EMG', make: function (r) { var v = r.pick(LET), a = r.int(2, 4), n = r.int(2, 4), d = r.int(1, a * n - 1); return xPart([Fc(1, [[v, a]], n)], [Fc(1, [[v, d]])], { div: true }); } },
         { id: '7e', level: 'EMG', make: function (r) { var v = r.pick(LET), c = r.int(2, 9); return xPart([Fc(c, [[v, r.int(2, 5)]], 2)], []); } },
         { id: '7f', level: 'PRG', make: function (r) { var v = r.pick(LET), d = r.int(2, 5); return xPart([Fc(1, [[v, 1]], 2, [d, []]), Fc(1, [[v, r.int(2, 6)]])], []); } }] },
       { num: '8', stem: 'These combine three or more exponent laws. Simplify each expression completely.', parts: [
-        { id: '8a', level: 'PRG', make: function (r) { var v = r.pick(LET), c = r.int(2, 5), a = r.int(2, 4), n = r.int(2, 3); return xPart([Fc(c, [[v, 1]], 2), Fc(1, [[v, a]], n)], [], { sep: '' }); } },
-        { id: '8b', level: 'PRG', make: function (r) { var v = r.pick(LET), c = r.int(2, 6), a = r.int(2, 4), d = r.int(1, 2 * a - 1); return xPart([Fc(c, [[v, a]], 2)], [Fc(1, [[v, d]])]); } },
-        { id: '8c', level: 'ADV', make: function (r) { var vw = lets(r, 2).sort(), c = r.pick([2, 2, 3, 4, 5]), a = r.int(2, 4); return xPart([Fc(c, [[vw[0], a]], c <= 3 ? r.pick([2, 3]) : 2, [1, [[vw[1], r.int(1, 2)]]])], []); } },
+        { id: '8a', level: 'PRG', make: function (r) { var v = r.pick(LET), c = r.int(2, 5), a = r.int(2, 4), n = r.int(2, 3); if (c === 2 && a === 3 && n === 2) c = r.int(3, 5); /* (2x)²(x³)² is Lesson Example 5(a) */ return xPart([Fc(c, [[v, 1]], 2), Fc(1, [[v, a]], n)], [], { sep: '' }); } },
+        { id: '8b', level: 'PRG', make: function (r) { var v = r.pick(LET), c = r.int(2, 6), a = r.int(2, 4), d = r.int(1, 2 * a - 1); if (c === 3 && a === 2 && d === 3) d = r.pick([1, 2]); /* (3m²)²/m³ is Lesson Example 5(b) */ return xPart([Fc(c, [[v, a]], 2)], [Fc(1, [[v, d]])]); } },
+        { id: '8c', level: 'ADV', make: function (r) { var vw = lets(r, 2).sort(), c = r.pick([2, 2, 3, 4, 5]), a = r.int(2, 4), n = c <= 3 ? r.pick([2, 3]) : 2, e = r.int(1, 2); if (c === 2 && a === 2 && n === 3 && e === 1) n = 2; /* (2a²/b)³ is Lesson Example 5(c) */ return xPart([Fc(c, [[vw[0], a]], n, [1, [[vw[1], e]]])], []); } },
         { id: '8d', level: 'PRG', make: function (r) { var v = r.pick(LET), c = r.pick([2, 2, 3]), a = r.int(2, 3), d = r.int(1, 3 * a - 1); return xPart([Fc(c, [[v, a]], 3)], [Fc(1, [[v, d]])]); } }] },
       { num: '9', stem: 'State the value of the unknown.', parts: [
         { id: '9a', level: 'PRG', make: function (r) { var c = r.pick([2, 2, 3, 4, 5, 10]), n = c === 2 ? r.int(2, 5) : r.int(2, 3), v = r.pick(['x', 'x', 'y', 'a']), C = Math.pow(c, n);

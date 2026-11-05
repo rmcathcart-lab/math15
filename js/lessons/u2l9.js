@@ -896,9 +896,9 @@
     blurb: 'Fractional exponents are radicals in disguise: evaluating powers like 27^(2/3) root first, converting both ways between powers and radicals, and using the exponent laws with rational exponents.',
     questions: [
       { num: '1', section: 'Part A — Evaluating Rational-Exponent Powers', stem: 'Evaluate without using a calculator.', parts: [
-        { id: '1a', level: 'BEG', make: function (r) { var c = r.int(2, 10); return EV({ base: [c * c, 1], m: 1, n: 2 }); } },
+        { id: '1a', level: 'BEG', make: function (r) { var c = r.pick([2, 3, 4, 6, 8, 9, 11, 12]); /* not 25, 100 (Lesson Example 1) or 49 (warm-up notes) */ return EV({ base: [c * c, 1], m: 1, n: 2 }); } },
         { id: '1b', level: 'BEG', make: function (r) { var c = r.pick([11, 12, 13, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100]); return EV({ base: [c * c, 1], m: 1, n: 2 }); } },
-        { id: '1c', level: 'BEG', make: function (r) { var c = r.int(2, 10); return EV({ base: [c * c * c, 1], m: 1, n: 3 }); } },
+        { id: '1c', level: 'BEG', make: function (r) { var c = r.pick([2, 5, 6, 7, 8, 9, 10]); /* not 64 (Lesson Example 1) or 27 (warm-up notes) */ return EV({ base: [c * c * c, 1], m: 1, n: 3 }); } },
         { id: '1d', level: 'BEG', make: function (r) { var c = r.pick([10, 10, 20, 30, 40, 50, 60, 100]); return EV({ base: [c * c * c, 1], m: 1, n: 3 }); } },
         { id: '1e', level: 'EMG', make: function (r) { var c = r.pick([2, 3, 4, 5, 10]); return EV({ base: [Math.pow(c, 4), 1], m: 1, n: 4 }); } },
         { id: '1f', level: 'EMG', make: function (r) { var c = r.pick([2, 3, 4, 10]); return EV({ base: [Math.pow(c, 5), 1], m: 1, n: 5 }); } }] },
@@ -933,14 +933,14 @@
         { id: '6c', level: 'BEG', make: function (r) { var q = r.pick([3, 4, 5, 6, 7, 8]), a = r.pick(cops(q)); return prodPart(r.pick(LETS), [a, q], [q - a, q]); } },
         { id: '6d', level: 'BEG', make: function (r) { var ab = r.pick([[1, 1], [1, 1], [3, 1], [1, 3], [5, 1], [3, 3], [1, 5]]); return prodPart(r.pick(LETS), [ab[0], 2], [ab[1], 2]); } }] },
       { num: '7', stem: 'Simplify. Leave your answer as a power with a positive exponent. (Quotient law.)', parts: [
-        { id: '7a', level: 'EMG', make: function (r) { var q = r.pick([6, 8, 9, 10, 12]), g = pickWhere(r, function () { return [r.pick(cops(q)), r.pick(cops(q))]; }, function (x) { return x[0] > x[1] && gcd(x[0] - x[1], q) > 1; }) || [5, 1]; return quotPart(r.pick(LETS), [g[0], q], [g[1], q]); } },
+        { id: '7a', level: 'EMG', make: function (r) { var q = r.pick([6, 8, 9, 10, 12]), g = pickWhere(r, function () { return [r.pick(cops(q)), r.pick(cops(q))]; }, function (x) { return x[0] > x[1] && gcd(x[0] - x[1], q) > 1 && !(q === 6 && x[0] === 5 && x[1] === 1); }); /* m^{5/6} ÷ m^{1/6} is Lesson Example 5(b) */ if (!g) { q = 10; g = [7, 1]; } return quotPart(r.pick(LETS), [g[0], q], [g[1], q]); } },
         { id: '7b', level: 'EMG', make: function (r) { var q = r.pick([4, 6, 8]), g = pickWhere(r, function () { return [r.pick(cops(q)), r.pick(cops(q))]; }, function (x) { return x[0] > x[1]; }) || [3, 1]; return quotPart(r.pick(LETS), [g[0], q], [g[1], q]); } },
         { id: '7c', level: 'EMG', make: function (r) { var q = r.pick([5, 7, 8, 9]), g = pickWhere(r, function () { return [r.pick(cops(q)), r.pick(cops(q))]; }, function (x) { return x[0] > x[1]; }) || [7, 3]; return quotPart(r.pick(LETS), [g[0], q], [g[1], q]); } },
         { id: '7d', level: 'PRG', make: function (r) { var q = r.pick([2, 2, 3, 4, 5]), g = pickWhere(r, function () { return [r.int(1, 2 * q), r.int(1, 2 * q)]; }, function (x) { return x[0] < x[1] && gcd(x[0], q) === 1 && gcd(x[1], q) === 1; }) || [1, 3]; return quotPart(r.pick(LETS), [g[0], q], [g[1], q]); } }] },
       { num: '8', stem: 'Simplify. Leave your answer as a power with a positive exponent. (Power of a power, power of a product.)', parts: [
         { id: '8a', level: 'BEG', make: function (r) { var q = r.pick([2, 2, 4]), a = r.pick(cops(q)), k = q * r.pick([1, 2, 3]); return powPart(1, r.pick(LETS), [a, q], k); } },
         { id: '8b', level: 'BEG', make: function (r) { var q = r.pick([3, 3, 5, 6]), a = r.pick(cops(q).filter(function (x) { return x < 4; })), k = q * r.pick([1, 2, 3]); return powPart(1, r.pick(LETS), [a, q], k); } },
-        { id: '8c', level: 'EMG', make: function (r) { var q = r.pick([2, 2, 3]), c = q === 2 ? r.int(2, 9) : r.int(2, 5), a = r.pick(cops(q)); return powPart(c, r.pick(LETS), [a, q], q); } },
+        { id: '8c', level: 'EMG', make: function (r) { var q = r.pick([2, 2, 3]), c = q === 2 ? r.int(2, 9) : r.int(2, 5), a = r.pick(cops(q)); if (q === 2 && c === 4 && a === 1) c = r.pick([2, 3, 5, 6, 7, 8, 9]); /* (4g^{1/2})² is Lesson Example 5(d) */ return powPart(c, r.pick(LETS), [a, q], q); } },
         { id: '8d', level: 'PRG', make: function (r) { var g = r.pick([[9, [2, 3], [3, 2]], [4, [2, 3], [3, 2]], [16, [2, 3], [3, 2]], [25, [2, 3], [3, 2]], [8, [3, 2], [2, 3]], [27, [3, 2], [2, 3]], [64, [3, 2], [2, 3]], [4, [4, 3], [3, 2]], [9, [4, 3], [3, 2]], [8, [3, 4], [4, 3]], [36, [2, 3], [3, 2]], [125, [3, 2], [2, 3]]]); return powPart(g[0], r.pick(LETS), g[1], g[2]); } }] },
       { num: '9', section: 'Part D — Applications and Extensions', stem: function (sh) { return sh.o + ' has a volume of ' + t(F(sh.V)) + ' ' + sh.u + t('^{3}') + '.'; }, shared: cubeShared,
         parts: [{ id: '9a', level: 'EMG', make: q9a }, { id: '9b', level: 'PRG', make: q9b }, { id: '9c', level: 'EMG', make: q9c }] },
