@@ -485,7 +485,7 @@ math-field { --contains-highlight-background-color: hsl(212, 40%, 95%); --contai
 .tm { position: fixed; inset: 0; z-index: 100; overflow: auto; --tm-bg: #fff3c4; --tm-line: #e9cf6b; --tm-ink: #6b5200; background: var(--tm-bg); }
 .tm.tm-test { --tm-bg: #ffe2c6; --tm-line: #f0ad6e; --tm-ink: #8a3d00; }
 body.tm-on { overflow: hidden; }
-body.tm-on .calc { z-index: 200; }
+body.tm-on .calc, body.tm-on .tt { z-index: 200; }
 .tm-kind { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--tm-ink); background: rgba(255, 255, 255, .6); border: 1px solid var(--tm-line); border-radius: 999px; padding: 2px 10px; }
 .tm-name { font-size: 24px; font-weight: 800; color: var(--ink); background: #fff; border: 2px solid var(--tm-line); border-radius: 12px; padding: 4px 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 40vw; }
 .tm-splash { max-width: 640px; margin: 8vh auto 40px; background: #fff; border: 2px solid var(--tm-line); border-radius: 18px; padding: 30px 34px; box-shadow: 0 18px 50px rgba(60, 40, 0, .12); text-align: center; }
@@ -867,3 +867,28 @@ button.ulv:hover { border-color: var(--brand); }
 .q-rect-fill .q-rect-side { transform: translate(0, -20%); }
 @media (max-width: 600px) { .q-rect { padding-right: 62px; } .q-rect:has(.q-rect-left) { padding-left: 62px; width: calc(100% - 124px); } .q-rect:has(.q-rect-left) .q-rect-top, .q-rect:has(.q-rect-left) .q-rect-bot { left: 62px; } .q-rect-left { width: 56px; font-size: 13px; } .q-rect-side { width: 58px; font-size: 13px; } .q-hs { animation-delay: calc(var(--i) * 1.3s + .2s); } }
 @media (prefers-reduced-motion: reduce) { .q-hs, .q-howto-replay, .q-side, .q-rect-fill .q-rect-top, .q-rect-fill .q-rect-side { animation: none; opacity: 1; transform: none; } .q-howto-replay { display: none; } }
+
+/* ---------- multiplication table (js/times.js), opened from the icon button beside Calculator ---------- */
+.top-times { padding-left: 9px; padding-right: 9px; }
+.tt { position: fixed; left: 24px; bottom: 24px; z-index: 61; background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 18px 40px rgba(20, 24, 33, .22); padding: 8px 10px 10px; outline: none; user-select: none; -webkit-user-select: none; }
+.tt-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; cursor: move; touch-action: none; padding: 0 2px 8px; min-height: 32px; }
+.tt-fact { font-size: 18px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.tt-fact b { font-weight: 700; }
+.tt-fact .tt-ans { color: var(--brand2); }
+.tt-hint { font-size: 14px; color: var(--muted); }
+.tt-close { border: none; background: var(--line2); color: var(--ink2); width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 18px; line-height: 1; flex: none; }
+.tt-close:hover { background: var(--line); }
+.tt-grid { border-collapse: separate; border-spacing: 2px; font-variant-numeric: tabular-nums; }
+.tt-grid td, .tt-grid th { width: 30px; height: 27px; text-align: center; font-size: 14px; border-radius: 5px; padding: 0; transition: background-color .08s; }
+.tt-grid td { color: var(--ink); background: #f7f5f0; cursor: pointer; }
+.tt-grid th { font-weight: 700; color: var(--brand); background: var(--brand-soft); }
+.tt-grid .tt-corner { background: transparent; color: var(--muted); font-weight: 600; }
+.tt-grid td.tt-row, .tt-grid td.tt-col { background: #dfe8f8; }
+.tt-grid th.tt-on { background: var(--brand2); color: #fff; }
+.tt-grid td.tt-hit { background: var(--brand); color: #fff; font-weight: 700; }
+.tt.tt-pinned .tt-grid td.tt-hit { box-shadow: 0 0 0 2px #f0c46a; }
+@media (max-width: 600px) {
+  .tt { left: 6px; right: 6px; bottom: 6px; padding: 6px 6px 8px; }
+  .tt-grid { width: 100%; table-layout: fixed; border-spacing: 1.5px; }
+  .tt-grid td, .tt-grid th { width: auto; height: 25px; font-size: 13px; }
+}
