@@ -25,7 +25,7 @@
     'sq-not-doubled': 'Middle term of a square not doubled', 'sq-middle-sign': 'Wrong sign on the middle term of a square', 'sq-as-sd': 'Treated a square as sum × difference',
     'coef-not-squared': 'Coefficient not squared', 'sd-middle': 'Stray middle term in sum × difference', 'sd-plus': 'Sum × difference gave a² + b²', 'sd-as-square': 'Treated sum × difference as a square',
     'k-in-square': 'Number in front put inside the square', 'k-first': 'Number in front multiplied into only one term', 'k-forgot': 'Forgot the number in front', 'k-both': 'Number in front multiplied into both brackets',
-    'minus-first': 'Subtracted a bracket but changed only its first sign', 'minus-ignored': 'Added a product that is subtracted', 'no-change': 'Added instead of subtracting (no signs changed)',
+    'sub-first': 'Subtracted a bracket but changed only its first sign', 'minus-ignored': 'Added a product that is subtracted', 'no-change': 'Added instead of subtracting (no signs changed)',
     'foil-only': 'Only 4 partial products (FOIL) — missed the trinomial’s middle term', 'second-partial': 'Second term of the binomial multiplied by only part of the trinomial',
     'q-not-mult': 'Second term not multiplied through the trinomial', 'unlike-combined': 'Combined unlike terms', 'cube-each': 'Cubed each term: (a+b)³ = a³+b³',
     'two-dims': 'Multiplied only two of the three dimensions', 'face-area': 'Gave the area of one face, not the volume', 'box-dims': 'Box dimensions L − x instead of L − 2x',
@@ -179,7 +179,7 @@
       it.p.wr.forEach(function (w) { W.push({ is: Y.add(T, Y.scale(Y.sub(w.p, it.p.val), it.s)), code: w.code, hint: w.hint }); });
       if (it.s < 0 && Y.count(it.p.val) > 1) {
         var rest = Y.sub(it.p.val, firstTerm(it.p.val));
-        W.push({ is: Y.add(T, Y.scale(rest, 2)), code: 'minus-first', hint: 'A minus sign in front of ' + t(it.p.tex) + ' changes the sign of <b>every</b> term of its expansion: ' + t('-\\left(' + tx(it.p.val) + '\\right)=' + tx(Y.neg(it.p.val))) + '.' });
+        W.push({ is: Y.add(T, Y.scale(rest, 2)), code: 'sub-first', hint: 'A minus sign in front of ' + t(it.p.tex) + ' changes the sign of <b>every</b> term of its expansion: ' + t('-\\left(' + tx(it.p.val) + '\\right)=' + tx(Y.neg(it.p.val))) + '.' });
         W.push({ is: Y.add(T, Y.scale(it.p.val, 2)), code: 'minus-ignored', hint: t(it.p.tex) + ' is <b>subtracted</b>: put its expansion in brackets and change the sign of every term.' });
       }
     });
@@ -190,7 +190,7 @@
       var together = list.map(function (it, i) { var v = tx(it.p.val), one = Y.count(it.p.val) === 1 && v.charAt(0) !== '-'; return (it.s < 0 ? '-' : i ? '+' : '') + (one && it.s > 0 ? v : '\\left(' + v + '\\right)'); }).join('');
       var flat = []; list.forEach(function (it) { flat = flat.concat(termsOf(Y.scale(it.p.val, it.s))); });
       var anySub = list.some(function (it) { return it.s < 0 && Y.count(it.p.val) > 1; });
-      sol = (lines.length ? 'Expand each product:<br>' + lines.join('<br>') + '<br>' : '') + 'Put the pieces together: ' + t(tex + '=' + together) +
+      sol = (lines.length ? 'Expand each product:<br>' + lines.join('<br>') + '<br>Put the pieces together: ' + t(tex + '=' + together) : t(tex)) +
         (anySub ? '<br>Change the sign of <b>every</b> term in a subtracted bracket: ' : '<br>Remove the brackets: ') + t('=' + seq(flat)) +
         '<br>Collect like terms: ' + groupsTex(flat) + '<br>' + t('=' + tx(T));
     }
@@ -819,7 +819,7 @@
             return pp('(a) Expand and simplify the left side of ' + t(lhs + '=' + tx(L)) + ' to show that it is true for every number ' + t(v) + '. (Type the simplified left side.)', L, [
               { is: plus ? N(k * k) : N(-k * k), code: 'sq-no-middle', hint: 'The square has a middle term: ' + t((plus ? '(' + v + '+' + k + ')^{2}' : '(' + v + '-' + k + ')^{2}') + '=' + tx(sq)) + '.' },
               { is: plus ? Y.sub(sq, N(0)) : Y.add(M(2, v, 2), Y.neg(sq)).length ? null : null, code: 'value' },
-              { is: plus ? null : S([M(-2 * k, v), N(k * k)]), code: 'minus-first', hint: 'Subtract the <b>whole</b> square: ' + t('-\\left(' + tx(sq) + '\\right)=' + tx(Y.neg(sq))) + '.' }],
+              { is: plus ? null : S([M(-2 * k, v), N(k * k)]), code: 'sub-first', hint: 'Subtract the <b>whole</b> square: ' + t('-\\left(' + tx(sq) + '\\right)=' + tx(Y.neg(sq))) + '.' }],
               t(lhs + '=' + (plus ? '\\left(' + tx(sq) + '\\right)-' + v + '^{2}' : v + '^{2}-\\left(' + tx(sq) + '\\right)') + '=' + tx(L)),
               ['Expand the square with its middle term, then subtract.'], 'expand (n+k)²−n²', { vars: [v] });
           } },
@@ -974,7 +974,7 @@
           } },
           { id: 'e11c', sub: 'c', level: 'PRG', make: function (r, sh) {
             var c = combo(sh.list);
-            return pp('(c) Give the correct simplified expression for ' + t(sh.expr) + '.', c.T, c.wr.concat([{ is: sh.wrongRes, code: 'minus-first', hint: 'That is Priya’s answer. Change the sign of <b>every</b> term in the subtracted bracket.' }]), c.sol, HCOMBO, 'Priya corrected');
+            return pp('(c) Give the correct simplified expression for ' + t(sh.expr) + '.', c.T, c.wr.concat([{ is: sh.wrongRes, code: 'sub-first', hint: 'That is Priya’s answer. Change the sign of <b>every</b> term in the subtracted bracket.' }]), c.sol, HCOMBO, 'Priya corrected');
           } },
           { id: 'e11d', sub: 'd', level: 'BEG', make: function (r, sh) {
             var x0 = sh.x0, fl = [nbox('Original', { label: 'value of the original expression' }), nbox('Simplified', { label: 'value of your simplified expression' })];
@@ -994,7 +994,7 @@
         parts: [
           { id: 'e12a', sub: 'a', level: 'PRG', make: function (r, sh) { var s = sh.A; return comboPart('(a) Simplify ', [{ s: 1, p: pMono(M(s.a, 'x'), [M(1, 'x'), N(-s.b)]) }, { s: -1, p: pFoil(M(1, 'x'), N(-s.c), M(1, 'x'), N(s.d)) }], null, 'ax(x−b)−(x−c)(x+d)'); } },
           { id: 'e12a2', sub: 'a check', level: 'BEG', make: function (r, sh) {
-            var s = sh.A, c = combo([{ s: 1, p: pMono(M(s.a, 'x'), [M(1, 'x'), N(-s.b)]) }, { s: -1, p: pFoil(M(1, 'x'), N(-s.c), M(1, 'x'), N(s.d)) }]), v = at(c.T, -1), w1 = at(c.wr.filter(function (w) { return w.code === 'minus-first'; })[0].is, -1);
+            var s = sh.A, c = combo([{ s: 1, p: pMono(M(s.a, 'x'), [M(1, 'x'), N(-s.b)]) }, { s: -1, p: pFoil(M(1, 'x'), N(-s.c), M(1, 'x'), N(s.d)) }]), v = at(c.T, -1), w1 = at(c.wr.filter(function (w) { return w.code === 'sub-first'; })[0].is, -1);
             var p = KP.number('Check (a): substitute ' + t('x=-1') + ' into ' + t(c.tex) + ' and into your simplified expression. What value do both give?', v, numDiagClean(v, [[w1, 'u3l7-sub-val', 'That value comes from changing only the first sign of the subtracted product. Check your simplified expression.'], [s.a * (1 + s.b) - (1 + s.c) * (s.d - 1), 'sign', 'Watch the signs: ' + t('(-1-' + s.c + ')(-1+' + s.d + ')=(' + (-1 - s.c) + ')(' + (s.d - 1) + ')=' + (-1 - s.c) * (s.d - 1)) + ', and you subtract it.']]),
               'Original: ' + t(s.a + '(-1)(-1-' + s.b + ')-(-1-' + s.c + ')(-1+' + s.d + ')=' + s.a * (1 + s.b) + '-(' + (-(1 + s.c) * (s.d - 1)) + ')=' + v) + '.<br>Simplified: ' + t(valuesTex(c.T, -1) + '=' + v) + ' ✓',
               ['Replace every ' + t('x') + ' with ' + t('(-1)') + '. Work out each bracket first.'], 'check at x = −1');
@@ -1217,7 +1217,7 @@
             return pp('(c) Write a simplified expression for the area of the path alone.', Pa, [
               { is: Tot, code: 'u3l7-path-total', hint: 'That is the area of the garden <b>and</b> the path. Subtract the garden’s area.' },
               { is: Y.add(Tot, G), code: 'minus-ignored', hint: 'Path = (total) − (garden): subtract the garden’s area.' },
-              { is: Y.add(Tot, Y.neg(firstTerm(G)), Y.sub(G, firstTerm(G))), code: 'minus-first', hint: 'Subtract the <b>whole</b> garden area: ' + t('-\\left(' + tx(G) + '\\right)=' + tx(Y.neg(G))) + '.' },
+              { is: Y.add(Tot, Y.neg(firstTerm(G)), Y.sub(G, firstTerm(G))), code: 'sub-first', hint: 'Subtract the <b>whole</b> garden area: ' + t('-\\left(' + tx(G) + '\\right)=' + tx(Y.neg(G))) + '.' },
               { is: Y.sub(Y.mul(lin(1, sh.p + sh.w), lin(1, sh.q + sh.w)), G), code: 'u3l7-path-one', hint: 'The outer dimensions add ' + t(sh.w) + ' m at <b>both</b> ends of each side.' }],
               'Garden: ' + t('(x+' + sh.p + ')(x+' + sh.q + ')=' + tx(G)) + '<br>Path ' + t('=\\left(' + tx(Tot) + '\\right)-\\left(' + tx(G) + '\\right)=' + tx(Pa)) + ' m' + t('^{2}'),
               ['Area of the path = (total area) − (area of the garden).', 'Subtract the whole garden area: change every sign.'], 'path area', { after: t('\\text{m}^{2}') });

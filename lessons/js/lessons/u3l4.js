@@ -611,15 +611,14 @@ const foilRecall = makeFoil('FOIL, one more time', [{ sep: 'Example 1 check:' },
 function mountCorner() {
   const host = document.getElementById('u3l4-corner'); if (!host) return;
   const SIZES = [[7, 3], [10, 2], [6, 1]];
-  host.innerHTML = `<div class="u3l4-cn-top no-ink"><span class="u3l4-cn-l">Square, corner:</span>${SIZES.map(([n, k], i) => `<button type="button" class="chip${i ? '' : ' on'}" data-sz="${i}">${n} and ${k}</button>`).join('')}</div>
-    <div class="u3l4-cn-pic"></div>
-    <div class="u3l4-cn-ctl no-ink"><button type="button" class="pill" data-go="1">✂ Cut out the corner</button><button type="button" class="pill" data-go="2">↻ Slide &amp; turn</button>
+  host.innerHTML = `<div class="u3l4-cn-top no-ink">${SIZES.map(([n, k], i) => `<button type="button" class="chip${i ? '' : ' on'}" data-sz="${i}" title="${n} by ${n} square, ${k} by ${k} corner">${n} &amp; ${k}</button>`).join('')}<span class="u3l4-cn-gap"></span><button type="button" class="pill" data-go="1">✂ Cut the corner</button><button type="button" class="pill" data-go="2">↻ Slide &amp; turn</button>
       <button class="exb" type="button" data-go="0" title="Start over" aria-label="Start over"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg></button></div>
+    <div class="u3l4-cn-pic"></div>
     <div class="u3l4-cn-say" aria-live="polite"></div>`;
   const pic = host.querySelector('.u3l4-cn-pic'), say = host.querySelector('.u3l4-cn-say');
   const st = { i: 0, s: 0 };
   const draw = () => {
-    const [N, k] = SIZES[st.i], u = Math.min(26, 300 / (N + k)), P = 34, W = P * 2 + (N + k) * u, H = P + 26 + N * u;
+    const [N, k] = SIZES[st.i], u = Math.min(24, 290 / (N + k)), P = 34, W = P * 2 + (N + k) * u, H = P + 26 + N * u;
     const grid = (x0, y0, w, hh, cls) => {
       let g = `<rect class="u3l4-cn-p ${cls}" x="${x0 * u}" y="${y0 * u}" width="${w * u}" height="${hh * u}"/>`;
       for (let i = 1; i < w; i++) g += `<path class="u3l4-cn-gl ${cls}" d="M${(x0 + i) * u} ${y0 * u}v${hh * u}"/>`;

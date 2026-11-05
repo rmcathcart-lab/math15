@@ -31,7 +31,7 @@
 .u3l4-cn-top { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
 .u3l4-cn-l { font-weight: 700; color: var(--muted); font-size: 16px; margin-right: 4px; }
 .u3l4-cn-top .chip.on { background: var(--brand); border-color: var(--brand); color: #fff; }
-.u3l4-cn-pic { display: flex; justify-content: center; min-height: 230px; align-items: center; }
+.u3l4-cn-pic { display: flex; justify-content: center; min-height: 210px; align-items: center; }
 .u3l4-cn-svg { overflow: visible; }
 .u3l4-cn-p.y { fill: #ffecb3; } .u3l4-cn-p.b { fill: #bed4f5; } .u3l4-cn-p.r { fill: #f6cfc9; }
 .u3l4-cn-gl { fill: none; stroke-width: 1; }
@@ -214,3 +214,8 @@
 .u3l4-fo0 { font-size: 42px; white-space: nowrap; }
 
 .u3l4 [data-ink=ex5] .ans { min-height: 78px; }
+.u3l4-cn-gap { flex: 1; }
+.u3l4-cn-top .pill { padding: 5px 10px; font-size: 15.5px; }
+.u3l4-cn-top .chip { padding: 4px 10px; }
+.u3l4-cn-top .exb { height: 36px; min-width: 36px; }
+.u3l4 .wf .u3l4-cn-say { min-height: 2.4em; margin-top: 2px; }

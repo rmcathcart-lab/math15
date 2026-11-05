@@ -25,9 +25,11 @@
     'no-square': 'Forgot to square the radius', 'side-not-x': 'Gave x instead of the requested length', 'not-doubled': 'Middle term of a perfect square not doubled', 'student-ans': 'Repeated the student’s error',
     'one-end-border': 'Added the border at one end only', 'reverse': 'Subtracted in the wrong order', 'answered-other': 'Gave the other quantity, not the one asked for',
     'u3l6-add-sides': 'Added the side lengths instead of multiplying', 'u3l6-one-side': 'Enlarged only one of the two sides', 'u3l6-added-area': 'Added the extra length to the area instead of to the sides',
-    'u3l6-move-sign': 'Moved a number across the equals sign without changing its sign', 'u3l6-lid-twice': 'Removed the lid from both pairs of faces'
+    'u3l6-move-sign': 'Moved a number across the equals sign without changing its sign', 'u3l6-lid-twice': 'Removed the lid from both pairs of faces',
+    'half-perimeter': 'Added only two sides of the rectangle', 'dsq-sign': 'Sum × difference: wrong sign on the last term', 'only-last': 'Multiplied the monomial into only one term', 'exp-mult': 'Multiplied exponents instead of adding',
+    'u3l6-div-one': 'Divided only one term by 4'
   });
-  HW.addPartial({ 'u3l6-add-sides': 'n', 'u3l6-one-side': 'b', 'u3l6-added-area': 'n', 'u3l6-move-sign': 's', 'u3l6-lid-twice': 'b' });
+  HW.addPartial({ 'u3l6-add-sides': 'n', 'u3l6-one-side': 'b', 'u3l6-added-area': 'n', 'u3l6-move-sign': 's', 'u3l6-lid-twice': 'b', 'u3l6-div-one': 'b' });
 
   /* ---------- small helpers ---------- */
   function gen(f) { for (var i = 0; i < 4000; i++) { var v = f(); if (v) return v; } throw new Error('u3l6: generator failed'); }
@@ -651,6 +653,603 @@
           } }] }
     ],
 
-    extra: []
+    extra: [
+      /* ---------- EP Part A ---------- */
+      { num: '1', section: 'Extra practice A — Composite areas: adding and subtracting regions', stem: function (sh) {
+          var X = sh.X, W = 2 * X + sh.p, H = 2 * X + sh.u, nw = X + sh.p - sh.s, nh = X + sh.u - sh.q;
+          return 'The L-shaped patio below is made of two rectangles (split along the dashed line). Only four sides are labelled.' +
+            figL(W, H, nw, nh, { bottom: tx(sh.W), left: tx(sh.H), armTop: tx(sh.top), bandRight: tx(sh.rt) }, { join: true, label: 'L-shaped patio' });
+        },
+        shared: function (r) {
+          return gen(function () {
+            var p = r.int(3, 8), s = r.int(1, 4), q = r.int(1, 4), u = q + r.int(1, 5), X = r.int(2, 5);
+            if (p - s < 1) return null;
+            var W = lin(2, p), H = lin(2, u), top = lin(1, s), rt = lin(1, q), arm = lin(1, u - q), A1 = P.mul(W, rt), A2 = P.mul(top, arm);
+            return { p: p, s: s, q: q, u: u, X: X, W: W, H: H, top: top, rt: rt, arm: arm, A1: A1, A2: A2, area: P.add(A1, A2) };
+          });
+        },
+        parts: [
+          { id: 'e1a', level: 'EMG', make: function (r, sh) {
+            return polyPart('Find the length of the <b>unlabelled vertical side</b> (the height of the upper rectangle), in terms of ' + t('x') + '.', sh.arm, [
+              { is: P.add(sh.H, sh.rt), code: 'added', hint: 'The upper rectangle is the whole left side <b>minus</b> the lower part: ' + t(bt(sh.H) + '-' + bt(sh.rt)) + '.' },
+              { is: badSub(sh.H, sh.rt), code: 'minus-first', hint: 'Subtract both terms of ' + t(bt(sh.rt)) + ': ' + t(bt(sh.H) + '-' + bt(sh.rt) + '=' + tx(sh.H) + '-x-' + sh.q) + '.' },
+              { is: P.sub(sh.W, sh.top), code: 'answered-other', hint: 'That is the unlabelled <b>horizontal</b> side. Use the left side and the right side for the vertical one.' }],
+              'The left side is the whole height, ' + t(tx(sh.H)) + '; the right side is only the lower rectangle, ' + t(tx(sh.rt)) + '.<br>The difference is the upper rectangle’s height: ' + t(bt(sh.H) + '-' + bt(sh.rt) + '=' + tx(sh.H) + '-x-' + sh.q + '=' + tx(sh.arm)) + '.',
+              ['The left side is the full height. The right side is only the bottom rectangle.', 'Full height − bottom part = the part on top. Subtract both terms.'], 'unlabelled side');
+          } },
+          { id: 'e1b', level: 'PRG', make: function (r, sh) {
+            return polyPart('Write a simplified expression for the total area of the patio.', sh.area, [
+              { is: sh.A1, code: 'one-piece', hint: 'That is only the lower rectangle. Add the upper one, ' + t(bt(sh.top) + bt(sh.arm)) + '.' },
+              { is: sh.A2, code: 'one-piece', hint: 'That is only the upper rectangle. Add the lower one, ' + t(bt(sh.W) + bt(sh.rt)) + '.' },
+              { is: P.mul(sh.W, sh.H), code: 'bounding-box', hint: 'That is the whole bounding rectangle — a corner of it is missing. Add the two rectangles instead.' },
+              { is: P.add(firstLast(sh.W, sh.rt), firstLast(sh.top, sh.arm)), code: 'fl-only', hint: 'Each product needs all four FOIL products.' }],
+              '<b>Add the two rectangles.</b><br>' + steps(['\\text{Lower: }' + bt(sh.W) + bt(sh.rt) + '=' + tx(sh.A1), '\\text{Upper: }' + bt(sh.top) + bt(sh.arm) + '=' + tx(sh.A2), '\\text{Total}=' + tx(sh.area)]),
+              ['Area of the lower rectangle + area of the upper rectangle.', 'The upper rectangle is ' + t(bt(sh.top)) + ' wide and (your answer to (a)) tall.'], 'L-shape area', { before: t('A=') });
+          } },
+          { id: 'e1c', level: 'EMG', make: function (r, sh) {
+            var X = sh.X, v = at(sh.area, X);
+            return numPart('Determine the area when ' + t('x=' + X) + ' m.', v, [[at(sh.A1, X), 'one-piece', 'That is only the lower rectangle.'], [at(sh.A2, X), 'one-piece', 'That is only the upper rectangle.'], [at(P.mul(sh.W, sh.H), X), 'bounding-box', 'That is the bounding rectangle — a corner is missing.']],
+              t(atTex(sh.area, X) + '=' + v) + ' m².<br>Check: ' + t(at(sh.W, X) + '\\times ' + at(sh.rt, X) + '+' + at(sh.top, X) + '\\times ' + at(sh.arm, X) + '=' + at(sh.A1, X) + '+' + at(sh.A2, X) + '=' + v) + ' ✓',
+              ['Substitute ' + t('x=' + X) + ' into your answer to (b).'], 'L-shape at x=' + X, 'm²');
+          } }] },
+      { num: '2', stem: function (sh) {
+          var X = sh.X, W = at(sh.W, X), H = at(sh.H, X), I = at(sh.i, X);
+          return 'A rectangular sheet of metal ' + t(bt(sh.W)) + ' cm by ' + t(bt(sh.H)) + ' cm has a square hole of side ' + t(bt(sh.i)) + ' cm punched out of the middle.' +
+            figFrame(W, H, clamp(I, 0.3 * W, 0.6 * W), clamp(I, 0.35 * H, 0.65 * H), { top: tx(sh.W), left: tx(sh.H), inW: tx(sh.i), label: 'metal sheet with a square hole', pw: 240, ph: 160 });
+        },
+        shared: function (r) { return gen(function () { var p = r.int(3, 7), q = r.int(2, 6), s = r.int(1, 4), X = r.int(2, 5); if (s >= q) return null; var W = lin(2, p), H = lin(1, q), i = lin(1, s); return { X: X, W: W, H: H, i: i, O: P.mul(W, H), I: P.pow(i, 2) }; }); },
+        parts: [
+          { id: 'e2a', level: 'PRG', make: function (r, sh) {
+            var A = P.sub(sh.O, sh.I);
+            return polyPart('Write a simplified expression for the area of metal that remains (in cm²).', A, [
+              { is: P.add(sh.O, sh.I), code: 'added', hint: 'The hole is removed: subtract its area.' }, { is: sh.O, code: 'outer-only', hint: 'Subtract the square hole.' },
+              { is: badSub(sh.O, sh.I), code: 'minus-first', hint: 'Subtract <b>every</b> term: ' + t('-(' + tx(sh.I) + ')=' + tx(P.neg(sh.I))) + '.' }, { is: P.sub(sh.O, sqNoMid(sh.i)), code: 'no-middle', hint: t(bt(sh.i) + '^{2}') + ' has a middle term.' }],
+              steps(['\\text{Sheet: }' + bt(sh.W) + bt(sh.H) + '=' + tx(sh.O), '\\text{Hole: }' + bt(sh.i) + '^{2}=' + tx(sh.I), '(' + tx(sh.O) + ')-(' + tx(sh.I) + ')=' + tx(A)]) + ' cm²',
+              ['Metal left = sheet − hole.', 'Keep the hole’s area in brackets when you subtract.'], 'metal remaining', { before: t('A=') });
+          } },
+          { id: 'e2b', level: 'EMG', make: function (r, sh) {
+            var X = sh.X, A = P.sub(sh.O, sh.I), v = at(A, X);
+            return numPart('Determine the remaining area when ' + t('x=' + X) + ' cm.', v, [[at(sh.O, X), 'outer-only', 'Subtract the hole.'], [at(P.add(sh.O, sh.I), X), 'added', 'Subtract the hole; don’t add it.']],
+              t(atTex(A, X) + '=' + v) + ' cm². Check: ' + t(at(sh.W, X) + '\\times ' + at(sh.H, X) + '-' + at(sh.i, X) + '^{2}=' + at(sh.O, X) + '-' + at(sh.I, X) + '=' + v) + ' ✓',
+              ['Substitute ' + t('x=' + X) + ' into your answer to (a).'], 'metal at x=' + X, 'cm²');
+          } }] },
+      { num: '3', stem: function (sh) {
+          return 'A photograph measures ' + t(sh.L) + ' cm by ' + t(sh.W) + ' cm. A wooden frame of uniform width ' + t('x') + ' cm is built around all four sides of it.' +
+            figFrame(sh.L + 2 * sh.x0, sh.W + 2 * sh.x0, sh.L, sh.W, { inner: ['\\text{photo}', '\\text{' + sh.L + ' cm by ' + sh.W + ' cm}'], border: 'x', label: 'framed photograph', pw: 250, ph: 170 });
+        },
+        shared: function (r) { return gen(function () { var L = r.pick([10, 12, 12, 14, 15, 16, 20]), W = r.pick([6, 8, 8, 9, 10, 12]), x0 = r.int(1, 3); return W < L ? { L: L, W: W, x0: x0, oL: lin(2, L), oW: lin(2, W), N: 4 * x0 * x0 + 2 * (L + W) * x0 } : null; }); },
+        parts: [
+          { id: 'e3a', level: 'EMG', make: function (r, sh) {
+            var oneL = lin(1, sh.L), oneW = lin(1, sh.W);
+            var p = fieldsPart('Write expressions for the outer length and the outer width of the framed picture.', [pbox('Outer length (cm):', 'Outer length'), pbox('Outer width (cm):', 'Outer width')],
+              [polyChk(sh.oL, [{ is: oneL, code: 'one-end-border', hint: 'The frame is on <b>both</b> ends: the length grows by ' + t('x') + ' on the left and ' + t('x') + ' on the right, ' + t('2x') + ' in all.' }]), polyChk(sh.oW, [{ is: oneW, code: 'one-end-border', hint: 'The frame is on the top <b>and</b> the bottom: add ' + t('2x') + '.' }])],
+              [tx(sh.oL), tx(sh.oW)], t(tx(sh.oL)) + ' cm by ' + t(tx(sh.oW)) + ' cm',
+              'Each side of the photo gets a strip of width ' + t('x') + ' at <b>both</b> ends: length ' + t(sh.L + '+x+x=' + tx(sh.oL)) + ', width ' + t(sh.W + '+x+x=' + tx(sh.oW)) + '.',
+              ['Draw the frame: how many strips of width ' + t('x') + ' does the length cross?'], 'outer dimensions');
+            p.bad = [[tx(oneL), tx(oneW)]];
+            return p;
+          } },
+          { id: 'e3b', level: 'PRG', make: function (r, sh) {
+            var O = P.mul(sh.oL, sh.oW);
+            return polyPart('Write a simplified expression for the total outer area (in cm²).', O, [{ is: P.mul(lin(1, sh.L), lin(1, sh.W)), code: 'one-end-border', hint: 'The outer sides are ' + t(bt(sh.oL)) + ' and ' + t(bt(sh.oW)) + ' — a strip on both ends.' }, { is: firstLast(sh.oL, sh.oW), code: 'fl-only', hint: 'All four FOIL products: the Outer and Inner give the ' + t('x') + ' terms.' }],
+              areaSol(sh.oL, sh.oW, 'cm²'), ['Outer area = outer length × outer width (FOIL).'], 'outer area', { before: t('A=') });
+          } },
+          { id: 'e3c', level: 'PRG', make: function (r, sh) {
+            var O = P.mul(sh.oL, sh.oW), F0 = P.sub(O, P.num(sh.L * sh.W));
+            return polyPart('Write a simplified expression for the area of the frame alone (the wood only).', F0, [{ is: O, code: 'outer-only', hint: 'That includes the photo. Subtract the photo’s area, ' + t(sh.L + '\\times ' + sh.W + '=' + sh.L * sh.W) + '.' }, { is: P.add(O, P.num(sh.L * sh.W)), code: 'added', hint: 'Subtract the photo; don’t add it.' }],
+              'Frame = outer − photo: ' + t('(' + tx(O) + ')-' + sh.L * sh.W + '=' + tx(F0)) + ' cm².', ['Frame = outer area − photo area. The photo is ' + t(sh.L + '\\times ' + sh.W) + '.'], 'frame area', { before: t('A=') });
+          } },
+          { id: 'e3d', level: 'PRG', make: function (r, sh) {
+            var x0 = sh.x0, a = 2 * (sh.L + sh.W), rows = [1, 2, 3, 4].map(function (k) { return t('x=' + k) + ': ' + t('4(' + k + ')^{2}+' + a + '(' + k + ')=' + (4 * k * k + a * k)); });
+            return numPart('The frame alone uses ' + t(sh.N) + ' cm² of wood. Use your expression from (c): try whole-number widths ' + t('x=1,\\ 2,\\ 3,\\ \\dots') + ' until it gives ' + t(sh.N) + '. What is ' + t('x') + '?', x0,
+              [[x0 * 2, 'value', 'Substitute that width into ' + t('4x^{2}+' + a + 'x') + ' — it doesn’t give ' + t(sh.N) + '.']],
+              'Frame area ' + t('=4x^{2}+' + a + 'x') + ':<br>' + rows.slice(0, Math.max(x0, 2)).join('<br>') + '<br>So ' + t('x=' + x0) + ' cm.',
+              ['Substitute ' + t('x=1') + ', then ' + t('x=2') + ', … into ' + t('4x^{2}+' + a + 'x') + '.', 'Stop when you get exactly ' + t(sh.N) + '.'], 'frame width from area', 'cm');
+          } }] },
+      { num: '4', stem: function (sh) {
+          var X = sh.X;
+          return 'A rectangular swimming pool measures ' + t(bt(sh.p1)) + ' m by ' + t(bt(sh.p2)) + ' m. A concrete deck of uniform width ' + t(sh.w) + ' m is poured all the way around the pool.' +
+            figFrame(at(sh.o1, X), at(sh.o2, X), at(sh.p1, X), at(sh.p2, X), { inner: ['\\text{pool}'], border: String(sh.w), label: 'pool with a deck', pw: 240, ph: 160 });
+        },
+        shared: function (r) { return gen(function () { var a = r.int(3, 8), b = r.int(1, 4), w = r.int(1, 3), X = r.int(2, 6); return b < a ? { a: a, b: b, w: w, X: X, p1: lin(1, a), p2: lin(1, b), o1: lin(1, a + 2 * w), o2: lin(1, b + 2 * w) } : null; }); },
+        parts: [
+          { id: 'e4a', level: 'EMG', make: function (r, sh) {
+            var h1 = lin(1, sh.a + sh.w), h2 = lin(1, sh.b + sh.w);
+            var p = fieldsPart('Write expressions for the outer dimensions of the pool and deck together.', [pbox('Outer length (m):', 'Outer length'), pbox('Outer width (m):', 'Outer width')],
+              [polyChk(sh.o1, [{ is: h1, code: 'one-end-border', hint: 'The deck is on <b>both</b> ends: add ' + t(2 * sh.w) + ', not ' + t(sh.w) + '.' }]), polyChk(sh.o2, [{ is: h2, code: 'one-end-border', hint: 'The deck is on both sides: add ' + t(2 * sh.w) + '.' }])],
+              [tx(sh.o1), tx(sh.o2)], t(tx(sh.o1)) + ' m by ' + t(tx(sh.o2)) + ' m',
+              'The deck adds ' + t(sh.w) + ' m at <b>each</b> end: ' + t('(x+' + sh.a + ')+2(' + sh.w + ')=' + tx(sh.o1)) + ' and ' + t('(x+' + sh.b + ')+2(' + sh.w + ')=' + tx(sh.o2)) + '.',
+              ['The deck goes all the way around: each dimension grows at both ends.'], 'pool outer dims');
+            p.bad = [[tx(h1), tx(h2)]];
+            return p;
+          } },
+          { id: 'e4b', level: 'PRG', make: function (r, sh) {
+            var O = P.mul(sh.o1, sh.o2), Pl = P.mul(sh.p1, sh.p2), D = P.sub(O, Pl);
+            return polyPart('Write a simplified expression for the area of the deck alone (in m²).', D, [
+              { is: O, code: 'outer-only', hint: 'That includes the pool. Subtract the pool’s area.' }, { is: P.add(O, Pl), code: 'added', hint: 'Subtract the pool; don’t add it.' },
+              { is: badSub(O, Pl), code: 'minus-first', hint: 'Subtract every term of the pool’s area: ' + t('-(' + tx(Pl) + ')=' + tx(P.neg(Pl))) + '.' },
+              { is: P.sub(P.mul(lin(1, sh.a + sh.w), lin(1, sh.b + sh.w)), Pl), code: 'one-end-border', hint: 'The outer rectangle is ' + t(bt(sh.o1) + bt(sh.o2)) + ': the deck is on both ends.' }],
+              '<b>Deck = outer − pool.</b><br>' + steps(['\\text{Outer: }' + bt(sh.o1) + bt(sh.o2) + '=' + tx(O), '\\text{Pool: }' + bt(sh.p1) + bt(sh.p2) + '=' + tx(Pl), '(' + tx(O) + ')-(' + tx(Pl) + ')=' + tx(D)]) + ' m².',
+              ['Deck = (pool + deck) − pool.', 'Subtract every term of the pool’s area.'], 'deck area', { before: t('A=') });
+          } },
+          { id: 'e4c', level: 'EMG', make: function (r, sh) {
+            var D = P.sub(P.mul(sh.o1, sh.o2), P.mul(sh.p1, sh.p2));
+            return mcPart(r, 'Your deck area, ' + t(tx(D)) + ', is <b>linear</b>. Why did the ' + t('x^{2}') + ' terms disappear?', [
+              { html: 'Both the outer area and the pool’s area contain exactly one ' + t('x^{2}') + ', so subtracting removes it. A strip of constant width grows only like the perimeter, not like an area.', right: true },
+              { html: 'Because the deck width ' + t(sh.w) + ' is a number, not a variable, so the expansion has no ' + t('x^{2}') + '.', why: 'The outer area ' + t(bt(sh.o1) + bt(sh.o2)) + ' does have an ' + t('x^{2}') + ' term. It cancels when you subtract.' },
+              { html: 'Because of a mistake — an area must always have an ' + t('x^{2}') + ' term.', why: 'Check with numbers: the deck really is ' + t(tx(D)) + '. The ' + t('x^{2}') + ' terms cancel.' },
+              { html: 'Because ' + t('x^{2}') + ' terms always cancel when two binomials are multiplied.', why: 'They don’t: ' + t(bt(sh.p1) + bt(sh.p2)) + ' has an ' + t('x^{2}') + '. They cancel only because we subtract two areas that each have one ' + t('x^{2}') + '.' }],
+              'Outer ' + t('=x^{2}+\\dots') + ' and pool ' + t('=x^{2}+\\dots') + ': the ' + t('x^{2}') + ' terms are identical, so outer − pool cancels them. The deck is a strip of constant width ' + t(sh.w) + ' m, so its area grows with the perimeter of the pool (linear in ' + t('x') + ').',
+              ['Look at the ' + t('x^{2}') + ' term of each of the two areas you subtracted.'], 'why linear');
+          } },
+          { id: 'e4d', level: 'EMG', make: function (r, sh) {
+            var X = sh.X, D = P.sub(P.mul(sh.o1, sh.o2), P.mul(sh.p1, sh.p2)), v = at(D, X), O = at(P.mul(sh.o1, sh.o2), X), Pl = at(P.mul(sh.p1, sh.p2), X);
+            return numPart('Determine the deck area when ' + t('x=' + X) + '.', v, [[O, 'outer-only', 'Subtract the pool.'], [Pl, 'answered-other', 'That is the pool.']],
+              t(atTex(D, X) + '=' + v) + ' m². Check: ' + t(at(sh.o1, X) + '\\times ' + at(sh.o2, X) + '-' + at(sh.p1, X) + '\\times ' + at(sh.p2, X) + '=' + O + '-' + Pl + '=' + v) + ' ✓',
+              ['Substitute ' + t('x=' + X) + ' into your answer to (b).'], 'deck at x=' + X, 'm²');
+          } }] },
+      { num: '5', stem: function (sh) {
+          var X = sh.X, S = X + sh.a, s = X - sh.b;
+          return 'A large square of side ' + t(bt(sh.A)) + ' cm has a smaller square of side ' + t(bt(sh.Bq)) + ' cm removed from one corner.' +
+            figL(S, S, clamp(s, 0.25 * S, 0.6 * S), clamp(s, 0.25 * S, 0.6 * S), { bottom: tx(sh.A), left: tx(sh.A), top: tx(sh.Bq), right: tx(sh.Bq) }, { notch: true, fill: SH, label: 'square with a corner removed' });
+        },
+        shared: function (r) { return gen(function () { var a = r.int(2, 7), b = r.int(1, 4), X = b + r.int(1, 5); return a !== b ? { a: a, b: b, X: X, A: lin(1, a), Bq: lin(1, -b) } : null; }); },
+        parts: [
+          { id: 'e5a', level: 'PRG', make: function (r, sh) {
+            var SA = P.pow(sh.A, 2), SB = P.pow(sh.Bq, 2), T = P.sub(SA, SB);
+            return polyPart('Write a simplified expression for the shaded area that remains (in cm²).', T, [
+              { is: P.add(SA, SB), code: 'added', hint: 'The small square is removed: subtract it.' }, { is: badSub(SA, SB), code: 'minus-first', hint: 'Subtract every term of ' + t(tx(SB)) + '.' },
+              { is: P.sub(sqNoMid(sh.A), sqNoMid(sh.Bq)), code: 'no-middle', hint: 'Each square of a binomial has a middle term: ' + t(bt(sh.A) + '^{2}=' + tx(SA)) + '.' },
+              { is: P.sub(SA, P.pow(lin(1, sh.b), 2)), code: 'sign', hint: t(bt(sh.Bq) + '^{2}=' + tx(SB)) + ': the middle term is negative.' }],
+              steps([bt(sh.A) + '^{2}=' + tx(SA), bt(sh.Bq) + '^{2}=' + tx(SB), '(' + tx(SA) + ')-(' + tx(SB) + ')=' + tx(T)]) + ' cm²',
+              ['Shaded = big square − small square.', 'Square each binomial (middle term!), then subtract every term of the small one.'], 'shaded area', { before: t('A=') });
+          } },
+          { id: 'e5b', level: 'ADV', make: function (r, sh) {
+            var s1 = P.add(sh.A, sh.Bq), d1 = P.sub(sh.A, sh.Bq), T = P.mul(s1, d1);
+            return fieldsPart('Now redo it with the difference of squares pattern ' + t('a^{2}-b^{2}=(a+b)(a-b)') + ', where ' + t('a=' + tx(sh.A)) + ' and ' + t('b=' + tx(sh.Bq)) + ', instead of expanding the squares.',
+              [pbox(t('a+b=') + ' ' + t(bt(sh.A) + '+' + bt(sh.Bq) + '='), 'a + b'), pbox(t('a-b=') + ' ' + t(bt(sh.A) + '-' + bt(sh.Bq) + '='), 'a − b'), pbox(t('(a+b)(a-b)='), 'Product')],
+              [polyChk(s1), polyChk(d1, [{ is: P.add(sh.A, P.neg(lin(1, sh.b))).constructor && P.sub(P.add(sh.A, lin(-1, 0)), P.num(sh.b)), code: 'minus-first', hint: 'Subtract <b>both</b> terms of ' + t(bt(sh.Bq)) + ': ' + t('-(' + tx(sh.Bq) + ')=-x+' + sh.b) + '.' }]), polyChk(T)],
+              [tx(s1), tx(d1), tx(T)], t('(' + tx(s1) + ')(' + tx(d1) + ')=' + tx(T)) + ' — the same as (a)',
+              t('a+b=' + bt(sh.A) + '+' + bt(sh.Bq) + '=' + tx(s1)) + '<br>' + t('a-b=' + bt(sh.A) + '-' + bt(sh.Bq) + '=x+' + sh.a + '-x+' + sh.b + '=' + tx(d1)) + '<br>' + t('(a+b)(a-b)=(' + tx(s1) + ')(' + tx(d1) + ')=' + tx(T)) + ' — the same answer as (a) ✓',
+              ['Add the two binomials, then subtract them (the minus sign changes both terms of the second one).', 'Multiply the two results.'], 'difference of squares route');
+          } },
+          { id: 'e5c', level: 'EMG', make: function (r, sh) {
+            var X = sh.X, S = X + sh.a, s = X - sh.b, v = S * S - s * s;
+            return numPart('Determine the shaded area when ' + t('x=' + X) + '.', v, [[S * S, 'outer-only', 'Subtract the small square.'], [S * S + s * s, 'added', 'Subtract the small square.']],
+              'Big square ' + t(S + '^{2}=' + S * S) + ', small square ' + t(s + '^{2}=' + s * s) + ': ' + t(S * S + '-' + s * s + '=' + v) + ' cm². Or ' + t(atTex(P.sub(P.pow(sh.A, 2), P.pow(sh.Bq, 2)), X) + '=' + v) + ' ✓',
+              ['Substitute ' + t('x=' + X) + ' into your answer to (a).'], 'shaded at x=' + X, 'cm²');
+          } }] },
+      { num: '6', stem: function (sh) {
+          return '<b>Error analysis.</b> A rectangular tabletop measures ' + t(bt(sh.l) + '\\text{ by }' + bt(sh.w)) + '. A square tile of side ' + t(bt(sh.s)) + ' is glued to the centre of it. Dana found the uncovered area like this:' +
+            '\\[' + bt(sh.l) + bt(sh.w) + '-' + bt(sh.s) + '^{2}=' + tx(sh.O) + '-x^{2}+' + 2 * sh.c + 'x+' + sh.c * sh.c + '=' + tx(sh.dana) + '\\]';
+        },
+        shared: function (r) { return gen(function () { var a = r.int(4, 9), b = r.int(3, 8), c = r.int(1, 4), X = r.int(1, 4); if (b >= a || c >= b || a + b - 2 * c <= 0) return null; var l = lin(1, a), w = lin(1, b), s = lin(1, c), O = P.mul(l, w), I = P.pow(s, 2); return { a: a, b: b, c: c, X: X, l: l, w: w, s: s, O: O, I: I, area: P.sub(O, I), dana: badSub(O, I) }; }); },
+        parts: [
+          { id: 'e6a', level: 'EMG', make: function (r, sh) {
+            return mcPart(r, 'Identify Dana’s error.', [
+              { html: 'When she removed the brackets she changed the sign of only the first term of ' + t(bt(sh.s) + '^{2}=' + tx(sh.I)) + '; the minus sign must change <b>all three</b> terms.', right: true },
+              { html: 'She expanded ' + t(bt(sh.s) + '^{2}') + ' wrongly — it should be ' + t('x^{2}+' + sh.c * sh.c) + '.', why: 'Her square ' + t('x^{2}+' + 2 * sh.c + 'x+' + sh.c * sh.c) + ' is right. Look at what happened to its signs.' },
+              { html: 'She should have <b>added</b> the tile, not subtracted it.', why: 'The tile covers part of the table, so the uncovered area is table − tile. Subtracting is right.' },
+              { html: 'She expanded ' + t(bt(sh.l) + bt(sh.w)) + ' wrongly.', why: t(bt(sh.l) + bt(sh.w) + '=' + tx(sh.O)) + ' is correct.' }],
+              'Dana wrote ' + t('-x^{2}+' + 2 * sh.c + 'x+' + sh.c * sh.c) + ': only the first sign changed. It should be ' + t('-(' + tx(sh.I) + ')=' + tx(P.neg(sh.I))) + '. The error is in the step where the brackets come off.',
+              ['Compare ' + t('-(' + tx(sh.I) + ')') + ' with what Dana wrote.'], 'Dana’s error');
+          } },
+          { id: 'e6b', level: 'PRG', make: function (r, sh) {
+            return polyPart('Give the correct simplified expression for the uncovered area.', sh.area, [{ is: sh.dana, code: 'student-ans', hint: 'That is Dana’s answer. Change the sign of every term of ' + t(tx(sh.I)) + '.' }, { is: P.sub(sh.O, sqNoMid(sh.s)), code: 'no-middle', hint: t(bt(sh.s) + '^{2}') + ' has a middle term.' }, { is: P.add(sh.O, sh.I), code: 'added', hint: 'Subtract the tile.' }],
+              t('(' + tx(sh.O) + ')-(' + tx(sh.I) + ')=' + tx(sh.O) + tx(P.neg(sh.I)).replace(/^([^-])/, '+$1') + '=' + tx(sh.area)), ['Subtract every term of ' + t(tx(sh.I)) + '.'], 'correct uncovered area', { before: t('A=') });
+          } },
+          { id: 'e6c', level: 'EMG', make: function (r, sh) {
+            var X = sh.X, v = at(sh.area, X);
+            return numPart('Evaluate the correct expression when ' + t('x=' + X) + '.', v, [[at(sh.dana, X), 'student-ans', 'That is Dana’s expression. Use the corrected one.']],
+              t(atTex(sh.area, X) + '=' + v) + '. Check: ' + t(at(sh.l, X) + '\\times ' + at(sh.w, X) + '-' + at(sh.s, X) + '^{2}=' + at(sh.O, X) + '-' + at(sh.I, X) + '=' + v) + ' ✓',
+              ['Substitute ' + t('x=' + X) + ' into your answer to (b).'], 'uncovered at x=' + X, 'square units');
+          } }] },
+      /* ---------- EP Part B ---------- */
+      { num: '7', section: 'Extra practice B — Volume and surface area', stem: function (sh) { return '<b>The open-top box.</b> A rectangular sheet of cardboard measures ' + t(sh.L) + ' cm by ' + t(sh.W) + ' cm. A square of side ' + t('x') + ' cm is cut from each corner, and the four flaps are folded up to form an open-top box.' + sheetSvg(sh.L, sh.W, 'cm'); },
+        shared: function (r) { var W = r.pick([12, 14, 16, 16, 18, 20]), L = W + r.pick([2, 4, 4, 6, 8]); return { L: L, W: W, X: r.int(2, Math.min(4, W / 2 - 2)) }; },
+        parts: [
+          { id: 'e7a', level: 'EMG', make: function (r, sh) {
+            var oc = function (n) { return [{ is: lin(-1, n), code: 'one-cut', hint: 'A square is cut from <b>both</b> ends of each side: subtract ' + t('2x') + '.' }]; };
+            var p = fieldsPart('Write expressions for the length, the width and the height of the finished box.', [pbox('Length (cm):', 'Length'), pbox('Width (cm):', 'Width'), pbox('Height (cm):', 'Height')],
+              [polyChk(lin(-2, sh.L), oc(sh.L)), polyChk(lin(-2, sh.W), oc(sh.W)), polyChk(mono(1), [{ is: mono(2), code: 'value', hint: 'The flaps fold up to the height of the cut square: ' + t('x') + '.' }])],
+              [tx(lin(-2, sh.L)), tx(lin(-2, sh.W)), 'x'], t(tx(lin(-2, sh.L))) + ', ' + t(tx(lin(-2, sh.W))) + ', ' + t('x'),
+              'Each side loses a square at <b>both</b> ends: length ' + t(sh.L + '-2x') + ', width ' + t(sh.W + '-2x') + '. The flaps fold up to the height ' + t('x') + '.',
+              ['Each side of the sheet loses ' + t('x') + ' at each end.', 'How tall are the folded-up flaps?'], 'box dimensions');
+            p.bad = [[tx(lin(-1, sh.L)), tx(lin(-1, sh.W)), 'x']];
+            return p;
+          } },
+          { id: 'e7b', level: 'PRG', make: function (r, sh) {
+            var l = lin(-2, sh.L), w = lin(-2, sh.W), lw = P.mul(l, w), V = P.mul(lw, mono(1));
+            return polyPart('Write the volume of the box as a simplified polynomial in ' + t('x') + '.', V, [{ is: lw, code: 'face-area', hint: 'That is the base. Multiply by the height ' + t('x') + '.' }, { is: P.mul(lin(-1, sh.L), lin(-1, sh.W), mono(1)), code: 'one-cut', hint: 'Each side loses ' + t('2x') + ': use ' + t('(' + sh.L + '-2x)') + ' and ' + t('(' + sh.W + '-2x)') + '.' }],
+              t('V=x(' + sh.L + '-2x)(' + sh.W + '-2x)') + '<br>' + t('(' + sh.L + '-2x)(' + sh.W + '-2x)=' + tx(lw)) + '<br>' + t('V=x(' + tx(lw) + ')=' + tx(V)) + ' cm³',
+              ['Volume = length × width × height with your expressions from (a).', 'Multiply the two binomials first, then multiply every term by ' + t('x') + '.'], 'open box volume', { before: t('V=') });
+          } },
+          { id: 'e7c', level: 'EMG', make: function (r, sh) {
+            var X = sh.X, l = sh.L - 2 * X, w = sh.W - 2 * X, V = l * w * X;
+            return numPart('Determine the volume when ' + t('x=' + X) + ' cm.', V, [[l * w, 'face-area', 'That is the base. Multiply by the height.'], [(sh.L - X) * (sh.W - X) * X, 'one-cut', 'Each side loses ' + t('2x') + '.']],
+              'The box is ' + t(l + '\\times ' + w + '\\times ' + X) + ', so ' + t('V=' + V) + ' cm³.', ['Find the length, width and height at ' + t('x=' + X) + ', then multiply.'], 'open box at x=' + X, 'cm³');
+          } },
+          { id: 'e7d', level: 'EMG', make: function (r, sh) {
+            var m = sh.W / 2;
+            return mcPart(r, 'Why must ' + t('x') + ' be less than ' + t(m) + ' cm for a box to exist?', [
+              { html: 'The width ' + t(sh.W + '-2x') + ' must be positive; at ' + t('x=' + m) + ' the two cuts meet and nothing is left to fold.', right: true },
+              { html: 'Because the height ' + t('x') + ' must be less than the width of the sheet.', why: 'The real limit comes from the width of the box, ' + t(sh.W + '-2x') + ', which must stay positive.' },
+              { html: 'Because the volume is largest at ' + t('x=' + m) + '.', why: 'At ' + t('x=' + m) + ' the volume is ' + t(0) + ' — the width is gone.' },
+              { html: 'Because ' + t(m) + ' is half of the length.', why: 'It is half of the <b>width</b>, ' + t(sh.W) + ' cm — the shorter side runs out first.' }],
+              'Two squares of side ' + t('x') + ' come off the ' + t(sh.W) + ' cm side, so the box is ' + t(sh.W + '-2x') + ' wide. That must be positive: ' + t('2x<' + sh.W) + ', so ' + t('x<' + m) + '.',
+              ['What happens to the width ' + t(sh.W + '-2x') + ' as ' + t('x') + ' grows?'], 'why x < W/2');
+          } }] },
+      { num: '8', stem: function (sh) { return 'A square sheet of tin measures ' + t(sh.S) + ' in by ' + t(sh.S) + ' in. A square of side ' + t('x') + ' in is cut from each corner and the flaps are folded up to make an open-top box.' + sheetSvg(sh.S, sh.S, 'in'); },
+        shared: function (r) { var S = r.pick([12, 16, 18, 20, 24, 24, 30]); return { S: S, X: r.int(2, Math.min(5, S / 2 - 2)) }; },
+        parts: [
+          { id: 'e8a', level: 'PRG', make: function (r, sh) {
+            var b = lin(-2, sh.S), sq = P.pow(b, 2), V = P.mul(sq, mono(1));
+            return polyPart('Write the volume as a simplified polynomial in ' + t('x') + '.', V, [{ is: sq, code: 'face-area', hint: 'That is the base. Multiply by the height ' + t('x') + '.' }, { is: P.mul(sqNoMid(b), mono(1)), code: 'no-middle', hint: t('(' + sh.S + '-2x)^{2}') + ' has a middle term.' }, { is: P.mul(P.pow(lin(-1, sh.S), 2), mono(1)), code: 'one-cut', hint: 'Each side loses ' + t('2x') + '.' }],
+              t('V=x(' + sh.S + '-2x)^{2}') + '<br>' + t('(' + sh.S + '-2x)^{2}=' + tx(sq)) + '<br>' + t('V=' + tx(V)) + ' in³',
+              ['The base is ' + t('(' + sh.S + '-2x)') + ' by ' + t('(' + sh.S + '-2x)') + '; the height is ' + t('x') + '.', 'Square the binomial first, then multiply by ' + t('x') + '.'], 'tin box volume', { before: t('V=') });
+          } },
+          { id: 'e8b', level: 'EMG', make: function (r, sh) {
+            var X = sh.X, b = sh.S - 2 * X, V = b * b * X;
+            return numPart('Determine the volume when ' + t('x=' + X) + ' in.', V, [[b * b, 'face-area', 'Multiply by the height.'], [(sh.S - X) * (sh.S - X) * X, 'one-cut', 'Each side loses ' + t('2x') + '.']],
+              'The box is ' + t(b + '\\times ' + b + '\\times ' + X) + ': ' + t('V=' + V) + ' in³.', ['Base side ' + t(sh.S + '-2x') + ' at ' + t('x=' + X) + ', then multiply.'], 'tin box at x=' + X, 'in³');
+          } },
+          { id: 'e8c', level: 'EMG', make: function (r, sh) {
+            var h = sh.S / 2;
+            return mcPart(r, 'Which values of ' + t('x') + ' give a real box?', [
+              { html: t('0<x<' + h), right: true },
+              { html: t('0<x<' + sh.S), why: 'Two cuts come off each side: ' + t(sh.S + '-2x>0') + '.' },
+              { html: t('0<x<' + sh.S / 4), why: 'Solve ' + t(sh.S + '-2x>0') + ': ' + t('x<' + h) + '.' },
+              { html: t('x>0') + ' (any positive value)', why: 'If ' + t('x\\ge ' + h) + ' the base has no width left.' }],
+              'The height ' + t('x') + ' must be positive, and the base side ' + t(sh.S + '-2x') + ' must be positive: ' + t('x<' + h) + '. So ' + t('0<x<' + h) + '.',
+              ['Both the height and the base side must be positive.'], 'valid x for tin box');
+          } }] },
+      { num: '9', stem: function (sh) { return 'A rectangular prism has length ' + t(bt(sh.l)) + ' cm, width ' + t(bt(sh.w)) + ' cm, and height ' + t(bt(sh.h)) + ' cm.' + prismAt(sh.l, sh.w, sh.h, sh.X, {}); },
+        shared: function (r) { return gen(function () { var a = r.pick([1, 1, 3, 5]), b = r.int(1, 5), c = r.int(1, 5), X = r.int(1, 4); return b !== c ? { l: lin(2, a), w: lin(1, b), h: lin(1, c), X: X } : null; }); },
+        parts: [
+          { id: 'e9a', level: 'PRG', make: function (r, sh) {
+            return polyPart('Write the volume as a simplified polynomial (in cm³).', P.mul(sh.l, sh.w, sh.h), volWrongs(sh.w, sh.h, sh.l), volSol(sh.w, sh.h, sh.l, 'cm³'),
+              ['Multiply the two simpler binomials first, then multiply by ' + t(bt(sh.l)) + '.', 'Six products in the second step; collect like terms.'], 'prism volume', { before: t('V=') });
+          } },
+          { id: 'e9b', level: 'BEG', make: function (r, sh) {
+            var X = sh.X, V = at(P.mul(sh.l, sh.w, sh.h), X);
+            return numPart('Determine the volume when ' + t('x=' + X) + ' cm, using your polynomial.', V, [[at(P.mul(sh.w, sh.h), X), 'face-area', 'Multiply by the third dimension too.']],
+              t(atTex(P.mul(sh.l, sh.w, sh.h), X) + '=' + V) + ' cm³.', ['Substitute ' + t('x=' + X) + ' into each term.'], 'prism at x=' + X, 'cm³');
+          } },
+          { id: 'e9c', level: 'BEG', make: function (r, sh) {
+            var X = sh.X, l = at(sh.l, X), w = at(sh.w, X), h = at(sh.h, X);
+            return fieldsPart('Check (b): substitute ' + t('x=' + X) + ' into the three dimensions first.', [nbox('Length:', 'Length', 'cm'), nbox('Width:', 'Width', 'cm'), nbox('Height:', 'Height', 'cm'), nbox('Length × width × height:', 'Product', 'cm³')],
+              [numChk(l, [[X + (l - 2 * X), 'value', 'The length is ' + t('2x+' + (l - 2 * X)) + ': double ' + t(X) + ' first.']]), numChk(w), numChk(h), numChk(l * w * h)], [String(l), String(w), String(h), String(l * w * h)],
+              t(l + '\\times ' + w + '\\times ' + h + '=' + l * w * h) + ' cm³',
+              'Length ' + t('2(' + X + ')+' + (l - 2 * X) + '=' + l) + ', width ' + t(w) + ', height ' + t(h) + ': ' + t(l + '\\times ' + w + '\\times ' + h + '=' + l * w * h) + ' cm³ — the same as (b) ✓',
+              ['Substitute into each dimension, then multiply.'], 'check by dimensions');
+          } }] },
+      { num: '10', stem: function (sh) { return '<b>Surface area.</b> A closed rectangular box has length ' + t(bt(sh.l)) + ' cm, width ' + t(bt(sh.w)) + ' cm and height ' + t(bt(sh.h)) + ' cm. The surface area of a closed box is ' + t('SA=2\\ell w+2\\ell h+2wh') + '.' + prismAt(sh.l, sh.w, sh.h, 2, {}); },
+        shared: function (r) { var v = r.sample([1, 2, 3, 4, 5], 3).sort(function (a, b) { return b - a; }); return { l: lin(1, v[0]), w: lin(1, v[1]), h: lin(1, v[2]), X: r.int(2, 4) }; },
+        parts: [
+          { id: 'e10a', level: 'PRG', make: function (r, sh) {
+            var lw = P.mul(sh.l, sh.w), lh = P.mul(sh.l, sh.h), wh = P.mul(sh.w, sh.h), S = saOf(sh.l, sh.w, sh.h);
+            return polyPart('Write and simplify an expression for the surface area of the closed box (in cm²).', S, [{ is: P.add(lw, lh, wh), code: 'sa-half', hint: 'Two of each face: ' + t('SA=2\\ell w+2\\ell h+2wh') + '.' }, { is: P.scale(P.add(lw, lh), 2), code: 'sa-face', hint: 'Add the pair of ' + t('wh') + ' faces too.' }, { is: P.mul(sh.l, sh.w, sh.h), code: 'answered-other', hint: 'That is the volume.' }],
+              steps(['\\ell w=' + bt(sh.l) + bt(sh.w) + '=' + tx(lw), '\\ell h=' + bt(sh.l) + bt(sh.h) + '=' + tx(lh), 'wh=' + bt(sh.w) + bt(sh.h) + '=' + tx(wh), 'SA=2(' + tx(P.add(lw, lh, wh)) + ')=' + tx(S)]) + ' cm²',
+              ['Expand ' + t('\\ell w') + ', ' + t('\\ell h') + ' and ' + t('wh') + ', add them, then double.'], 'closed SA', { before: t('SA=') });
+          } },
+          { id: 'e10b', level: 'ADV', make: function (r, sh) {
+            var lw = P.mul(sh.l, sh.w), lh = P.mul(sh.l, sh.h), wh = P.mul(sh.w, sh.h), S = saOf(sh.l, sh.w, sh.h), O = P.sub(S, lw);
+            return polyPart('The lid is removed. Write and simplify an expression for the surface area of the open-top box (five faces).', O, [{ is: S, code: 'answered-other', hint: 'That is the closed box. Remove the lid, one ' + t('\\ell w') + ' face.' }, { is: P.sub(S, P.scale(lw, 2)), code: 'u3l6-lid-twice', hint: 'Only the <b>top</b> is removed; the bottom ' + t('\\ell w') + ' face stays.' }, { is: P.sub(S, wh), code: 'sa-face', hint: 'The lid is the top face, ' + t('\\ell\\times w') + '.' }],
+              'Remove one ' + t('\\ell w') + ' face: ' + t('SA=\\ell w+2\\ell h+2wh=(' + tx(S) + ')-(' + tx(lw) + ')=' + tx(O)) + ' cm²',
+              ['An open box has a bottom but no top: one ' + t('\\ell w') + ' face, two ' + t('\\ell h') + ', two ' + t('wh') + '.'], 'open SA', { before: t('SA=') });
+          } },
+          { id: 'e10c', level: 'EMG', make: function (r, sh) {
+            var X = sh.X, l = at(sh.l, X), w = at(sh.w, X), h = at(sh.h, X), S = 2 * (l * w + l * h + w * h), O = S - l * w;
+            return fieldsPart('Evaluate both expressions when ' + t('x=' + X) + ', and the difference between them.', [nbox('Closed box:', 'Closed', 'cm²'), nbox('Open-top box:', 'Open', 'cm²'), nbox('Difference:', 'Difference', 'cm²')],
+              [numChk(S, [[S / 2, 'sa-half', 'Two of each face: double.']]), numChk(O, [[S, 'answered-other', 'That is the closed box.']]), numChk(l * w, [[O - S, 'reverse', 'Give the difference as a positive number.']])],
+              [String(S), String(O), String(l * w)], t(S) + ', ' + t(O) + ', difference ' + t(l * w),
+              'At ' + t('x=' + X) + ': ' + t('\\ell=' + l + ',\\ w=' + w + ',\\ h=' + h) + '.<br>Closed ' + t('2(' + l * w + '+' + l * h + '+' + w * h + ')=' + S) + '; open ' + t(S + '-' + l * w + '=' + O) + '.<br>The difference ' + t(l * w) + ' cm² is the lid, ' + t(l + '\\times ' + w) + ' ✓',
+              ['Substitute ' + t('x=' + X) + ' into your answers to (a) and (b).'], 'SA at x=' + X);
+          } }] },
+      { num: '11', stem: function (sh) { return '<b>Stretch.</b> A cube has edge length ' + t('x') + ' cm. Every edge is then increased by ' + t(sh.k) + ' cm.'; },
+        shared: function (r) { return { k: r.int(1, 4), X: r.int(2, 6) }; },
+        parts: [
+          { id: 'e11a', level: 'PRG', make: function (r, sh) {
+            var e = lin(1, sh.k), sq = P.pow(e, 2), V = P.pow(e, 3);
+            return polyPart('Write the volume of the enlarged cube as a simplified polynomial. (Expand ' + t('(x+' + sh.k + ')^{2}') + ' first, then multiply by ' + t('(x+' + sh.k + ')') + ' again.)', V, [{ is: P.add(mono(1, 'x', 3), P.num(sh.k * sh.k * sh.k)), code: 'cube-each', hint: 'The cube doesn’t go onto each term. Square first, then multiply by ' + t('(x+' + sh.k + ')') + '.' }, { is: sq, code: 'square-only', hint: 'Multiply by ' + t('(x+' + sh.k + ')') + ' once more.' }],
+              steps(['(x+' + sh.k + ')^{2}=' + tx(sq), '(' + tx(sq) + ')(x+' + sh.k + ')=' + tx(V)]) + ' cm³', ['Square first (middle term!), then multiply by the binomial: six products.'], 'enlarged cube', { before: t('V=') });
+          } },
+          { id: 'e11b', level: 'PRG', make: function (r, sh) {
+            var V = P.pow(lin(1, sh.k), 3), I = P.sub(V, mono(1, 'x', 3));
+            return polyPart('Write a simplified expression for the <b>increase</b> in volume.', I, [{ is: V, code: 'not-increase', hint: 'That is the new volume. Subtract the original ' + t('x^{3}') + '.' }, { is: P.num(sh.k * sh.k * sh.k), code: 'cube-each', hint: 'Expand ' + t('(x+' + sh.k + ')^{3}') + ' properly, then subtract ' + t('x^{3}') + '.' }],
+              'Increase = new − original: ' + t('(' + tx(V) + ')-x^{3}=' + tx(I)) + ' cm³', ['Increase = new volume − original volume ' + t('x^{3}') + '.'], 'increase in volume');
+          } },
+          { id: 'e11c', level: 'EMG', make: function (r, sh) {
+            var X = sh.X, k = sh.k, I = P.sub(P.pow(lin(1, k), 3), mono(1, 'x', 3)), v = at(I, X), N2 = X + k;
+            return fieldsPart('Determine the increase when ' + t('x=' + X) + ' cm, and verify it directly by computing ' + t(N2 + '^{3}-' + X + '^{3}') + '.', [nbox('From your expression:', 'From expression', 'cm³'), nbox(t(N2 + '^{3}-' + X + '^{3}='), 'Direct', 'cm³')],
+              [numChk(v, [[N2 * N2 * N2, 'not-increase', 'That is the new volume.']]), numChk(v, [[N2 * N2 * N2, 'not-increase', 'Subtract ' + t(X + '^{3}') + '.']])], [String(v), String(v)], t(v) + ' cm³ both ways',
+              t(atTex(I, X) + '=' + v) + '<br>' + t(N2 + '^{3}-' + X + '^{3}=' + N2 * N2 * N2 + '-' + X * X * X + '=' + v) + ' ✓', ['Substitute ' + t('x=' + X) + ' into your answer to (b).'], 'increase at x=' + X);
+          } }] },
+      { num: '12', stem: function (sh) { return '<b>Stretch.</b> A cylinder has radius ' + t('(x+' + sh.a + ')') + ' cm and height ' + t(sh.h) + ' cm, so its volume is ' + t('V=\\pi r^{2}h') + '. Leave ' + t('\\pi') + ' in your answers.' + figCylinder('x+' + sh.a, sh.h + '\\text{ cm}'); },
+        shared: function (r) { return { a: r.int(1, 4), h: r.int(2, 6) }; },
+        parts: [
+          { id: 'e12a', level: 'PRG', make: function (r, sh) {
+            var R = lin(1, sh.a), T = P.scale(P.pow(R, 2), sh.h);
+            return piPart('Write its volume as ' + t('\\pi') + ' times a simplified trinomial.', piMul(T), [{ is: piMul(P.scale(sqNoMid(R), sh.h)), code: 'no-middle', hint: t('(x+' + sh.a + ')^{2}') + ' has a middle term.' }, { is: piMul(P.scale(R, sh.h)), code: 'no-square', hint: 'The radius is squared: ' + t('r^{2}=(x+' + sh.a + ')^{2}') + '.' }, { is: piMul(P.pow(R, 2)), code: 'face-area', hint: 'Multiply by the height ' + t(sh.h) + '.' }],
+              t('V=\\pi(x+' + sh.a + ')^{2}(' + sh.h + ')=' + sh.h + '\\pi(' + tx(P.pow(R, 2)) + ')=\\pi(' + tx(T) + ')') + ' cm³', ['Square the radius first (middle term!), then multiply every term by the height ' + t(sh.h) + '.'], 'cylinder volume');
+          } },
+          { id: 'e12b', level: 'PRG', make: function (r, sh) {
+            var R = lin(1, sh.a + 1), T = P.scale(P.pow(R, 2), sh.h), T0 = P.scale(P.pow(lin(1, sh.a), 2), sh.h);
+            return piPart('The radius is increased by ' + t('1') + ' cm; the height stays ' + t(sh.h) + ' cm. Write the new volume the same way.', piMul(T), [{ is: piMul(P.add(T0, P.num(1))), code: 'u3l6-added-area', hint: 'Add ' + t('1') + ' to the <b>radius</b>: the new radius is ' + t('(x+' + (sh.a + 1) + ')') + '.' }, { is: piMul(P.scale(sqNoMid(R), sh.h)), code: 'no-middle', hint: t('(x+' + (sh.a + 1) + ')^{2}') + ' has a middle term.' }],
+              'New radius ' + t('(x+' + (sh.a + 1) + ')') + ': ' + t('V=\\pi(x+' + (sh.a + 1) + ')^{2}(' + sh.h + ')=\\pi(' + tx(T) + ')') + ' cm³', ['The new radius is ' + t('x+' + sh.a + '+1') + '. Square it, then multiply by ' + t(sh.h) + '.'], 'bigger cylinder');
+          } },
+          { id: 'e12c', level: 'ADV', make: function (r, sh) {
+            var T1 = P.scale(P.pow(lin(1, sh.a + 1), 2), sh.h), T0 = P.scale(P.pow(lin(1, sh.a), 2), sh.h), D = P.sub(T1, T0);
+            return piPart('Write the <b>increase</b> in volume as ' + t('\\pi') + ' times a simplified expression.', piMul(D), [{ is: piMul(T1), code: 'not-increase', hint: 'That is the new volume. Subtract the original.' }, { is: piMul(badSub(T1, T0)), code: 'minus-first', hint: 'Subtract every term of the original volume.' }],
+              t('\\pi(' + tx(T1) + ')-\\pi(' + tx(T0) + ')=\\pi(' + tx(D) + ')') + ' cm³. The ' + t(sh.h + 'x^{2}') + ' terms are identical and cancel, so the increase is linear.', ['Increase = new − original. Both have ' + t(sh.h + '\\pi x^{2}') + ', which cancels.'], 'cylinder increase');
+          } }] },
+      /* ---------- EP Part C ---------- */
+      { num: '13', section: 'Extra practice C — Solving equations by expanding first', stem: 'Each equation <b>looks</b> quadratic, but once both sides are expanded the ' + t('x^{2}') + ' terms are identical and cancel, leaving a linear equation. Solve.', parts: [
+        { id: 'e13a', level: 'EMG', make: function (r) {
+          var s = gen(function () { var a = r.int(1, 6), b = r.int(1, 6), x0 = r.int(1, 8); return a !== b || r.chance(0.2) ? { a: a, b: b, x0: x0, c: a * b + (a + b) * x0 } : null; });
+          var L = P.mul(lin(1, s.a), lin(1, s.b));
+          return solvePart(t('(x+' + s.a + ')(x+' + s.b + ')=x^{2}+' + s.c), s.x0, [[(s.c + s.a * s.b) / (s.a + s.b), 'u3l6-move-sign', 'When ' + t(s.a * s.b) + ' moves to the other side it becomes ' + t('-' + s.a * s.b) + '.']],
+            steps([tx(L) + '=x^{2}+' + s.c, (s.a + s.b) + 'x+' + s.a * s.b + '=' + s.c, (s.a + s.b) + 'x=' + (s.c - s.a * s.b), 'x=' + s.x0]) + '<br>Check: ' + t('(' + (s.x0 + s.a) + ')(' + (s.x0 + s.b) + ')=' + (s.x0 + s.a) * (s.x0 + s.b)) + ' and ' + t(s.x0 + '^{2}+' + s.c + '=' + (s.x0 * s.x0 + s.c)) + ' ✓',
+            ['Expand the left side with FOIL, then subtract ' + t('x^{2}') + ' from both sides.', 'Then solve the one-step or two-step equation.'], 'solve (x+a)(x+b)=x²+c');
+        } },
+        { id: 'e13b', level: 'EMG', make: function (r) {
+          var s = gen(function () { var a = r.int(1, 6), b = r.int(a + 1, 9), x0 = r.int(1, 8), c = a * b - (b - a) * x0; return c > 0 ? { a: a, b: b, x0: x0, c: c } : null; });
+          var L = P.mul(lin(1, -s.a), lin(1, s.b)), k = s.b - s.a;
+          return solvePart(t('(x-' + s.a + ')(x+' + s.b + ')=x^{2}-' + s.c), s.x0, [[-s.x0, 'sign', 'Check the sign of the ' + t('x') + ' term: ' + t('-' + s.a + 'x+' + s.b + 'x=' + k + 'x') + '.']],
+            steps([tx(L) + '=x^{2}-' + s.c, (k === 1 ? '' : k) + 'x-' + s.a * s.b + '=-' + s.c, (k === 1 ? '' : k) + 'x=' + (s.a * s.b - s.c), 'x=' + s.x0]),
+            ['Expand the left side, then subtract ' + t('x^{2}') + ' from both sides.', 'Add ' + t(s.a * s.b) + ' to both sides, then divide.'], 'solve (x-a)(x+b)=x²-c');
+        } }] },
+      { num: '14', stem: 'Solve each equation. Show the expansion; keep a subtracted square in brackets.', parts: [
+        { id: 'e14a', level: 'PRG', make: function (r) {
+          var s = gen(function () { var a = r.int(1, 4), b = r.int(1, 3), x0 = r.int(1, 5), R = 2 * (a + b) * x0 + a * a - b * b; return R > 0 && a !== b ? { a: a, b: b, x0: x0, R: R } : null; });
+          var A2 = P.pow(lin(1, s.a), 2), B2 = P.pow(lin(1, -s.b), 2), Ls = P.sub(A2, B2), wrongL = badSub(A2, B2), wc = 2 * (s.a - s.b), wv = wc ? (s.R - s.a * s.a - s.b * s.b) / wc : NaN;
+          return solvePart(t('(x+' + s.a + ')^{2}-(x-' + s.b + ')^{2}=' + s.R), s.x0, [[wv, 'minus-first', 'The minus sign in front of ' + t('(x-' + s.b + ')^{2}') + ' changes <b>every</b> term: ' + t('-(' + tx(B2) + ')=' + tx(P.neg(B2))) + '.']],
+            steps(['(' + tx(A2) + ')-(' + tx(B2) + ')=' + s.R, tx(Ls) + '=' + s.R, 2 * (s.a + s.b) + 'x=' + (s.R - s.a * s.a + s.b * s.b), 'x=' + s.x0]) + '<br>Check: ' + t((s.x0 + s.a) + '^{2}-' + pv(s.x0 - s.b) + '^{2}=' + (s.x0 + s.a) * (s.x0 + s.a) + '-' + (s.x0 - s.b) * (s.x0 - s.b) + '=' + s.R) + ' ✓',
+            ['Expand both squares (middle terms!). Keep the second one in brackets.', 'The ' + t('x^{2}') + ' terms cancel; solve the linear equation.'], 'difference of two squares = R');
+        } },
+        { id: 'e14b', level: 'PRG', make: function (r) {
+          var s = gen(function () { var a = r.int(2, 6), b = r.int(1, a - 1), x0 = r.int(1, 5); return { a: a, b: b, x0: x0, R: 2 * (a - b) * x0 + a * a - b * b }; });
+          var A2 = P.pow(lin(1, s.a), 2), B2 = P.pow(lin(1, s.b), 2), Ls = P.sub(A2, B2), co = 2 * (s.a - s.b), wv = (s.R - s.a * s.a - s.b * s.b) / (2 * s.a + 2 * s.b);
+          return solvePart(t('(x+' + s.a + ')^{2}-(x+' + s.b + ')^{2}=' + s.R), s.x0, [[wv, 'minus-first', 'The minus sign changes every term of ' + t('(x+' + s.b + ')^{2}=' + tx(B2)) + '.']],
+            steps(['(' + tx(A2) + ')-(' + tx(B2) + ')=' + s.R, tx(Ls) + '=' + s.R, co + 'x=' + (s.R - s.a * s.a + s.b * s.b), 'x=' + s.x0]),
+            ['Expand both squares, keep the second in brackets, and subtract.', 'Then solve the linear equation.'], 'difference of squares (both +) = R');
+        } }] },
+      { num: '15', stem: 'Solve each equation.', parts: [
+        { id: 'e15a', level: 'PRG', make: function (r) {
+          var s = gen(function () { var a = r.int(2, 7), b = r.int(1, 4), c = r.int(1, 5), d = r.int(1, 5), den = a - b - c - d, num = c * d + a * b; if (!den || num % den) return null; var x0 = num / den; return x0 && Math.abs(x0) <= 15 && a !== b ? { a: a, b: b, c: c, d: d, x0: x0, den: den, num: num } : null; });
+          var L = P.mul(lin(1, s.a), lin(1, -s.b)), R = P.mul(lin(1, s.c), lin(1, s.d));
+          return solvePart(t('(x+' + s.a + ')(x-' + s.b + ')=(x+' + s.c + ')(x+' + s.d + ')'), s.x0, [],
+            steps([tx(L) + '=' + tx(R), tx(P.sub(L, mono(1, 'x', 2))) + '=' + tx(P.sub(R, mono(1, 'x', 2))), (s.den === 1 ? '' : s.den === -1 ? '-' : s.den) + 'x=' + s.num, 'x=' + s.x0]),
+            ['Expand both sides; subtract ' + t('x^{2}') + ' from both sides.', 'Collect the ' + t('x') + ' terms on one side. The answer may be negative.'], 'solve product = product');
+        } },
+        { id: 'e15b', level: 'PRG', make: function (r) {
+          var s = gen(function () { var p = r.int(2, 3), a = r.int(1, 5), b = r.int(1, 6), x0 = r.int(1, 6); return { p: p, a: a, b: b, x0: x0, c: a * b + (p * b + a) * x0 }; });
+          var L = P.mul(lin(s.p, s.a), lin(1, s.b)), k = s.p * s.b + s.a;
+          return solvePart(t('(' + s.p + 'x+' + s.a + ')(x+' + s.b + ')=' + s.p + 'x^{2}+' + s.c), s.x0, [[(s.c + s.a * s.b) / k, 'u3l6-move-sign', 'Moving ' + t(s.a * s.b) + ' to the other side makes it ' + t('-' + s.a * s.b) + '.']],
+            steps([tx(L) + '=' + s.p + 'x^{2}+' + s.c, k + 'x+' + s.a * s.b + '=' + s.c, k + 'x=' + (s.c - s.a * s.b), 'x=' + s.x0]),
+            ['Expand the left side; the ' + t(s.p + 'x^{2}') + ' terms cancel.', 'Then solve the two-step equation.'], 'solve (px+a)(x+b)=px²+c');
+        } },
+        { id: 'e15c', level: 'EMG', make: function (r) {
+          var s = gen(function () { var a = r.int(2, 7), b = r.int(1, 5), x0 = r.int(1, 8), c = a * a - b * x0; return c > 0 ? { a: a, b: b, x0: x0, c: c } : null; });
+          return solvePart(t('(x+' + s.a + ')(x-' + s.a + ')=x^{2}-' + (s.b === 1 ? '' : s.b) + 'x-' + s.c), s.x0, [[(s.c + s.a * s.a) / s.b, 'sign', 'A sum times a difference: ' + t('(x+' + s.a + ')(x-' + s.a + ')=x^{2}-' + s.a * s.a) + ' (minus).']],
+            steps(['x^{2}-' + s.a * s.a + '=x^{2}-' + (s.b === 1 ? '' : s.b) + 'x-' + s.c, (s.b === 1 ? '' : s.b) + 'x=' + s.a * s.a + '-' + s.c + '=' + (s.a * s.a - s.c), 'x=' + s.x0]),
+            ['The left side is a difference of squares: ' + t('x^{2}-' + s.a * s.a) + '.', 'Cancel the ' + t('x^{2}') + ' terms and solve.'], 'solve dsq = trinomial');
+        } }] },
+      { num: '16', stem: function (sh) { return 'A square garden has side length ' + t('(x+' + sh.a + ')') + ' m. A rectangular garden measures ' + t('(x+' + sh.b + ')') + ' m by ' + t('(x+' + sh.c + ')') + ' m. The two gardens have exactly the same area.'; },
+        shared: function (r) {
+          return gen(function () { var a = r.int(2, 9), b = r.int(1, a - 1), c = r.int(a + 1, 18), den = b + c - 2 * a, num = a * a - b * c; if (den <= 0 || num <= 0 || num % den || (a === 3 && b === 1 && c === 6)) return null; var x0 = num / den; return x0 <= 10 ? { a: a, b: b, c: c, x0: x0 } : null; });
+        },
+        parts: [
+          { id: 'e16a', level: 'PRG', make: function (r, sh) {
+            var Sq = P.pow(lin(1, sh.a), 2), R = P.mul(lin(1, sh.b), lin(1, sh.c));
+            return solvePart('Write an equation and solve it for ' + t('x') + '.' + howtoSq(), sh.x0, [[-sh.x0, 'sign', 'Check the signs as you move terms.']],
+              steps(['(x+' + sh.a + ')^{2}=(x+' + sh.b + ')(x+' + sh.c + ')', tx(Sq) + '=' + tx(R), 2 * sh.a + 'x+' + sh.a * sh.a + '=' + (sh.b + sh.c) + 'x+' + sh.b * sh.c, 'x=' + sh.x0]),
+              ['Square’s area = rectangle’s area. Expand both (the square has a middle term).', 'The ' + t('x^{2}') + ' terms cancel; solve for ' + t('x') + '.'], 'square garden = rectangle');
+          } },
+          { id: 'e16b', level: 'BEG', make: function (r, sh) {
+            var x = sh.x0;
+            return fieldsPart('State the actual dimensions of each garden.', [nbox('Square side:', 'Square side', 'm'), nbox('Rectangle length:', 'Rectangle length', 'm'), nbox('Rectangle width:', 'Rectangle width', 'm')],
+              [numChk(x + sh.a, [[x, 'side-not-x', 'That is ' + t('x') + '. Add ' + t(sh.a) + '.']]), numChk(x + sh.c), numChk(x + sh.b)], [String(x + sh.a), String(x + sh.c), String(x + sh.b)],
+              t((x + sh.a) + '\\text{ m}') + ' square; ' + t((x + sh.c) + '\\text{ m by }' + (x + sh.b) + '\\text{ m}') + ' rectangle',
+              'With ' + t('x=' + x) + ': square side ' + t(x + '+' + sh.a + '=' + (x + sh.a)) + ' m; rectangle ' + t(x + '+' + sh.c + '=' + (x + sh.c)) + ' m by ' + t(x + '+' + sh.b + '=' + (x + sh.b)) + ' m.',
+              ['Substitute your value of ' + t('x') + ' into each side.'], 'garden dimensions');
+          } },
+          { id: 'e16c', level: 'BEG', make: function (r, sh) {
+            var s = sh.x0 + sh.a, A = s * s;
+            return numPart('State the common area.', A, [[4 * s, 'perimeter', 'That is the perimeter of the square.']],
+              'Square: ' + t(s + '^{2}=' + A) + '; rectangle: ' + t((sh.x0 + sh.c) + '\\times ' + (sh.x0 + sh.b) + '=' + A) + ' — the same ✓', ['Square the square’s side (and check with the rectangle).'], 'common area', 'm²');
+          } }] },
+      { num: '17', stem: function (sh) { return '<b>Error analysis.</b> Kai solved ' + t('(x+' + sh.a + ')(x+' + sh.b + ')=x^{2}+' + sh.c) + ' like this:\\[x^{2}+' + (sh.a + sh.b) + 'x+' + sh.a * sh.b + '=x^{2}+' + sh.c + '\\quad\\Rightarrow\\quad ' + (sh.a + sh.b) + 'x=' + (sh.c + sh.a * sh.b) + '\\quad\\Rightarrow\\quad x=' + sh.xk + '\\]'; },
+        shared: function (r) { return gen(function () { var a = r.int(1, 7), b = r.int(1, 7), x0 = r.int(1, 5); if (a === b) return null; var c = a * b + (a + b) * x0; if ((c + a * b) % (a + b)) return null; return { a: a, b: b, x0: x0, c: c, xk: (c + a * b) / (a + b) }; }); },
+        parts: [
+          { id: 'e17a', level: 'EMG', make: function (r, sh) {
+            var ab = sh.a * sh.b;
+            return mcPart(r, 'The expansion is correct, so the mistake is later. What is it?', [
+              { html: 'He added ' + t(ab) + ' to the right side instead of subtracting it: from ' + t((sh.a + sh.b) + 'x+' + ab + '=' + sh.c) + ' the next line is ' + t((sh.a + sh.b) + 'x=' + (sh.c - ab)) + '.', right: true },
+              { html: 'He should not have cancelled the ' + t('x^{2}') + ' terms.', why: 'Both sides have ' + t('x^{2}') + '; subtracting it from both sides is correct.' },
+              { html: 'He divided by the wrong number.', why: 'Dividing by ' + t(sh.a + sh.b) + ' is right. The line before it is wrong.' },
+              { html: 'There is no mistake.', why: 'Substitute ' + t('x=' + sh.xk) + ' into the original equation: the two sides don’t match.' }],
+              'To undo ' + t('+' + ab) + ' you subtract ' + t(ab) + ' from both sides: ' + t((sh.a + sh.b) + 'x=' + sh.c + '-' + ab + '=' + (sh.c - ab)) + '. Kai added it instead.',
+              ['What is the opposite of adding ' + t(ab) + '?'], 'Kai’s error');
+          } },
+          { id: 'e17b', level: 'EMG', make: function (r, sh) {
+            return solvePart('Solve the equation correctly.', sh.x0, [[sh.xk, 'student-ans', 'That is Kai’s answer. Subtract ' + t(sh.a * sh.b) + ' from both sides.']],
+              steps([(sh.a + sh.b) + 'x+' + sh.a * sh.b + '=' + sh.c, (sh.a + sh.b) + 'x=' + (sh.c - sh.a * sh.b), 'x=' + sh.x0]), ['Cancel ' + t('x^{2}') + ', then subtract ' + t(sh.a * sh.b) + ' from both sides.'], 'Kai corrected');
+          } },
+          { id: 'e17c', level: 'BEG', make: function (r, sh) {
+            var f = function (x) { return [(x + sh.a) * (x + sh.b), x * x + sh.c]; }, k = f(sh.xk), c = f(sh.x0);
+            return fieldsPart('Substitute ' + t('x=' + sh.xk) + ' (Kai’s answer) and ' + t('x=' + sh.x0) + ' (yours) into both sides of the <b>original</b> equation.',
+              [nbox('Left side at ' + t('x=' + sh.xk) + ':', 'LS Kai'), nbox('Right side at ' + t('x=' + sh.xk) + ':', 'RS Kai'), nbox('Left side at ' + t('x=' + sh.x0) + ':', 'LS yours'), nbox('Right side at ' + t('x=' + sh.x0) + ':', 'RS yours')],
+              [numChk(k[0]), numChk(k[1]), numChk(c[0]), numChk(c[1])], [String(k[0]), String(k[1]), String(c[0]), String(c[1])], t(k[0] + '\\ne ' + k[1]) + '; ' + t(c[0] + '=' + c[1]) + ' ✓',
+              t('x=' + sh.xk) + ': ' + t('(' + (sh.xk + sh.a) + ')(' + (sh.xk + sh.b) + ')=' + k[0]) + ' but ' + t(sh.xk + '^{2}+' + sh.c + '=' + k[1]) + ' — not equal.<br>' + t('x=' + sh.x0) + ': ' + t('(' + (sh.x0 + sh.a) + ')(' + (sh.x0 + sh.b) + ')=' + c[0]) + ' and ' + t(sh.x0 + '^{2}+' + sh.c + '=' + c[1]) + ' ✓',
+              ['Work out each bracket first, then multiply.'], 'check both answers');
+          } }] },
+      { num: '18', stem: function (sh) { return '<b>Error analysis.</b> A rectangle has length ' + t('(x+' + sh.a + ')') + ' cm and width ' + t('(x+' + sh.b + ')') + ' cm. Miguel wrote: “The area is ' + t('2(x+' + sh.a + ')+2(x+' + sh.b + ')=4x+' + 2 * (sh.a + sh.b)) + '.”'; },
+        shared: function (r) { return gen(function () { var a = r.int(3, 9), b = r.int(1, 5), x0 = r.int(2, 8); return a > b && !(a === 4 && b === 1) ? { a: a, b: b, x0: x0, P: 2 * (2 * x0 + a + b) } : null; }); },
+        parts: [
+          { id: 'e18a', level: 'EMG', make: function (r, sh) {
+            return mcPart(r, 'What did Miguel actually calculate?', [
+              { html: 'The <b>perimeter</b> (the distance around). The area is length × width, ' + t('(x+' + sh.a + ')(x+' + sh.b + ')') + '.', right: true },
+              { html: 'The area, but he forgot to square ' + t('x') + '.', why: t('2(l+w)') + ' adds the four sides — it is a different measurement, not an area with a slip.' },
+              { html: 'The volume.', why: 'There is no third dimension here. Adding the sides gives the perimeter.' },
+              { html: 'Half the area.', why: 'Areas multiply lengths; Miguel only added lengths.' }],
+              t('2(x+' + sh.a + ')+2(x+' + sh.b + ')') + ' adds all four sides: that is the perimeter. Area = length × width.', ['What does adding all four sides measure?'], 'Miguel’s error');
+          } },
+          { id: 'e18b', level: 'BEG', make: function (r, sh) {
+            var L = lin(1, sh.a), W = lin(1, sh.b);
+            return polyPart('Give the correct simplified area expression (in cm²).', P.mul(L, W), [{ is: P.scale(P.add(L, W), 2), code: 'student-ans', hint: 'That is Miguel’s perimeter. Multiply the length and width.' }].concat(areaWrongs(L, W)), areaSol(L, W, 'cm²'), ['Area = length × width (FOIL).'], 'correct area', { before: t('A=') });
+          } },
+          { id: 'e18c', level: 'PRG', make: function (r, sh) {
+            var x0 = sh.x0, A = (x0 + sh.a) * (x0 + sh.b), s = sh.a + sh.b;
+            return fieldsPart('Determine the value of ' + t('x') + ' for which the <b>perimeter</b> is ' + t(sh.P) + ' cm, then find the area of that rectangle.' + howtoPerim(), [nbox(t('x='), 'x'), nbox('Area:', 'Area', 'cm²')],
+              [numChk(x0, [[(sh.P - s) / 2, 'half-perimeter', 'Add all <b>four</b> sides: ' + t('P=4x+' + 2 * s) + '.'], [x0 + sh.a, 'answered-other', 'That is the length. Give ' + t('x') + '.']]), numChk(A, [[sh.P, 'perimeter', 'That is the perimeter. Area = length × width.'], [4 * x0 + 2 * s, 'perimeter', 'Multiply the length and width.']])],
+              [String(x0), String(A)], t('x=' + x0) + '; area ' + t(A) + ' cm²',
+              steps(['4x+' + 2 * s + '=' + sh.P, '4x=' + (sh.P - 2 * s), 'x=' + x0]) + '<br>The rectangle is ' + t((x0 + sh.a) + '\\text{ cm by }' + (x0 + sh.b) + '\\text{ cm}') + ', so the area is ' + t((x0 + sh.a) + '\\times ' + (x0 + sh.b) + '=' + A) + ' cm².',
+              ['Miguel’s expression ' + t('4x+' + 2 * s) + ' really is the perimeter: set it equal to ' + t(sh.P) + '.', 'Then find the length and width and multiply.'], 'perimeter → x → area');
+          } }] },
+      /* ---------- EP Part D ---------- */
+      { num: '19', section: 'Extra practice D — Comparing, reversing, and proving', stem: function (sh) { return 'Rectangle P measures ' + t('(x+' + (sh.a + 1) + ')') + ' by ' + t('(x+' + (sh.a - 1) + ')') + ', and Square Q has side ' + t('(x+' + sh.a + ')') + '.'; },
+        shared: function (r) { var a = r.int(2, 8), b; do { b = r.int(3, 10); } while (b === a); return { a: a, b: b, X1: r.pick([10, 10, 20, 50]), X2: r.int(1, 3) }; },
+        parts: [
+          { id: 'e19a', level: 'BEG', make: function (r, sh) {
+            var a = sh.a, Pp = P.mul(lin(1, a + 1), lin(1, a - 1)), Q = P.pow(lin(1, a), 2);
+            return fieldsPart('Expand the area of each.', [pbox('Area of P:', 'Area of P'), pbox('Area of Q:', 'Area of Q')], [polyChk(Pp, [{ is: P.add(mono(1, 'x', 2), P.num(a * a - 1)), code: 'fl-only', hint: 'Include the Outer and Inner products: ' + t((a - 1) + 'x+' + (a + 1) + 'x') + '.' }]), polyChk(Q, [{ is: sqNoMid(lin(1, a)), code: 'no-middle', hint: t('(x+' + a + ')^{2}') + ' has a middle term.' }])],
+              [tx(Pp), tx(Q)], 'P: ' + t(tx(Pp)) + '; Q: ' + t(tx(Q)), 'P: ' + t('(x+' + (a + 1) + ')(x+' + (a - 1) + ')=' + tx(Pp)) + '<br>Q: ' + t('(x+' + a + ')^{2}=' + tx(Q)), ['FOIL for P; the square pattern for Q.'], 'expand P and Q');
+          } },
+          { id: 'e19b', level: 'EMG', make: function (r, sh) {
+            var a = sh.a;
+            return mcPart(r, 'Which one is larger, and by how much?', [
+              { html: 'Square Q, by exactly ' + t('1') + ' square unit — for every value of ' + t('x') + '.', right: true },
+              { html: 'Rectangle P, by exactly ' + t('1') + ' square unit.', why: 'Compare the constants: ' + t(a * a - 1) + ' for P and ' + t(a * a) + ' for Q.' },
+              { html: 'Square Q, but by an amount that grows as ' + t('x') + ' grows.', why: 'The ' + t('x^{2}') + ' and ' + t('x') + ' terms are identical; only the constants differ.' },
+              { html: 'They are equal.', why: 'Compare the constant terms: ' + t(a * a - 1) + ' and ' + t(a * a) + '.' }],
+              'P ' + t('=x^{2}+' + 2 * a + 'x+' + (a * a - 1)) + ' and Q ' + t('=x^{2}+' + 2 * a + 'x+' + a * a) + ': same ' + t('x^{2}') + ' and ' + t('x') + ' terms, constants differ by ' + t('1') + '. Q is larger by ' + t('1') + ', whatever ' + t('x') + ' is.',
+              ['Subtract the two expansions.'], 'which is larger');
+          } },
+          { id: 'e19c', level: 'BEG', make: function (r, sh) {
+            var a = sh.a, f = function (x) { return [(x + a + 1) * (x + a - 1), (x + a) * (x + a)]; }, u = f(sh.X1), v = f(sh.X2);
+            return fieldsPart('Test your conclusion with ' + t('x=' + sh.X1) + ' and with ' + t('x=' + sh.X2) + ' by computing both areas.', [nbox('P at ' + t('x=' + sh.X1) + ':', 'P at x1'), nbox('Q at ' + t('x=' + sh.X1) + ':', 'Q at x1'), nbox('P at ' + t('x=' + sh.X2) + ':', 'P at x2'), nbox('Q at ' + t('x=' + sh.X2) + ':', 'Q at x2')],
+              [numChk(u[0]), numChk(u[1]), numChk(v[0]), numChk(v[1])], [String(u[0]), String(u[1]), String(v[0]), String(v[1])], t(u[0] + ',\\ ' + u[1] + ';\\ ' + v[0] + ',\\ ' + v[1]),
+              t('x=' + sh.X1) + ': ' + t((sh.X1 + a + 1) + '\\times ' + (sh.X1 + a - 1) + '=' + u[0]) + ', ' + t((sh.X1 + a) + '^{2}=' + u[1]) + '.<br>' + t('x=' + sh.X2) + ': ' + t((sh.X2 + a + 1) + '\\times ' + (sh.X2 + a - 1) + '=' + v[0]) + ', ' + t((sh.X2 + a) + '^{2}=' + v[1]) + '. Q is ' + t('1') + ' more both times ✓',
+              ['Work out each side length first.'], 'test with numbers');
+          } },
+          { id: 'e19d', level: 'EMG', make: function (r, sh) {
+            var b = sh.b;
+            return mcPart(r, 'Repeat the comparison for ' + t('(x+' + (b + 1) + ')(x+' + (b - 1) + ')') + ' and ' + t('(x+' + b + ')^{2}') + '. Which sentence states the general result?', [
+              { html: 'A square ' + t('(x+n)^{2}') + ' is always exactly ' + t('1') + ' more than the rectangle ' + t('(x+n+1)(x+n-1)') + '.', right: true },
+              { html: 'The square is always larger by ' + t('n') + '.', why: 'Here ' + t('n=' + b) + ', but the difference is still ' + t('(x+' + b + ')^{2}-(x+' + (b + 1) + ')(x+' + (b - 1) + ')=1') + '.' },
+              { html: 'The rectangle is always larger by ' + t('1') + '.', why: 'Compare constants: ' + t(b * b) + ' (square) and ' + t(b * b - 1) + ' (rectangle).' },
+              { html: 'The difference depends on ' + t('x') + '.', why: 'The ' + t('x^{2}') + ' and ' + t('x') + ' terms always match; only the constants differ.' }],
+              t('(x+' + (b + 1) + ')(x+' + (b - 1) + ')=x^{2}+' + 2 * b + 'x+' + (b * b - 1)) + ' and ' + t('(x+' + b + ')^{2}=x^{2}+' + 2 * b + 'x+' + b * b) + ': again a difference of ' + t('1') + '. In general ' + t('(x+n+1)(x+n-1)=(x+n)^{2}-1') + '.',
+              ['Expand both and compare the constant terms.'], 'general result');
+          } }] },
+      { num: '20', stem: '<b>Working backwards.</b> Find the missing factor by asking “what must multiply the given side to produce this?”', parts: [
+        { id: 'e20a', level: 'MAS', make: function (r) {
+          var g = gen(function () { var p = r.int(2, 3), q = r.int(1, 7), s = r.int(1, 6); return q % p !== 0 && q !== s ? { p: p, q: q, s: s } : null; });
+          var L = lin(g.p, g.q), W = lin(1, g.s), A = P.mul(L, W), Per = P.scale(P.add(L, W), 2), c0 = g.q * g.s;
+          return fieldsPart('A rectangle has area ' + t(tx(A)) + ' and width ' + t('(x+' + g.s + ')') + '. Find its length, then write a simplified expression for its perimeter.', [pbox('Length:', 'Length'), pbox('Perimeter:', 'Perimeter')],
+            [polyChk(L, [{ is: lin(g.p, -g.q), code: 'sign', hint: t('(x+' + g.s + ')') + ' times the length gives the constant ' + t(c0) + ': the number in the length is ' + t('+' + g.q) + '.' }, { is: lin(1, g.q), code: 'value', hint: 'The first term times ' + t('x') + ' must give ' + t(g.p + 'x^{2}') + '.' }]),
+              polyChk(Per, [{ is: P.add(L, W), code: 'half-perimeter', hint: 'Add all four sides: ' + t('2(\\text{length}+\\text{width})') + '.' }, { is: A, code: 'answered-other', hint: 'That is the area.' }])],
+            [tx(L), tx(Per)], 'Length ' + t(tx(L)) + '; perimeter ' + t(tx(Per)),
+            'The length is a binomial ' + t('px+q') + ' with ' + t('px\\cdot x=' + g.p + 'x^{2}') + ', so ' + t('p=' + g.p) + ', and ' + t('q\\cdot ' + g.s + '=' + c0) + ', so ' + t('q=' + g.q) + '.<br>Check: ' + t('(' + tx(L) + ')(x+' + g.s + ')=' + tx(A)) + ' ✓<br>Perimeter ' + t('=2(' + tx(L) + ')+2(x+' + g.s + ')=' + tx(Per)) + '.',
+            ['Length × width = area. What times ' + t('x') + ' gives ' + t(g.p + 'x^{2}') + '? What times ' + t(g.s) + ' gives ' + t(c0) + '?', 'Check by expanding, then add all four sides.'], 'length from area, then perimeter');
+        } },
+        { id: 'e20b', level: 'ADV', make: function (r) {
+          var v = r.sample([1, 2, 3, 4, 5], 3), Bs = P.mul(lin(1, v[0]), lin(1, v[1])), V = P.mul(Bs, lin(1, v[2])), c0 = v[0] * v[1] * v[2];
+          return polyPart('A rectangular prism has volume ' + t(tx(V)) + ' and a base of area ' + t(tx(Bs)) + '. Find its height.', lin(1, v[2]), [{ is: lin(1, -v[2]), code: 'sign', hint: 'The constant ' + t(v[0] * v[1]) + ' × (height’s number) must give ' + t(c0) + '.' }],
+            'Height ' + t('=x+h') + ': ' + t('x\\cdot x^{2}=x^{3}') + ' and ' + t(v[0] * v[1] + 'h=' + c0) + ', so ' + t('h=' + v[2]) + '.<br>Check: ' + t('(' + tx(Bs) + ')(x+' + v[2] + ')=' + tx(V)) + ' ✓',
+            ['Volume = base area × height. What times ' + t('x^{2}') + ' gives ' + t('x^{3}') + '? What times ' + t(v[0] * v[1]) + ' gives ' + t(c0) + '?', 'Check by multiplying back.'], 'height from volume');
+        } }] },
+      { num: '21', stem: function (sh) { return '<b>Consecutive integers.</b> Let ' + t(sh.n) + ' be any whole number, so ' + t(sh.n) + ' and ' + t(sh.n + '+1') + ' are consecutive integers.'; },
+        shared: function (r) { return { n: r.pick(['n', 'n', 'k', 'm', 'p', 't', 'a']), N: r.int(3, 15) }; },
+        parts: [
+          { id: 'e21a', level: 'BEG', make: function (r, sh) {
+            var n = sh.n, T = P.mul(mono(1, n), lin(1, 1, n));
+            return fieldsPart('Expand ' + t(n + '(' + n + '+1)') + ', and evaluate it when ' + t(n + '=' + sh.N) + '.', [{ name: 'Expansion', label: 'Expansion:', mode: 'math', keys: 'poly', vars: [n], wide: true }, nbox('Value at ' + t(n + '=' + sh.N) + ':', 'Value')],
+              [polyChk(T, [{ is: P.add(mono(1, n, 2), P.num(1)), code: 'only-last', hint: 'Multiply ' + t(n) + ' into <b>both</b> terms: ' + t(n + '\\cdot 1=' + n) + '.' }]), numChk(sh.N * (sh.N + 1))], [tx(T), String(sh.N * (sh.N + 1))], t(tx(T)) + '; ' + t(sh.N * (sh.N + 1)),
+              t(n + '(' + n + '+1)=' + tx(T)) + '. At ' + t(n + '=' + sh.N) + ': ' + t(sh.N + '\\times ' + (sh.N + 1) + '=' + sh.N * (sh.N + 1)) + '.', ['Distribute ' + t(n) + ' to both terms.'], 'expand n(n+1)');
+          } },
+          { id: 'e21b', level: 'EMG', make: function (r, sh) {
+            var n = sh.n;
+            return mcPart(r, 'Why is ' + t(n + '(' + n + '+1)') + ' always even (for example ' + t(sh.N + '\\times ' + (sh.N + 1) + '=' + sh.N * (sh.N + 1)) + ')?', [
+              { html: 'Of two consecutive integers, one is even — and an even factor makes the whole product even.', right: true },
+              { html: 'Because ' + t(n + '^{2}') + ' is always even.', why: 'Try ' + t(n + '=3') + ': ' + t('3^{2}=9') + ' is odd. The reason is the pair of factors.' },
+              { html: 'Because adding ' + t('1') + ' always gives an even number.', why: t('2+1=3') + ' is odd. One of the two numbers is even, not both.' },
+              { html: 'It is only even when ' + t(n) + ' is even.', why: 'Try an odd ' + t(n) + ': ' + t('3\\times 4=12') + ' is still even, because ' + t(n + '+1') + ' is then even.' }],
+              'Consecutive integers alternate odd, even, odd, … so one of ' + t(n) + ' and ' + t(n + '+1') + ' is even. A product with an even factor is even.', ['Is one of ' + t(n) + ', ' + t(n + '+1') + ' always even?'], 'why n(n+1) is even');
+          } },
+          { id: 'e21c', level: 'EMG', make: function (r, sh) {
+            var n = sh.n, T = P.sub(P.pow(lin(1, 1, n), 2), mono(1, n, 2));
+            return fieldsPart('Expand and simplify ' + t('(' + n + '+1)^{2}-' + n + '^{2}') + ', and check it with ' + t(n + '=' + sh.N) + '.', [{ name: 'Simplified', label: 'Simplified:', mode: 'math', keys: 'poly', vars: [n], wide: true }, nbox(t((sh.N + 1) + '^{2}-' + sh.N + '^{2}='), 'Check')],
+              [polyChk(T, [{ is: P.num(1), code: 'no-middle', hint: t('(' + n + '+1)^{2}') + ' has a middle term, ' + t('2' + n) + '.' }]), numChk(2 * sh.N + 1)], [tx(T), String(2 * sh.N + 1)], t(tx(T)) + '; ' + t(2 * sh.N + 1),
+              t('(' + n + '^{2}+2' + n + '+1)-' + n + '^{2}=2' + n + '+1') + '. Check: ' + t((sh.N + 1) * (sh.N + 1) + '-' + sh.N * sh.N + '=' + (2 * sh.N + 1) + '=2(' + sh.N + ')+1') + ' ✓', ['Square ' + t('(' + n + '+1)') + ' (middle term!), then subtract ' + t(n + '^{2}') + '.'], 'difference of consecutive squares');
+          } },
+          { id: 'e21d', level: 'EMG', make: function (r, sh) {
+            var n = sh.n;
+            return mcPart(r, 'Why is ' + t('2' + n + '+1') + ' always odd?', [
+              { html: t('2' + n) + ' is even (it is ' + t('2') + ' times a whole number), and one more than an even number is odd.', right: true },
+              { html: 'Because ' + t(n) + ' is odd.', why: t(n) + ' can be any whole number, even or odd. ' + t('2' + n) + ' is always even.' },
+              { html: 'Because ' + t('2' + n + '+1') + ' is a prime number.', why: t('2(4)+1=9') + ' is odd but not prime.' },
+              { html: 'It isn’t always odd.', why: 'Try a few values: ' + t('2(' + sh.N + ')+1=' + (2 * sh.N + 1)) + ', … always odd.' }],
+              'Any multiple of 2 is even, so ' + t('2' + n) + ' is even; adding 1 makes it odd. So the difference of consecutive squares is always odd.', ['What kind of number is ' + t('2' + n) + '?'], 'why 2n+1 is odd');
+          } }] },
+      { num: '22', stem: function (sh) { return '<b>Stretch.</b> Two consecutive even integers can be written as ' + t('2' + sh.n) + ' and ' + t('2' + sh.n + '+2') + ' (for example ' + t(2 * sh.M) + ' and ' + t(2 * sh.M + 2) + ').'; },
+        shared: function (r) { return { n: r.pick(['n', 'n', 'k', 'm', 'p', 't']), M: r.int(2, 12) }; },
+        parts: [
+          { id: 'e22a', level: 'EMG', make: function (r, sh) {
+            var n = sh.n, T = P.mul(mono(2, n), lin(2, 2, n));
+            return polyPart('Expand and simplify their product, ' + t('2' + n + '(2' + n + '+2)') + '.', T, [{ is: P.add(mono(4, n, 2), P.num(2)), code: 'only-last', hint: 'Multiply ' + t('2' + n) + ' into <b>both</b> terms: ' + t('2' + n + '\\times 2=4' + n) + '.' }, { is: P.add(mono(2, n, 2), mono(4, n)), code: 'exp-mult', hint: t('2' + n + '\\times 2' + n + '=4' + n + '^{2}') + ': multiply the numbers too.' }],
+              t('2' + n + '(2' + n + '+2)=4' + n + '^{2}+4' + n), ['Distribute ' + t('2' + n) + ' to both terms.'], 'product of consecutive evens', { vars: [n] });
+          } },
+          { id: 'e22b', level: 'PRG', make: function (r, sh) {
+            var n = sh.n, T = P.add(mono(1, n, 2), mono(1, n));
+            return polyPart('Fill the bracket to show the product is a multiple of ' + t('4') + ':', T, [{ is: P.add(mono(1, n, 2), mono(4, n)), code: 'u3l6-div-one', hint: 'Divide <b>both</b> terms by 4: ' + t('4' + n + '\\div 4=' + n) + '.' }, { is: P.add(mono(4, n, 2), mono(4, n)), code: 'value', hint: 'What times 4 gives ' + t('4' + n + '^{2}+4' + n) + '? Divide each term by 4.' }],
+              t('4' + n + '^{2}+4' + n + '=4(' + n + '^{2}+' + n + ')') + ' — check by expanding: ' + t('4\\cdot ' + n + '^{2}+4\\cdot ' + n) + ' ✓. It is 4 times a whole number, so it is a multiple of 4.',
+              ['What times 4 gives each term? Check by expanding your answer.'], 'write as 4(…)', { vars: [n], before: t('4' + n + '^{2}+4' + n + '=4\\left('), after: t('\\right)') });
+          } },
+          { id: 'e22c', level: 'ADV', make: function (r, sh) {
+            var n = sh.n;
+            return mcPart(r, 'Using question 21, why is the product ' + t('4(' + n + '^{2}+' + n + ')') + ' in fact always a multiple of ' + t('8') + '?', [
+              { html: t(n + '^{2}+' + n + '=' + n + '(' + n + '+1)') + ', which is always even, say ' + t('2k') + '. So the product is ' + t('4(2k)=8k') + '.', right: true },
+              { html: 'Because ' + t('4+4=8') + '.', why: 'Adding the coefficients doesn’t tell you about divisibility. Look at what is inside the bracket.' },
+              { html: 'Because ' + t(n + '^{2}') + ' is always even.', why: t(n + '^{2}') + ' is odd when ' + t(n) + ' is odd. It is ' + t(n + '(' + n + '+1)') + ' that is always even.' },
+              { html: 'It is only a multiple of 8 when ' + t(n) + ' is even.', why: 'Try an odd ' + t(n) + ': ' + t('6\\times 8=48=8\\times 6') + ' (that is ' + t(n + '=3') + ').' }],
+              t(n + '^{2}+' + n + '=' + n + '(' + n + '+1)') + ' is a product of consecutive integers, which is always even (question 21). An even number is ' + t('2k') + ', so the product is ' + t('4\\times 2k=8k') + '.', ['Write ' + t(n + '^{2}+' + n) + ' as a product. What did question 21 say about it?'], 'why a multiple of 8');
+          } },
+          { id: 'e22d', level: 'BEG', make: function (r, sh) {
+            var a = 2 * sh.M, b = a + 2, pr = a * b;
+            return fieldsPart('Test with the pair ' + t(a) + ' and ' + t(b) + '.', [nbox('Product ' + t(a + '\\times ' + b + '='), 'Product'), nbox('Product ' + t('\\div 8='), 'Product ÷ 8')],
+              [numChk(pr), numChk(pr / 8)], [String(pr), String(pr / 8)], t(pr + '=8\\times ' + pr / 8),
+              t(a + '\\times ' + b + '=' + pr) + ' and ' + t(pr + '\\div 8=' + pr / 8) + ' — a whole number, so it is a multiple of 8 ✓', ['Multiply, then divide by 8.'], 'test the pair');
+          } }] },
+      { num: '23', stem: function (sh) { return '<b>Stretch.</b> Let ' + t(sh.n) + ' be any number.'; },
+        shared: function (r) { var k = r.pick([1, 2, 2, 3, 4, 5]), h = 10 * r.int(2, 9), H; do { H = 10 * r.int(2, 9); } while (H === h); return { n: r.pick(['n', 'n', 'm', 'k', 'p', 't']), k: k, h: h, H: H }; },
+        parts: [
+          { id: 'e23a', level: 'BEG', make: function (r, sh) {
+            var n = sh.n, k = sh.k, T = P.mul(lin(1, -k, n), lin(1, k, n));
+            return polyPart('Expand ' + t('(' + n + '-' + k + ')(' + n + '+' + k + ')') + '.', T, [{ is: P.add(mono(1, n, 2), P.num(k * k)), code: 'dsq-sign', hint: 'The last product is ' + t('(-' + k + ')(+' + k + ')=-' + k * k) + '.' }, { is: P.add(mono(1, n, 2), mono(2 * k, n), P.num(-k * k)), code: 'sign', hint: 'The middle products ' + t('+' + k + n) + ' and ' + t('-' + k + n) + ' cancel.' }],
+              t('(' + n + '-' + k + ')(' + n + '+' + k + ')=' + n + '^{2}+' + k + n + '-' + k + n + '-' + k * k + '=' + tx(T)), ['A sum times a difference: the middle terms cancel.'], 'sum × difference', { vars: [n] });
+          } },
+          { id: 'e23b', level: 'EMG', make: function (r, sh) {
+            var n = sh.n, k = sh.k, d = 2 * k;
+            return mcPart(r, 'Use your answer to explain why the product of any two numbers that differ by ' + t(d) + ' is always exactly ' + t(k * k) + ' less than the square of the number halfway between them.', [
+              { html: 'The numbers are ' + t(n + '-' + k) + ' and ' + t(n + '+' + k) + ': they differ by ' + t(d) + ' and ' + t(n) + ' is halfway between. Their product is ' + t(n + '^{2}-' + k * k) + ', which is ' + t(k * k) + ' less than ' + t(n + '^{2}') + '.', right: true },
+              { html: 'Because ' + t(d + '\\times ' + d + '=' + d * d) + '.', why: 'The amount is ' + t(k + '^{2}=' + k * k) + ' — the square of the distance from the middle, not of the gap.' },
+              { html: 'Because the middle terms add to ' + t(k * k) + '.', why: 'The middle terms ' + t('+' + k + n) + ' and ' + t('-' + k + n) + ' cancel. The ' + t('-' + k * k) + ' is the last product.' },
+              { html: 'It only works for whole numbers.', why: t(n) + ' can be any number: the expansion ' + t(n + '^{2}-' + k * k) + ' holds for all of them.' }],
+              'Call the middle number ' + t(n) + '. The two numbers are ' + t(n + '-' + k) + ' and ' + t(n + '+' + k) + ', and ' + t('(' + n + '-' + k + ')(' + n + '+' + k + ')=' + n + '^{2}-' + k * k) + ': exactly ' + t(k * k) + ' less than ' + t(n + '^{2}') + '.', ['Which two numbers does ' + t('(' + n + '-' + k + ')(' + n + '+' + k + ')') + ' multiply, and which number is halfway between them?'], 'explain the product rule');
+          } },
+          { id: 'e23c', level: 'BEG', make: function (r, sh) {
+            var k = sh.k, h = sh.h, a = h - k, b = h + k;
+            return fieldsPart('Test the claim with ' + t(a) + ' and ' + t(b) + '.', [nbox(t(a + '\\times ' + b + '='), 'Product'), nbox(t(h + '^{2}-' + k * k + '='), 'Square minus')],
+              [numChk(a * b, [[h * h, 'value', 'Multiply ' + t(a + '\\times ' + b) + ' directly.']]), numChk(h * h - k * k, [[h * h, 'value', 'Subtract ' + t(k * k) + '.']])], [String(a * b), String(h * h - k * k)], t(a * b) + ' both ways',
+              t(a + '\\times ' + b + '=' + a * b) + ' and ' + t(h + '^{2}-' + k * k + '=' + h * h + '-' + k * k + '=' + (h * h - k * k)) + ' ✓', ['The halfway number is ' + t(h) + '.'], 'test the claim');
+          } },
+          { id: 'e23d', level: 'EMG', make: function (r, sh) {
+            var k = sh.k, H = sh.H, a = H - k, b = H + k, v = H * H - k * k;
+            return numPart('Predict, without multiplying, the value of ' + t(a + '\\times ' + b) + '.', v, [[H * H, 'value', 'Subtract ' + t(k + '^{2}=' + k * k) + ' from ' + t(H + '^{2}') + '.'], [H * H + k * k, 'dsq-sign', 'It is ' + t(k * k) + ' <b>less</b> than ' + t(H + '^{2}') + '.'], [H * H - 2 * k, 'value', 'Subtract ' + t(k + '^{2}') + ', not ' + t(2 * k) + '.']],
+              'Halfway between is ' + t(H) + ': ' + t(a + '\\times ' + b + '=' + H + '^{2}-' + k + '^{2}=' + H * H + '-' + k * k + '=' + v) + '.', ['Which number is halfway between ' + t(a) + ' and ' + t(b) + '?'], 'predict a product');
+          } }] }
+    ]
   });
 })(window);

@@ -86,7 +86,7 @@ const RC = {
 };
 function arcPath(svg, a, b, up, col, letter, stage) {
   const x1 = a.x, x2 = b.x, y1 = up ? a.t - 4 : a.b + 4, y2 = up ? b.t - 4 : b.b + 4, dx = Math.abs(x2 - x1);
-  const peak = up ? Math.min(y1, y2) - (30 + dx * 0.42) : Math.max(y1, y2) + (30 + dx * 0.42);
+  const peak = up ? Math.min(y1, y2) - (28 + dx * 0.3) : Math.max(y1, y2) + (28 + dx * 0.3);
   const cy = 2 * peak - (y1 + y2) / 2, mx = (x1 + x2) / 2;
   const p = svgEl('path', { d: `M${x1} ${y1} Q${mx} ${cy} ${x2} ${y2}`, fill: 'none', stroke: col, 'stroke-width': 4, 'stroke-linecap': 'round' });
   const ang = Math.atan2(y2 - cy, x2 - mx), s = 11;
@@ -113,7 +113,7 @@ const recall = {
     const W = ex.W, d = RC[key], { A, B } = d;
     const fac = (P, n) => P.map((t, k) => (k === 0 ? `\\htmlClass{u3l5-r${n}${k}}{${termT(t, true)}}` : `${t[0] < 0 ? '-' : '+'}\\htmlClass{u3l5-r${n}${k}}{${body(t[0], t[1])}}`)).join('');
     const svg = svgEl('svg', { width: W, height: 410, class: 'u3l5-arcs' }); at(svg, 0, 0); stage.appendChild(svg);
-    const head = add(stage, h('div', 'u3l5-rhead c', K(`(${fac(A, 'a')})(${fac(B, 'b')})`)), 250, 168);
+    const head = add(stage, h('div', 'u3l5-rhead c', K(`(${fac(A, 'a')})(${fac(B, 'b')})`)), 250, 196);
     const term = (n, k) => head.querySelector(`.u3l5-r${n}${k}`);
     const prods = FL.map(([, , i, j]) => mulT(A[i], B[j]));
     const bx = 520, bw = W - bx - 20;

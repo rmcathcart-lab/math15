@@ -43,14 +43,15 @@
     'u3t-area-perim': 'Gave the perimeter (or half of it) instead of the area', 'u3t-two-edges': 'Volume: multiplied only two of the three edges', 'u3t-lid-same': 'Lid: used the base’s sides (not 2 longer and 2 wider)',
     'u3t-lid-one': 'Lid: made only one side 2 longer', 'u3t-solve-sign': 'Solving: sign slip', 'u3t-solve-div': 'Solving: did not divide by the x-coefficient', 'u3t-area-x': 'Gave x instead of the area',
     'u3t-kept-error': 'Repeated the student’s error', 'u3t-a-sign': 'Working backwards: wrong sign on a', 'u3t-b-coef': 'Middle coefficient: left out the leading coefficient',
-    'u3t-b-one': 'Middle coefficient: only one of the two middle products', 'u3t-b-sign': 'Middle coefficient: sign slip', 'u3t-k-sign': 'Wrong sign for k', 'u3t-k-coef': 'k: left out the leading coefficient'
+    'u3t-b-one': 'Middle coefficient: only one of the two middle products', 'u3t-b-sign': 'Middle coefficient: sign slip', 'u3t-k-sign': 'Wrong sign for k', 'u3t-k-coef': 'k: left out the leading coefficient',
+    'u3t-add-exp': 'Added the exponents when adding like terms (x² + x² = 2x⁴)'
   });
   HW.addPartial({
     'u3t-deg-first': 'b', 'u3t-deg-sum': 'n', 'u3t-coef-sign': 's', 'u3t-coef-hidden': 'b', 'u3t-coef-exp': 'n', 'u3t-const-sign': 's',
     'u3t-like-row': 's', 'u3t-like-rows': 'b', 'u3t-like-many': 'n', 'u3t-not-collected': 'n', 'u3t-unlike': 'n', 'u3t-term-sign': 's',
     'u3t-pat-row': 'b', 'u3t-pat-rows': 'n', 'u3t-foil-box': 's', 'u3t-sd-square': 'n', 'u3t-sq-as-sd': 'n', 'u3t-area-perim': 'n',
     'u3t-two-edges': 'b', 'u3t-lid-same': 'b', 'u3t-lid-one': 's', 'u3t-solve-sign': 's', 'u3t-solve-div': 'b', 'u3t-area-x': 'n',
-    'u3t-kept-error': 'n', 'u3t-a-sign': 's', 'u3t-b-coef': 'b', 'u3t-b-one': 'b', 'u3t-b-sign': 's', 'u3t-k-sign': 'b', 'u3t-k-coef': 'b'
+    'u3t-kept-error': 'n', 'u3t-a-sign': 's', 'u3t-b-coef': 'b', 'u3t-b-one': 'b', 'u3t-b-sign': 's', 'u3t-k-sign': 'b', 'u3t-k-coef': 'b', 'u3t-add-exp': 'n'
   });
   /* labels for shared codes this file uses (their partial-credit decisions are already in js/partial.js); kept if a lesson file set them */
   (function (o) { Object.keys(o).forEach(function (k) { if (!HW.CODES[k]) { var x = {}; x[k] = o[k]; HW.addCodes(x); } }); })({
@@ -58,7 +59,7 @@
     'fl-only': 'Expanded with only First and Last', 'one-middle': 'FOIL: one of the two middle products missing', 'last-sign': 'Wrong sign on the product of the last terms',
     'no-middle': 'Squared a binomial without the middle term', 'middle-once': 'Middle term of a square not doubled', 'sq-middle-sign': 'Wrong sign on the middle term of a square',
     'sq-last-neg': 'Made the last square negative', 'coef-not-squared': 'Coefficient not squared', 'sd-plus': 'Sum × difference gave a² + b²', 'sd-middle': 'Stray middle term in sum × difference',
-    'add-coef': 'Added coefficients instead of multiplying', 'mult-exp': 'Multiplied exponents (should add)', 'add-exp': 'Added the exponents when adding like terms',
+    'add-coef': 'Added coefficients instead of multiplying', 'mult-exp': 'Multiplied exponents (should add)',
     'minus-first': 'Minus sign applied only to the first term', 'sub-first': 'Subtracted a bracket but changed only its first sign', 'minus-ignored': 'Added a product that is subtracted',
     'k-first': 'Number in front multiplied into only one term', 'k-forgot': 'Forgot the number in front', 'k-in-square': 'Number in front put inside the square',
     'not-subtracted': 'Did not subtract the removed area', 'whole-only': 'Used the whole rectangle (no piece removed)', perimeter: 'Gave the perimeter for an area', row: 'A row of the table wrong'
@@ -411,7 +412,7 @@
           var ord = r.pick([[0, 1, 2, 3, 4, 5], [0, 1, 2, 3, 4, 5], [2, 0, 1, 5, 3, 4], [0, 2, 4, 1, 3, 5], [1, 0, 3, 2, 5, 4]]), shown = ord.map(function (i) { return T0[i]; });
           var T = sumOf(T0), ex0 = seq(shown);
           var negI = [3, 4, 5].filter(function (i) { return coefOf(T0[i]) < 0; })[0], slip = add(T, PL.scale(T0[negI], -2));
-          var ws = [{ is: add(xm(v.A + v.D, 4), xm(v.B + v.E, 2), N(v.C + v.Fc)), code: 'add-exp', hint: 'When you add like terms the exponent stays the same: ' + t('3x^{2}+2x^{2}=5x^{2}') + ', not ' + t('5x^{4}') + '.' },
+          var ws = [{ is: add(xm(v.A + v.D, 4), xm(v.B + v.E, 2), N(v.C + v.Fc)), code: 'u3t-add-exp', hint: 'When you add like terms the exponent stays the same: ' + t('3x^{2}+2x^{2}=5x^{2}') + ', not ' + t('5x^{4}') + '.' },
             { is: slip, code: 'u3t-term-sign', hint: 'Check the sign of ' + t(tx(T0[negI])) + ': each term keeps the sign in front of it.' },
             { is: add(xm(v.A + v.D + v.B + v.E, 2), N(v.C + v.Fc)), code: 'u3t-unlike', hint: t('x^{2}') + '-terms and ' + t('x') + '-terms are <b>unlike</b> terms (different exponents): they can’t be combined.' }];
           return noCollect(pp(t(ex0), T, ws,
@@ -434,7 +435,7 @@
             function (v) { return v.b1 + v.b2 !== 0 && v.c1 + v.c2 !== 0 && (v.b2 < 0 || v.c2 < 0) && v.b1 !== v.b2; }, { a1: 2, b1: 3, c1: -5, a2: 4, b2: -1, c2: 7 });
           var P1 = [xm(v.a1, 2), xm(v.b1), N(v.c1)], P2 = [xm(v.a2, 2), xm(v.b2), N(v.c2)], A = sumOf(P1), B = sumOf(P2), T = add(A, B), vert = r.chance(0.35);
           var shown = vert ? t('\\begin{array}{r}' + seq(P1) + '\\\\ +\\ (' + seq(P2) + ')\\\\ \\hline\\end{array}') : t(br(P1) + '+' + br(P2));
-          var ws = [{ is: add(xm(v.a1 + v.a2, 4), xm(v.b1 + v.b2, 2), N(v.c1 + v.c2)), code: 'add-exp', hint: 'When you add like terms the exponent stays the same: ' + t(tx(xm(v.a1, 2)) + '+' + tx(xm(v.a2, 2)) + '=' + tx(xm(v.a1 + v.a2, 2))) + '.' },
+          var ws = [{ is: add(xm(v.a1 + v.a2, 4), xm(v.b1 + v.b2, 2), N(v.c1 + v.c2)), code: 'u3t-add-exp', hint: 'When you add like terms the exponent stays the same: ' + t(tx(xm(v.a1, 2)) + '+' + tx(xm(v.a2, 2)) + '=' + tx(xm(v.a1 + v.a2, 2))) + '.' },
             { is: sub(A, B), code: 'minus-ignored', hint: 'This is an <b>addition</b>: the signs in the second polynomial don’t change.' }];
           return noCollect(pp((vert ? 'Add, using the vertical method:' : 'Add:') + '<br>' + shown, T, ws,
             (vert ? 'Like terms are lined up in columns; add down each column: ' : 'Adding never changes a sign, so drop the brackets and collect like terms:<br>' + t(seq(P1.concat(P2))) + '<br>') +

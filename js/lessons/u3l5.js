@@ -21,7 +21,7 @@
     'foil-only': 'Only 4 partial products (FOIL) — missed the trinomial’s middle term', 'second-partial': 'Second term of the binomial multiplied by only part of the trinomial',
     'minus-first': 'Minus sign applied only to the first term', 'const-both': 'Multiplied the constant factor into both brackets', 'const-lost': 'Dropped the constant factor',
     'cube-each': 'Cubed each term: (a+b)³ = a³+b³', 'square-middle': 'Squared a binomial without the middle term', 'exp-mult': 'Multiplied exponents instead of adding',
-    'student-ans': 'Repeated the student’s error', 'added-prod': 'Added instead of subtracting', 'count': 'Wrong count', 'only-last': 'Multiplied the monomial into only one term',
+    'student-ans': 'Repeated the student’s error', 'added-prod': 'Added instead of subtracting', 'only-last': 'Multiplied the monomial into only one term',
     'no-x': 'Left out the height factor x', 'reverse': 'Subtracted in the wrong order', 'face-area': 'Gave the area of one face, not the volume', 'two-dims': 'Multiplied only two of the three dimensions',
     'u3l5-one-group': 'Used only one of the two products that make a term', 'u3l5-sum-not-prod': 'Counted terms by adding (2 + 3) instead of multiplying (2 × 3)',
     'u3l5-k-sign': 'Sign of the missing number', 'u3l5-no-collect': 'Gave the number of terms before collecting like terms'
