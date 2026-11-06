@@ -174,7 +174,7 @@
   var TABLES = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   drill({
     id: 'times', group: 'Number skills', title: 'Multiplication and division facts', pad: 'int', sprint: true, facts: true,
-    blurb: 'Pick your tables. Facts you miss come back until you know them.', helps: 'every unit (factoring most of all)',
+    blurb: 'Pick your tables. Facts you miss come back until you know them.', helps: 'every unit, and factoring most of all',
     levels: [
       { name: '× facts', gen: function (st) { return timesQ(st, 'x'); } },
       { name: '÷ facts', gen: function (st) { return timesQ(st, 'd'); } },
@@ -208,7 +208,7 @@
   // Fractions
   drill({
     id: 'fractions', group: 'Number skills', title: 'Fractions', pad: 'frac',
-    blurb: 'Simplify, add, subtract, multiply and divide. Type answers like 3/4.', helps: 'Units 1, 7 and 8',
+    blurb: 'Simplify, add, subtract, multiply and divide. Type answers like 3/4.', helps: 'slopes, equations and anywhere fractions show up',
     levels: [
       { name: 'Simplify', gen: fracSimplify },
       { name: 'Add and subtract', gen: function () { return fracAdd(false); } },
@@ -247,7 +247,7 @@
   // Squares, roots and powers
   drill({
     id: 'powers', group: 'Number skills', title: 'Squares, square roots and powers', pad: 'int', sprint: true,
-    blurb: '7², √81, 2⁵, ∛64, …', helps: 'Units 1, 2, 3 and 4',
+    blurb: '7², √81, 2⁵, ∛64, …', helps: 'exponents, radicals and polynomials',
     levels: [
       { name: 'Squares to 12²', gen: function () { var n = ri(1, 12); return { q: K(n + '^2'), type: 'int', ans: n * n, how: '<p>' + K(n + '^2') + ' means ' + n + ' × ' + n + ' = ' + n * n + '.</p>', fact: n + '^2' }; } },
       { name: 'Square roots', gen: function () { var n = ri(1, 15); return { q: K('\\sqrt{' + n * n + '}'), type: 'int', ans: n, how: '<p>Which number times itself is ' + n * n + '? ' + n + ' × ' + n + ' = ' + n * n + ', so ' + K('\\sqrt{' + n * n + '} = ' + n) + '.</p>', fact: 'r' + n }; } },
@@ -265,7 +265,7 @@
   // Factors and GCF
   drill({
     id: 'gcf', group: 'Number skills', title: 'Greatest common factor', pad: 'expr',
-    blurb: 'The biggest number (and variables) that goes into everything.', helps: 'Units 1 and 4 (factoring)',
+    blurb: 'The biggest number (and variables) that goes into everything.', helps: 'factoring',
     levels: [
       { name: 'Two numbers', gen: function () { return gcfQ(2, 6, 2); } },
       { name: 'Bigger numbers', gen: function () { return gcfQ(2, 15, 2); } },
@@ -293,7 +293,7 @@
   // Product and sum (the factoring helper)
   drill({
     id: 'prodsum', group: 'Number skills', title: 'Product and sum', pad: 'pair', sprint: true,
-    blurb: 'Find two numbers that multiply to one number and add to another — the key to factoring trinomials.', helps: 'Unit 4 (factoring)',
+    blurb: 'Find two numbers that multiply to one number and add to another — the key to factoring trinomials.', helps: 'factoring trinomials',
     levels: [
       { name: 'Both positive', gen: function () { return psQ(1, 9, 'pos'); } },
       { name: 'Sum negative', gen: function () { return psQ(1, 9, 'negsum'); } },
@@ -314,7 +314,7 @@
   // Like terms
   drill({
     id: 'like', group: 'Algebra skills', title: 'Combining like terms', pad: 'expr',
-    blurb: 'Collect x’s with x’s and numbers with numbers.', helps: 'Units 3 to 8',
+    blurb: 'Collect x’s with x’s and numbers with numbers.', helps: 'polynomials, equations and everything after',
     levels: [
       { name: 'x and numbers', gen: function () { return likeQ(['x', ''], 4); } },
       { name: 'x² and x', gen: function () { return likeQ(['x^2', 'x', ''], 5); } },
@@ -345,7 +345,7 @@
   // Distributing
   drill({
     id: 'distribute', group: 'Algebra skills', title: 'The distributive property', pad: 'expr',
-    blurb: 'Multiply the outside term by every term inside the brackets.', helps: 'Units 3, 4, 7 and 8',
+    blurb: 'Multiply the outside term by every term inside the brackets.', helps: 'polynomials, factoring and equations',
     levels: [
       { name: 'a(x + b)', gen: function () { var a = ri(2, 9), b = nz(-9, 9); return distQ(String(a), lin(1, b), a); } },
       { name: 'Negative outside', gen: function () { var a = -ri(1, 9), b = nz(-9, 9), c = nz(-9, 9); return distQ(a === -1 ? '-' : String(a), lin(b, c), a); } },
@@ -371,7 +371,7 @@
   // Substituting
   drill({
     id: 'evaluate', group: 'Algebra skills', title: 'Substituting into expressions', pad: 'int',
-    blurb: 'Replace the letter with its number — in brackets — and work it out.', helps: 'Units 5 to 8',
+    blurb: 'Replace the letter with its number — in brackets — and work it out.', helps: 'functions and linear relations',
     levels: [
       { name: 'ax + b', gen: function () { return evalQ(lin(nz(-9, 9), nz(-12, 12)), ri(1, 9)); } },
       { name: 'Negative values', gen: function () { return evalQ(lin(nz(-9, 9), nz(-12, 12)), nz(-9, -1)); } },
@@ -399,7 +399,7 @@
   // Equations
   drill({
     id: 'eq1', group: 'Algebra skills', title: 'One-step equations', pad: 'int', sprint: true,
-    blurb: 'Undo the operation: do the opposite to both sides.', helps: 'Units 5 to 8',
+    blurb: 'Undo the operation: do the opposite to both sides.', helps: 'linear relations and equations',
     levels: [
       { name: 'x + a and ax', gen: function () { return eq1(false); } },
       { name: 'With negatives', gen: function () { return eq1(true); } },
@@ -421,7 +421,7 @@
   }
   drill({
     id: 'eq2', group: 'Algebra skills', title: 'Two-step equations', pad: 'int',
-    blurb: 'Undo + and − first, then × and ÷.', helps: 'Units 5 to 8',
+    blurb: 'Undo + and − first, then × and ÷.', helps: 'linear relations and equations',
     levels: [
       { name: 'ax + b = c', gen: function () { return eq2(false); } },
       { name: 'With negatives', gen: function () { return eq2(true); } },
@@ -442,7 +442,7 @@
   }
   drill({
     id: 'eq3', group: 'Algebra skills', title: 'Multi-step equations', pad: 'int',
-    blurb: 'Brackets and x on both sides.', helps: 'Units 7 and 8',
+    blurb: 'Brackets and x on both sides.', helps: 'equations of lines and systems',
     levels: [
       { name: 'a(x + b) = c', gen: function () { var x = nz(-9, 9), a = nz(-6, 6), b = nz(-9, 9); if (Math.abs(a) === 1) a = 2 * a; var c = a * (x + b), lhs = L(a) + '(x' + sgnTerm(b, '', false) + ')'; return { q: K(lhs + ' = ' + L(c)), type: 'int', ans: x, eq: true, how: solveRows([[lhs + ' = ' + L(c), ''], [lin(a, a * b) + ' = ' + L(c), 'distribute'], [a + 'x = ' + L(c - a * b), (a * b > 0 ? 'subtract ' + a * b + ' from' : 'add ' + Math.abs(a * b) + ' to') + ' both sides'], ['x = \\frac{' + L(c - a * b) + '}{' + L(a) + '}', 'divide both sides by ' + m(a)]], x) }; } },
       { name: 'x on both sides', gen: function () { return eqBoth(false); } },
@@ -494,7 +494,7 @@
   }
   drill({
     id: 'formulas', group: 'Algebra skills', title: 'Isolating a variable in a formula', pad: 'mc',
-    blurb: 'Rearrange a formula to get one letter on its own.', helps: 'Units 6, 7 and 8',
+    blurb: 'Rearrange a formula to get one letter on its own.', helps: 'slope and equations of lines',
     levels: [1, 2, 3].map(function (lv) { return { name: ['One step', 'Two steps', 'Harder'][lv - 1], gen: function () { return formulaQ(lv); } }; })
   });
   function formulaQ(lv) {
@@ -507,7 +507,7 @@
   // Plotting points
   drill({
     id: 'coords', group: 'Graphing', title: 'Plotting and reading points', pad: 'grid',
-    blurb: 'Across first (x), then up or down (y).', helps: 'Units 5 to 8',
+    blurb: 'Across first (x), then up or down (y).', helps: 'graphing relations and lines',
     levels: [
       { name: 'Plot: first quadrant', gen: function () { return plotQ(0, 9); } },
       { name: 'Plot: all quadrants', gen: function () { return plotQ(-9, 9); } },
