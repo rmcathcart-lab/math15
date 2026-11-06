@@ -26,6 +26,7 @@
   function L(n) { return n < 0 ? '-' + Math.abs(n) : String(n); }            // LaTeX number
   function P(n) { return n < 0 ? '(' + L(n) + ')' : String(n); }             // LaTeX number, brackets if negative
   function frac(p, q) { if (q < 0) { p = -p; q = -q; } var g = gcd(p, q) || 1; return [p / g, q / g]; }
+  function fT(top, den) { return (top < 0 ? '-' : '') + '\\frac{' + Math.abs(top) + '}{' + den + '}'; }
   function fL(f) { return f[1] === 1 ? L(f[0]) : (f[0] < 0 ? '-' : '') + '\\frac{' + Math.abs(f[0]) + '}{' + f[1] + '}'; }
   function sgnTerm(c, body, first) {                                       // "+ 3x", "- x", "3x" (first)
     var a = Math.abs(c), s = (a === 1 && body) ? body : a + body;
@@ -34,14 +35,14 @@
   }
   function lin(a, b, x) { x = x || 'x'; var s = a ? sgnTerm(a, x, true) : ''; if (b) s += s ? sgnTerm(b, '', false) : L(b); return s || '0'; }
   function eqRows(rows) {                                                 // [[latex, note], …] → aligned steps
-    return '<div class="dr-steps">' + rows.map(function (r) { return '<div class="dr-step"><span>' + K(r[0]) + '</span>' + (r[1] ? '<span class="dr-op">' + r[1] + '</span>' : '') + '</div>'; }).join('') + '</div>';
+    return '<div class="dr-steps">' + rows.map(function (r) { return '<div class="dr-step"><span>' + K(r[0]) + '</span><span class="dr-op">' + (r[1] || '') + '</span></div>'; }).join('') + '</div>';
   }
 
   /* number line for integer adding: start at a, hop by b */
   function numberLine(a, b) {
-    var lo = Math.min(0, a, a + b) - 1, hi = Math.max(0, a, a + b) + 1, span = hi - lo, W = 520, pad = 18;
+    var lo = Math.min(0, a, a + b) - 1, hi = Math.max(0, a, a + b) + 1, span = hi - lo, W = Math.min(520, Math.max(260, span * 34)), pad = 18;
     if (span > 44) return '';
-    var x = function (v) { return pad + (v - lo) * (W - 2 * pad) / span; }, s = '<svg class="dr-nl" viewBox="0 0 ' + W + ' 74" role="img" aria-label="number line">';
+    var x = function (v) { return pad + (v - lo) * (W - 2 * pad) / span; }, s = '<svg class="dr-nl" viewBox="0 0 ' + W + ' 74" style="max-width:' + W + 'px" role="img" aria-label="number line">';
     s += '<line x1="' + pad + '" y1="52" x2="' + (W - pad) + '" y2="52" stroke="#6a7182" stroke-width="1.5"/>';
     for (var v = lo; v <= hi; v++) {
       var big = v % 5 === 0;
@@ -229,8 +230,8 @@
     if (neg) { if (Math.random() < .5) a = [-a[0], a[1]]; if (Math.random() < .5) b = [-b[0], b[1]]; }
     var l = a[1] * b[1] / gcd(a[1], b[1]), ka = l / a[1], kb = l / b[1], top = a[0] * ka + (op === '+' ? 1 : -1) * b[0] * kb, ans = frac(top, l);
     var rows = [[fL(a) + ' ' + op + ' ' + (b[0] < 0 ? '\\left(' + fL(b) + '\\right)' : fL(b)), '']];
-    if (ka !== 1 || kb !== 1) rows.push(['= \\frac{' + L(a[0] * ka) + '}{' + l + '} ' + op + ' ' + (b[0] < 0 ? '\\left(\\frac{' + L(b[0] * kb) + '}{' + l + '}\\right)' : '\\frac{' + (b[0] * kb) + '}{' + l + '}'), 'common denominator ' + l]);
-    rows.push(['= \\frac{' + L(top) + '}{' + l + '}', op === '+' ? 'add the tops' : 'subtract the tops']);
+    if (ka !== 1 || kb !== 1) rows.push(['= ' + fT(a[0] * ka, l) + ' ' + op + ' ' + (b[0] < 0 ? '\\left(' + fT(b[0] * kb, l) + '\\right)' : '\\frac{' + (b[0] * kb) + '}{' + l + '}'), 'common denominator ' + l]);
+    rows.push(['= ' + fT(top, l), op === '+' ? 'add the tops' : 'subtract the tops']);
     if (ans[1] !== l) rows.push(['= ' + fL(ans), 'simplify']);
     return { q: K(rows[0][0]), type: 'frac', ans: ans, simplest: true, how: '<p>Get a common denominator, then ' + (op === '+' ? 'add' : 'subtract') + ' the numerators:</p>' + eqRows(rows) };
   }
@@ -239,7 +240,7 @@
     var bb = div ? frac(b[1], b[0]) : b, ans = frac(a[0] * bb[0], a[1] * bb[1]);
     var sb = b[0] < 0 ? '\\left(' + fL(b) + '\\right)' : fL(b), rows = [[fL(a) + (div ? ' \\div ' : ' \\times ') + sb, '']];
     if (div) rows.push(['= ' + fL(a) + ' \\times ' + (bb[0] < 0 ? '\\left(' + fL(bb) + '\\right)' : fL(bb)), 'flip the second fraction and multiply']);
-    rows.push(['= \\frac{' + L(a[0] * bb[0]) + '}{' + a[1] * bb[1] + '}', 'top × top, bottom × bottom']);
+    rows.push(['= ' + fT(a[0] * bb[0], a[1] * bb[1]), 'top × top, bottom × bottom']);
     if (!(ans[0] === a[0] * bb[0] && ans[1] === a[1] * bb[1])) rows.push(['= ' + fL(ans), 'simplify']);
     return { q: K(rows[0][0]), type: 'frac', ans: ans, simplest: true, how: eqRows(rows) };
   }
