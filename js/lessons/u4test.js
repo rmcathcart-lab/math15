@@ -222,6 +222,8 @@
   HW.defineTest({
     id: 'u4test', unit: 4, title: 'Unit 4 Test', outcome: 'AN5', calc: false,
     blurb: 'The Unit 4 outcomes-based test: AN5 (greatest common factors, x²+bx+c, differences of squares, perfect square trinomials, ax²+bx+c by decomposition, choosing a strategy, and solving equations by factoring), at the BEG, PRG and MAS levels.',
+    // Short version (~half): every Beginning factoring type plus the zero product property, factor completely and decomposition at Progressing, find-k and solving at Mastery; drops the method grid (Q7), the near-duplicate x²+bx+c, GCF and solving sets (Q8, Q9, Q12), and Mastery Q13 (like Q10), Q14 and Q17.
+    short: ['1', '2', '3', '4', '5', '6', '10', '11', '15', '16'],
     questions: [
       /* ======================= Beginning ======================= */
       { num: '1', outcome: 'AN5', stem: 'Greatest common factors.', parts: [

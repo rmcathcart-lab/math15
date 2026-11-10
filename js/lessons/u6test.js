@@ -936,6 +936,8 @@
   HW.defineTest({
     id: 'u6test', unit: 6, title: 'Unit 6 Test', outcome: 'RF3', calc: true,
     blurb: 'The Unit 6 outcomes-based test on RF3: the Pythagorean theorem, lengths of segments, the distance and midpoint formulas, a missing endpoint, slope (from a grid, from two points, as a rate of change), zero and undefined slope, collinear points, and parallel and perpendicular lines — in Beginning, Progressing and Mastery boxes. Scientific calculator allowed.',
+    // Short version (~half): hypotenuse, length on a grid, slope types and parallel/perpendicular at Beginning; distance-midpoint-slope, rate of change and the slope test at Progressing; the trail and the right triangle at Mastery; drops the near-duplicate lengths/midpoint/slope items (Q2, Q4, Q6, Q9, Q11, Q12, Q14) and Mastery Q16, Q17, Q19.
+    short: ['1', '3', '5', '7', '8', '10', '13', '15', '18'],
     questions: QUESTIONS
   });
 })(window);

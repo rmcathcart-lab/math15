@@ -929,6 +929,8 @@
   HW.defineTest({
     id: 'u2test', unit: 2, title: 'Unit 2 Test', outcome: 'AN3', calc: false,
     blurb: 'The Unit 2 outcomes-based test on AN3 (exponents): powers and the exponent laws, zero and negative exponents, scientific notation, and rational exponents and radicals — in Beginning, Progressing and Mastery boxes. No calculator.',
+    // Short version (~half): one item per law at Beginning (laws, zero, negative, scientific notation), negative and rational exponents at Progressing, the find-the-error and rational-exponent Mastery items; drops the bracket powers (Q1, Q4 covers the sign), (ab)^n / rational Beginning items (Q3, Q7: Q9b and Q12 test them), the near-duplicate laws set (Q8), evaluating (Q10), scientific-notation products (Q11), Q13 and the missing exponent (Q14).
+    short: ['2', '4', '5', '6', '9', '12', '15', '16'],
     questions: [
       /* ======================= Beginning ======================= */
       { num: '1', outcome: 'AN3', stem: 'Powers. Pay close attention to the brackets.',

@@ -340,6 +340,8 @@
   HW.defineTest({
     id: 'u3test', unit: 3, title: 'Unit 3 Test', outcome: 'AN4', calc: false,
     blurb: 'The Unit 3 outcomes-based test on AN4 (polynomial operations): like terms, adding and subtracting polynomials, monomial × polynomial, two binomials, special products, binomial × trinomial, and area, volume and equal-area applications — at the BEG, PRG and MAS levels.',
+    // Short version (~half): one question per lesson at each level (collect/add, monomial products, FOIL, difference of squares, subtract, binomials, perfect squares, the grid, the shaded area; Mastery expand-and-simplify and equal areas); drops the vocabulary/sorting/pattern-recognition items (Q1, Q2, Q7), the near-duplicates Q9, Q13, Q14, and Mastery Q17, Q19, Q20.
+    short: ['3', '4', '5', '6', '8', '10', '11', '12', '15', '16', '18'],
     questions: [
       /* ======================= Beginning ======================= */
       { num: '1', outcome: 'AN4', shared: q1Shared,

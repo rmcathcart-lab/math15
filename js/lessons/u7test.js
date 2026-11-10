@@ -829,6 +829,8 @@
   HW.defineTest({
     id: 'u7test', unit: 7, title: 'Unit 7 Test', outcome: 'RF6', calc: false,
     blurb: 'The Unit 7 outcomes-based test: RF4 (tables of values, linear or not, points on a line, equations in context), RF3 (slope as a rate of change), RF5 (intercepts), RF6 (y = mx + b, general form, graphing any form) and RF7 (writing the equation of a line), in Beginning, Progressing and Mastery boxes. No calculator.',
+    // Short version (~54%): Beginning and Progressing boxes keep 2 parts each, Mastery keeps its most representative part (RF7 keeps 2): table + graph, slope from two points and in context, intercepts off a graph, m/b + graph, y=mx+b and a vertical line; fee-plus-rate equation + solve backwards, rate of change + two plans, general-form and graph intercepts, rearranging + graphing general form, equation from slope and point / two points; break-even, same-line select, the two-reading context.
+    short: ['2ab', '3', '4a', '5ab', '6', '8ac', '9ac', '10a', '11', '12a', '13', '14a', '15b', '17', '19a', '21', '23'],
     questions: QUESTIONS
   });
 })(window);

@@ -727,6 +727,8 @@
   HW.defineTest({
     id: 'u8test', unit: 8, title: 'Unit 8 Test', outcome: 'RF9', calc: false,
     blurb: 'The Unit 8 outcomes-based test on RF9 (systems of linear equations): solving by graphing and checking a solution, classifying systems (one, none or infinitely many solutions), substitution, elimination, and word problems — in Beginning, Progressing and Mastery boxes. No calculator.',
+    // Short version (~half): one question per lesson — graph, classify, substitution, elimination at Beginning; isolate-then-substitute, multiply-then-eliminate and a ticket problem at Progressing; the missing-k and two-plan problems at Mastery; drops Q2, Q6, Q7, the graphing and classify repeats (Q8, Q9), the second word problem (Q13) and Mastery Q14, Q16.
+    short: ['1', '3', '4', '5', '10', '11', '12', '15', '17'],
     questions: [
       /* ======================= Beginning ======================= */
       { num: '1', outcome: 'RF9', shared: q1Shared,

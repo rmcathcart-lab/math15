@@ -387,6 +387,8 @@
   HW.defineTest({
     id: 'u1test', unit: 1, title: 'Unit 1 Test', outcome: 'AN1', calc: false,
     blurb: 'The Unit 1 outcomes-based test: AN1 (prime factorization, GCF and LCM, perfect squares and cubes, square and cube roots) and AN2 (the real number system, estimating roots, entire and mixed radicals), each in Beginning, Progressing and Mastery boxes. No calculator.',
+    // Short version (~half): every AN1/AN2 box keeps 2+ parts, one question per lesson skill (factor tree, roots, rational/real, mixed radicals, GCF/LCM problems, estimating, higher-root radicals, perfect-power test, ordering radicals); drops the near-duplicate GCF/LCM sets (Q2, Q6, Q14, Q15), the area/volume roots (Q8), the set table (Q9), entire radicals (Q12, covered by Q16a) and the extra Mastery items (Q17, Q18).
+    short: ['1', '3', '4', '5', '7', '10', '11', '13', '16'],
     questions: [
       /* ======================= Beginning ======================= */
       { num: '1', outcome: 'AN1',

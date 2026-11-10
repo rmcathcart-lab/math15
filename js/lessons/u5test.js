@@ -1222,6 +1222,8 @@
   HW.defineTest({
     id: 'u5test', unit: 5, title: 'Unit 5 Test', outcome: 'RF2', calc: true,
     blurb: 'The Unit 5 outcomes-based test: RF1 (story graphs, types of variables), RF2 (relations, domain and range, functions), RF4 (linear patterns), RF5 (intercepts) and RF8 (function notation), with Beginning, Progressing and Mastery boxes. Scientific calculator allowed.',
+    // Short version (~57%): Beginning and Progressing boxes keep 2 parts each, Mastery keeps its most representative part (RF2 keeps 2): mapping + domain/range, story graph, tile table + Figure N, intercepts from a graph and a table, f(x) notation + evaluate; rate/constant time, vertical line test + continuous domain/range, pattern far out + plot, context intercepts + meanings, solve h(x)=k + read x off a graph; the bath sketch, a non-function relation, realistic domain/range, using M(h)=cost.
+    short: ['1ac', '2', '4ac', '5ab', '6ab', '8', '9a', '10', '11ab', '12ab', '13bc', '14a', '16a', '17', '18b'],
     questions: QUESTIONS
   });
 })(window);
