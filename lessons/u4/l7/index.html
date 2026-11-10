@@ -92,12 +92,17 @@
   <div class="explainer" data-explainer="steps"></div>
 </section>
 
+<section class="card" data-ink="s2c" data-section="2. Why Step 5 Works">
+  <p><b>Step 5 is the one that feels strange.</b> You already know that <span class="tex">2xy+1y=y(2x+1)</span>, because both terms have a <span class="tex">y</span>. A bracket works the same way: it is <b>one thing</b>, and if both terms have it, it comes out the front.</p>
+  <div class="explainer" data-explainer="whyFive"></div>
+</section>
+
 <section class="card example" data-ink="ex1" data-section="Example 1">
   <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Every step, then check</h3></div>
   <p class="q">Factor using every step: find <span class="tex">ac</span>, find the two integers, split, group, factor out the binomial, then check with FOIL.</p>
   <div class="parts c2">
     <div class="part"><div class="pl">(a) <span class="tex">3x^2+10x+3</span></div><div class="work" style="--h:330px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=3\times3=9</span>. Integers with product 9 and sum 10: <b>9 and 1</b>.<br><span class="tex">3x^2+9x+x+3</span><br><span class="tex">=3x(x+3)+1(x+3)</span><br><span class="tex">=\boldsymbol{(x+3)(3x+1)}</span><br>Check: <span class="tex">3x^2+x+9x+3=3x^2+10x+3</span> ✓</div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">2x^2+9x+4</span></div><div class="work" style="--h:330px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=2\times4=8</span>. Product 8 and sum 9: <b>8 and 1</b>.<br><span class="tex">2x^2+8x+x+4</span><br><span class="tex">=2x(x+4)+1(x+4)</span><br><span class="tex">=\boldsymbol{(x+4)(2x+1)}</span><br>Check: <span class="tex">2x^2+x+8x+4=2x^2+9x+4</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">2x^2+9x+10</span></div><div class="work" style="--h:330px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=2\times10=20</span>. Multiply to 20, add to 9: <b>4 and 5</b>.<br><span class="tex">2x^2+4x+5x+10</span><br><span class="tex">=2x(x+2)+5(x+2)</span><br><span class="tex">=\boldsymbol{(x+2)(2x+5)}</span><br>Check: <span class="tex">2x^2+5x+4x+10=2x^2+9x+10</span> ✓</div></div></div>
   </div>
   <div class="space" id="ex1-space"></div>
   <button class="more" data-more="ex1-space">+ More space</button>
@@ -116,8 +121,8 @@
   <div class="ex-head"><span class="ex-tag">Example 2</span><h3><span class="tex">a</span>, <span class="tex">b</span> and <span class="tex">c</span> all positive</h3></div>
   <p class="q">Factor each trinomial using decomposition.</p>
   <div class="parts c3">
-    <div class="part"><div class="pl">(a) <span class="tex">2x^2+11x+5</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=10</span>; integers <b>10 and 1</b>.<br><span class="tex">2x^2+10x+x+5</span><br><span class="tex">=2x(x+5)+1(x+5)</span><br><span class="tex">=\boldsymbol{(x+5)(2x+1)}</span><br>Check: <span class="tex">2x^2+x+10x+5</span> ✓</div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">3x^2+13x+4</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=12</span>; integers <b>12 and 1</b>.<br><span class="tex">3x^2+12x+x+4</span><br><span class="tex">=3x(x+4)+1(x+4)</span><br><span class="tex">=\boldsymbol{(x+4)(3x+1)}</span><br>Check: <span class="tex">3x^2+x+12x+4</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(a) <span class="tex">2x^2+11x+12</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=24</span>; numbers <b>8 and 3</b>.<br><span class="tex">2x^2+8x+3x+12</span><br><span class="tex">=2x(x+4)+3(x+4)</span><br><span class="tex">=\boldsymbol{(x+4)(2x+3)}</span><br>Check: <span class="tex">2x^2+3x+8x+12</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">3x^2+17x+10</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=30</span>; numbers <b>15 and 2</b>.<br><span class="tex">3x^2+15x+2x+10</span><br><span class="tex">=3x(x+5)+2(x+5)</span><br><span class="tex">=\boldsymbol{(x+5)(3x+2)}</span><br>Check: <span class="tex">3x^2+2x+15x+10</span> ✓</div></div></div>
     <div class="part"><div class="pl">(c) <span class="tex">4x^2+12x+5</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=20</span>; integers <b>10 and 2</b>.<br><span class="tex">4x^2+10x+2x+5</span><br><span class="tex">=2x(2x+5)+1(2x+5)</span><br><span class="tex">=\boldsymbol{(2x+5)(2x+1)}</span><br>Check: <span class="tex">4x^2+2x+10x+5</span> ✓</div></div></div>
   </div>
   <div class="space" id="ex2-space"></div>
@@ -154,9 +159,9 @@
   <div class="ex-head"><span class="ex-tag">Example 4</span><h3><span class="tex">ac</span> negative</h3></div>
   <p class="q">Factor each trinomial. Here <span class="tex">ac</span> is negative, so the two integers have opposite signs.</p>
   <div class="parts c3">
-    <div class="part"><div class="pl">(a) <span class="tex">2x^2+7x-4</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=-8</span>, sum <span class="tex">7</span>: <b><span class="tex">8</span> and <span class="tex">-1</span></b>.<br><span class="tex">2x^2+8x-x-4</span><br><span class="tex">=2x(x+4)-1(x+4)</span><br><span class="tex">=\boldsymbol{(x+4)(2x-1)}</span><br>Check: <span class="tex">2x^2-x+8x-4</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(a) <span class="tex">2x^2+5x-12</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=-24</span>, sum <span class="tex">5</span>: <b><span class="tex">8</span> and <span class="tex">-3</span></b>.<br><span class="tex">2x^2+8x-3x-12</span><br><span class="tex">=2x(x+4)-3(x+4)</span><br><span class="tex">=\boldsymbol{(x+4)(2x-3)}</span><br>Check: <span class="tex">2x^2-3x+8x-12</span> ✓</div></div></div>
     <div class="part"><div class="pl">(b) <span class="tex">3x^2-4x-4</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=-12</span>, sum <span class="tex">-4</span>: <b><span class="tex">-6</span> and <span class="tex">2</span></b>.<br><span class="tex">3x^2-6x+2x-4</span><br><span class="tex">=3x(x-2)+2(x-2)</span><br><span class="tex">=\boldsymbol{(x-2)(3x+2)}</span><br>Check: <span class="tex">3x^2+2x-6x-4</span> ✓</div></div></div>
-    <div class="part"><div class="pl">(c) <span class="tex">4x^2-4x-3</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=-12</span>, sum <span class="tex">-4</span>: <b><span class="tex">-6</span> and <span class="tex">2</span></b>.<br><span class="tex">4x^2-6x+2x-3</span><br><span class="tex">=2x(2x-3)+1(2x-3)</span><br><span class="tex">=\boldsymbol{(2x-3)(2x+1)}</span><br>Check: <span class="tex">4x^2+2x-6x-3</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">6x^2-5x-6</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=-36</span>, sum <span class="tex">-5</span>: <b><span class="tex">-9</span> and <span class="tex">4</span></b>.<br><span class="tex">6x^2-9x+4x-6</span><br><span class="tex">=3x(2x-3)+2(2x-3)</span><br><span class="tex">=\boldsymbol{(2x-3)(3x+2)}</span><br>Check: <span class="tex">6x^2+4x-9x-6</span> ✓</div></div></div>
   </div>
   <div class="space" id="ex4-space"></div>
   <button class="more" data-more="ex4-space">+ More space</button>
