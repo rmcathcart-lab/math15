@@ -28,6 +28,20 @@
 <div class="vw-banner no-ink">Preview of the new lesson format · not linked from anywhere · <a href="../l8/">the current 4.8</a></div>
 <main class="lesson screen">
 
+<!-- ================= warm-up: one screen, no teaching ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Which One Doesn’t Belong?">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Which One Doesn’t Belong?</h2>
+  <p class="wf-rule">Which one is the odd one out? Pick one and be ready to say <b>why</b>.</p></div>
+  <div class="vw-wodb">
+    <div><b>A</b><span class="tex">x^2-16</span></div>
+    <div><b>B</b><span class="tex">x^2+16</span></div>
+    <div><b>C</b><span class="tex">2x^2-32</span></div>
+    <div><b>D</b><span class="tex">x^2-8x+16</span></div>
+  </div>
+  <div class="bk-wq"><div class="q-line"><div class="q-num">?</div><div>Convince the person beside you.</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>Any of them can be right.</b> <b>A</b> is the only one that is a difference of squares straight away. <b>B</b> is the only one that can’t be factored. <b>C</b> is the only one with a number in front of <span class="tex">x^2</span>. <b>D</b> is the only one with three terms.</div></div>
+</section>
+
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
   <div class="kicker">Math 15 · Unit 4 Factoring · Lesson 8</div>
@@ -41,22 +55,7 @@
       <li>factor an expression <b>completely</b></li>
     </ul>
   </div>
-  <div class="vw-switch no-ink" data-view-switch></div>
   <div class="outcome"><b>AN5</b> Demonstrate an understanding of common factors and trinomial factoring, concretely, pictorially and symbolically.</div>
-</section>
-
-<!-- ================= warm-up: one screen, no teaching ================= -->
-<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Which One Doesn’t Belong?">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Which One Doesn’t Belong?</h2>
-  <p class="wf-rule">Pick one and be ready to say <b>why</b>. <span class="muted">Every one of them can be the odd one out.</span></p></div>
-  <div class="vw-wodb">
-    <div><b>A</b><span class="tex">x^2-16</span></div>
-    <div><b>B</b><span class="tex">x^2+16</span></div>
-    <div><b>C</b><span class="tex">2x^2-32</span></div>
-    <div><b>D</b><span class="tex">x^2-8x+16</span></div>
-  </div>
-  <div class="bk-wq"><div class="q-line"><div class="q-num">?</div><div>Can you find a reason for <b>each</b> one?</div><button class="pill small" type="button" data-bk-toggle>Some reasons</button></div>
-    <div class="bk-ans"><b>A</b> is the only one that is a difference of squares straight away. <b>B</b> is the only one that can’t be factored. <b>C</b> is the only one with a number in front of <span class="tex">x^2</span>. <b>D</b> is the only one with three terms.</div></div>
 </section>
 
 <!-- ================= 1. The five methods ================= -->
@@ -92,15 +91,6 @@
   <button class="more" data-more="ex1-space">+ More space</button>
 </section>
 
-<!-- ================= practice break ================= -->
-<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–4">
-  <div class="pr-k">Your turn</div>
-  <h2>Assignment 8 · Questions 1–4</h2>
-  <p class="pr-t">Name the method, then use one method at a time.</p>
-  <div class="pr-chips"><span><b>1</b> Name the method</span><span><b>2</b> GCF only</span><span><b>3</b> Difference of squares</span><span><b>4</b> Trinomial, <span class="tex">a=1</span></span></div>
-  <div class="pr-foot"><span>We carry on when most of the class has finished Question 4.</span><a class="pill" href="../../../#/lesson/u4l8">Open the Practice site</a></div>
-</section>
-
 <!-- ================= 2. The checklist ================= -->
 <section class="card" data-ink="s2" data-section="2. The Factoring Checklist">
   <div class="sec-h"><span class="badge">2</span><h2>The Factoring Strategy Checklist</h2></div>
@@ -125,7 +115,7 @@
 <!-- ================= 3. GCF then trinomial ================= -->
 <section class="card" data-ink="s3" data-section="3. GCF, Then a Trinomial">
   <div class="sec-h"><span class="badge">3</span><h2>The Checklist in Action: GCF, Then a Trinomial</h2></div>
-  <p><span class="vw-role me">Watch me</span> Factor <span class="tex">2x^2+20x+42</span>.</p>
+  <p>Factor <span class="tex">2x^2+20x+42</span>.</p>
   <div class="u4l8-run">
     <div class="k1"><b class="n">1</b><div>Every term is divisible by 2, so <span class="tex">2x^2+20x+42=2(x^2+10x+21)</span>.</div></div>
     <div class="k3"><b class="n">2</b><div>Three terms remain. 21 is not a perfect square, so this is <b>not</b> a perfect square trinomial. The leading coefficient is 1, so find two numbers with product 21 and sum 10: <b>7 and 3</b>. That gives <span class="tex">2(x+7)(x+3)</span>.</div></div>
@@ -138,8 +128,8 @@
   <div class="ex-head"><span class="ex-tag">Example 2</span><h3>GCF, then a trinomial</h3></div>
   <p class="q">Factor completely.</p>
   <div class="parts c2">
-    <div class="part"><div class="pl"><span class="vw-role me">Watch me</span>(a) <span class="tex">2x^2+14x+20</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Step 1: GCF 2: <span class="tex">2(x^2+7x+10)</span><br>Step 2: product 10, sum 7: <b>2 and 5</b><br><span class="tex">=\boldsymbol{2(x+2)(x+5)}</span><br>Step 3: neither binomial factors further ✓</div></div></div>
-    <div class="part"><div class="pl"><span class="vw-role you">You try</span>(b) <span class="tex">4x^2-8x-60</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Step 1: GCF 4: <span class="tex">4(x^2-2x-15)</span><br>Step 2: product <span class="tex">-15</span>, sum <span class="tex">-2</span>: <b><span class="tex">-5</span> and 3</b><br><span class="tex">=\boldsymbol{4(x-5)(x+3)}</span><br>Step 3: neither binomial factors further ✓</div></div></div>
+    <div class="part"><div class="pl">(a) <span class="tex">2x^2+14x+20</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Step 1: GCF 2: <span class="tex">2(x^2+7x+10)</span><br>Step 2: product 10, sum 7: <b>2 and 5</b><br><span class="tex">=\boldsymbol{2(x+2)(x+5)}</span><br>Step 3: neither binomial factors further ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">4x^2-8x-60</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Step 1: GCF 4: <span class="tex">4(x^2-2x-15)</span><br>Step 2: product <span class="tex">-15</span>, sum <span class="tex">-2</span>: <b><span class="tex">-5</span> and 3</b><br><span class="tex">=\boldsymbol{4(x-5)(x+3)}</span><br>Step 3: neither binomial factors further ✓</div></div></div>
   </div>
   <div class="space" id="ex2-space"></div>
   <button class="more" data-more="ex2-space">+ More space</button>
@@ -158,20 +148,25 @@
   <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Two steps</h3></div>
   <p class="q">Factor completely. (Hint: this will take two steps.)</p>
   <div class="parts c2">
-    <div class="part"><div class="pl"><span class="vw-role me">Watch me</span>(a) <span class="tex">4x^2-64</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF 4: <span class="tex">4(x^2-16)</span><br><span class="tex">x^2-16</span> is a difference of squares:<br><span class="tex">=\boldsymbol{4(x-4)(x+4)}</span></div></div></div>
-    <div class="part"><div class="pl"><span class="vw-role you">You try</span>(b) <span class="tex">6x^2-24</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF 6: <span class="tex">6(x^2-4)</span><br><span class="tex">x^2-4</span> is a difference of squares:<br><span class="tex">=\boldsymbol{6(x-2)(x+2)}</span></div></div></div>
+    <div class="part"><div class="pl">(a) <span class="tex">4x^2-64</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF 4: <span class="tex">4(x^2-16)</span><br><span class="tex">x^2-16</span> is a difference of squares:<br><span class="tex">=\boldsymbol{4(x-4)(x+4)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">6x^2-24</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF 6: <span class="tex">6(x^2-4)</span><br><span class="tex">x^2-4</span> is a difference of squares:<br><span class="tex">=\boldsymbol{6(x-2)(x+2)}</span></div></div></div>
   </div>
   <div class="space" id="ex3-space"></div>
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
-<!-- ================= practice break ================= -->
-<section class="card practice" data-ink="p2" data-section="Practice: Questions 5–8">
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–6">
   <div class="pr-k">Your turn</div>
-  <h2>Assignment 8 · Questions 5–8</h2>
-  <p class="pr-t">GCF first, then perfect squares and harder trinomials.</p>
-  <div class="pr-chips"><span><b>5</b> GCF, then a trinomial</span><span><b>6</b> GCF, then a difference of squares</span><span><b>7</b> Perfect square trinomials</span><span><b>8</b> Trinomial, <span class="tex">a\neq1</span></span></div>
-  <div class="pr-foot"><span>We carry on when most of the class has finished Question 6. Questions 7 and 8 are review from Lessons 6 and 7.</span><a class="pill" href="../../../#/lesson/u4l8">Open the Practice site</a></div>
+  <h2>Assignment 8 · Questions 1–6</h2>
+  <p class="pr-t">Try these before we go on to mixed practice.</p>
+  <div class="pr-chips">
+    <span><b>1</b>Name the method</span>
+    <span><b>2–4</b>One method at a time</span>
+    <span><b>5</b>GCF, then a trinomial</span>
+    <span><b>6</b>GCF, then a difference of squares</span>
+  </div>
+  <div class="pr-foot"><span>We carry on when most of the class has finished Question 6.</span><a class="pill" href="../../../#/lesson/u4l8">Open the Practice site</a></div>
 </section>
 
 <!-- ================= 5. Mixed practice ================= -->
@@ -192,32 +187,23 @@
   <div class="ex-head"><span class="ex-tag">Example 4</span><h3>No hints</h3></div>
   <p class="q">Factor completely.</p>
   <div class="parts c2">
-    <div class="part"><div class="pl"><span class="vw-role you">You try</span>(a) <span class="tex">x^2-64</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">No GCF; two terms, both squares:<br><span class="tex">=\boldsymbol{(x-8)(x+8)}</span><br>Check: <span class="tex">x^2+8x-8x-64=x^2-64</span> ✓</div></div></div>
-    <div class="part"><div class="pl"><span class="vw-role you">You try</span>(b) <span class="tex">x^2-3x-40</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">No GCF; three terms, <span class="tex">a=1</span>.<br>Product <span class="tex">-40</span>, sum <span class="tex">-3</span>: <b><span class="tex">-8</span> and 5</b><br><span class="tex">=\boldsymbol{(x-8)(x+5)}</span><br>Check: <span class="tex">x^2+5x-8x-40=x^2-3x-40</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(a) <span class="tex">x^2-64</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">No GCF; two terms, both squares:<br><span class="tex">=\boldsymbol{(x-8)(x+8)}</span><br>Check: <span class="tex">x^2+8x-8x-64=x^2-64</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2-3x-40</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">No GCF; three terms, <span class="tex">a=1</span>.<br>Product <span class="tex">-40</span>, sum <span class="tex">-3</span>: <b><span class="tex">-8</span> and 5</b><br><span class="tex">=\boldsymbol{(x-8)(x+5)}</span><br>Check: <span class="tex">x^2+5x-8x-40=x^2-3x-40</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">3x^2+11x+6</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">No GCF; <span class="tex">a=3</span>, so decompose.<br><span class="tex">ac=18</span>, sum 11: <b>9 and 2</b><br><span class="tex">3x^2+9x+2x+6=3x(x+3)+2(x+3)</span><br><span class="tex">=\boldsymbol{(x+3)(3x+2)}</span><br>Check: <span class="tex">3x^2+2x+9x+6=3x^2+11x+6</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">x^2-12x+36</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">36=6^2</span> and <span class="tex">2(x)(6)=12x</span>: a perfect square trinomial.<br><span class="tex">=\boldsymbol{(x-6)^2}</span><br>Check: <span class="tex">x^2-6x-6x+36=x^2-12x+36</span> ✓</div></div></div>
   </div>
   <div class="space" id="ex4-space"></div>
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
-<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
-<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u4l8"></section>
-
-<section class="card example" data-extra data-ink="ex5" data-section="Example 5">
-  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>No hints, part 2</h3></div>
-  <p class="q">Factor completely.</p>
-  <div class="parts c2">
-    <div class="part"><div class="pl">(a) <span class="tex">3x^2+11x+6</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">No GCF; <span class="tex">a=3</span>, so decompose.<br><span class="tex">ac=18</span>, sum 11: <b>9 and 2</b><br><span class="tex">3x^2+9x+2x+6=3x(x+3)+2(x+3)</span><br><span class="tex">=\boldsymbol{(x+3)(3x+2)}</span><br>Check: <span class="tex">3x^2+2x+9x+6=3x^2+11x+6</span> ✓</div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">x^2-12x+36</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">36=6^2</span> and <span class="tex">2(x)(6)=12x</span>: a perfect square trinomial.<br><span class="tex">=\boldsymbol{(x-6)^2}</span><br>Check: <span class="tex">x^2-6x-6x+36=x^2-12x+36</span> ✓</div></div></div>
-  </div>
-  <div class="space" id="ex5-space"></div>
-  <button class="more" data-more="ex5-space">+ More space</button>
-</section>
-
-<section class="card" data-extra data-ink="s5c" data-section="5. Lightning Round">
-  <h3 class="sub">Lightning round: which tools?</h3>
-  <p>Say the tools out loud first, then tap a row to check the route and the answer.</p>
+<section class="card" data-ink="s5c" data-section="5. Lightning Round">
+  <h3 class="sub">Lightning round: which methods?</h3>
+  <p>Say the methods out loud first, then tap a row to check the route and the answer.</p>
   <div class="u4l8-lr" id="u4l8-lr"></div>
 </section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u4l8"></section>
 
 <!-- ================= warm-up ================= -->
 <section class="card warm wf" data-extra data-ink="warm" data-section="Extra: Pick the Right Tool" style="--wf-side: 318px">
@@ -265,7 +251,7 @@
     <div><b>Step 3: check every factor.</b> Can any factor be factored again? Then <b>check by expanding</b>: factoring is expanding run backwards.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u4l8">
-    <div><div class="kicker">Your turn</div><b>Assignment 8 · Questions 9–15</b><div class="muted">Mixed practice: no hints, so run the checklist every time. Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 8 · Questions 7–15</b><div class="muted">Perfect squares, harder trinomials, then mixed practice with no hints. Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l9/">
     <div><div class="kicker">Next lesson</div><b>Lesson 9 — Solving Polynomial Equations by Factoring</b><div class="muted">If <span class="tex">(x-5)(x+5)=0</span>, what could <span class="tex">x</span> be? Factoring helps us solve equations.</div></div><span class="arrow">→</span>
