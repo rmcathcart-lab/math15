@@ -333,3 +333,104 @@ SPECS['u2l10'] = dict(
               reveal=f'<b>A, by a huge amount.</b> {T("100^{10}=(10^2)^{10}=10^{20}")} and {T("1000^5=(10^3)^5=10^{15}")}. Both are tiny beside {T("10^{100}")}.'),
     extra_expl=['count', 'dist', 'steps1', 'anatomy', 'flip', 'steps2', 'sci', 'radical'],
     practice=PR('ex4', '1–9', '10–25', 'The exponent laws, one at a time.', [('1–9', 'The exponent laws')], 6))
+
+# ======================= Unit 3 =======================
+CAL = lambda a: f'<span class="vw-cal"><span>{a}</span><span>{a+1}</span><span>{a+7}</span><span>{a+8}</span></span>'
+SPECS['u3l1'] = dict(
+    warm=dict(title='The Fruit Puzzle', rule='What is the last line worth?',
+              body=BIG('🍎 + 🍎 + 🍎 = 30<br>🍎 + 🍌 + 🍌 = 18<br>🍌 − 🥥 = 2<small style="font-size:40px;color:inherit">🥥 + 🍎 + 🍌 = ?</small>'),
+              nudge='What is each fruit worth?',
+              reveal='<b>16.</b> An apple is 10, a banana is 4 and a coconut is 2, so the last line is 2 + 10 + 4.'),
+    extra_cards=['s1b', 's4b', 's4c', 's4d', 's5b', 's5c'], extra_expl=['anatomy'],
+    practice=PR('ex3', '1–7', '8–15', 'Vocabulary, like terms, then collecting.', [('1–5', 'Vocabulary and like terms'), ('6–7', 'Collecting like terms')], 5))
+SPECS['u3l2'] = dict(
+    warm=dict(title='Beat the Calculator', rule='In your head. No calculator, no paper.',
+              body=BIG(T(r'8\times1\,997')), nudge='1 997 is almost a very friendly number.',
+              reveal=f'<b>15 976.</b> {T(r"8\times2\,000=16\,000")}, then take away {T(r"8\times3=24")}.'),
+    extra_expl=['monoMul', 'areaGrid', 'distB', 'distC'],
+    replace=[('That is exactly what the warm-up rectangles did.', 'That is exactly how the warm-up worked: 8 × 2 000, take away 8 × 3.')],
+    practice=PR('ex3', '1–5', '6–15', 'Multiply monomials, then distribute.', [('1–3', 'Monomials and binomials'), ('4–5', 'Trinomials')], 4))
+SPECS['u3l3'] = dict(
+    warm=dict(title='The Calendar Trick', rule='Take any 2 by 2 block from a calendar. Multiply each diagonal pair. What do you notice?',
+              body='<div class="vw-tiles" style="--n:2"><div>' + CAL(9) + '</div><div>' + CAL(20) + '</div></div>',
+              nudge='Try another block. Does it always happen?',
+              reveal=f'<b>The two products always differ by 7.</b> {T(r"10\times16-9\times17=160-153=7")} and {T(r"21\times27-20\times28=567-560=7")}.'),
+    extra_cards=['s2b'], extra_expl=['areaGrow', 'foilNeg', 'middle', 'combine'],
+    practice=PR('ex3', '1–9', '10–16', 'Distribute and FOIL, then negative terms.', [('1–5', 'Distributing and FOIL'), ('6–9', 'Negative terms and two variables')], 6))
+SPECS['u3l4'] = dict(
+    warm=dict(title='In Your Head', rule='No calculator, no paper.',
+              body=BIG(T(r'49\times51')), nudge='Both numbers are very close to 50.',
+              reveal=f'<b>2 499.</b> It is one less than {T(r"50\times50=2\,500")}.'),
+    extra_expl=['foilRecall', 'squareSplit', 'minusSquare'],
+    practice=PR('ex4', '1–8', '9–16', 'Expand with the two patterns.', [('1–8', 'Expand and simplify')], 6))
+SPECS['u3l5'] = dict(
+    warm=dict(title='Jordan’s Shortcut', rule='How far off is Jordan?',
+              body=BIG(f'Jordan says {T(r"23\times123=2\,009")}<small>“because {T(r"20\times100=2\,000")} and {T(r"3\times3=9")}.”</small>'),
+              nudge='What did Jordan leave out?',
+              reveal=f'<b>Off by 820.</b> The real answer is 2 829. Jordan left out {T(r"20\times23=460")} and {T(r"3\times100=300")} and {T(r"20\times3=60")}: every part has to multiply every part.'),
+    extra_cards=['s2c'], extra_expl=['recall', 'sort', 'signs', 'combo'],
+    practice=PR('ex3', '1–6', '7–16', 'Six partial products, then collect.', [('1–6', 'Six partial products, then collect')], 4))
+SPECS['u3l6'] = dict(
+    warm=dict(title='The Open-Top Box', rule='Cut the same square from each corner of a <b>20 cm by 20 cm</b> sheet and fold up the sides. Which cut makes the box that <b>holds the most</b>?',
+              body=TILES(4, [('A', '1 cm'), ('B', '3 cm'), ('C', '5 cm'), ('D', '8 cm')]),
+              nudge='A small cut is wide but flat. A big cut is tall but skinny.',
+              reveal=f'<b>B, the 3 cm cut:</b> {T(r"14\times14\times3=588")} cm³. The others hold 324, 500 and 128 cm³.'),
+    extra_expl=['area', 'box', 'tank'],
+    replace=[('Every row of the warm-up table followed', 'Every cut in the warm-up followed')],
+    practice=PR('ex2', '1–4', '5–13', 'Area and volume of simple shapes.', [('1–4', 'Area and volume of simple shapes')], 3))
+SPECS['u3l7'] = dict(
+    warm=dict(title='The Mind Reader', rule='Do each step in your head. Don’t tell anyone your number.',
+              body=BIG('Think of a number. <b>Add 3.</b> <b>Double it.</b> <b>Subtract 4.</b> <b>Halve it.</b><small>Now subtract the number you started with.</small>'),
+              nudge='Compare answers with the person beside you.',
+              reveal=f'<b>Everyone gets 1.</b> Start with {T("n")}: {T(r"n+3\to2n+6\to2n+2\to n+1")}, and taking away {T("n")} leaves 1.'),
+    extra_cards=['mach', 's1b', 's4b'], extra_expl=['tiles', 'dist', 'foil', 'patterns', 'grid', 'measure'],
+    practice=PR('ex3', '1–11', '12–22', 'The first half of the unit, one skill at a time.', [('1–4', 'Like terms, adding and subtracting'), ('5–8', 'Monomial times polynomial'), ('9–11', 'Two binomials')], 8))
+
+# ======================= Unit 4, lessons 1–7 =======================
+SPECS['u4l1'] = dict(
+    warm=dict(title='How Many Rectangles?', rule='Use <b>every</b> tile in the pile to build a rectangle. Which pile can build the <b>most different</b> rectangles?',
+              body=TILES(4, [('A', '13 tiles'), ('B', '16 tiles'), ('C', '20 tiles'), ('D', '24 tiles')]),
+              nudge='Which pile is stuck with one long row?',
+              reveal=f'<b>D.</b> 24 tiles make four rectangles: {T(r"1\times24")}, {T(r"2\times12")}, {T(r"3\times8")}, {T(r"4\times6")}. The 16 and 20 piles make three each. The 13 pile only makes one long row.'),
+    extra_cards=['s1b', 's2b'], extra_expl=['twoWay', 'columnsM', 'tileRect'],
+    practice=PR('ex3', '1–4', '5–13', 'From multiplying to factoring, then greatest common factors.', [('1', 'From multiplying to factoring'), ('2–4', 'Greatest common factors')], 3))
+SPECS['u4l2'] = dict(
+    warm=dict(title='The Party Bags', rule='Every bag must be <b>identical</b>, with nothing left over. What is the <b>most</b> bags you can make?',
+              body=TILES(3, [('', '24 candies'), ('', '36 stickers'), ('', '30 balloons')]),
+              nudge='What has to be true about the number of bags?',
+              reveal='<b>6 bags.</b> 6 is the biggest number that divides 24, 36 and 30. Each bag gets 4 candies, 6 stickers and 5 balloons.'),
+    extra_cards=['s3b'], extra_expl=['bags', 'lowest', 'pullN'],
+    practice=PR('ex3', '1–6', '7–14', 'Find the GCF and take it out.', [('1–4', 'Finding and removing a GCF'), ('5–6', 'GCFs that include variables')], 5))
+SPECS['u4l3'] = dict(
+    warm=dict(title='The Impossible Sum', rule='Two whole numbers <b>multiply to 12</b>. Which of these sums is <b>impossible</b>?',
+              body=TILES(4, [('A', 'add to 7'), ('B', 'add to 8'), ('C', 'add to 9'), ('D', 'add to 13')]),
+              nudge='How do you know you have checked every pair?',
+              reveal=f'<b>C.</b> The only pairs are {T(r"1\times12")}, {T(r"2\times6")} and {T(r"3\times4")}, which add to 13, 8 and 7. Nothing adds to 9.'),
+    extra_cards=['s4b'], extra_expl=['tileRect', 'expandGrid', 'signFlip', 'inspectC'],
+    practice=PR('ex3', '1–5', '6–15', 'The sum and product pattern, then factoring.', [('1–3', 'FOIL and the sum–product pattern'), ('4–5', 'Factoring')], 4))
+SPECS['u4l4'] = dict(
+    warm=dict(title='Secret Number Pairs', rule=f'Two integers <b>multiply to {T("-24")}</b>. Which of these sums is <b>impossible</b>?',
+              body=TILES(4, [('A', 'add to 5'), ('B', f'add to {T("-10")}'), ('C', 'add to 3'), ('D', f'add to {T("-2")}')]),
+              nudge='How do you know you have checked every pair?',
+              reveal=f'<b>C.</b> {T("-3")} and 8 add to 5, 2 and {T("-12")} add to {T("-10")}, 4 and {T("-6")} add to {T("-2")}. No pair adds to 3.'),
+    extra_cards=['s1b', 's1d'], extra_expl=['ladderP', 'gcfFirst'],
+    practice=PR('ex2', '1–5', '6–15', 'Opposite signs: find the pair, then factor.', [('1–2', 'The opposite-sign pattern'), ('3–5', 'Factoring with c negative')], 4))
+SPECS['u4l5'] = dict(
+    warm=dict(title='The Prime Suspect', rule='It isn’t even, it doesn’t end in 5, and 3 doesn’t divide it. <b>Is it prime?</b> No calculator.',
+              body=BIG('899'), nudge='What friendly number is it very close to?',
+              reveal=f'<b>No.</b> {T(r"899=900-1=30^2-1^2=29\times31")}.'),
+    extra_cards=['s1b', 's2b', 's4b'], extra_expl=['rootFinder', 'tileGroups'],
+    practice=PR('ex2', '1–4', '5–14', 'Recognize a difference of squares and factor it.', [('1–4', 'Recognizing and factoring')], 3))
+SPECS['u4l6'] = dict(
+    warm=dict(title='In Your Head', rule='No calculator, no paper.',
+              body=BIG(T('31^2')), nudge='You know 30 squared.',
+              reveal=f'<b>961.</b> {T(r"31^2=(30+1)^2=900+60+1")}. The 60 is {T(r"2\times30\times1")}, the part people forget.'),
+    extra_cards=['s1b', 's3b'], extra_expl=['squarePic', 'signCase'],
+    replace=[('Name the tiles from the warm-up (', 'Name the tiles ('), (' and every square you built is one of these:', ' and every square is one of these:')],
+    practice=PR('ex3', '1–5', '6–14', 'Test for a perfect square, then factor the two cases.', [('1–2', 'Recognizing perfect square trinomials'), ('3–5', 'Factoring the two cases')], 4))
+SPECS['u4l7'] = dict(
+    warm=dict(title='Who Are We?', rule='A riddle from two whole numbers.',
+              body=BIG('“We <b>multiply to 36</b> and <b>add to 13</b>.”<small>Who are we?</small>'),
+              nudge='How did you find them?',
+              reveal=f'<b>4 and 9.</b> {T(r"4\times9=36")} and {T("4+9=13")}. Listing the pairs that multiply to 36 finds them fast: 1 and 36, 2 and 18, 3 and 12, 4 and 9.'),
+    practice=PR('ex2', '1–4', '5–14', 'Find the two numbers, then factor with positive coefficients.', [('1–2', 'Finding the two integers'), ('3–4', 'Decomposition with positive coefficients')], 3))

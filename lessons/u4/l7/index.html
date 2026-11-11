@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u4l7.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Who Are We?">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Who Are We?</h2>
+  <p class="wf-rule">A riddle from two whole numbers.</p></div>
+  <div class="vw-q">“We <b>multiply to 36</b> and <b>add to 13</b>.”<small>Who are we?</small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>How did you find them?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>4 and 9.</b> <span class="tex">4\times9=36</span> and <span class="tex">4+9=13</span>. Listing the pairs that multiply to 36 finds them fast: 1 and 36, 2 and 18, 3 and 12, 4 and 9.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -43,28 +53,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Two Skills You Already Have">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Two Skills You Already Have</h2>
-  <p class="wf-rule">Today’s method is built from these two. <span class="muted">Tap a <b>?</b> to check.</span></p></div>
-  <div class="u4l7-wu">
-    <div class="u4l7-wcol">
-      <div class="u4l7-wh">A. Find the two numbers</div>
-      <div class="u4l7-wi"><div class="q-num">1</div><div>multiply to <b>6</b>, add to <b>7</b></div><span data-reveal><span class="tex">6\text{ and }1</span></span></div>
-      <div class="u4l7-wi"><div class="q-num">2</div><div>multiply to <b>12</b>, add to <b>8</b></div><span data-reveal><span class="tex">6\text{ and }2</span></span></div>
-      <div class="u4l7-wi"><div class="q-num">3</div><div>multiply to <b>20</b>, add to <b>12</b></div><span data-reveal><span class="tex">10\text{ and }2</span></span></div>
-      <div class="u4l7-wi"><div class="q-num">4</div><div>multiply to <b>8</b>, add to <b>−9</b></div><span data-reveal><span class="tex">-8\text{ and }-1</span></span></div>
-      <div class="u4l7-wi"><div class="q-num">5</div><div>multiply to <b>−12</b>, add to <b>−4</b></div><span data-reveal><span class="tex">-6\text{ and }2</span></span></div>
-    </div>
-    <div class="u4l7-wcol">
-      <div class="u4l7-wh">B. Take out the GCF</div>
-      <div class="u4l7-wi"><div class="q-num">6</div><div><span class="tex">2x^2+6x</span></div><span data-reveal><span class="tex">2x(x+3)</span></span></div>
-      <div class="u4l7-wi"><div class="q-num">7</div><div><span class="tex">3x^2+12x</span></div><span data-reveal><span class="tex">3x(x+4)</span></span></div>
-      <div class="u4l7-wi"><div class="q-num">8</div><div><span class="tex">4x^2+10x</span></div><span data-reveal><span class="tex">2x(2x+5)</span></span></div>
-      <div class="u4l7-wi"><div class="q-num">9</div><div><span class="tex">-2x+6</span> &nbsp;<span class="muted">(take out <span class="tex">-2</span>)</span></div><span data-reveal><span class="tex">-2(x-3)</span></span></div>
-      <div class="u4l7-wi"><div class="q-num">10</div><div><span class="tex">x+3</span> &nbsp;<span class="muted">(nothing in common)</span></div><span data-reveal><span class="tex">1(x+3)</span></span></div>
-    </div>
-  </div>
-</section>
+
 
 <!-- ================= 1. Why a new method ================= -->
 <section class="card" data-ink="s1" data-section="1. Why Sum-Product Is Not Enough">
@@ -129,6 +118,15 @@
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–4">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 7 · Questions 1–4</h2>
+  <p class="pr-t">Find the two numbers, then factor with positive coefficients.</p>
+  <div class="pr-chips n2"><span><b>1–2</b>Finding the two integers</span><span><b>3–4</b>Decomposition with positive coefficients</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 3.</span><a class="pill" href="../../../#/lesson/u4l7">Open the Practice site</a></div>
+</section>
+
 <!-- ================= 4. Negative b and/or c ================= -->
 <section class="card" data-ink="s4" data-section="4. Negative b and/or c">
   <div class="sec-h"><span class="badge">4</span><h2>Decomposition with Negative <span class="tex">b</span> and/or <span class="tex">c</span></h2></div>
@@ -188,6 +186,29 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Two Skills You Already Have">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Two Skills You Already Have</h2>
+  <p class="wf-rule">Today’s method is built from these two. <span class="muted">Tap a <b>?</b> to check.</span></p></div>
+  <div class="u4l7-wu">
+    <div class="u4l7-wcol">
+      <div class="u4l7-wh">A. Find the two numbers</div>
+      <div class="u4l7-wi"><div class="q-num">1</div><div>multiply to <b>6</b>, add to <b>7</b></div><span data-reveal><span class="tex">6\text{ and }1</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">2</div><div>multiply to <b>12</b>, add to <b>8</b></div><span data-reveal><span class="tex">6\text{ and }2</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">3</div><div>multiply to <b>20</b>, add to <b>12</b></div><span data-reveal><span class="tex">10\text{ and }2</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">4</div><div>multiply to <b>8</b>, add to <b>−9</b></div><span data-reveal><span class="tex">-8\text{ and }-1</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">5</div><div>multiply to <b>−12</b>, add to <b>−4</b></div><span data-reveal><span class="tex">-6\text{ and }2</span></span></div>
+    </div>
+    <div class="u4l7-wcol">
+      <div class="u4l7-wh">B. Take out the GCF</div>
+      <div class="u4l7-wi"><div class="q-num">6</div><div><span class="tex">2x^2+6x</span></div><span data-reveal><span class="tex">2x(x+3)</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">7</div><div><span class="tex">3x^2+12x</span></div><span data-reveal><span class="tex">3x(x+4)</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">8</div><div><span class="tex">4x^2+10x</span></div><span data-reveal><span class="tex">2x(2x+5)</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">9</div><div><span class="tex">-2x+6</span> &nbsp;<span class="muted">(take out <span class="tex">-2</span>)</span></div><span data-reveal><span class="tex">-2(x-3)</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">10</div><div><span class="tex">x+3</span> &nbsp;<span class="muted">(nothing in common)</span></div><span data-reveal><span class="tex">1(x+3)</span></span></div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -198,7 +219,7 @@
     <div><b>Step 6:</b> check by expanding. <b>Signs:</b> <span class="tex">ac>0</span> same signs, <span class="tex">ac<0</span> opposite signs.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u4l7">
-    <div><div class="kicker">Your turn</div><b>Assignment 7 — Factoring <span class="tex">ax^2+bx+c</span> (where <span class="tex">a\neq1</span>)</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 7 · Questions 5–14</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l8/">
     <div><div class="kicker">Next lesson</div><b>Lesson 8 — Choosing a Factoring Strategy</b><div class="muted">GCF, sum-product, difference of squares, perfect squares or decomposition: a checklist for picking the right tool</div></div><span class="arrow">→</span>
@@ -211,7 +232,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u4l7.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u4l7', homeHref: '../../', title: '4.7 Factoring ax² + bx + c (a ≠ 1)' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

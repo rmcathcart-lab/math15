@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Special Products: Difference of Squares &amp; Perfect Squares · Math 15 3.4</title>
+<meta name="description" content="Math 15 Unit 3 Lesson 4: special products. The difference of squares (a + b)(a − b) = a² − b², perfect square trinomials (a ± b)² = a² ± 2ab + b², why (a + b)² is not a² + b², and deciding which pattern applies. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u3l4.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u3l4">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 3 Polynomial Operations · Lesson 4</div>
+  <h1>Special Products: Difference of Squares &amp; Perfect Squares</h1>
+  <p class="lede">Some binomial products show up so often that they are worth memorizing. Then you can skip FOIL and write the answer. Today a square loses a corner and turns into a rectangle, we see why <span class="tex">(a+b)^2</span> is <b>never</b> just <span class="tex">a^2+b^2</span>, and we learn to spot which pattern fits.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>expand a <b>difference of squares</b>: <span class="tex">(a+b)(a-b)=a^2-b^2</span> (no middle term)</li>
+      <li>expand a <b>perfect square</b>: <span class="tex">(a+b)^2=a^2+2ab+b^2</span> and <span class="tex">(a-b)^2=a^2-2ab+b^2</span></li>
+      <li>explain with a picture why <span class="tex">(a+b)^2\neq a^2+b^2</span></li>
+      <li>decide which pattern a product fits, or that it fits neither and needs FOIL</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN4</b> Demonstrate an understanding of the multiplication of polynomial expressions (limited to monomials, binomials and trinomials), concretely, pictorially and symbolically.<span class="u3l4-today">Today: two binomial products worth memorizing.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Square That Lost a Corner" style="--wf-side: 380px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Square That Lost a Corner</h2>
+  <p class="wf-rule">A <b>7 by 7</b> square loses a <b>3 by 3</b> corner. Cut what’s left in two… and slide. <span class="muted">Use the buttons to cut and slide.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div id="u3l4-corner"></div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> No calculator, no paper. Use the picture to find <b>49 × 51</b>. <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> 2&#8239;499</div>
+        <div class="opt"><b>B</b> 2&#8239;500</div>
+        <div class="opt"><b>C</b> 2&#8239;501</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A, 2&#8239;499.</b> A <span class="tex">50\times50</span> square loses a <span class="tex">1\times1</span> corner and slides into a <span class="tex">51</span> by <span class="tex">49</span> rectangle: <span class="tex">49\times51=2\,500-1=2\,499</span>. It is <b>exactly</b> one less than <span class="tex">50\times50</span>.</div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u3l4-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many small squares are left after the corner is cut out? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>40</b>: <span class="tex">7\times7=49</span>, minus the <span class="tex">3\times3=9</span> cut out.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How long and how wide is the new rectangle? Same number of squares? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>10 by 4</b>: <span class="tex">7+3=10</span> long, <span class="tex">7-3=4</span> tall. <span class="tex">10\times4=40</span>, the same squares.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>A <b>10 by 10</b> square loses a <b>2 by 2</b> corner. What rectangle do you get? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>12 by 8</b>: <span class="tex">10+2</span> and <span class="tex">10-2</span>. Check: <span class="tex">12\times8=96=100-4</span>.</div></div>
+    </div>
+  </div></div>
+  <p class="u3l4-social">Race your neighbour, no calculators: who can work out <b>98 × 102</b> first? <span data-reveal="tap to see"><span class="tex">100^2-2^2=10\,000-4=\boldsymbol{9\,996}</span></span></p>
+</section>
+
+<!-- ================= 1. Recall ================= -->
+<section class="card" data-ink="s1" data-section="1. Recall: Multiplying Two Binomials">
+  <div class="sec-h"><span class="badge">1</span><h2>Recall: Multiplying Two Binomials</h2></div>
+  <p><b>FOIL</b> multiplies the <b>F</b>irst terms, the <b>O</b>uter terms, the <b>I</b>nner terms and the <b>L</b>ast terms, then combines like terms. The two special products below are just FOIL results worth memorizing, so warm up with one full expansion first.</p>
+  <div class="explainer" data-explainer="foilRecall"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>One full FOIL</h3></div>
+  <p class="q">Expand <span class="tex">(x+3)(x+5)</span> by filling in each step of FOIL.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">First: <span class="tex">x\cdot x=</span></div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{x^2}</span></div></div></div>
+    <div class="part"><div class="pl">Outer: <span class="tex">x\cdot5=</span></div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{5x}</span></div></div></div>
+    <div class="part"><div class="pl">Inner: <span class="tex">3\cdot x=</span></div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{3x}</span></div></div></div>
+    <div class="part"><div class="pl">Last: <span class="tex">3\cdot5=</span></div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{15}</span></div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">Now add the four results and combine like terms.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2+5x+3x+15=\boldsymbol{x^2+8x+15}</span></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Difference of squares ================= -->
+<section class="card" data-ink="s2" data-section="2. The Difference of Squares Pattern">
+  <div class="sec-h"><span class="badge">2</span><h2>The Difference of Squares Pattern</h2></div>
+  <p>When the <b>same two terms</b> appear once added and once subtracted, the Outer and Inner terms are opposites and <b>cancel</b>:</p>
+  <p class="u3l4-big"><span class="tex">(x+4)(x-4)=x^2-4x+4x-16=x^2-16</span></p>
+  <div class="def"><b>Difference of squares</b> &nbsp;<span class="tex">(a+b)(a-b)=a^2-b^2</span><div class="eg">Square the first term, square the second, subtract. There is <b>no middle term</b> at all.</div></div>
+  <div class="explainer" data-explainer="sumDiff"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Difference of squares</h3></div>
+  <p class="q">Use the difference of squares pattern to expand each product.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">(x+2)(x-2)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">a=x,\ b=2</span><br><span class="tex">x^2-2^2</span><br><span class="tex">=\boldsymbol{x^2-4}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(x-6)(x+6)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Order doesn’t matter:<br><span class="tex">x^2-6^2</span><br><span class="tex">=\boldsymbol{x^2-36}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(2x+1)(2x-1)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">a=2x,\ b=1</span><br><span class="tex">(2x)^2-1^2</span><br><span class="tex">=\boldsymbol{4x^2-1}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">(7-x)(7+x)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">a=7,\ b=x</span><br><span class="tex">7^2-x^2</span><br><span class="tex">=\boldsymbol{49-x^2}</span></div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Square the whole term.</b> In (c) the first term is <span class="tex">2x</span>, so its square is <span class="tex">(2x)^2=4x^2</span>, not <span class="tex">2x^2</span>.</div></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Back to the warm-up">
+  <h3 class="sub">Back to the warm-up: mental math</h3>
+  <p>Two numbers the same distance from a <b>friendly</b> number make a difference of squares. That’s how <span class="tex">49\times51</span> turns into <span class="tex">50^2-1^2</span>, with no long multiplication.</p>
+  <div class="explainer" data-explainer="mental"></div>
+</section>
+
+<!-- ================= 3. Perfect square (sum) ================= -->
+<section class="card" data-ink="s3" data-section="3. The Perfect Square Trinomial Pattern (Sum)">
+  <div class="sec-h"><span class="badge">3</span><h2>The Perfect Square Trinomial Pattern (Sum)</h2></div>
+  <p>Squaring a binomial means multiplying it <b>by itself</b>, so now the Outer and Inner terms are identical and <b>add</b>:</p>
+  <p class="u3l4-big"><span class="tex">(x+3)^2=(x+3)(x+3)=x^2+3x+3x+9=x^2+6x+9</span></p>
+  <div class="def"><b>Perfect square trinomial</b> &nbsp;<span class="tex">(a+b)^2=a^2+2ab+b^2</span><div class="eg">Square the first, <b>double the product</b>, square the last. Three terms, never two.</div></div>
+  <div class="explainer" data-explainer="squareSplit"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. The classic mistake">
+  <div class="u3l4-watch-big">
+    <div class="tip-ic">!</div>
+    <div><b>Careful: <span class="tex">(a+b)^2\neq a^2+b^2</span>.</b> Check with <span class="tex">x=1</span>: <span class="tex">(1+3)^2=16</span>, but <span class="tex">1^2+3^2=10</span>. The missing <b>6</b> is the two middle rectangles.</div>
+  </div>
+  <div class="explainer" data-explainer="classicError"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Squaring a sum</h3></div>
+  <p class="q">Use the perfect square trinomial pattern to expand each square.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">(x+2)^2</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2+2(x)(2)+2^2</span><br><span class="tex">=\boldsymbol{x^2+4x+4}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(x+7)^2</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2+2(x)(7)+49</span><br><span class="tex">=\boldsymbol{x^2+14x+49}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(3x+2)^2</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(3x)^2+2(3x)(2)+4</span><br><span class="tex">=\boldsymbol{9x^2+12x+4}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">(2x+5)^2</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(2x)^2+2(2x)(5)+25</span><br><span class="tex">=\boldsymbol{4x^2+20x+25}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> How can you check (b) without FOIL? Try <span class="tex">x=1</span>.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(1+7)^2=64</span> and <span class="tex">1+14+49=64</span> ✓. The wrong answer <span class="tex">x^2+49</span> would give only <span class="tex">50</span>.</div></div></div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Perfect square (difference) ================= -->
+<section class="card" data-ink="s4" data-section="4. The Perfect Square Trinomial Pattern (Difference)">
+  <div class="sec-h"><span class="badge">4</span><h2>The Perfect Square Trinomial Pattern (Difference)</h2></div>
+  <p>Squaring a difference works the same way, but both middle terms are now <b>negative</b>:</p>
+  <p class="u3l4-big"><span class="tex">(x-4)^2=x^2-4x-4x+16=x^2-8x+16</span></p>
+  <div class="def"><b>Perfect square trinomial</b> &nbsp;<span class="tex">(a-b)^2=a^2-2ab+b^2</span><div class="eg">The first and last terms stay <b>positive</b> (a square always is). Only the middle term is subtracted.</div></div>
+  <div class="explainer" data-explainer="minusSquare"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Squaring a difference</h3></div>
+  <p class="q">Use the perfect square trinomial pattern to expand each square.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">(x-4)^2</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2-2(x)(4)+16</span><br><span class="tex">=\boldsymbol{x^2-8x+16}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(x-9)^2</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2-2(x)(9)+81</span><br><span class="tex">=\boldsymbol{x^2-18x+81}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(4x-1)^2</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(4x)^2-2(4x)(1)+1</span><br><span class="tex">=\boldsymbol{16x^2-8x+1}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">(3x-4)^2</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(3x)^2-2(3x)(4)+16</span><br><span class="tex">=\boldsymbol{9x^2-24x+16}</span></div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>The last term is always plus.</b> In (a), <span class="tex">(-4)(-4)=+16</span>. Only the middle term takes the minus sign.</div></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u3l4"></section>
+
+<!-- ================= 5. Which pattern? ================= -->
+<section class="card" data-ink="s5" data-section="5. Identifying Which Pattern Applies">
+  <div class="sec-h"><span class="badge">5</span><h2>Identifying Which Pattern Applies</h2></div>
+  <p>Before you expand, ask which of three cases you have.</p>
+  <div class="u3l4-rules">
+    <div class="u3l4-rule sd"><div class="u3l4-rule-h">Difference of squares</div><div class="u3l4-rule-w">The same two terms, once with <b>+</b> and once with <b>−</b>.</div><div class="u3l4-rule-f"><span class="tex">(x+5)(x-5)=x^2-25</span></div></div>
+    <div class="u3l4-rule sq"><div class="u3l4-rule-h">Perfect square trinomial</div><div class="u3l4-rule-w">The same binomial <b>squared</b> (times itself).</div><div class="u3l4-rule-f"><span class="tex">(x+5)^2=x^2+10x+25</span></div></div>
+    <div class="u3l4-rule no"><div class="u3l4-rule-h">Neither</div><div class="u3l4-rule-w">No shortcut exists: just <b>FOIL</b> it.</div><div class="u3l4-rule-f"><span class="tex">(x+5)(x-2)=x^2+3x-10</span></div></div>
+  </div>
+  <div class="explainer" data-explainer="recognizer"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Which pattern?</h3></div>
+  <p class="q">Identify the situation (difference of squares, perfect square trinomial, or just FOIL), then expand and simplify.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">(x+5)(x-5)</span><div class="u3l4-pat">Pattern: ____________</div></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Difference of squares</b><br><span class="tex">x^2-5^2=\boldsymbol{x^2-25}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(x+8)^2</span><div class="u3l4-pat">Pattern: ____________</div></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Perfect square trinomial</b><br><span class="tex">x^2+2(x)(8)+64</span><br><span class="tex">=\boldsymbol{x^2+16x+64}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(x-3)(x+9)</span><div class="u3l4-pat">Pattern: ____________</div></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Neither: just FOIL</b><br><span class="tex">x^2+9x-3x-27</span><br><span class="tex">=\boldsymbol{x^2+6x-27}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">(x-10)^2</span><div class="u3l4-pat">Pattern: ____________</div></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Perfect square trinomial</b><br><span class="tex">x^2-2(x)(10)+100</span><br><span class="tex">=\boldsymbol{x^2-20x+100}</span></div></div></div>
+    <div class="part"><div class="pl">(e) <span class="tex">(3x+2)(3x-2)</span><div class="u3l4-pat">Pattern: ____________</div></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Difference of squares</b><br><span class="tex">(3x)^2-2^2=\boldsymbol{9x^2-4}</span></div></div></div>
+    <div class="part"><div class="pl">(f) <span class="tex">(2x-7)^2</span><div class="u3l4-pat">Pattern: ____________</div></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Perfect square trinomial</b><br><span class="tex">(2x)^2-2(2x)(7)+49</span><br><span class="tex">=\boldsymbol{4x^2-28x+49}</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Difference of squares:</b> <span class="tex">(a+b)(a-b)=a^2-b^2</span>. The O and I terms cancel, so there is <b>no middle term</b>.</div>
+    <div><b>Perfect square trinomial:</b> <span class="tex">(a\pm b)^2=a^2\pm2ab+b^2</span>. Square the first, double the product, square the last: always <b>three</b> terms.</div>
+    <div><span class="tex">(a+b)^2\neq a^2+b^2</span>. The two middle rectangles are real: <span class="tex">(1+3)^2=16</span>, not 10.</div>
+    <div><b>Check first:</b> same two terms with + and −? Difference of squares. Same binomial squared? Perfect square. Neither? Just FOIL.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u3l4">
+    <div><div class="kicker">Your turn</div><b>Assignment 4 — Special Products: Difference of Squares &amp; Perfect Squares</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l5/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 5 — Multiplying a Binomial by a Trinomial</b><div class="muted">Six products instead of four: the area model just grows another column.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u3l4.js';
+  boot({ key: 'u3l4', homeHref: '../../', title: '3.4 Special Products' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

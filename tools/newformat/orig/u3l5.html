@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Multiplying a Binomial by a Trinomial · Math 15 3.5</title>
+<meta name="description" content="Math 15 Unit 3 Lesson 5: multiplying a binomial by a trinomial. Every term times every term gives six partial products, organized in a grid or a list, then collected. Products with negative terms, and combining a product with another polynomial. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u3l5.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u3l5">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 3 Polynomial Operations · Lesson 5</div>
+  <h1>Multiplying a Binomial by a Trinomial</h1>
+  <p class="lede">FOIL works when each bracket has <b>two</b> terms. Today one bracket has <b>three</b>. The rule doesn’t change: every term times every term. That makes <b>six partial products</b>. We organize them in a grid or a list, then collect the like terms.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>explain why a binomial times a trinomial makes <span class="tex">2\times3=6</span> partial products</li>
+      <li>multiply a binomial by a trinomial with a <b>grid</b> and with a <b>list</b> (the distributive property)</li>
+      <li>collect the like terms to write the answer as <span class="tex">ax^3+bx^2+cx+d</span></li>
+      <li>find the sign of each partial product on its own when there are negative terms</li>
+      <li>expand a product first, then add or subtract another polynomial</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN4</b> Demonstrate an understanding of the multiplication of polynomial expressions (limited to monomials, binomials and trinomials), concretely, pictorially and symbolically.<br><span class="u3l5-today">Today: a binomial times a trinomial.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Combo Counter" style="--wf-side: 330px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Combo Counter</h2>
+  <p class="wf-rule">A combo = <b>1 main</b> + <b>1 side</b>. Every main gets paired with every side. <span class="muted">Tap a <b class="u3l5-cr">?</b> to reveal it.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u3l5-wu" id="u3l5-wu"></div>
+    <div class="u3l5-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many different combos can you make? Name them all. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>6 combos</b>, one per box: 2 mains × 3 sides. The grid makes sure nobody is missed or counted twice.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Add a <b>hot dog</b> to the mains. How many combos now? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>9 combos:</b> one more row of 3, so 3 × 3. (Tap <b>+ Hot dog</b> to see it.)</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>In the <b>23 × 123</b> grid, each box is row × column. Fill in the four <b class="u3l5-cr">?</b> boxes. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Top row: <b>400</b> and <b>60</b>. Bottom row: <b>300</b> and <b>60</b>.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Jordan only did the two filled boxes and said <span class="tex">23\times123=2\,000+9=2\,009</span>. <b>Guess first:</b> Jordan is off by about…</div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 10</div>
+        <div class="opt"><b>B</b> 100</div>
+        <div class="opt right"><b>C</b> 800</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: about 800 (exactly 820).</b> Add all six boxes:<br><span class="tex">2\,000+400+60+300+60+9=2\,829</span>.<br>Jordan skipped four boxes: <span class="tex">400+60+300+60=820</span>. The forgotten middle boxes are worth a lot! <b>Every box counts.</b></div>
+    </div>
+  </div></div>
+  <div class="bk-wq u3l5-wide"><div class="q-line"><div class="q-num bonus">+</div><div><b>Neighbour challenge:</b> add 2 drinks (main + side + drink). How many meals now? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="bk-ans"><span class="tex">2\times3\times2=\mathbf{12}</span> meals. Each of the 6 combos comes with either drink.</div></div>
+</section>
+
+<!-- ================= 1. Recall ================= -->
+<section class="card" data-ink="s1" data-section="1. Recall: Two Binomials">
+  <div class="sec-h"><span class="badge">1</span><h2>Recall: Two Binomials and the Special Products</h2></div>
+  <p><b>FOIL</b> handles two-term brackets. Lesson 4 added two patterns. All of these tools need <b>exactly two terms</b> in each bracket.</p>
+  <div class="u3l5-tools">
+    <div><b>FOIL</b><span class="tex">(a+b)(c+d)=ac+ad+bc+bd</span></div>
+    <div><b>Difference of squares</b><span class="tex">(a+b)(a-b)=a^{2}-b^{2}</span></div>
+    <div><b>Perfect squares</b><span class="tex">(a\pm b)^{2}=a^{2}\pm 2ab+b^{2}</span></div>
+  </div>
+  <div class="explainer" data-explainer="recall"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Two binomials: a quick warm-up</h3></div>
+  <p class="q">Expand and simplify, using the method named in each part.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">(x+2)(x+6)</span> &nbsp;<span class="u3l5-meth">use FOIL</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">F: <span class="tex">x^2</span> &nbsp; O: <span class="tex">6x</span> &nbsp; I: <span class="tex">2x</span> &nbsp; L: <span class="tex">12</span><br><span class="tex">x^2+6x+2x+12=\mathbf{x^2+8x+12}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(x+7)(x-7)</span> &nbsp;<span class="u3l5-meth">use a special product</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Difference of squares, <span class="tex">a=x</span>, <span class="tex">b=7</span>:<br><span class="tex">\mathbf{x^2-49}</span> &nbsp;(no middle term)</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Binomial x trinomial ================= -->
+<section class="card" data-ink="s2" data-section="2. Binomial × Trinomial">
+  <div class="sec-h"><span class="badge">2</span><h2>Multiplying a Binomial by a Trinomial</h2></div>
+  <p>A trinomial has <b>three</b> terms, so FOIL no longer fits. But the <b>distributive property</b> still does:</p>
+  <div class="def u3l5-rule"><span class="tex">(a+b)(c+d+e)=a(c+d+e)+b(c+d+e)=ac+ad+ae+bc+bd+be</span><div class="u3l5-rule-n">That’s <b>six</b> partial products: <span class="tex">2\times3=6</span>.</div></div>
+  <p>The warm-up already did this with numbers. Let’s replace each 10 with <span class="tex">x</span>.</p>
+  <div class="explainer" data-explainer="place"></div>
+</section>
+
+<section class="card" data-ink="s2a" data-section="2. Every term × every term">
+  <h3 class="sub">Two terms × three terms</h3>
+  <p>Each of the 2 terms in the binomial must multiply each of the 3 terms in the trinomial.</p>
+  <div class="explainer" data-explainer="handshake"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>FOIL only works for 2 × 2.</b> On a trinomial, FOIL never touches the <b>middle</b> term, so two partial products go missing.</div></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. The grid">
+  <h3 class="sub">Method 1: the grid</h3>
+  <p>The binomial’s terms label the <b>rows</b>. The trinomial’s terms label the <b>columns</b>. Every cell is <b>row × column</b>. Fill all six cells, then add them up.</p>
+  <div class="explainer" data-explainer="grid"></div>
+</section>
+
+<section class="card" data-ink="s2c" data-section="2. The list">
+  <h3 class="sub">Method 2: a systematic list</h3>
+  <p>The first term of the binomial multiplies all three terms of the trinomial. Then the second term does the same. Same six products as the grid, written as a list.</p>
+  <div class="explainer" data-explainer="list"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>One product, two ways</h3></div>
+  <p class="q">Expand <span class="tex">(x+2)\left(x^{2}+4x+5\right)</span> two ways.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(i) Fill in all six cells, then add them up.</div>
+      <table class="u3l5-tg">
+        <tr><th>×</th><th><span class="tex">x^2</span></th><th><span class="tex">4x</span></th><th><span class="tex">5</span></th></tr>
+        <tr><th><span class="tex">x</span></th><td><span data-reveal><span class="tex">x^3</span></span></td><td><span data-reveal><span class="tex">4x^2</span></span></td><td><span data-reveal><span class="tex">5x</span></span></td></tr>
+        <tr><th><span class="tex">2</span></th><td><span data-reveal><span class="tex">2x^2</span></span></td><td><span data-reveal><span class="tex">8x</span></span></td><td><span data-reveal><span class="tex">10</span></span></td></tr>
+      </table>
+      <div class="u3l5-wl">Sum of the six cells:</div>
+      <div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^3+4x^2+5x+2x^2+8x+10</span><br><span class="tex">=\mathbf{x^3+6x^2+13x+10}</span></div></div></div>
+    <div class="part"><div class="pl">(ii) Use the distributive property as a list of all six products.</div>
+      <div class="u3l5-tl">
+        <div><span class="tex">x\cdot x^2=</span> <span data-reveal><span class="tex">x^3</span></span></div><div><span class="tex">2\cdot x^2=</span> <span data-reveal><span class="tex">2x^2</span></span></div>
+        <div><span class="tex">x\cdot 4x=</span> <span data-reveal><span class="tex">4x^2</span></span></div><div><span class="tex">2\cdot 4x=</span> <span data-reveal><span class="tex">8x</span></span></div>
+        <div><span class="tex">x\cdot 5=</span> <span data-reveal><span class="tex">5x</span></span></div><div><span class="tex">2\cdot 5=</span> <span data-reveal><span class="tex">10</span></span></div>
+      </div>
+      <div class="u3l5-wl">Add them and collect like terms:</div>
+      <div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2</span> terms: <span class="tex">4x^2+2x^2=6x^2</span>; &nbsp;<span class="tex">x</span> terms: <span class="tex">5x+8x=13x</span><br><span class="tex">=\mathbf{x^3+6x^2+13x+10}</span>, the same answer as the grid.</div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Check the answer the warm-up way: put <span class="tex">x=10</span> into both sides. What numbers do you get?</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Left side: <span class="tex">(10+2)(100+40+5)=12\times145=1\,740</span>. Right side: <span class="tex">1\,000+600+130+10=1\,740</span>. They match ✓.</div></div></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Collecting ================= -->
+<section class="card" data-ink="s3" data-section="3. Collecting Like Terms">
+  <div class="sec-h"><span class="badge">3</span><h2>Collecting Like Terms After Expanding</h2></div>
+  <p>In this lesson’s products, the six partial products are <b>one</b> <span class="tex">x^3</span> term, <b>two</b> <span class="tex">x^2</span> terms, <b>two</b> <span class="tex">x</span> terms and <b>one</b> constant. So expect to combine <b>two pairs</b> of like terms.</p>
+  <div class="u3l5-bins-def">
+    <div class="d3"><span class="tex">x^3</span><small>1 term</small></div>
+    <div class="d2"><span class="tex">x^2</span><small>2 terms: combine</small></div>
+    <div class="d1"><span class="tex">x</span><small>2 terms: combine</small></div>
+    <div class="d0"><span class="tex">\text{number}</span><small>1 term</small></div>
+  </div>
+  <p>Like terms have the same variable <b>and</b> the same exponent. The tidy answer looks like <span class="tex">ax^3+bx^2+cx+d</span>.</p>
+  <div class="explainer" data-explainer="sort"></div>
+  <div class="tip diag-tip"><div class="tip-ic">↘</div><div><b>In the grid, like terms sit on a diagonal.</b> Write both brackets with the highest power first, and the two <span class="tex">x^2</span> cells (and the two <span class="tex">x</span> cells) line up corner to corner.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Six partial products, then collect</h3></div>
+  <p class="q">Expand and simplify. Write all six partial products first, then combine like terms.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">(2x+1)\left(x^{2}+3x+4\right)</span></div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2x^3+6x^2+8x+x^2+3x+4</span><br><span class="tex">x^2</span>: <span class="tex">6x^2+x^2=7x^2</span>; &nbsp;<span class="tex">x</span>: <span class="tex">8x+3x=11x</span><br><span class="tex">=\mathbf{2x^3+7x^2+11x+4}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(3x+4)\left(x^{2}+2x+1\right)</span></div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3x^3+6x^2+3x+4x^2+8x+4</span><br><span class="tex">x^2</span>: <span class="tex">6x^2+4x^2=10x^2</span>; &nbsp;<span class="tex">x</span>: <span class="tex">3x+8x=11x</span><br><span class="tex">=\mathbf{3x^3+10x^2+11x+4}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Negative terms ================= -->
+<section class="card" data-ink="s4" data-section="4. Negative Terms">
+  <div class="sec-h"><span class="badge">4</span><h2>Products Involving Negative Terms</h2></div>
+  <p>The process doesn’t change. Only the bookkeeping gets harder. Find the sign of <b>each</b> of the six partial products on its own:</p>
+  <div class="u3l5-signs">
+    <div><span class="tex">(+)(+)=+</span></div><div><span class="tex">(+)(-)=-</span></div><div><span class="tex">(-)(+)=-</span></div><div class="pp"><span class="tex">(-)(-)=+</span></div>
+  </div>
+  <div class="explainer" data-explainer="signs"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t copy a sign out of the brackets.</b> In <span class="tex">(x-3)(x^2+2x-5)</span>, the product <span class="tex">(-3)(-5)</span> is <span class="tex">+15</span>, even though both brackets show a minus sign.</div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Watch your signs</h3></div>
+  <p class="q">Expand and simplify. Watch your signs in every partial product.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">(x-3)\left(x^{2}+2x-5\right)</span></div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^3+2x^2-5x-3x^2-6x+15</span><br><span class="tex">x^2</span>: <span class="tex">2x^2-3x^2=-x^2</span>; &nbsp;<span class="tex">x</span>: <span class="tex">-5x-6x=-11x</span><br><span class="tex">=\mathbf{x^3-x^2-11x+15}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(2x-1)\left(x^{2}-3x+4\right)</span></div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2x^3-6x^2+8x-x^2+3x-4</span><br><span class="tex">x^2</span>: <span class="tex">-6x^2-x^2=-7x^2</span>; &nbsp;<span class="tex">x</span>: <span class="tex">8x+3x=11x</span><br><span class="tex">=\mathbf{2x^3-7x^2+11x-4}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u3l5"></section>
+
+<!-- ================= 5. Combining ================= -->
+<section class="card" data-ink="s5" data-section="5. Combining with Another Polynomial">
+  <div class="sec-h"><span class="badge">5</span><h2>Combining with Another Polynomial</h2></div>
+  <p>Sometimes the product is only <b>part</b> of a longer expression. Work in this order:</p>
+  <div class="u3l5-order">
+    <div><span class="u3l5-n">1</span>Expand and simplify the product <b>completely</b>.</div>
+    <div><span class="u3l5-n">2</span>Deal with the sign in front of the other bracket.</div>
+    <div><span class="u3l5-n">3</span>Collect like terms.</div>
+  </div>
+  <div class="explainer" data-explainer="combo"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>A subtraction sign flips every term.</b> <span class="tex">-\left(x^2+5x-6\right)=-x^2-5x+6</span>. The last term becomes <b>+6</b>. A plus sign in front changes nothing.</div></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>A product plus or minus a polynomial</h3></div>
+  <p class="q">Expand and simplify.</p>
+  <div class="parts c1">
+    <div class="part"><div class="pl">(a) <span class="tex">(x+4)\left(x^{2}-2x+3\right)-\left(x^{2}+5x-6\right)</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product: <span class="tex">x^3-2x^2+3x+4x^2-8x+12=x^3+2x^2-5x+12</span><br>Subtract every term: <span class="tex">-x^2-5x+6</span><br><span class="tex">=\mathbf{x^3+x^2-10x+18}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(2x-3)\left(x^{2}+x-4\right)+\left(3x^{2}-2x+5\right)</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product: <span class="tex">2x^3+2x^2-8x-3x^2-3x+12=2x^3-x^2-11x+12</span><br>Add: <span class="tex">+3x^2-2x+5</span><br><span class="tex">=\mathbf{2x^3+2x^2-13x+17}</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Every term × every term.</b> A binomial times a trinomial makes <span class="tex">2\times3=6</span> partial products. FOIL only covers <span class="tex">2\times2</span>.</div>
+    <div><b>Grid or list:</b> the same six products. <span class="tex">(x+2)(x^2+4x+5)=x^3+6x^2+13x+10</span>.</div>
+    <div><b>Collect two pairs:</b> the two <span class="tex">x^2</span> terms and the two <span class="tex">x</span> terms. The answer looks like <span class="tex">ax^3+bx^2+cx+d</span>.</div>
+    <div><b>Signs:</b> find the sign of each partial product on its own. Expand a product <b>first</b>; a minus sign in front of a bracket flips every term.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u3l5">
+    <div><div class="kicker">Your turn</div><b>Assignment 5 — Multiplying a Binomial by a Trinomial</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l6/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 6 — Applying Polynomial Products to Area, Volume, and Equations</b><div class="muted">The same products measure real gardens, crates and fish tanks</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u3l5.js';
+  boot({ key: 'u3l5', homeHref: '../../', title: '3.5 Binomial × Trinomial' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

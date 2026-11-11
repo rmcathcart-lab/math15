@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u4l2.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: The Party Bags">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Party Bags</h2>
+  <p class="wf-rule">Every bag must be <b>identical</b>, with nothing left over. What is the <b>most</b> bags you can make?</p></div>
+  <div class="vw-tiles" style="--n:3"><div><b></b>24 candies</div><div><b></b>36 stickers</div><div><b></b>30 balloons</div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>What has to be true about the number of bags?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>6 bags.</b> 6 is the biggest number that divides 24, 36 and 30. Each bag gets 4 candies, 6 stickers and 5 balloons.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,45 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Party Bag Puzzle" style="--wf-side: 320px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Party Bag Puzzle</h2>
-  <p class="wf-rule">You have <b>24 candies</b> and <b>36 stickers</b>. Pack <b>all</b> of it into <b>identical</b> bags, with nothing left over.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u4l2-pbox" id="u4l2-party"></div>
-    <div class="u4l2-wqs">
-      <div class="wq bk-wq">
-        <div class="q-line"><div class="q-num">1</div><div>Can you make <b>6</b> identical bags? What goes in each one?</div></div>
-        <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>Yes:</b> <span class="tex">24\div6=4</span> and <span class="tex">36\div6=6</span>, so each bag gets <b>4 candies + 6 stickers</b>.</div></div>
-      </div>
-      <div class="wq bk-wq">
-        <div class="q-line"><div class="q-num">2</div><div>Why <b>won’t</b> 8 bags work?</div></div>
-        <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans">The candies split (<span class="tex">24\div8=3</span>) but the stickers don’t: <span class="tex">8\times4=32</span> leaves <b>4 stickers</b> over. 8 is a factor of 24 but <b>not</b> of 36.</div></div>
-      </div>
-    </div>
-  </div><div class="wf-side">
-    <div class="wq bk-wq">
-      <div class="q-line"><div class="q-num">3</div><div>What’s the <b>most</b> bags you can make? What goes in each one?</div></div>
-      <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>12 bags</b>, each with <b>2 candies + 3 stickers</b>. The bag counts that work are the common factors 1, 2, 3, 4, 6, 12. The biggest, 12, is the <b>GCF</b> of 24 and 36.</div></div>
-    </div>
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A friend shows up with <b>25 balloons</b>. Every candy, sticker <b>and</b> balloon must still go in identical bags. Now what’s the most bags? <b>Guess first.</b></div></div>
-      <div class="poll-opts c4">
-        <div class="opt"><b>A</b> 12</div>
-        <div class="opt"><b>B</b> 5</div>
-        <div class="opt"><b>C</b> 25</div>
-        <div class="opt right"><b>D</b> 1</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>D, just 1 bag!</b> <span class="tex">25=5\times5</span> shares no factor with 24 except 1, so no bag count bigger than 1 splits all three piles. One awkward pile wrecks the whole party.</div>
-    </div>
-  </div></div>
 
-  <div class="wq bk-wq wq-wide">
-    <div class="q-line"><div class="q-num bonus">+</div><div><b>With a neighbour.</b> Swap the 25 balloons for a number that keeps it at <b>12 bags</b>. What’s the smallest one that works? The biggest under 100?</div></div>
-    <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans">It must be a <b>multiple of 12</b>. Smallest: <b>12</b> (1 per bag). Biggest under 100: <b>96</b> (8 per bag).</div></div>
-  </div>
-  <div class="u4l2-bridge">Let <span class="tex">c</span> = a candy and <span class="tex">s</span> = a sticker. The whole pile is <span class="tex">24c+36s=12(2c+3s)</span>. The <b>GCF</b> is the number of bags; the <b>bracket</b> is one bag. Removing the GCF is packing party bags!</div>
-</section>
 
 <!-- ================= 1. Recall the GCF, then remove it ================= -->
 <section class="card" data-ink="s1" data-section="1. Recall the GCF, Then Remove It">
@@ -95,7 +67,7 @@
     <div><b>4</b><span><b>Check</b> by expanding</span></div>
   </div>
   <p>Example: <span class="tex">10x+15=5(2x+3)</span>, because <span class="tex">5(2x+3)=10x+15</span> ✓</p>
-  <div class="explainer" data-explainer="bags"></div>
+  <div data-extra><div class="explainer" data-explainer="bags"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -135,10 +107,10 @@
 <section class="card" data-ink="s3" data-section="3. A GCF That Includes a Variable">
   <div class="sec-h"><span class="badge">3</span><h2>A GCF That Includes a Variable</h2></div>
   <p>If <b>every</b> term shares a letter, that letter joins the GCF at its <b>lowest</b> exponent. For <span class="tex">8x^3+12x^2</span>: the GCF of 8 and 12 is 4, and the lowest power of <span class="tex">x</span> is <span class="tex">x^2</span>. So the GCF is <span class="tex">4x^2</span>, and <span class="tex">8x^3+12x^2=4x^2(2x+3)</span>.</p>
-  <div class="explainer" data-explainer="lowest"></div>
+  <div data-extra><div class="explainer" data-explainer="lowest"></div></div>
 </section>
 
-<section class="card" data-ink="s3b" data-section="3. Dividing by the GCF">
+<section data-extra class="card" data-ink="s3b" data-section="3. Dividing by the GCF">
   <h3 class="sub">Dividing by a GCF with letters: cancel what matches</h3>
   <p>To divide a term by the GCF, write both as factors and <b>cancel</b> the matching ones. Whatever is left on top goes in the bracket.</p>
   <div class="explainer" data-explainer="cancel"></div>
@@ -155,6 +127,15 @@
   </div>
   <div class="space" id="ex3-space"></div>
   <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–6">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 2 · Questions 1–6</h2>
+  <p class="pr-t">Find the GCF and take it out.</p>
+  <div class="pr-chips n2"><span><b>1–4</b>Finding and removing a GCF</span><span><b>5–6</b>GCFs that include variables</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 5.</span><a class="pill" href="../../../#/lesson/u4l2">Open the Practice site</a></div>
 </section>
 
 <!-- ================= 4. A negative GCF ================= -->
@@ -193,7 +174,7 @@
     <div class="u4l2-x">=</div>
     <div class="on"><span class="u4l2-gk">GCF</span><span class="tex">-3x^2</span><span class="u4l2-gw">take it out</span></div>
   </div>
-  <div class="explainer" data-explainer="pullN"></div>
+  <div data-extra><div class="explainer" data-explainer="pullN"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -214,6 +195,46 @@
   <div class="explainer" data-explainer="findErr"></div>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Party Bag Puzzle" style="--wf-side: 320px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Party Bag Puzzle</h2>
+  <p class="wf-rule">You have <b>24 candies</b> and <b>36 stickers</b>. Pack <b>all</b> of it into <b>identical</b> bags, with nothing left over.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u4l2-pbox" id="u4l2-party"></div>
+    <div class="u4l2-wqs">
+      <div class="wq bk-wq">
+        <div class="q-line"><div class="q-num">1</div><div>Can you make <b>6</b> identical bags? What goes in each one?</div></div>
+        <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>Yes:</b> <span class="tex">24\div6=4</span> and <span class="tex">36\div6=6</span>, so each bag gets <b>4 candies + 6 stickers</b>.</div></div>
+      </div>
+      <div class="wq bk-wq">
+        <div class="q-line"><div class="q-num">2</div><div>Why <b>won’t</b> 8 bags work?</div></div>
+        <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans">The candies split (<span class="tex">24\div8=3</span>) but the stickers don’t: <span class="tex">8\times4=32</span> leaves <b>4 stickers</b> over. 8 is a factor of 24 but <b>not</b> of 36.</div></div>
+      </div>
+    </div>
+  </div><div class="wf-side">
+    <div class="wq bk-wq">
+      <div class="q-line"><div class="q-num">3</div><div>What’s the <b>most</b> bags you can make? What goes in each one?</div></div>
+      <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>12 bags</b>, each with <b>2 candies + 3 stickers</b>. The bag counts that work are the common factors 1, 2, 3, 4, 6, 12. The biggest, 12, is the <b>GCF</b> of 24 and 36.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A friend shows up with <b>25 balloons</b>. Every candy, sticker <b>and</b> balloon must still go in identical bags. Now what’s the most bags? <b>Guess first.</b></div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b> 12</div>
+        <div class="opt"><b>B</b> 5</div>
+        <div class="opt"><b>C</b> 25</div>
+        <div class="opt right"><b>D</b> 1</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D, just 1 bag!</b> <span class="tex">25=5\times5</span> shares no factor with 24 except 1, so no bag count bigger than 1 splits all three piles. One awkward pile wrecks the whole party.</div>
+    </div>
+  </div></div>
+
+  <div class="wq bk-wq wq-wide">
+    <div class="q-line"><div class="q-num bonus">+</div><div><b>With a neighbour.</b> Swap the 25 balloons for a number that keeps it at <b>12 bags</b>. What’s the smallest one that works? The biggest under 100?</div></div>
+    <div class="wq-a"><button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans">It must be a <b>multiple of 12</b>. Smallest: <b>12</b> (1 per bag). Biggest under 100: <b>96</b> (8 per bag).</div></div>
+  </div>
+  <div class="u4l2-bridge">Let <span class="tex">c</span> = a candy and <span class="tex">s</span> = a sticker. The whole pile is <span class="tex">24c+36s=12(2c+3s)</span>. The <b>GCF</b> is the number of bags; the <b>bracket</b> is one bag. Removing the GCF is packing party bags!</div>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -224,7 +245,7 @@
     <div><b>First term negative?</b> Take out a <b>negative</b> GCF. Every sign in the bracket flips, and the bracket starts positive: <span class="tex">-4x-12=-4(x+3)</span>.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u4l2">
-    <div><div class="kicker">Your turn</div><b>Assignment 2 — Common Factors: Finding and Removing the GCF</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 2 · Questions 7–14</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l3/">
     <div><div class="kicker">Next lesson</div><b>Lesson 3 — Factoring Trinomials <span class="tex">x^2+bx+c</span>, Part 1: c Positive</b><div class="muted">Un-multiplying two brackets: find two numbers with the right sum and product</div></div><span class="arrow">→</span>
@@ -237,7 +258,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u4l2.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u4l2', homeHref: '../../', title: '4.2 Removing the GCF' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

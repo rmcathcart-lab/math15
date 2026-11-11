@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Multiplying Two Binomials · Math 15 3.3</title>
+<meta name="description" content="Math 15 Unit 3 Lesson 3: multiplying two binomials. Distribute twice, the area model, the FOIL checklist, negative terms, collecting the middle terms, and adding or subtracting two products. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u3l3.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u3l3">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 3 Polynomial Operations · Lesson 3</div>
+  <h1>Multiplying Two Binomials</h1>
+  <p class="lede">In Lesson 2 one term was multiplied by every term in a bracket. Today <b>both</b> factors are binomials, like <span class="tex">(x+2)(x+5)</span>. The big idea: <b>each term times each term</b>. That makes four products every time, and <b>FOIL</b> is a checklist so you never miss one.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>multiply two binomials by <b>distributing twice</b>: <span class="tex">(x+2)(x+5)=x(x+5)+2(x+5)</span></li>
+      <li>use <b>FOIL</b> (First, Outer, Inner, Last) to find all four products</li>
+      <li>carry a <b>negative</b> sign into every product it is part of</li>
+      <li>collect the like terms (usually the O and I terms) to get one simplified answer</li>
+      <li>expand two products, then add or subtract them</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN4</b> Demonstrate an understanding of the multiplication of polynomial expressions (limited to monomials, binomials and trinomials), concretely, pictorially and symbolically.<span class="u3l3-today">Today: a binomial times a binomial, four products every time.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Calendar Trick" style="--wf-side: 380px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Calendar Trick</h2>
+  <p class="wf-rule">Box any <b>2 × 2</b> block of dates. Multiply along each <b>diagonal</b>, then subtract: <b class="u3l3-red">top-right × bottom-left</b> minus top-left × bottom-right. <span class="muted">Tap a date to move the block.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u3l3-calw" id="u3l3-cal"></div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Do the trick with the <b>corners</b> of a <b>3 × 3</b> block. What happens? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 7</div>
+        <div class="opt"><b>B</b> 14</div>
+        <div class="opt right"><b>C</b> 28</div>
+        <div class="opt"><b>D</b> it changes</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C, 28, every time.</b> Corners 8, 10, 22, 24: <span class="tex">10\times22-8\times24=220-192=28</span>. A bigger block, and the answer is <b>four</b> times as big. Today’s algebra explains it.</div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u3l3-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Do the trick on the block that starts at <b>18</b>. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><span class="tex">19\times25=475</span>, <span class="tex">18\times26=468</span>, and <span class="tex">475-468=\boldsymbol{7}</span>.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Now pick <b>any</b> 2 × 2 block you like. What do you get? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>7, every time</b>: all 20 of the full 2 × 2 blocks in October.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Call the top-left date <span class="tex">n</span>. The date beside it is <span class="tex">n+1</span>. What are the two dates <b>below</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><span class="tex">n+7</span> and <span class="tex">n+8</span>: one week later is always 7 more.</div></div>
+    </div>
+  </div></div>
+  <p class="u3l3-social">Open the calendar on your phone: any month, any year. Can anyone break the trick? <span data-reveal="tap to see">Only with a block that spills into the next month, where the dates start over.</span></p>
+</section>
+
+<!-- ================= 1. Distributing twice ================= -->
+<section class="card" data-ink="s1" data-section="1. Two Binomials by the Distributive Property">
+  <div class="sec-h"><span class="badge">1</span><h2>Two Binomials by the Distributive Property</h2></div>
+  <p>In Lesson 2 a monomial was distributed over every term in the brackets: <span class="tex">a(b+c)=ab+ac</span>. The same rule works when the “multiplier” is a whole <b>binomial</b>. Distribute the first binomial, then distribute each of its terms:</p>
+  <p class="u3l3-big"><span class="tex">(x+2)(x+5)=x(x+5)+2(x+5)=x^2+5x+2x+10=x^2+7x+10</span></p>
+  <div class="def">In general <span class="tex">(a+b)(c+d)=ac+ad+bc+bd</span>, then collect like terms. <b>Each term times each term:</b> two terms times two terms makes <b>four</b> products.</div>
+  <div class="explainer" data-explainer="areaGrow"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. Distribute twice">
+  <h3 class="sub">Distribute twice: Step 1, then Step 2</h3>
+  <p><b>Step 1:</b> keep the second binomial in one piece and distribute the first binomial. <b>Step 2:</b> distribute each term. The four arrows land on the four cells of the area model.</p>
+  <div class="explainer" data-explainer="distTwice"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Distribute twice</h3></div>
+  <p class="q">Use the distributive property. Show both distributing steps, then collect like terms.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">(x+3)(x+4)</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="u3l3-step">Step 1</span><span class="tex">x(x+4)+3(x+4)</span><br><span class="u3l3-step">Step 2</span><span class="tex">x^2+4x+3x+12</span><br><span class="u3l3-step">Collect</span><span class="tex">\boldsymbol{x^2+7x+12}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(x+6)(x+2)</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="u3l3-step">Step 1</span><span class="tex">x(x+2)+6(x+2)</span><br><span class="u3l3-step">Step 2</span><span class="tex">x^2+2x+6x+12</span><br><span class="u3l3-step">Collect</span><span class="tex">\boldsymbol{x^2+8x+12}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Both answers end in <span class="tex">12</span>. Where does the last number always come from?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">From the <b>two numbers</b> multiplied together: <span class="tex">3\times4=12</span> and <span class="tex">6\times2=12</span>. It is the small corner piece of the rectangle.</div></div></div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. FOIL ================= -->
+<section class="card" data-ink="s2" data-section="2. The FOIL Method">
+  <div class="sec-h"><span class="badge">2</span><h2>The FOIL Method</h2></div>
+  <p>The four products <span class="tex">ac,\ ad,\ bc,\ bd</span> always come from the same four pairs, so <b>FOIL</b> is a checklist for them. It is <b>not a new rule</b>: it just makes sure no product is missed. Always finish by collecting the like terms (usually the O and I terms).</p>
+  <div class="u3l3-foil-key">
+    <div class="u3l3-fk f"><b>F</b>irst<span class="tex">ac</span></div>
+    <div class="u3l3-fk o"><b>O</b>uter<span class="tex">ad</span></div>
+    <div class="u3l3-fk i"><b>I</b>nner<span class="tex">bc</span></div>
+    <div class="u3l3-fk l"><b>L</b>ast<span class="tex">bd</span></div>
+  </div>
+  <div class="explainer" data-explainer="foil"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Don't skip O and I">
+  <h3 class="sub">Why you can’t skip the O and I</h3>
+  <p>A common shortcut is to multiply only the first terms and the last terms. Test it with a number and count the squares.</p>
+  <div class="explainer" data-explainer="missing"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Four products, not two.</b> <span class="tex">(x+3)(x+2)\neq x^2+6</span>. The Outer and Inner products are real pieces of the rectangle. FOIL keeps you from skipping them.</div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>FOIL</h3></div>
+  <p class="q">Use FOIL to determine each product.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">(2x+1)(x+5)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">F <span class="tex">2x^2</span> &nbsp;O <span class="tex">10x</span><br>I <span class="tex">x</span> &nbsp;L <span class="tex">5</span><br><span class="tex">2x^2+10x+x+5</span><br><span class="tex">=\boldsymbol{2x^2+11x+5}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(3x+2)(x+4)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">F <span class="tex">3x^2</span> &nbsp;O <span class="tex">12x</span><br>I <span class="tex">2x</span> &nbsp;L <span class="tex">8</span><br><span class="tex">3x^2+12x+2x+8</span><br><span class="tex">=\boldsymbol{3x^2+14x+8}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(2x+5)(3x+1)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">F <span class="tex">6x^2</span> &nbsp;O <span class="tex">2x</span><br>I <span class="tex">15x</span> &nbsp;L <span class="tex">5</span><br><span class="tex">6x^2+2x+15x+5</span><br><span class="tex">=\boldsymbol{6x^2+17x+5}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Negative terms ================= -->
+<section class="card" data-ink="s3" data-section="3. Binomials with Negative Terms">
+  <div class="sec-h"><span class="badge">3</span><h2>Binomials with Negative Terms</h2></div>
+  <p>A subtracted term is a <b>negative</b> term, so rewrite <span class="tex">x-4</span> as <span class="tex">x+(-4)</span> and carry the sign into every product it appears in. Check the sign of each of the four FOIL products <b>separately</b>.</p>
+  <div class="u3l3-signs">
+    <div class="u3l3-sg"><span class="tex">(+)(+)=+</span><small>positive × positive</small></div>
+    <div class="u3l3-sg"><span class="tex">(+)(-)=-</span><small>positive × negative</small></div>
+    <div class="u3l3-sg"><span class="tex">(-)(-)=+</span><small>negative × negative</small></div>
+  </div>
+  <div class="explainer" data-explainer="foilNeg"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Two negatives make a positive.</b> In <span class="tex">(x-2)(x-7)</span> the Last product is <span class="tex">(-2)(-7)=+14</span>, not <span class="tex">-14</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Watch your signs</h3></div>
+  <p class="q">Use FOIL to determine each product. Watch your signs carefully.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">(x-4)(x+6)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">F <span class="tex">x^2</span> &nbsp;O <span class="tex">6x</span><br>I <span class="tex">-4x</span> &nbsp;L <span class="tex">-24</span><br><span class="tex">x^2+6x-4x-24</span><br><span class="tex">=\boldsymbol{x^2+2x-24}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(x-2)(x-7)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">F <span class="tex">x^2</span> &nbsp;O <span class="tex">-7x</span><br>I <span class="tex">-2x</span> &nbsp;L <span class="tex">+14</span><br><span class="tex">x^2-7x-2x+14</span><br><span class="tex">=\boldsymbol{x^2-9x+14}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(2x-3)(x-5)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">F <span class="tex">2x^2</span> &nbsp;O <span class="tex">-10x</span><br>I <span class="tex">-3x</span> &nbsp;L <span class="tex">+15</span><br><span class="tex">2x^2-10x-3x+15</span><br><span class="tex">=\boldsymbol{2x^2-13x+15}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">(x+3y)(x-2y)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">F <span class="tex">x^2</span> &nbsp;O <span class="tex">-2xy</span><br>I <span class="tex">3xy</span> &nbsp;L <span class="tex">-6y^2</span><br><span class="tex">x^2-2xy+3xy-6y^2</span><br><span class="tex">=\boldsymbol{x^2+xy-6y^2}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u3l3"></section>
+
+<!-- ================= 4. Multiplying and then simplifying ================= -->
+<section class="card" data-ink="s4" data-section="4. Multiplying and Then Simplifying">
+  <div class="sec-h"><span class="badge">4</span><h2>Multiplying and Then Simplifying</h2></div>
+  <p>Collecting the <b>Outer</b> and <b>Inner</b> terms is what turns four terms into a trinomial <span class="tex">ax^2+bx+c</span>. Both are <span class="tex">x</span>-terms, so collecting them is just adding the numbers in front, signs and all.</p>
+  <div class="explainer" data-explainer="middle"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Collect the middle terms</h3></div>
+  <p class="q">Expand and simplify. Pay close attention to collecting the middle terms.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">(3x-2)(2x-5)</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">F <span class="tex">6x^2</span> &nbsp;O <span class="tex">-15x</span> &nbsp;I <span class="tex">-4x</span> &nbsp;L <span class="tex">+10</span><br><span class="tex">6x^2-15x-4x+10</span><br><span class="tex">=\boldsymbol{6x^2-19x+10}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(4x+1)(2x-3)</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">F <span class="tex">8x^2</span> &nbsp;O <span class="tex">-12x</span> &nbsp;I <span class="tex">+2x</span> &nbsp;L <span class="tex">-3</span><br><span class="tex">8x^2-12x+2x-3</span><br><span class="tex">=\boldsymbol{8x^2-10x-3}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Two products in one expression">
+  <h3 class="sub">Two products in one expression</h3>
+  <p>If an expression contains two binomial products, expand <b>both</b> completely first. Then collect like terms. A subtraction sign in front of a product flips the sign of <b>all</b> of its terms. This is how the calendar trick works!</p>
+  <div class="explainer" data-explainer="combine"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Keep the second product in brackets until you use the minus.</b> <span class="tex">-(x^2+6x+8)=-x^2-6x-8</span>. Flipping only the first sign is the most common mistake here.</div></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Expand both, then collect</h3></div>
+  <p class="q">Expand and simplify.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">(x+4)(x+2)+(x+1)(x+5)</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">First product: <span class="tex">x^2+6x+8</span><br>Second product: <span class="tex">x^2+6x+5</span><br>Add: <span class="tex">\boldsymbol{2x^2+12x+13}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(x+7)(x+3)-(x+2)(x+4)</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">First: <span class="tex">x^2+10x+21</span> &nbsp; Second: <span class="tex">x^2+6x+8</span><br>Subtract <b>all three</b> terms of the second:<br><span class="tex">x^2+10x+21-x^2-6x-8=\boldsymbol{4x+13}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> In (b), where did the <span class="tex">x^2</span> go?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2-x^2=0</span>: a zero pair. Both products start with <span class="tex">x^2</span>, so subtracting them cancels it. The same thing happens in the calendar trick.</div></div></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Each term times each term.</b> Two binomials make <b>four</b> products: <span class="tex">(a+b)(c+d)=ac+ad+bc+bd</span>. The area model shows all four pieces.</div>
+    <div><b>FOIL</b> is a checklist for those four: First, Outer, Inner, Last. <span class="tex">(x+3)(x+2)\neq x^2+6</span>: never skip O and I.</div>
+    <div><b>Signs:</b> rewrite <span class="tex">x-4</span> as <span class="tex">x+(-4)</span>. Check each product’s sign; negative × negative is positive.</div>
+    <div><b>Collect last.</b> The O and I terms usually combine into one middle term. Two products? Expand both first; a minus flips <b>every</b> term.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u3l3">
+    <div><div class="kicker">Your turn</div><b>Assignment 3 — Multiplying Two Binomials</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l4/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 4 — Special Products: Difference of Squares &amp; Perfect Squares</b><div class="muted">Two binomial products worth memorizing, so you can skip FOIL and write the answer.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u3l3.js';
+  boot({ key: 'u3l3', homeHref: '../../', title: '3.3 Multiplying Two Binomials' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

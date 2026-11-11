@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Factoring ax² + bx + c (a ≠ 1) · Math 15 4.7</title>
+<meta name="description" content="Math 15 Unit 4 Lesson 7: factoring ax² + bx + c where a ≠ 1 by decomposition: find two integers with product ac and sum b, split the middle term, group in pairs and factor out the common binomial. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u4l7.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 4 Factoring · Lesson 7</div>
+  <h1>Factoring <span class="tex">ax^2+bx+c</span> (where <span class="tex">a\neq1</span>)</h1>
+  <p class="lede">Today the <span class="tex">x^2</span> has a number in front, like <span class="tex">2x^2+7x+3</span>. The method is called <b>decomposition</b>, and it is the <b>same six steps every time</b>: multiply, find two numbers, split, group, factor out, check.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>find two numbers that <b>multiply to <span class="tex">a\times c</span></b> and <b>add to <span class="tex">b</span></b></li>
+      <li>factor <span class="tex">ax^2+bx+c</span> by decomposition: split the middle term, group in pairs, factor out the common bracket</li>
+      <li>handle negative signs, and take out a GCF first</li>
+      <li><b>check</b> my answer by expanding</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN5</b> Demonstrate an understanding of common factors and trinomial factoring, concretely, pictorially and symbolically.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Two Skills You Already Have">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Two Skills You Already Have</h2>
+  <p class="wf-rule">Today’s method is built from these two. <span class="muted">Tap a <b>?</b> to check.</span></p></div>
+  <div class="u4l7-wu">
+    <div class="u4l7-wcol">
+      <div class="u4l7-wh">A. Find the two numbers</div>
+      <div class="u4l7-wi"><div class="q-num">1</div><div>multiply to <b>6</b>, add to <b>7</b></div><span data-reveal><span class="tex">6\text{ and }1</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">2</div><div>multiply to <b>12</b>, add to <b>8</b></div><span data-reveal><span class="tex">6\text{ and }2</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">3</div><div>multiply to <b>20</b>, add to <b>12</b></div><span data-reveal><span class="tex">10\text{ and }2</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">4</div><div>multiply to <b>8</b>, add to <b>−9</b></div><span data-reveal><span class="tex">-8\text{ and }-1</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">5</div><div>multiply to <b>−12</b>, add to <b>−4</b></div><span data-reveal><span class="tex">-6\text{ and }2</span></span></div>
+    </div>
+    <div class="u4l7-wcol">
+      <div class="u4l7-wh">B. Take out the GCF</div>
+      <div class="u4l7-wi"><div class="q-num">6</div><div><span class="tex">2x^2+6x</span></div><span data-reveal><span class="tex">2x(x+3)</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">7</div><div><span class="tex">3x^2+12x</span></div><span data-reveal><span class="tex">3x(x+4)</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">8</div><div><span class="tex">4x^2+10x</span></div><span data-reveal><span class="tex">2x(2x+5)</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">9</div><div><span class="tex">-2x+6</span> &nbsp;<span class="muted">(take out <span class="tex">-2</span>)</span></div><span data-reveal><span class="tex">-2(x-3)</span></span></div>
+      <div class="u4l7-wi"><div class="q-num">10</div><div><span class="tex">x+3</span> &nbsp;<span class="muted">(nothing in common)</span></div><span data-reveal><span class="tex">1(x+3)</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 1. Why a new method ================= -->
+<section class="card" data-ink="s1" data-section="1. Why Sum-Product Is Not Enough">
+  <div class="sec-h"><span class="badge">1</span><h2>Why the Sum-Product Method Is Not Enough</h2></div>
+  <p>In Lessons 3 and 4 every trinomial started with a plain <span class="tex">x^2</span>, and we looked for two numbers that multiply to <span class="tex">c</span> and add to <span class="tex">b</span>.</p>
+  <p>That only works when <span class="tex">a=1</span>. For <span class="tex">2x^2+7x+3</span> we would need two numbers that multiply to 3 and add to 7, and there aren’t any. When <span class="tex">a\neq1</span> we use <b>decomposition</b> instead. The only change to the search: the two numbers multiply to <b><span class="tex">a\times c</span></b>, not just <span class="tex">c</span>.</p>
+  <div class="space" id="s1-space" style="min-height:60px"></div>
+</section>
+
+<!-- ================= 2. The six steps ================= -->
+<section class="card" data-ink="s2" data-section="2. Decomposition, Step by Step">
+  <div class="sec-h"><span class="badge">2</span><h2>The Decomposition Method, Step by Step</h2></div>
+  <p>Factor <span class="tex">2x^2+7x+3</span>. Here <span class="tex">a=2</span>, <span class="tex">b=7</span>, <span class="tex">c=3</span>.</p>
+  <div class="u4l7-steps">
+    <div class="u4l7-st"><b class="n">1</b><div><span class="h">Multiply</span> <span class="tex">a\times c</span>.</div><div class="w"><span class="tex">2\times3=6</span></div></div>
+    <div class="u4l7-st"><b class="n">2</b><div><span class="h">Find two numbers</span> that multiply to <span class="tex">ac</span> and add to <span class="tex">b</span>.</div><div class="w">multiply to 6, add to 7: &nbsp;<b>6 and 1</b></div></div>
+    <div class="u4l7-st"><b class="n">3</b><div><span class="h">Split</span> the middle term into those two.</div><div class="w"><span class="tex">2x^2+\textcolor{#c27a0e}{6x}+\textcolor{#c27a0e}{x}+3</span></div></div>
+    <div class="u4l7-st"><b class="n">4</b><div><span class="h">Group</span> in pairs. Take the GCF out of each pair.</div><div class="w"><span class="tex">2x\textcolor{#c2417a}{(x+3)}+1\textcolor{#c2417a}{(x+3)}</span></div></div>
+    <div class="u4l7-st"><b class="n">5</b><div><span class="h">Factor out</span> the bracket both pairs share.</div><div class="w"><span class="tex">\textcolor{#c2417a}{(x+3)}(2x+1)</span></div></div>
+    <div class="u4l7-st"><b class="n">6</b><div><span class="h">Check</span> by expanding.</div><div class="w"><span class="tex">2x^2+x+6x+3=2x^2+7x+3</span>&nbsp;✓</div></div>
+  </div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Watch the Six Steps">
+  <div class="explainer" data-explainer="steps"></div>
+</section>
+
+<section class="card" data-ink="s2c" data-section="2. Why Step 5 Works">
+  <p><b>Step 5 is the one that feels strange.</b> You already know that <span class="tex">2xy+1y=y(2x+1)</span>, because both terms have a <span class="tex">y</span>. A bracket works the same way: it is <b>one thing</b>, and if both terms have it, it comes out the front.</p>
+  <div class="explainer" data-explainer="whyFive"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Every step, then check</h3></div>
+  <p class="q">Factor using every step: find <span class="tex">ac</span>, find the two integers, split, group, factor out the binomial, then check with FOIL.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">3x^2+10x+3</span></div><div class="work" style="--h:330px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=3\times3=9</span>. Integers with product 9 and sum 10: <b>9 and 1</b>.<br><span class="tex">3x^2+9x+x+3</span><br><span class="tex">=3x(x+3)+1(x+3)</span><br><span class="tex">=\boldsymbol{(x+3)(3x+1)}</span><br>Check: <span class="tex">3x^2+x+9x+3=3x^2+10x+3</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">2x^2+9x+10</span></div><div class="work" style="--h:330px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=2\times10=20</span>. Multiply to 20, add to 9: <b>4 and 5</b>.<br><span class="tex">2x^2+4x+5x+10</span><br><span class="tex">=2x(x+2)+5(x+2)</span><br><span class="tex">=\boldsymbol{(x+2)(2x+5)}</span><br>Check: <span class="tex">2x^2+5x+4x+10=2x^2+9x+10</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Practising ================= -->
+<section class="card" data-ink="s3" data-section="3. Practising Decomposition">
+  <div class="sec-h"><span class="badge">3</span><h2>Practising Decomposition</h2></div>
+  <p>The six steps are <b>the same every time</b>. Only the numbers change.</p>
+  <div class="tip"><div class="tip-ic">✓</div><div><b>Either order works.</b> <span class="tex">2x^2+6x+x+3</span> and <span class="tex">2x^2+x+6x+3</span> both give <span class="tex">(x+3)(2x+1)</span>.</div></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Brackets don’t match?</b> Go back to Step 2. Your two numbers must multiply to <span class="tex">ac</span> <b>and</b> add to <span class="tex">b</span>.</div></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Take out the greatest factor.</b> In <span class="tex">4x^2+10x</span> the GCF is <span class="tex">2x</span>, not <span class="tex">4x</span>: <span class="tex">4x^2+10x=2x(2x+5)</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3><span class="tex">a</span>, <span class="tex">b</span> and <span class="tex">c</span> all positive</h3></div>
+  <p class="q">Factor each trinomial using decomposition.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">2x^2+11x+12</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=24</span>; numbers <b>8 and 3</b>.<br><span class="tex">2x^2+8x+3x+12</span><br><span class="tex">=2x(x+4)+3(x+4)</span><br><span class="tex">=\boldsymbol{(x+4)(2x+3)}</span><br>Check: <span class="tex">2x^2+3x+8x+12</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">3x^2+17x+10</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=30</span>; numbers <b>15 and 2</b>.<br><span class="tex">3x^2+15x+2x+10</span><br><span class="tex">=3x(x+5)+2(x+5)</span><br><span class="tex">=\boldsymbol{(x+5)(3x+2)}</span><br>Check: <span class="tex">3x^2+2x+15x+10</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">4x^2+12x+5</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=20</span>; integers <b>10 and 2</b>.<br><span class="tex">4x^2+10x+2x+5</span><br><span class="tex">=2x(2x+5)+1(2x+5)</span><br><span class="tex">=\boldsymbol{(2x+5)(2x+1)}</span><br>Check: <span class="tex">4x^2+2x+10x+5</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Negative b and/or c ================= -->
+<section class="card" data-ink="s4" data-section="4. Negative b and/or c">
+  <div class="sec-h"><span class="badge">4</span><h2>Decomposition with Negative <span class="tex">b</span> and/or <span class="tex">c</span></h2></div>
+  <p>Same six steps. Only the <b>signs</b> of the two numbers in Step 2 change.</p>
+  <div class="def-grid">
+    <div class="def"><b><span class="tex">ac</span> positive:</b> the two numbers have the <b>same sign</b>. Both are <b>negative</b> when <span class="tex">b</span> is negative.</div>
+    <div class="def amber"><b><span class="tex">ac</span> negative:</b> the two numbers have <b>opposite signs</b>. The <b>bigger</b> one takes the <b>sign of <span class="tex">b</span></b>.</div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Taking out a negative flips the signs inside.</b> <span class="tex">-x+4=-1(x-4)</span>, not <span class="tex">-1(x+4)</span>. The second bracket must match the first one exactly.</div></div>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Watch: Negative Signs">
+  <div class="explainer" data-explainer="signs"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3><span class="tex">ac</span> positive, <span class="tex">b</span> negative</h3></div>
+  <p class="q">Factor each trinomial. Here <span class="tex">ac</span> is positive, so both integers have the same sign.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">2x^2-9x+4</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=8</span>, sum <span class="tex">-9</span>: <b><span class="tex">-8</span> and <span class="tex">-1</span></b>.<br><span class="tex">2x^2-8x-x+4=2x(x-4)-1(x-4)</span><br><span class="tex">=\boldsymbol{(x-4)(2x-1)}</span><br>Check: <span class="tex">2x^2-x-8x+4=2x^2-9x+4</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">3x^2-11x+6</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=18</span>, sum <span class="tex">-11</span>: <b><span class="tex">-9</span> and <span class="tex">-2</span></b>.<br><span class="tex">3x^2-9x-2x+6=3x(x-3)-2(x-3)</span><br><span class="tex">=\boldsymbol{(x-3)(3x-2)}</span><br>Check: <span class="tex">3x^2-2x-9x+6=3x^2-11x+6</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3><span class="tex">ac</span> negative</h3></div>
+  <p class="q">Factor each trinomial. Here <span class="tex">ac</span> is negative, so the two integers have opposite signs.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">2x^2+5x-12</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=-24</span>, sum <span class="tex">5</span>: <b><span class="tex">8</span> and <span class="tex">-3</span></b>.<br><span class="tex">2x^2+8x-3x-12</span><br><span class="tex">=2x(x+4)-3(x+4)</span><br><span class="tex">=\boldsymbol{(x+4)(2x-3)}</span><br>Check: <span class="tex">2x^2-3x+8x-12</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">3x^2-4x-4</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=-12</span>, sum <span class="tex">-4</span>: <b><span class="tex">-6</span> and <span class="tex">2</span></b>.<br><span class="tex">3x^2-6x+2x-4</span><br><span class="tex">=3x(x-2)+2(x-2)</span><br><span class="tex">=\boldsymbol{(x-2)(3x+2)}</span><br>Check: <span class="tex">3x^2+2x-6x-4</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">6x^2-5x-6</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=-36</span>, sum <span class="tex">-5</span>: <b><span class="tex">-9</span> and <span class="tex">4</span></b>.<br><span class="tex">6x^2-9x+4x-6</span><br><span class="tex">=3x(2x-3)+2(2x-3)</span><br><span class="tex">=\boldsymbol{(2x-3)(3x+2)}</span><br>Check: <span class="tex">6x^2+4x-9x-6</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u4l7"></section>
+
+<!-- ================= 5. GCF first ================= -->
+<section class="card" data-ink="s5" data-section="5. Remove a GCF First">
+  <div class="sec-h"><span class="badge">5</span><h2>Removing a GCF First, Then Decomposing</h2></div>
+  <div class="def"><b>Always check for a GCF <i>before</i> Step 1.</b> It makes the numbers smaller, so the two numbers are easier to find. Write the GCF in front of the final answer.</div>
+  <div class="explainer" data-explainer="gcfFirst"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>GCF first, then decompose</h3></div>
+  <p class="q">Factor each expression completely. Remove the GCF first, then decompose what remains.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">6x^2+3x-30</span></div><div class="work" style="--h:340px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF 3: <span class="tex">3(2x^2+x-10)</span><br><span class="tex">ac=-20</span>, sum <span class="tex">1</span>: <b><span class="tex">5</span> and <span class="tex">-4</span></b><br><span class="tex">2x^2+5x-4x-10=x(2x+5)-2(2x+5)</span><br><span class="tex">=(2x+5)(x-2)</span><br>So <span class="tex">6x^2+3x-30=\boldsymbol{3(2x+5)(x-2)}</span><br>Check: <span class="tex">3(2x^2-4x+5x-10)=6x^2+3x-30</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">4x^3-2x^2-30x</span></div><div class="work" style="--h:340px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">2x</span>: <span class="tex">2x(2x^2-x-15)</span><br><span class="tex">ac=-30</span>, sum <span class="tex">-1</span>: <b><span class="tex">-6</span> and <span class="tex">5</span></b><br><span class="tex">2x^2-6x+5x-15=2x(x-3)+5(x-3)</span><br><span class="tex">=(x-3)(2x+5)</span><br>So <span class="tex">4x^3-2x^2-30x=\boldsymbol{2x(x-3)(2x+5)}</span><br>Check: <span class="tex">2x(2x^2+5x-6x-15)=4x^3-2x^2-30x</span> ✓</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>GCF first.</b> If every term shares a factor, take it out before you start, and keep it in front of the answer.</div>
+    <div><b>Steps 1 and 2:</b> multiply <span class="tex">a\times c</span>. Find two numbers that <b>multiply to <span class="tex">ac</span></b> and <b>add to <span class="tex">b</span></b>.</div>
+    <div><b>Steps 3 to 5:</b> split the middle term, group in pairs, take the GCF out of each pair, then factor out the bracket they share.</div>
+    <div><b>Step 6:</b> check by expanding. <b>Signs:</b> <span class="tex">ac>0</span> same signs, <span class="tex">ac<0</span> opposite signs.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u4l7">
+    <div><div class="kicker">Your turn</div><b>Assignment 7 — Factoring <span class="tex">ax^2+bx+c</span> (where <span class="tex">a\neq1</span>)</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l8/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 8 — Choosing a Factoring Strategy</b><div class="muted">GCF, sum-product, difference of squares, perfect squares or decomposition: a checklist for picking the right tool</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u4l7.js';
+  boot({ key: 'u4l7', homeHref: '../../', title: '4.7 Factoring ax² + bx + c (a ≠ 1)' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

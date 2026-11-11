@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u3l5.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u3l5">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Jordan’s Shortcut">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Jordan’s Shortcut</h2>
+  <p class="wf-rule">How far off is Jordan?</p></div>
+  <div class="vw-q">Jordan says <span class="tex">23\times123=2\,009</span><small>“because <span class="tex">20\times100=2\,000</span> and <span class="tex">3\times3=9</span>.”</small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>What did Jordan leave out?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>Off by 820.</b> The real answer is 2 829. Jordan left out <span class="tex">20\times23=460</span> and <span class="tex">3\times100=300</span> and <span class="tex">20\times3=60</span>: every part has to multiply every part.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,34 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Combo Counter" style="--wf-side: 330px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Combo Counter</h2>
-  <p class="wf-rule">A combo = <b>1 main</b> + <b>1 side</b>. Every main gets paired with every side. <span class="muted">Tap a <b class="u3l5-cr">?</b> to reveal it.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u3l5-wu" id="u3l5-wu"></div>
-    <div class="u3l5-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many different combos can you make? Name them all. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>6 combos</b>, one per box: 2 mains × 3 sides. The grid makes sure nobody is missed or counted twice.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Add a <b>hot dog</b> to the mains. How many combos now? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>9 combos:</b> one more row of 3, so 3 × 3. (Tap <b>+ Hot dog</b> to see it.)</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>In the <b>23 × 123</b> grid, each box is row × column. Fill in the four <b class="u3l5-cr">?</b> boxes. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans">Top row: <b>400</b> and <b>60</b>. Bottom row: <b>300</b> and <b>60</b>.</div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Jordan only did the two filled boxes and said <span class="tex">23\times123=2\,000+9=2\,009</span>. <b>Guess first:</b> Jordan is off by about…</div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> 10</div>
-        <div class="opt"><b>B</b> 100</div>
-        <div class="opt right"><b>C</b> 800</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>C: about 800 (exactly 820).</b> Add all six boxes:<br><span class="tex">2\,000+400+60+300+60+9=2\,829</span>.<br>Jordan skipped four boxes: <span class="tex">400+60+300+60=820</span>. The forgotten middle boxes are worth a lot! <b>Every box counts.</b></div>
-    </div>
-  </div></div>
-  <div class="bk-wq u3l5-wide"><div class="q-line"><div class="q-num bonus">+</div><div><b>Neighbour challenge:</b> add 2 drinks (main + side + drink). How many meals now? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-    <div class="bk-ans"><span class="tex">2\times3\times2=\mathbf{12}</span> meals. Each of the 6 combos comes with either drink.</div></div>
-</section>
+
 
 <!-- ================= 1. Recall ================= -->
 <section class="card" data-ink="s1" data-section="1. Recall: Two Binomials">
@@ -82,7 +65,7 @@
     <div><b>Difference of squares</b><span class="tex">(a+b)(a-b)=a^{2}-b^{2}</span></div>
     <div><b>Perfect squares</b><span class="tex">(a\pm b)^{2}=a^{2}\pm 2ab+b^{2}</span></div>
   </div>
-  <div class="explainer" data-explainer="recall"></div>
+  <div data-extra><div class="explainer" data-explainer="recall"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -118,7 +101,7 @@
   <div class="explainer" data-explainer="grid"></div>
 </section>
 
-<section class="card" data-ink="s2c" data-section="2. The list">
+<section data-extra class="card" data-ink="s2c" data-section="2. The list">
   <h3 class="sub">Method 2: a systematic list</h3>
   <p>The first term of the binomial multiplies all three terms of the trinomial. Then the second term does the same. Same six products as the grid, written as a list.</p>
   <div class="explainer" data-explainer="list"></div>
@@ -145,7 +128,7 @@
       <div class="u3l5-wl">Add them and collect like terms:</div>
       <div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2</span> terms: <span class="tex">4x^2+2x^2=6x^2</span>; &nbsp;<span class="tex">x</span> terms: <span class="tex">5x+8x=13x</span><br><span class="tex">=\mathbf{x^3+6x^2+13x+10}</span>, the same answer as the grid.</div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Check the answer the warm-up way: put <span class="tex">x=10</span> into both sides. What numbers do you get?</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Left side: <span class="tex">(10+2)(100+40+5)=12\times145=1\,740</span>. Right side: <span class="tex">1\,000+600+130+10=1\,740</span>. They match ✓.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Check the answer the warm-up way: put <span class="tex">x=10</span> into both sides. What numbers do you get?</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Left side: <span class="tex">(10+2)(100+40+5)=12\times145=1\,740</span>. Right side: <span class="tex">1\,000+600+130+10=1\,740</span>. They match ✓.</div></div></div>
   <div class="space" id="ex2-space"></div>
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
@@ -161,7 +144,7 @@
     <div class="d0"><span class="tex">\text{number}</span><small>1 term</small></div>
   </div>
   <p>Like terms have the same variable <b>and</b> the same exponent. The tidy answer looks like <span class="tex">ax^3+bx^2+cx+d</span>.</p>
-  <div class="explainer" data-explainer="sort"></div>
+  <div data-extra><div class="explainer" data-explainer="sort"></div></div>
   <div class="tip diag-tip"><div class="tip-ic">↘</div><div><b>In the grid, like terms sit on a diagonal.</b> Write both brackets with the highest power first, and the two <span class="tex">x^2</span> cells (and the two <span class="tex">x</span> cells) line up corner to corner.</div></div>
 </section>
 
@@ -176,6 +159,15 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–6">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 5 · Questions 1–6</h2>
+  <p class="pr-t">Six partial products, then collect.</p>
+  <div class="pr-chips n1"><span><b>1–6</b>Six partial products, then collect</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 4.</span><a class="pill" href="../../../#/lesson/u3l5">Open the Practice site</a></div>
+</section>
+
 <!-- ================= 4. Negative terms ================= -->
 <section class="card" data-ink="s4" data-section="4. Negative Terms">
   <div class="sec-h"><span class="badge">4</span><h2>Products Involving Negative Terms</h2></div>
@@ -183,7 +175,7 @@
   <div class="u3l5-signs">
     <div><span class="tex">(+)(+)=+</span></div><div><span class="tex">(+)(-)=-</span></div><div><span class="tex">(-)(+)=-</span></div><div class="pp"><span class="tex">(-)(-)=+</span></div>
   </div>
-  <div class="explainer" data-explainer="signs"></div>
+  <div data-extra><div class="explainer" data-explainer="signs"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t copy a sign out of the brackets.</b> In <span class="tex">(x-3)(x^2+2x-5)</span>, the product <span class="tex">(-3)(-5)</span> is <span class="tex">+15</span>, even though both brackets show a minus sign.</div></div>
 </section>
 
@@ -210,7 +202,7 @@
     <div><span class="u3l5-n">2</span>Deal with the sign in front of the other bracket.</div>
     <div><span class="u3l5-n">3</span>Collect like terms.</div>
   </div>
-  <div class="explainer" data-explainer="combo"></div>
+  <div data-extra><div class="explainer" data-explainer="combo"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>A subtraction sign flips every term.</b> <span class="tex">-\left(x^2+5x-6\right)=-x^2-5x+6</span>. The last term becomes <b>+6</b>. A plus sign in front changes nothing.</div></div>
 </section>
 
@@ -225,6 +217,35 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Combo Counter" style="--wf-side: 330px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Combo Counter</h2>
+  <p class="wf-rule">A combo = <b>1 main</b> + <b>1 side</b>. Every main gets paired with every side. <span class="muted">Tap a <b class="u3l5-cr">?</b> to reveal it.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u3l5-wu" id="u3l5-wu"></div>
+    <div class="u3l5-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many different combos can you make? Name them all. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>6 combos</b>, one per box: 2 mains × 3 sides. The grid makes sure nobody is missed or counted twice.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Add a <b>hot dog</b> to the mains. How many combos now? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>9 combos:</b> one more row of 3, so 3 × 3. (Tap <b>+ Hot dog</b> to see it.)</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>In the <b>23 × 123</b> grid, each box is row × column. Fill in the four <b class="u3l5-cr">?</b> boxes. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Top row: <b>400</b> and <b>60</b>. Bottom row: <b>300</b> and <b>60</b>.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Jordan only did the two filled boxes and said <span class="tex">23\times123=2\,000+9=2\,009</span>. <b>Guess first:</b> Jordan is off by about…</div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 10</div>
+        <div class="opt"><b>B</b> 100</div>
+        <div class="opt right"><b>C</b> 800</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: about 800 (exactly 820).</b> Add all six boxes:<br><span class="tex">2\,000+400+60+300+60+9=2\,829</span>.<br>Jordan skipped four boxes: <span class="tex">400+60+300+60=820</span>. The forgotten middle boxes are worth a lot! <b>Every box counts.</b></div>
+    </div>
+  </div></div>
+  <div class="bk-wq u3l5-wide"><div class="q-line"><div class="q-num bonus">+</div><div><b>Neighbour challenge:</b> add 2 drinks (main + side + drink). How many meals now? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="bk-ans"><span class="tex">2\times3\times2=\mathbf{12}</span> meals. Each of the 6 combos comes with either drink.</div></div>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -235,7 +256,7 @@
     <div><b>Signs:</b> find the sign of each partial product on its own. Expand a product <b>first</b>; a minus sign in front of a bracket flips every term.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u3l5">
-    <div><div class="kicker">Your turn</div><b>Assignment 5 — Multiplying a Binomial by a Trinomial</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 5 · Questions 7–16</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l6/">
     <div><div class="kicker">Next lesson</div><b>Lesson 6 — Applying Polynomial Products to Area, Volume, and Equations</b><div class="muted">The same products measure real gardens, crates and fish tanks</div></div><span class="arrow">→</span>
@@ -248,7 +269,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u3l5.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u3l5', homeHref: '../../', title: '3.5 Binomial × Trinomial' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

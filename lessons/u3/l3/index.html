@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u3l3.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u3l3">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: The Calendar Trick">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Calendar Trick</h2>
+  <p class="wf-rule">Take any 2 by 2 block from a calendar. Multiply each diagonal pair. What do you notice?</p></div>
+  <div class="vw-tiles" style="--n:2"><div><span class="vw-cal"><span>9</span><span>10</span><span>16</span><span>17</span></span></div><div><span class="vw-cal"><span>20</span><span>21</span><span>27</span><span>28</span></span></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Try another block. Does it always happen?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>The two products always differ by 7.</b> <span class="tex">10\times16-9\times17=160-153=7</span> and <span class="tex">21\times27-20\times28=567-560=7</span>.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,34 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Calendar Trick" style="--wf-side: 380px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Calendar Trick</h2>
-  <p class="wf-rule">Box any <b>2 × 2</b> block of dates. Multiply along each <b>diagonal</b>, then subtract: <b class="u3l3-red">top-right × bottom-left</b> minus top-left × bottom-right. <span class="muted">Tap a date to move the block.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u3l3-calw" id="u3l3-cal"></div>
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Do the trick with the <b>corners</b> of a <b>3 × 3</b> block. What happens? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> 7</div>
-        <div class="opt"><b>B</b> 14</div>
-        <div class="opt right"><b>C</b> 28</div>
-        <div class="opt"><b>D</b> it changes</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>C, 28, every time.</b> Corners 8, 10, 22, 24: <span class="tex">10\times22-8\times24=220-192=28</span>. A bigger block, and the answer is <b>four</b> times as big. Today’s algebra explains it.</div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u3l3-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Do the trick on the block that starts at <b>18</b>. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><span class="tex">19\times25=475</span>, <span class="tex">18\times26=468</span>, and <span class="tex">475-468=\boldsymbol{7}</span>.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Now pick <b>any</b> 2 × 2 block you like. What do you get? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>7, every time</b>: all 20 of the full 2 × 2 blocks in October.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Call the top-left date <span class="tex">n</span>. The date beside it is <span class="tex">n+1</span>. What are the two dates <b>below</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><span class="tex">n+7</span> and <span class="tex">n+8</span>: one week later is always 7 more.</div></div>
-    </div>
-  </div></div>
-  <p class="u3l3-social">Open the calendar on your phone: any month, any year. Can anyone break the trick? <span data-reveal="tap to see">Only with a block that spills into the next month, where the dates start over.</span></p>
-</section>
+
 
 <!-- ================= 1. Distributing twice ================= -->
 <section class="card" data-ink="s1" data-section="1. Two Binomials by the Distributive Property">
@@ -79,7 +62,7 @@
   <p>In Lesson 2 a monomial was distributed over every term in the brackets: <span class="tex">a(b+c)=ab+ac</span>. The same rule works when the “multiplier” is a whole <b>binomial</b>. Distribute the first binomial, then distribute each of its terms:</p>
   <p class="u3l3-big"><span class="tex">(x+2)(x+5)=x(x+5)+2(x+5)=x^2+5x+2x+10=x^2+7x+10</span></p>
   <div class="def">In general <span class="tex">(a+b)(c+d)=ac+ad+bc+bd</span>, then collect like terms. <b>Each term times each term:</b> two terms times two terms makes <b>four</b> products.</div>
-  <div class="explainer" data-explainer="areaGrow"></div>
+  <div data-extra><div class="explainer" data-explainer="areaGrow"></div></div>
 </section>
 
 <section class="card" data-ink="s1b" data-section="1. Distribute twice">
@@ -95,7 +78,7 @@
     <div class="part"><div class="pl">(a) <span class="tex">(x+3)(x+4)</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="u3l3-step">Step 1</span><span class="tex">x(x+4)+3(x+4)</span><br><span class="u3l3-step">Step 2</span><span class="tex">x^2+4x+3x+12</span><br><span class="u3l3-step">Collect</span><span class="tex">\boldsymbol{x^2+7x+12}</span></div></div></div>
     <div class="part"><div class="pl">(b) <span class="tex">(x+6)(x+2)</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="u3l3-step">Step 1</span><span class="tex">x(x+2)+6(x+2)</span><br><span class="u3l3-step">Step 2</span><span class="tex">x^2+2x+6x+12</span><br><span class="u3l3-step">Collect</span><span class="tex">\boldsymbol{x^2+8x+12}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Both answers end in <span class="tex">12</span>. Where does the last number always come from?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">From the <b>two numbers</b> multiplied together: <span class="tex">3\times4=12</span> and <span class="tex">6\times2=12</span>. It is the small corner piece of the rectangle.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Both answers end in <span class="tex">12</span>. Where does the last number always come from?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">From the <b>two numbers</b> multiplied together: <span class="tex">3\times4=12</span> and <span class="tex">6\times2=12</span>. It is the small corner piece of the rectangle.</div></div></div>
   <div class="space" id="ex1-space"></div>
   <button class="more" data-more="ex1-space">+ More space</button>
 </section>
@@ -113,7 +96,7 @@
   <div class="explainer" data-explainer="foil"></div>
 </section>
 
-<section class="card" data-ink="s2b" data-section="2. Don't skip O and I">
+<section data-extra class="card" data-ink="s2b" data-section="2. Don't skip O and I">
   <h3 class="sub">Why you can’t skip the O and I</h3>
   <p>A common shortcut is to multiply only the first terms and the last terms. Test it with a number and count the squares.</p>
   <div class="explainer" data-explainer="missing"></div>
@@ -141,7 +124,7 @@
     <div class="u3l3-sg"><span class="tex">(+)(-)=-</span><small>positive × negative</small></div>
     <div class="u3l3-sg"><span class="tex">(-)(-)=+</span><small>negative × negative</small></div>
   </div>
-  <div class="explainer" data-explainer="foilNeg"></div>
+  <div data-extra><div class="explainer" data-explainer="foilNeg"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Two negatives make a positive.</b> In <span class="tex">(x-2)(x-7)</span> the Last product is <span class="tex">(-2)(-7)=+14</span>, not <span class="tex">-14</span>.</div></div>
 </section>
 
@@ -158,6 +141,15 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–9">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 3 · Questions 1–9</h2>
+  <p class="pr-t">Distribute and FOIL, then negative terms.</p>
+  <div class="pr-chips n2"><span><b>1–5</b>Distributing and FOIL</span><span><b>6–9</b>Negative terms and two variables</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 6.</span><a class="pill" href="../../../#/lesson/u3l3">Open the Practice site</a></div>
+</section>
+
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
 <section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u3l3"></section>
 
@@ -165,7 +157,7 @@
 <section class="card" data-ink="s4" data-section="4. Multiplying and Then Simplifying">
   <div class="sec-h"><span class="badge">4</span><h2>Multiplying and Then Simplifying</h2></div>
   <p>Collecting the <b>Outer</b> and <b>Inner</b> terms is what turns four terms into a trinomial <span class="tex">ax^2+bx+c</span>. Both are <span class="tex">x</span>-terms, so collecting them is just adding the numbers in front, signs and all.</p>
-  <div class="explainer" data-explainer="middle"></div>
+  <div data-extra><div class="explainer" data-explainer="middle"></div></div>
 </section>
 
 <section class="card example" data-ink="ex4" data-section="Example 4">
@@ -182,7 +174,7 @@
 <section class="card" data-ink="s4b" data-section="4. Two products in one expression">
   <h3 class="sub">Two products in one expression</h3>
   <p>If an expression contains two binomial products, expand <b>both</b> completely first. Then collect like terms. A subtraction sign in front of a product flips the sign of <b>all</b> of its terms. This is how the calendar trick works!</p>
-  <div class="explainer" data-explainer="combine"></div>
+  <div data-extra><div class="explainer" data-explainer="combine"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Keep the second product in brackets until you use the minus.</b> <span class="tex">-(x^2+6x+8)=-x^2-6x-8</span>. Flipping only the first sign is the most common mistake here.</div></div>
 </section>
 
@@ -193,9 +185,38 @@
     <div class="part"><div class="pl">(a) <span class="tex">(x+4)(x+2)+(x+1)(x+5)</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">First product: <span class="tex">x^2+6x+8</span><br>Second product: <span class="tex">x^2+6x+5</span><br>Add: <span class="tex">\boldsymbol{2x^2+12x+13}</span></div></div></div>
     <div class="part"><div class="pl">(b) <span class="tex">(x+7)(x+3)-(x+2)(x+4)</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">First: <span class="tex">x^2+10x+21</span> &nbsp; Second: <span class="tex">x^2+6x+8</span><br>Subtract <b>all three</b> terms of the second:<br><span class="tex">x^2+10x+21-x^2-6x-8=\boldsymbol{4x+13}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> In (b), where did the <span class="tex">x^2</span> go?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2-x^2=0</span>: a zero pair. Both products start with <span class="tex">x^2</span>, so subtracting them cancels it. The same thing happens in the calendar trick.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> In (b), where did the <span class="tex">x^2</span> go?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^2-x^2=0</span>: a zero pair. Both products start with <span class="tex">x^2</span>, so subtracting them cancels it. The same thing happens in the calendar trick.</div></div></div>
   <div class="space" id="ex5-space"></div>
   <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Calendar Trick" style="--wf-side: 380px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Calendar Trick</h2>
+  <p class="wf-rule">Box any <b>2 × 2</b> block of dates. Multiply along each <b>diagonal</b>, then subtract: <b class="u3l3-red">top-right × bottom-left</b> minus top-left × bottom-right. <span class="muted">Tap a date to move the block.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u3l3-calw" id="u3l3-cal"></div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Do the trick with the <b>corners</b> of a <b>3 × 3</b> block. What happens? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 7</div>
+        <div class="opt"><b>B</b> 14</div>
+        <div class="opt right"><b>C</b> 28</div>
+        <div class="opt"><b>D</b> it changes</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C, 28, every time.</b> Corners 8, 10, 22, 24: <span class="tex">10\times22-8\times24=220-192=28</span>. A bigger block, and the answer is <b>four</b> times as big. Today’s algebra explains it.</div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u3l3-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Do the trick on the block that starts at <b>18</b>. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><span class="tex">19\times25=475</span>, <span class="tex">18\times26=468</span>, and <span class="tex">475-468=\boldsymbol{7}</span>.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Now pick <b>any</b> 2 × 2 block you like. What do you get? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>7, every time</b>: all 20 of the full 2 × 2 blocks in October.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Call the top-left date <span class="tex">n</span>. The date beside it is <span class="tex">n+1</span>. What are the two dates <b>below</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><span class="tex">n+7</span> and <span class="tex">n+8</span>: one week later is always 7 more.</div></div>
+    </div>
+  </div></div>
+  <p class="u3l3-social">Open the calendar on your phone: any month, any year. Can anyone break the trick? <span data-reveal="tap to see">Only with a block that spills into the next month, where the dates start over.</span></p>
 </section>
 
 <!-- ================= summary ================= -->
@@ -208,7 +229,7 @@
     <div><b>Collect last.</b> The O and I terms usually combine into one middle term. Two products? Expand both first; a minus flips <b>every</b> term.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u3l3">
-    <div><div class="kicker">Your turn</div><b>Assignment 3 — Multiplying Two Binomials</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 3 · Questions 10–16</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l4/">
     <div><div class="kicker">Next lesson</div><b>Lesson 4 — Special Products: Difference of Squares &amp; Perfect Squares</b><div class="muted">Two binomial products worth memorizing, so you can skip FOIL and write the answer.</div></div><span class="arrow">→</span>
@@ -221,7 +242,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u3l3.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u3l3', homeHref: '../../', title: '3.3 Multiplying Two Binomials' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

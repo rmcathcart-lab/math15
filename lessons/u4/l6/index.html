@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u4l6.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: In Your Head">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>In Your Head</h2>
+  <p class="wf-rule">No calculator, no paper.</p></div>
+  <div class="vw-q"><span class="tex">31^2</span></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>You know 30 squared.</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>961.</b> <span class="tex">31^2=(30+1)^2=900+60+1</span>. The 60 is <span class="tex">2\times30\times1</span>, the part people forget.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -43,64 +53,21 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Can You Build a Square?" style="--wf-side: 300px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Can You Build a Square?</h2>
-  <p class="wf-rule">Each kit: <b>1</b> big square, some <b>strips</b>, some <b>small squares</b>. Use <b>every</b> tile! <span class="muted">Pick a kit, then tap Build.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u4l6-kit">
-      <div class="u4l6-kit-top no-ink">
-        <div class="u4l6-kit-tabs" id="wu-kit-tabs"></div>
-        <button class="pill small" type="button" id="wu-kit-build">Build it</button>
-        <button class="pill small" type="button" id="wu-kit-reset" aria-label="Spill the tiles again">↺</button>
-      </div>
-      <div class="u4l6-kit-stage" id="wu-kit"></div>
-    </div>
-    <div class="u4l6-wq2">
-      <div class="bk-wq">
-        <div class="q-line"><div class="q-num">1</div><div>Kit A builds a square: side <span class="u4l6-nw"><span class="tex">x+2</span>.</span> Can Kit <b>B</b>? What is its side?</div></div>
-        <div class="u4l6-wa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><b>Yes.</b> 3 strips on each side, and the 9 small squares fill the corner as a <span class="tex">3\times3</span> block. Side <span class="tex">x+3</span>.</div></div>
-      </div>
-      <div class="bk-wq">
-        <div class="q-line"><div class="q-num">2</div><div>Now try Kit <b>C</b>. Square or not?</div></div>
-        <div class="u4l6-wa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><b>No.</b> 3 strips per side needs a <span class="tex">3\times3=9</span> corner, but there are only 8. (It does make a rectangle, <span class="tex">x+2</span> by <span class="tex">x+4</span>.)</div></div>
-      </div>
-    </div>
-  </div><div class="wf-side">
-    <div class="bk-wq">
-      <div class="q-line"><div class="q-num">3</div><div>A kit has 1 big and <b>25</b> small squares. How many <b>strips</b> does it need?</div></div>
-      <div class="u4l6-wa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><b>10 strips.</b> 25 small squares make a <span class="tex">5\times5</span> corner, so 5 strips on each side.</div></div>
-    </div>
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Kit <b>D</b> looks perfect: 1 big square, and its 16 small squares make a neat <span class="tex">4\times4</span> block. It has <b>10</b> strips. Can it build a square? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> Yes, <span class="tex">x+4</span></div>
-        <div class="opt"><b>B</b> Yes, <span class="tex">x+5</span></div>
-        <div class="opt right"><b>C</b> No</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>C, it’s an impostor.</b> A <span class="tex">4\times4</span> corner needs 4 strips on each side: 8 strips. Kit D has 10, two too many. (Side <span class="tex">x+5</span> would need 25 small squares.)<br><span class="muted">Its tiles make a rectangle instead: <span class="tex">x+2</span> by <span class="tex">x+8</span>.</span></div>
-    </div>
-  </div></div>
 
-  <div class="bk-wq u4l6-bonus">
-    <div class="q-line"><div class="q-num bonus">+</div><div><b>Challenge your neighbour:</b> invent your own <b>impostor</b> kit that fools them.</div></div>
-    <div class="u4l6-wa row"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans">Use a square number of small squares but the wrong number of strips: 1 big, <b>6</b> strips, 4 small (needs 4 strips), or 1 big, <b>12</b> strips, 25 small (needs 10).</div></div>
-  </div>
-</section>
 
 <!-- ================= 1. The pattern and the three-part test ================= -->
 <section class="card" data-ink="s1" data-section="1. The Pattern and the Three-Part Test">
   <div class="sec-h"><span class="badge">1</span><h2>The Pattern and the Three-Part Test</h2></div>
-  <p>Squaring a binomial always gives three terms. Name the tiles from the warm-up (<span class="u4l6-nw">big <span class="tex">=x^2</span></span>, <span class="u4l6-nw">strip <span class="tex">=x</span></span>, <span class="u4l6-nw">small <span class="tex">=1</span>)</span> and every square you built is one of these:</p>
+  <p>Squaring a binomial always gives three terms. Name the tiles (<span class="u4l6-nw">big <span class="tex">=x^2</span></span>, <span class="u4l6-nw">strip <span class="tex">=x</span></span>, <span class="u4l6-nw">small <span class="tex">=1</span>)</span> and every square is one of these:</p>
   <div class="u4l6-pat">
     <div><span class="u4l6-pat-h">sum case</span><span class="tex">a^2+2ab+b^2=(a+b)^2</span></div>
     <div><span class="u4l6-pat-h">difference case</span><span class="tex">a^2-2ab+b^2=(a-b)^2</span></div>
   </div>
   <p>Where does the <b>2</b> come from? Look at the square from the side: two equal rectangles.</p>
-  <div class="explainer" data-explainer="squarePic"></div>
+  <div data-extra><div class="explainer" data-explainer="squarePic"></div></div>
 </section>
 
-<section class="card" data-ink="s1b" data-section="1. Can the tiles make a square?">
+<section data-extra class="card" data-ink="s1b" data-section="1. Can the tiles make a square?">
   <h3 class="sub">Can the tiles make a square?</h3>
   <p>A <b>perfect square trinomial</b> is exactly a set of tiles that builds a <b>square</b>: the strips split evenly between two sides, and the small squares fill the corner exactly.</p>
   <div class="explainer" data-explainer="squareTiles"></div>
@@ -149,7 +116,7 @@
     <div class="part"><div class="pl">(c) <span class="tex">x^2+20x+100</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">x</span>, <span class="tex">10</span><br><span class="tex">=\boldsymbol{(x+10)^2}</span></div></div></div>
     <div class="part"><div class="pl">(d) <span class="tex">x^2+18x+81</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">x</span>, <span class="tex">9</span><br><span class="tex">=\boldsymbol{(x+9)^2}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Check (c) with a number: put <span class="tex">x=1</span> into <span class="tex">x^2+20x+100</span> and into <span class="tex">(x+10)^2</span>.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">1+20+100=\boldsymbol{121}</span> and <span class="tex">(1+10)^2=11^2=\boldsymbol{121}</span>. They match ✓</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Check (c) with a number: put <span class="tex">x=1</span> into <span class="tex">x^2+20x+100</span> and into <span class="tex">(x+10)^2</span>.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">1+20+100=\boldsymbol{121}</span> and <span class="tex">(1+10)^2=11^2=\boldsymbol{121}</span>. They match ✓</div></div></div>
   <div class="space" id="ex2-space"></div>
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
@@ -159,10 +126,10 @@
   <div class="sec-h"><span class="badge">3</span><h2>Factoring the Difference Case</h2></div>
   <p>Compare <span class="tex">x^2-10x+25</span>: same first and last terms, same roots <span class="tex">x</span> and <span class="tex">5</span>, and <span class="tex">2(x)(5)=10x</span> still matches. But the middle term is <b>negative</b>, so the binomial being squared is a <b>difference</b>: <span class="tex">x^2-10x+25=(x-5)^2</span>.</p>
   <div class="def">Only the <b>middle sign</b> changes. The last term is always <b>added</b>, since a square is never negative.</div>
-  <div class="explainer" data-explainer="signCase"></div>
+  <div data-extra><div class="explainer" data-explainer="signCase"></div></div>
 </section>
 
-<section class="card" data-ink="s3b" data-section="3. Factor the difference case">
+<section data-extra class="card" data-ink="s3b" data-section="3. Factor the difference case">
   <h3 class="sub">Same steps, minus sign in the bracket</h3>
   <div class="explainer" data-explainer="pst2"></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t mix up the patterns.</b> <span class="tex">x^2-10x+25=(x-5)^2</span> has a middle term. <span class="tex">x^2-25=(x+5)(x-5)</span> (Lesson 5) has none. Count the terms first.</div></div>
@@ -179,6 +146,15 @@
   </div>
   <div class="space" id="ex3-space"></div>
   <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–5">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 6 · Questions 1–5</h2>
+  <p class="pr-t">Test for a perfect square, then factor the two cases.</p>
+  <div class="pr-chips n2"><span><b>1–2</b>Recognizing perfect square trinomials</span><span><b>3–5</b>Factoring the two cases</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 4.</span><a class="pill" href="../../../#/lesson/u4l6">Open the Practice site</a></div>
 </section>
 
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
@@ -214,9 +190,54 @@
     <div class="part"><div class="pl">(c) <span class="tex">9x^2-30x+25</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">3x</span>, <span class="tex">5</span>; <span class="tex">2(3x)(5)=30x</span> ✓<br><b>PST</b>: <span class="tex">\boldsymbol{(3x-5)^2}</span></div></div></div>
     <div class="part"><div class="pl">(d) <span class="tex">x^2-5x-14</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Last term negative: not a PST.<br><span class="tex">-7,2</span>: <span class="tex">=\boldsymbol{(x-7)(x+2)}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Why can the <b>last</b> term of a perfect square trinomial never be negative?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">It is <span class="tex">b^2</span>, a number times <b>itself</b>. Positive × positive and negative × negative are both positive: <span class="tex">5^2=25</span> and <span class="tex">(-5)^2=25</span>.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Why can the <b>last</b> term of a perfect square trinomial never be negative?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">It is <span class="tex">b^2</span>, a number times <b>itself</b>. Positive × positive and negative × negative are both positive: <span class="tex">5^2=25</span> and <span class="tex">(-5)^2=25</span>.</div></div></div>
   <div class="space" id="ex5-space"></div>
   <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Can You Build a Square?" style="--wf-side: 300px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Can You Build a Square?</h2>
+  <p class="wf-rule">Each kit: <b>1</b> big square, some <b>strips</b>, some <b>small squares</b>. Use <b>every</b> tile! <span class="muted">Pick a kit, then tap Build.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u4l6-kit">
+      <div class="u4l6-kit-top no-ink">
+        <div class="u4l6-kit-tabs" id="wu-kit-tabs"></div>
+        <button class="pill small" type="button" id="wu-kit-build">Build it</button>
+        <button class="pill small" type="button" id="wu-kit-reset" aria-label="Spill the tiles again">↺</button>
+      </div>
+      <div class="u4l6-kit-stage" id="wu-kit"></div>
+    </div>
+    <div class="u4l6-wq2">
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">1</div><div>Kit A builds a square: side <span class="u4l6-nw"><span class="tex">x+2</span>.</span> Can Kit <b>B</b>? What is its side?</div></div>
+        <div class="u4l6-wa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><b>Yes.</b> 3 strips on each side, and the 9 small squares fill the corner as a <span class="tex">3\times3</span> block. Side <span class="tex">x+3</span>.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">2</div><div>Now try Kit <b>C</b>. Square or not?</div></div>
+        <div class="u4l6-wa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><b>No.</b> 3 strips per side needs a <span class="tex">3\times3=9</span> corner, but there are only 8. (It does make a rectangle, <span class="tex">x+2</span> by <span class="tex">x+4</span>.)</div></div>
+      </div>
+    </div>
+  </div><div class="wf-side">
+    <div class="bk-wq">
+      <div class="q-line"><div class="q-num">3</div><div>A kit has 1 big and <b>25</b> small squares. How many <b>strips</b> does it need?</div></div>
+      <div class="u4l6-wa"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans"><b>10 strips.</b> 25 small squares make a <span class="tex">5\times5</span> corner, so 5 strips on each side.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Kit <b>D</b> looks perfect: 1 big square, and its 16 small squares make a neat <span class="tex">4\times4</span> block. It has <b>10</b> strips. Can it build a square? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Yes, <span class="tex">x+4</span></div>
+        <div class="opt"><b>B</b> Yes, <span class="tex">x+5</span></div>
+        <div class="opt right"><b>C</b> No</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C, it’s an impostor.</b> A <span class="tex">4\times4</span> corner needs 4 strips on each side: 8 strips. Kit D has 10, two too many. (Side <span class="tex">x+5</span> would need 25 small squares.)<br><span class="muted">Its tiles make a rectangle instead: <span class="tex">x+2</span> by <span class="tex">x+8</span>.</span></div>
+    </div>
+  </div></div>
+
+  <div class="bk-wq u4l6-bonus">
+    <div class="q-line"><div class="q-num bonus">+</div><div><b>Challenge your neighbour:</b> invent your own <b>impostor</b> kit that fools them.</div></div>
+    <div class="u4l6-wa row"><button class="pill small" data-bk-toggle>Answer</button><div class="bk-ans">Use a square number of small squares but the wrong number of strips: 1 big, <b>6</b> strips, 4 small (needs 4 strips), or 1 big, <b>12</b> strips, 25 small (needs 10).</div></div>
+  </div>
 </section>
 
 <!-- ================= summary ================= -->
@@ -229,7 +250,7 @@
     <div><b>Impostor?</b> If any test fails, use sum–product: <span class="tex">x^2+10x+24=(x+4)(x+6)</span>.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u4l6">
-    <div><div class="kicker">Your turn</div><b>Assignment 6 — Factoring Perfect Square Trinomials</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 6 · Questions 6–14</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l7/">
     <div><div class="kicker">Next lesson</div><b>Lesson 7 — Factoring <span class="tex">ax^2+bx+c</span> (where <span class="tex">a\neq1</span>)</b><div class="muted">When the <span class="tex">x^2</span> term has a number in front</div></div><span class="arrow">→</span>
@@ -242,7 +263,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u4l6.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u4l6', homeHref: '../../', title: '4.6 Perfect Square Trinomials' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

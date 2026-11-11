@@ -46,3 +46,5 @@ body.viewer #tb .vw-hswitch, .vw-hswitch.in-menu { display: inline-flex; }
 .vw-vend { display: grid; gap: 6px; font-size: 27px; text-align: left; padding: 22px 0 6px; }
 .bk-wq.vw-rev .bk-ans { display: none; font-size: 21px; }
 .bk-wq.vw-rev.shown .bk-ans { display: block; }
+.vw-cal { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.vw-cal span { display: grid; place-items: center; width: 84px; height: 64px; border: 2px solid var(--line); border-radius: 10px; font: 700 30px var(--round); }

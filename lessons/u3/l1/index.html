@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u3l1.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u3l1">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: The Fruit Puzzle">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Fruit Puzzle</h2>
+  <p class="wf-rule">What is the last line worth?</p></div>
+  <div class="vw-q">🍎 + 🍎 + 🍎 = 30<br>🍎 + 🍌 + 🍌 = 18<br>🍌 − 🥥 = 2<small style="font-size:40px;color:inherit">🥥 + 🍎 + 🍌 = ?</small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>What is each fruit worth?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>16.</b> An apple is 10, a banana is 4 and a coconut is 2, so the last line is 2 + 10 + 4.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,35 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Fruit Puzzle" style="--wf-side: 330px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Fruit Puzzle</h2>
-  <p class="wf-rule">Each fruit is worth a number. Same fruit, same number. <b>Look closely!</b></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u3l1-fruit" id="u3l1-fruit"></div>
-    <div class="u3l1-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What is one <b>apple</b> worth? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans">Apple <span class="tex">=10</span>: three apples make 30.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>What is one <b>orange</b> worth? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans">Orange <span class="tex">=6</span>. Row 2: <span class="tex">10+</span>bunch<span class="tex">+</span>bunch<span class="tex">=26</span>, so a bunch of 4 bananas is 8. Row 3: <span class="tex">8+12=20</span>, so two oranges are 12.</div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u3l1-wqs" style="margin-top:0">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>In the jumbled last line, how many apples? How many oranges? Does the order matter? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>3 apples and 2 oranges.</b> Order doesn’t matter: slide the same fruit together before you add.</div></div>
-    </div>
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> What is the whole last line worth? It’s trickier than it looks! <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> 38</div>
-        <div class="opt right"><b>B</b> 48</div>
-        <div class="opt"><b>C</b> 50</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>B: 48.</b> The trap: the last bunch has only <b>3</b> bananas. A bunch of 4 is 8, so one banana is 2 and this bunch is 6.<br><span class="tex">30+12+6=48</span>.<br><span class="muted"><b>C</b> missed the missing banana (used 8). <b>A</b> missed one of the scattered apples. Both are “counting like things” mistakes: exactly today’s lesson.</span></div>
-    </div>
-  </div></div>
-  <p class="u3l1-social">Compare with a neighbour: same answer? Then write your own fruit puzzle to stump them.</p>
-</section>
+
 
 <!-- ================= 1. Vocabulary ================= -->
 <section class="card" data-ink="s1" data-section="1. Polynomial Vocabulary">
@@ -82,10 +64,10 @@
     <div class="def"><b>Coefficient</b> — the number multiplying the variable: <span class="tex">-7</span> in <span class="tex">-7x</span>. An unwritten coefficient is <span class="tex">1</span> (or <span class="tex">-1</span> for <span class="tex">-x</span>).<div class="eg">A term with no variable is a <b>constant</b>: the <span class="tex">5</span>.</div></div>
     <div class="def amber"><b>Degree of a term</b> — the <b>sum of its exponents</b>.<div class="eg"><span class="tex">4x^{3}</span> has degree 3 · <span class="tex">6xy</span> has degree 2 · <span class="tex">9</span> has degree 0</div><b>Degree of a polynomial</b> — its <b>largest</b> term degree.</div>
   </div>
-  <div class="explainer" data-explainer="anatomy"></div>
+  <div data-extra><div class="explainer" data-explainer="anatomy"></div></div>
 </section>
 
-<section class="card" data-ink="s1b" data-section="1. Naming by terms">
+<section data-extra class="card" data-ink="s1b" data-section="1. Naming by terms">
   <h3 class="sub">Naming a polynomial by its number of terms</h3>
   <div class="u3l1-names">
     <div><b>Monomial</b><span class="nn">1 term</span><div class="tex">5y</div></div>
@@ -160,9 +142,18 @@
     <div class="part"><div class="pl">(c) <span class="tex">7a-3b+2a+5b-4</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(7a+2a)+(-3b+5b)-4</span><br><span class="tex">=\boldsymbol{9a+2b-4}</span> (<span class="tex">a</span> and <span class="tex">b</span> stay separate)</div></div></div>
     <div class="part"><div class="pl">(d) <span class="tex">9x^{2}-4x+3-5x^{2}+6x-7</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(9x^{2}-5x^{2})+(-4x+6x)+(3-7)</span><br><span class="tex">=\boldsymbol{4x^{2}+2x-4}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Can <span class="tex">9a+2b-4</span> be simplified any further? Why or why not?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> <span class="tex">9a</span>, <span class="tex">2b</span> and <span class="tex">-4</span> are all in different families (different letters, or no letter), so no two of them are like terms.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Can <span class="tex">9a+2b-4</span> be simplified any further? Why or why not?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> <span class="tex">9a</span>, <span class="tex">2b</span> and <span class="tex">-4</span> are all in different families (different letters, or no letter), so no two of them are like terms.</div></div></div>
   <div class="space" id="ex3-space"></div>
   <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–7">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 1 · Questions 1–7</h2>
+  <p class="pr-t">Vocabulary, like terms, then collecting.</p>
+  <div class="pr-chips n2"><span><b>1–5</b>Vocabulary and like terms</span><span><b>6–7</b>Collecting like terms</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 5.</span><a class="pill" href="../../../#/lesson/u3l1">Open the Practice site</a></div>
 </section>
 
 <!-- ================= 4. Adding ================= -->
@@ -175,20 +166,20 @@
   <div class="explainer" data-explainer="addH"></div>
 </section>
 
-<section class="card" data-ink="s4b" data-section="4. Algebra tiles">
+<section data-extra class="card" data-ink="s4b" data-section="4. Algebra tiles">
   <h3 class="sub">See it with algebra tiles</h3>
   <p>Each tile’s <b>area</b> is the term it stands for. The <b>shape</b> tells you which power of <span class="tex">x</span>; the <b>shading</b> tells you the sign. A <b>zero pair</b> (one shaded and one unshaded tile of the same shape) is worth <b>0</b>, so it can be taken away.</p>
   <div class="u3l1-legend" id="u3l1-legend"></div>
   <div class="explainer" data-explainer="addTiles"></div>
 </section>
 
-<section class="card" data-ink="s4c" data-section="4. The tile mat">
+<section data-extra class="card" data-ink="s4c" data-section="4. The tile mat">
   <h3 class="sub">Try it: the tile mat</h3>
   <div class="u3l1m-box" id="u3l1-mat"></div>
   <p class="small muted">Add tiles with the buttons, tap a tile to take it away. Shaded tiles sit above the line and unshaded tiles below, so zero pairs line up.</p>
 </section>
 
-<section class="card" data-ink="s4d" data-section="4. The vertical method">
+<section data-extra class="card" data-ink="s4d" data-section="4. The vertical method">
   <h3 class="sub">The vertical method</h3>
   <p>Stack the polynomials so like terms are in the same column. Each column is one family of like terms.</p>
   <div class="explainer" data-explainer="vertAdd"></div>
@@ -223,13 +214,13 @@
   <div class="tip watch"><div class="tip-ic">!</div><div><b>The most common error</b> is flipping only the first term’s sign: <span class="tex">5x^{2}+3x-4-2x^{2}-6x+7=3x^{2}-3x+3</span> is <b>wrong</b>, because all three terms in the bracket must change sign.</div></div>
 </section>
 
-<section class="card" data-ink="s5b" data-section="5. Flip the tiles">
+<section data-extra class="card" data-ink="s5b" data-section="5. Flip the tiles">
   <h3 class="sub">Subtracting with tiles: flip every tile</h3>
   <p>The opposite of a polynomial has every sign changed. In tiles, <b>every tile flips</b>: shaded ↔ unshaded. Then add as usual.</p>
   <div class="explainer" data-explainer="subTiles"></div>
 </section>
 
-<section class="card" data-ink="s5c" data-section="5. Subtracting vertically">
+<section data-extra class="card" data-ink="s5c" data-section="5. Subtracting vertically">
   <h3 class="sub">Subtracting with the vertical method</h3>
   <p>Line up the columns, change <b>every</b> sign in the bottom row, then add down each column.</p>
   <div class="explainer" data-explainer="vertSub"></div>
@@ -245,9 +236,39 @@
   <div class="parts c1">
     <div class="part"><div class="pl u3l1-vert">(c) Subtract using the vertical method: &nbsp;<span class="tex">\begin{array}{r} 7x^{2}-3x+5 \\ -\ (3x^{2}+2x-8) \\ \hline \end{array}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Change every sign in the bottom row, then add: <span class="tex">-3x^{2}-2x+8</span>.<br><span class="tex">7x^{2}-3x^{2}=4x^{2}</span>; <span class="tex">-3x-2x=-5x</span>; <span class="tex">5+8=13</span>.<br><span class="tex">=\boldsymbol{4x^{2}-5x+13}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Why can you just drop the brackets when <b>adding</b>, but not when <b>subtracting</b>?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">A <span class="tex">+</span> in front of a bracket keeps every sign the same. A <span class="tex">-</span> in front of a bracket takes away <b>every</b> term inside, so every sign changes.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Why can you just drop the brackets when <b>adding</b>, but not when <b>subtracting</b>?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">A <span class="tex">+</span> in front of a bracket keeps every sign the same. A <span class="tex">-</span> in front of a bracket takes away <b>every</b> term inside, so every sign changes.</div></div></div>
   <div class="space" id="ex5-space"></div>
   <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Fruit Puzzle" style="--wf-side: 330px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Fruit Puzzle</h2>
+  <p class="wf-rule">Each fruit is worth a number. Same fruit, same number. <b>Look closely!</b></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u3l1-fruit" id="u3l1-fruit"></div>
+    <div class="u3l1-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What is one <b>apple</b> worth? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Apple <span class="tex">=10</span>: three apples make 30.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>What is one <b>orange</b> worth? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Orange <span class="tex">=6</span>. Row 2: <span class="tex">10+</span>bunch<span class="tex">+</span>bunch<span class="tex">=26</span>, so a bunch of 4 bananas is 8. Row 3: <span class="tex">8+12=20</span>, so two oranges are 12.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u3l1-wqs" style="margin-top:0">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>In the jumbled last line, how many apples? How many oranges? Does the order matter? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>3 apples and 2 oranges.</b> Order doesn’t matter: slide the same fruit together before you add.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> What is the whole last line worth? It’s trickier than it looks! <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 38</div>
+        <div class="opt right"><b>B</b> 48</div>
+        <div class="opt"><b>C</b> 50</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: 48.</b> The trap: the last bunch has only <b>3</b> bananas. A bunch of 4 is 8, so one banana is 2 and this bunch is 6.<br><span class="tex">30+12+6=48</span>.<br><span class="muted"><b>C</b> missed the missing banana (used 8). <b>A</b> missed one of the scattered apples. Both are “counting like things” mistakes: exactly today’s lesson.</span></div>
+    </div>
+  </div></div>
+  <p class="u3l1-social">Compare with a neighbour: same answer? Then write your own fruit puzzle to stump them.</p>
 </section>
 
 <!-- ================= summary ================= -->
@@ -260,7 +281,7 @@
     <div><b>Adding:</b> drop the brackets and collect. <b>Subtracting:</b> add the opposite: flip <b>every</b> sign in the second bracket, then collect.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u3l1">
-    <div><div class="kicker">Your turn</div><b>Assignment 1 — Like Terms, and Adding/Subtracting Polynomials</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 1 · Questions 8–15</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l2/">
     <div><div class="kicker">Next lesson</div><b>Lesson 2 — Multiplying a Monomial by a Polynomial</b><div class="muted">Three identical bags each hold <span class="tex">2a+b</span>. What’s in all three? Multiplying one term by a whole bracket.</div></div><span class="arrow">→</span>
@@ -273,7 +294,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u3l1.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u3l1', homeHref: '../../', title: '3.1 Like Terms, Adding and Subtracting' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

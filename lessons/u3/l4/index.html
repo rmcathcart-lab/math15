@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u3l4.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u3l4">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: In Your Head">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>In Your Head</h2>
+  <p class="wf-rule">No calculator, no paper.</p></div>
+  <div class="vw-q"><span class="tex">49\times51</span></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Both numbers are very close to 50.</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>2 499.</b> It is one less than <span class="tex">50\times50=2\,500</span>.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -43,39 +53,13 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Square That Lost a Corner" style="--wf-side: 380px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Square That Lost a Corner</h2>
-  <p class="wf-rule">A <b>7 by 7</b> square loses a <b>3 by 3</b> corner. Cut what’s left in two… and slide. <span class="muted">Use the buttons to cut and slide.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div id="u3l4-corner"></div>
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> No calculator, no paper. Use the picture to find <b>49 × 51</b>. <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt right"><b>A</b> 2&#8239;499</div>
-        <div class="opt"><b>B</b> 2&#8239;500</div>
-        <div class="opt"><b>C</b> 2&#8239;501</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>A, 2&#8239;499.</b> A <span class="tex">50\times50</span> square loses a <span class="tex">1\times1</span> corner and slides into a <span class="tex">51</span> by <span class="tex">49</span> rectangle: <span class="tex">49\times51=2\,500-1=2\,499</span>. It is <b>exactly</b> one less than <span class="tex">50\times50</span>.</div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u3l4-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many small squares are left after the corner is cut out? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>40</b>: <span class="tex">7\times7=49</span>, minus the <span class="tex">3\times3=9</span> cut out.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How long and how wide is the new rectangle? Same number of squares? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>10 by 4</b>: <span class="tex">7+3=10</span> long, <span class="tex">7-3=4</span> tall. <span class="tex">10\times4=40</span>, the same squares.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>A <b>10 by 10</b> square loses a <b>2 by 2</b> corner. What rectangle do you get? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>12 by 8</b>: <span class="tex">10+2</span> and <span class="tex">10-2</span>. Check: <span class="tex">12\times8=96=100-4</span>.</div></div>
-    </div>
-  </div></div>
-  <p class="u3l4-social">Race your neighbour, no calculators: who can work out <b>98 × 102</b> first? <span data-reveal="tap to see"><span class="tex">100^2-2^2=10\,000-4=\boldsymbol{9\,996}</span></span></p>
-</section>
+
 
 <!-- ================= 1. Recall ================= -->
 <section class="card" data-ink="s1" data-section="1. Recall: Multiplying Two Binomials">
   <div class="sec-h"><span class="badge">1</span><h2>Recall: Multiplying Two Binomials</h2></div>
   <p><b>FOIL</b> multiplies the <b>F</b>irst terms, the <b>O</b>uter terms, the <b>I</b>nner terms and the <b>L</b>ast terms, then combines like terms. The two special products below are just FOIL results worth memorizing, so warm up with one full expansion first.</p>
-  <div class="explainer" data-explainer="foilRecall"></div>
+  <div data-extra><div class="explainer" data-explainer="foilRecall"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -129,7 +113,7 @@
   <p>Squaring a binomial means multiplying it <b>by itself</b>, so now the Outer and Inner terms are identical and <b>add</b>:</p>
   <p class="u3l4-big"><span class="tex">(x+3)^2=(x+3)(x+3)=x^2+3x+3x+9=x^2+6x+9</span></p>
   <div class="def"><b>Perfect square trinomial</b> &nbsp;<span class="tex">(a+b)^2=a^2+2ab+b^2</span><div class="eg">Square the first, <b>double the product</b>, square the last. Three terms, never two.</div></div>
-  <div class="explainer" data-explainer="squareSplit"></div>
+  <div data-extra><div class="explainer" data-explainer="squareSplit"></div></div>
 </section>
 
 <section class="card" data-ink="s3b" data-section="3. The classic mistake">
@@ -149,7 +133,7 @@
     <div class="part"><div class="pl">(c) <span class="tex">(3x+2)^2</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(3x)^2+2(3x)(2)+4</span><br><span class="tex">=\boldsymbol{9x^2+12x+4}</span></div></div></div>
     <div class="part"><div class="pl">(d) <span class="tex">(2x+5)^2</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(2x)^2+2(2x)(5)+25</span><br><span class="tex">=\boldsymbol{4x^2+20x+25}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> How can you check (b) without FOIL? Try <span class="tex">x=1</span>.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(1+7)^2=64</span> and <span class="tex">1+14+49=64</span> ✓. The wrong answer <span class="tex">x^2+49</span> would give only <span class="tex">50</span>.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> How can you check (b) without FOIL? Try <span class="tex">x=1</span>.</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(1+7)^2=64</span> and <span class="tex">1+14+49=64</span> ✓. The wrong answer <span class="tex">x^2+49</span> would give only <span class="tex">50</span>.</div></div></div>
   <div class="space" id="ex3-space"></div>
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
@@ -160,7 +144,7 @@
   <p>Squaring a difference works the same way, but both middle terms are now <b>negative</b>:</p>
   <p class="u3l4-big"><span class="tex">(x-4)^2=x^2-4x-4x+16=x^2-8x+16</span></p>
   <div class="def"><b>Perfect square trinomial</b> &nbsp;<span class="tex">(a-b)^2=a^2-2ab+b^2</span><div class="eg">The first and last terms stay <b>positive</b> (a square always is). Only the middle term is subtracted.</div></div>
-  <div class="explainer" data-explainer="minusSquare"></div>
+  <div data-extra><div class="explainer" data-explainer="minusSquare"></div></div>
 </section>
 
 <section class="card example" data-ink="ex4" data-section="Example 4">
@@ -175,6 +159,15 @@
   <div class="tip watch"><div class="tip-ic">!</div><div><b>The last term is always plus.</b> In (a), <span class="tex">(-4)(-4)=+16</span>. Only the middle term takes the minus sign.</div></div>
   <div class="space" id="ex4-space"></div>
   <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–8">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 4 · Questions 1–8</h2>
+  <p class="pr-t">Expand with the two patterns.</p>
+  <div class="pr-chips n1"><span><b>1–8</b>Expand and simplify</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 6.</span><a class="pill" href="../../../#/lesson/u3l4">Open the Practice site</a></div>
 </section>
 
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
@@ -207,6 +200,34 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Square That Lost a Corner" style="--wf-side: 380px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Square That Lost a Corner</h2>
+  <p class="wf-rule">A <b>7 by 7</b> square loses a <b>3 by 3</b> corner. Cut what’s left in two… and slide. <span class="muted">Use the buttons to cut and slide.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div id="u3l4-corner"></div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> No calculator, no paper. Use the picture to find <b>49 × 51</b>. <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> 2&#8239;499</div>
+        <div class="opt"><b>B</b> 2&#8239;500</div>
+        <div class="opt"><b>C</b> 2&#8239;501</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A, 2&#8239;499.</b> A <span class="tex">50\times50</span> square loses a <span class="tex">1\times1</span> corner and slides into a <span class="tex">51</span> by <span class="tex">49</span> rectangle: <span class="tex">49\times51=2\,500-1=2\,499</span>. It is <b>exactly</b> one less than <span class="tex">50\times50</span>.</div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u3l4-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many small squares are left after the corner is cut out? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>40</b>: <span class="tex">7\times7=49</span>, minus the <span class="tex">3\times3=9</span> cut out.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How long and how wide is the new rectangle? Same number of squares? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>10 by 4</b>: <span class="tex">7+3=10</span> long, <span class="tex">7-3=4</span> tall. <span class="tex">10\times4=40</span>, the same squares.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>A <b>10 by 10</b> square loses a <b>2 by 2</b> corner. What rectangle do you get? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>12 by 8</b>: <span class="tex">10+2</span> and <span class="tex">10-2</span>. Check: <span class="tex">12\times8=96=100-4</span>.</div></div>
+    </div>
+  </div></div>
+  <p class="u3l4-social">Race your neighbour, no calculators: who can work out <b>98 × 102</b> first? <span data-reveal="tap to see"><span class="tex">100^2-2^2=10\,000-4=\boldsymbol{9\,996}</span></span></p>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -217,7 +238,7 @@
     <div><b>Check first:</b> same two terms with + and −? Difference of squares. Same binomial squared? Perfect square. Neither? Just FOIL.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u3l4">
-    <div><div class="kicker">Your turn</div><b>Assignment 4 — Special Products: Difference of Squares &amp; Perfect Squares</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 4 · Questions 9–16</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l5/">
     <div><div class="kicker">Next lesson</div><b>Lesson 5 — Multiplying a Binomial by a Trinomial</b><div class="muted">Six products instead of four: the area model just grows another column.</div></div><span class="arrow">→</span>
@@ -230,7 +251,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u3l4.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u3l4', homeHref: '../../', title: '3.4 Special Products' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Multiplying a Monomial by a Polynomial · Math 15 3.2</title>
+<meta name="description" content="Math 15 Unit 3 Lesson 2: multiplying two monomials (the Product Law), the distributive property for a monomial times a binomial or trinomial, area models, simplifying after distributing, and two brackets with a negative monomial. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u3l2.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u3l2">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 3 Polynomial Operations · Lesson 2</div>
+  <h1>Multiplying a Monomial by a Polynomial</h1>
+  <p class="lede">Split a rectangle into pieces and its area splits into the pieces’ areas. That one picture explains how to multiply one term by a whole bracket, from <span class="tex">7(x+3)</span> to <span class="tex">-2x(3x^{2}+x-6)</span>. Today: multiplying monomials, the <b>distributive property</b>, and keeping every sign.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>multiply two monomials: multiply the <b>coefficients</b> and <b>add</b> the exponents</li>
+      <li>use the <b>distributive property</b> to multiply a monomial by a binomial or a trinomial</li>
+      <li>draw an <b>area model</b> where each piece is one product</li>
+      <li>expand first, <b>then</b> collect like terms</li>
+      <li>distribute a <b>negative</b> monomial, changing the sign of every term it reaches</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN4</b> Demonstrate an understanding of the multiplication of polynomial expressions (limited to monomials, binomials and trinomials), concretely, pictorially and symbolically.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Beat the Calculator" style="--wf-side: 330px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Beat the Calculator</h2>
+  <p class="wf-rule">Big multiplications get easy if you <b>split the rectangle</b> into friendly pieces. <span class="muted">No calculators!</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u3l2-bc" id="u3l2-bc"></div>
+    <div class="u3l2-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Add the two pieces: <span class="tex">7\times103=\ ?</span> <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>721</b>: <span class="tex">7\times100=700</span> and <span class="tex">7\times3=21</span>, so <span class="tex">700+21=721</span>.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Take the cut-off piece away from <span class="tex">6\times100</span>: <span class="tex">6\times98=\ ?</span> <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>588</b>: <span class="tex">6\times100=600</span>, the cut-off piece is <span class="tex">6\times2=12</span>, so <span class="tex">600-12=588</span>.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u3l2-wqs" style="margin-top:0">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Cover the <b>100</b> and call it <span class="tex">x</span>. What is each piece’s area now? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><span class="tex">7x</span> and <span class="tex">21</span>. The big piece is 7 by <span class="tex">x</span>; the small piece did not change at all.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Beat a calculator: work out <b>8 × 1 997</b> in your head. (Hint: 1 997 is <em>almost</em> a very friendly number.) <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 16 024</div>
+        <div class="opt right"><b>B</b> 15 976</div>
+        <div class="opt"><b>C</b> 15 997</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: 15 976.</b> Think <span class="tex">1\,997=2\,000-3</span>: <span class="tex">8\times2\,000=16\,000</span>, cut off <span class="tex">8\times3=24</span>, so <span class="tex">16\,000-24=15\,976</span>.<br><span class="muted"><b>A</b> adds the 24 (a lost sign). <b>C</b> takes away just 3 (the 8 never multiplied the 3).</span></div>
+    </div>
+  </div></div>
+  <p class="u3l2-social">Race your neighbour, no calculator: <span class="tex">25\times44=</span> <span data-reveal>1 100</span> &nbsp; <span class="tex">9\times999=</span> <span data-reveal>8 991</span> &nbsp; <span class="tex">12\times105=</span> <span data-reveal>1 260</span></p>
+</section>
+
+<!-- ================= 1. Monomial × monomial ================= -->
+<section class="card" data-ink="s1" data-section="1. Multiplying Two Monomials">
+  <div class="sec-h"><span class="badge">1</span><h2>Multiplying Two Monomials</h2></div>
+  <p>Distributing is just repeated monomial-by-monomial multiplication, so start there. <b>Multiply the coefficients</b> and <b>add the exponents</b> (the Product Law from Unit 2):</p>
+  <p class="display"><span class="tex">2x^{2}\times4x^{3}=(2\times4)(x^{2}\times x^{3})=8x^{5}</span></p>
+  <div class="explainer" data-explainer="monoMul"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t add the coefficients, and don’t multiply the exponents.</b> Treat signs as normal: negative times negative is positive.</div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Multiplying monomials</h3></div>
+  <p class="q">Multiply each pair of monomials.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">2x^{3}\times5x^{2}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(2\times5)x^{3+2}</span><br><span class="tex">=\boldsymbol{10x^{5}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">-3x\times4x^{4}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-3\times4)x^{1+4}</span><br><span class="tex">=\boldsymbol{-12x^{5}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">6x^{2}\times x</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(6\times1)x^{2+1}</span><br><span class="tex">=\boldsymbol{6x^{3}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">-2x^{3}\times(-5x^{4})</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-2)(-5)x^{3+4}</span><br><span class="tex">=\boldsymbol{10x^{7}}</span> (negative × negative)</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Monomial × binomial ================= -->
+<section class="card" data-ink="s2" data-section="2. Monomial × Binomial">
+  <div class="sec-h"><span class="badge">2</span><h2>Multiplying a Monomial by a Binomial</h2></div>
+  <p>The <b>distributive property</b>: multiply the outside term by <b>each</b> term inside, then add. That is exactly what the warm-up rectangles did.</p>
+  <div class="u3l2-dp">
+    <div class="u3l2-dpb"><div class="u3l2-dph">Distributive property</div><span class="tex">a(b+c)=ab+ac</span></div>
+    <div class="u3l2-dpb"><div class="u3l2-dph">Example</div><span class="tex">3x(x+4)=3x^{2}+12x</span></div>
+    <div class="u3l2-dpb"><div class="u3l2-dph">Signs travel with their term</div><span class="tex">-5(x-2)=-5x+10</span></div>
+  </div>
+  <div class="explainer" data-explainer="areaRect"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Signs travel">
+  <h3 class="sub">Signs travel with their term</h3>
+  <p>Draw an arrow from the outside term to <b>each</b> term inside. Each arrow is one product, and the sign in front of a term goes along with it: <span class="tex">-5(x-2)=(-5)(x)+(-5)(-2)=-5x+10</span>, <b>not</b> <span class="tex">-5x-10</span>.</p>
+  <div class="explainer" data-explainer="distA"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Monomial times binomial</h3></div>
+  <p class="q">Use the distributive property to expand each product.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">4(x+7)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4\times x+4\times7</span><br><span class="tex">=\boldsymbol{4x+28}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">-3(x-5)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-3)(x)+(-3)(-5)</span><br><span class="tex">=\boldsymbol{-3x+15}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">2x(x+6)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2x\times x+2x\times6</span><br><span class="tex">=\boldsymbol{2x^{2}+12x}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">-5x(x-3)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-5x)(x)+(-5x)(-3)</span><br><span class="tex">=\boldsymbol{-5x^{2}+15x}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Monomial × trinomial ================= -->
+<section class="card" data-ink="s3" data-section="3. Monomial × Trinomial">
+  <div class="sec-h"><span class="badge">3</span><h2>Multiplying a Monomial by a Trinomial</h2></div>
+  <p>Nothing changes with three terms: distribute to <b>all</b> of them, one at a time. <span class="tex">2x(x^{2}+3x-4)=2x^{3}+6x^{2}-8x</span>.</p>
+  <div class="def"><b>Count your products.</b> Your answer should have exactly as many products as there were terms in the bracket, so a trinomial always gives <b>three</b> terms. Arrows (or a grid) from the monomial to each term help you avoid skipping one.</div>
+  <div class="explainer" data-explainer="areaGrid"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Monomial times trinomial</h3></div>
+  <p class="q">Use the distributive property to expand each product.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">3(x^{2}+2x-1)</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u3l2-mini" data-side="3" data-top="x^2,2x,-1"></div><span class="tex">=\boldsymbol{3x^{2}+6x-3}</span> &nbsp;Three terms in, three out.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">-4(2x^{2}-x+5)</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u3l2-mini" data-side="-4" data-top="2x^2,-x,5"></div><span class="tex">=\boldsymbol{-8x^{2}+4x-20}</span> &nbsp;Every sign flips.</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">5x(x^{2}-3x+2)</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u3l2-mini" data-side="5x" data-top="x^2,-3x,2"></div><span class="tex">=\boldsymbol{5x^{3}-15x^{2}+10x}</span> &nbsp;Add 1 to each exponent.</div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">-2x(3x^{2}+x-6)</span></div><div class="work" style="--h:160px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u3l2-mini" data-side="-2x" data-top="3x^2,x,-6"></div><span class="tex">=\boldsymbol{-6x^{3}-2x^{2}+12x}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u3l2"></section>
+
+<!-- ================= 4. Simplifying after distributing ================= -->
+<section class="card" data-ink="s4" data-section="4. Simplifying After Distributing">
+  <div class="sec-h"><span class="badge">4</span><h2>Simplifying After Distributing</h2></div>
+  <p>When extra terms sit outside the brackets, <b>distribute first</b> and <b>then</b> collect like terms:</p>
+  <p class="display"><span class="tex">2x(x+4)+3x=2x^{2}+8x+3x=2x^{2}+11x</span></p>
+  <p>Only terms with the identical variable part combine, so <span class="tex">8x</span> and <span class="tex">3x</span> join but <span class="tex">2x^{2}</span> stands alone.</p>
+  <div class="explainer" data-explainer="distB"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Expand and simplify</h3></div>
+  <p class="q">Expand and simplify.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">3x(x+2)+4x</span></div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3x^{2}+6x+4x</span><br><span class="tex">=\boldsymbol{3x^{2}+10x}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">5(x-3)-2x</span></div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">5x-15-2x</span><br><span class="tex">=\boldsymbol{3x-15}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">4x(x-1)+3(x+2)</span></div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4x^{2}-4x+3x+6</span><br><span class="tex">=\boldsymbol{4x^{2}-x+6}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">2x(3x+1)-5x</span></div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">6x^{2}+2x-5x</span><br><span class="tex">=\boldsymbol{6x^{2}-3x}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. Spot the mistake">
+  <h3 class="sub">Spot the mistake</h3>
+  <p>Four students, four classic mistakes. Find each one <b>before</b> pressing Next.</p>
+  <div class="explainer" data-explainer="mistakes"></div>
+</section>
+
+<!-- ================= 5. Negative monomials ================= -->
+<section class="card" data-ink="s5" data-section="5. A Negative Monomial">
+  <div class="sec-h"><span class="badge">5</span><h2>Combining Distributions with a Negative Monomial</h2></div>
+  <p>The hardest expressions have <b>two</b> sets of brackets with at least one negative multiplier. Work <b>one bracket at a time</b>: write the first expansion out fully before you look at the second, then add the two results and collect like terms.</p>
+  <div class="explainer" data-explainer="distC"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>A negative monomial changes the sign of every term it reaches.</b> This is the single most common place marks are lost: <span class="tex">-3(x-5)</span> is <span class="tex">-3x+15</span>, so the <span class="tex">-5</span> becomes <span class="tex">+15</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Two brackets, a negative monomial</h3></div>
+  <p class="q">Expand and simplify.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">-4x(2x-3)-3(x-5)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">First bracket: <span class="tex">-4x(2x-3)=-8x^{2}+12x</span><br>Second: <span class="tex">-3(x-5)=-3x+15</span><br><span class="tex">-8x^{2}+12x-3x+15=\boldsymbol{-8x^{2}+9x+15}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">-x(x+8)-2x(3x-1)</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">First: <span class="tex">-x(x+8)=-x^{2}-8x</span><br>Second: <span class="tex">-2x(3x-1)=-6x^{2}+2x</span><br><span class="tex">-x^{2}-8x-6x^{2}+2x=\boldsymbol{-7x^{2}-6x}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> In (b), why is the second bracket <span class="tex">-6x^{2}+2x</span> and not <span class="tex">-6x^{2}-2x</span>?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The <span class="tex">-2x</span> multiplies the <span class="tex">-1</span> too: <span class="tex">(-2x)(-1)=+2x</span>. Negative × negative is positive.</div></div></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Monomial × monomial:</b> multiply the coefficients, <b>add</b> the exponents. <span class="tex">-3x\times4x^{4}=-12x^{5}</span>.</div>
+    <div><b>Distributive property:</b> <span class="tex">a(b+c)=ab+ac</span>. The outside term multiplies <b>each</b> term inside; a trinomial gives <b>three</b> products.</div>
+    <div><b>Signs travel with their term.</b> A negative monomial changes the sign of every term it reaches: <span class="tex">-5(x-2)=-5x+10</span>.</div>
+    <div><b>Distribute first, then collect</b> like terms. With two brackets, do one bracket at a time.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u3l2">
+    <div><div class="kicker">Your turn</div><b>Assignment 2 — Multiplying a Monomial by a Polynomial</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l3/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 3 — Multiplying Two Binomials</b><div class="muted"><span class="tex">13\times12=(10+3)(10+2)</span>: split <b>both</b> sides and you get four pieces. That’s FOIL.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u3l2.js';
+  boot({ key: 'u3l2', homeHref: '../../', title: '3.2 Monomial × Polynomial' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

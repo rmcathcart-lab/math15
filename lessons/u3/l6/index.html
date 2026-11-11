@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u3l6.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u3l6">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: The Open-Top Box">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Open-Top Box</h2>
+  <p class="wf-rule">Cut the same square from each corner of a <b>20 cm by 20 cm</b> sheet and fold up the sides. Which cut makes the box that <b>holds the most</b>?</p></div>
+  <div class="vw-tiles" style="--n:4"><div><b>A</b>1 cm</div><div><b>B</b>3 cm</div><div><b>C</b>5 cm</div><div><b>D</b>8 cm</div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>A small cut is wide but flat. A big cut is tall but skinny.</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>B, the 3 cm cut:</b> <span class="tex">14\times14\times3=588</span> cm³. The others hold 324, 500 and 128 cm³.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,35 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Open-Top Box" style="--wf-side: 320px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Open-Top Box</h2>
-  <p class="wf-rule">Cut a square from each corner of a <b>12 cm by 12 cm</b> sheet. Fold up the sides. <span class="muted">Tap a cut size to fold it. Tap a <b class="u3l6-cr">?</b> to reveal it.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u3l6-wu" id="u3l6-wu"></div>
-    <div class="u3l6-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Cut <b>1 cm</b> squares. Why is the box 10 cm long, not 11 cm? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans">A square is cut from <b>both</b> ends of each side, so the length loses 1 cm twice: <span class="tex">12-2\times1=10</span>.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Cut <b>3 cm</b> squares. How long, wide and tall is the box? Its volume? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>6 by 6 by 3</b> (<span class="tex">12-2\times3=6</span>). Volume <span class="tex">6\times6\times3=108</span> cm³.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>What if you cut <b>6 cm</b> squares? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><span class="tex">12-2\times6=0</span>: nothing is left to fold. No box, volume 0.</div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A small cut makes a box that is wide but flat. A big cut makes one that is tall but skinny. Which cut makes the box hold the <b>most</b>? <b>Guess first</b>, then fill in the table.</div></div>
-      <div class="poll-opts c4">
-        <div class="opt"><b>A</b> 1 cm</div>
-        <div class="opt right"><b>B</b> 2 cm</div>
-        <div class="opt"><b>C</b> 3 cm</div>
-        <div class="opt"><b>D</b> 4 cm</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>B, 2 cm:</b> <span class="tex">8\times8\times2=128</span> cm³.<br>The table: 100, <b>128</b>, 108, 64, 20, 0. The volume climbs, peaks, then falls to 0.<br>The <span class="tex">4\times4\times4</span> cube looks the fullest, but it holds only 64, <b>half</b> of the winner.</div>
-    </div>
-  </div></div>
-  <div class="bk-wq u3l6-wide"><div class="q-line"><div class="q-num bonus">+</div><div><b>Try it:</b> cut and fold a real sheet. Could a cut like <b>2.5 cm</b> beat the winner? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-    <div class="bk-ans">No. 2.5 cm gives <span class="tex">7\times7\times2.5=122.5</span> and 1.5 cm gives <span class="tex">9\times9\times1.5=121.5</span>. 128 cm³ is the most.</div></div>
-</section>
+
 
 <!-- ================= 1. The skills ================= -->
 <section class="card" data-ink="s1" data-section="1. The Skills You Will Need">
@@ -92,7 +74,7 @@
   <div class="sec-h"><span class="badge">2</span><h2>Area Applications</h2></div>
   <div class="def u3l6-rule"><b>Area of a rectangle:</b> <span class="tex">A=\text{length}\times\text{width}</span></div>
   <p>When the length and width are binomials, multiply them with <b>FOIL</b> and collect like terms. The simplified trinomial <b>is</b> the area. To find a number, substitute the given value of <span class="tex">x</span> into that trinomial.</p>
-  <div class="explainer" data-explainer="area"></div>
+  <div data-extra><div class="explainer" data-explainer="area"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -123,7 +105,7 @@
   <div class="sec-h"><span class="badge">3</span><h2>Volume Applications</h2></div>
   <div class="def u3l6-rule"><b>Volume of a rectangular prism:</b> <span class="tex">V=\text{length}\times\text{width}\times\text{height}</span></div>
   <p>With three binomial edges, multiply <b>two</b> of them first to get a trinomial (the area of the base). Then multiply that trinomial by the third binomial. That’s exactly the Lesson 5 skill.</p>
-  <div class="explainer" data-explainer="box"></div>
+  <div data-extra><div class="explainer" data-explainer="box"></div></div>
 </section>
 
 <section class="card example" data-ink="ex2" data-section="Example 2">
@@ -140,9 +122,18 @@
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–4">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 6 · Questions 1–4</h2>
+  <p class="pr-t">Area and volume of simple shapes.</p>
+  <div class="pr-chips n1"><span><b>1–4</b>Area and volume of simple shapes</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 3.</span><a class="pill" href="../../../#/lesson/u3l6">Open the Practice site</a></div>
+</section>
+
 <section class="card" data-ink="s3b" data-section="3. The warm-up box">
   <h3 class="sub">The warm-up box, in algebra</h3>
-  <p>Every row of the warm-up table followed the same recipe. Call the cut <span class="tex">x</span> and write the recipe <b>once</b>.</p>
+  <p>Every cut in the warm-up followed the same recipe. Call the cut <span class="tex">x</span> and write the recipe <b>once</b>.</p>
   <div class="explainer" data-explainer="openbox"></div>
 </section>
 
@@ -170,7 +161,7 @@
       <div class="part"><div class="pl">(c) State the actual dimensions and area of each plot.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Plot A: <b>9 m by 16 m</b>; Plot B: <b>8 m by 18 m</b>.<br>Both areas <span class="tex">=\mathbf{144}</span> m² ✓</div></div></div>
     </div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Why do the <span class="tex">x^2</span> terms always cancel in a question like this?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Each side is <span class="tex">x\cdot x</span> plus smaller terms, so <b>both</b> sides start with exactly one <span class="tex">x^2</span>. Subtracting <span class="tex">x^2</span> from both sides removes it, and only <span class="tex">x</span> terms and numbers are left.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Why do the <span class="tex">x^2</span> terms always cancel in a question like this?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Each side is <span class="tex">x\cdot x</span> plus smaller terms, so <b>both</b> sides start with exactly one <span class="tex">x^2</span>. Subtracting <span class="tex">x^2</span> from both sides removes it, and only <span class="tex">x</span> terms and numbers are left.</div></div></div>
   <div class="space" id="ex3-space"></div>
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
@@ -182,7 +173,7 @@
 <section class="card" data-ink="s5" data-section="5. A Multi-Step Application">
   <div class="sec-h"><span class="badge">5</span><h2>A Multi-Step Application</h2></div>
   <p>This one puts area, volume and evaluating together. Watch for phrases like <b>“2 cm longer and 2 cm wider”</b>: they change a dimension <b>before</b> you multiply.</p>
-  <div class="explainer" data-explainer="tank"></div>
+  <div data-extra><div class="explainer" data-explainer="tank"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Change the sides first, then multiply.</b> A lid 2 cm longer than <span class="tex">(x+4)</span> is <span class="tex">(x+4+2)=(x+6)</span>. Adding 2 to the <b>area</b> instead would be wrong.</div></div>
 </section>
 
@@ -202,6 +193,36 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Open-Top Box" style="--wf-side: 320px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Open-Top Box</h2>
+  <p class="wf-rule">Cut a square from each corner of a <b>12 cm by 12 cm</b> sheet. Fold up the sides. <span class="muted">Tap a cut size to fold it. Tap a <b class="u3l6-cr">?</b> to reveal it.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u3l6-wu" id="u3l6-wu"></div>
+    <div class="u3l6-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Cut <b>1 cm</b> squares. Why is the box 10 cm long, not 11 cm? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">A square is cut from <b>both</b> ends of each side, so the length loses 1 cm twice: <span class="tex">12-2\times1=10</span>.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Cut <b>3 cm</b> squares. How long, wide and tall is the box? Its volume? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>6 by 6 by 3</b> (<span class="tex">12-2\times3=6</span>). Volume <span class="tex">6\times6\times3=108</span> cm³.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>What if you cut <b>6 cm</b> squares? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><span class="tex">12-2\times6=0</span>: nothing is left to fold. No box, volume 0.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A small cut makes a box that is wide but flat. A big cut makes one that is tall but skinny. Which cut makes the box hold the <b>most</b>? <b>Guess first</b>, then fill in the table.</div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b> 1 cm</div>
+        <div class="opt right"><b>B</b> 2 cm</div>
+        <div class="opt"><b>C</b> 3 cm</div>
+        <div class="opt"><b>D</b> 4 cm</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, 2 cm:</b> <span class="tex">8\times8\times2=128</span> cm³.<br>The table: 100, <b>128</b>, 108, 64, 20, 0. The volume climbs, peaks, then falls to 0.<br>The <span class="tex">4\times4\times4</span> cube looks the fullest, but it holds only 64, <b>half</b> of the winner.</div>
+    </div>
+  </div></div>
+  <div class="bk-wq u3l6-wide"><div class="q-line"><div class="q-num bonus">+</div><div><b>Try it:</b> cut and fold a real sheet. Could a cut like <b>2.5 cm</b> beat the winner? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="bk-ans">No. 2.5 cm gives <span class="tex">7\times7\times2.5=122.5</span> and 1.5 cm gives <span class="tex">9\times9\times1.5=121.5</span>. 128 cm³ is the most.</div></div>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -212,7 +233,7 @@
     <div><b>Multi-step:</b> change a side <b>before</b> multiplying (“2 cm longer”). Check every answer with the real side lengths.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u3l6">
-    <div><div class="kicker">Your turn</div><b>Assignment 6 — Applying Polynomial Products to Area, Volume, and Equations</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 6 · Questions 5–13</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l7/">
     <div><div class="kicker">Next lesson</div><b>Lesson 7 — Unit Review: Polynomial Operations</b><div class="muted">Every skill from the unit, one more time, before the test</div></div><span class="arrow">→</span>
@@ -225,7 +246,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u3l6.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u3l6', homeHref: '../../', title: '3.6 Area, Volume and Equations' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>
