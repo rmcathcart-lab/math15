@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u2l7.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u2l7">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Which Is Bigger?">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Which Is Bigger?</h2>
+  <p class="wf-rule">No calculator. Which one is bigger?</p></div>
+  <div class="vw-tiles" style="--n:2"><div><b>A</b><span class="tex">2^{-3}</span></div><div><b>B</b><span class="tex">3^{-2}</span></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Convince the person beside you.</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>A.</b> <span class="tex">2^{-3}=\tfrac18</span> and <span class="tex">3^{-2}=\tfrac19</span>. An eighth is a little more than a ninth. Neither one is negative.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,8 +54,151 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Crack the Code" style="--wf-side: 352px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Crack the Code</h2>
+
+
+<!-- ================= 1. The complete set ================= -->
+<section class="card" data-ink="s1" data-section="1. The Complete Set of Exponent Laws">
+  <div class="sec-h"><span class="badge">1</span><h2>The Complete Set of Exponent Laws</h2></div>
+  <p>Here are all seven rules in one place. <b>Nothing new</b> is added this lesson: the laws are just used together.</p>
+  <div class="u2l7-laws">
+    <div class="u2l7-law l-prod"><b>Product</b><span class="tex">a^m\times a^n=a^{m+n}</span><small>multiplying: <b>add</b></small></div>
+    <div class="u2l7-law l-quot"><b>Quotient</b><span class="tex">a^m\div a^n=a^{m-n}</span><small>dividing: <b>subtract</b></small></div>
+    <div class="u2l7-law l-ppow"><b>Power of a Power</b><span class="tex">(a^m)^n=a^{mn}</span><small>bracket: <b>multiply</b></small></div>
+    <div class="u2l7-law l-pprod"><b>Power of a Product</b><span class="tex">(ab)^n=a^nb^n</span><small>to <b>every</b> factor</small></div>
+    <div class="u2l7-law l-pquot"><b>Power of a Quotient</b><span class="tex">\left(\dfrac{a}{b}\right)^n=\dfrac{a^n}{b^n}</span><small>top <b>and</b> bottom</small></div>
+    <div class="u2l7-law l-zero"><b>Zero Exponent</b><span class="tex">a^0=1</span><small><span class="tex">a\neq0</span></small></div>
+    <div class="u2l7-law l-neg"><b>Negative Exponent</b><span class="tex">a^{-n}=\dfrac{1}{a^n}</span><small><span class="tex">a\neq0</span>: <b>flip</b>, not negative</small></div>
+  </div>
+  <div class="def">One habit matters throughout: <b>finish every answer with positive exponents only.</b> An answer like <span class="tex">x^{-4}</span> is not finished yet: write it as <span class="tex">\dfrac{1}{x^4}</span>.</div>
+  <div data-extra><div class="explainer" data-explainer="laws"></div></div>
+</section>
+
+<section data-extra class="card" data-ink="s1b" data-section="1. Exponent hops">
+  <h3 class="sub">Adding and subtracting negative exponents</h3>
+  <p>With the same base, the exponents do all the work. Negative exponents are just numbers on the <b>number line</b>: adding a negative hops <b>left</b>.</p>
+  <div class="explainer" data-explainer="hops"></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Check the warm-up trap.</b> Use the <b>negative key</b> <kbd>(−)</kbd>, not subtract: <span class="keys"><kbd>2</kbd><kbd>^</kbd><kbd>(−)</kbd><kbd>3</kbd><kbd>ENTER</kbd></span> gives 0.125, and <kbd>2nd</kbd><kbd>F◂▸D</kbd> turns it into <b>1┘8</b>, which means <span class="tex">\tfrac18</span>. Small and <b>positive</b>.</div>
+    <button class="pill" data-keys="2 ^ (−) 3 = F◂▸D">Show me</button>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Three powers of <span class="tex">x</span>, one answer</h3></div>
+  <p class="q">Simplify <span class="tex">4x^{3}\cdot x^{-7}\cdot x^{0}</span>. Write the answer with positive exponents.</p>
+  <div class="parts c1">
+    <div class="part"><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Same base, so add the exponents: <span class="tex">x^{3+(-7)+0}=x^{-4}</span>.<br><span class="tex">4x^{-4}=\boldsymbol{\dfrac{4}{x^{4}}}</span> &nbsp;(the coefficient 4 stays in the numerator)</div></div></div>
+  </div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Why is the answer <b>not</b> <span class="tex">\dfrac{1}{4x^4}</span>?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The exponent <span class="tex">-4</span> touches only the <span class="tex">x</span>. The 4 has no negative exponent, so it stays on top. Only <span class="tex">(4x)^{-4}</span> would send the 4 to the bottom too.</div></div></div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Checklist ================= -->
+<section class="card" data-ink="s2" data-section="2. A Three-Step Checklist">
+  <div class="sec-h"><span class="badge">2</span><h2>A Three-Step Checklist</h2></div>
+  <div class="u2l7-plan">
+    <div class="u2l7-step s1"><span class="u2l7-sn">1</span><div><b>Brackets first.</b> A power outside a bracket goes to the coefficient <b>and</b> every variable inside.</div></div>
+    <div class="u2l7-step s2"><span class="u2l7-sn">2</span><div><b>Combine matching bases.</b> Multiplying: <b>add</b> exponents. Dividing: <b>subtract</b>. Coefficients and each variable separately.</div></div>
+    <div class="u2l7-step s3"><span class="u2l7-sn">3</span><div><b>Zero and negative exponents last.</b> Replace any leftover <span class="tex">a^0</span> with 1 (a zero exponent can be cleared as soon as you see it), then flip any negative exponents: <span class="tex">a^{-n}=\dfrac{1}{a^n}</span>.</div></div>
+  </div>
+  <div class="explainer" data-explainer="steps"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Dividing with a negative exponent</h3></div>
+  <p class="q">Simplify <span class="tex">12a^{-2}\div 4a^{5}</span>. Write the answer with positive exponents.</p>
+  <div class="parts c1">
+    <div class="part"><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Coefficients: <span class="tex">12\div4=3</span>. &nbsp; Variables: <span class="tex">a^{-2-5}=a^{-7}</span>.<br><span class="tex">3a^{-7}=\boldsymbol{\dfrac{3}{a^{7}}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Negative outer powers ================= -->
+<section class="card" data-ink="s3" data-section="3. Brackets with Negative Outer Powers">
+  <div class="sec-h"><span class="badge">3</span><h2>Brackets with Negative Outer Powers</h2></div>
+  <p>A negative exponent outside a bracket still multiplies through: <span class="tex">(5x^{3})^{-2}=5^{-2}x^{-6}</span>, and <span class="tex">5^{-2}=\dfrac{1}{25}</span>. Multiply the outer exponent by <b>each</b> inner exponent, <b>signs included</b>. Save the flip to positive exponents for the <b>very last</b> step.</p>
+  <div data-extra><div class="explainer" data-explainer="outer"></div></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>The coefficient gets the power too.</b> In <span class="tex">(5x^3)^{-2}</span> the 5 is really <span class="tex">5^1</span>, so it becomes <span class="tex">5^{-2}=\tfrac{1}{25}</span>, not <span class="tex">-10</span> and not 5.</div></div>
+</section>
+
+<section data-extra class="card" data-ink="s3b" data-section="3. Numbers, then each letter">
+  <h3 class="sub">After the brackets: numbers together, each letter on its own</h3>
+  <p>Once the brackets are gone, sort the pieces: the <b>numbers</b> reduce like a fraction, and each <b>letter</b> gets its own exponent sum (top <b>adds</b>, bottom <b>subtracts</b>).</p>
+  <div class="explainer" data-explainer="sorter"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Brackets with negative and positive powers</h3></div>
+  <p class="q">Simplify. Write every final answer with positive exponents.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">(3x^{2})^{-2}\times x^{5}</span></div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(3x^{2})^{-2}=3^{-2}x^{-4}=\dfrac{x^{-4}}{9}</span><br><span class="tex">\dfrac{x^{-4}\times x^{5}}{9}=\dfrac{x^{1}}{9}=\boldsymbol{\dfrac{x}{9}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{(2a^{3}b)^{2}}{4a^{7}b^{-1}}</span></div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Top: <span class="tex">(2a^{3}b)^{2}=4a^{6}b^{2}</span><br><span class="tex">\dfrac{4a^{6}b^{2}}{4a^{7}b^{-1}}=a^{6-7}b^{2-(-1)}</span><br><span class="tex">=a^{-1}b^{3}=\boldsymbol{\dfrac{b^{3}}{a}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(x^{-2}y^{3})^{-3}</span></div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Multiply each exponent by <span class="tex">-3</span>:<br><span class="tex">x^{(-2)(-3)}y^{(3)(-3)}=x^{6}y^{-9}</span><br><span class="tex">=\boldsymbol{\dfrac{x^{6}}{y^{9}}}</span></div></div></div>
+  </div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> In (c), the outer exponent is negative. Why does <span class="tex">x</span> end up with a <b>positive</b> exponent?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Negative times negative is positive: <span class="tex">(-2)(-3)=6</span>. Two flips cancel out, so <span class="tex">x^6</span> stays on top.</div></div></div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–8">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 7 · Questions 1–8</h2>
+  <p class="pr-t">One law at a time, then two or more together.</p>
+  <div class="pr-chips n2"><span><b>1–4</b>One law at a time</span><span><b>5–8</b>Two or more laws together</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 6.</span><a class="pill" href="../../../#/lesson/u2l7">Open the Practice site</a></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u2l7"></section>
+
+<!-- ================= 4. Fractions raised to a power ================= -->
+<section class="card" data-ink="s4" data-section="4. Fractions Raised to a Power">
+  <div class="sec-h"><span class="badge">4</span><h2>Fractions Raised to a Power</h2></div>
+  <p><b>Simplify inside the bracket first</b>, before applying the outer power: it keeps the numbers small. A negative outer power on a fraction simply <b>flips</b> it:</p>
+  <div class="def u2l7-flipdef"><span class="tex">\left(\dfrac{a}{b}\right)^{-n}=\left(\dfrac{b}{a}\right)^{n}</span> &nbsp; so &nbsp; <span class="tex">\left(\dfrac{2}{x}\right)^{-2}=\left(\dfrac{x}{2}\right)^{2}=\dfrac{x^{2}}{4}</span></div>
+  <div class="explainer" data-explainer="flip"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Inside first, then the outer power</h3></div>
+  <p class="q">Simplify. Write the final answer with positive exponents.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">\left(\dfrac{2a^{4}}{a^{-2}}\right)^{-2}</span></div><div class="work" style="--h:270px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Inside first: <span class="tex">\dfrac{a^{4}}{a^{-2}}=a^{4-(-2)}=a^{6}</span>, so the bracket is <span class="tex">(2a^{6})^{-2}</span>.<br><span class="tex">2^{-2}a^{-12}=\boldsymbol{\dfrac{1}{4a^{12}}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{(3x^{-1}y^{2})^{2}}{9x^{-4}y^{5}}</span></div><div class="work" style="--h:270px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Top: <span class="tex">(3x^{-1}y^{2})^{2}=9x^{-2}y^{4}</span><br><span class="tex">\dfrac{9x^{-2}y^{4}}{9x^{-4}y^{5}}=x^{-2-(-4)}y^{4-5}</span><br><span class="tex">=x^{2}y^{-1}=\boldsymbol{\dfrac{x^{2}}{y}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= 5. All three steps ================= -->
+<section class="card" data-ink="s5" data-section="5. Putting All Three Steps Together">
+  <div class="sec-h"><span class="badge">5</span><h2>Putting All Three Steps Together</h2></div>
+  <p>Longer expressions are the <b>same checklist</b>, run once. A zero exponent hiding inside a bracket can be cleared right away (<span class="tex">y^0=1</span>, so it disappears). Only after <b>every</b> base is combined do you decide which exponents still need flipping.</p>
+  <div data-extra><div class="explainer" data-explainer="steps5"></div></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>The whole checklist in one expression</h3></div>
+  <p class="q">Simplify <span class="tex">\dfrac{(2x^{3}y^{0})^{-2}\times 6x^{5}}{3x^{-4}}</span>. Write the answer with positive exponents.</p>
+  <div class="parts c1">
+    <div class="part"><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Step 1: <span class="tex">y^{0}=1</span>, so the bracket is <span class="tex">(2x^{3})^{-2}=2^{-2}x^{-6}=\dfrac{x^{-6}}{4}</span>.<br>Step 2, numerator: <span class="tex">\dfrac{x^{-6}}{4}\times6x^{5}=\dfrac{6x^{-1}}{4}=\dfrac{3x^{-1}}{2}</span>.<br>Divide: <span class="tex">\dfrac{3x^{-1}}{2}\div3x^{-4}=\dfrac{1}{2}\,x^{-1-(-4)}=\boldsymbol{\dfrac{x^{3}}{2}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section data-extra class="card" data-ink="s5b" data-section="5. Check it with a number">
+  <h3 class="sub">Not sure? Check it with a number</h3>
+  <p>If two expressions are equal, they give the same value for <b>every</b> <span class="tex">x</span>. Put <span class="tex">x=2</span> into the question and into your answer: the values must match.</p>
+  <div class="explainer" data-explainer="check"></div>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Crack the Code" style="--wf-side: 352px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Crack the Code</h2>
   <p class="wf-rule">Each locked box hides a letter. Find its <b>value</b>, then look it up in the <b>key</b>. <span class="muted">Tap a box to unlock it.</span></p></div>
   <div class="wf-grid"><div class="wf-main">
     <div class="u2l7-boxes" id="u2l7-boxes"></div>
@@ -78,138 +231,6 @@
   <p class="u2l7-social">Your turn: invent a box for any letter in the key, then swap with a neighbour and crack theirs.</p>
 </section>
 
-<!-- ================= 1. The complete set ================= -->
-<section class="card" data-ink="s1" data-section="1. The Complete Set of Exponent Laws">
-  <div class="sec-h"><span class="badge">1</span><h2>The Complete Set of Exponent Laws</h2></div>
-  <p>Here are all seven rules in one place. <b>Nothing new</b> is added this lesson: the laws are just used together.</p>
-  <div class="u2l7-laws">
-    <div class="u2l7-law l-prod"><b>Product</b><span class="tex">a^m\times a^n=a^{m+n}</span><small>multiplying: <b>add</b></small></div>
-    <div class="u2l7-law l-quot"><b>Quotient</b><span class="tex">a^m\div a^n=a^{m-n}</span><small>dividing: <b>subtract</b></small></div>
-    <div class="u2l7-law l-ppow"><b>Power of a Power</b><span class="tex">(a^m)^n=a^{mn}</span><small>bracket: <b>multiply</b></small></div>
-    <div class="u2l7-law l-pprod"><b>Power of a Product</b><span class="tex">(ab)^n=a^nb^n</span><small>to <b>every</b> factor</small></div>
-    <div class="u2l7-law l-pquot"><b>Power of a Quotient</b><span class="tex">\left(\dfrac{a}{b}\right)^n=\dfrac{a^n}{b^n}</span><small>top <b>and</b> bottom</small></div>
-    <div class="u2l7-law l-zero"><b>Zero Exponent</b><span class="tex">a^0=1</span><small><span class="tex">a\neq0</span></small></div>
-    <div class="u2l7-law l-neg"><b>Negative Exponent</b><span class="tex">a^{-n}=\dfrac{1}{a^n}</span><small><span class="tex">a\neq0</span>: <b>flip</b>, not negative</small></div>
-  </div>
-  <div class="def">One habit matters throughout: <b>finish every answer with positive exponents only.</b> An answer like <span class="tex">x^{-4}</span> is not finished yet: write it as <span class="tex">\dfrac{1}{x^4}</span>.</div>
-  <div class="explainer" data-explainer="laws"></div>
-</section>
-
-<section class="card" data-ink="s1b" data-section="1. Exponent hops">
-  <h3 class="sub">Adding and subtracting negative exponents</h3>
-  <p>With the same base, the exponents do all the work. Negative exponents are just numbers on the <b>number line</b>: adding a negative hops <b>left</b>.</p>
-  <div class="explainer" data-explainer="hops"></div>
-  <div class="tip calc-tip">
-    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
-    <div><b>Check the warm-up trap.</b> Use the <b>negative key</b> <kbd>(−)</kbd>, not subtract: <span class="keys"><kbd>2</kbd><kbd>^</kbd><kbd>(−)</kbd><kbd>3</kbd><kbd>ENTER</kbd></span> gives 0.125, and <kbd>2nd</kbd><kbd>F◂▸D</kbd> turns it into <b>1┘8</b>, which means <span class="tex">\tfrac18</span>. Small and <b>positive</b>.</div>
-    <button class="pill" data-keys="2 ^ (−) 3 = F◂▸D">Show me</button>
-  </div>
-</section>
-
-<section class="card example" data-ink="ex1" data-section="Example 1">
-  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Three powers of <span class="tex">x</span>, one answer</h3></div>
-  <p class="q">Simplify <span class="tex">4x^{3}\cdot x^{-7}\cdot x^{0}</span>. Write the answer with positive exponents.</p>
-  <div class="parts c1">
-    <div class="part"><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Same base, so add the exponents: <span class="tex">x^{3+(-7)+0}=x^{-4}</span>.<br><span class="tex">4x^{-4}=\boldsymbol{\dfrac{4}{x^{4}}}</span> &nbsp;(the coefficient 4 stays in the numerator)</div></div></div>
-  </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Why is the answer <b>not</b> <span class="tex">\dfrac{1}{4x^4}</span>?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The exponent <span class="tex">-4</span> touches only the <span class="tex">x</span>. The 4 has no negative exponent, so it stays on top. Only <span class="tex">(4x)^{-4}</span> would send the 4 to the bottom too.</div></div></div>
-  <div class="space" id="ex1-space"></div>
-  <button class="more" data-more="ex1-space">+ More space</button>
-</section>
-
-<!-- ================= 2. Checklist ================= -->
-<section class="card" data-ink="s2" data-section="2. A Three-Step Checklist">
-  <div class="sec-h"><span class="badge">2</span><h2>A Three-Step Checklist</h2></div>
-  <div class="u2l7-plan">
-    <div class="u2l7-step s1"><span class="u2l7-sn">1</span><div><b>Brackets first.</b> A power outside a bracket goes to the coefficient <b>and</b> every variable inside.</div></div>
-    <div class="u2l7-step s2"><span class="u2l7-sn">2</span><div><b>Combine matching bases.</b> Multiplying: <b>add</b> exponents. Dividing: <b>subtract</b>. Coefficients and each variable separately.</div></div>
-    <div class="u2l7-step s3"><span class="u2l7-sn">3</span><div><b>Zero and negative exponents last.</b> Replace any leftover <span class="tex">a^0</span> with 1 (a zero exponent can be cleared as soon as you see it), then flip any negative exponents: <span class="tex">a^{-n}=\dfrac{1}{a^n}</span>.</div></div>
-  </div>
-  <div class="explainer" data-explainer="steps"></div>
-</section>
-
-<section class="card example" data-ink="ex2" data-section="Example 2">
-  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Dividing with a negative exponent</h3></div>
-  <p class="q">Simplify <span class="tex">12a^{-2}\div 4a^{5}</span>. Write the answer with positive exponents.</p>
-  <div class="parts c1">
-    <div class="part"><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Coefficients: <span class="tex">12\div4=3</span>. &nbsp; Variables: <span class="tex">a^{-2-5}=a^{-7}</span>.<br><span class="tex">3a^{-7}=\boldsymbol{\dfrac{3}{a^{7}}}</span></div></div></div>
-  </div>
-  <div class="space" id="ex2-space"></div>
-  <button class="more" data-more="ex2-space">+ More space</button>
-</section>
-
-<!-- ================= 3. Negative outer powers ================= -->
-<section class="card" data-ink="s3" data-section="3. Brackets with Negative Outer Powers">
-  <div class="sec-h"><span class="badge">3</span><h2>Brackets with Negative Outer Powers</h2></div>
-  <p>A negative exponent outside a bracket still multiplies through: <span class="tex">(5x^{3})^{-2}=5^{-2}x^{-6}</span>, and <span class="tex">5^{-2}=\dfrac{1}{25}</span>. Multiply the outer exponent by <b>each</b> inner exponent, <b>signs included</b>. Save the flip to positive exponents for the <b>very last</b> step.</p>
-  <div class="explainer" data-explainer="outer"></div>
-  <div class="tip watch"><div class="tip-ic">!</div><div><b>The coefficient gets the power too.</b> In <span class="tex">(5x^3)^{-2}</span> the 5 is really <span class="tex">5^1</span>, so it becomes <span class="tex">5^{-2}=\tfrac{1}{25}</span>, not <span class="tex">-10</span> and not 5.</div></div>
-</section>
-
-<section class="card" data-ink="s3b" data-section="3. Numbers, then each letter">
-  <h3 class="sub">After the brackets: numbers together, each letter on its own</h3>
-  <p>Once the brackets are gone, sort the pieces: the <b>numbers</b> reduce like a fraction, and each <b>letter</b> gets its own exponent sum (top <b>adds</b>, bottom <b>subtracts</b>).</p>
-  <div class="explainer" data-explainer="sorter"></div>
-</section>
-
-<section class="card example" data-ink="ex3" data-section="Example 3">
-  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Brackets with negative and positive powers</h3></div>
-  <p class="q">Simplify. Write every final answer with positive exponents.</p>
-  <div class="parts c3">
-    <div class="part"><div class="pl">(a) <span class="tex">(3x^{2})^{-2}\times x^{5}</span></div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(3x^{2})^{-2}=3^{-2}x^{-4}=\dfrac{x^{-4}}{9}</span><br><span class="tex">\dfrac{x^{-4}\times x^{5}}{9}=\dfrac{x^{1}}{9}=\boldsymbol{\dfrac{x}{9}}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{(2a^{3}b)^{2}}{4a^{7}b^{-1}}</span></div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Top: <span class="tex">(2a^{3}b)^{2}=4a^{6}b^{2}</span><br><span class="tex">\dfrac{4a^{6}b^{2}}{4a^{7}b^{-1}}=a^{6-7}b^{2-(-1)}</span><br><span class="tex">=a^{-1}b^{3}=\boldsymbol{\dfrac{b^{3}}{a}}</span></div></div></div>
-    <div class="part"><div class="pl">(c) <span class="tex">(x^{-2}y^{3})^{-3}</span></div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Multiply each exponent by <span class="tex">-3</span>:<br><span class="tex">x^{(-2)(-3)}y^{(3)(-3)}=x^{6}y^{-9}</span><br><span class="tex">=\boldsymbol{\dfrac{x^{6}}{y^{9}}}</span></div></div></div>
-  </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> In (c), the outer exponent is negative. Why does <span class="tex">x</span> end up with a <b>positive</b> exponent?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Negative times negative is positive: <span class="tex">(-2)(-3)=6</span>. Two flips cancel out, so <span class="tex">x^6</span> stays on top.</div></div></div>
-  <div class="space" id="ex3-space"></div>
-  <button class="more" data-more="ex3-space">+ More space</button>
-</section>
-
-<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
-<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u2l7"></section>
-
-<!-- ================= 4. Fractions raised to a power ================= -->
-<section class="card" data-ink="s4" data-section="4. Fractions Raised to a Power">
-  <div class="sec-h"><span class="badge">4</span><h2>Fractions Raised to a Power</h2></div>
-  <p><b>Simplify inside the bracket first</b>, before applying the outer power: it keeps the numbers small. A negative outer power on a fraction simply <b>flips</b> it:</p>
-  <div class="def u2l7-flipdef"><span class="tex">\left(\dfrac{a}{b}\right)^{-n}=\left(\dfrac{b}{a}\right)^{n}</span> &nbsp; so &nbsp; <span class="tex">\left(\dfrac{2}{x}\right)^{-2}=\left(\dfrac{x}{2}\right)^{2}=\dfrac{x^{2}}{4}</span></div>
-  <div class="explainer" data-explainer="flip"></div>
-</section>
-
-<section class="card example" data-ink="ex4" data-section="Example 4">
-  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Inside first, then the outer power</h3></div>
-  <p class="q">Simplify. Write the final answer with positive exponents.</p>
-  <div class="parts c2">
-    <div class="part"><div class="pl">(a) <span class="tex">\left(\dfrac{2a^{4}}{a^{-2}}\right)^{-2}</span></div><div class="work" style="--h:270px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Inside first: <span class="tex">\dfrac{a^{4}}{a^{-2}}=a^{4-(-2)}=a^{6}</span>, so the bracket is <span class="tex">(2a^{6})^{-2}</span>.<br><span class="tex">2^{-2}a^{-12}=\boldsymbol{\dfrac{1}{4a^{12}}}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{(3x^{-1}y^{2})^{2}}{9x^{-4}y^{5}}</span></div><div class="work" style="--h:270px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Top: <span class="tex">(3x^{-1}y^{2})^{2}=9x^{-2}y^{4}</span><br><span class="tex">\dfrac{9x^{-2}y^{4}}{9x^{-4}y^{5}}=x^{-2-(-4)}y^{4-5}</span><br><span class="tex">=x^{2}y^{-1}=\boldsymbol{\dfrac{x^{2}}{y}}</span></div></div></div>
-  </div>
-  <div class="space" id="ex4-space"></div>
-  <button class="more" data-more="ex4-space">+ More space</button>
-</section>
-
-<!-- ================= 5. All three steps ================= -->
-<section class="card" data-ink="s5" data-section="5. Putting All Three Steps Together">
-  <div class="sec-h"><span class="badge">5</span><h2>Putting All Three Steps Together</h2></div>
-  <p>Longer expressions are the <b>same checklist</b>, run once. A zero exponent hiding inside a bracket can be cleared right away (<span class="tex">y^0=1</span>, so it disappears). Only after <b>every</b> base is combined do you decide which exponents still need flipping.</p>
-  <div class="explainer" data-explainer="steps5"></div>
-</section>
-
-<section class="card example" data-ink="ex5" data-section="Example 5">
-  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>The whole checklist in one expression</h3></div>
-  <p class="q">Simplify <span class="tex">\dfrac{(2x^{3}y^{0})^{-2}\times 6x^{5}}{3x^{-4}}</span>. Write the answer with positive exponents.</p>
-  <div class="parts c1">
-    <div class="part"><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Step 1: <span class="tex">y^{0}=1</span>, so the bracket is <span class="tex">(2x^{3})^{-2}=2^{-2}x^{-6}=\dfrac{x^{-6}}{4}</span>.<br>Step 2, numerator: <span class="tex">\dfrac{x^{-6}}{4}\times6x^{5}=\dfrac{6x^{-1}}{4}=\dfrac{3x^{-1}}{2}</span>.<br>Divide: <span class="tex">\dfrac{3x^{-1}}{2}\div3x^{-4}=\dfrac{1}{2}\,x^{-1-(-4)}=\boldsymbol{\dfrac{x^{3}}{2}}</span></div></div></div>
-  </div>
-  <div class="space" id="ex5-space"></div>
-  <button class="more" data-more="ex5-space">+ More space</button>
-</section>
-
-<section class="card" data-ink="s5b" data-section="5. Check it with a number">
-  <h3 class="sub">Not sure? Check it with a number</h3>
-  <p>If two expressions are equal, they give the same value for <b>every</b> <span class="tex">x</span>. Put <span class="tex">x=2</span> into the question and into your answer: the values must match.</p>
-  <div class="explainer" data-explainer="check"></div>
-</section>
-
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -220,7 +241,7 @@
     <div><b>Finish with positive exponents.</b> Flip only what the exponent touches: <span class="tex">4x^{-4}=\dfrac{4}{x^4}</span>. A fraction to a negative power flips: <span class="tex">\left(\dfrac{2}{x}\right)^{-2}=\dfrac{x^2}{4}</span>.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u2l7">
-    <div><div class="kicker">Your turn</div><b>Assignment 7 — Combining Zero, Negative and Positive Exponents</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 7 · Questions 9–16</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l8/">
     <div><div class="kicker">Next lesson</div><b>Lesson 8 — Scientific Notation</b><div class="muted">From a red blood cell to the whole Earth: powers of 10 write tiny and huge numbers in a few symbols.</div></div><span class="arrow">→</span>
@@ -233,7 +254,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u2l7.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u2l7', homeHref: '../../', title: '2.7 Combining Zero, Negative and Positive Exponents' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Scientific Notation · Math 15 2.8</title>
+<meta name="description" content="Math 15 Unit 2 Lesson 8: scientific notation. Why very large and very small numbers are written as a × 10ⁿ with 1 ≤ a &lt; 10, how to tell if a number is in scientific notation, converting standard notation to scientific notation and back by hopping the decimal point, real-world sizes from a red blood cell to the Sun, and comparing and ordering by the exponents first. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u2l8.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u2l8">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 2 Exponents · Lesson 8</div>
+  <h1>Scientific Notation</h1>
+  <p class="lede">The Moon is about <b>384 000 000 m</b> away. A hair is about <b>0.00007 m</b> wide. Numbers like these are easy to miscount and hard to compare. <b>Scientific notation</b> writes them short: a number between 1 and 10, times a <b>power of ten</b>: <span class="tex">3.84\times10^{8}</span> and <span class="tex">7\times10^{-5}</span>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>explain why scientific notation helps with very <b>large</b> and very <b>small</b> numbers</li>
+      <li>tell whether a number is in scientific notation: <span class="tex">a\times10^{n}</span> with <span class="tex">1\le a\lt10</span></li>
+      <li>write a number in scientific notation by counting how many places the <b>decimal point hops</b></li>
+      <li>write a number in scientific notation back in <b>standard notation</b></li>
+      <li>compare and order numbers in scientific notation, <b>exponents first</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN3</b> Demonstrate an understanding of powers with integral and rational exponents.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Tiny to Titanic" style="--wf-side: 350px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Tiny to Titanic</h2>
+  <p class="wf-rule">Six things. Put them in order from <b>smallest</b> to <b>biggest</b>. <span class="muted">Tap a picture to find its size card.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l8-pics" id="u2l8-pics"></div>
+    <div class="u2l8-scale">Drawings not to scale! Size = height of the person and the mountain, width of everything else.</div>
+    <div class="u2l8-cardsh">Size cards, in metres <span class="muted">(shuffled!)</span></div>
+    <div class="u2l8-cards" id="u2l8-cards"></div>
+    <div class="u2l8-rulerrow">
+      <div class="u2l8-ruler" id="u2l8-ruler"></div>
+      <div class="u2l8-wbtns"><button type="button" class="pill small" id="u2l8-line">Line them up</button><button type="button" class="pill small" id="u2l8-wclear">Clear</button></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u2l8-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Order pictures <b>A–F</b>, smallest to biggest. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u2l8-wa"><div class="bk-ans"><b>D, B, F, C, E, A</b>: blood cell, hair, sand, person, mountain, Earth.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Match each picture to a size card <b>1–6</b>. <i>Hint: watch the little number up top.</i> <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u2l8-wa"><div class="bk-ans">Sort by exponent, <span class="tex">-6\lt-5\lt-4\lt0\lt3\lt7</span>: D 2, B 6, F 5, C 4, E 1, A 3.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Which exponents are <b>negative</b>? What do those things have in common? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u2l8-wa"><div class="bk-ans">Cards 2, 6 and 5: all <b>smaller than 1 metre</b>. The person (<span class="tex">10^0</span>) sits right at the line.</div></div></div>
+    </div>
+    <div class="poll wf-poll u2l8-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> About how many <b>red blood cells</b>, side by side, fit across <b>one hair</b>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> 10</div>
+        <div class="opt"><b>B</b> 1&#8239;000</div>
+        <div class="opt"><b>C</b> 1&#8239;000&#8239;000</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A, about 10.</b> <span class="tex">0.00007\div0.000007=10</span>. The exponents <span class="tex">-5</span> and <span class="tex">-6</span> are just <b>one step</b> apart, and one step is one factor of 10.</div>
+    </div>
+  </div></div>
+  <p class="u2l8-social">Look around the room: find something that is about <span class="tex">1\times10^{0}</span> m long.</p>
+</section>
+
+<!-- ================= 1. Why ================= -->
+<section class="card" data-ink="s1" data-section="1. Why Scientific Notation?">
+  <div class="sec-h"><span class="badge">1</span><h2>Why Scientific Notation?</h2></div>
+  <p>Some numbers are awkward to write out. The Earth–Moon distance is about <b>384&#8239;000&#8239;000 m</b>, and a human hair is about <b>0.00007 m</b> wide. It is easy to miscount the zeros and hard to compare numbers like these at a glance. Scientific notation fixes this:</p>
+  <div class="u2l8-pair"><span class="tex">384\,000\,000=3.84\times10^{8}</span><span class="tex">0.00007=7\times10^{-5}</span></div>
+  <p>Each place value is a <b>power of 10</b>. Moving a digit one place to the <b>left</b> multiplies its value by 10; one place to the <b>right</b> multiplies it by <span class="tex">10^{-1}</span> (divides it by 10).</p>
+  <div class="u2l8-tens">
+    <div><span class="tex">10^{3}</span><small>1&#8239;000</small></div>
+    <div><span class="tex">10^{2}</span><small>100</small></div>
+    <div><span class="tex">10^{1}</span><small>10</small></div>
+    <div class="one"><span class="tex">10^{0}</span><small>1</small></div>
+    <div class="neg"><span class="tex">10^{-1}</span><small>0.1</small></div>
+    <div class="neg"><span class="tex">10^{-2}</span><small>0.01</small></div>
+    <div class="neg"><span class="tex">10^{-3}</span><small>0.001</small></div>
+  </div>
+  <div class="explainer" data-explainer="places"></div>
+</section>
+
+<!-- ================= 2. What is it ================= -->
+<section class="card" data-ink="s2" data-section="2. What Is Scientific Notation?">
+  <div class="sec-h"><span class="badge">2</span><h2>What Is Scientific Notation?</h2></div>
+  <div class="def">A number is in <b>scientific notation</b> when it has the form <span class="tex">a\times10^{n}</span>, where
+    <ul class="u2l8-defl">
+      <li>the <b class="u2l8-co">coefficient</b> <span class="tex">a</span> satisfies <span class="tex">1\le a\lt10</span>: exactly <b>one nonzero digit</b> before its decimal point, and</li>
+      <li>the <b class="u2l8-ex">exponent</b> <span class="tex">n</span> is an integer (positive, negative, or zero).</li>
+    </ul>
+  </div>
+  <div class="u2l8-yesno">
+    <div class="yes"><b>✓ Correct</b><span class="tex">4.2\times10^{5}</span><span class="tex">9\times10^{0}</span></div>
+    <div class="no"><b>✗ Not correct</b><span class="tex">52\times10^{3}</span><small>(<span class="tex">52\ge10</span>)</small><span class="tex">0.5\times10^{-2}</span><small>(<span class="tex">0.5\lt1</span>)</small></div>
+  </div>
+  <div class="explainer" data-explainer="isSci"></div>
+</section>
+
+<!-- ================= 3. Standard → scientific ================= -->
+<section class="card" data-ink="s3" data-section="3. Standard → Scientific Notation">
+  <div class="sec-h"><span class="badge">3</span><h2>Standard Notation <span class="u2l8-arr">→</span> Scientific Notation</h2></div>
+  <div class="u2l8-recipe">
+    <div><span class="u2l8-rn">1</span>Put the decimal point right after the <b>first nonzero digit</b>.</div>
+    <div><span class="u2l8-rn">2</span>Count how many places it <b>moved</b>. That count is the exponent.</div>
+    <div><span class="u2l8-rn">3</span>Number <b>10 or larger</b>: the point moves <b>left</b>, and <span class="tex">n</span> is <b>positive</b>.</div>
+  </div>
+  <p class="u2l8-eg"><span class="tex">47\,000\rightarrow4.7</span> is 4 places left, so <span class="tex">47\,000=4.7\times10^{4}</span>.</p>
+  <div class="explainer" data-explainer="toSci"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Big numbers</h3></div>
+  <p class="q">Write each number in scientific notation.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">6\,000</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">3 places left:<br><span class="tex">\boldsymbol{6\times10^{3}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">52\,000</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">4 places left:<br><span class="tex">\boldsymbol{5.2\times10^{4}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">730\,000</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">5 places left:<br><span class="tex">\boldsymbol{7.3\times10^{5}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">8\,400\,000</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">6 places left:<br><span class="tex">\boldsymbol{8.4\times10^{6}}</span></div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Count hops, not zeros.</b> <span class="tex">52\,000</span> has 3 zeros, but the point hops <b>4</b> places (over the 2 as well). Check by going back: <span class="tex">5.2\times10^{3}=5\,200</span>, not <span class="tex">52\,000</span>.</div></div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Numbers smaller than 1">
+  <h3 class="sub">Numbers smaller than 1</h3>
+  <p>For a number <b>smaller than 1</b> the decimal point moves <b>right</b> instead, which makes the exponent <b>negative</b>: <span class="tex">0.0004\rightarrow4</span> is 4 places right, so <span class="tex">0.0004=4\times10^{-4}</span>. A number from 1 up to 10 needs <b>no hops</b>: <span class="tex">n=0</span>, e.g. <span class="tex">5.9=5.9\times10^{0}</span>.</p>
+  <div class="explainer" data-explainer="toSciSmall"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Small numbers</h3></div>
+  <p class="q">Write each number in scientific notation.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">0.003</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">3 places right:<br><span class="tex">\boldsymbol{3\times10^{-3}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">0.00052</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">4 places right:<br><span class="tex">\boldsymbol{5.2\times10^{-4}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">0.0000081</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">6 places right:<br><span class="tex">\boldsymbol{8.1\times10^{-6}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">0.06</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">2 places right:<br><span class="tex">\boldsymbol{6\times10^{-2}}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> How can you tell, before doing any work, whether the exponent will be positive or negative?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Look at the size: <b>10 or more</b> → positive exponent; <b>less than 1</b> → negative exponent; from 1 up to 10 → exponent 0.</div></div></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Scientific → standard ================= -->
+<section class="card" data-ink="s4" data-section="4. Scientific → Standard Notation">
+  <div class="sec-h"><span class="badge">4</span><h2>Scientific Notation <span class="u2l8-arr">→</span> Standard Notation</h2></div>
+  <p>Reverse the process: move the decimal point of the coefficient <span class="tex">|n|</span> places, <b>right</b> if <span class="tex">n</span> is positive and <b>left</b> if <span class="tex">n</span> is negative, filling in <b>zeros</b> as placeholders. For example, <span class="tex">3.4\times10^{-5}</span> moves 5 places left to give <span class="tex">0.000034</span>.</p>
+  <div class="explainer" data-explainer="toStd"></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>On a calculator, <kbd>EE</kbd> means “× 10 to the”.</b> It is <span class="keys"><kbd>2nd</kbd><kbd>EE</kbd></span> (above <kbd>x⁻¹</kbd>). Check the example: <span class="keys"><kbd>3</kbd><kbd>.</kbd><kbd>4</kbd><kbd>2nd</kbd><kbd>EE</kbd><kbd>(−)</kbd><kbd>5</kbd><kbd>ENTER</kbd></span>. A calculator showing <b>3.4E-5</b> or <b>3.4 ×10<sup>−5</sup></b> means <span class="tex">3.4\times10^{-5}</span>, never <span class="tex">3.4^{-5}</span>.</div>
+    <button class="pill" data-keys="3.4 EE (−) 5 =">Show me</button>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Back to standard notation</h3></div>
+  <p class="q">Write each number in standard notation.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">5\times10^{3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">3 places right:<br><span class="tex">\boldsymbol{5\,000}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">3.4\times10^{5}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">5 places right:<br><span class="tex">\boldsymbol{340\,000}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">7\times10^{-3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">3 places left:<br><span class="tex">\boldsymbol{0.007}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">2.6\times10^{-5}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">5 places left:<br><span class="tex">\boldsymbol{0.000026}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u2l8"></section>
+
+<section class="card" data-ink="s4b" data-section="4. Real-world sizes">
+  <h3 class="sub">Real-world sizes, both ways</h3>
+  <p>Science writes its biggest and smallest measurements this way. Same moves as before: a <b>positive</b> exponent for big numbers, a <b>negative</b> one for numbers less than 1.</p>
+  <div class="explainer" data-explainer="real"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Some go each way</h3></div>
+  <p class="q">Convert each real-world fact into the form requested.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Earth’s average distance from the Sun is about <span class="tex">150\,000\,000</span> km. Write this distance in scientific notation.</div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The decimal moves 8 places left, from <span class="tex">150\,000\,000.</span> to <span class="tex">1.5</span>:<br><span class="tex">\boldsymbol{1.5\times10^{8}}</span> km</div></div></div>
+    <div class="part"><div class="pl">(b) A red blood cell is about <span class="tex">0.000007</span> m wide. Write this width in scientific notation.</div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The decimal moves 6 places right to reach the first nonzero digit:<br><span class="tex">\boldsymbol{7\times10^{-6}}</span> m</div></div></div>
+    <div class="part"><div class="pl">(c) A bacterium was measured to be <span class="tex">3.5\times10^{-6}</span> m long. Write this length in standard notation.</div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Negative exponent, so move 6 places left:<br><span class="tex">\boldsymbol{0.0000035}</span> m</div></div></div>
+    <div class="part"><div class="pl">(d) A tech company’s total assets were <span class="tex">2.4\times10^{9}</span> dollars. Write this amount in standard notation.</div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Move 9 places right:<br><span class="tex">\boldsymbol{2\,400\,000\,000}</span> dollars</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= 5. Comparing ================= -->
+<section class="card" data-ink="s5" data-section="5. Comparing and Ordering">
+  <div class="sec-h"><span class="badge">5</span><h2>Comparing and Ordering</h2></div>
+  <p>To compare two numbers in scientific notation, compare the <b class="u2l8-ex">exponents</b> first: the smaller exponent gives the smaller number. Only when the exponents are <b>equal</b> do you compare the <b class="u2l8-co">coefficients</b>.</p>
+  <p>Think of each power of ten as a <b>shelf</b>. The exponent picks the shelf; the coefficient only says where on that shelf the number sits.</p>
+  <div class="explainer" data-explainer="ladder"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Compare and order</h3></div>
+  <p class="q">Compare and order, justifying with the exponents.</p>
+  <div class="parts c1">
+    <div class="part"><div class="pl">(a) Order from smallest to largest: a bacterium (<span class="tex">2\times10^{-6}</span> m), a human hair (<span class="tex">7\times10^{-5}</span> m), and a grain of sand (<span class="tex">5\times10^{-4}</span> m).</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Compare exponents first: <span class="tex">-6\lt-5\lt-4</span>, so <span class="tex">2\times10^{-6}\lt7\times10^{-5}\lt5\times10^{-4}</span>: <b>bacterium, then human hair, then grain of sand</b>.</div></div></div>
+    <div class="part"><div class="pl">(b) City A has a population of <span class="tex">3.2\times10^{6}</span> people and City B has <span class="tex">8\times10^{5}</span> people. Which city has the greater population? Justify your answer using the exponents.</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>City A.</b> Its exponent is 6 against City B’s 5, and a larger exponent wins (as long as both numbers are in scientific notation) no matter how big the coefficient is: <span class="tex">3.2\times10^{6}=3\,200\,000</span> while <span class="tex">8\times10^{5}=800\,000</span>.</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= Math History box (brown) ================= -->
+<!-- sources: https://en.wikipedia.org/wiki/The_Sand_Reckoner (via wikiwand.com/en/articles/The_Sand_Reckoner) ·
+     https://physics.weber.edu/carroll/archimedes/sand.htm (Archimedes Home Page, Weber State / Chris Rorres) -->
+<section class="card history" data-ink="hist" data-section="Math History: The Sand Reckoner">
+  <div class="hist-head"><span class="hist-tag">Math History</span><span class="hist-dates">3rd century BCE · Syracuse</span></div>
+  <div class="hist-grid">
+    <div class="hist-text">
+      <h3 class="hist-title">How many grains of sand fill the universe?</h3>
+      <p>Some people said the grains of sand were <b>infinite</b>. <b>Archimedes</b> disagreed. In <i>The Sand Reckoner</i>, a letter to King Gelon, he counted the sand that would fill the <b>whole universe</b>, as people pictured it then.</p>
+      <p>Greek number words stopped at a <b>myriad</b> (<span class="tex">10\,000</span>), so he invented bigger ones. His answer, in today’s notation: <b>fewer than <span class="tex">10^{63}</span></b> grains, a 1 followed by 63 zeros.</p>
+      <div class="part hist-q"><div class="pl">Each of his imagined grains was about <span class="tex">0.00002</span> m across. Write that in scientific notation. Is it bigger than a red blood cell, <span class="tex">7\times10^{-6}</span> m?</div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{2\times10^{-5}}</span> m. Since <span class="tex">-5\gt-6</span>, <b>yes</b>: bigger than a blood cell, but smaller than a hair.</div></div></div>
+    </div>
+    <figure class="hist-anim">
+      <svg id="u2l8-hist" viewBox="0 0 600 300" role="img" aria-label="Archimedes' answer typed out in full: a 1 followed by 63 zeros, counted in groups, which then squeezes down into the short form 1 times 10 to the 63."></svg>
+      <figcaption><button class="hist-play" type="button">Replay</button><span>Tap the picture to play it again.</span></figcaption>
+      <p class="hist-note">His “universe” was far smaller than the real one. The point was that <b>any</b> number, however big, can be named.</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Scientific notation</b> is <span class="tex">a\times10^{n}</span>: a coefficient with <span class="tex">1\le a\lt10</span> (one nonzero digit before the point) times a power of ten. <span class="tex">52\times10^{3}</span> and <span class="tex">0.5\times10^{-2}</span> don’t count.</div>
+    <div><b>To scientific notation:</b> put the point after the first nonzero digit and count the <b>hops</b>. 10 or more → <b>positive</b> exponent; less than 1 → <b>negative</b>: <span class="tex">0.0004=4\times10^{-4}</span>.</div>
+    <div><b>To standard notation:</b> hop the point <span class="tex">|n|</span> places, right for positive <span class="tex">n</span>, left for negative, filling zeros: <span class="tex">3.4\times10^{-5}=0.000034</span>.</div>
+    <div><b>Compare exponents first.</b> With both numbers in scientific notation, the bigger exponent wins, whatever the coefficients: <span class="tex">3.2\times10^{6}\gt8\times10^{5}</span>. Same exponent? Then compare the coefficients.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u2l8">
+    <div><div class="kicker">Your turn</div><b>Assignment 8 — Scientific Notation</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l9/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 9 — Rational Exponents and Radical Form</b><div class="muted">What could <span class="tex">9^{1/2}</span> mean? Fractional exponents are roots in disguise.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u2l8.js';
+  boot({ key: 'u2l8', homeHref: '../../', title: '2.8 Scientific Notation' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

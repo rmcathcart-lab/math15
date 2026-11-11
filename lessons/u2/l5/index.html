@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u2l5.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u2l5">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Fold to the Moon">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Fold to the Moon</h2>
+  <p class="wf-rule">About how many folds until the stack reaches the Moon?</p></div>
+  <div class="vw-q">A sheet of paper is <b>0.1 mm</b> thick. Every fold <b>doubles</b> the stack.<small>The Moon is 384 400 km away. Pretend you can keep folding.</small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Hundreds? Thousands? Millions?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>Only 42 folds.</b> Doubling 42 times multiplies by <span class="tex">2^{42}</span>, about 4.4 trillion, which turns 0.1 mm into about 440 000 km.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,34 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Folding Challenge" style="--wf-side: 360px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Folding Challenge</h2>
-  <p class="wf-rule">Fold a sheet of paper in half. Then in half again. Then again… <span class="muted">Tap a <b class="u2l5-cr">?</b> to reveal it.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u2l5-stacks" id="u2l5-stacks"></div>
-    <div class="u2l5-ftab" id="u2l5-ftab"></div>
-    <div class="u2l5-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many layers after <b>4</b> folds? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>16 layers.</b> Each fold doubles the layers: 8 × 2 = 16.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How many folds make <b>64</b> layers? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>6 folds:</b> 2, 4, 8, 16, 32, 64.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>How many layers after <b>0</b> folds? Does the pattern agree with common sense? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>1 layer:</b> an unfolded sheet is one layer. The pattern agrees: going right, each step <b>halves</b> the layers, 8 → 4 → 2 → <b>1</b>.</div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Paper is about <b>0.1 mm</b> thick. If you <i>could</i> keep folding, how many folds until the stack reaches <b>the Moon</b> (384&#8239;400 km away)? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt right"><b>A</b> 42</div>
-        <div class="opt"><b>B</b> 1&#8239;000</div>
-        <div class="opt"><b>C</b> 1&#8239;000&#8239;000</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>A: just 42 folds!</b> After <span class="tex">n</span> folds there are <span class="tex">2^n</span> layers, so the stack is <span class="tex">2^n\times0.1</span> mm thick.<br>14 folds: about <b>1.6 m</b>, taller than most of you.<br>41 folds: about 219&#8239;900 km. Not there yet.<br>42 folds: about <b>439&#8239;800 km</b>. Past the Moon!<br>Doubling over and over grows unbelievably fast.</div>
-    </div>
-  </div></div>
-  <p class="u2l5-social">Try it with a real sheet: can anyone fold it in half more than <b>7</b> times?</p>
-</section>
+
 
 <!-- ================= 1. The laws so far ================= -->
 <section class="card" data-ink="s1" data-section="1. The Exponent Laws So Far">
@@ -84,7 +67,7 @@
     <div class="bk-flip"><div class="bk-front"><b>Power of a Product / Quotient</b><small>a bracket, raised to a power</small></div><div class="bk-back"><span class="tex">(ab)^{n}=a^{n}b^{n}</span><span class="tex">\left(\dfrac{a}{b}\right)^{n}=\dfrac{a^{n}}{b^{n}}</span></div></div>
   </div>
   <p>Every one of them used a <b>positive</b> exponent. Nothing yet tells us what <span class="tex">3^0</span> means. <span class="tex">3^2=3\times3</span> is easy to picture, but multiplying 3 by itself <b>0 times</b> is not an obvious idea.</p>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Make a guess before we find out: what should <span class="tex">3^0</span> be? 0? 1? 3? Something else?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Most people guess <b>0</b>. The pattern in Section 2 will show that <span class="tex">3^0=1</span>.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Make a guess before we find out: what should <span class="tex">3^0</span> be? 0? 1? 3? Something else?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Most people guess <b>0</b>. The pattern in Section 2 will show that <span class="tex">3^0=1</span>.</div></div></div>
 </section>
 
 <!-- ================= 2. The pattern ================= -->
@@ -112,7 +95,7 @@
 <section class="card" data-ink="s3" data-section="3. Confirming It with the Quotient Law">
   <div class="sec-h"><span class="badge">3</span><h2>Confirming It with the Quotient Law</h2></div>
   <p>Look at <span class="tex">5^4\div5^4</span> two ways. By the <b>quotient law</b> it is <span class="tex">5^{4-4}=5^0</span>. But it is also just a number divided by <b>itself</b>, which is <b>1</b>. Both describe the same expression, so <span class="tex">5^0=1</span>.</p>
-  <div class="explainer" data-explainer="zcancel"></div>
+  <div data-extra><div class="explainer" data-explainer="zcancel"></div></div>
 </section>
 
 <section class="card" data-ink="s3b" data-section="3. The Zero Exponent Law">
@@ -182,7 +165,16 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s4b" data-section="4. Test the statement">
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–7">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 5 · Questions 1–7</h2>
+  <p class="pr-t">Zero exponents on numbers, then on variables.</p>
+  <div class="pr-chips n2"><span><b>1–5</b>Zero exponents with numbers</span><span><b>6–7</b>Variables</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 6.</span><a class="pill" href="../../../#/lesson/u2l5">Open the Practice site</a></div>
+</section>
+
+<section data-extra class="card" data-ink="s4b" data-section="4. Test the statement">
   <h3 class="sub">Test a statement: work out the left side, then compare</h3>
   <div class="explainer" data-explainer="ztf"></div>
 </section>
@@ -199,7 +191,7 @@
     <div><span class="u2l5-pn">2</span><span><b>Replace</b> that factor with 1.</span></div>
     <div><span class="u2l5-pn">3</span><span><b>Finish</b> with the laws you know: product, quotient, power of a power.</span></div>
   </div>
-  <div class="explainer" data-explainer="zsimp"></div>
+  <div data-extra><div class="explainer" data-explainer="zsimp"></div></div>
 </section>
 
 <section class="card example" data-ink="ex4" data-section="Example 4">
@@ -222,9 +214,38 @@
     <div class="part"><div class="pl">(a) <span class="tex">(2x^{3}y^{0})^{2}\times3x</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y^0=1</span>, so the bracket is <span class="tex">(2x^3)^2=4x^6</span>.<br><span class="tex">4x^{6}\times3x=(4\times3)x^{6+1}=\mathbf{12x^{7}}</span></div></div></div>
     <div class="part"><div class="pl">(b) <span class="tex">\dfrac{(4a^{2}b^{0})^{2}}{2a^{3}}</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">b^0=1</span>, so the top is <span class="tex">(4a^2)^2=16a^4</span>.<br><span class="tex">\dfrac{16a^{4}}{2a^{3}}=8a^{4-3}=\mathbf{8a}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> In (a), what goes wrong if you forget that <span class="tex">y^0=1</span> and keep the <span class="tex">y</span> in your answer?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">You would write something like <span class="tex">12x^7y^0</span>. That isn’t <b>simplified</b>: <span class="tex">y^0</span> is just 1, so it disappears.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> In (a), what goes wrong if you forget that <span class="tex">y^0=1</span> and keep the <span class="tex">y</span> in your answer?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">You would write something like <span class="tex">12x^7y^0</span>. That isn’t <b>simplified</b>: <span class="tex">y^0</span> is just 1, so it disappears.</div></div></div>
   <div class="space" id="ex5-space"></div>
   <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Folding Challenge" style="--wf-side: 360px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Folding Challenge</h2>
+  <p class="wf-rule">Fold a sheet of paper in half. Then in half again. Then again… <span class="muted">Tap a <b class="u2l5-cr">?</b> to reveal it.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l5-stacks" id="u2l5-stacks"></div>
+    <div class="u2l5-ftab" id="u2l5-ftab"></div>
+    <div class="u2l5-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many layers after <b>4</b> folds? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>16 layers.</b> Each fold doubles the layers: 8 × 2 = 16.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How many folds make <b>64</b> layers? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>6 folds:</b> 2, 4, 8, 16, 32, 64.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>How many layers after <b>0</b> folds? Does the pattern agree with common sense? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>1 layer:</b> an unfolded sheet is one layer. The pattern agrees: going right, each step <b>halves</b> the layers, 8 → 4 → 2 → <b>1</b>.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Paper is about <b>0.1 mm</b> thick. If you <i>could</i> keep folding, how many folds until the stack reaches <b>the Moon</b> (384&#8239;400 km away)? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> 42</div>
+        <div class="opt"><b>B</b> 1&#8239;000</div>
+        <div class="opt"><b>C</b> 1&#8239;000&#8239;000</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A: just 42 folds!</b> After <span class="tex">n</span> folds there are <span class="tex">2^n</span> layers, so the stack is <span class="tex">2^n\times0.1</span> mm thick.<br>14 folds: about <b>1.6 m</b>, taller than most of you.<br>41 folds: about 219&#8239;900 km. Not there yet.<br>42 folds: about <b>439&#8239;800 km</b>. Past the Moon!<br>Doubling over and over grows unbelievably fast.</div>
+    </div>
+  </div></div>
+  <p class="u2l5-social">Try it with a real sheet: can anyone fold it in half more than <b>7</b> times?</p>
 </section>
 
 <!-- ================= summary ================= -->
@@ -237,7 +258,7 @@
     <div><b>In a bigger problem:</b> spot the power of 0, replace it with 1, then finish with the other laws.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u2l5">
-    <div><div class="kicker">Your turn</div><b>Assignment 5 — Zero Exponents</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 5 · Questions 8–13</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l6/">
     <div><div class="kicker">Next lesson</div><b>Lesson 6 — Negative Exponents</b><div class="muted">Keep unfolding past 0 folds: what is <span class="tex">2^{-1}</span>?</div></div><span class="arrow">→</span>
@@ -250,7 +271,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u2l5.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u2l5', homeHref: '../../', title: '2.5 Zero Exponents' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

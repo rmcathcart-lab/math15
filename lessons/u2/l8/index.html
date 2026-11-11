@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u2l8.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u2l8">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Which Is More?">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Which Is More?</h2>
+  <p class="wf-rule">Guess first, then estimate. Which is more?</p></div>
+  <div class="vw-tiles" style="--n:2;--fs:30px"><div><b>A</b>the number of <b>seconds</b> in one year</div><div><b>B</b>the number of <b>people</b> living in Canada</div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>How would you count the seconds?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>B, the people.</b> A year has <span class="tex">60\times60\times24\times365</span>, about 31.5 million seconds. Canada has a little over 41 million people.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,40 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Tiny to Titanic" style="--wf-side: 350px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Tiny to Titanic</h2>
-  <p class="wf-rule">Six things. Put them in order from <b>smallest</b> to <b>biggest</b>. <span class="muted">Tap a picture to find its size card.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u2l8-pics" id="u2l8-pics"></div>
-    <div class="u2l8-scale">Drawings not to scale! Size = height of the person and the mountain, width of everything else.</div>
-    <div class="u2l8-cardsh">Size cards, in metres <span class="muted">(shuffled!)</span></div>
-    <div class="u2l8-cards" id="u2l8-cards"></div>
-    <div class="u2l8-rulerrow">
-      <div class="u2l8-ruler" id="u2l8-ruler"></div>
-      <div class="u2l8-wbtns"><button type="button" class="pill small" id="u2l8-line">Line them up</button><button type="button" class="pill small" id="u2l8-wclear">Clear</button></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u2l8-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Order pictures <b>A–F</b>, smallest to biggest. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u2l8-wa"><div class="bk-ans"><b>D, B, F, C, E, A</b>: blood cell, hair, sand, person, mountain, Earth.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Match each picture to a size card <b>1–6</b>. <i>Hint: watch the little number up top.</i> <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u2l8-wa"><div class="bk-ans">Sort by exponent, <span class="tex">-6\lt-5\lt-4\lt0\lt3\lt7</span>: D 2, B 6, F 5, C 4, E 1, A 3.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Which exponents are <b>negative</b>? What do those things have in common? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u2l8-wa"><div class="bk-ans">Cards 2, 6 and 5: all <b>smaller than 1 metre</b>. The person (<span class="tex">10^0</span>) sits right at the line.</div></div></div>
-    </div>
-    <div class="poll wf-poll u2l8-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> About how many <b>red blood cells</b>, side by side, fit across <b>one hair</b>? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt right"><b>A</b> 10</div>
-        <div class="opt"><b>B</b> 1&#8239;000</div>
-        <div class="opt"><b>C</b> 1&#8239;000&#8239;000</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>A, about 10.</b> <span class="tex">0.00007\div0.000007=10</span>. The exponents <span class="tex">-5</span> and <span class="tex">-6</span> are just <b>one step</b> apart, and one step is one factor of 10.</div>
-    </div>
-  </div></div>
-  <p class="u2l8-social">Look around the room: find something that is about <span class="tex">1\times10^{0}</span> m long.</p>
-</section>
+
 
 <!-- ================= 1. Why ================= -->
 <section class="card" data-ink="s1" data-section="1. Why Scientific Notation?">
@@ -94,7 +71,7 @@
     <div class="neg"><span class="tex">10^{-2}</span><small>0.01</small></div>
     <div class="neg"><span class="tex">10^{-3}</span><small>0.001</small></div>
   </div>
-  <div class="explainer" data-explainer="places"></div>
+  <div data-extra><div class="explainer" data-explainer="places"></div></div>
 </section>
 
 <!-- ================= 2. What is it ================= -->
@@ -154,7 +131,7 @@
     <div class="part"><div class="pl">(c) <span class="tex">0.0000081</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">6 places right:<br><span class="tex">\boldsymbol{8.1\times10^{-6}}</span></div></div></div>
     <div class="part"><div class="pl">(d) <span class="tex">0.06</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">2 places right:<br><span class="tex">\boldsymbol{6\times10^{-2}}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> How can you tell, before doing any work, whether the exponent will be positive or negative?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Look at the size: <b>10 or more</b> → positive exponent; <b>less than 1</b> → negative exponent; from 1 up to 10 → exponent 0.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> How can you tell, before doing any work, whether the exponent will be positive or negative?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Look at the size: <b>10 or more</b> → positive exponent; <b>less than 1</b> → negative exponent; from 1 up to 10 → exponent 0.</div></div></div>
   <div class="space" id="ex2-space"></div>
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
@@ -163,7 +140,7 @@
 <section class="card" data-ink="s4" data-section="4. Scientific → Standard Notation">
   <div class="sec-h"><span class="badge">4</span><h2>Scientific Notation <span class="u2l8-arr">→</span> Standard Notation</h2></div>
   <p>Reverse the process: move the decimal point of the coefficient <span class="tex">|n|</span> places, <b>right</b> if <span class="tex">n</span> is positive and <b>left</b> if <span class="tex">n</span> is negative, filling in <b>zeros</b> as placeholders. For example, <span class="tex">3.4\times10^{-5}</span> moves 5 places left to give <span class="tex">0.000034</span>.</p>
-  <div class="explainer" data-explainer="toStd"></div>
+  <div data-extra><div class="explainer" data-explainer="toStd"></div></div>
   <div class="tip calc-tip">
     <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
     <div><b>On a calculator, <kbd>EE</kbd> means “× 10 to the”.</b> It is <span class="keys"><kbd>2nd</kbd><kbd>EE</kbd></span> (above <kbd>x⁻¹</kbd>). Check the example: <span class="keys"><kbd>3</kbd><kbd>.</kbd><kbd>4</kbd><kbd>2nd</kbd><kbd>EE</kbd><kbd>(−)</kbd><kbd>5</kbd><kbd>ENTER</kbd></span>. A calculator showing <b>3.4E-5</b> or <b>3.4 ×10<sup>−5</sup></b> means <span class="tex">3.4\times10^{-5}</span>, never <span class="tex">3.4^{-5}</span>.</div>
@@ -184,10 +161,19 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–7">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 8 · Questions 1–7</h2>
+  <p class="pr-t">Convert between standard and scientific notation.</p>
+  <div class="pr-chips n1"><span><b>1–7</b>Converting between forms</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 5.</span><a class="pill" href="../../../#/lesson/u2l8">Open the Practice site</a></div>
+</section>
+
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
 <section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u2l8"></section>
 
-<section class="card" data-ink="s4b" data-section="4. Real-world sizes">
+<section data-extra class="card" data-ink="s4b" data-section="4. Real-world sizes">
   <h3 class="sub">Real-world sizes, both ways</h3>
   <p>Science writes its biggest and smallest measurements this way. Same moves as before: a <b>positive</b> exponent for big numbers, a <b>negative</b> one for numbers less than 1.</p>
   <div class="explainer" data-explainer="real"></div>
@@ -211,7 +197,7 @@
   <div class="sec-h"><span class="badge">5</span><h2>Comparing and Ordering</h2></div>
   <p>To compare two numbers in scientific notation, compare the <b class="u2l8-ex">exponents</b> first: the smaller exponent gives the smaller number. Only when the exponents are <b>equal</b> do you compare the <b class="u2l8-co">coefficients</b>.</p>
   <p>Think of each power of ten as a <b>shelf</b>. The exponent picks the shelf; the coefficient only says where on that shelf the number sits.</p>
-  <div class="explainer" data-explainer="ladder"></div>
+  <div data-extra><div class="explainer" data-explainer="ladder"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -246,6 +232,41 @@
   </div>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Tiny to Titanic" style="--wf-side: 350px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Tiny to Titanic</h2>
+  <p class="wf-rule">Six things. Put them in order from <b>smallest</b> to <b>biggest</b>. <span class="muted">Tap a picture to find its size card.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l8-pics" id="u2l8-pics"></div>
+    <div class="u2l8-scale">Drawings not to scale! Size = height of the person and the mountain, width of everything else.</div>
+    <div class="u2l8-cardsh">Size cards, in metres <span class="muted">(shuffled!)</span></div>
+    <div class="u2l8-cards" id="u2l8-cards"></div>
+    <div class="u2l8-rulerrow">
+      <div class="u2l8-ruler" id="u2l8-ruler"></div>
+      <div class="u2l8-wbtns"><button type="button" class="pill small" id="u2l8-line">Line them up</button><button type="button" class="pill small" id="u2l8-wclear">Clear</button></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u2l8-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Order pictures <b>A–F</b>, smallest to biggest. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u2l8-wa"><div class="bk-ans"><b>D, B, F, C, E, A</b>: blood cell, hair, sand, person, mountain, Earth.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Match each picture to a size card <b>1–6</b>. <i>Hint: watch the little number up top.</i> <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u2l8-wa"><div class="bk-ans">Sort by exponent, <span class="tex">-6\lt-5\lt-4\lt0\lt3\lt7</span>: D 2, B 6, F 5, C 4, E 1, A 3.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Which exponents are <b>negative</b>? What do those things have in common? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u2l8-wa"><div class="bk-ans">Cards 2, 6 and 5: all <b>smaller than 1 metre</b>. The person (<span class="tex">10^0</span>) sits right at the line.</div></div></div>
+    </div>
+    <div class="poll wf-poll u2l8-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> About how many <b>red blood cells</b>, side by side, fit across <b>one hair</b>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> 10</div>
+        <div class="opt"><b>B</b> 1&#8239;000</div>
+        <div class="opt"><b>C</b> 1&#8239;000&#8239;000</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A, about 10.</b> <span class="tex">0.00007\div0.000007=10</span>. The exponents <span class="tex">-5</span> and <span class="tex">-6</span> are just <b>one step</b> apart, and one step is one factor of 10.</div>
+    </div>
+  </div></div>
+  <p class="u2l8-social">Look around the room: find something that is about <span class="tex">1\times10^{0}</span> m long.</p>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -256,7 +277,7 @@
     <div><b>Compare exponents first.</b> With both numbers in scientific notation, the bigger exponent wins, whatever the coefficients: <span class="tex">3.2\times10^{6}\gt8\times10^{5}</span>. Same exponent? Then compare the coefficients.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u2l8">
-    <div><div class="kicker">Your turn</div><b>Assignment 8 — Scientific Notation</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 8 · Questions 8–15</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l9/">
     <div><div class="kicker">Next lesson</div><b>Lesson 9 — Rational Exponents and Radical Form</b><div class="muted">What could <span class="tex">9^{1/2}</span> mean? Fractional exponents are roots in disguise.</div></div><span class="arrow">→</span>
@@ -269,7 +290,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u2l8.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u2l8', homeHref: '../../', title: '2.8 Scientific Notation' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

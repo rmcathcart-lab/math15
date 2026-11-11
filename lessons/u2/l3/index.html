@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u2l3.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u2l3">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Supersize It!">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Supersize It!</h2>
+  <p class="wf-rule">How many normal dice fit inside the giant one?</p></div>
+  <div class="vw-q">A giant die is <b>10 times as long</b>, <b>10 times as wide</b> and <b>10 times as tall</b> as a normal die.</div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Why isn’t it 30?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>1000.</b> <span class="tex">10\times10\times10=10^3</span>: 10 along, 10 across, 10 layers high.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -43,8 +53,162 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Supersize It!" style="--wf-side: 380px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Supersize It!</h2>
+
+
+<!-- ================= 1. Laws you know ================= -->
+<section class="card" data-ink="s1" data-section="1. Exponent Laws You Already Know">
+  <div class="sec-h"><span class="badge">1</span><h2>Exponent Laws You Already Know</h2></div>
+  <p>Three laws carry over from Lessons 1 and 2. Each one is just <b>counting factors</b>.</p>
+  <div class="u2l3-laws">
+    <div class="def"><b>Product Law</b><div class="u2l3-lawf"><span class="tex">a^{m}\times a^{n}=a^{m+n}</span></div><div class="eg">Same base, <b>multiplied</b>: add the exponents.</div></div>
+    <div class="def"><b>Quotient Law</b><div class="u2l3-lawf"><span class="tex">a^{m}\div a^{n}=a^{m-n}</span></div><div class="eg">Same base, <b>divided</b>: subtract the exponents.</div></div>
+    <div class="def"><b>Power of a Power Law</b><div class="u2l3-lawf"><span class="tex">(a^{m})^{n}=a^{mn}</span></div><div class="eg">A power in brackets, raised to a power: <b>multiply</b> the exponents.</div></div>
+  </div>
+  <div data-extra><div class="explainer" data-explainer="recap"></div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Warm up the laws</h3></div>
+  <p class="q">Warm up! Simplify using the Product Law, the Quotient Law, or the Power of a Power Law.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">x^{3}\times x^{4}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product Law:<br><span class="tex">x^{3+4}=\boldsymbol{x^{7}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">y^{7}\div y^{2}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Quotient Law:<br><span class="tex">y^{7-2}=\boldsymbol{y^{5}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(m^{2})^{3}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Power of a Power Law:<br><span class="tex">m^{2\times3}=\boldsymbol{m^{6}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Power of a product ================= -->
+<section class="card" data-ink="s2" data-section="2. The Power of a Product Law">
+  <div class="sec-h"><span class="badge">2</span><h2>The Power of a Product Law</h2></div>
+  <p>Write it out to see what happens to a whole product in brackets:</p>
+  <p class="display"><span class="tex">(xy)^{3}=(xy)(xy)(xy)=(x\,x\,x)(y\,y\,y)=x^{3}y^{3}</span></p>
+  <p><b>Each</b> factor picks up its own copy of the exponent.</p>
+  <div class="def"><b>Power of a Product Law</b> &nbsp;<span class="tex">(ab)^{n}=a^{n}b^{n}</span><div class="eg">Check with numbers: <span class="tex">(2\times3)^{2}=6^{2}=36</span> and <span class="tex">2^{2}\times3^{2}=4\times9=36</span>. Same answer.</div></div>
+  <div class="explainer" data-explainer="pprod"></div>
+  <div class="tip-row">
+    <div class="tip watch"><div class="tip-ic">!</div><div><b>The number gets it too.</b> In <span class="tex">(3x)^{2}</span> the 3 is inside the brackets, so it is squared: <span class="tex">3^{2}x^{2}=9x^{2}</span>, not <span class="tex">3x^{2}</span>.</div></div>
+    <div class="tip watch"><div class="tip-ic">!</div><div><b>A negative inside.</b> In <span class="tex">(-4y)^{2}</span> the whole <span class="tex">-4</span> is squared: <span class="tex">(-4)^{2}=16</span>. Two negatives make a positive.</div></div>
+  </div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Back to the warm-up">
+  <h3 class="sub">Back to the warm-up: supersize a tile</h3>
+  <p>Let one tile have side <span class="tex">s</span>, so its area is <span class="tex">s^{2}</span>. The 2 times picture has side <span class="tex">2s</span>, and its area is <span class="tex">(2s)^{2}</span>. The square goes to the 2 <b>and</b> to the <span class="tex">s</span>.</p>
+  <div class="explainer" data-explainer="supersize"></div>
+</section>
+
+<section data-extra class="card" data-ink="s2c" data-section="2. Where does the exponent reach?">
+  <h3 class="sub">Where does the exponent reach?</h3>
+  <p>Brackets act like a <b>fence</b>. The exponent repeats only what is <b>inside</b> the fence. With no brackets, it reaches only the one symbol right under it.</p>
+  <div class="explainer" data-explainer="fence"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Power of a product</h3></div>
+  <p class="q">Use the Power of a Product Law to simplify each expression.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">(3x)^{2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3^{2}x^{2}</span><br><span class="tex">=\boldsymbol{9x^{2}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(2m)^{4}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2^{4}m^{4}</span><br><span class="tex">=\boldsymbol{16m^{4}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(-4y)^{2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-4)^{2}y^{2}</span><br><span class="tex">=\boldsymbol{16y^{2}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">(2ab)^{3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2^{3}a^{3}b^{3}</span><br><span class="tex">=\boldsymbol{8a^{3}b^{3}}</span></div></div></div>
+  </div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> In (d), how many factors are inside the brackets? How many times is each one used?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Three factors</b>: 2, <span class="tex">a</span> and <span class="tex">b</span>. Each is used <b>3 times</b>: <span class="tex">2\cdot2\cdot2=8</span>, <span class="tex">a\cdot a\cdot a=a^{3}</span>, <span class="tex">b\cdot b\cdot b=b^{3}</span>.</div></div></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Power of a quotient ================= -->
+<section class="card" data-ink="s3" data-section="3. The Power of a Quotient Law">
+  <div class="sec-h"><span class="badge">3</span><h2>The Power of a Quotient Law</h2></div>
+  <p>The same idea works on a fraction:</p>
+  <p class="display"><span class="tex">\left(\dfrac{a}{b}\right)^{3}=\dfrac{a}{b}\cdot\dfrac{a}{b}\cdot\dfrac{a}{b}=\dfrac{a\,a\,a}{b\,b\,b}=\dfrac{a^{3}}{b^{3}}</span></p>
+  <div class="def"><b>Power of a Quotient Law</b> &nbsp;<span class="tex">\left(\dfrac{a}{b}\right)^{n}=\dfrac{a^{n}}{b^{n}},\quad b\neq0</span><div class="eg">Raise the <b>top</b> and the <b>bottom</b> to the power separately. Check: <span class="tex">\left(\dfrac{4}{5}\right)^{2}=\dfrac{16}{25}=\dfrac{4^{2}}{5^{2}}</span>.</div></div>
+  <div class="explainer" data-explainer="pquot"></div>
+</section>
+
+<section data-extra class="card" data-ink="s3b" data-section="3. The area picture">
+  <h3 class="sub">Squaring a fraction: the area picture</h3>
+  <p>Take a square with side 1. A square with side <span class="tex">\frac{3}{4}</span> covers <span class="tex">\left(\frac{3}{4}\right)^{2}</span> of it. Count the small squares: the top counts the shaded ones, the bottom counts them all.</p>
+  <div class="explainer" data-explainer="fsq"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Power of a quotient</h3></div>
+  <p class="q">Use the Power of a Quotient Law to simplify each expression.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">\left(\dfrac{3}{4}\right)^{2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{3^{2}}{4^{2}}=\boldsymbol{\dfrac{9}{16}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\left(\dfrac{x}{2}\right)^{3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{x^{3}}{2^{3}}=\boldsymbol{\dfrac{x^{3}}{8}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\left(\dfrac{5}{y}\right)^{2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{5^{2}}{y^{2}}=\boldsymbol{\dfrac{25}{y^{2}}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">\left(\dfrac{m}{n}\right)^{4}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{\dfrac{m^{4}}{n^{4}}}</span></div></div></div>
+  </div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Is <span class="tex">\left(\frac{3}{4}\right)^{2}</span> bigger or smaller than <span class="tex">\frac{3}{4}</span>? Why?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Smaller.</b> <span class="tex">\frac{9}{16}</span> is a bit more than a half, and <span class="tex">\frac{3}{4}=\frac{12}{16}</span>. Taking <span class="tex">\frac{3}{4}</span> <b>of</b> <span class="tex">\frac{3}{4}</span> leaves less than you started with (the area picture shows it).</div></div></div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–6">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 3 · Questions 1–6</h2>
+  <p class="pr-t">Power of a product, then power of a quotient.</p>
+  <div class="pr-chips n1"><span><b>1–6</b>The two new laws</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 5.</span><a class="pill" href="../../../#/lesson/u2l3">Open the Practice site</a></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u2l3"></section>
+
+<!-- ================= 4. Combining ================= -->
+<section class="card" data-ink="s4" data-section="4. Combining the Laws">
+  <div class="sec-h"><span class="badge">4</span><h2>Combining the Laws</h2></div>
+  <p>Most expressions need more than one law. Use them one at a time:</p>
+  <div class="u2l3-steps">
+    <div class="def"><b>First</b> distribute the outer exponent: the <b>Power of a Product</b> or <b>Power of a Quotient</b> Law.</div>
+    <div class="def amber"><b>Then</b> combine any matching bases: the <b>Product</b> or <b>Quotient</b> Law.</div>
+  </div>
+  <p class="display"><span class="tex">(3x)^{2}\times x^{3}=3^{2}x^{2}\times x^{3}=9x^{2+3}=9x^{5}</span></p>
+  <div data-extra><div class="explainer" data-explainer="chain"></div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Two laws</h3></div>
+  <p class="q">Simplify each expression using two exponent laws.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">(2x)^{3}\times x^{2}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2^{3}x^{3}\times x^{2}</span><br><span class="tex">=8x^{3+2}=\boldsymbol{8x^{5}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(5m^{2})^{2}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">5^{2}\left(m^{2}\right)^{2}</span><br><span class="tex">=\boldsymbol{25m^{4}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(y^{3})^{2}\div y^{4}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y^{6}\div y^{4}</span><br><span class="tex">=y^{6-4}=\boldsymbol{y^{2}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">\left(\dfrac{a}{3}\right)^{2}\times a^{3}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{a^{2}}{9}\times a^{3}</span><br><span class="tex">=\boldsymbol{\dfrac{a^{5}}{9}}</span></div></div></div>
+  </div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> In (b), which two laws did you use?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Power of a Product</b> (the 5 and the <span class="tex">m^{2}</span> are each squared), then <b>Power of a Power</b> (<span class="tex">\left(m^{2}\right)^{2}=m^{2\times2}=m^{4}</span>).</div></div></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= 5. Putting it together ================= -->
+<section class="card" data-ink="s5" data-section="5. Putting It All Together">
+  <div class="sec-h"><span class="badge">5</span><h2>Putting It All Together</h2></div>
+  <p>These expressions use <b>three or more</b> laws. Work step by step: one law at a time, and show every stage. A number inside the brackets gets the outer exponent too.</p>
+  <p>Not sure your answer is right? <b>Check it with a number.</b> Put the same value in for the letter in the question and in your answer. If they are really equal, you get the same number both times.</p>
+  <div data-extra><div class="explainer" data-explainer="check"></div></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Three or more laws</h3></div>
+  <p class="q">Simplify each expression completely.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">(2x)^{2}(x^{3})^{2}</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4x^{2}\times x^{6}</span><br><span class="tex">=4x^{2+6}=\boldsymbol{4x^{8}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{(3m^{2})^{2}}{m^{3}}</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{9m^{4}}{m^{3}}</span><br><span class="tex">=9m^{4-3}=\boldsymbol{9m}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\left(\dfrac{2a^{2}}{b}\right)^{3}</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{2^{3}\left(a^{2}\right)^{3}}{b^{3}}</span><br><span class="tex">=\boldsymbol{\dfrac{8a^{6}}{b^{3}}}</span></div></div></div>
+  </div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> In (c), why isn’t the answer <span class="tex">\dfrac{2a^{6}}{b^{3}}</span>?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The 2 is <b>inside</b> the brackets, so it is cubed too: <span class="tex">2^{3}=8</span>. Only a number <b>outside</b> the brackets is left alone.</div></div></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Supersize It!" style="--wf-side: 380px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Supersize It!</h2>
   <p class="wf-rule">Blow up the picture: <b>2 times as wide</b> <em>and</em> <b>2 times as tall</b>. Then 3 times… <span class="muted">Tap a size to see the picture.</span></p></div>
   <div class="wf-grid"><div class="wf-main">
     <div class="u2l3-zoom" id="u2l3-zoom">
@@ -88,149 +252,6 @@
   <p class="u2l3-social">Ask a neighbour: is a pizza twice as wide really just twice as much pizza? <span data-reveal="tap to see"><b>No: about 4 times as much</b> (2 times as wide and 2 times as tall: <span class="tex">2\times2=4</span>).</span></p>
 </section>
 
-<!-- ================= 1. Laws you know ================= -->
-<section class="card" data-ink="s1" data-section="1. Exponent Laws You Already Know">
-  <div class="sec-h"><span class="badge">1</span><h2>Exponent Laws You Already Know</h2></div>
-  <p>Three laws carry over from Lessons 1 and 2. Each one is just <b>counting factors</b>.</p>
-  <div class="u2l3-laws">
-    <div class="def"><b>Product Law</b><div class="u2l3-lawf"><span class="tex">a^{m}\times a^{n}=a^{m+n}</span></div><div class="eg">Same base, <b>multiplied</b>: add the exponents.</div></div>
-    <div class="def"><b>Quotient Law</b><div class="u2l3-lawf"><span class="tex">a^{m}\div a^{n}=a^{m-n}</span></div><div class="eg">Same base, <b>divided</b>: subtract the exponents.</div></div>
-    <div class="def"><b>Power of a Power Law</b><div class="u2l3-lawf"><span class="tex">(a^{m})^{n}=a^{mn}</span></div><div class="eg">A power in brackets, raised to a power: <b>multiply</b> the exponents.</div></div>
-  </div>
-  <div class="explainer" data-explainer="recap"></div>
-</section>
-
-<section class="card example" data-ink="ex1" data-section="Example 1">
-  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Warm up the laws</h3></div>
-  <p class="q">Warm up! Simplify using the Product Law, the Quotient Law, or the Power of a Power Law.</p>
-  <div class="parts c3">
-    <div class="part"><div class="pl">(a) <span class="tex">x^{3}\times x^{4}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product Law:<br><span class="tex">x^{3+4}=\boldsymbol{x^{7}}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">y^{7}\div y^{2}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Quotient Law:<br><span class="tex">y^{7-2}=\boldsymbol{y^{5}}</span></div></div></div>
-    <div class="part"><div class="pl">(c) <span class="tex">(m^{2})^{3}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Power of a Power Law:<br><span class="tex">m^{2\times3}=\boldsymbol{m^{6}}</span></div></div></div>
-  </div>
-  <div class="space" id="ex1-space"></div>
-  <button class="more" data-more="ex1-space">+ More space</button>
-</section>
-
-<!-- ================= 2. Power of a product ================= -->
-<section class="card" data-ink="s2" data-section="2. The Power of a Product Law">
-  <div class="sec-h"><span class="badge">2</span><h2>The Power of a Product Law</h2></div>
-  <p>Write it out to see what happens to a whole product in brackets:</p>
-  <p class="display"><span class="tex">(xy)^{3}=(xy)(xy)(xy)=(x\,x\,x)(y\,y\,y)=x^{3}y^{3}</span></p>
-  <p><b>Each</b> factor picks up its own copy of the exponent.</p>
-  <div class="def"><b>Power of a Product Law</b> &nbsp;<span class="tex">(ab)^{n}=a^{n}b^{n}</span><div class="eg">Check with numbers: <span class="tex">(2\times3)^{2}=6^{2}=36</span> and <span class="tex">2^{2}\times3^{2}=4\times9=36</span>. Same answer.</div></div>
-  <div class="explainer" data-explainer="pprod"></div>
-  <div class="tip-row">
-    <div class="tip watch"><div class="tip-ic">!</div><div><b>The number gets it too.</b> In <span class="tex">(3x)^{2}</span> the 3 is inside the brackets, so it is squared: <span class="tex">3^{2}x^{2}=9x^{2}</span>, not <span class="tex">3x^{2}</span>.</div></div>
-    <div class="tip watch"><div class="tip-ic">!</div><div><b>A negative inside.</b> In <span class="tex">(-4y)^{2}</span> the whole <span class="tex">-4</span> is squared: <span class="tex">(-4)^{2}=16</span>. Two negatives make a positive.</div></div>
-  </div>
-</section>
-
-<section class="card" data-ink="s2b" data-section="2. Back to the warm-up">
-  <h3 class="sub">Back to the warm-up: supersize a tile</h3>
-  <p>Let one tile have side <span class="tex">s</span>, so its area is <span class="tex">s^{2}</span>. The 2 times picture has side <span class="tex">2s</span>, and its area is <span class="tex">(2s)^{2}</span>. The square goes to the 2 <b>and</b> to the <span class="tex">s</span>.</p>
-  <div class="explainer" data-explainer="supersize"></div>
-</section>
-
-<section class="card" data-ink="s2c" data-section="2. Where does the exponent reach?">
-  <h3 class="sub">Where does the exponent reach?</h3>
-  <p>Brackets act like a <b>fence</b>. The exponent repeats only what is <b>inside</b> the fence. With no brackets, it reaches only the one symbol right under it.</p>
-  <div class="explainer" data-explainer="fence"></div>
-</section>
-
-<section class="card example" data-ink="ex2" data-section="Example 2">
-  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Power of a product</h3></div>
-  <p class="q">Use the Power of a Product Law to simplify each expression.</p>
-  <div class="parts c4">
-    <div class="part"><div class="pl">(a) <span class="tex">(3x)^{2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3^{2}x^{2}</span><br><span class="tex">=\boldsymbol{9x^{2}}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">(2m)^{4}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2^{4}m^{4}</span><br><span class="tex">=\boldsymbol{16m^{4}}</span></div></div></div>
-    <div class="part"><div class="pl">(c) <span class="tex">(-4y)^{2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-4)^{2}y^{2}</span><br><span class="tex">=\boldsymbol{16y^{2}}</span></div></div></div>
-    <div class="part"><div class="pl">(d) <span class="tex">(2ab)^{3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2^{3}a^{3}b^{3}</span><br><span class="tex">=\boldsymbol{8a^{3}b^{3}}</span></div></div></div>
-  </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> In (d), how many factors are inside the brackets? How many times is each one used?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Three factors</b>: 2, <span class="tex">a</span> and <span class="tex">b</span>. Each is used <b>3 times</b>: <span class="tex">2\cdot2\cdot2=8</span>, <span class="tex">a\cdot a\cdot a=a^{3}</span>, <span class="tex">b\cdot b\cdot b=b^{3}</span>.</div></div></div>
-  <div class="space" id="ex2-space"></div>
-  <button class="more" data-more="ex2-space">+ More space</button>
-</section>
-
-<!-- ================= 3. Power of a quotient ================= -->
-<section class="card" data-ink="s3" data-section="3. The Power of a Quotient Law">
-  <div class="sec-h"><span class="badge">3</span><h2>The Power of a Quotient Law</h2></div>
-  <p>The same idea works on a fraction:</p>
-  <p class="display"><span class="tex">\left(\dfrac{a}{b}\right)^{3}=\dfrac{a}{b}\cdot\dfrac{a}{b}\cdot\dfrac{a}{b}=\dfrac{a\,a\,a}{b\,b\,b}=\dfrac{a^{3}}{b^{3}}</span></p>
-  <div class="def"><b>Power of a Quotient Law</b> &nbsp;<span class="tex">\left(\dfrac{a}{b}\right)^{n}=\dfrac{a^{n}}{b^{n}},\quad b\neq0</span><div class="eg">Raise the <b>top</b> and the <b>bottom</b> to the power separately. Check: <span class="tex">\left(\dfrac{4}{5}\right)^{2}=\dfrac{16}{25}=\dfrac{4^{2}}{5^{2}}</span>.</div></div>
-  <div class="explainer" data-explainer="pquot"></div>
-</section>
-
-<section class="card" data-ink="s3b" data-section="3. The area picture">
-  <h3 class="sub">Squaring a fraction: the area picture</h3>
-  <p>Take a square with side 1. A square with side <span class="tex">\frac{3}{4}</span> covers <span class="tex">\left(\frac{3}{4}\right)^{2}</span> of it. Count the small squares: the top counts the shaded ones, the bottom counts them all.</p>
-  <div class="explainer" data-explainer="fsq"></div>
-</section>
-
-<section class="card example" data-ink="ex3" data-section="Example 3">
-  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Power of a quotient</h3></div>
-  <p class="q">Use the Power of a Quotient Law to simplify each expression.</p>
-  <div class="parts c4">
-    <div class="part"><div class="pl">(a) <span class="tex">\left(\dfrac{3}{4}\right)^{2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{3^{2}}{4^{2}}=\boldsymbol{\dfrac{9}{16}}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">\left(\dfrac{x}{2}\right)^{3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{x^{3}}{2^{3}}=\boldsymbol{\dfrac{x^{3}}{8}}</span></div></div></div>
-    <div class="part"><div class="pl">(c) <span class="tex">\left(\dfrac{5}{y}\right)^{2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{5^{2}}{y^{2}}=\boldsymbol{\dfrac{25}{y^{2}}}</span></div></div></div>
-    <div class="part"><div class="pl">(d) <span class="tex">\left(\dfrac{m}{n}\right)^{4}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{\dfrac{m^{4}}{n^{4}}}</span></div></div></div>
-  </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Is <span class="tex">\left(\frac{3}{4}\right)^{2}</span> bigger or smaller than <span class="tex">\frac{3}{4}</span>? Why?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Smaller.</b> <span class="tex">\frac{9}{16}</span> is a bit more than a half, and <span class="tex">\frac{3}{4}=\frac{12}{16}</span>. Taking <span class="tex">\frac{3}{4}</span> <b>of</b> <span class="tex">\frac{3}{4}</span> leaves less than you started with (the area picture shows it).</div></div></div>
-  <div class="space" id="ex3-space"></div>
-  <button class="more" data-more="ex3-space">+ More space</button>
-</section>
-
-<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
-<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u2l3"></section>
-
-<!-- ================= 4. Combining ================= -->
-<section class="card" data-ink="s4" data-section="4. Combining the Laws">
-  <div class="sec-h"><span class="badge">4</span><h2>Combining the Laws</h2></div>
-  <p>Most expressions need more than one law. Use them one at a time:</p>
-  <div class="u2l3-steps">
-    <div class="def"><b>First</b> distribute the outer exponent: the <b>Power of a Product</b> or <b>Power of a Quotient</b> Law.</div>
-    <div class="def amber"><b>Then</b> combine any matching bases: the <b>Product</b> or <b>Quotient</b> Law.</div>
-  </div>
-  <p class="display"><span class="tex">(3x)^{2}\times x^{3}=3^{2}x^{2}\times x^{3}=9x^{2+3}=9x^{5}</span></p>
-  <div class="explainer" data-explainer="chain"></div>
-</section>
-
-<section class="card example" data-ink="ex4" data-section="Example 4">
-  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Two laws</h3></div>
-  <p class="q">Simplify each expression using two exponent laws.</p>
-  <div class="parts c4">
-    <div class="part"><div class="pl">(a) <span class="tex">(2x)^{3}\times x^{2}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2^{3}x^{3}\times x^{2}</span><br><span class="tex">=8x^{3+2}=\boldsymbol{8x^{5}}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">(5m^{2})^{2}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">5^{2}\left(m^{2}\right)^{2}</span><br><span class="tex">=\boldsymbol{25m^{4}}</span></div></div></div>
-    <div class="part"><div class="pl">(c) <span class="tex">(y^{3})^{2}\div y^{4}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y^{6}\div y^{4}</span><br><span class="tex">=y^{6-4}=\boldsymbol{y^{2}}</span></div></div></div>
-    <div class="part"><div class="pl">(d) <span class="tex">\left(\dfrac{a}{3}\right)^{2}\times a^{3}</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{a^{2}}{9}\times a^{3}</span><br><span class="tex">=\boldsymbol{\dfrac{a^{5}}{9}}</span></div></div></div>
-  </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> In (b), which two laws did you use?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Power of a Product</b> (the 5 and the <span class="tex">m^{2}</span> are each squared), then <b>Power of a Power</b> (<span class="tex">\left(m^{2}\right)^{2}=m^{2\times2}=m^{4}</span>).</div></div></div>
-  <div class="space" id="ex4-space"></div>
-  <button class="more" data-more="ex4-space">+ More space</button>
-</section>
-
-<!-- ================= 5. Putting it together ================= -->
-<section class="card" data-ink="s5" data-section="5. Putting It All Together">
-  <div class="sec-h"><span class="badge">5</span><h2>Putting It All Together</h2></div>
-  <p>These expressions use <b>three or more</b> laws. Work step by step: one law at a time, and show every stage. A number inside the brackets gets the outer exponent too.</p>
-  <p>Not sure your answer is right? <b>Check it with a number.</b> Put the same value in for the letter in the question and in your answer. If they are really equal, you get the same number both times.</p>
-  <div class="explainer" data-explainer="check"></div>
-</section>
-
-<section class="card example" data-ink="ex5" data-section="Example 5">
-  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Three or more laws</h3></div>
-  <p class="q">Simplify each expression completely.</p>
-  <div class="parts c3">
-    <div class="part"><div class="pl">(a) <span class="tex">(2x)^{2}(x^{3})^{2}</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4x^{2}\times x^{6}</span><br><span class="tex">=4x^{2+6}=\boldsymbol{4x^{8}}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{(3m^{2})^{2}}{m^{3}}</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{9m^{4}}{m^{3}}</span><br><span class="tex">=9m^{4-3}=\boldsymbol{9m}</span></div></div></div>
-    <div class="part"><div class="pl">(c) <span class="tex">\left(\dfrac{2a^{2}}{b}\right)^{3}</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{2^{3}\left(a^{2}\right)^{3}}{b^{3}}</span><br><span class="tex">=\boldsymbol{\dfrac{8a^{6}}{b^{3}}}</span></div></div></div>
-  </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> In (c), why isn’t the answer <span class="tex">\dfrac{2a^{6}}{b^{3}}</span>?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The 2 is <b>inside</b> the brackets, so it is cubed too: <span class="tex">2^{3}=8</span>. Only a number <b>outside</b> the brackets is left alone.</div></div></div>
-  <div class="space" id="ex5-space"></div>
-  <button class="more" data-more="ex5-space">+ More space</button>
-</section>
-
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -241,7 +262,7 @@
     <div><b>Several laws?</b> Distribute the outer exponent first, then combine matching bases. One law per step. Check with a number if you are unsure.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u2l3">
-    <div><div class="kicker">Your turn</div><b>Assignment 3 — Power of a Product and Power of a Quotient</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 3 · Questions 7–12</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l4/">
     <div><div class="kicker">Next lesson</div><b>Lesson 4 — Combining Exponent Laws</b><div class="muted">Three laws in one question: a simple checklist tells you which one to use first.</div></div><span class="arrow">→</span>
@@ -254,7 +275,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u2l3.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u2l3', homeHref: '../../', title: '2.3 Power of a Product and Power of a Quotient' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

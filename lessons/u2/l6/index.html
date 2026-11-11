@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u2l6.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u2l6">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: The Fridge Mould">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Fridge Mould</h2>
+  <p class="wf-rule">How big was the spot <b>6 hours earlier</b>?</p></div>
+  <div class="vw-q">A spot of mould <b>triples</b> in size every hour.<small>Right now it covers 81 cm².</small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Keep going back, one hour at a time.</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><span class="tex">\tfrac19</span> <b>cm².</b> Going back, divide by 3 each hour: 81, 27, 9, 3, 1, <span class="tex">\tfrac13</span>, <span class="tex">\tfrac19</span>. The pattern doesn’t stop at 1.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,33 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Fridge Mould" style="--wf-side: 360px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Fridge Mould</h2>
-  <p class="wf-rule">A super-mould on a forgotten sandwich <b>triples</b> every hour. At <b>noon</b> it is <b>1 cm²</b>. <span class="muted">Tap a <b class="u2l6-cr">?</b> to reveal it.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u2l6-bread" id="u2l6-bread"></div>
-    <div class="u2l6-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How big is the spot at <b>4 pm</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>81 cm²</b>: triple 27.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>At what time does it reach <b>243 cm²</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>5 pm</b>: 81 × 3 = 243.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Run the clock <b>backwards</b>. How big was it at <b>11 am</b>? At <b>10 am</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans">Going back an hour <b>undoes</b> a tripling: divide by 3. 11 am: <span class="tex">1\div3=\tfrac13</span> cm²; 10 am: <span class="tex">\tfrac13\div3=\tfrac19</span> cm².</div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Nobody saw any mould at <b>midnight</b>, 12 hours before noon. If it had been tripling all night, how big was the spot at midnight? <b>Guess first</b> (in cm²).</div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> <span class="tex">-36</span></div>
-        <div class="opt"><b>B</b> <span class="tex">0</span></div>
-        <div class="opt right"><b>C</b> <span class="tex">\dfrac{1}{531\,441}</span></div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>C.</b> Twelve hours back means dividing by 3 twelve times: <span class="tex">1\div3^{12}=\tfrac{1}{531\,441}</span> cm². As a square, its side is <span class="tex">\tfrac{1}{729}</span> cm, about 0.014 mm: much thinner than a hair. That’s why nobody saw it!<br><b>A</b> comes from “<span class="tex">3\times(-12)</span>”: a size can’t be negative. <b>B</b>: dividing by 3 never reaches 0.</div>
-    </div>
-  </div></div>
-  <p class="u2l6-social">Argue it with a neighbour: going back in time, does the spot <b>ever</b> shrink to exactly zero?</p>
-</section>
+
 
 <!-- ================= 1. The pattern past zero ================= -->
 <section class="card" data-ink="s1" data-section="1. Extending the Pattern Past Zero">
@@ -100,7 +84,7 @@
 <section class="card" data-ink="s2b" data-section="2. Small, not negative">
   <h3 class="sub">A negative exponent makes a number <b>small</b>, not negative</h3>
   <div class="tip watch"><div class="tip-ic">!</div><div><span class="tex">2^{-3}=\dfrac{1}{2^3}=\dfrac18</span>. It is <b>not</b> <span class="tex">-8</span>, and it is <b>not</b> <span class="tex">-6</span>. With a whole-number base bigger than 1, the answer is always a <b>positive fraction less than 1</b>.<div class="u2l6-negb">With a <b>negative base</b>, brackets matter just as in Lesson 1: <span class="tex">(-2)^{-2}=\dfrac{1}{(-2)^{2}}=\dfrac14</span>, but <span class="tex">-2^{-2}=-\dfrac{1}{2^{2}}=-\dfrac14</span>.</div></div></div>
-  <div class="explainer" data-explainer="nline"></div>
+  <div data-extra><div class="explainer" data-explainer="nline"></div></div>
   <div class="tip calc-tip">
     <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
     <div><b>Check on the calculator.</b> For a negative exponent use the <b>negative key</b> <kbd>(−)</kbd>, not the subtract key: <span class="keys"><kbd>2</kbd><kbd>^</kbd><kbd>(−)</kbd><kbd>3</kbd><kbd>ENTER</kbd></span> gives 0.125. Then <kbd>2nd</kbd><kbd>F◂▸D</kbd> turns it into <b>1┘8</b>, which means <span class="tex">\tfrac18</span>.</div>
@@ -117,7 +101,7 @@
     <div class="part"><div class="pl">(c) <span class="tex">5^{-3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{1}{5^{3}}=\mathbf{\dfrac{1}{125}}</span></div></div></div>
     <div class="part"><div class="pl">(d) <span class="tex">10^{-2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{1}{10^{2}}=\dfrac{1}{100}</span><br><span class="tex">=\mathbf{0.01}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Which is bigger, <span class="tex">2^{-3}</span> or <span class="tex">2^{-4}</span>? Is either one negative?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2^{-3}=\tfrac18</span> is bigger than <span class="tex">2^{-4}=\tfrac1{16}</span>: one more step down the pattern halves it again. <b>Neither is negative</b>: both are small positive numbers.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Which is bigger, <span class="tex">2^{-3}</span> or <span class="tex">2^{-4}</span>? Is either one negative?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2^{-3}=\tfrac18</span> is bigger than <span class="tex">2^{-4}=\tfrac1{16}</span>: one more step down the pattern halves it again. <b>Neither is negative</b>: both are small positive numbers.</div></div></div>
   <div class="space" id="ex1-space"></div>
   <button class="more" data-more="ex1-space">+ More space</button>
 </section>
@@ -126,7 +110,7 @@
 <section class="card" data-ink="s3" data-section="3. Variable Bases">
   <div class="sec-h"><span class="badge">3</span><h2>Variable Bases</h2></div>
   <p>When the base is a variable, there is no final number to work out. Just apply the rule and <b>stop</b>: <span class="tex">x^{-3}=\dfrac{1}{x^{3}}</span>. It works the same with a letter for the exponent too: <span class="tex">a^{-n}=\dfrac{1}{a^{n}}</span>.</p>
-  <div class="explainer" data-explainer="nvar"></div>
+  <div data-extra><div class="explainer" data-explainer="nvar"></div></div>
 </section>
 
 <section class="card example" data-ink="ex2" data-section="Example 2">
@@ -149,7 +133,7 @@
   <div class="def u2l6-law"><b>Reverse Rule</b> &nbsp;For any base <span class="tex">a\neq0</span>,
     <div class="u2l6-rule"><span class="tex">\dfrac{1}{a^{-n}}=a^{n}</span></div>
     <div class="u2l6-say">A negative exponent <b>downstairs</b> flips <b>up</b> to the numerator and turns positive.</div></div>
-  <div class="explainer" data-explainer="ndiv"></div>
+  <div data-extra><div class="explainer" data-explainer="ndiv"></div></div>
 </section>
 
 <section class="card example" data-ink="ex3" data-section="Example 3">
@@ -163,6 +147,15 @@
   </div>
   <div class="space" id="ex3-space"></div>
   <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–5">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 6 · Questions 1–5</h2>
+  <p class="pr-t">Use the negative exponent rule.</p>
+  <div class="pr-chips n1"><span><b>1–5</b>The negative exponent rule</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 4.</span><a class="pill" href="../../../#/lesson/u2l6">Open the Practice site</a></div>
 </section>
 
 <!-- ================= 5. Coefficients ================= -->
@@ -193,7 +186,7 @@
 <section class="card" data-ink="s6" data-section="6. Negative Exponents from the Quotient Law">
   <div class="sec-h"><span class="badge">6</span><h2>Negative Exponents from the Quotient Law</h2></div>
   <p>You will often meet a negative exponent as the <b>answer</b> to a quotient-law question: whenever the exponent you subtract is the <b>bigger</b> one. Subtract as usual, then finish by rewriting the answer with a positive exponent.</p>
-  <div class="explainer" data-explainer="ncancel"></div>
+  <div data-extra><div class="explainer" data-explainer="ncancel"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -209,6 +202,34 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Fridge Mould" style="--wf-side: 360px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Fridge Mould</h2>
+  <p class="wf-rule">A super-mould on a forgotten sandwich <b>triples</b> every hour. At <b>noon</b> it is <b>1 cm²</b>. <span class="muted">Tap a <b class="u2l6-cr">?</b> to reveal it.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l6-bread" id="u2l6-bread"></div>
+    <div class="u2l6-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How big is the spot at <b>4 pm</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>81 cm²</b>: triple 27.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>At what time does it reach <b>243 cm²</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>5 pm</b>: 81 × 3 = 243.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Run the clock <b>backwards</b>. How big was it at <b>11 am</b>? At <b>10 am</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Going back an hour <b>undoes</b> a tripling: divide by 3. 11 am: <span class="tex">1\div3=\tfrac13</span> cm²; 10 am: <span class="tex">\tfrac13\div3=\tfrac19</span> cm².</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Nobody saw any mould at <b>midnight</b>, 12 hours before noon. If it had been tripling all night, how big was the spot at midnight? <b>Guess first</b> (in cm²).</div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> <span class="tex">-36</span></div>
+        <div class="opt"><b>B</b> <span class="tex">0</span></div>
+        <div class="opt right"><b>C</b> <span class="tex">\dfrac{1}{531\,441}</span></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C.</b> Twelve hours back means dividing by 3 twelve times: <span class="tex">1\div3^{12}=\tfrac{1}{531\,441}</span> cm². As a square, its side is <span class="tex">\tfrac{1}{729}</span> cm, about 0.014 mm: much thinner than a hair. That’s why nobody saw it!<br><b>A</b> comes from “<span class="tex">3\times(-12)</span>”: a size can’t be negative. <b>B</b>: dividing by 3 never reaches 0.</div>
+    </div>
+  </div></div>
+  <p class="u2l6-social">Argue it with a neighbour: going back in time, does the spot <b>ever</b> shrink to exactly zero?</p>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -219,7 +240,7 @@
     <div><b>Quotient law first, then positive:</b> <span class="tex">x^2\div x^5=x^{-3}=\dfrac{1}{x^3}</span>.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u2l6">
-    <div><div class="kicker">Your turn</div><b>Assignment 6 — Negative Exponents</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 6 · Questions 6–13</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l7/">
     <div><div class="kicker">Next lesson</div><b>Lesson 7 — Combining Zero, Negative and Positive Exponents</b><div class="muted">From 10 am to 2 pm the mould grew by <span class="tex">3^2\div3^{-2}</span>. What single power is that?</div></div><span class="arrow">→</span>
@@ -232,7 +253,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u2l6.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u2l6', homeHref: '../../', title: '2.6 Negative Exponents' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

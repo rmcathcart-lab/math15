@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u2l2.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u2l2">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Boxes Inside Boxes">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Boxes Inside Boxes</h2>
+  <p class="wf-rule">How many candies are on the truck?</p></div>
+  <div class="vw-q">A bag holds <b>5</b> candies. A box holds <b>5</b> bags.<small>A crate holds 5 boxes. A truck holds 5 crates.</small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Is there a quick way to write it?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>625.</b> <span class="tex">5\times5\times5\times5=5^4=625</span>.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,36 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Boxes Inside Boxes" style="--wf-side: 330px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Boxes Inside Boxes</h2>
-  <p class="wf-rule">A candy factory packs <b>everything</b> in groups of 4…</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u2l2-candy" id="u2l2-candy"></div>
-    <div class="u2l2-cbtn"><button type="button" class="pill small" id="u2l2-nums">Number the boxes in the crate</button><span class="muted">Tap “? candies” to check.</span></div>
-    <div class="u2l2-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many candies are in one <b>case</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>64</b> candies: 4 boxes <span class="tex">\times\,16</span>. In the picture, an <span class="tex">8\times8</span> square.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How many candies are in one <b>crate</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>256</b> candies: 4 cases <span class="tex">\times\,64</span>. A <span class="tex">16\times16</span> square.</div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u2l2-wqs" style="margin-top:0">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>How many <b>boxes</b> are in one crate? Can you spot it <em>without</em> dividing? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>16</b> boxes. The shaded squares make a <span class="tex">4\times4</span> grid (4 cases × 4 boxes). Dividing: <span class="tex">256\div16=16</span>.</div></div>
-    </div>
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A <b>Mega-Crate</b> is packed like a crate, but every single candy is swapped for a <em>whole crate</em>. How many candies are inside? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> 512</div>
-        <div class="opt"><b>B</b> 2 560</div>
-        <div class="opt right"><b>C</b> 65 536</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>C: 65 536.</b> A crate has 256 candy spots, and each one now holds a crate of 256: <span class="tex">256\times256=65\,536</span>. (A is the “double it” guess, <span class="tex">256\times2</span>; B is the “add a zero” guess, <span class="tex">256\times10</span>.) Only 8 levels of packing in 4s, yet over sixty-five thousand candies!</div>
-    </div>
-  </div></div>
-  <p class="u2l2-social">Ask a partner: which holds more candy, a <b>box full of crates</b> or a <b>crate full of boxes</b>? <span data-reveal="(tap for the answer)">A tie! <span class="tex">16\times256=256\times16=4\,096</span>.</span></p>
-</section>
+
 
 <!-- ================= 1. The Quotient Law ================= -->
 <section class="card" data-ink="s1" data-section="1. The Quotient Law">
@@ -103,7 +84,7 @@
   <div class="sec-h"><span class="badge">2</span><h2>Quotient Law with Coefficients</h2></div>
   <p>When a coefficient sits in front, handle the coefficients and the powers <b>separately</b>: divide the coefficients normally, then subtract the exponents.</p>
   <p class="u2l2-big"><span class="tex">8y^{6}\div2y^{2}=(8\div2)\left(y^{6}\div y^{2}\right)=4y^{4}</span></p>
-  <div class="explainer" data-explainer="coefDiv"></div>
+  <div data-extra><div class="explainer" data-explainer="coefDiv"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Numbers divide; exponents subtract.</b> Don’t subtract the coefficients: <span class="tex">8-2=6</span> is wrong here. And don’t divide the exponents: <span class="tex">y^{6}\div y^{2}</span> is <span class="tex">y^{4}</span>, not <span class="tex">y^{3}</span>.</div></div>
 </section>
 
@@ -140,7 +121,7 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s3b" data-section="3. Check it with numbers">
+<section data-extra class="card" data-ink="s3b" data-section="3. Check it with numbers">
   <h3 class="sub">Check it with numbers</h3>
   <p>With a number base you can check the law: work <b>inside the brackets first</b>, then compare with the law’s answer.</p>
   <div class="explainer" data-explainer="check"></div>
@@ -155,9 +136,18 @@
     <div class="part"><div class="pl">(c) <span class="tex">\left(p^{5}\right)^{3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">p^{5\times3}=\boldsymbol{p^{15}}</span></div></div></div>
     <div class="part"><div class="pl">(d) <span class="tex">\left(q^{3}\right)^{6}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">q^{3\times6}=\boldsymbol{q^{18}}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> For (b), Sam added instead of multiplying and still got the right answer. How?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">By luck: <span class="tex">2+2=4</span> and <span class="tex">2\times2=4</span>. Try <span class="tex">\left(6^{2}\right)^{3}</span>: adding gives <span class="tex">6^{5}</span>, but the right answer is <span class="tex">6^{6}</span>.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> For (b), Sam added instead of multiplying and still got the right answer. How?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">By luck: <span class="tex">2+2=4</span> and <span class="tex">2\times2=4</span>. Try <span class="tex">\left(6^{2}\right)^{3}</span>: adding gives <span class="tex">6^{5}</span>, but the right answer is <span class="tex">6^{6}</span>.</div></div></div>
   <div class="space" id="ex4-space"></div>
   <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–7">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 2 · Questions 1–7</h2>
+  <p class="pr-t">The Quotient Law, then the Power of a Power Law.</p>
+  <div class="pr-chips n2"><span><b>1–4</b>The Quotient Law</span><span><b>5–7</b>Power of a power</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 5.</span><a class="pill" href="../../../#/lesson/u2l2">Open the Practice site</a></div>
 </section>
 
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
@@ -177,7 +167,7 @@
 <section class="card" data-ink="s4" data-section="4. Putting Both Laws Together">
   <div class="sec-h"><span class="badge">4</span><h2>Putting Both Laws Together</h2></div>
   <p>Some expressions need <b>both</b> laws. Simplify inside the brackets first by <b>multiplying</b> the exponents, <em>then</em> <b>subtract</b> using the Quotient Law.</p>
-  <div class="explainer" data-explainer="chain"></div>
+  <div data-extra><div class="explainer" data-explainer="chain"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -192,6 +182,37 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Boxes Inside Boxes" style="--wf-side: 330px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Boxes Inside Boxes</h2>
+  <p class="wf-rule">A candy factory packs <b>everything</b> in groups of 4…</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l2-candy" id="u2l2-candy"></div>
+    <div class="u2l2-cbtn"><button type="button" class="pill small" id="u2l2-nums">Number the boxes in the crate</button><span class="muted">Tap “? candies” to check.</span></div>
+    <div class="u2l2-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many candies are in one <b>case</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>64</b> candies: 4 boxes <span class="tex">\times\,16</span>. In the picture, an <span class="tex">8\times8</span> square.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How many candies are in one <b>crate</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>256</b> candies: 4 cases <span class="tex">\times\,64</span>. A <span class="tex">16\times16</span> square.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u2l2-wqs" style="margin-top:0">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>How many <b>boxes</b> are in one crate? Can you spot it <em>without</em> dividing? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>16</b> boxes. The shaded squares make a <span class="tex">4\times4</span> grid (4 cases × 4 boxes). Dividing: <span class="tex">256\div16=16</span>.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A <b>Mega-Crate</b> is packed like a crate, but every single candy is swapped for a <em>whole crate</em>. How many candies are inside? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 512</div>
+        <div class="opt"><b>B</b> 2 560</div>
+        <div class="opt right"><b>C</b> 65 536</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: 65 536.</b> A crate has 256 candy spots, and each one now holds a crate of 256: <span class="tex">256\times256=65\,536</span>. (A is the “double it” guess, <span class="tex">256\times2</span>; B is the “add a zero” guess, <span class="tex">256\times10</span>.) Only 8 levels of packing in 4s, yet over sixty-five thousand candies!</div>
+    </div>
+  </div></div>
+  <p class="u2l2-social">Ask a partner: which holds more candy, a <b>box full of crates</b> or a <b>crate full of boxes</b>? <span data-reveal="(tap for the answer)">A tie! <span class="tex">16\times256=256\times16=4\,096</span>.</span></p>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -202,7 +223,7 @@
     <div><b>Read the clue:</b> × add, ÷ subtract, ( )ⁿ multiply. Both laws in one? <b>Brackets first</b>, then subtract.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u2l2">
-    <div><div class="kicker">Your turn</div><b>Assignment 2 — The Quotient Law &amp; Power of a Power</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 2 · Questions 8–14</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l3/">
     <div><div class="kicker">Next lesson</div><b>Lesson 3 — Power of a Product and Power of a Quotient</b><div class="muted">A case is an 8 × 8 square of candies, and 8 = 2 × 4. What happens when you square a product like <span class="tex">(2\times4)^{2}</span>?</div></div><span class="arrow">→</span>
@@ -215,7 +236,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u2l2.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u2l2', homeHref: '../../', title: '2.2 Quotient Law and Power of a Power' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

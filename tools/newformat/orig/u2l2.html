@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Quotient Law &amp; Power of a Power · Math 15 2.2</title>
+<meta name="description" content="Math 15 Unit 2 Lesson 2: dividing powers with the same base subtracts the exponents (cancel the factors in pairs); with coefficients, divide the numbers separately; raising a power to a power multiplies the exponents (copies stacked in rows); and using both laws in one expression, brackets first. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u2l2.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u2l2">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 2 Exponents · Lesson 2</div>
+  <h1>The Quotient Law &amp; Power of a Power</h1>
+  <p class="lede">Dividing powers <b>subtracts</b> exponents; raising a power to a power <b>multiplies</b> them. Both laws come from the same idea as last day: write out the factors and count.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>use the <b>Quotient Law</b> <span class="tex">a^{m}\div a^{n}=a^{m-n}</span>: same base, subtract the exponents</li>
+      <li>divide terms with <b>coefficients</b>: divide the numbers, subtract the exponents</li>
+      <li>use the <b>Power of a Power Law</b> <span class="tex">\left(a^{m}\right)^{n}=a^{mn}</span>: multiply the exponents</li>
+      <li>tell which law to use: <b>add</b>, <b>subtract</b> or <b>multiply</b>?</li>
+      <li>simplify expressions that need <b>both</b> laws, brackets first</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN3</b> Demonstrate an understanding of powers with integral and rational exponents.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Boxes Inside Boxes" style="--wf-side: 330px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Boxes Inside Boxes</h2>
+  <p class="wf-rule">A candy factory packs <b>everything</b> in groups of 4…</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l2-candy" id="u2l2-candy"></div>
+    <div class="u2l2-cbtn"><button type="button" class="pill small" id="u2l2-nums">Number the boxes in the crate</button><span class="muted">Tap “? candies” to check.</span></div>
+    <div class="u2l2-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many candies are in one <b>case</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>64</b> candies: 4 boxes <span class="tex">\times\,16</span>. In the picture, an <span class="tex">8\times8</span> square.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How many candies are in one <b>crate</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>256</b> candies: 4 cases <span class="tex">\times\,64</span>. A <span class="tex">16\times16</span> square.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u2l2-wqs" style="margin-top:0">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>How many <b>boxes</b> are in one crate? Can you spot it <em>without</em> dividing? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>16</b> boxes. The shaded squares make a <span class="tex">4\times4</span> grid (4 cases × 4 boxes). Dividing: <span class="tex">256\div16=16</span>.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A <b>Mega-Crate</b> is packed like a crate, but every single candy is swapped for a <em>whole crate</em>. How many candies are inside? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 512</div>
+        <div class="opt"><b>B</b> 2 560</div>
+        <div class="opt right"><b>C</b> 65 536</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: 65 536.</b> A crate has 256 candy spots, and each one now holds a crate of 256: <span class="tex">256\times256=65\,536</span>. (A is the “double it” guess, <span class="tex">256\times2</span>; B is the “add a zero” guess, <span class="tex">256\times10</span>.) Only 8 levels of packing in 4s, yet over sixty-five thousand candies!</div>
+    </div>
+  </div></div>
+  <p class="u2l2-social">Ask a partner: which holds more candy, a <b>box full of crates</b> or a <b>crate full of boxes</b>? <span data-reveal="(tap for the answer)">A tie! <span class="tex">16\times256=256\times16=4\,096</span>.</span></p>
+</section>
+
+<!-- ================= 1. The Quotient Law ================= -->
+<section class="card" data-ink="s1" data-section="1. The Quotient Law">
+  <div class="sec-h"><span class="badge">1</span><h2>The Quotient Law</h2></div>
+  <p>Recall the Product Law: <span class="tex">a^{m}\times a^{n}=a^{m+n}</span>, so <span class="tex">4^{2}\times4^{3}=4^{5}=1\,024</span>. Division works the same way, but with <b>subtraction</b>. Expanding,</p>
+  <p class="u2l2-big"><span class="tex">2^{5}\div2^{2}=\dfrac{2\times2\times2\times2\times2}{2\times2}=2\times2\times2=2^{3}=8,\qquad 5-2=3</span></p>
+  <div class="def"><b>Quotient Law</b> &nbsp;<span class="tex">a^{m}\div a^{n}=\dfrac{a^{m}}{a^{n}}=a^{m-n}\quad(a\neq0)</span><div class="eg">Keep the base, <b>subtract</b> the exponents (top minus bottom). The bases must match.</div></div>
+  <div class="explainer" data-explainer="cancel"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Keep the brackets on a negative base.</b> In <span class="tex">\dfrac{(-3)^{8}}{(-3)^{5}}</span> the base is <span class="tex">-3</span>, so the answer is <span class="tex">(-3)^{3}</span>, and three negative factors make it <b>negative</b>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Same base: subtract the exponents</h3></div>
+  <p class="q">Use the Quotient Law to simplify.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">7^{5}\div7^{2}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">7^{5-2}=\boldsymbol{7^{3}}</span><br><span class="tex">=343</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{(-3)^{8}}{(-3)^{5}}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-3)^{8-5}=\boldsymbol{(-3)^{3}}</span><br><span class="tex">=-27</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x^{9}\div x^{4}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^{9-4}=\boldsymbol{x^{5}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">\dfrac{y^{10}}{y^{6}}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y^{10-6}=\boldsymbol{y^{4}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Coefficients ================= -->
+<section class="card" data-ink="s2" data-section="2. Quotient Law with Coefficients">
+  <div class="sec-h"><span class="badge">2</span><h2>Quotient Law with Coefficients</h2></div>
+  <p>When a coefficient sits in front, handle the coefficients and the powers <b>separately</b>: divide the coefficients normally, then subtract the exponents.</p>
+  <p class="u2l2-big"><span class="tex">8y^{6}\div2y^{2}=(8\div2)\left(y^{6}\div y^{2}\right)=4y^{4}</span></p>
+  <div class="explainer" data-explainer="coefDiv"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Numbers divide; exponents subtract.</b> Don’t subtract the coefficients: <span class="tex">8-2=6</span> is wrong here. And don’t divide the exponents: <span class="tex">y^{6}\div y^{2}</span> is <span class="tex">y^{4}</span>, not <span class="tex">y^{3}</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Divide the numbers, subtract the exponents</h3></div>
+  <p class="q">Simplify each expression.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">12x^{5}\div4x^{2}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(12\div4)\,x^{5-2}</span><br><span class="tex">=\boldsymbol{3x^{3}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\dfrac{20y^{8}}{5y^{3}}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(20\div5)\,y^{8-3}</span><br><span class="tex">=\boldsymbol{4y^{5}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">18a^{9}\div6a^{4}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(18\div6)\,a^{9-4}</span><br><span class="tex">=\boldsymbol{3a^{5}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Power of a Power ================= -->
+<section class="card" data-ink="s3" data-section="3. The Power of a Power Law">
+  <div class="sec-h"><span class="badge">3</span><h2>The Power of a Power Law</h2></div>
+  <p>An outer exponent says how many <b>copies</b> of the inner power to multiply: <span class="tex">\left(10^{2}\right)^{3}=10^{2}\times10^{2}\times10^{2}=10^{6}=1\,000\,000</span>, and <span class="tex">2\times3=6</span>.</p>
+  <div class="def"><b>Power of a Power Law</b> &nbsp;<span class="tex">\left(a^{m}\right)^{n}=a^{mn}</span><div class="eg">Keep the base, <b>multiply</b> the exponents. Check: <span class="tex">2^{3}=8</span> and <span class="tex">8^{2}=64</span>. ✓</div></div>
+  <div class="explainer" data-explainer="copies"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Multiply the exponents</h3></div>
+  <p class="q">Use the Power of a Power Law to simplify.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">\left(3^{2}\right)^{3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3^{2\times3}=\boldsymbol{3^{6}}</span><br><span class="tex">=729</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\left(2^{3}\right)^{2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2^{3\times2}=\boldsymbol{2^{6}}</span><br><span class="tex">=64</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\left(x^{4}\right)^{3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x^{4\times3}=\boldsymbol{x^{12}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">\left(y^{2}\right)^{5}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y^{2\times5}=\boldsymbol{y^{10}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Check it with numbers">
+  <h3 class="sub">Check it with numbers</h3>
+  <p>With a number base you can check the law: work <b>inside the brackets first</b>, then compare with the law’s answer.</p>
+  <div class="explainer" data-explainer="check"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>More practice: multiply the exponents</h3></div>
+  <p class="q">Use the Power of a Power Law to simplify.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">\left(2^{4}\right)^{2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2^{4\times2}=\boldsymbol{2^{8}}</span><br><span class="tex">=256</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\left(6^{2}\right)^{2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">6^{2\times2}=\boldsymbol{6^{4}}</span><br><span class="tex">=1\,296</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\left(p^{5}\right)^{3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">p^{5\times3}=\boldsymbol{p^{15}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">\left(q^{3}\right)^{6}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">q^{3\times6}=\boldsymbol{q^{18}}</span></div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> For (b), Sam added instead of multiplying and still got the right answer. How?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">By luck: <span class="tex">2+2=4</span> and <span class="tex">2\times2=4</span>. Try <span class="tex">\left(6^{2}\right)^{3}</span>: adding gives <span class="tex">6^{5}</span>, but the right answer is <span class="tex">6^{6}</span>.</div></div></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u2l2"></section>
+
+<section class="card" data-ink="s3c" data-section="3. Add, subtract or multiply?">
+  <h3 class="sub">Add, subtract or multiply? Read the clue</h3>
+  <div class="u2l2-rules">
+    <div class="u2l2-rule prod"><b class="k">same base ×</b><b>add</b> the exponents<br><span class="tex">a^{m}\times a^{n}=a^{m+n}</span></div>
+    <div class="u2l2-rule quot"><b class="k">same base ÷</b><b>subtract</b> the exponents<br><span class="tex">a^{m}\div a^{n}=a^{m-n}</span></div>
+    <div class="u2l2-rule ppow"><b class="k">( power )ⁿ</b><b>multiply</b> the exponents<br><span class="tex">\left(a^{m}\right)^{n}=a^{mn}</span></div>
+  </div>
+  <div class="explainer" data-explainer="which"></div>
+</section>
+
+<!-- ================= 4. Both laws ================= -->
+<section class="card" data-ink="s4" data-section="4. Putting Both Laws Together">
+  <div class="sec-h"><span class="badge">4</span><h2>Putting Both Laws Together</h2></div>
+  <p>Some expressions need <b>both</b> laws. Simplify inside the brackets first by <b>multiplying</b> the exponents, <em>then</em> <b>subtract</b> using the Quotient Law.</p>
+  <div class="explainer" data-explainer="chain"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Brackets first, then divide</h3></div>
+  <p class="q">Use both the Quotient Law and the Power of a Power Law to simplify.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">\dfrac{\left(x^{3}\right)^{4}}{x^{5}}</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Top first: <span class="tex">x^{3\times4}=x^{12}</span><br><span class="tex">x^{12-5}=\boldsymbol{x^{7}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\left(2^{2}\right)^{3}\div2^{4}</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Brackets first: <span class="tex">2^{2\times3}=2^{6}</span><br><span class="tex">2^{6-4}=2^{2}=\boldsymbol{4}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\dfrac{\left(a^{2}\right)^{5}}{\left(a^{3}\right)^{2}}</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{a^{10}}{a^{6}}=a^{10-6}</span><br><span class="tex">=\boldsymbol{a^{4}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Quotient Law:</b> <span class="tex">a^{m}\div a^{n}=a^{m-n}</span>, same base only. The factors cancel in pairs: <span class="tex">2^{5}\div2^{2}=2^{3}</span>.</div>
+    <div><b>With coefficients:</b> divide the numbers, subtract the exponents: <span class="tex">12x^{5}\div4x^{2}=3x^{3}</span>.</div>
+    <div><b>Power of a Power:</b> <span class="tex">\left(a^{m}\right)^{n}=a^{mn}</span>. <span class="tex">n</span> copies of <span class="tex">m</span> factors: <span class="tex">\left(2^{3}\right)^{2}=2^{6}</span>, not <span class="tex">2^{5}</span>.</div>
+    <div><b>Read the clue:</b> × add, ÷ subtract, ( )ⁿ multiply. Both laws in one? <b>Brackets first</b>, then subtract.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u2l2">
+    <div><div class="kicker">Your turn</div><b>Assignment 2 — The Quotient Law &amp; Power of a Power</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l3/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 3 — Power of a Product and Power of a Quotient</b><div class="muted">A case is an 8 × 8 square of candies, and 8 = 2 × 4. What happens when you square a product like <span class="tex">(2\times4)^{2}</span>?</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u2l2.js';
+  boot({ key: 'u2l2', homeHref: '../../', title: '2.2 Quotient Law and Power of a Power' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

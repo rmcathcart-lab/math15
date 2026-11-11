@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u1l4.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u1l4">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Spot the Impostor">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Spot the Impostor</h2>
+  <p class="wf-rule">Three of these are the same number in disguise. Which one is the impostor?</p></div>
+  <div class="vw-tiles" style="--n:4"><div><b>A</b><span class="tex">\sqrt{9}</span></div><div><b>B</b><span class="tex">\dfrac{6}{2}</span></div><div><b>C</b><span class="tex">\sqrt{10}</span></div><div><b>D</b><span class="tex">3.0</span></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Convince the person beside you.</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>C.</b> <span class="tex">\sqrt9</span>, <span class="tex">\tfrac62</span> and <span class="tex">3.0</span> are all 3. <span class="tex">\sqrt{10}</span> is about 3.16, and its decimal never ends or repeats.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,41 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Number Club" style="--wf-side: 290px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Number Club</h2>
-  <p class="wf-rule">House rule: every guest goes to the <b>deepest</b> room they are allowed into. Tap a guest, then tap a room.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u1l4-club-box">
-      <div class="u1l4-club" id="u1l4-club"></div>
-      <div class="u1l4-club-bar no-ink">
-        <div class="u1l4-club-st" id="u1l4-club-st"></div>
-        <button class="pill" type="button" data-u1l4-club="all">Seat everyone</button>
-        <button class="exb" type="button" data-u1l4-club="reset" title="Start over" aria-label="Start over"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg></button>
-      </div>
-    </div>
-    <div class="u1l4-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Send <span class="tex">7</span>, <span class="tex">0</span> and <span class="tex">-4</span> to their rooms. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u1l4-wa"><div class="bk-ans">7 → <b>Natural</b> (counting). 0 → <b>Whole</b>. −4 → <b>Integers</b> (negatives stop there).</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Where do <span class="tex">\tfrac{3}{5}</span> and <span class="tex">0.25</span> go? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u1l4-wa"><div class="bk-ans">Both → <b>Rational</b>. <span class="tex">\tfrac35=0.6</span> and <span class="tex">0.25=\tfrac14</span>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div><span class="tex">\sqrt{16}</span> and <span class="tex">\sqrt{2}</span> look like twins. Same room? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u1l4-wa"><div class="bk-ans"><b>No!</b> <span class="tex">\sqrt{16}=4</span> → <b>Natural</b>. <span class="tex">\sqrt2=1.41421\ldots</span> → <b>Irrational</b>.</div></div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> The bouncer turns <b>one</b> of these guests away from the <b>Rational</b> room. Who? <b>Guess first.</b></div></div>
-      <div class="poll-opts c4">
-        <div class="opt"><b>A</b> <span class="tex">0.333\ldots</span></div>
-        <div class="opt"><b>B</b> <span class="tex">\sqrt{49}</span></div>
-        <div class="opt"><b>C</b> <span class="tex">\tfrac{22}{7}</span></div>
-        <div class="opt right"><b>D</b> <span class="tex">\pi</span></div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>D: π</b> = 3.14159… never ends and never repeats. A <b>repeats</b> (<span class="tex">0.333\ldots=\tfrac13</span>), B is <span class="tex">\sqrt{49}=7</span>, and C is a fraction: only a <b>close guess</b> for π.</div>
-    </div>
-  </div></div>
-  <p class="u1l4-social">Invent a guest to stump your neighbour. Can they find its room?</p>
-</section>
+
 
 <!-- ================= 1. N, W, I ================= -->
 <section class="card" data-ink="s1" data-section="1. Natural, Whole, Integers">
@@ -89,7 +65,7 @@
     <div class="def u1l4-di"><b>Integers</b> <span class="tex">I=\{\ldots,\ -2,\ -1,\ 0,\ 1,\ 2,\ \ldots\}</span><div class="eg">add the opposites</div></div>
   </div>
   <p>Each set is tucked completely inside the next, so every natural number is also whole, and also an integer.</p>
-  <div class="explainer" data-explainer="nwi"></div>
+  <div data-extra><div class="explainer" data-explainer="nwi"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -114,10 +90,10 @@
     <div><b>Every repeating decimal</b><span class="tex">0.\overline{3}=\tfrac{1}{3}</span></div>
   </div>
   <p>So to check a number, <b>write it as a decimal</b>: if it terminates or repeats, it is rational.</p>
-  <div class="explainer" data-explainer="asFrac"></div>
+  <div data-extra><div class="explainer" data-explainer="asFrac"></div></div>
 </section>
 
-<section class="card" data-ink="s2b" data-section="2. Fractions as decimals">
+<section data-extra class="card" data-ink="s2b" data-section="2. Fractions as decimals">
   <h3 class="sub">A fraction as a decimal: it always terminates or repeats</h3>
   <p>Divide the top by the bottom. Watch the <b>remainders</b>: once one comes back, the digits repeat forever.</p>
   <div class="explainer" data-explainer="longdiv"></div>
@@ -142,10 +118,10 @@
   <div class="sec-h"><span class="badge">3</span><h2>Irrational Numbers</h2></div>
   <div class="def amber">An <b>irrational number</b> <span class="tex">\overline{Q}</span> has a decimal that runs on <b>forever</b> without ever settling into a <b>repeating block</b>.<div class="eg"><span class="tex">\sqrt{2}=1.41421356\ldots \qquad \pi=3.14159265\ldots</span></div></div>
   <p>A square root (of a whole number) is rational <b>exactly when</b> the number under the root is a <b>perfect square</b>: <span class="tex">\sqrt{16}=4</span> is rational, but <span class="tex">\sqrt{17}</span> is irrational.</p>
-  <div class="explainer" data-explainer="perfectSq"></div>
+  <div data-extra><div class="explainer" data-explainer="perfectSq"></div></div>
 </section>
 
-<section class="card" data-ink="s3b" data-section="3. Does it repeat?">
+<section data-extra class="card" data-ink="s3b" data-section="3. Does it repeat?">
   <h3 class="sub">Does it ever repeat? Wrap the digits into rows and look for stripes</h3>
   <p>A repeating decimal lines up into neat <b>stripes</b> when you wrap it in rows the length of its block. An irrational number never does.</p>
   <div class="explainer" data-explainer="stripes"></div>
@@ -200,7 +176,7 @@
   <div class="u1l4-fig-wrap"><div class="u1l4-fig-nest" id="u1l4-nestfig"></div></div>
 </section>
 
-<section class="card" data-ink="s4b" data-section="4. Building the sets">
+<section data-extra class="card" data-ink="s4b" data-section="4. Building the sets">
   <h3 class="sub">Build it one set at a time</h3>
   <div class="explainer" data-explainer="build"></div>
 </section>
@@ -234,6 +210,15 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–8">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 4 · Questions 1–8</h2>
+  <p class="pr-t">Name the sets, then reason about them.</p>
+  <div class="pr-chips n2"><span><b>1–5</b>Naming the sets</span><span><b>6–8</b>Reasoning about the sets</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 6.</span><a class="pill" href="../../../#/lesson/u1l4">Open the Practice site</a></div>
+</section>
+
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
 <section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u1l4"></section>
 
@@ -241,7 +226,7 @@
 <section class="card" data-ink="s5" data-section="5. Ordering Real Numbers">
   <div class="sec-h"><span class="badge">5</span><h2>Ordering and Comparing Real Numbers</h2></div>
   <p>Because the reals fill every point on the line, any two of them can be compared. Turn each number into a decimal. Estimate an irrational square root from the nearest perfect squares (<span class="tex">\sqrt{2}\approx1.4</span>), and watch for roots of perfect squares: <span class="tex">-\sqrt{1}=-1</span> is rational, because 1 is a perfect square.</p>
-  <div class="explainer" data-explainer="order"></div>
+  <div data-extra><div class="explainer" data-explainer="order"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -255,6 +240,42 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Number Club" style="--wf-side: 290px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Number Club</h2>
+  <p class="wf-rule">House rule: every guest goes to the <b>deepest</b> room they are allowed into. Tap a guest, then tap a room.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u1l4-club-box">
+      <div class="u1l4-club" id="u1l4-club"></div>
+      <div class="u1l4-club-bar no-ink">
+        <div class="u1l4-club-st" id="u1l4-club-st"></div>
+        <button class="pill" type="button" data-u1l4-club="all">Seat everyone</button>
+        <button class="exb" type="button" data-u1l4-club="reset" title="Start over" aria-label="Start over"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg></button>
+      </div>
+    </div>
+    <div class="u1l4-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Send <span class="tex">7</span>, <span class="tex">0</span> and <span class="tex">-4</span> to their rooms. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l4-wa"><div class="bk-ans">7 → <b>Natural</b> (counting). 0 → <b>Whole</b>. −4 → <b>Integers</b> (negatives stop there).</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Where do <span class="tex">\tfrac{3}{5}</span> and <span class="tex">0.25</span> go? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l4-wa"><div class="bk-ans">Both → <b>Rational</b>. <span class="tex">\tfrac35=0.6</span> and <span class="tex">0.25=\tfrac14</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div><span class="tex">\sqrt{16}</span> and <span class="tex">\sqrt{2}</span> look like twins. Same room? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l4-wa"><div class="bk-ans"><b>No!</b> <span class="tex">\sqrt{16}=4</span> → <b>Natural</b>. <span class="tex">\sqrt2=1.41421\ldots</span> → <b>Irrational</b>.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> The bouncer turns <b>one</b> of these guests away from the <b>Rational</b> room. Who? <b>Guess first.</b></div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b> <span class="tex">0.333\ldots</span></div>
+        <div class="opt"><b>B</b> <span class="tex">\sqrt{49}</span></div>
+        <div class="opt"><b>C</b> <span class="tex">\tfrac{22}{7}</span></div>
+        <div class="opt right"><b>D</b> <span class="tex">\pi</span></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D: π</b> = 3.14159… never ends and never repeats. A <b>repeats</b> (<span class="tex">0.333\ldots=\tfrac13</span>), B is <span class="tex">\sqrt{49}=7</span>, and C is a fraction: only a <b>close guess</b> for π.</div>
+    </div>
+  </div></div>
+  <p class="u1l4-social">Invent a guest to stump your neighbour. Can they find its room?</p>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -265,7 +286,7 @@
     <div><b>Real</b> <span class="tex">R</span> = rational + irrational: every point on the number line. A number belongs to <b>every</b> set that contains it. To order, compare the decimals.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u1l4">
-    <div><div class="kicker">Your turn</div><b>Assignment 4 — Classifying Numbers in the Real Number System</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 4 · Questions 9–14</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l5/">
     <div><div class="kicker">Next lesson</div><b>Lesson 5 — Perfect Squares, Perfect Cubes, and Estimating Roots</b><div class="muted">√16 got into the club because 16 is a perfect square. And √2 is trapped between 1 and 2. How close can we get?</div></div><span class="arrow">→</span>
@@ -278,7 +299,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u1l4.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u1l4', homeHref: '../../', title: '1.4 Classifying Real Numbers' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

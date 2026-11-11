@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Powers, Exponent Vocabulary &amp; the Product Law · Math 15 2.1</title>
+<meta name="description" content="Math 15 Unit 2 Lesson 1: the base, exponent and power; writing a power as repeated multiplication; why (−3)² and −3² are different; substituting a value into a power; and the Product Law (same base, add the exponents), with and without coefficients. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u2l1.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u2l1">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 2 Exponents · Lesson 1</div>
+  <h1>Powers, Exponent Vocabulary &amp; the Product Law</h1>
+  <p class="lede"><span class="tex">3\times3\times3\times3</span> is a lot to write, so we write <span class="tex">3^{4}</span>. Today we review powers from Grade 9: their parts, their values, and where the brackets go. Then we build the first <b>exponent law</b> just by counting factors.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>name the <b>base</b>, the <b>exponent</b> and the <b>power</b>, and write a power as a repeated multiplication</li>
+      <li>evaluate powers, and explain why <span class="tex">(-3)^{2}</span> and <span class="tex">-3^{2}</span> are different</li>
+      <li>evaluate a power with a variable base by substituting the whole value, in brackets</li>
+      <li>use the <b>Product Law</b> <span class="tex">a^{m}\times a^{n}=a^{m+n}</span>: same base, add the exponents</li>
+      <li>multiply terms with <b>coefficients</b>: multiply the numbers, add the exponents</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN3</b> Demonstrate an understanding of powers with integral and rational exponents.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Pass It On!" style="--wf-side: 330px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Pass It On!</h2>
+  <p class="wf-rule">You tell <b>3 friends</b> a secret. Each of them tells <b>3 new</b> friends. Then each of those…</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l1-treebox">
+      <div class="u2l1-tree" id="u2l1-tree"></div>
+      <div class="u2l1-tbtns"><button type="button" class="pill small" id="u2l1-grow">Grow it round by round</button><span class="muted">Tap “? people” to check Q1.</span></div>
+    </div>
+    <div class="u2l1-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many people hear it in <b>Round 3</b>? In <b>Round 4</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Round 3: <b>27</b> people (<span class="tex">9\times3</span>). Round 4: <span class="tex">27\times3=</span> <b>81</b> people.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Round 3 is <span class="tex">3\times3\times3</span>. How many 3s for <b>Round 5</b>? How many people is that? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>Five</b> 3s: <span class="tex">3\times3\times3\times3\times3=243</span> people.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u2l1-wqs" style="margin-top:0">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Stop at Round 2. Each of those 9 people starts their <em>own</em> 3-round spread. How many people in all the last rows? Compare with Q2! <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Each chain ends with <span class="tex">3\times3\times3=27</span> people, and there are 9 chains: <span class="tex">9\times27=243</span>. <b>Exactly Round 5!</b> 2 rounds, then 3 more, is 5 rounds.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Earth has about <b>8 billion</b> people. If every round reaches only <em>new</em> people, how many rounds until a <em>single round</em> is bigger than the <b>whole world</b>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> 21</div>
+        <div class="opt"><b>B</b> 500</div>
+        <div class="opt"><b>C</b> 1 000 000</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A: only 21 rounds!</b> Round <span class="tex">n</span> has <span class="tex">3^{n}</span> people.
+        <div class="u2l1-grow">
+          <span class="gr-r">Round 10</span><span class="gr-v">59 049</span><span class="gr-n">a small city</span>
+          <span class="gr-r">Round 20</span><span class="gr-v">≈ 3.5 billion</span><span class="gr-n">not there yet</span>
+          <span class="gr-r">Round 21</span><span class="gr-v gr-win">≈ 10.5 billion</span><span class="gr-n gr-win">more than Earth!</span>
+        </div>
+        Multiplying by 3 over and over grows shockingly fast. At 10 minutes a round, the whole planet would know in about <b>3½ hours</b>.</div>
+    </div>
+  </div></div>
+  <p class="u2l1-social">Try it: pass a code word on, 3 classmates at a time. How many rounds to reach everyone?</p>
+</section>
+
+<!-- ================= 1. What is a power? ================= -->
+<section class="card" data-ink="s1" data-section="1. What Is a Power?">
+  <div class="sec-h"><span class="badge">1</span><h2>What Is a Power?</h2></div>
+  <p>An exponent counts <b>repeated multiplication</b>: <span class="tex">3^{4}=3\times3\times3\times3=81</span>. The base can be a variable too: <span class="tex u2l1-nw">p\times p\times p=p^{3}</span>.</p>
+  <div class="u2l1-voc">
+    <div class="u2l1-vpow"><span class="tex">t^{k}</span></div>
+    <div class="u2l1-vlist">
+      <div class="u2l1-vrow"><span class="u2l1-vk b">base</span><span><span class="tex">t</span>: the factor that is repeated</span></div>
+      <div class="u2l1-vrow"><span class="u2l1-vk e">exponent</span><span><span class="tex">k</span>: how many times the base is used as a factor</span></div>
+      <div class="u2l1-vrow"><span class="u2l1-vk p">power</span><span><span class="tex">t^{k}</span>: the <b>whole thing</b>, base and exponent together</span></div>
+    </div>
+  </div>
+  <div class="u2l1-figrow" id="u2l1-figs"></div>
+  <div class="explainer" data-explainer="anatomy"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Base, exponent, repeated multiplication</h3></div>
+  <p class="q">State the base and the exponent, write each as a repeated multiplication, then evaluate where possible.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">3^{4}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Base <b>3</b>, exponent <b>4</b><br><span class="tex">3\times3\times3\times3=81</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">6^{2}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Base <b>6</b>, exponent <b>2</b><br><span class="tex">6\times6=36</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">x^{5}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Base <b><span class="tex">x</span></b>, exponent <b>5</b><br><span class="tex">x\times x\times x\times x\times x</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">8^{3}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Base <b>8</b>, exponent <b>3</b><br><span class="tex">8\times8\times8=512</span></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Evaluating powers ================= -->
+<section class="card" data-ink="s2" data-section="2. Evaluating Powers">
+  <div class="sec-h"><span class="badge">2</span><h2>Evaluating Powers</h2></div>
+  <p>To evaluate a power, <b>expand</b> it, then multiply it out. Watch two things.</p>
+  <div class="def-grid">
+    <div class="def"><b>Order matters.</b> <span class="tex">2^{5}=2\times2\times2\times2\times2=32</span>, but <span class="tex">5^{2}=5\times5=25</span>. The base is the factor; the exponent counts it.</div>
+    <div class="def amber"><b>Brackets matter</b> with negatives. <span class="tex">(-3)^{2}=(-3)(-3)=9</span>, but <span class="tex">-3^{2}=-(3\times3)=-9</span>.<div class="eg">With an <b>odd</b> exponent the difference disappears: <span class="tex">(-2)^{3}=-2^{3}=-8</span>.</div></div>
+  </div>
+  <div class="explainer" data-explainer="order"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Brackets and negatives">
+  <h3 class="sub">What does the exponent reach?</h3>
+  <p>The exponent reaches only what is <b>inside the brackets</b>. With no brackets, it reaches only the number right under it, and a minus sign in front stays <b>outside</b> the power.</p>
+  <div class="explainer" data-explainer="brackets"></div>
+</section>
+
+<section class="card" data-ink="s2c" data-section="2. The sign pattern">
+  <h3 class="sub">When does the difference disappear?</h3>
+  <p>Each extra factor of a negative number <b>flips the sign</b>. Watch the two kinds of power side by side as the exponent grows.</p>
+  <div class="explainer" data-explainer="signs"></div>
+  <div class="tip-row">
+    <div class="tip watch"><div class="tip-ic">!</div><div><b>Even exponent:</b> <span class="tex">(-3)^{2}</span> is positive but <span class="tex">-3^{2}</span> is negative. Read the brackets <b>before</b> you calculate.</div></div>
+    <div class="tip watch"><div class="tip-ic">!</div><div><b>Odd exponent:</b> they agree. <span class="tex">(-2)^{3}=-8</span> and <span class="tex">-2^{3}=-8</span>.</div></div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Checking at home?</b> The unit test is no-calculator, but the calculator follows the same rule. <span class="keys"><kbd>(−)</kbd><kbd>3</kbd><kbd>x²</kbd><kbd>ENTER</kbd></span> gives <b>−9</b>: it squares only the 3. To square −3, use brackets: <span class="keys"><kbd>(</kbd><kbd>(−)</kbd><kbd>3</kbd><kbd>)</kbd><kbd>x²</kbd><kbd>ENTER</kbd></span> gives <b>9</b>.</div>
+    <div class="u2l1-pcol"><button class="pill" data-keys="(−) 3 x² =">Show −3²</button><button class="pill" data-keys="( (−) 3 ) x² =">Show (−3)²</button></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Order and brackets</h3></div>
+  <p class="q">Evaluate each power without a calculator.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">2^{5}</span></div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2\times2\times2\times2\times2=\boldsymbol{32}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">5^{2}</span></div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">5\times5=\boldsymbol{25}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">(-3)^{2}</span></div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-3)(-3)=\boldsymbol{9}</span><br>The bracket makes −3 the base.</div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">-3^{2}</span></div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">-(3\times3)=\boldsymbol{-9}</span><br>Only the 3 is squared.</div></div></div>
+    <div class="part"><div class="pl">(e) <span class="tex">(-2)^{3}</span></div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-2)(-2)(-2)=\boldsymbol{-8}</span><br>Three negative factors.</div></div></div>
+    <div class="part"><div class="pl">(f) <span class="tex">-2^{3}</span></div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">-(2\times2\times2)=\boldsymbol{-8}</span><br>The minus stays outside.</div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Without multiplying anything out: is <span class="tex">(-1)^{100}</span> positive or negative? What about <span class="tex">-1^{100}</span>?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(-1)^{100}=\boldsymbol{1}</span>: 100 negative factors pair up into positives. <span class="tex">-1^{100}=-(1^{100})=\boldsymbol{-1}</span>: the minus is outside the power.</div></div></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Variable bases ================= -->
+<section class="card" data-ink="s3" data-section="3. Powers with Variable Bases">
+  <div class="sec-h"><span class="badge">3</span><h2>Powers with Variable Bases</h2></div>
+  <p><span class="tex">x^{3}</span> means <span class="tex">x\times x\times x</span>. It can’t be simplified until we know <span class="tex">x</span>. To evaluate it, <b>substitute the whole value</b> (sign included, in brackets), then evaluate: if <span class="tex">x=4</span>, then <span class="tex">x^{3}=(4)^{3}=64</span>.</p>
+  <div class="explainer" data-explainer="substitute"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Negative value? Brackets first.</b> If <span class="tex">x=-6</span>, write <span class="tex">x^{2}=(-6)^{2}=36</span>. Writing <span class="tex">-6^{2}</span> would give <span class="tex">-36</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Substitute, then evaluate</h3></div>
+  <p class="q">Evaluate each power for the given value of the variable.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">a^{3}</span>, <span class="tex">a=2</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">a^{3}=(2)^{3}</span><br><span class="tex">=2\times2\times2=\boldsymbol{8}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">b^{2}</span>, <span class="tex">b=5</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">b^{2}=(5)^{2}</span><br><span class="tex">=5\times5=\boldsymbol{25}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">c^{4}</span>, <span class="tex">c=-2</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">c^{4}=(-2)^{4}</span><br><span class="tex">=(-2)(-2)(-2)(-2)=\boldsymbol{16}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">d^{3}</span>, <span class="tex">d=-1</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">d^{3}=(-1)^{3}</span><br><span class="tex">=(-1)(-1)(-1)=\boldsymbol{-1}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. The Product Law ================= -->
+<section class="card" data-ink="s4" data-section="4. The Product Law">
+  <div class="sec-h"><span class="badge">4</span><h2>The Product Law</h2></div>
+  <p>Expanding shows what happens when the bases match: <span class="tex">2^{3}\times2^{2}=(2\times2\times2)(2\times2)=2^{5}</span>, since there are <span class="tex">3+2=5</span> factors. The exponents <b>add</b>.</p>
+  <div class="def"><b>Product Law</b> &nbsp;<span class="tex">a^{m}\times a^{n}=a^{m+n}</span><div class="eg">Keep the base, <b>add</b> the exponents. The bases must be <b>identical</b>: it does <b>not</b> apply to <span class="tex">2^{3}\times5^{2}</span>.</div></div>
+  <div class="explainer" data-explainer="product"></div>
+  <div class="tip-row">
+    <div class="tip watch"><div class="tip-ic">!</div><div><b>Keep the base.</b> <span class="tex">2^{3}\times2^{4}=2^{7}</span>, not <span class="tex">4^{7}</span>. Only the exponents change.</div></div>
+    <div class="tip watch"><div class="tip-ic">!</div><div><b>A letter on its own</b> has exponent 1: <span class="tex">n=n^{1}</span>, so it adds 1 to the count.</div></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Same base: add the exponents</h3></div>
+  <p class="q">Use the Product Law to simplify. Evaluate where possible.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">3^{2}\times3^{4}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3^{2+4}=3^{6}</span><br><span class="tex">=\boldsymbol{729}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">6^{3}\times6^{1}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">6^{3+1}=6^{4}</span><br><span class="tex">=\boldsymbol{1\,296}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">m^{2}\times m^{5}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m^{2+5}=\boldsymbol{m^{7}}</span><br>Needs a value for <span class="tex">m</span> to evaluate.</div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">n^{4}\times n\times n^{2}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">n^{4+1+2}=\boldsymbol{n^{7}}</span><br>Remember <span class="tex">n=n^{1}</span>.</div></div></div>
+  </div>
+  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Jordan wrote <span class="tex">2^{3}\times2^{4}=4^{7}</span>. What went wrong?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Jordan multiplied the <b>bases</b> too. The base stays 2: <span class="tex">2^{3}\times2^{4}=\boldsymbol{2^{7}}=128</span>, while <span class="tex">4^{7}=16\,384</span>.</div></div></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u2l1"></section>
+
+<!-- ================= 5. Product Law with coefficients ================= -->
+<section class="card" data-ink="s5" data-section="5. The Product Law with Coefficients">
+  <div class="sec-h"><span class="badge">5</span><h2>Applying the Product Law with Coefficients</h2></div>
+  <p>A <b>coefficient</b> is the number out front: the <span class="tex">3</span> in <span class="tex">3x^{2}</span>. Handle the numbers and the powers <b>separately</b>:</p>
+  <p class="u2l1-big"><span class="tex">3x^{2}\times5x^{4}=(3\times5)(x^{2}\times x^{4})=15x^{6}</span></p>
+  <div class="u2l1-rules">
+    <div class="u2l1-rule"><b class="k">The coefficients</b><b>multiply</b>, like ordinary numbers: <span class="tex">3\times5=15</span>.</div>
+    <div class="u2l1-rule v"><b class="k">The powers</b>same base, so the exponents <b>add</b>: <span class="tex">x^{2+4}=x^{6}</span>.</div>
+  </div>
+  <div class="explainer" data-explainer="coef"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>No number in front?</b> The coefficient is <b>1</b>: <span class="tex">7b^{2}\times b^{3}=(7\times1)\,b^{2+3}</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Numbers multiply, exponents add</h3></div>
+  <p class="q">Use the Product Law to simplify each expression.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">4x^{2}\times2x^{3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(4\times2)x^{2+3}</span><br><span class="tex">=\boldsymbol{8x^{5}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">5a^{3}\times3a^{2}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(5\times3)a^{3+2}</span><br><span class="tex">=\boldsymbol{15a^{5}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">2y\times6y^{4}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(2\times6)y^{1+4}</span><br><span class="tex">=\boldsymbol{12y^{5}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">7b^{2}\times b^{3}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">(7\times1)b^{2+3}</span><br><span class="tex">=\boldsymbol{7b^{5}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div>In <span class="tex">3^{4}</span>: the <b>base</b> is 3 (the repeated factor), the <b>exponent</b> is 4 (how many factors), and the <b>power</b> is the whole <span class="tex">3^{4}=3\times3\times3\times3=81</span>.</div>
+    <div><b>Order and brackets matter.</b> <span class="tex">2^{5}=32</span> but <span class="tex">5^{2}=25</span>. <span class="tex">(-3)^{2}=9</span> but <span class="tex">-3^{2}=-9</span>. With an odd exponent they agree.</div>
+    <div><b>Variable base:</b> substitute the whole value, in brackets. If <span class="tex">c=-2</span>, then <span class="tex">c^{4}=(-2)^{4}=16</span>.</div>
+    <div><b>Product Law:</b> <span class="tex">a^{m}\times a^{n}=a^{m+n}</span>, same base only. With coefficients, numbers <b>multiply</b> and exponents <b>add</b>: <span class="tex">3x^{2}\times5x^{4}=15x^{6}</span>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u2l1">
+    <div><div class="kicker">Your turn</div><b>Assignment 1 — Powers, Exponent Vocabulary &amp; the Product Law</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l2/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 2 — The Quotient Law &amp; Power of a Power</b><div class="muted">Round 5 has 243 people and Round 2 has 9. How many times bigger is Round 5? Dividing powers <b>subtracts</b> exponents.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u2l1.js';
+  boot({ key: 'u2l1', homeHref: '../../', title: '2.1 Powers and the Product Law' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

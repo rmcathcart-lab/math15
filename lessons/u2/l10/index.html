@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u2l10.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u2l10">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: The Biggest One">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Biggest One</h2>
+  <p class="wf-rule">No calculator. Which is the biggest?</p></div>
+  <div class="vw-tiles" style="--n:3"><div><b>A</b><span class="tex">10^{100}</span></div><div><b>B</b><span class="tex">100^{10}</span></div><div><b>C</b><span class="tex">1000^{5}</span></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Can you write them all with the same base?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>A, by a huge amount.</b> <span class="tex">100^{10}=(10^2)^{10}=10^{20}</span> and <span class="tex">1000^5=(10^3)^5=10^{15}</span>. Both are tiny beside <span class="tex">10^{100}</span>.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -43,37 +53,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Sticky-Note Wall" style="--wf-side: 300px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Sticky-Note Wall</h2>
-  <p class="wf-rule">Ten exponent “facts” on the wall. Some are right… some are <i>very</i> wrong. <span class="muted">(Vote thumbs up or down, then tap a note to check it.)</span></p></div>
-  <div class="u2l10-wall" id="u2l10-wall">
-    <div class="u2l10-tally no-ink"><span id="u2l10-tally">0 of 10 checked</span><button class="pill small" type="button" id="u2l10-all">Check all</button><button class="pill small" type="button" id="u2l10-reset">Reset</button></div>
-  </div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u2l10-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Note <b>A</b>: <span class="tex">2^3=8</span>, <span class="tex">2^4=16</span>. Is <span class="tex">8\times16</span> really <span class="tex">2^7</span>?</div></div>
-        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>Yes:</b> <span class="tex">8\times16=128=2^7</span>. That’s the product law.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Mark each note ✓ or ✗. How many are <b>wrong</b>?</div></div>
-        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>5 wrong:</b> B, D, F, H, J. (A, C, E, G, I are right.)</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div><b>A</b> and <b>J</b> can’t both be right. Which is?</div></div>
-        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>A.</b> Same base: keep the base, <b>add</b> the exponents. J changed the base too.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>Fix every wrong note so it tells the truth.</div></div>
-        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans">Tap each note: the fix appears on it. <span class="tex">5^0=1</span>, <span class="tex">x^6</span>, <span class="tex">\tfrac18</span>, <span class="tex">8x^3</span>, <span class="tex">2^7</span>.</div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A new note says: “<span class="tex">100^{10}</span> is the biggest of these!” Which really is? <b>Guess first.</b></div></div>
-      <div class="poll-opts u2l10-popts">
-        <div class="opt right"><b>A</b> <span class="tex">2^{100}</span></div>
-        <div class="opt"><b>B</b> <span class="tex">10^{30}</span></div>
-        <div class="opt"><b>C</b> <span class="tex">100^{10}</span></div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>A, just barely.</b> <span class="tex">2^{10}=1024&gt;10^3</span>, so <span class="tex">2^{100}=(2^{10})^{10}</span> beats <span class="tex">(10^3)^{10}=10^{30}</span>. The note’s “winner” is last: <span class="tex">100^{10}=(10^2)^{10}=10^{20}</span>.</div>
-    </div>
-  </div></div>
-  <p class="u2l10-social">Vote on each note: thumbs up for true, thumbs down for false, then defend your vote!</p>
-</section>
+
 
 <!-- ================= laws at a glance ================= -->
 <section class="card" data-ink="deck" data-section="The laws at a glance">
@@ -96,7 +76,7 @@
 <section class="card" data-ink="s1" data-section="1. The Product Law">
   <div class="sec-h"><span class="badge">1</span><h2>The Product Law</h2></div>
   <p>Multiplying powers with the <b>same base</b>: keep the base and <b>add</b> the exponents, <span class="tex">a^{m}\cdot a^{n}=a^{m+n}</span>. Multiply any coefficients separately. The reason: an exponent <b>counts factors</b>, and multiplying just puts all the factors in one row.</p>
-  <div class="explainer" data-explainer="count"></div>
+  <div data-extra><div class="explainer" data-explainer="count"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -135,7 +115,7 @@
 <section class="card" data-ink="s3" data-section="3. Power of a Product and of a Quotient">
   <div class="sec-h"><span class="badge">3</span><h2>Power of a Product and Power of a Quotient</h2></div>
   <p>Raise <b>each</b> factor to the outside power: <span class="tex">(ab)^{n}=a^{n}b^{n}</span>, and <span class="tex">\left(\dfrac{a}{b}\right)^{n}=\dfrac{a^{n}}{b^{n}}</span>: numerator and denominator both.</p>
-  <div class="explainer" data-explainer="dist"></div>
+  <div data-extra><div class="explainer" data-explainer="dist"></div></div>
 </section>
 
 <section class="card example" data-ink="ex3" data-section="Example 3">
@@ -157,7 +137,7 @@
     <div class="u2l10-ord"><span class="u2l10-on">2</span><b>Matching bases.</b> Product or quotient law.</div>
     <div class="u2l10-ord"><span class="u2l10-on">3</span><b>Coefficients last.</b> Multiply or divide the numbers.</div>
   </div>
-  <div class="explainer" data-explainer="steps1"></div>
+  <div data-extra><div class="explainer" data-explainer="steps1"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>The outside power hits the coefficient too.</b> <span class="tex">(2t^3)^2=4t^6</span>, not <span class="tex">2t^6</span>.</div></div>
 </section>
 
@@ -172,6 +152,15 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–9">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 10 · Questions 1–9</h2>
+  <p class="pr-t">The exponent laws, one at a time.</p>
+  <div class="pr-chips n1"><span><b>1–9</b>The exponent laws</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 6.</span><a class="pill" href="../../../#/lesson/u2l10">Open the Practice site</a></div>
+</section>
+
 <!-- ================= 5. zero ================= -->
 <section class="card" data-ink="s5" data-section="5. Zero Exponents">
   <div class="sec-h"><span class="badge">5</span><h2>Zero Exponents</h2></div>
@@ -179,7 +168,7 @@
   <div class="u2l10-pat">
     <span class="tex">5^3=125</span><span class="u2l10-pa">÷5</span><span class="tex">5^2=25</span><span class="u2l10-pa">÷5</span><span class="tex">5^1=5</span><span class="u2l10-pa">÷5</span><span class="tex">5^0=\mathbf{1}</span><span class="u2l10-pa">÷5</span><span class="tex">5^{-1}=\tfrac15</span>
   </div>
-  <div class="explainer" data-explainer="anatomy"></div>
+  <div data-extra><div class="explainer" data-explainer="anatomy"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -197,7 +186,7 @@
 <section class="card" data-ink="s6" data-section="6. Negative Exponents">
   <div class="sec-h"><span class="badge">6</span><h2>Negative Exponents</h2></div>
   <p>A negative exponent means “<b>reciprocal</b>, then make the exponent positive”: <span class="tex">a^{-n}=\dfrac{1}{a^{n}}</span>. It never makes the value negative, and it never moves a coefficient outside the power.</p>
-  <div class="explainer" data-explainer="flip"></div>
+  <div data-extra><div class="explainer" data-explainer="flip"></div></div>
 </section>
 
 <section class="card example" data-ink="ex6" data-section="Example 6">
@@ -219,7 +208,7 @@
 <section class="card" data-ink="s7" data-section="7. Zero, Negative and Positive Together">
   <div class="sec-h"><span class="badge">7</span><h2>Combining Zero, Negative, and Positive Exponents</h2></div>
   <p>Same checklist as before (brackets, then matching bases), with zero and negative exponents <b>cleaned up last</b> so the final answer has positive exponents only.</p>
-  <div class="explainer" data-explainer="steps2"></div>
+  <div data-extra><div class="explainer" data-explainer="steps2"></div></div>
 </section>
 
 <section class="card example" data-ink="ex7" data-section="Example 7">
@@ -237,7 +226,7 @@
 <section class="card" data-ink="s8" data-section="8. Scientific Notation">
   <div class="sec-h"><span class="badge">8</span><h2>Scientific Notation</h2></div>
   <p>Scientific notation is <span class="tex">a\times10^{n}</span> with <span class="tex">1\le a&lt;10</span> and <span class="tex">n</span> an integer. To multiply, multiply the leading numbers and <b>add</b> the exponents of 10, then move <span class="tex">a</span> back into range.</p>
-  <div class="explainer" data-explainer="sci"></div>
+  <div data-extra><div class="explainer" data-explainer="sci"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Fix the leading number last.</b> Each hop of the decimal point <b>left</b> makes the exponent of 10 one <b>bigger</b>: <span class="tex">24.8\times10^{-4}=2.48\times10^{-3}</span>.</div></div>
 </section>
 
@@ -256,7 +245,7 @@
 <section class="card" data-ink="s9" data-section="9. Rational Exponents and Radical Form">
   <div class="sec-h"><span class="badge">9</span><h2>Rational Exponents and Radical Form</h2></div>
   <p>A fraction exponent is a root and a power together: <span class="tex">a^{m/n}=\sqrt[n]{a^{m}}</span>. The <b class="u2l10-tl">denominator is the index</b>, the <b class="u2l10-am">numerator is the power</b>. A negative rational exponent still means reciprocal.</p>
-  <div class="explainer" data-explainer="radical"></div>
+  <div data-extra><div class="explainer" data-explainer="radical"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>A negative base under a cube root is fine.</b> <span class="tex">(-2)^3=-8</span>, so <span class="tex">\sqrt[3]{-8}=-2</span>. (An odd number of negatives multiplies to a negative.)</div></div>
 </section>
 
@@ -306,6 +295,38 @@
   <button class="more" data-more="ch3-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Sticky-Note Wall" style="--wf-side: 300px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Sticky-Note Wall</h2>
+  <p class="wf-rule">Ten exponent “facts” on the wall. Some are right… some are <i>very</i> wrong. <span class="muted">(Vote thumbs up or down, then tap a note to check it.)</span></p></div>
+  <div class="u2l10-wall" id="u2l10-wall">
+    <div class="u2l10-tally no-ink"><span id="u2l10-tally">0 of 10 checked</span><button class="pill small" type="button" id="u2l10-all">Check all</button><button class="pill small" type="button" id="u2l10-reset">Reset</button></div>
+  </div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l10-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Note <b>A</b>: <span class="tex">2^3=8</span>, <span class="tex">2^4=16</span>. Is <span class="tex">8\times16</span> really <span class="tex">2^7</span>?</div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>Yes:</b> <span class="tex">8\times16=128=2^7</span>. That’s the product law.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Mark each note ✓ or ✗. How many are <b>wrong</b>?</div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>5 wrong:</b> B, D, F, H, J. (A, C, E, G, I are right.)</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div><b>A</b> and <b>J</b> can’t both be right. Which is?</div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>A.</b> Same base: keep the base, <b>add</b> the exponents. J changed the base too.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>Fix every wrong note so it tells the truth.</div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans">Tap each note: the fix appears on it. <span class="tex">5^0=1</span>, <span class="tex">x^6</span>, <span class="tex">\tfrac18</span>, <span class="tex">8x^3</span>, <span class="tex">2^7</span>.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A new note says: “<span class="tex">100^{10}</span> is the biggest of these!” Which really is? <b>Guess first.</b></div></div>
+      <div class="poll-opts u2l10-popts">
+        <div class="opt right"><b>A</b> <span class="tex">2^{100}</span></div>
+        <div class="opt"><b>B</b> <span class="tex">10^{30}</span></div>
+        <div class="opt"><b>C</b> <span class="tex">100^{10}</span></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A, just barely.</b> <span class="tex">2^{10}=1024&gt;10^3</span>, so <span class="tex">2^{100}=(2^{10})^{10}</span> beats <span class="tex">(10^3)^{10}=10^{30}</span>. The note’s “winner” is last: <span class="tex">100^{10}=(10^2)^{10}=10^{20}</span>.</div>
+    </div>
+  </div></div>
+  <p class="u2l10-social">Vote on each note: thumbs up for true, thumbs down for false, then defend your vote!</p>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -316,7 +337,7 @@
     <div><b>Power over root:</b> <span class="tex">a^{m/n}=\sqrt[n]{a^m}</span>. Take the root first. Final answers: <b>positive exponents</b>, fractions in lowest terms.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u2l10">
-    <div><div class="kicker">Your turn</div><b>Assignment 10 — Unit Review: Exponents</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 10 · Questions 10–25</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <div class="u2l10-review">
     <div class="u2l10-review-h"><span class="kicker">Up next</span><b>Unit 2 test.</b> <span class="muted">Shaky on an idea today? Go back to its lesson.</span></div>
@@ -341,7 +362,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u2l10.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u2l10', homeHref: '../../', title: '2.10 Unit Review: Exponents' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u1l3.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u1l3">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Together Again">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Together Again</h2>
+  <p class="wf-rule">How many years until both kinds are out together again?</p></div>
+  <div class="vw-q">Some cicadas come out of the ground every <b>13 years</b>. Others come out every <b>17 years</b>.<small>Both kinds came out this year.</small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Why can’t it be sooner?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>221 years.</b> 13 and 17 share no factors, so the first year both lists hit is <span class="tex">13\times17=221</span>.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,44 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Blink Together" style="--wf-side: 318px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Blink Together</h2>
-  <p class="wf-rule">Lighthouse <b class="u1l3-ca">A</b> flashes every <b>4 seconds</b>. Lighthouse <b class="u1l3-cb">B</b>, every <b>6 seconds</b>. They both flash <b>right now</b>, at 0 seconds.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u1l3-blink-box">
-      <svg class="u1l3-blink" id="u1l3-blink" viewBox="0 0 680 226" role="img" aria-label="Two timelines from 0 to 24 seconds, one for each lighthouse. Tap a tick to mark a flash."></svg>
-      <div class="u1l3-blink-bar no-ink">
-        <button class="pill" type="button" data-u1l3-bl="A">A’s flashes</button>
-        <button class="pill" type="button" data-u1l3-bl="B">B’s flashes</button>
-        <button class="pill u1l3-tog" type="button" data-u1l3-bl="tog">Together?</button>
-        <button class="exb" type="button" data-u1l3-bl="reset" title="Back to the board" aria-label="Back to the board"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg></button>
-      </div>
-      <div class="u1l3-blink-st" id="u1l3-blink-st"></div>
-    </div>
-    <div class="u1l3-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Mark every flash of <b class="u1l3-ca">A</b> up to 24 s. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u1l3-wa"><div class="bk-ans">0, 4, 8, 12, 16, 20, 24 s: count by 4s.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Mark every flash of <b class="u1l3-cb">B</b> up to 24 s. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u1l3-wa"><div class="bk-ans">0, 6, 12, 18, 24 s: count by 6s.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>When do they <b>next</b> flash together? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u1l3-wa"><div class="bk-ans"><b>12 s</b>: the first time on <b>both</b> lists after 0.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>And the time after that? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u1l3-wa"><div class="bk-ans"><b>24 s</b>, then every 12 s (36, 48, …).</div></div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Some cicadas (loud bugs) come out of the ground every <b>13 years</b>, others every <b>17 years</b>. Both came out this year. How many years until they are out <b>together</b> again? <b>Guess first.</b></div></div>
-      <div class="poll-opts u1l3-p3">
-        <div class="opt"><b>A</b> 30</div>
-        <div class="opt"><b>B</b> 68</div>
-        <div class="opt right"><b>C</b> 221</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>C: 221 years</b> = 13 × 17. 13 and 17 are <b>prime</b>, so they share no factor but 1: no shortcut, the answer is the whole product. (A = 13 + 17 and B = 4 × 17 are traps.) In 2024 a 13-year and a 17-year group really did come out together in the U.S. Midwest. Next time: 2245.</div>
-    </div>
-  </div></div>
-  <p class="u1l3-social">Clap it: half the room claps every 4 counts, half every 6. When’s the double clap?</p>
-</section>
+
 
 <!-- ================= 1. Prime and composite ================= -->
 <section class="card" data-ink="s1" data-section="1. Prime and Composite Numbers">
@@ -91,7 +64,7 @@
     <div class="def amber"><b>Composite number</b>: has <b>more than two</b> factors.<div class="eg">12 has 1, 2, 3, 4, 6, 12.</div></div>
   </div>
   <div class="def gray"><b>1 is neither</b> prime nor composite: it has only <b>one</b> factor.</div>
-  <div class="explainer" data-explainer="rectangles"></div>
+  <div data-extra><div class="explainer" data-explainer="rectangles"></div></div>
 </section>
 
 <section class="card" data-ink="s1b" data-section="1. The primes below 50">
@@ -190,11 +163,11 @@
   <div class="sec-h"><span class="badge">3</span><h2>Greatest Common Factor (GCF)</h2></div>
   <div class="def">The <b>GCF</b> is the <b>largest</b> whole number that divides evenly into <b>every</b> number in the group.</div>
   <p>For small numbers you can <b>list the factors</b> and find the biggest one they share: <b>20:</b> 1, 2, 4, 5, <b>10</b>, 20; <b>30:</b> 1, 2, 3, 5, 6, <b>10</b>, 15, 30 → GCF = 10. That works, but it gets slow with bigger numbers.</p>
-  <div class="explainer" data-explainer="gcfList"></div>
+  <div data-extra><div class="explainer" data-explainer="gcfList"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Sanity check.</b> The GCF is never <b>bigger</b> than the smallest number in the group: it has to fit into that number.</div></div>
 </section>
 
-<section class="card" data-ink="s3b" data-section="3. GCF from the primes">
+<section data-extra class="card" data-ink="s3b" data-section="3. GCF from the primes">
   <h3 class="sub">The fast way: use the prime factorizations</h3>
   <p>Factor each number, then take each prime the lists <b>share</b>, using its <b>lowest</b> power.</p>
   <p class="display">20 = <span class="u1l3-hl2">2</span><sup>2</sup> × <span class="u1l3-hl5">5</span> &nbsp;&nbsp;&nbsp; 30 = <span class="u1l3-hl2">2</span> × 3 × <span class="u1l3-hl5">5</span><span class="small muted">both share a 2 and a 5, so the GCF of 20 and 30 is 2 × 5 = 10</span></p>
@@ -223,8 +196,8 @@
 <section class="card" data-ink="s4" data-section="4. Lowest Common Multiple">
   <div class="sec-h"><span class="badge">4</span><h2>Lowest Common Multiple (LCM)</h2></div>
   <div class="def">The <b>LCM</b> is the <b>smallest</b> whole number that every number in the group divides into evenly.</div>
-  <p>For small numbers you can <b>list multiples until one matches</b>. The warm-up did it with 4 and 6 (the first number on <b>both</b> lists is 12), and <b>14:</b> 14, 28, <b>42</b>, …; <b>21:</b> 21, <b>42</b>, … → LCM = 42. That’s the slow way:</p>
-  <div class="explainer" data-explainer="frogs"></div>
+  <p>For small numbers you can <b>list multiples until one matches</b>. With 4 and 6, the first number on <b>both</b> lists is 12. With <b>14:</b> 14, 28, <b>42</b>, …; <b>21:</b> 21, <b>42</b>, … → LCM = 42. That’s the slow way.</p>
+  <div data-extra><div class="explainer" data-explainer="frogs"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Multiplying gives a common multiple, not always the lowest.</b> 4 × 6 = 24, but 4 and 6 meet first at 12.</div></div>
 </section>
 
@@ -248,6 +221,15 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–9">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 3 · Questions 1–9</h2>
+  <p class="pr-t">Prime factorization, then GCF and LCM.</p>
+  <div class="pr-chips n2"><span><b>1–4</b>Factors, primes and prime factorization</span><span><b>5–9</b>GCF and LCM</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 7.</span><a class="pill" href="../../../#/lesson/u1l3">Open the Practice site</a></div>
+</section>
+
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
 <section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u1l3"></section>
 
@@ -263,7 +245,7 @@
       <ul><li>two repeating events</li><li>when do they happen at the <b>same time</b> again?</li><li>flashes, laps, buses, schedules</li></ul>
       <div class="u1l3-vs-eg">lighthouses, every 4 s and 6 s → <b>12 s</b></div></div>
   </div>
-  <div class="explainer" data-explainer="bags"></div>
+  <div data-extra><div class="explainer" data-explainer="bags"></div></div>
 </section>
 
 <section class="card" data-ink="s5b" data-section="5. Together again: LCM">
@@ -295,6 +277,45 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Blink Together" style="--wf-side: 318px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Blink Together</h2>
+  <p class="wf-rule">Lighthouse <b class="u1l3-ca">A</b> flashes every <b>4 seconds</b>. Lighthouse <b class="u1l3-cb">B</b>, every <b>6 seconds</b>. They both flash <b>right now</b>, at 0 seconds.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u1l3-blink-box">
+      <svg class="u1l3-blink" id="u1l3-blink" viewBox="0 0 680 226" role="img" aria-label="Two timelines from 0 to 24 seconds, one for each lighthouse. Tap a tick to mark a flash."></svg>
+      <div class="u1l3-blink-bar no-ink">
+        <button class="pill" type="button" data-u1l3-bl="A">A’s flashes</button>
+        <button class="pill" type="button" data-u1l3-bl="B">B’s flashes</button>
+        <button class="pill u1l3-tog" type="button" data-u1l3-bl="tog">Together?</button>
+        <button class="exb" type="button" data-u1l3-bl="reset" title="Back to the board" aria-label="Back to the board"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg></button>
+      </div>
+      <div class="u1l3-blink-st" id="u1l3-blink-st"></div>
+    </div>
+    <div class="u1l3-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Mark every flash of <b class="u1l3-ca">A</b> up to 24 s. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l3-wa"><div class="bk-ans">0, 4, 8, 12, 16, 20, 24 s: count by 4s.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Mark every flash of <b class="u1l3-cb">B</b> up to 24 s. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l3-wa"><div class="bk-ans">0, 6, 12, 18, 24 s: count by 6s.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>When do they <b>next</b> flash together? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l3-wa"><div class="bk-ans"><b>12 s</b>: the first time on <b>both</b> lists after 0.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>And the time after that? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l3-wa"><div class="bk-ans"><b>24 s</b>, then every 12 s (36, 48, …).</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Some cicadas (loud bugs) come out of the ground every <b>13 years</b>, others every <b>17 years</b>. Both came out this year. How many years until they are out <b>together</b> again? <b>Guess first.</b></div></div>
+      <div class="poll-opts u1l3-p3">
+        <div class="opt"><b>A</b> 30</div>
+        <div class="opt"><b>B</b> 68</div>
+        <div class="opt right"><b>C</b> 221</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: 221 years</b> = 13 × 17. 13 and 17 are <b>prime</b>, so they share no factor but 1: no shortcut, the answer is the whole product. (A = 13 + 17 and B = 4 × 17 are traps.) In 2024 a 13-year and a 17-year group really did come out together in the U.S. Midwest. Next time: 2245.</div>
+    </div>
+  </div></div>
+  <p class="u1l3-social">Clap it: half the room claps every 4 counts, half every 6. When’s the double clap?</p>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -305,7 +326,7 @@
     <div><b>Which one?</b> Largest equal groups, nothing left over → <b>GCF</b>. Repeating events lining up again → <b>LCM</b>.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u1l3">
-    <div><div class="kicker">Your turn</div><b>Assignment 3 — Prime Factorization, GCF, and LCM</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 3 · Questions 10–14</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l4/">
     <div><div class="kicker">Next lesson</div><b>Lesson 4 — Classifying Numbers in the Real Number System</b><div class="muted">Natural, whole, integer, rational, irrational: every number has a room. Do √16 and √2 go to the same one?</div></div><span class="arrow">→</span>
@@ -318,7 +339,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u1l3.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u1l3', homeHref: '../../', title: '1.3 Prime Factorization, GCF, and LCM' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

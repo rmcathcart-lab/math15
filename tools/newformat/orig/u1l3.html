@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prime Factorization, GCF, and LCM · Math 15 1.3</title>
+<meta name="description" content="Math 15 Unit 1 Lesson 3: prime and composite numbers, prime factorization with a division ladder or a factor tree, the greatest common factor and the lowest common multiple from the primes, and GCF or LCM word problems. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u1l3.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u1l3">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 1 Number · Lesson 3</div>
+  <h1>Prime Factorization, GCF, and LCM</h1>
+  <p class="lede">Every whole number bigger than 1 is built by multiplying <b>primes</b>. Today we break numbers into their prime building blocks, then use those primes to find the <b>greatest common factor</b> and the <b>lowest common multiple</b>, and decide which one a word problem needs.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>tell whether a whole number is <b>prime</b> or <b>composite</b></li>
+      <li>find a <b>prime factorization</b> with a division ladder or a factor tree, and write it with exponents</li>
+      <li>find the <b>GCF</b> of a group of numbers: shared primes, lowest power</li>
+      <li>find the <b>LCM</b> of a group of numbers: every prime, highest power</li>
+      <li>decide whether a word problem needs the GCF or the LCM, and solve it</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN1</b> Demonstrate an understanding of factors of whole numbers by determining the prime factors, greatest common factor, least common multiple, square root and cube root.<span class="u1l3-today">Today: prime factors, the greatest common factor (GCF) and the lowest common multiple (LCM).</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Blink Together" style="--wf-side: 318px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Blink Together</h2>
+  <p class="wf-rule">Lighthouse <b class="u1l3-ca">A</b> flashes every <b>4 seconds</b>. Lighthouse <b class="u1l3-cb">B</b>, every <b>6 seconds</b>. They both flash <b>right now</b>, at 0 seconds.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u1l3-blink-box">
+      <svg class="u1l3-blink" id="u1l3-blink" viewBox="0 0 680 226" role="img" aria-label="Two timelines from 0 to 24 seconds, one for each lighthouse. Tap a tick to mark a flash."></svg>
+      <div class="u1l3-blink-bar no-ink">
+        <button class="pill" type="button" data-u1l3-bl="A">A’s flashes</button>
+        <button class="pill" type="button" data-u1l3-bl="B">B’s flashes</button>
+        <button class="pill u1l3-tog" type="button" data-u1l3-bl="tog">Together?</button>
+        <button class="exb" type="button" data-u1l3-bl="reset" title="Back to the board" aria-label="Back to the board"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/></svg></button>
+      </div>
+      <div class="u1l3-blink-st" id="u1l3-blink-st"></div>
+    </div>
+    <div class="u1l3-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Mark every flash of <b class="u1l3-ca">A</b> up to 24 s. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l3-wa"><div class="bk-ans">0, 4, 8, 12, 16, 20, 24 s: count by 4s.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Mark every flash of <b class="u1l3-cb">B</b> up to 24 s. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l3-wa"><div class="bk-ans">0, 6, 12, 18, 24 s: count by 6s.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>When do they <b>next</b> flash together? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l3-wa"><div class="bk-ans"><b>12 s</b>: the first time on <b>both</b> lists after 0.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>And the time after that? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l3-wa"><div class="bk-ans"><b>24 s</b>, then every 12 s (36, 48, …).</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Some cicadas (loud bugs) come out of the ground every <b>13 years</b>, others every <b>17 years</b>. Both came out this year. How many years until they are out <b>together</b> again? <b>Guess first.</b></div></div>
+      <div class="poll-opts u1l3-p3">
+        <div class="opt"><b>A</b> 30</div>
+        <div class="opt"><b>B</b> 68</div>
+        <div class="opt right"><b>C</b> 221</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: 221 years</b> = 13 × 17. 13 and 17 are <b>prime</b>, so they share no factor but 1: no shortcut, the answer is the whole product. (A = 13 + 17 and B = 4 × 17 are traps.) In 2024 a 13-year and a 17-year group really did come out together in the U.S. Midwest. Next time: 2245.</div>
+    </div>
+  </div></div>
+  <p class="u1l3-social">Clap it: half the room claps every 4 counts, half every 6. When’s the double clap?</p>
+</section>
+
+<!-- ================= 1. Prime and composite ================= -->
+<section class="card" data-ink="s1" data-section="1. Prime and Composite Numbers">
+  <div class="sec-h"><span class="badge">1</span><h2>Prime and Composite Numbers</h2></div>
+  <div class="def-grid">
+    <div class="def"><b>Prime number</b>: a whole number greater than 1 whose only factors are <b>1 and itself</b>.<div class="eg">7 is prime: only 1 × 7.</div></div>
+    <div class="def amber"><b>Composite number</b>: has <b>more than two</b> factors.<div class="eg">12 has 1, 2, 3, 4, 6, 12.</div></div>
+  </div>
+  <div class="def gray"><b>1 is neither</b> prime nor composite: it has only <b>one</b> factor.</div>
+  <div class="explainer" data-explainer="rectangles"></div>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. The primes below 50">
+  <h3 class="sub">The primes below 50</h3>
+  <div class="primes-fill">
+    <div><b>Fill in the missing primes below 50</b> <span class="muted">(tap a blank to fill it)</span></div>
+    <div class="pl-row">2, <button class="blank" data-a="3"></button>, 5, <button class="blank" data-a="7"></button>, 11, <button class="blank" data-a="13"></button>, 17, <button class="blank" data-a="19"></button>, 23, <button class="blank" data-a="29"></button>, 31, <button class="blank" data-a="37"></button>, 41, <button class="blank" data-a="43"></button>, 47
+      <button class="pill small" data-fillall>Fill all</button></div>
+  </div>
+  <div class="explainer" data-explainer="sieve"></div>
+  <div class="tip-row">
+    <div class="tip watch"><div class="tip-ic">!</div><div><b>2 is the only even prime.</b> Every other even number has 2 as a factor.</div></div>
+    <div class="tip watch"><div class="tip-ic">!</div><div><b>Odd doesn’t mean prime.</b> 9, 15, 21 and 25 are all odd, and all composite.</div></div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Prime or composite?</h3></div>
+  <p class="q">Classify each whole number as prime or composite.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) 27</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">27 = 3 × 9, so 1, 3, 9, 27 are factors.<br><b>Composite</b></div></div></div>
+    <div class="part"><div class="pl">(b) 34</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Even: 34 = 2 × 17.<br><b>Composite</b></div></div></div>
+    <div class="part"><div class="pl">(c) 43</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">No factor 2, 3 or 5, and 7 × 7 = 49 is bigger than 43.<br><b>Prime</b></div></div></div>
+    <div class="part"><div class="pl">(d) 49</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">49 = 7 × 7.<br><b>Composite</b></div></div></div>
+  </div>
+  <div class="tip u1l3-info"><div class="tip-ic">i</div><div><b>Testing for prime:</b> try dividing by 2, 3, 5, 7, … Once the prime times itself is bigger than your number, you can stop: if nothing worked, the number is prime.</div></div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- sources: https://mathcs.clarku.edu/~djoyce/java/elements/bookIX/propIX20.html (Euclid, Elements IX.20, D. Joyce, Clark University)
+     https://en.wikipedia.org/wiki/Euclid_number (3, 7, 31, 211, 2311 prime; 30031 = 59 × 509 is the first composite one)
+     https://britannica.com/biography/Euclid-Greek-mathematician/Introduction (Euclid fl. c. 300 BCE)
+     https://mathshistory.st-andrews.ac.uk/SH/euclid_sh.pdf (MacTutor: the Elements was the centre of math teaching for 2000 years)
+     (box copied from the Math 10C Lesson 1.1 page) -->
+<!-- ================= Math History box (brown) ================= -->
+<section class="card history" data-ink="hist" data-section="Math History: Euclid">
+  <div class="hist-head"><span class="hist-tag">Math History</span><span class="hist-dates">c. 300 BCE · Euclid’s Elements, Book IX</span></div>
+  <div class="hist-grid">
+    <div class="hist-text">
+      <h3 class="hist-title">Euclid’s proof: the primes never run out</h3>
+      <p>Around 300 BCE, the Greek mathematician <b>Euclid</b> wrote the <i>Elements</i>, a math book that was still used in schools 2 000 years later. In it he proved there is <b>no largest prime</b>.</p>
+      <p>His idea: take any list of primes, <b>multiply them and add 1</b>. None of the primes on the list divides the new number (each leaves a remainder of 1). So the new number is a new prime, or its prime factors are new primes.</p>
+      <div class="part hist-q"><div class="pl">2 × 3 × 5 × 7 × 11 × 13 + 1 = 30&nbsp;031. Is 30&nbsp;031 prime? <span class="u1l3h-hint">(Hint: try 59.)</span></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">30&nbsp;031 ÷ 59 = 509, so it is <b>composite</b>: 30&nbsp;031&nbsp;=&nbsp;59&nbsp;×&nbsp;509. And 509 is prime. So 59 and 509 are <b>new primes</b>, just as Euclid said.</div></div></div>
+    </div>
+    <figure class="hist-anim">
+      <svg id="u1l3-hist" viewBox="0 0 600 300" role="img" aria-label="Multiply the first primes and add 1: 2×3+1 = 7, 2×3×5+1 = 31, 2×3×5×7+1 = 211 and 2×3×5×7×11+1 = 2311 are new primes; 2×3×5×7×11×13+1 = 30 031 is not prime, but it equals 59 × 509, two new primes."></svg>
+      <figcaption><button class="hist-play" type="button">Replay</button><span>Tap the picture to play it again.</span></figcaption>
+      <p class="hist-note">Euclid never said these numbers are always prime. 30&nbsp;031 is the first one that isn’t, and his proof still works.</p>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= 2. Prime factorization ================= -->
+<section class="card" data-ink="s2" data-section="2. Prime Factorization">
+  <div class="sec-h"><span class="badge">2</span><h2>Prime Factorization</h2></div>
+  <div class="def">A <b>prime factorization</b> writes a number as a <b>product of primes</b>, usually in exponent form. Two organized methods give the same result.</div>
+  <div class="methods">
+    <div class="method"><div class="m-h">Division ladder</div>Divide repeatedly by the <b>smallest prime</b> that fits. Stop at <b>1</b>. The primes are <b>down the left side</b>.</div>
+    <div class="method"><div class="method-or">or</div></div>
+    <div class="method"><div class="m-h">Factor tree</div>Split the number into <b>two factors</b>. Keep splitting until every <b>leaf</b> (end of a branch) is prime.</div>
+  </div>
+  <div class="u1l3-trio">
+    <div class="u1l3-fig"><div class="u1l3-fig-h">Division ladder: 52</div><div class="u1l3-mini-ladder"><span>2</span><span>52</span><span>2</span><span>26</span><span>13</span><span>13</span><span></span><span>1</span></div></div>
+    <div class="u1l3-fig"><div class="u1l3-fig-h">Factor tree: 52</div><div class="u1l3-mini-tree" data-u1l3-tree="52:2,26|26:2,13"></div></div>
+    <div class="u1l3-fig u1l3-fig-eq"><div class="u1l3-fig-h">Same answer</div><div class="u1l3-eq">52 = 2 × 2 × 13</div><div class="u1l3-eq"><b>52 = 2<sup>2</sup> × 13</b></div><div class="muted u1l3-small">primes from smallest to largest, exponents for repeats</div></div>
+  </div>
+  <div class="explainer" data-explainer="ladder"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Factor trees">
+  <div class="ex explainer-tree" id="u1l3-tree">
+    <div class="ex-top no-ink"><div class="ex-title">Method 2: the factor tree (tap a number to split it)</div>
+      <div class="ex-chips"><button class="chip on" data-n="52">52</button><button class="chip" data-n="36">36</button><button class="chip" data-n="90">90</button><button class="chip" data-n="60">60</button><span class="ex-sep">Example 2 check:</span><button class="chip" data-n="54">54</button>
+        <form class="ex-custom"><input type="text" inputmode="numeric" placeholder="other" aria-label="Choose your own number"><button class="chip go" type="submit">Go</button></form></div>
+    </div>
+    <div class="ft-host" style="--fth:360px"></div>
+  </div>
+  <p class="small muted">Different first splits make different-looking trees, but the primes at the ends of the branches are always the same.</p>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Ladder and tree</h3></div>
+  <p class="q">Use the method indicated to find each prime factorization. Show every step.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Division ladder: 76</div><div class="work" style="--h:330px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u1l3-ansfig"><div class="u1l3-mini-ladder sm"><span>2</span><span>76</span><span>2</span><span>38</span><span>19</span><span>19</span><span></span><span>1</span></div><div>76 = 2 × 2 × 19<br><b>76 = 2<sup>2</sup> × 19</b></div></div></div></div>
+    <div class="part"><div class="pl">(b) Factor tree: 54</div><div class="work" style="--h:330px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans u1l3-ansfig"><div class="u1l3-mini-tree sm" data-u1l3-tree="54:2,27|27:3,9|9:3,3"></div><div>54 = 2 × 3 × 3 × 3<br><b>54 = 2 × 3<sup>3</sup></b></div></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. GCF ================= -->
+<section class="card" data-ink="s3" data-section="3. Greatest Common Factor">
+  <div class="sec-h"><span class="badge">3</span><h2>Greatest Common Factor (GCF)</h2></div>
+  <div class="def">The <b>GCF</b> is the <b>largest</b> whole number that divides evenly into <b>every</b> number in the group.</div>
+  <p>For small numbers you can <b>list the factors</b> and find the biggest one they share: <b>20:</b> 1, 2, 4, 5, <b>10</b>, 20; <b>30:</b> 1, 2, 3, 5, 6, <b>10</b>, 15, 30 → GCF = 10. That works, but it gets slow with bigger numbers.</p>
+  <div class="explainer" data-explainer="gcfList"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Sanity check.</b> The GCF is never <b>bigger</b> than the smallest number in the group: it has to fit into that number.</div></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. GCF from the primes">
+  <h3 class="sub">The fast way: use the prime factorizations</h3>
+  <p>Factor each number, then take each prime the lists <b>share</b>, using its <b>lowest</b> power.</p>
+  <p class="display">20 = <span class="u1l3-hl2">2</span><sup>2</sup> × <span class="u1l3-hl5">5</span> &nbsp;&nbsp;&nbsp; 30 = <span class="u1l3-hl2">2</span> × 3 × <span class="u1l3-hl5">5</span><span class="small muted">both share a 2 and a 5, so the GCF of 20 and 30 is 2 × 5 = 10</span></p>
+  <div class="explainer" data-explainer="vennG"></div>
+</section>
+
+<section class="card" data-ink="s3c" data-section="3. GCF with exponents">
+  <h3 class="sub">With exponents: shared primes, lowest power</h3>
+  <p>Give each prime its own column. Keep only the primes that are in <b>every</b> number, each at its <b>lowest</b> power.</p>
+  <div class="explainer" data-explainer="tableG"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>GCF by prime factorization</h3></div>
+  <p class="q">Use prime factorization to determine the greatest common factor.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) 24 and 42</div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">24 = 2<sup>3</sup> × 3<br>42 = 2 × 3 × 7<br>Shared: 2<sup>1</sup> and 3<sup>1</sup>.<br><b>GCF = 2 × 3 = 6</b></div></div></div>
+    <div class="part"><div class="pl">(b) 45 and 54</div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">45 = 3<sup>2</sup> × 5<br>54 = 2 × 3<sup>3</sup><br>Shared: 3<sup>2</sup> only.<br><b>GCF = 9</b></div></div></div>
+    <div class="part"><div class="pl">(c) 32, 64, and 96</div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">32 = 2<sup>5</sup>, 64 = 2<sup>6</sup>, 96 = 2<sup>5</sup> × 3<br>Shared: 2 at its lowest power, 2<sup>5</sup>.<br><b>GCF = 32</b></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. LCM ================= -->
+<section class="card" data-ink="s4" data-section="4. Lowest Common Multiple">
+  <div class="sec-h"><span class="badge">4</span><h2>Lowest Common Multiple (LCM)</h2></div>
+  <div class="def">The <b>LCM</b> is the <b>smallest</b> whole number that every number in the group divides into evenly.</div>
+  <p>For small numbers you can <b>list multiples until one matches</b>. The warm-up did it with 4 and 6 (the first number on <b>both</b> lists is 12), and <b>14:</b> 14, 28, <b>42</b>, …; <b>21:</b> 21, <b>42</b>, … → LCM = 42. That’s the slow way:</p>
+  <div class="explainer" data-explainer="frogs"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Multiplying gives a common multiple, not always the lowest.</b> 4 × 6 = 24, but 4 and 6 meet first at 12.</div></div>
+</section>
+
+<section class="card" data-ink="s4b" data-section="4. LCM from the primes">
+  <h3 class="sub">The fast way: every prime, highest power</h3>
+  <p>Factor each number, then take <b>every</b> prime that appears in <b>either</b> list, using its <b>highest</b> power.</p>
+  <p class="display">14 = 2 × <span class="u1l3-hl7">7</span> &nbsp;&nbsp;&nbsp; 21 = 3 × <span class="u1l3-hl7">7</span><span class="small muted">every prime once: LCM of 14 and 21 = 2 × 3 × 7 = 42</span></p>
+  <div class="explainer" data-explainer="tableL"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Sanity check.</b> The LCM is never <b>smaller</b> than the largest number in the group: they all have to fit into it.</div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>LCM by prime factorization</h3></div>
+  <p class="q">Use prime factorization to determine the lowest common multiple.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) 10 and 15</div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">10 = 2 × 5<br>15 = 3 × 5<br>Take 2, 3, 5 each once.<br><b>LCM = 2 × 3 × 5 = 30</b></div></div></div>
+    <div class="part"><div class="pl">(b) 12 and 18</div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">12 = 2<sup>2</sup> × 3<br>18 = 2 × 3<sup>2</sup><br>Highest powers: 2<sup>2</sup> and 3<sup>2</sup>.<br><b>LCM = 4 × 9 = 36</b></div></div></div>
+    <div class="part"><div class="pl">(c) 8, 15, and 20</div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">8 = 2<sup>3</sup>, 15 = 3 × 5, 20 = 2<sup>2</sup> × 5<br>Highest powers: 2<sup>3</sup>, 3, 5.<br><b>LCM = 8 × 3 × 5 = 120</b></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u1l3"></section>
+
+<!-- ================= 5. Applications ================= -->
+<section class="card" data-ink="s5" data-section="5. GCF or LCM?">
+  <div class="sec-h"><span class="badge">5</span><h2>Putting GCF and LCM to Work</h2></div>
+  <p>Both come from the same prime factorizations, so the real work in a word problem is <b>choosing</b>.</p>
+  <div class="u1l3-vs">
+    <div class="u1l3-vs-col g"><div class="u1l3-vs-h">GCF <span>largest equal groups</span></div>
+      <ul><li>split things into the <b>largest</b> equal groups</li><li>identical bags, kits, bracelets…</li><li><b>nothing left over</b></li></ul>
+      <div class="u1l3-vs-eg">12 yellow and 18 red bulbs → <b>6</b> boxes</div></div>
+    <div class="u1l3-vs-col l"><div class="u1l3-vs-h">LCM <span>line up again</span></div>
+      <ul><li>two repeating events</li><li>when do they happen at the <b>same time</b> again?</li><li>flashes, laps, buses, schedules</li></ul>
+      <div class="u1l3-vs-eg">lighthouses, every 4 s and 6 s → <b>12 s</b></div></div>
+  </div>
+  <div class="explainer" data-explainer="bags"></div>
+</section>
+
+<section class="card" data-ink="s5b" data-section="5. Together again: LCM">
+  <h3 class="sub">Together again: that’s an LCM</h3>
+  <p>Two lights repeat on different cycles. They are together at the <b>common multiples</b> of the two cycles, and the first time is the <b>LCM</b>.</p>
+  <div class="explainer" data-explainer="beacons"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Examples 5 and 6">
+  <div class="ex-head"><span class="ex-tag">Examples 5 and 6</span><h3>Applications</h3></div>
+  <p class="q">Solve each problem. State whether you need the <b>GCF</b> or the <b>LCM</b> before you calculate.</p>
+  <div class="u1l3-twocol">
+    <div>
+      <p class="q u1l3-wp"><b>5 (GCF).</b> Maya has <b>36</b> blue beads and <b>48</b> red beads. She wants identical bracelets, using all the beads, with the greatest number of bracelets possible.</p>
+      <div class="parts c1">
+        <div class="part"><div class="pl">(a) How many bracelets can Maya make?</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Identical bracelets using every bead → <b>GCF</b>.<br>36 = 2<sup>2</sup> × 3<sup>2</sup>, 48 = 2<sup>4</sup> × 3<br>GCF = 2<sup>2</sup> × 3 = 12<br><b>12 bracelets</b></div></div></div>
+        <div class="part"><div class="pl">(b) How many blue and how many red beads go on each bracelet?</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Blue: 36 ÷ 12 = <b>3</b> &nbsp; Red: 48 ÷ 12 = <b>4</b><br><span class="u1l3-small">Check: 12 × 3 = 36, 12 × 4 = 48 ✓</span></div></div></div>
+      </div>
+    </div>
+    <div>
+      <p class="q u1l3-wp"><b>6 (LCM).</b> Two spotlights sweep a stage. Light A returns to its start every <b>18</b> seconds, Light B every <b>24</b> seconds. They start together.</p>
+      <div class="parts c1">
+        <div class="part"><div class="pl">(a) After how many seconds are both back at the start together?</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Repeating events lining up → <b>LCM</b>.<br>18 = 2 × 3<sup>2</sup>, 24 = 2<sup>3</sup> × 3<br>LCM = 2<sup>3</sup> × 3<sup>2</sup> = 72<br><b>72 seconds</b></div></div></div>
+        <div class="part"><div class="pl">(b) How many minutes and seconds is that?</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">72 ÷ 60 = 1 remainder 12<br><b>1 minute 12 seconds</b></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Prime:</b> only 1 and itself as factors. <b>Composite:</b> more than two factors. <b>1</b> is neither, and <b>2</b> is the only even prime.</div>
+    <div><b>Prime factorization:</b> ladder or tree, you always get the same primes. 52 = 2 × 2 × 13 = 2<sup>2</sup> × 13.</div>
+    <div><b>GCF:</b> shared primes, <b>lowest</b> power. <b>LCM:</b> every prime, <b>highest</b> power. 20 and 30: GCF = 10, LCM = 60.</div>
+    <div><b>Which one?</b> Largest equal groups, nothing left over → <b>GCF</b>. Repeating events lining up again → <b>LCM</b>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u1l3">
+    <div><div class="kicker">Your turn</div><b>Assignment 3 — Prime Factorization, GCF, and LCM</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l4/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 4 — Classifying Numbers in the Real Number System</b><div class="muted">Natural, whole, integer, rational, irrational: every number has a room. Do √16 and √2 go to the same one?</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u1l3.js';
+  boot({ key: 'u1l3', homeHref: '../../', title: '1.3 Prime Factorization, GCF, and LCM' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

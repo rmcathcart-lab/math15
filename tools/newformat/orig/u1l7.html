@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simplifying Higher-Index Radicals · Math 15 1.7</title>
+<meta name="description" content="Math 15 Unit 1 Lesson 7: the index of a radical, entire and mixed cube radicals, pulling out the largest perfect cube, sending a coefficient back in as its cube, odd and even indices with negative radicands, and fourth and fifth roots. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u1l7.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u1l7">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 1 Number · Lesson 7</div>
+  <h1>Simplifying Higher-Index Radicals</h1>
+  <p class="lede">The same entire ↔ mixed conversion as Lesson 6, now for <b>cube roots</b> and beyond. In Lesson 6 we pulled out the largest perfect <b>square</b>. With a cube root, we pull out the largest perfect <b>cube</b>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>name the <b>index</b>, the <b>radicand</b> and the <b>coefficient</b> of a radical, and tell an <b>entire</b> radical from a <b>mixed</b> one</li>
+      <li>write a cube root as a mixed radical by pulling out the <b>largest perfect cube</b></li>
+      <li>write a mixed cube radical as an entire radical by <b>cubing the coefficient</b> and multiplying it back in</li>
+      <li>tell when a negative radicand is allowed: an <b>odd</b> index yes, an <b>even</b> index no</li>
+      <li>do the same with a <b>fourth</b> or <b>fifth</b> root</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN2</b> Demonstrate an understanding of irrational numbers by representing, identifying and simplifying irrational numbers, and by ordering irrational numbers.<br><span class="u1l7-today">Today: simplifying cube roots and higher roots.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Giant Die" id="wu" style="--wf-side: 400px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Giant Die</h2>
+  <p class="wf-rule">A giant novelty die is just a normal die, scaled up. How much bigger is it <b>really</b>? <span class="muted">Tap a die.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u1l7-dice">
+      <div class="u1l7-die fixed" data-k="1"><span class="u1l7-die-pic"></span><span class="u1l7-die-t"><b>1×</b> as tall</span><span class="u1l7-die-n">1 normal die</span></div>
+      <button class="u1l7-die" type="button" data-k="2"><span class="u1l7-die-pic"></span><span class="u1l7-die-t"><b>2×</b> as tall</span><span class="u1l7-die-n">holds <b>?</b> dice</span><span class="u1l7-die-tap">tap</span></button>
+      <button class="u1l7-die" type="button" data-k="3"><span class="u1l7-die-pic"></span><span class="u1l7-die-t"><b>3×</b> as tall</span><span class="u1l7-die-n">holds <b>?</b> dice</span><span class="u1l7-die-tap">tap</span></button>
+      <button class="u1l7-die mystery" type="button" data-k="4"><span class="u1l7-die-pic"></span><span class="u1l7-die-t"><b>?×</b> as tall</span><span class="u1l7-die-n">holds <b>64</b> dice</span><span class="u1l7-die-tap">tap</span></button>
+    </div>
+    <p class="u1l7-wnote">“Holds” = how many normal dice would fill it up (same volume).</p>
+    <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>A die <b>2×</b> as tall holds how many normal dice? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="bk-ans"><b>8 dice</b>: 2 wide × 2 deep × 2 high, <span class="tex">2^3=8</span>.</div></div>
+    <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>A die <b>3×</b> as tall holds how many? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="bk-ans"><b>27 dice</b>: 3 wide × 3 deep × 3 high, <span class="tex">3^3=27</span>.</div></div>
+    <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>A die holds <b>64</b> normal dice. How many times as tall is it? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="bk-ans"><b>4× as tall</b>, because <span class="tex">4\times4\times4=64</span>. Going backwards from “holds” to “tall” is the <b>cube root</b>: <span class="tex">\sqrt[3]{64}=4</span>.</div></div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A toy store sells a giant die that holds exactly <b>16</b> normal dice. How many times as tall as a normal die is it? <b>Guess first.</b></div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b> 8</div>
+        <div class="opt"><b>B</b> 4</div>
+        <div class="opt right"><b>C</b> about 2.5</div>
+        <div class="opt"><b>D</b> 2</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: about 2.5 times as tall.</b> We need a number that cubes to 16: that’s <span class="tex">\sqrt[3]{16}</span>. <span class="tex">2^3=8</span> is too small and <span class="tex">3^3=27</span> is too big, so it’s between 2 and 3: <span class="tex">\sqrt[3]{16}\approx2.52</span>.<br><b>A</b> doubles the 8-dice die: that holds <span class="tex">4^3=64</span>. <b>B</b> is square-root thinking (<span class="tex">4\times4=16</span>): right for the <b>area</b> of one face, not the volume.<br><b>Today:</b> <span class="tex">\sqrt[3]{16}</span> has a small <b>3</b> on it, the <b>index</b>, and we’ll learn to write cube roots like it in simplest form.</div>
+    </div>
+  </div></div>
+  <p class="u1l7-social">Talk it over: is the giant die more than 2× as tall? Less than 3×? How do you know?</p>
+</section>
+
+<!-- ================= 1. The index ================= -->
+<section class="card" data-ink="s1" data-section="1. The Index of a Radical">
+  <div class="sec-h"><span class="badge">1</span><h2>The Index of a Radical</h2></div>
+  <p>In <span class="tex">\sqrt[n]{a}</span> the small number <span class="tex">n</span> is the <b>index</b>: it says which root is being taken. A square root simply hides its index of <span class="tex">2</span>.</p>
+  <div class="def-grid">
+    <div class="def">An <b>entire radical</b> has a single number sitting <b>alone</b> under the root sign.<div class="eg"><span class="tex">\sqrt[3]{24}</span></div></div>
+    <div class="def amber">A <b>mixed radical</b> has a <b>coefficient</b> multiplying it from outside.<div class="eg"><span class="tex">2\sqrt[3]{3}</span></div></div>
+  </div>
+  <p class="small muted">The Lesson 6 vocabulary carries straight over: only the index is new.</p>
+  <div class="explainer" data-explainer="anatomy"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Entire or mixed?</h3></div>
+  <p class="q">State whether each radical is an entire radical or a mixed radical.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">\sqrt[3]{20}</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">One number sits alone under the root sign: <b>entire</b></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">4\sqrt[3]{3}</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">Coefficient <span class="tex">4</span> multiplies from outside: <b>mixed</b></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\sqrt[3]{9}</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">Nothing outside the root sign: <b>entire</b></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">-5\sqrt[3]{2}</span></div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans">Coefficient <span class="tex">-5</span> sits outside: <b>mixed</b></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space" type="button">+ More space</button>
+</section>
+
+<!-- ================= 2. Entire → mixed ================= -->
+<section class="card" data-ink="s2" data-section="2. Entire Cube Radical → Mixed">
+  <div class="sec-h"><span class="badge">2</span><h2>Converting an Entire Cube Radical to a Mixed Radical</h2></div>
+  <p>Lesson 6 pulled out the largest <b>perfect square</b>. With index <span class="tex">n</span> you pull out the largest <b>perfect <span class="tex">n</span>th power</b>, then split the root with</p>
+  <div class="def"><span class="tex">\sqrt[n]{ab}=\sqrt[n]{a}\times\sqrt[n]{b}</span><div class="eg"><span class="tex">\sqrt[3]{88}=\sqrt[3]{8\times11}=\sqrt[3]{8}\times\sqrt[3]{11}=2\sqrt[3]{11}</span>, and <span class="tex">8</span> was chosen because no larger perfect cube divides <span class="tex">88</span>.</div></div>
+  <div class="explainer" data-explainer="cubeMeaning"></div>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. Keep these handy">
+  <h3 class="sub">Keep these handy</h3>
+  <p class="small muted">Perfect cubes, fourth powers and fifth powers. Tap a row to highlight it.</p>
+  <div class="u1l7-ptable" id="u1l7-ptable"></div>
+  <div class="explainer" data-explainer="finder"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Use the largest perfect cube.</b> <span class="tex">\sqrt[3]{192}=\sqrt[3]{8\times24}=2\sqrt[3]{24}</span> is true, but <b>not simplest form</b>: <span class="tex">24=8\times3</span> still hides a perfect cube. Start with <span class="tex">64</span> instead: <span class="tex">\sqrt[3]{192}=\sqrt[3]{64\times3}=4\sqrt[3]{3}</span>.</div></div>
+</section>
+
+<section class="card" data-ink="s2c" data-section="2. Another way: groups of three">
+  <h3 class="sub">Another way: prime factors in groups of three</h3>
+  <p>In Lesson 6 a <b>pair</b> of equal prime factors came out of a square root as one number. For a cube root, it takes a <b>group of three</b> equal prime factors to bring one out. Leftovers stay inside. Handy when the perfect cube is hard to spot.</p>
+  <div class="explainer" data-explainer="groups"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Entire → mixed</h3></div>
+  <p class="q">Convert each radical to a mixed radical in simplest form. Show the factoring step.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">\sqrt[3]{40}</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">\sqrt[3]{40}=\sqrt[3]{8\times5}</span><br><span class="tex">=\sqrt[3]{8}\times\sqrt[3]{5}</span><br><span class="tex">=\boldsymbol{2\sqrt[3]{5}}</span><br><span class="small muted"><span class="tex">8</span> is the largest cube dividing <span class="tex">40</span>.</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\sqrt[3]{162}</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">\sqrt[3]{162}=\sqrt[3]{27\times6}</span><br><span class="tex">=\sqrt[3]{27}\times\sqrt[3]{6}</span><br><span class="tex">=\boldsymbol{3\sqrt[3]{6}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\sqrt[3]{500}</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">\sqrt[3]{500}=\sqrt[3]{125\times4}</span><br><span class="tex">=\sqrt[3]{125}\times\sqrt[3]{4}</span><br><span class="tex">=\boldsymbol{5\sqrt[3]{4}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space" type="button">+ More space</button>
+</section>
+
+<!-- ================= 3. Mixed → entire ================= -->
+<section class="card" data-ink="s3" data-section="3. Mixed Cube Radical → Entire">
+  <div class="sec-h"><span class="badge">3</span><h2>Converting a Mixed Cube Radical to an Entire Radical</h2></div>
+  <div class="def">To reverse the process, raise the outside coefficient to the <b>power of the index</b>, then multiply it into the radicand.<div class="eg"><span class="tex">3\sqrt[3]{7}=\sqrt[3]{3^3}\times\sqrt[3]{7}=\sqrt[3]{27\times7}=\sqrt[3]{189}</span></div></div>
+  <p>Because the index <span class="tex">3</span> is <b>odd</b>, a <b>negative</b> coefficient may be cubed and absorbed as well, unlike a square root, where a negative coefficient must stay outside.</p>
+  <div class="explainer" data-explainer="toEntire"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Cube it, don’t triple it.</b> <span class="tex">2\sqrt[3]{11}=\sqrt[3]{2^3\times11}=\sqrt[3]{88}</span>. Writing <span class="tex">\sqrt[3]{6\times11}</span> uses <span class="tex">2\times3</span> instead of <span class="tex">2^3=2\times2\times2</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Mixed → entire</h3></div>
+  <p class="q">Convert each mixed radical to an entire radical. Show the step where you raise the coefficient.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">2\sqrt[3]{9}</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">2\sqrt[3]{9}=\sqrt[3]{2^3}\times\sqrt[3]{9}</span><br><span class="tex">=\sqrt[3]{8\times9}</span><br><span class="tex">=\boldsymbol{\sqrt[3]{72}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">4\sqrt[3]{2}</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">4\sqrt[3]{2}=\sqrt[3]{4^3}\times\sqrt[3]{2}</span><br><span class="tex">=\sqrt[3]{64\times2}</span><br><span class="tex">=\boldsymbol{\sqrt[3]{128}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">-2\sqrt[3]{6}</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">-2\sqrt[3]{6}=\sqrt[3]{(-2)^3}\times\sqrt[3]{6}</span><br><span class="tex">=\sqrt[3]{-8\times6}</span><br><span class="tex">=\boldsymbol{\sqrt[3]{-48}}</span><br><span class="small muted">Index 3 is odd, so the − goes inside.</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space" type="button">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u1l7"></section>
+
+<!-- ================= 4. Odd and even ================= -->
+<section class="card" data-ink="s4" data-section="4. Odd and Even Indices: the Trap">
+  <div class="sec-h"><span class="badge">4</span><h2>Odd and Even Indices: the Trap</h2></div>
+  <div class="def-grid">
+    <div class="def">An <b>odd</b> index accepts a <b>negative</b> radicand, since an odd power of a negative number stays negative.<div class="eg"><span class="tex">\sqrt[3]{-8}=-2</span>, and <span class="tex">\sqrt[3]{-24}=\sqrt[3]{-8\times3}=-2\sqrt[3]{3}</span></div></div>
+    <div class="def amber">An <b>even</b> index does not: no real number raised to an even power is negative.<div class="eg"><span class="tex">\sqrt{-4}</span> and <span class="tex">\sqrt[4]{-16}</span> are <b>not real numbers</b>.</div></div>
+  </div>
+  <p><b>Check the index before you touch a negative radicand.</b></p>
+  <div class="explainer" data-explainer="signs"></div>
+</section>
+
+<!-- ================= 5. Any index ================= -->
+<section class="card" data-ink="s5" data-section="5. Any Index at All">
+  <div class="sec-h"><span class="badge">5</span><h2>Any Index at All</h2></div>
+  <p>Nothing about the method changes as <span class="tex">n</span> grows. Only the list you hunt through changes:</p>
+  <p class="display"><span class="tex">\sqrt[4]{32}=\sqrt[4]{16\times2}=2\sqrt[4]{2}</span> <span class="small muted">16 is a perfect fourth power</span></p>
+  <p class="display"><span class="tex">\sqrt[5]{96}=\sqrt[5]{32\times3}=2\sqrt[5]{3}</span> <span class="small muted">32 is a perfect fifth power</span></p>
+  <p>Going the other way, raise the coefficient to the power of <span class="tex">n</span>, not always <span class="tex">3</span>.</p>
+  <div class="explainer" data-explainer="finderN"></div>
+</section>
+
+<section class="card" data-ink="s5b" data-section="5. The index is the group size">
+  <h3 class="sub">Same number, different index</h3>
+  <p>The index is the <b>group size</b>: a fourth root needs <b>four</b> equal prime factors to bring one out, a fifth root needs <b>five</b>. Bigger groups means less comes out.</p>
+  <div class="explainer" data-explainer="sameNumber"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Both directions</h3></div>
+  <p class="q">Convert each radical to the requested form, in simplest form.</p>
+  <div class="parts c4">
+    <div class="part"><div class="pl">(a) <span class="tex">\sqrt[3]{320}</span> (mixed)</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">\sqrt[3]{320}=\sqrt[3]{64\times5}</span><br><span class="tex">=\sqrt[3]{64}\times\sqrt[3]{5}</span><br><span class="tex">=\boldsymbol{4\sqrt[3]{5}}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">3\sqrt[3]{13}</span> (entire)</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">3\sqrt[3]{13}=\sqrt[3]{3^3}\times\sqrt[3]{13}</span><br><span class="tex">=\sqrt[3]{27\times13}</span><br><span class="tex">=\boldsymbol{\sqrt[3]{351}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\sqrt[4]{243}</span> (mixed)</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">\sqrt[4]{243}=\sqrt[4]{81\times3}</span><br><span class="tex">=\sqrt[4]{81}\times\sqrt[4]{3}</span><br><span class="tex">=\boldsymbol{3\sqrt[4]{3}}</span></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">-3\sqrt[3]{10}</span> (entire)</div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal" type="button">Answer</button><div class="ans"><span class="tex">-3\sqrt[3]{10}=\sqrt[3]{(-3)^3}\times\sqrt[3]{10}</span><br><span class="tex">=\sqrt[3]{-27\times10}</span><br><span class="tex">=\boldsymbol{\sqrt[3]{-270}}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space" type="button">+ More space</button>
+</section>
+
+<section class="card" data-ink="w4" data-section="Example 4 check">
+  <h3 class="sub">Example 4 check</h3>
+  <div class="explainer" data-explainer="ex4check"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>The index</b> is the small number in <span class="tex">\sqrt[n]{a}</span>. A square root hides its index of 2. <b>Entire:</b> one number alone under the root. <b>Mixed:</b> a coefficient outside.</div>
+    <div><b>Entire → mixed:</b> pull out the <b>largest perfect <span class="tex">n</span>th power</b>. <span class="tex">\sqrt[3]{88}=\sqrt[3]{8\times11}=2\sqrt[3]{11}</span></div>
+    <div><b>Mixed → entire:</b> raise the coefficient to the power <span class="tex">n</span> and multiply it in. <span class="tex">3\sqrt[3]{7}=\sqrt[3]{27\times7}=\sqrt[3]{189}</span></div>
+    <div><b>Odd vs. even:</b> an odd index takes a negative radicand (<span class="tex">\sqrt[3]{-8}=-2</span>). An even index can’t: <span class="tex">\sqrt[4]{-16}</span> is not real.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u1l7">
+    <div><div class="kicker">Your turn</div><b>Assignment 7 — Simplifying Higher-Index Radicals</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l8/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 8 — Unit Review: Number Sense</b><div class="muted">Every Unit 1 rule on one page, then mixed practice for the unit test</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u1l7.js';
+  boot({ key: 'u1l7', homeHref: '../../', title: '1.7 Higher-Index Radicals' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

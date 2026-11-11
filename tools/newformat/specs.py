@@ -203,3 +203,133 @@ SPECS['u5l12'] = dict(
                   chips=[('1–3', 'The Cartesian plane'), ('4–7', 'Patterns and relations'), ('8–11', 'Intercepts, domain and range')],
                   note='We carry on when most of the class has reached Question 8.'),
 )
+
+# ======================= Unit 1 =======================
+TILES = lambda n, items, fs=None: f'<div class="vw-tiles" style="--n:{n}' + (f';--fs:{fs}px' if fs else '') + '">' + ''.join(f'<div><b>{a}</b>{b}</div>' for a, b in items) + '</div>'
+def PR(after, qs, rest, line, chips, upto=None):
+    return dict(after=after, qs=qs, rest=rest, line=line, chips=chips, note=f'We carry on when most of the class has reached Question {upto}.' if upto else 'We carry on when most of the class has finished.')
+SPECS['u1l1'] = dict(
+    warm=dict(title='The Comment Section', rule=f'Someone posts: “What is {T(r"3+4\times2")}?” Two comments reply. Who is right?',
+              body=TILES(2, [('1.2k likes', '14'), ('87 likes', '11')]), nudge='Does the most-liked answer win?',
+              reveal=f'<b>11.</b> Multiply first: {T(r"3+4\times2=3+8=11")}. The most-liked comment added first, and likes don’t make it right.'),
+    extra_cards=['s2b', 's3b'], extra_expl=['chips', 'signs', 'sub'],
+    practice=PR('ex3', '1–10', '11–16', 'Integer operations, then the order of operations.', [('1–4', 'Adding and subtracting'), ('5–7', 'Multiplying and dividing'), ('8–10', 'Order of operations')], 8))
+SPECS['u1l2'] = dict(
+    warm=dict(title='The Cookie Recipe', rule='How many scoops?',
+              body=BIG(f'The recipe needs {T(r"1\tfrac12")} cups of flour.<small>Your little brother hid every measuring cup except the {T(r"\tfrac13")} cup.</small>'),
+              nudge='How could you check with a drawing?',
+              reveal=f'<b>{T(r"4\tfrac12")} scoops.</b> Three scoops make 1 cup, so {T(r"1\tfrac12")} cups takes {T(r"3+1\tfrac12=4\tfrac12")} scoops. That is {T(r"1\tfrac12\div\tfrac13")}.'),
+    extra_cards=['s1b', 's2b', 's3c', 's4b'], extra_expl=['equiv', 'times', 'fbedmas', 'decimals'],
+    practice=PR('ex3', '1–7', '8–16', 'Equivalent fractions, then adding, subtracting, multiplying and dividing.', [('1–2', 'Equivalent fractions and simplifying'), ('3–7', 'Operations with fractions and mixed numbers')], 5))
+SPECS['u1l3'] = dict(
+    warm=dict(title='Together Again', rule='How many years until both kinds are out together again?',
+              body=BIG('Some cicadas come out of the ground every <b>13 years</b>. Others come out every <b>17 years</b>.<small>Both kinds came out this year.</small>'),
+              nudge='Why can’t it be sooner?',
+              reveal=f'<b>221 years.</b> 13 and 17 share no factors, so the first year both lists hit is {T(r"13\times17=221")}.'),
+    extra_cards=['s3b'], extra_expl=['rectangles', 'gcfList', 'frogs', 'bags'],
+    replace=[('The warm-up did it with 4 and 6 (the first number on <b>both</b> lists is 12), and', 'With 4 and 6, the first number on <b>both</b> lists is 12. With'), ('That’s the slow way:</p>', 'That’s the slow way.</p>')],
+    practice=PR('ex4', '1–9', '10–14', 'Prime factorization, then GCF and LCM.', [('1–4', 'Factors, primes and prime factorization'), ('5–9', 'GCF and LCM')], 7))
+SPECS['u1l4'] = dict(
+    warm=dict(title='Spot the Impostor', rule='Three of these are the same number in disguise. Which one is the impostor?',
+              body=TILES(4, [('A', T(r'\sqrt{9}')), ('B', T(r'\dfrac{6}{2}')), ('C', T(r'\sqrt{10}')), ('D', T(r'3.0'))]),
+              reveal=f'<b>C.</b> {T(r"\sqrt9")}, {T(r"\tfrac62")} and {T("3.0")} are all 3. {T(r"\sqrt{10}")} is about 3.16, and its decimal never ends or repeats.'),
+    extra_cards=['s2b', 's3b', 's4b'], extra_expl=['nwi', 'asFrac', 'perfectSq', 'order'],
+    practice=PR('ex4', '1–8', '9–14', 'Name the sets, then reason about them.', [('1–5', 'Naming the sets'), ('6–8', 'Reasoning about the sets')], 6))
+SPECS['u1l5'] = dict(
+    warm=dict(title='The Photo Wall', rule='About how many photos wide will the wall be?',
+              body=BIG('The whole school brings in <b>200 photos</b> for one giant <b>square</b> wall.<small>Every photo is the same size.</small>'),
+              nudge='How close can you get without a calculator?',
+              reveal=f'<b>About 14.</b> {T(r"14\times14=196")}, just under 200, and {T(r"15\times15=225")} is too many.'),
+    extra_expl=['cubes', 'zoom', 'round', 'garden'],
+    practice=PR('ex3', '1–8', '9–14', 'Perfect squares and cubes, then estimating square roots.', [('1–3', 'Perfect squares and perfect cubes'), ('4–8', 'Estimating square roots')], 6))
+SPECS['u1l6'] = dict(
+    warm=dict(title='Which Is Biggest?', rule='No calculator. Which one is the biggest?',
+              body=TILES(3, [('A', T(r'2\sqrt{5}')), ('B', T(r'3\sqrt{2}')), ('C', T(r'\sqrt{19}'))]),
+              reveal=f'<b>A.</b> Put each one under a single root: {T(r"2\sqrt5=\sqrt{20}")}, {T(r"3\sqrt2=\sqrt{18}")} and {T(r"\sqrt{19}")}.'),
+    extra_expl=['area', 'order', 'again'],
+    practice=PR('ex3', '1–7', '8–14', 'Entire to mixed, then mixed to entire.', [('1–2', 'Vocabulary'), ('3–5', 'Entire to mixed'), ('6–7', 'Mixed to entire')], 5))
+SPECS['u1l7'] = dict(
+    warm=dict(title='The Giant Die', rule='How many times as tall as a normal die is the giant one?',
+              body=BIG('A toy store sells a giant die that holds exactly <b>16 normal dice</b>.'),
+              nudge='Could it be a whole number?',
+              reveal=f'<b>About 2.5 times.</b> A die 2 tall holds {T(r"2\times2\times2=8")} and a die 3 tall holds 27, so 16 is in between. The exact height is {T(r"\sqrt[3]{16}")}.'),
+    extra_cards=['s2c', 's5b', 'w4'], extra_expl=['anatomy', 'cubeMeaning', 'signs', 'finderN'],
+    practice=PR('ex3', '1–6', '7–12', 'Cube roots: entire to mixed, then mixed to entire.', [('1–4', 'Entire cube radicals to mixed'), ('5–6', 'Mixed cube radicals to entire')], 5))
+SPECS['u1l8'] = dict(
+    warm=dict(title='Two Truths and a Lie', rule='Two of these are true. One is a lie. Which one?',
+              body=TILES(3, [('A', T(r'\sqrt{50}=5\sqrt2')), ('B', T(r'-3^2=9')), ('C', T(r'0.75=\dfrac34'))]),
+              nudge='How could you prove it?',
+              reveal=f'<b>B is the lie.</b> The exponent only reaches the 3, so {T("-3^2=-9")}. It would be 9 with brackets: {T("(-3)^2")}.'),
+    extra_cards=['s3b', 's4b', 'chk'], extra_expl=['bedmas', 'bars', 'estimate', 'radicals'],
+    practice=PR('ex3', '1–10', '11–25', 'The first half of the unit, one skill at a time.', [('1–3', 'Integers and order of operations'), ('4–6', 'Fractions and decimals'), ('7–10', 'Primes, GCF and LCM')], 7))
+
+# ======================= Unit 2 =======================
+SPECS['u2l1'] = dict(
+    warm=dict(title='Pass It On', rule='In which round does a single round first reach more than <b>1000</b> people?',
+              body=BIG('You send a meme to <b>3 friends</b>.<small>Each of them sends it to 3 new people. Then each of those sends it to 3 new people, and so on.</small>'),
+              nudge='How fast do the rounds grow?',
+              reveal=f'<b>Round 7.</b> The rounds go 3, 9, 27, 81, 243, 729, 2187. That is {T("3^7=2187")}.'),
+    extra_expl=['anatomy', 'order', 'signs', 'substitute', 'coef'],
+    practice=PR('ex3', '1–6', '7–13', 'Vocabulary and evaluating powers.', [('1–6', 'Vocabulary and evaluating')], 5))
+SPECS['u2l2'] = dict(
+    warm=dict(title='Boxes Inside Boxes', rule='How many candies are on the truck?',
+              body=BIG('A bag holds <b>5</b> candies. A box holds <b>5</b> bags.<small>A crate holds 5 boxes. A truck holds 5 crates.</small>'),
+              nudge='Is there a quick way to write it?',
+              reveal=f'<b>625.</b> {T(r"5\times5\times5\times5=5^4=625")}.'),
+    extra_cards=['s3b'], extra_expl=['coefDiv', 'chain'],
+    practice=PR('ex4', '1–7', '8–14', 'The Quotient Law, then the Power of a Power Law.', [('1–4', 'The Quotient Law'), ('5–7', 'Power of a power')], 5))
+SPECS['u2l3'] = dict(
+    warm=dict(title='Supersize It!', rule='How many normal dice fit inside the giant one?',
+              body=BIG('A giant die is <b>10 times as long</b>, <b>10 times as wide</b> and <b>10 times as tall</b> as a normal die.'),
+              nudge='Why isn’t it 30?',
+              reveal=f'<b>1000.</b> {T(r"10\times10\times10=10^3")}: 10 along, 10 across, 10 layers high.'),
+    extra_cards=['s2c', 's3b'], extra_expl=['recap', 'chain', 'check'],
+    practice=PR('ex3', '1–6', '7–12', 'Power of a product, then power of a quotient.', [('1–6', 'The two new laws')], 5))
+SPECS['u2l4'] = dict(
+    warm=dict(title='The Power Maze', rule='Start with <b>2</b>. Use each tile exactly once. Which order gives the <b>biggest</b> finish?',
+              body=TILES(3, [('', '× 4'), ('', 'square it'), ('', '÷ 2')]),
+              nudge='Does the order really matter?',
+              reveal=f'<b>× 4, then square it, then ÷ 2 gives 32.</b> {T(r"2\times4=8")}, {T("8^2=64")}, {T(r"64\div2=32")}. Squaring last-but-one makes the biggest number bigger. The smallest finish is 4.'),
+    extra_cards=['s3b'], extra_expl=['which', 'columns'],
+    practice=PR('ex3', '1–5', '6–14', 'Combine two laws at a time.', [('1–5', 'Two-law combinations')], 4))
+SPECS['u2l5'] = dict(
+    warm=dict(title='Fold to the Moon', rule='About how many folds until the stack reaches the Moon?',
+              body=BIG('A sheet of paper is <b>0.1 mm</b> thick. Every fold <b>doubles</b> the stack.<small>The Moon is 384 400 km away. Pretend you can keep folding.</small>'),
+              nudge='Hundreds? Thousands? Millions?',
+              reveal=f'<b>Only 42 folds.</b> Doubling 42 times multiplies by {T("2^{42}")}, about 4.4 trillion, which turns 0.1 mm into about 440 000 km.'),
+    extra_cards=['s4b'], extra_expl=['zcancel', 'zsimp'],
+    practice=PR('ex3', '1–7', '8–13', 'Zero exponents on numbers, then on variables.', [('1–5', 'Zero exponents with numbers'), ('6–7', 'Variables')], 6))
+SPECS['u2l6'] = dict(
+    warm=dict(title='The Fridge Mould', rule='How big was the spot <b>6 hours earlier</b>?',
+              body=BIG('A spot of mould <b>triples</b> in size every hour.<small>Right now it covers 81 cm².</small>'),
+              nudge='Keep going back, one hour at a time.',
+              reveal=f'{T(r"\tfrac19")} <b>cm².</b> Going back, divide by 3 each hour: 81, 27, 9, 3, 1, {T(r"\tfrac13")}, {T(r"\tfrac19")}. The pattern doesn’t stop at 1.'),
+    extra_expl=['nline', 'nvar', 'ndiv', 'ncancel'],
+    practice=PR('ex3', '1–5', '6–13', 'Use the negative exponent rule.', [('1–5', 'The negative exponent rule')], 4))
+SPECS['u2l7'] = dict(
+    warm=dict(title='Which Is Bigger?', rule='No calculator. Which one is bigger?',
+              body=TILES(2, [('A', T('2^{-3}')), ('B', T('3^{-2}'))]),
+              reveal=f'<b>A.</b> {T(r"2^{-3}=\tfrac18")} and {T(r"3^{-2}=\tfrac19")}. An eighth is a little more than a ninth. Neither one is negative.'),
+    extra_cards=['s1b', 's3b', 's5b'], extra_expl=['laws', 'outer', 'steps5'],
+    practice=PR('ex3', '1–8', '9–16', 'One law at a time, then two or more together.', [('1–4', 'One law at a time'), ('5–8', 'Two or more laws together')], 6))
+SPECS['u2l8'] = dict(
+    warm=dict(title='Which Is More?', rule='Guess first, then estimate. Which is more?',
+              body=TILES(2, [('A', 'the number of <b>seconds</b> in one year'), ('B', 'the number of <b>people</b> living in Canada')], 30),
+              nudge='How would you count the seconds?',
+              reveal=f'<b>B, the people.</b> A year has {T(r"60\times60\times24\times365")}, about 31.5 million seconds. Canada has a little over 41 million people.'),
+    extra_cards=['s4b'], extra_expl=['places', 'toStd', 'ladder'],
+    practice=PR('ex3', '1–7', '8–15', 'Convert between standard and scientific notation.', [('1–7', 'Converting between forms')], 5))
+SPECS['u2l9'] = dict(
+    warm=dict(title='One Million Cubes', rule='How tall is the giant cube?',
+              body=BIG('A unit cube is <b>1 cm</b> on each edge.<small>Stack exactly one million of them into one giant cube.</small>'),
+              nudge='Taller than you? Taller than the school?',
+              reveal=f'<b>100 cm, just 1 metre.</b> {T(r"100\times100\times100=1\,000\,000")}, so each edge is 100 cubes long.'),
+    extra_cards=['s1b'], extra_expl=['whyRoot', 'toPow', 'laws'],
+    practice=PR('ex4', '1–5', '6–16', 'Evaluate, then convert between radicals and powers.', [('1–3', 'Evaluating rational-exponent powers'), ('4–5', 'Converting between radicals and powers')], 4))
+SPECS['u2l10'] = dict(
+    warm=dict(title='The Biggest One', rule='No calculator. Which is the biggest?',
+              body=TILES(3, [('A', T('10^{100}')), ('B', T('100^{10}')), ('C', T('1000^{5}'))]),
+              nudge='Can you write them all with the same base?',
+              reveal=f'<b>A, by a huge amount.</b> {T("100^{10}=(10^2)^{10}=10^{20}")} and {T("1000^5=(10^3)^5=10^{15}")}. Both are tiny beside {T("10^{100}")}.'),
+    extra_expl=['count', 'dist', 'steps1', 'anatomy', 'flip', 'steps2', 'sci', 'radical'],
+    practice=PR('ex4', '1–9', '10–25', 'The exponent laws, one at a time.', [('1–9', 'The exponent laws')], 6))

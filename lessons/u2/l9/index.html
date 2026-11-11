@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u2l9.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u2l9">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: One Million Cubes">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>One Million Cubes</h2>
+  <p class="wf-rule">How tall is the giant cube?</p></div>
+  <div class="vw-q">A unit cube is <b>1 cm</b> on each edge.<small>Stack exactly one million of them into one giant cube.</small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Taller than you? Taller than the school?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>100 cm, just 1 metre.</b> <span class="tex">100\times100\times100=1\,000\,000</span>, so each edge is 100 cubes long.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -43,52 +53,13 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: How Big Is the Side?" style="--wf-side: 318px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>How Big Is the Side?</h2>
-  <p class="wf-rule">Square patios are built from <span class="tex">1\times1</span> tiles. Cube blocks are built from little cubes. <span class="muted">(Tap a picture to see its side.)</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u2l9-figs">
-      <div class="u2l9-fig" data-u2l9-fig="sq|4"><div class="u2l9-fsvg"></div><div class="u2l9-fl"><b>16 tiles</b></div><div class="u2l9-fs">side <span class="tex">=4</span></div></div>
-      <div class="u2l9-fig" data-u2l9-fig="sq|7"><div class="u2l9-fsvg"></div><div class="u2l9-fl"><b>49 tiles</b></div><div class="u2l9-fs u2l9-red">side = <span data-reveal><span class="tex">7</span></span></div></div>
-      <div class="u2l9-fig" data-u2l9-fig="cu|2"><div class="u2l9-fsvg"></div><div class="u2l9-fl"><b>8 cubes</b></div><div class="u2l9-fs">edge <span class="tex">=2</span></div></div>
-      <div class="u2l9-fig" data-u2l9-fig="cu|3"><div class="u2l9-fsvg"></div><div class="u2l9-fl"><b>27 cubes</b></div><div class="u2l9-fs u2l9-red">edge = <span data-reveal><span class="tex">3</span></span></div></div>
-    </div>
-    <div class="u2l9-strip">
-      <div class="u2l9-sbox">7</div>
-      <div class="u2l9-sarr"><div class="u2l9-sa-t">square it: <span class="tex">(\ \ )^{2}</span></div><div class="u2l9-sa-line"></div><div class="u2l9-sa-b">side → tiles</div></div>
-      <div class="u2l9-sbox">49</div>
-      <div class="u2l9-sarr u2l9-red"><div class="u2l9-sa-t">undo it: <span class="tex">(\ \ )</span><sup class="u2l9-sup"><span data-reveal><span class="tex">1/2</span></span></sup></div><div class="u2l9-sa-line"></div><div class="u2l9-sa-b">tiles → side</div></div>
-      <div class="u2l9-sbox u2l9-dash">7</div>
-    </div>
-    <div class="u2l9-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Side of a <b>49</b>-tile patio? A <b>100</b>-tile patio?</div></div>
-        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>7</b> (<span class="tex">7\times7=49</span>) and <b>10</b> (<span class="tex">10\times10=100</span>).</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Edge of a <b>27</b>-cube block? <b>64</b> cubes?</div></div>
-        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>3</b> (<span class="tex">3\times3\times3=27</span>) and <b>4</b> (<span class="tex">4\times4\times4=64</span>).</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>What exponent undoes squaring? Hint: <span class="u2l9-nw"><span class="tex">49^{\boxed{\phantom{0}}}\times49^{\boxed{\phantom{0}}}=49^{1}</span></span></div></div>
-        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><span class="tex">\tfrac12</span>: the two exponents add to 1, and <span class="tex">\tfrac12+\tfrac12=1</span>. So <span class="tex">49^{1/2}=7</span>.</div></div>
-    </div>
-    <div class="bk-wq u2l9-trick"><div class="q-line"><div class="q-num u2l9-qq">?</div><div><b>Trick question.</b> A square patio uses exactly <b>2</b> tiles (cutting allowed). Is its side a whole number?</div></div>
-      <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>No.</b> <span class="tex">1\times1=1</span> and <span class="tex">2\times2=4</span>, so the side is between 1 and 2: <span class="tex">\sqrt2\approx1.41</span>. Today we’ll write it as <span class="tex">2^{1/2}</span>.</div></div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A base-ten unit cube is <b>1 cm</b> on each edge. Stack <b>one million</b> of them into one giant cube. How tall is it? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt right"><b>A</b> 1 m</div>
-        <div class="opt"><b>B</b> 10 m</div>
-        <div class="opt"><b>C</b> 10 km</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>A, 1 m.</b> <span class="tex">100\times100\times100=1\,000\,000</span>, so the edge is 100 cubes <span class="tex">=100</span> cm <span class="tex">=1</span> m: about kitchen-counter height. A thousand block is only 10 cm tall, so <b>1000 times</b> the cubes makes the edge only <b>10 times</b> longer.</div>
-    </div>
-  </div></div>
-</section>
+
 
 <!-- ================= 1. a^(1/n) ================= -->
 <section class="card" data-ink="s1" data-section="1. What a^(1/n) means">
   <div class="sec-h"><span class="badge">1</span><h2>Unit Fractional Exponents: What Does <span class="tex">a^{1/n}</span> Mean?</h2></div>
   <p>The <b>product law</b> should keep working for fractions. Then <span class="tex">5^{1/2}\times5^{1/2}=5^{\frac12+\frac12}=5^{1}=5</span>. That is exactly what <span class="tex">\sqrt5\times\sqrt5</span> does, so <span class="tex">5^{1/2}=\sqrt5</span>. Likewise <span class="tex">3^{1/3}\times3^{1/3}\times3^{1/3}=3</span>, so <span class="tex">3^{1/3}=\sqrt[3]{3}</span>.</p>
-  <div class="explainer" data-explainer="whyRoot"></div>
+  <div data-extra><div class="explainer" data-explainer="whyRoot"></div></div>
   <div class="def-grid u2l9-rulegrid">
     <div class="def u2l9-rule"><b>A unit fraction exponent is a root</b> <span class="muted small u2l9-nw">(for <span class="tex">a\ge0</span>)</span>
       <div class="u2l9-rule-tex"><span class="tex">a^{1/\textcolor{#13807a}{n}}=\sqrt[\textcolor{#13807a}{n}]{a}</span></div>
@@ -106,7 +77,7 @@
   </div>
 </section>
 
-<section class="card" data-ink="s1b" data-section="1. Hunt for the root">
+<section data-extra class="card" data-ink="s1b" data-section="1. Hunt for the root">
   <h3 class="sub">Evaluating <span class="tex">a^{1/n}</span>: which number, used <span class="tex">n</span> times, gives <span class="tex">a</span>?</h3>
   <p>To find <span class="tex">64^{1/3}=\sqrt[3]{64}</span>, ask: <b>which number, used 3 times as a factor, gives 64?</b> Try 1, 2, 3, … until it fits.</p>
   <div class="explainer" data-explainer="hunt"></div>
@@ -121,7 +92,7 @@
     <div class="part"><div class="pl">(c) <span class="tex">16^{1/4}</span></div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">=\sqrt[4]{16}</span><br><span class="tex">=\mathbf{2}</span> (since <span class="tex">2^4=16</span>)</div></div></div>
     <div class="part"><div class="pl">(d) <span class="tex">100^{1/2}</span></div><div class="work" style="--h:180px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">=\sqrt{100}</span><br><span class="tex">=\mathbf{10}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Sam says <span class="tex">64^{1/3}=64\div3\approx21.3</span>. What went wrong?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The exponent <span class="tex">\tfrac13</span> means <b>cube root</b>, not “divide by 3”. Check: <span class="tex">4\times4\times4=64</span>, so <span class="tex">64^{1/3}=4</span>.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Sam says <span class="tex">64^{1/3}=64\div3\approx21.3</span>. What went wrong?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The exponent <span class="tex">\tfrac13</span> means <b>cube root</b>, not “divide by 3”. Check: <span class="tex">4\times4\times4=64</span>, so <span class="tex">64^{1/3}=4</span>.</div></div></div>
   <div class="space" id="ex1-space"></div>
   <button class="more" data-more="ex1-space">+ More space</button>
 </section>
@@ -154,7 +125,7 @@
     <div class="part"><div class="pl">(c) <span class="tex">16^{3/4}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\left(\sqrt[4]{16}\right)^{3}=2^{3}</span><br><span class="tex">=\mathbf{8}</span></div></div></div>
     <div class="part"><div class="pl">(d) <span class="tex">4^{5/2}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\left(\sqrt{4}\right)^{5}=2^{5}</span><br><span class="tex">=\mathbf{32}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Do (b) the other way, power first: <span class="tex">\sqrt[3]{27^{2}}</span>. Which way was easier?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">27^2=729</span> and <span class="tex">\sqrt[3]{729}=9</span> (because <span class="tex">9^3=729</span>). Same answer, but who knows the cube root of 729? <b>Root first</b> was much easier.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Do (b) the other way, power first: <span class="tex">\sqrt[3]{27^{2}}</span>. Which way was easier?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">27^2=729</span> and <span class="tex">\sqrt[3]{729}=9</span> (because <span class="tex">9^3=729</span>). Same answer, but who knows the cube root of 729? <b>Root first</b> was much easier.</div></div></div>
   <div class="space" id="ex2-space"></div>
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
@@ -200,7 +171,7 @@
     <div class="def"><b>Radical → power</b><div class="u2l9-rule-tex"><span class="tex">\sqrt[\textcolor{#13807a}{n}]{x^{\textcolor{#c27a0e}{m}}}=x^{\textcolor{#c27a0e}{m}/\textcolor{#13807a}{n}}</span></div><div class="eg">A plain <span class="tex">\sqrt{\ }</span> has index <b>2</b>, even though the 2 isn’t written.</div></div>
     <div class="def amber"><b>One over a radical</b><div class="u2l9-rule-tex"><span class="tex">\dfrac{1}{\sqrt[n]{x^{m}}}=\dfrac{1}{x^{m/n}}=x^{-m/n}</span></div><div class="eg">A power under the fraction bar moves up with a <b>negative</b> exponent.</div></div>
   </div>
-  <div class="explainer" data-explainer="toPow"></div>
+  <div data-extra><div class="explainer" data-explainer="toPow"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t swap them.</b> The <b>index</b> goes on the <b>bottom</b> of the fraction: <span class="tex">\sqrt[5]{x^{2}}=x^{2/5}</span>, not <span class="tex">x^{5/2}</span>.</div></div>
 </section>
 
@@ -213,9 +184,18 @@
     <div class="part"><div class="pl">(c) <span class="tex">\sqrt{z^{5}}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Index 2 is understood:<br><span class="tex">\boldsymbol{z^{5/2}}</span></div></div></div>
     <div class="part"><div class="pl">(d) <span class="tex">\dfrac{1}{\sqrt[3]{w^{2}}}</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{1}{w^{2/3}}=\boldsymbol{w^{-2/3}}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Write <span class="tex">\sqrt{k}</span> as a power. What are the hidden numbers?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{k}=k^{1/2}</span>: the hidden index is <b>2</b> and the hidden power is <b>1</b>.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Write <span class="tex">\sqrt{k}</span> as a power. What are the hidden numbers?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{k}=k^{1/2}</span>: the hidden index is <b>2</b> and the hidden power is <b>1</b>.</div></div></div>
   <div class="space" id="ex4-space"></div>
   <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–5">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 9 · Questions 1–5</h2>
+  <p class="pr-t">Evaluate, then convert between radicals and powers.</p>
+  <div class="pr-chips n2"><span><b>1–3</b>Evaluating rational-exponent powers</span><span><b>4–5</b>Converting between radicals and powers</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 4.</span><a class="pill" href="../../../#/lesson/u2l9">Open the Practice site</a></div>
 </section>
 
 <!-- ================= Math History box (brown) ================= -->
@@ -250,7 +230,7 @@
     <div class="u2l9-law"><div class="u2l9-law-n">Power of a power</div><span class="tex">(a^m)^n=a^{mn}</span><div class="u2l9-law-d"><b>multiply</b> the fractions</div></div>
     <div class="u2l9-law"><div class="u2l9-law-n">Power of a product</div><span class="tex">(ab)^n=a^nb^n</span><div class="u2l9-law-d">every factor gets the power</div></div>
   </div>
-  <div class="explainer" data-explainer="laws"></div>
+  <div data-extra><div class="explainer" data-explainer="laws"></div></div>
 </section>
 
 <section class="card" data-ink="s4b" data-section="4. Fraction toolbox">
@@ -275,9 +255,50 @@
     <div class="part"><div class="pl">(c) <span class="tex">\left(d^{1/3}\right)^{6}</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Multiply: <span class="tex">d^{\frac13\times6}</span><br><span class="tex">=\boldsymbol{d^{2}}</span></div></div></div>
     <div class="part"><div class="pl">(d) <span class="tex">\left(4g^{1/2}\right)^{2}</span></div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4^{2}g^{\frac12\times2}</span><br><span class="tex">=\boldsymbol{16g}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Why isn’t <span class="tex">c^{4/6}</span> a finished answer to (b)?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The fraction isn’t in lowest terms: <span class="tex">\tfrac46=\tfrac23</span>. Divide the top and the bottom by 2.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Why isn’t <span class="tex">c^{4/6}</span> a finished answer to (b)?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The fraction isn’t in lowest terms: <span class="tex">\tfrac46=\tfrac23</span>. Divide the top and the bottom by 2.</div></div></div>
   <div class="space" id="ex5-space"></div>
   <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: How Big Is the Side?" style="--wf-side: 318px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>How Big Is the Side?</h2>
+  <p class="wf-rule">Square patios are built from <span class="tex">1\times1</span> tiles. Cube blocks are built from little cubes. <span class="muted">(Tap a picture to see its side.)</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u2l9-figs">
+      <div class="u2l9-fig" data-u2l9-fig="sq|4"><div class="u2l9-fsvg"></div><div class="u2l9-fl"><b>16 tiles</b></div><div class="u2l9-fs">side <span class="tex">=4</span></div></div>
+      <div class="u2l9-fig" data-u2l9-fig="sq|7"><div class="u2l9-fsvg"></div><div class="u2l9-fl"><b>49 tiles</b></div><div class="u2l9-fs u2l9-red">side = <span data-reveal><span class="tex">7</span></span></div></div>
+      <div class="u2l9-fig" data-u2l9-fig="cu|2"><div class="u2l9-fsvg"></div><div class="u2l9-fl"><b>8 cubes</b></div><div class="u2l9-fs">edge <span class="tex">=2</span></div></div>
+      <div class="u2l9-fig" data-u2l9-fig="cu|3"><div class="u2l9-fsvg"></div><div class="u2l9-fl"><b>27 cubes</b></div><div class="u2l9-fs u2l9-red">edge = <span data-reveal><span class="tex">3</span></span></div></div>
+    </div>
+    <div class="u2l9-strip">
+      <div class="u2l9-sbox">7</div>
+      <div class="u2l9-sarr"><div class="u2l9-sa-t">square it: <span class="tex">(\ \ )^{2}</span></div><div class="u2l9-sa-line"></div><div class="u2l9-sa-b">side → tiles</div></div>
+      <div class="u2l9-sbox">49</div>
+      <div class="u2l9-sarr u2l9-red"><div class="u2l9-sa-t">undo it: <span class="tex">(\ \ )</span><sup class="u2l9-sup"><span data-reveal><span class="tex">1/2</span></span></sup></div><div class="u2l9-sa-line"></div><div class="u2l9-sa-b">tiles → side</div></div>
+      <div class="u2l9-sbox u2l9-dash">7</div>
+    </div>
+    <div class="u2l9-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Side of a <b>49</b>-tile patio? A <b>100</b>-tile patio?</div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>7</b> (<span class="tex">7\times7=49</span>) and <b>10</b> (<span class="tex">10\times10=100</span>).</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Edge of a <b>27</b>-cube block? <b>64</b> cubes?</div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>3</b> (<span class="tex">3\times3\times3=27</span>) and <b>4</b> (<span class="tex">4\times4\times4=64</span>).</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>What exponent undoes squaring? Hint: <span class="u2l9-nw"><span class="tex">49^{\boxed{\phantom{0}}}\times49^{\boxed{\phantom{0}}}=49^{1}</span></span></div></div>
+        <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><span class="tex">\tfrac12</span>: the two exponents add to 1, and <span class="tex">\tfrac12+\tfrac12=1</span>. So <span class="tex">49^{1/2}=7</span>.</div></div>
+    </div>
+    <div class="bk-wq u2l9-trick"><div class="q-line"><div class="q-num u2l9-qq">?</div><div><b>Trick question.</b> A square patio uses exactly <b>2</b> tiles (cutting allowed). Is its side a whole number?</div></div>
+      <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>No.</b> <span class="tex">1\times1=1</span> and <span class="tex">2\times2=4</span>, so the side is between 1 and 2: <span class="tex">\sqrt2\approx1.41</span>. Today we’ll write it as <span class="tex">2^{1/2}</span>.</div></div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A base-ten unit cube is <b>1 cm</b> on each edge. Stack <b>one million</b> of them into one giant cube. How tall is it? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> 1 m</div>
+        <div class="opt"><b>B</b> 10 m</div>
+        <div class="opt"><b>C</b> 10 km</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A, 1 m.</b> <span class="tex">100\times100\times100=1\,000\,000</span>, so the edge is 100 cubes <span class="tex">=100</span> cm <span class="tex">=1</span> m: about kitchen-counter height. A thousand block is only 10 cm tall, so <b>1000 times</b> the cubes makes the edge only <b>10 times</b> longer.</div>
+    </div>
+  </div></div>
 </section>
 
 <!-- ================= summary ================= -->
@@ -290,7 +311,7 @@
     <div><b>Same laws, fraction arithmetic:</b> add (common denominator), subtract, or multiply the exponents, then <b>simplify</b>: <span class="tex">c^{4/6}=c^{2/3}</span>.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u2l9">
-    <div><div class="kicker">Your turn</div><b>Assignment 9 — Rational Exponents and Radical Form</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 9 · Questions 6–16</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l10/">
     <div><div class="kicker">Next lesson</div><b>Lesson 10 — Unit Review: Exponents</b><div class="muted">Every law, zero and negative exponents, scientific notation and radicals: one last pass before the test</div></div><span class="arrow">→</span>
@@ -303,7 +324,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u2l9.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u2l9', homeHref: '../../', title: '2.9 Rational Exponents and Radical Form' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u1l7.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u1l7">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: The Giant Die">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Giant Die</h2>
+  <p class="wf-rule">How many times as tall as a normal die is the giant one?</p></div>
+  <div class="vw-q">A toy store sells a giant die that holds exactly <b>16 normal dice</b>.</div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Could it be a whole number?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>About 2.5 times.</b> A die 2 tall holds <span class="tex">2\times2\times2=8</span> and a die 3 tall holds 27, so 16 is in between. The exact height is <span class="tex">\sqrt[3]{16}</span>.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,38 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Giant Die" id="wu" style="--wf-side: 400px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Giant Die</h2>
-  <p class="wf-rule">A giant novelty die is just a normal die, scaled up. How much bigger is it <b>really</b>? <span class="muted">Tap a die.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u1l7-dice">
-      <div class="u1l7-die fixed" data-k="1"><span class="u1l7-die-pic"></span><span class="u1l7-die-t"><b>1×</b> as tall</span><span class="u1l7-die-n">1 normal die</span></div>
-      <button class="u1l7-die" type="button" data-k="2"><span class="u1l7-die-pic"></span><span class="u1l7-die-t"><b>2×</b> as tall</span><span class="u1l7-die-n">holds <b>?</b> dice</span><span class="u1l7-die-tap">tap</span></button>
-      <button class="u1l7-die" type="button" data-k="3"><span class="u1l7-die-pic"></span><span class="u1l7-die-t"><b>3×</b> as tall</span><span class="u1l7-die-n">holds <b>?</b> dice</span><span class="u1l7-die-tap">tap</span></button>
-      <button class="u1l7-die mystery" type="button" data-k="4"><span class="u1l7-die-pic"></span><span class="u1l7-die-t"><b>?×</b> as tall</span><span class="u1l7-die-n">holds <b>64</b> dice</span><span class="u1l7-die-tap">tap</span></button>
-    </div>
-    <p class="u1l7-wnote">“Holds” = how many normal dice would fill it up (same volume).</p>
-    <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>A die <b>2×</b> as tall holds how many normal dice? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-      <div class="bk-ans"><b>8 dice</b>: 2 wide × 2 deep × 2 high, <span class="tex">2^3=8</span>.</div></div>
-    <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>A die <b>3×</b> as tall holds how many? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-      <div class="bk-ans"><b>27 dice</b>: 3 wide × 3 deep × 3 high, <span class="tex">3^3=27</span>.</div></div>
-    <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>A die holds <b>64</b> normal dice. How many times as tall is it? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-      <div class="bk-ans"><b>4× as tall</b>, because <span class="tex">4\times4\times4=64</span>. Going backwards from “holds” to “tall” is the <b>cube root</b>: <span class="tex">\sqrt[3]{64}=4</span>.</div></div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A toy store sells a giant die that holds exactly <b>16</b> normal dice. How many times as tall as a normal die is it? <b>Guess first.</b></div></div>
-      <div class="poll-opts c4">
-        <div class="opt"><b>A</b> 8</div>
-        <div class="opt"><b>B</b> 4</div>
-        <div class="opt right"><b>C</b> about 2.5</div>
-        <div class="opt"><b>D</b> 2</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>C: about 2.5 times as tall.</b> We need a number that cubes to 16: that’s <span class="tex">\sqrt[3]{16}</span>. <span class="tex">2^3=8</span> is too small and <span class="tex">3^3=27</span> is too big, so it’s between 2 and 3: <span class="tex">\sqrt[3]{16}\approx2.52</span>.<br><b>A</b> doubles the 8-dice die: that holds <span class="tex">4^3=64</span>. <b>B</b> is square-root thinking (<span class="tex">4\times4=16</span>): right for the <b>area</b> of one face, not the volume.<br><b>Today:</b> <span class="tex">\sqrt[3]{16}</span> has a small <b>3</b> on it, the <b>index</b>, and we’ll learn to write cube roots like it in simplest form.</div>
-    </div>
-  </div></div>
-  <p class="u1l7-social">Talk it over: is the giant die more than 2× as tall? Less than 3×? How do you know?</p>
-</section>
+
 
 <!-- ================= 1. The index ================= -->
 <section class="card" data-ink="s1" data-section="1. The Index of a Radical">
@@ -86,7 +65,7 @@
     <div class="def amber">A <b>mixed radical</b> has a <b>coefficient</b> multiplying it from outside.<div class="eg"><span class="tex">2\sqrt[3]{3}</span></div></div>
   </div>
   <p class="small muted">The Lesson 6 vocabulary carries straight over: only the index is new.</p>
-  <div class="explainer" data-explainer="anatomy"></div>
+  <div data-extra><div class="explainer" data-explainer="anatomy"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -107,7 +86,7 @@
   <div class="sec-h"><span class="badge">2</span><h2>Converting an Entire Cube Radical to a Mixed Radical</h2></div>
   <p>Lesson 6 pulled out the largest <b>perfect square</b>. With index <span class="tex">n</span> you pull out the largest <b>perfect <span class="tex">n</span>th power</b>, then split the root with</p>
   <div class="def"><span class="tex">\sqrt[n]{ab}=\sqrt[n]{a}\times\sqrt[n]{b}</span><div class="eg"><span class="tex">\sqrt[3]{88}=\sqrt[3]{8\times11}=\sqrt[3]{8}\times\sqrt[3]{11}=2\sqrt[3]{11}</span>, and <span class="tex">8</span> was chosen because no larger perfect cube divides <span class="tex">88</span>.</div></div>
-  <div class="explainer" data-explainer="cubeMeaning"></div>
+  <div data-extra><div class="explainer" data-explainer="cubeMeaning"></div></div>
 </section>
 
 <section class="card" data-ink="s2b" data-section="2. Keep these handy">
@@ -118,7 +97,7 @@
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Use the largest perfect cube.</b> <span class="tex">\sqrt[3]{192}=\sqrt[3]{8\times24}=2\sqrt[3]{24}</span> is true, but <b>not simplest form</b>: <span class="tex">24=8\times3</span> still hides a perfect cube. Start with <span class="tex">64</span> instead: <span class="tex">\sqrt[3]{192}=\sqrt[3]{64\times3}=4\sqrt[3]{3}</span>.</div></div>
 </section>
 
-<section class="card" data-ink="s2c" data-section="2. Another way: groups of three">
+<section data-extra class="card" data-ink="s2c" data-section="2. Another way: groups of three">
   <h3 class="sub">Another way: prime factors in groups of three</h3>
   <p>In Lesson 6 a <b>pair</b> of equal prime factors came out of a square root as one number. For a cube root, it takes a <b>group of three</b> equal prime factors to bring one out. Leftovers stay inside. Handy when the perfect cube is hard to spot.</p>
   <div class="explainer" data-explainer="groups"></div>
@@ -157,6 +136,15 @@
   <button class="more" data-more="ex3-space" type="button">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–6">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 7 · Questions 1–6</h2>
+  <p class="pr-t">Cube roots: entire to mixed, then mixed to entire.</p>
+  <div class="pr-chips n2"><span><b>1–4</b>Entire cube radicals to mixed</span><span><b>5–6</b>Mixed cube radicals to entire</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 5.</span><a class="pill" href="../../../#/lesson/u1l7">Open the Practice site</a></div>
+</section>
+
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
 <section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u1l7"></section>
 
@@ -168,7 +156,7 @@
     <div class="def amber">An <b>even</b> index does not: no real number raised to an even power is negative.<div class="eg"><span class="tex">\sqrt{-4}</span> and <span class="tex">\sqrt[4]{-16}</span> are <b>not real numbers</b>.</div></div>
   </div>
   <p><b>Check the index before you touch a negative radicand.</b></p>
-  <div class="explainer" data-explainer="signs"></div>
+  <div data-extra><div class="explainer" data-explainer="signs"></div></div>
 </section>
 
 <!-- ================= 5. Any index ================= -->
@@ -178,10 +166,10 @@
   <p class="display"><span class="tex">\sqrt[4]{32}=\sqrt[4]{16\times2}=2\sqrt[4]{2}</span> <span class="small muted">16 is a perfect fourth power</span></p>
   <p class="display"><span class="tex">\sqrt[5]{96}=\sqrt[5]{32\times3}=2\sqrt[5]{3}</span> <span class="small muted">32 is a perfect fifth power</span></p>
   <p>Going the other way, raise the coefficient to the power of <span class="tex">n</span>, not always <span class="tex">3</span>.</p>
-  <div class="explainer" data-explainer="finderN"></div>
+  <div data-extra><div class="explainer" data-explainer="finderN"></div></div>
 </section>
 
-<section class="card" data-ink="s5b" data-section="5. The index is the group size">
+<section data-extra class="card" data-ink="s5b" data-section="5. The index is the group size">
   <h3 class="sub">Same number, different index</h3>
   <p>The index is the <b>group size</b>: a fourth root needs <b>four</b> equal prime factors to bring one out, a fifth root needs <b>five</b>. Bigger groups means less comes out.</p>
   <div class="explainer" data-explainer="sameNumber"></div>
@@ -200,9 +188,42 @@
   <button class="more" data-more="ex4-space" type="button">+ More space</button>
 </section>
 
-<section class="card" data-ink="w4" data-section="Example 4 check">
+<section data-extra class="card" data-ink="w4" data-section="Example 4 check">
   <h3 class="sub">Example 4 check</h3>
   <div class="explainer" data-explainer="ex4check"></div>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Giant Die" id="wu" style="--wf-side: 400px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Giant Die</h2>
+  <p class="wf-rule">A giant novelty die is just a normal die, scaled up. How much bigger is it <b>really</b>? <span class="muted">Tap a die.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u1l7-dice">
+      <div class="u1l7-die fixed" data-k="1"><span class="u1l7-die-pic"></span><span class="u1l7-die-t"><b>1×</b> as tall</span><span class="u1l7-die-n">1 normal die</span></div>
+      <button class="u1l7-die" type="button" data-k="2"><span class="u1l7-die-pic"></span><span class="u1l7-die-t"><b>2×</b> as tall</span><span class="u1l7-die-n">holds <b>?</b> dice</span><span class="u1l7-die-tap">tap</span></button>
+      <button class="u1l7-die" type="button" data-k="3"><span class="u1l7-die-pic"></span><span class="u1l7-die-t"><b>3×</b> as tall</span><span class="u1l7-die-n">holds <b>?</b> dice</span><span class="u1l7-die-tap">tap</span></button>
+      <button class="u1l7-die mystery" type="button" data-k="4"><span class="u1l7-die-pic"></span><span class="u1l7-die-t"><b>?×</b> as tall</span><span class="u1l7-die-n">holds <b>64</b> dice</span><span class="u1l7-die-tap">tap</span></button>
+    </div>
+    <p class="u1l7-wnote">“Holds” = how many normal dice would fill it up (same volume).</p>
+    <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>A die <b>2×</b> as tall holds how many normal dice? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="bk-ans"><b>8 dice</b>: 2 wide × 2 deep × 2 high, <span class="tex">2^3=8</span>.</div></div>
+    <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>A die <b>3×</b> as tall holds how many? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="bk-ans"><b>27 dice</b>: 3 wide × 3 deep × 3 high, <span class="tex">3^3=27</span>.</div></div>
+    <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>A die holds <b>64</b> normal dice. How many times as tall is it? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="bk-ans"><b>4× as tall</b>, because <span class="tex">4\times4\times4=64</span>. Going backwards from “holds” to “tall” is the <b>cube root</b>: <span class="tex">\sqrt[3]{64}=4</span>.</div></div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A toy store sells a giant die that holds exactly <b>16</b> normal dice. How many times as tall as a normal die is it? <b>Guess first.</b></div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b> 8</div>
+        <div class="opt"><b>B</b> 4</div>
+        <div class="opt right"><b>C</b> about 2.5</div>
+        <div class="opt"><b>D</b> 2</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: about 2.5 times as tall.</b> We need a number that cubes to 16: that’s <span class="tex">\sqrt[3]{16}</span>. <span class="tex">2^3=8</span> is too small and <span class="tex">3^3=27</span> is too big, so it’s between 2 and 3: <span class="tex">\sqrt[3]{16}\approx2.52</span>.<br><b>A</b> doubles the 8-dice die: that holds <span class="tex">4^3=64</span>. <b>B</b> is square-root thinking (<span class="tex">4\times4=16</span>): right for the <b>area</b> of one face, not the volume.<br><b>Today:</b> <span class="tex">\sqrt[3]{16}</span> has a small <b>3</b> on it, the <b>index</b>, and we’ll learn to write cube roots like it in simplest form.</div>
+    </div>
+  </div></div>
+  <p class="u1l7-social">Talk it over: is the giant die more than 2× as tall? Less than 3×? How do you know?</p>
 </section>
 
 <!-- ================= summary ================= -->
@@ -215,7 +236,7 @@
     <div><b>Odd vs. even:</b> an odd index takes a negative radicand (<span class="tex">\sqrt[3]{-8}=-2</span>). An even index can’t: <span class="tex">\sqrt[4]{-16}</span> is not real.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u1l7">
-    <div><div class="kicker">Your turn</div><b>Assignment 7 — Simplifying Higher-Index Radicals</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 7 · Questions 7–12</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l8/">
     <div><div class="kicker">Next lesson</div><b>Lesson 8 — Unit Review: Number Sense</b><div class="muted">Every Unit 1 rule on one page, then mixed practice for the unit test</div></div><span class="arrow">→</span>
@@ -228,7 +249,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u1l7.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u1l7', homeHref: '../../', title: '1.7 Higher-Index Radicals' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

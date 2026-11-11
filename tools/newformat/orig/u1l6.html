@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simplifying Square Roots: Entire and Mixed Radicals · Math 15 1.6</title>
+<meta name="description" content="Math 15 Unit 1 Lesson 6: entire and mixed radicals. Pull the largest perfect square out from under the root sign, use prime factorization for big radicands, push a coefficient back in, order radicals without a calculator, and check that a mixed radical is fully simplified. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u1l6.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u1l6">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 1 Number · Lesson 6</div>
+  <h1>Simplifying Square Roots: Entire and Mixed Radicals</h1>
+  <p class="lede"><span class="tex">\sqrt{50}</span> and <span class="tex">5\sqrt{2}</span> are the <b>same number</b>, written two ways. Today we pull perfect squares <b>out</b> from under the root sign, push numbers back <b>in</b>, and use that to put radicals in order without a calculator.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>tell an <b>entire radical</b> like <span class="tex">\sqrt{50}</span> from a <b>mixed radical</b> like <span class="tex">5\sqrt{2}</span></li>
+      <li>convert an entire radical to a mixed radical using the <b>largest perfect square</b> factor</li>
+      <li>use <b>prime factorization</b> when the perfect square is hard to spot</li>
+      <li>convert a mixed radical back to an entire radical</li>
+      <li>order radicals from least to greatest <b>without a calculator</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN2</b> Demonstrate an understanding of irrational numbers by representing, identifying and simplifying irrational numbers, and by ordering irrational numbers.<br><span class="u1l6-today">Today: simplifying square roots, and ordering them.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Tilted Squares" style="--wf-side: 400px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Tilted Squares</h2>
+  <p class="wf-rule">Four squares on a dot grid. Two sit upright… two are <b>tilted</b>. <span class="muted">(dot to dot = 1 unit) Tap a letter to look inside.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u1l6-dots" id="u1l6-dots"></div>
+    <div class="u1l6-dctl no-ink">
+      <button type="button" class="pill" data-u1l6-d="A">A</button>
+      <button type="button" class="pill" data-u1l6-d="B">B</button>
+      <button type="button" class="pill" data-u1l6-d="C">C: box it in</button>
+      <button type="button" class="pill" data-u1l6-d="D">D: copies of C</button>
+      <button type="button" class="pill" data-u1l6-d="">Clear</button>
+    </div>
+    <div class="u1l6-dread" id="u1l6-dread"><span class="muted">Tap a letter.</span></div>
+    <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Find the <b>area</b> of A and of B. How long is each <b>side</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="bk-ans">A: area 4, side 2. &nbsp;B: area 9, side 3. (Side × side = area, so side = <span class="tex">\sqrt{\text{area}}</span>.)</div></div>
+  <div class="bk-wq u1l6-partner"><div class="q-line"><div class="q-num">?</div><div><b>With a partner:</b> can you draw a tilted square with area 5? With area 10? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="bk-ans">Area 5: <b>1 over, 2 up</b> (box 9, minus 4 corners of 1). Area 10: <b>1 over, 3 up</b> (box 16, minus 4 corners of 1.5).</div></div>
+  </div><div class="wf-side">
+    <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Find the area of tilted square C. <span class="muted">Hint: dashed box minus 4 corners.</span> <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="bk-ans">Box <span class="tex">2\times2=4</span>, minus 4 half-squares: <span class="tex">4-2=2</span>. So C’s side is <span class="tex">\sqrt{2}\approx1.41</span>.</div></div>
+    <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>How many copies of C fit inside D? So D’s area = ? D’s side = how many C-sides? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="bk-ans"><b>4</b> copies, so D’s area is <span class="tex">4\times2=8</span>. D’s side is <b>2</b> C-sides: <span class="tex">\sqrt{8}=2\sqrt{2}</span>.</div></div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A tilted square that goes <b>5 over, 5 up</b> has area <b>50</b>, so its side is <span class="tex">\sqrt{50}</span> units. Which is the <b>longest</b>? <b>Guess first.</b></div></div>
+      <div class="poll-opts u1l6-c4">
+        <div class="opt"><b>A</b> <span class="tex">\sqrt{50}</span></div>
+        <div class="opt"><b>B</b> <span class="tex">5\sqrt{2}</span></div>
+        <div class="opt"><b>C</b> 7</div>
+        <div class="opt right"><b>D</b> a tie!</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D: A and B tie</b> (both ≈ 7.07). The side is 5 C-sides, so it is <span class="tex">5\sqrt{2}</span>, and it is also <span class="tex">\sqrt{50}</span>. And <span class="tex">7=\sqrt{49}</span> is just barely shorter.</div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 1. Entire and mixed ================= -->
+<section class="card" data-ink="s1" data-section="1. Entire and Mixed Radicals">
+  <div class="sec-h"><span class="badge">1</span><h2>Entire Radicals and Mixed Radicals</h2></div>
+  <div class="def-grid">
+    <div class="def">An <b>entire radical</b> has the whole number sitting <b>alone</b> under the root sign.<div class="u1l6-eg"><span class="tex">\sqrt{50}\qquad\sqrt{18}\qquad\sqrt{7}</span></div></div>
+    <div class="def amber">A <b>mixed radical</b> has a <b>coefficient</b> outside the root, multiplying what is left inside.<div class="u1l6-eg"><span class="tex">5\sqrt{2}\qquad3\sqrt{2}\qquad4\sqrt{6}</span></div></div>
+  </div>
+  <div class="def gray">Every mixed radical can be rewritten as an entire radical. An entire radical can be rewritten as a mixed radical <b>exactly when</b> its radicand (the number under the root) has a perfect-square factor other than 1.</div>
+  <p>Check on a calculator that <span class="tex">\sqrt{50}</span> and <span class="tex">5\sqrt{2}</span> are the same value, then confirm it algebraically. <span class="muted">(Tap a blank to fill it.)</span></p>
+  <div class="u1l6-try" data-u1l6-scope>
+    <div class="u1l6-trow"><span class="tex u1l6-te">\sqrt{50}=</span><button class="blank u1l6-w" data-a="7.071…"></button><button class="pill small" data-keys="CLEAR √ 50 =">Show me</button></div>
+    <div class="u1l6-trow"><span class="tex u1l6-te">5\sqrt{2}=</span><button class="blank u1l6-w" data-a="7.071…"></button><button class="pill small" data-keys="CLEAR 5 × √ 2 =">Show me</button></div>
+    <div class="u1l6-tfill" data-u1l6-tfill="\sqrt{50}=\sqrt{25\times\blank{2}}=\sqrt{\blank{25}}\times\sqrt{2}=\blank{5\sqrt{2}}"></div>
+    <button class="pill small u1l6-fillall" data-u1l6-fillall>Fill all</button>
+  </div>
+  <div class="explainer" data-explainer="area"></div>
+</section>
+
+<!-- ================= 2. Entire → mixed ================= -->
+<section class="card" data-ink="s2" data-section="2. Entire → Mixed">
+  <div class="sec-h"><span class="badge">2</span><h2>Converting an Entire Radical to a Mixed Radical</h2></div>
+  <div class="def">Split the radicand using <span class="tex">\sqrt{ab}=\sqrt{a}\times\sqrt{b}</span>. Take the <b>largest</b> perfect-square factor and work out its root <b>outside</b>.</div>
+  <div class="u1l6-sqt" data-u1l6-scope>
+    <div class="u1l6-sqh"><b>Perfect squares</b> <span class="muted">(from the Lesson 5 table; tap to fill)</span> <button class="pill small" data-u1l6-fillall>Fill all</button></div>
+    <div class="u1l6-sqg" id="u1l6-sqg"></div>
+  </div>
+  <div class="u1l6-try" data-u1l6-scope>
+    <div class="u1l6-tfill" data-u1l6-tfill="\sqrt{48}=\sqrt{16\times\blank{3}}=\sqrt{\blank{16}}\times\sqrt{3}=\blank{4\sqrt{3}}"></div>
+    <button class="pill small u1l6-fillall" data-u1l6-fillall>Fill all</button>
+  </div>
+  <div class="explainer" data-explainer="finder"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Use the largest perfect square.</b> Pulling out a smaller one is not wrong, but then you must <b>simplify a second time</b>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Entire → mixed</h3></div>
+  <p class="q">Convert each entire radical to a mixed radical in simplest form. Show the factoring step.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">\sqrt{18}</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{18}=\sqrt{9\times2}</span><br><span class="tex">=\sqrt{9}\times\sqrt{2}</span><br><b><span class="tex">=3\sqrt{2}</span></b></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\sqrt{20}</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{20}=\sqrt{4\times5}</span><br><span class="tex">=\sqrt{4}\times\sqrt{5}</span><br><b><span class="tex">=2\sqrt{5}</span></b></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\sqrt{45}</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{45}=\sqrt{9\times5}</span><br><span class="tex">=\sqrt{9}\times\sqrt{5}</span><br><b><span class="tex">=3\sqrt{5}</span></b></div></div></div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Check (a) on the calculator.</b> <span class="keys"><kbd>2nd</kbd><kbd>x²</kbd><kbd>1</kbd><kbd>8</kbd><kbd>ENTER</kbd></span> and <span class="keys"><kbd>3</kbd><kbd>×</kbd><kbd>2nd</kbd><kbd>x²</kbd><kbd>2</kbd><kbd>ENTER</kbd></span> both give 4.242640687.</div>
+    <div class="u1l6-pcol"><button class="pill" data-keys="CLEAR √ 18 =">Show √18</button><button class="pill" data-keys="CLEAR 3 × √ 2 =">Show 3√2</button></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Prime factorization ================= -->
+<section class="card" data-ink="s3" data-section="3. When the Perfect Square Isn’t Obvious">
+  <div class="sec-h"><span class="badge">3</span><h2>When the Perfect Square Isn’t Obvious</h2></div>
+  <p>For a large radicand, use the <b>prime factorization</b> from Lesson 3. Write the radicand as a product of primes, then move <b>one</b> copy of every <b>pair</b> of matching primes outside the root. Any prime without a partner stays inside.</p>
+  <div class="def u1l6-108">For <span class="tex">180=2\times2\times3\times3\times5</span>: the pair of 2s gives a <b>2</b> outside, the pair of 3s gives a <b>3</b> outside, and the 5 is left in.
+    <div class="u1l6-eg"><span class="tex">\sqrt{180}=2\times3\times\sqrt{5}=6\sqrt{5}</span></div></div>
+  <div class="explainer" data-explainer="pairs"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Pairs of primes</h3></div>
+  <p class="q">Use prime factorization to convert each entire radical to a mixed radical in simplest form.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">\sqrt{126}</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">126=2\times3\times3\times7</span><br>One pair of 3s comes out; 2 and 7 stay in.<br><b><span class="tex">\sqrt{126}=3\sqrt{2\times7}=3\sqrt{14}</span></b><br><span class="small">Check: <span class="tex">3^2\times14=126</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\sqrt{150}</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">150=2\times3\times5\times5</span><br>The pair of 5s comes out; 2 and 3 stay in.<br><b><span class="tex">\sqrt{150}=5\sqrt{2\times3}=5\sqrt{6}</span></b><br><span class="small">Check: <span class="tex">5^2\times6=150</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\sqrt{192}</span></div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">192=2\times2\times2\times2\times2\times2\times3</span><br>Three pairs of 2s give <span class="tex">2\times2\times2=8</span> outside.<br><b><span class="tex">\sqrt{192}=8\sqrt{3}</span></b><br><span class="small">Check: <span class="tex">8^2\times3=192</span> ✓</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Mixed → entire ================= -->
+<section class="card" data-ink="s4" data-section="4. Mixed → Entire">
+  <div class="sec-h"><span class="badge">4</span><h2>Converting a Mixed Radical to an Entire Radical</h2></div>
+  <div class="def">Reverse the process: <b>square</b> the coefficient, then <b>multiply</b> it by the radicand already under the root.</div>
+  <div class="u1l6-try" data-u1l6-scope>
+    <div class="u1l6-tfill" data-u1l6-tfill="2\sqrt{5}=\sqrt{\blank{4}}\times\sqrt{5}=\sqrt{\blank{4}\times5}=\blank{\sqrt{20}}"></div>
+    <button class="pill small u1l6-fillall" data-u1l6-fillall>Fill all</button>
+  </div>
+  <div class="explainer" data-explainer="entire"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Square the coefficient.</b> <span class="tex">3\sqrt{2}=\sqrt{9\times2}=\sqrt{18}</span>, not <span class="tex">\sqrt{6}</span>. The 3 goes in as <span class="tex">3^2=9</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Mixed → entire</h3></div>
+  <p class="q">Convert each mixed radical to an entire radical.</p>
+  <div class="parts u1l6-c4p">
+    <div class="part"><div class="pl">(a) <span class="tex">4\sqrt{3}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4^2=16</span><br><span class="tex">4\sqrt{3}=\sqrt{16\times3}</span><br><b><span class="tex">=\sqrt{48}</span></b></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">2\sqrt{13}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2^2=4</span><br><span class="tex">2\sqrt{13}=\sqrt{4\times13}</span><br><b><span class="tex">=\sqrt{52}</span></b></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">3\sqrt{7}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3^2=9</span><br><span class="tex">3\sqrt{7}=\sqrt{9\times7}</span><br><b><span class="tex">=\sqrt{63}</span></b></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">9\sqrt{2}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">9^2=81</span><br><span class="tex">9\sqrt{2}=\sqrt{81\times2}</span><br><b><span class="tex">=\sqrt{162}</span></b></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u1l6"></section>
+
+<!-- ================= 5. Comparing and ordering ================= -->
+<section class="card" data-ink="s5" data-section="5. Comparing and Ordering Radicals">
+  <div class="sec-h"><span class="badge">5</span><h2>Comparing and Ordering Radicals</h2></div>
+  <div class="def">A mixed radical hides its size behind two numbers, so it is hard to compare at a glance. Convert every radical to <b>entire</b> form, then compare the radicands: <b>the bigger the number under the root, the bigger the root</b>.</div>
+  <div class="explainer" data-explainer="order"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t rank by the number in front.</b> <span class="tex">2\sqrt{14}</span> has a smaller coefficient than <span class="tex">3\sqrt{5}</span>, but <span class="tex">2\sqrt{14}=\sqrt{56}</span> is bigger than <span class="tex">3\sqrt{5}=\sqrt{45}</span>.</div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Ordering without a calculator</h3></div>
+  <p class="q">Without a calculator, arrange the following in order from <b>least to greatest</b>: &nbsp; <span class="tex">6\sqrt{2},\quad3\sqrt{5},\quad\sqrt{70},\quad2\sqrt{14}</span></p>
+  <div class="parts c1">
+    <div class="part"><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Write each one as an entire radical: <span class="tex">6\sqrt{2}=\sqrt{36\times2}=\sqrt{72}</span>, &nbsp;<span class="tex">3\sqrt{5}=\sqrt{9\times5}=\sqrt{45}</span>, &nbsp;<span class="tex">\sqrt{70}</span>, &nbsp;<span class="tex">2\sqrt{14}=\sqrt{4\times14}=\sqrt{56}</span>.<br>Order the radicands: <span class="tex">45&lt;56&lt;70&lt;72</span>.<br><b><span class="tex">3\sqrt{5}&lt;2\sqrt{14}&lt;\sqrt{70}&lt;6\sqrt{2}</span></b></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= 6. Putting it together ================= -->
+<section class="card" data-ink="s6" data-section="6. Putting It All Together">
+  <div class="sec-h"><span class="badge">6</span><h2>Putting It All Together</h2></div>
+  <div class="def-grid">
+    <div class="def amber"><b>Finished?</b> A mixed radical is only finished when the number left inside has <b>no perfect-square factor</b> left.</div>
+    <div class="def"><b>Big radicand?</b> It may need <b>prime factorization</b> to find all the pairs.</div>
+  </div>
+  <div class="explainer" data-explainer="again"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Is it finished?</h3></div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Sanjay simplified <span class="tex">\sqrt{96}</span> this way: <span class="tex">\sqrt{96}=\sqrt{4\times24}=2\sqrt{24}</span>. Explain why this is <b>not</b> fully simplified, then finish simplifying it correctly.</div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The number left inside, 24, still has the perfect-square factor 4 (<span class="tex">24=4\times6</span>), so the job isn’t finished.<br><span class="tex">2\sqrt{24}=2\sqrt{4\times6}=2\times2\sqrt{6}=</span> <b><span class="tex">4\sqrt{6}</span></b><br>The largest perfect square, 16, does it in one step: <span class="tex">\sqrt{96}=\sqrt{16\times6}=4\sqrt{6}</span>.</div></div></div>
+    <div class="part"><div class="pl">(b) Use prime factorization to simplify <span class="tex">\sqrt{168}</span>.</div><div class="work" style="--h:300px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">168=2\times2\times2\times3\times7</span><br>One pair of 2s comes out as a 2; the spare 2, the 3 and the 7 stay in.<br><b><span class="tex">\sqrt{168}=2\sqrt{2\times3\times7}=2\sqrt{42}</span></b><br><span class="small">Check: <span class="tex">2^2\times42=168</span>, and 42 has no perfect-square factor ✓</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Entire</b> <span class="tex">\sqrt{50}</span> and <b>mixed</b> <span class="tex">5\sqrt{2}</span> are the same number. <span class="tex">5\sqrt{2}</span> means five <span class="tex">\sqrt{2}</span>’s.</div>
+    <div><b>Entire → mixed:</b> pull out the <b>largest</b> perfect square: <span class="tex">\sqrt{48}=\sqrt{16}\times\sqrt{3}=4\sqrt{3}</span>. Big radicand? Pair up the primes.</div>
+    <div><b>Mixed → entire:</b> square the coefficient and bring it in: <span class="tex">2\sqrt{5}=\sqrt{4\times5}=\sqrt{20}</span>.</div>
+    <div><b>Order</b> radicals by writing them all as entire radicals: bigger radicand, bigger root. <b>Finished</b> means nothing inside has a perfect-square factor.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u1l6">
+    <div><div class="kicker">Your turn</div><b>Assignment 6 — Simplifying Square Roots: Entire and Mixed Radicals</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l7/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 7 — Simplifying Higher-Index Radicals</b><div class="muted">Stack 8 small cubes into a 2 × 2 × 2 cube. The same pull-it-out trick works for cube roots: <span class="tex">\sqrt[3]{16}=2\sqrt[3]{2}</span>.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u1l6.js';
+  boot({ key: 'u1l6', homeHref: '../../', title: '1.6 Entire and Mixed Radicals' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u1l1.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u1l1">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: The Comment Section">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Comment Section</h2>
+  <p class="wf-rule">Someone posts: “What is <span class="tex">3+4\times2</span>?” Two comments reply. Who is right?</p></div>
+  <div class="vw-tiles" style="--n:2"><div><b>1.2k likes</b>14</div><div><b>87 likes</b>11</div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Does the most-liked answer win?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>11.</b> Multiply first: <span class="tex">3+4\times2=3+8=11</span>. The most-liked comment added first, and likes don’t make it right.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,47 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Comment Section Chaos" style="--wf-side: 400px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Comment Section Chaos</h2>
-  <p class="wf-rule">This post went viral. Four people answered. They can’t <b>all</b> be right…</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u1l1-post">
-      <div class="u1l1-phd"><span class="u1l1-av u1l1-avq">?!</span><div><b>@BrainTeaserDaily</b><div class="muted">2 h ago</div></div></div>
-      <div class="u1l1-pt">Only <b class="u1l1-cr">1 in 10</b> people get this right!</div>
-      <div class="u1l1-pexp"><span class="tex">6+4\times2-(-3)^2</span></div>
-      <div class="u1l1-pf"><span>♥ 48K</span><span>9&#8239;712 comments</span></div>
-    </div>
-    <div class="u1l1-coms">
-      <div class="u1l1-com"><span class="u1l1-av" style="background:#3d4a63">A</span><div><b>@pizza_lover_22</b><br>It’s <b>11</b>. Not even close, people.</div><span class="u1l1-like">♥ 2.1K</span></div>
-      <div class="u1l1-com"><span class="u1l1-av" style="background:#c88c14">B</span><div><b>@MathWiz_99</b><br><b>23</b>. Trust me, I’m literally a math wiz.</div><span class="u1l1-like">♥ 1.8K</span></div>
-      <div class="u1l1-com"><span class="u1l1-av" style="background:#a83a30">C</span><div><b>@sk8r_sam</b><br>Umm… I got <b>5</b>?? Am I the only one?</div><span class="u1l1-like">♥ 34</span></div>
-      <div class="u1l1-com"><span class="u1l1-av" style="background:#8f96a3">D</span><div><b>@grandma_joan</b><br><b>29</b>. I did it on paper twice, dear.</div><span class="u1l1-like">♥ 960</span></div>
-    </div>
-    <div class="u1l1-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Three commenters are wrong. Who (i) went left to right? (ii) said <span class="tex">(-3)^2=-9</span>? (iii) made <b>both</b> mistakes? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u1l1-wa"><div class="bk-ans">(i) <b>A</b>: <span class="tex">10\times2=20</span>, <span class="tex">20-9=11</span>. (ii) <b>B</b>: <span class="tex">6+8+9=23</span>. (iii) <b>D</b>: <span class="tex">20+9=29</span>.</div></div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u1l1-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Find <span class="tex">4\times2</span> and <span class="tex">(-3)\times(-3)</span>. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u1l1-wa"><div class="bk-ans"><span class="tex">4\times2=8</span> and <span class="tex">(-3)\times(-3)=9</span> (same signs give a positive).</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>In <span class="tex">6+4\times2</span>, do you do the <span class="tex">+</span> or the <span class="tex">\times</span> first? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u1l1-wa"><div class="bk-ans">The <b><span class="tex">\times</span></b>. Multiply before you add, even though the <span class="tex">+</span> is read first.</div></div></div>
-    </div>
-    <div class="poll wf-poll u1l1-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> No math yet! Who is right? Does the most-liked answer win? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> 11</div>
-        <div class="opt"><b>B</b> 23</div>
-        <div class="opt right"><b>C</b> 5</div>
-        <div class="opt"><b>D</b> 29</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>C: sk8r_sam, the answer is 5.</b> <span class="tex">6+4\times2-9=6+8-9=5</span>. The right answer has the <b>fewest</b> likes: popular ≠ correct.</div>
-    </div>
-  </div></div>
-  <p class="u1l1-social">Poll the room: hands up for A, B, C, D. Bonus: is <span class="tex">-3^2</span> the same as <span class="tex">(-3)^2</span>?</p>
-</section>
+
 
 <!-- ================= 1. Adding and subtracting ================= -->
 <section class="card" data-ink="s1" data-section="1. Adding and Subtracting Integers">
@@ -102,7 +72,7 @@
     <div class="def amber"><b>Different signs:</b> subtract the smaller size (distance from zero) from the larger, and keep the sign of the number <b>farther from zero</b>.<div class="eg"><span class="tex">-9+4=-5</span> (the <span class="tex">9</span> is bigger, so the answer is negative)</div></div>
   </div>
   <div class="def gray"><b>Subtracting is adding the opposite:</b> <span class="tex">a-b=a+(-b)</span>. So <span class="tex">-6-(-10)=-6+10=4</span>.</div>
-  <div class="explainer" data-explainer="chips"></div>
+  <div data-extra><div class="explainer" data-explainer="chips"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -127,10 +97,10 @@
     <div class="def amber"><b>Different signs</b> give a <b>negative</b> answer.<div class="eg"><span class="tex">(-4)(3)=-12</span></div></div>
   </div>
   <p>Division follows the <b>same rule</b>: <span class="tex">12\div(-3)=-4</span> and <span class="tex">-12\div(-3)=4</span>. Think of each negative sign as <b>flipping</b> the answer once. Two flips bring you back to positive.</p>
-  <div class="explainer" data-explainer="signs"></div>
+  <div data-extra><div class="explainer" data-explainer="signs"></div></div>
 </section>
 
-<section class="card" data-ink="s2b" data-section="2. Why two negatives make a positive">
+<section data-extra class="card" data-ink="s2b" data-section="2. Why two negatives make a positive">
   <h3 class="sub">Why does a negative times a negative give a positive?</h3>
   <p>Watch a pattern. Each row multiplies by one less, and the answers change by the same amount every time. Keep the pattern going past zero.</p>
   <div class="explainer" data-explainer="pattern"></div>
@@ -175,7 +145,16 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s3b" data-section="3. Comment Section Chaos, solved">
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–10">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 1 · Questions 1–10</h2>
+  <p class="pr-t">Integer operations, then the order of operations.</p>
+  <div class="pr-chips n3"><span><b>1–4</b>Adding and subtracting</span><span><b>5–7</b>Multiplying and dividing</span><span><b>8–10</b>Order of operations</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 8.</span><a class="pill" href="../../../#/lesson/u1l1">Open the Practice site</a></div>
+</section>
+
+<section data-extra class="card" data-ink="s3b" data-section="3. Comment Section Chaos, solved">
   <h3 class="sub">Comment Section Chaos, solved</h3>
   <p>Each wrong answer in the warm-up comes from <b>one</b> slip. Pick a commenter and follow their working.</p>
   <div class="explainer" data-explainer="comments"></div>
@@ -200,7 +179,7 @@
     <div class="part"><div class="pl">(b) <span class="tex">(-4)^2</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Brackets: the <span class="tex">-4</span> is squared.<br><span class="tex">=(-4)(-4)=\boldsymbol{16}</span></div></div></div>
     <div class="part"><div class="pl">(c) <span class="tex">10-3\times(-2)^2</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Exponent, then multiply:<br><span class="tex">=10-3\times4</span><br><span class="tex">=10-12=\boldsymbol{-2}</span></div></div></div>
   </div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> In 4(c), why is it <b>wrong</b> to start with <span class="tex">10-3=7</span>?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">That’s going left to right. BEDMAS says the exponent comes first, then the multiplication. The subtraction is <b>last</b>. (Left to right gives <span class="tex">7\times4=28</span>, the wrong answer.)</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> In 4(c), why is it <b>wrong</b> to start with <span class="tex">10-3=7</span>?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">That’s going left to right. BEDMAS says the exponent comes first, then the multiplication. The subtraction is <b>last</b>. (Left to right gives <span class="tex">7\times4=28</span>, the wrong answer.)</div></div></div>
   <div class="space" id="ex4-space"></div>
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
@@ -212,7 +191,7 @@
 <section class="card" data-ink="s5" data-section="5. Putting It All Together">
   <div class="sec-h"><span class="badge">5</span><h2>Putting It All Together</h2></div>
   <p>Temperature, elevation and bank balances all use negative numbers naturally. Going <b>up</b> is <span class="tex">+</span>, going <b>down</b> is <span class="tex">-</span>. Write the expression first, then evaluate it.</p>
-  <div class="explainer" data-explainer="sub"></div>
+  <div data-extra><div class="explainer" data-explainer="sub"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -226,6 +205,48 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Comment Section Chaos" style="--wf-side: 400px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Comment Section Chaos</h2>
+  <p class="wf-rule">This post went viral. Four people answered. They can’t <b>all</b> be right…</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u1l1-post">
+      <div class="u1l1-phd"><span class="u1l1-av u1l1-avq">?!</span><div><b>@BrainTeaserDaily</b><div class="muted">2 h ago</div></div></div>
+      <div class="u1l1-pt">Only <b class="u1l1-cr">1 in 10</b> people get this right!</div>
+      <div class="u1l1-pexp"><span class="tex">6+4\times2-(-3)^2</span></div>
+      <div class="u1l1-pf"><span>♥ 48K</span><span>9&#8239;712 comments</span></div>
+    </div>
+    <div class="u1l1-coms">
+      <div class="u1l1-com"><span class="u1l1-av" style="background:#3d4a63">A</span><div><b>@pizza_lover_22</b><br>It’s <b>11</b>. Not even close, people.</div><span class="u1l1-like">♥ 2.1K</span></div>
+      <div class="u1l1-com"><span class="u1l1-av" style="background:#c88c14">B</span><div><b>@MathWiz_99</b><br><b>23</b>. Trust me, I’m literally a math wiz.</div><span class="u1l1-like">♥ 1.8K</span></div>
+      <div class="u1l1-com"><span class="u1l1-av" style="background:#a83a30">C</span><div><b>@sk8r_sam</b><br>Umm… I got <b>5</b>?? Am I the only one?</div><span class="u1l1-like">♥ 34</span></div>
+      <div class="u1l1-com"><span class="u1l1-av" style="background:#8f96a3">D</span><div><b>@grandma_joan</b><br><b>29</b>. I did it on paper twice, dear.</div><span class="u1l1-like">♥ 960</span></div>
+    </div>
+    <div class="u1l1-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Three commenters are wrong. Who (i) went left to right? (ii) said <span class="tex">(-3)^2=-9</span>? (iii) made <b>both</b> mistakes? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l1-wa"><div class="bk-ans">(i) <b>A</b>: <span class="tex">10\times2=20</span>, <span class="tex">20-9=11</span>. (ii) <b>B</b>: <span class="tex">6+8+9=23</span>. (iii) <b>D</b>: <span class="tex">20+9=29</span>.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u1l1-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Find <span class="tex">4\times2</span> and <span class="tex">(-3)\times(-3)</span>. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l1-wa"><div class="bk-ans"><span class="tex">4\times2=8</span> and <span class="tex">(-3)\times(-3)=9</span> (same signs give a positive).</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>In <span class="tex">6+4\times2</span>, do you do the <span class="tex">+</span> or the <span class="tex">\times</span> first? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u1l1-wa"><div class="bk-ans">The <b><span class="tex">\times</span></b>. Multiply before you add, even though the <span class="tex">+</span> is read first.</div></div></div>
+    </div>
+    <div class="poll wf-poll u1l1-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> No math yet! Who is right? Does the most-liked answer win? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 11</div>
+        <div class="opt"><b>B</b> 23</div>
+        <div class="opt right"><b>C</b> 5</div>
+        <div class="opt"><b>D</b> 29</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: sk8r_sam, the answer is 5.</b> <span class="tex">6+4\times2-9=6+8-9=5</span>. The right answer has the <b>fewest</b> likes: popular ≠ correct.</div>
+    </div>
+  </div></div>
+  <p class="u1l1-social">Poll the room: hands up for A, B, C, D. Bonus: is <span class="tex">-3^2</span> the same as <span class="tex">(-3)^2</span>?</p>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -236,7 +257,7 @@
     <div><b>Watch the brackets.</b> <span class="tex">(-3)^2=9</span>, but <span class="tex">-3^2=-9</span>: without brackets, only the <span class="tex">3</span> is squared.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u1l1">
-    <div><div class="kicker">Your turn</div><b>Assignment 1 — Review: Integer Operations and Order of Operations</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 1 · Questions 11–16</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l2/">
     <div><div class="kicker">Next lesson</div><b>Lesson 2 — Review: Operations with Fractions and Decimals</b><div class="muted">Your little brother hid every measuring cup but one. Can you still bake the cookies?</div></div><span class="arrow">→</span>
@@ -249,7 +270,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u1l1.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u1l1', homeHref: '../../', title: '1.1 Integers and BEDMAS' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

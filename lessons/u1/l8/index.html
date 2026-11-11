@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u1l8.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u1l8">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Two Truths and a Lie">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Two Truths and a Lie</h2>
+  <p class="wf-rule">Two of these are true. One is a lie. Which one?</p></div>
+  <div class="vw-tiles" style="--n:3"><div><b>A</b><span class="tex">\sqrt{50}=5\sqrt2</span></div><div><b>B</b><span class="tex">-3^2=9</span></div><div><b>C</b><span class="tex">0.75=\dfrac34</span></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>How could you prove it?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>B is the lie.</b> The exponent only reaches the 3, so <span class="tex">-3^2=-9</span>. It would be 9 with brackets: <span class="tex">(-3)^2</span>.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -45,43 +55,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Which One Doesn't Belong?" id="wu" style="--wf-side: 360px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Which One Doesn’t Belong?</h2>
-  <p class="wf-rule">Each grid has four number cards. Find the card that doesn’t fit! <span class="muted">Tap a card to kick it out.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u1l8-grids">
-      <div class="u1l8-grid"><span class="u1l8-gl">A</span>
-        <button class="u1l8-card" type="button"><span class="tex">7</span></button><button class="u1l8-card" type="button"><span class="tex">11</span></button><button class="u1l8-card" type="button"><span class="tex">15</span></button><button class="u1l8-card" type="button"><span class="tex">13</span></button></div>
-      <div class="u1l8-grid"><span class="u1l8-gl">B</span>
-        <button class="u1l8-card" type="button"><span class="tex">\sqrt{2}</span></button><button class="u1l8-card" type="button"><span class="tex">\pi</span></button><button class="u1l8-card" type="button"><span class="tex">0.5</span></button><button class="u1l8-card" type="button"><span class="tex">\sqrt{3}</span></button></div>
-      <div class="u1l8-grid"><span class="u1l8-gl">C</span>
-        <button class="u1l8-card" type="button"><span class="tex">2\sqrt{3}</span></button><button class="u1l8-card" type="button"><span class="tex">\sqrt{12}</span></button><button class="u1l8-card" type="button"><span class="tex">\sqrt{4\cdot 3}</span></button><button class="u1l8-card" type="button"><span class="tex">3\sqrt{2}</span></button></div>
-      <div class="u1l8-grid d"><span class="u1l8-gl">D</span>
-        <button class="u1l8-card" type="button"><span class="tex">16</span></button><button class="u1l8-card" type="button"><span class="tex">27</span></button><button class="u1l8-card" type="button"><span class="tex">-9</span></button><button class="u1l8-card" type="button"><span class="tex">\sqrt{12}</span></button></div>
-    </div>
-    <div class="u1l8-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Grid A: which card is <b>not</b> a prime number? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>15</b> <span class="tex">=3\times5</span>, so it is composite. 7, 11 and 13 have only the factors 1 and themselves.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Grid B: only <b>one</b> card is rational. Which one? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>0.5</b> <span class="tex">=\tfrac{5}{10}=\tfrac12</span>, a terminating decimal. <span class="tex">\sqrt2</span>, <span class="tex">\pi</span> and <span class="tex">\sqrt3</span> never end and never repeat.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Grid C: three cards are the <b>same number</b> in disguise. Which one is different? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b><span class="tex">3\sqrt2</span></b>. <span class="tex">\sqrt{12}=\sqrt{4\cdot3}=2\sqrt3\approx3.46</span>, but <span class="tex">3\sqrt2=\sqrt{18}\approx4.24</span>.</div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one: Grid D.</b> No hint this time. For how many of its cards can you give a <b>good math reason</b> why <i>that</i> card doesn’t belong? <b>Guess first.</b></div></div>
-      <div class="poll-opts c4">
-        <div class="opt"><b>A</b> just 1</div>
-        <div class="opt"><b>B</b> 2</div>
-        <div class="opt"><b>C</b> 3</div>
-        <div class="opt right"><b>D</b> all 4</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>D: all 4 cards!</b> Every card has a solid reason:<br><b>16</b>: the only <b>perfect square</b> (<span class="tex">4^2</span>), and the only even number.<br><b>27</b>: the only <b>perfect cube</b> (<span class="tex">3^3</span>).<br><b>−9</b>: the only <b>negative</b>: an integer, but not whole or natural.<br><b><span class="tex">\sqrt{12}</span></b>: the only <b>irrational</b> number (<span class="tex">\approx3.46</span>).<br>What matters is the <b>reason</b>. And no, <span class="tex">-9</span> is not a perfect square: <span class="tex">(-3)^2=+9</span>.</div>
-    </div>
-  </div></div>
-  <p class="u1l8-social">Pick a card in Grid D and defend it to a neighbour. Can they argue for a <b>different</b> card?</p>
-</section>
+
 
 <!-- ================= 1. Toolkit ================= -->
 <section class="card" data-ink="kit" data-section="1. The Unit 1 Toolkit">
@@ -119,7 +93,7 @@
   <div class="u1l8-bedmas">
     <div><b class="n">B</b>Brackets</div><div><b class="n">E</b>Exponents</div><div><b class="n">D M</b><span class="tex">\times\ \div</span> left to right</div><div><b class="n">A S</b><span class="tex">+\ -</span> left to right</div>
   </div>
-  <div class="explainer" data-explainer="bedmas"></div>
+  <div data-extra><div class="explainer" data-explainer="bedmas"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -138,10 +112,10 @@
 <section class="card" data-ink="s3" data-section="3. Fractions and Decimals">
   <div class="sec-h"><span class="badge">3</span><h2>Fractions and Decimals</h2></div>
   <p><b>Adding or subtracting</b> needs a common denominator: cut the pieces to the same size first.</p>
-  <div class="explainer" data-explainer="bars"></div>
+  <div data-extra><div class="explainer" data-explainer="bars"></div></div>
 </section>
 
-<section class="card" data-ink="s3b" data-section="3. Multiply, divide, decimals">
+<section data-extra class="card" data-ink="s3b" data-section="3. Multiply, divide, decimals">
   <h3 class="sub">Multiplying, dividing, and decimals to fractions</h3>
   <p><b>Multiplying</b> needs no common denominator: cancel common factors first. <b>Dividing</b> means multiply by the reciprocal. A terminating <b>decimal</b> becomes a fraction by place value, then reduce.</p>
   <div class="explainer" data-explainer="cancelDec"></div>
@@ -173,7 +147,7 @@
   <div class="u1l8-tree" id="u1l8-tree"></div>
 </section>
 
-<section class="card" data-ink="s4b" data-section="4. GCF and LCM: a Venn of primes">
+<section data-extra class="card" data-ink="s4b" data-section="4. GCF and LCM: a Venn of primes">
   <h3 class="sub">GCF and LCM, straight from the primes</h3>
   <p>Put each number’s primes in its own circle; primes they <b>share</b> go in the overlap. <b>GCF</b> = multiply the overlap. <b>LCM</b> = multiply everything in the picture.</p>
   <div class="explainer" data-explainer="venn"></div>
@@ -189,6 +163,15 @@
   </div>
   <div class="space" id="ex3-space"></div>
   <button class="more" data-more="ex3-space" type="button">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–10">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 8 · Questions 1–10</h2>
+  <p class="pr-t">The first half of the unit, one skill at a time.</p>
+  <div class="pr-chips n3"><span><b>1–3</b>Integers and order of operations</span><span><b>4–6</b>Fractions and decimals</span><span><b>7–10</b>Primes, GCF and LCM</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 7.</span><a class="pill" href="../../../#/lesson/u1l8">Open the Practice site</a></div>
 </section>
 
 <!-- ================= Number sets ================= -->
@@ -222,7 +205,7 @@
 <section class="card" data-ink="s6" data-section="6. Perfect Powers and Estimating Roots">
   <div class="sec-h"><span class="badge">6</span><h2>Perfect Powers and Estimating Roots</h2></div>
   <p>A perfect square or cube has a whole-number root: <b>use the reference strip</b>. Any other square root is <b>trapped</b> between two consecutive whole numbers: find the perfect squares just below and just above, then see which one it is nearer to.</p>
-  <div class="explainer" data-explainer="estimate"></div>
+  <div data-extra><div class="explainer" data-explainer="estimate"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -239,7 +222,7 @@
 <section class="card" data-ink="s7" data-section="7. Simplifying Radicals">
   <div class="sec-h"><span class="badge">7</span><h2>Simplifying Radicals</h2></div>
   <p>The index is the <b>group size</b>: pairs for a square root, groups of three for a cube root, four for a fourth root. Each full group of equal prime factors comes out as <b>one</b> number. Going back in, the coefficient goes in <b>as its <span class="tex">n</span>th power</b>.</p>
-  <div class="explainer" data-explainer="radicals"></div>
+  <div data-extra><div class="explainer" data-explainer="radicals"></div></div>
 </section>
 
 <section class="card example" data-ink="ex6" data-section="Examples 6 and 7">
@@ -273,9 +256,47 @@
   <button class="more" data-more="ch-space" type="button">+ More space</button>
 </section>
 
-<section class="card" data-ink="chk" data-section="Challenge 2 check">
+<section data-extra class="card" data-ink="chk" data-section="Challenge 2 check">
   <h3 class="sub">Challenge 2 check: the biggest square that fits</h3>
   <div class="explainer" data-explainer="field"></div>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Which One Doesn't Belong?" id="wu" style="--wf-side: 360px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Which One Doesn’t Belong?</h2>
+  <p class="wf-rule">Each grid has four number cards. Find the card that doesn’t fit! <span class="muted">Tap a card to kick it out.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u1l8-grids">
+      <div class="u1l8-grid"><span class="u1l8-gl">A</span>
+        <button class="u1l8-card" type="button"><span class="tex">7</span></button><button class="u1l8-card" type="button"><span class="tex">11</span></button><button class="u1l8-card" type="button"><span class="tex">15</span></button><button class="u1l8-card" type="button"><span class="tex">13</span></button></div>
+      <div class="u1l8-grid"><span class="u1l8-gl">B</span>
+        <button class="u1l8-card" type="button"><span class="tex">\sqrt{2}</span></button><button class="u1l8-card" type="button"><span class="tex">\pi</span></button><button class="u1l8-card" type="button"><span class="tex">0.5</span></button><button class="u1l8-card" type="button"><span class="tex">\sqrt{3}</span></button></div>
+      <div class="u1l8-grid"><span class="u1l8-gl">C</span>
+        <button class="u1l8-card" type="button"><span class="tex">2\sqrt{3}</span></button><button class="u1l8-card" type="button"><span class="tex">\sqrt{12}</span></button><button class="u1l8-card" type="button"><span class="tex">\sqrt{4\cdot 3}</span></button><button class="u1l8-card" type="button"><span class="tex">3\sqrt{2}</span></button></div>
+      <div class="u1l8-grid d"><span class="u1l8-gl">D</span>
+        <button class="u1l8-card" type="button"><span class="tex">16</span></button><button class="u1l8-card" type="button"><span class="tex">27</span></button><button class="u1l8-card" type="button"><span class="tex">-9</span></button><button class="u1l8-card" type="button"><span class="tex">\sqrt{12}</span></button></div>
+    </div>
+    <div class="u1l8-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Grid A: which card is <b>not</b> a prime number? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>15</b> <span class="tex">=3\times5</span>, so it is composite. 7, 11 and 13 have only the factors 1 and themselves.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Grid B: only <b>one</b> card is rational. Which one? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>0.5</b> <span class="tex">=\tfrac{5}{10}=\tfrac12</span>, a terminating decimal. <span class="tex">\sqrt2</span>, <span class="tex">\pi</span> and <span class="tex">\sqrt3</span> never end and never repeat.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Grid C: three cards are the <b>same number</b> in disguise. Which one is different? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b><span class="tex">3\sqrt2</span></b>. <span class="tex">\sqrt{12}=\sqrt{4\cdot3}=2\sqrt3\approx3.46</span>, but <span class="tex">3\sqrt2=\sqrt{18}\approx4.24</span>.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one: Grid D.</b> No hint this time. For how many of its cards can you give a <b>good math reason</b> why <i>that</i> card doesn’t belong? <b>Guess first.</b></div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b> just 1</div>
+        <div class="opt"><b>B</b> 2</div>
+        <div class="opt"><b>C</b> 3</div>
+        <div class="opt right"><b>D</b> all 4</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D: all 4 cards!</b> Every card has a solid reason:<br><b>16</b>: the only <b>perfect square</b> (<span class="tex">4^2</span>), and the only even number.<br><b>27</b>: the only <b>perfect cube</b> (<span class="tex">3^3</span>).<br><b>−9</b>: the only <b>negative</b>: an integer, but not whole or natural.<br><b><span class="tex">\sqrt{12}</span></b>: the only <b>irrational</b> number (<span class="tex">\approx3.46</span>).<br>What matters is the <b>reason</b>. And no, <span class="tex">-9</span> is not a perfect square: <span class="tex">(-3)^2=+9</span>.</div>
+    </div>
+  </div></div>
+  <p class="u1l8-social">Pick a card in Grid D and defend it to a neighbour. Can they argue for a <b>different</b> card?</p>
 </section>
 
 <!-- ================= summary ================= -->
@@ -288,7 +309,7 @@
     <div><b>Sets and roots.</b> <span class="tex">N\subset W\subset I\subset Q\subset R</span>, irrationals beside the rationals. A radical simplifies by pulling out its largest perfect square (or cube, …).</div>
   </div>
   <a class="assign" href="../../../#/lesson/u1l8">
-    <div><div class="kicker">Your turn</div><b>Assignment 8 — Unit Review: Number Sense</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 8 · Questions 11–25</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <div class="u1l8-review">
     <div class="u1l8-review-h"><span class="kicker">Up next</span><b>Unit 1 test.</b> <span class="muted">Shaky on an idea today? Go back to its lesson.</span></div>
@@ -311,7 +332,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u1l8.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u1l8', homeHref: '../../', title: '1.8 Unit 1 Review' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

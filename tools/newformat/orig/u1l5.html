@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Perfect Squares, Perfect Cubes, and Estimating Roots · Math 15 1.5</title>
+<meta name="description" content="Math 15 Unit 1 Lesson 5: perfect squares and square roots, perfect cubes and cube roots, trapping a square root between two whole numbers, a one-decimal estimate, calculator values to the nearest hundredth, and side lengths from area and volume. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u1l5.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u1l5">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 1 Number · Lesson 5</div>
+  <h1>Perfect Squares, Perfect Cubes, and Estimating Roots</h1>
+  <p class="lede">36 tiles make a 6 × 6 square, so <span class="tex">\sqrt{36}=6</span>. Today we learn the <b>perfect squares</b> and <b>perfect cubes</b> by heart and read their roots straight off the list. Then we <b>trap</b> the roots that land in between, like <span class="tex">\sqrt{40}</span>, which hides between 6 and 7.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>recognize the <b>perfect squares</b> up to 225 and the <b>perfect cubes</b> up to 1 000</li>
+      <li>find a <b>square root</b> or a <b>cube root</b> of a perfect square or cube in my head</li>
+      <li>trap a square root between <b>two whole numbers</b> and say which one it is closer to</li>
+      <li>estimate a square root to <b>one decimal place</b>, then check it on a calculator</li>
+      <li>find the side of a square from its <b>area</b>, and the edge of a cube from its <b>volume</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>AN1</b> Demonstrate an understanding of factors of whole numbers by determining the prime factors, greatest common factor, least common multiple, square root and cube root.</div>
+  <div class="outcome"><b>AN2</b> Demonstrate an understanding of irrational numbers by representing, identifying and simplifying irrational numbers, and by ordering irrational numbers.<br><span class="u1l5-today">Today: square roots and cube roots (AN1), and estimating the roots that are not whole numbers (AN2).</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Photo Wall" style="--wf-side: 390px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Photo Wall</h2>
+  <p class="wf-rule">Maya hangs her photos in a <b>perfect square</b>: as many across as down. <span class="muted">Use − and + to build a wall.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u1l5-wallbox" id="u1l5-wall"></div>
+    <div class="u1l5-wctl no-ink">
+      <button type="button" class="pill" data-u1l5-w="-1" aria-label="One photo narrower">−</button>
+      <span class="u1l5-wlab" id="u1l5-wlab"></span>
+      <button type="button" class="pill" data-u1l5-w="+1" aria-label="One photo wider">+</button>
+      <span class="u1l5-wgap"></span>
+      <button type="button" class="pill" data-u1l5-w="50">50 photos?</button>
+      <button type="button" class="pill" data-u1l5-w="200">200 photos?</button>
+    </div>
+    <div class="u1l5-wline" id="u1l5-wline"></div>
+    <div class="u1l5-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many photos in a <span class="tex">5\times5</span> wall? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>25 photos</b> (<span class="tex">5\times5</span>). The walls so far: 1, 4, 9, 16, 25.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which counts make a square wall? &nbsp;<b>12 &nbsp; 25 &nbsp; 30 &nbsp; 36 &nbsp; 48 &nbsp; 81</b> <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>25, 36 and 81</b> (<span class="tex">5\times5</span>, <span class="tex">6\times6</span>, <span class="tex">9\times9</span>). 12, 30 and 48 fall between walls.</div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Maya has <b>50</b> photos. Is her wall closer to <b>7</b> wide or <b>8</b> wide? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="bk-ans">Closer to <b>7</b>. <span class="tex">7\times7=49</span> and <span class="tex">8\times8=64</span>: 50 is only 1 past 49 but 14 short of 64.</div></div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> The whole school brings in <b>200</b> photos for one giant square wall. About how many photos <b>wide</b> will it be? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> 14</div>
+        <div class="opt"><b>B</b> 50</div>
+        <div class="opt"><b>C</b> 100</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A, about 14.</b> <span class="tex">14\times14=196</span> (4 left over) and <span class="tex">15\times15=225</span> is too many. Press <b>200 photos?</b> to see it.
+        <div class="u1l5-traps"><span><b>B (50)?</b> That’s <span class="tex">200\div4</span>.</span><span><b>C (100)?</b> That’s half. Half is not the square root!</span></div>
+        <div class="u1l5-surprise">Four times the photos (50 → 200) only <b>doubles</b> the width (about 7 → about 14).</div>
+      </div>
+    </div>
+    <div class="bk-wq u1l5-yourturn"><div class="q-line"><div class="q-num">?</div><div><b>Your turn:</b> which photo counts from 101 to 150 make a perfect square wall? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="bk-ans"><b>121</b> (<span class="tex">11\times11</span>) and <b>144</b> (<span class="tex">12\times12</span>). 100 and 169 are just outside.</div></div>
+  </div></div>
+</section>
+
+<!-- ================= 1. Perfect squares ================= -->
+<section class="card" data-ink="s1" data-section="1. Perfect Squares and Square Roots">
+  <div class="sec-h"><span class="badge">1</span><h2>Perfect Squares and Square Roots</h2></div>
+  <div class="def">A <b>perfect square</b> is a whole number multiplied by itself: <span class="tex">6\times6=36</span>, so 36 is a perfect square. The <b>square root</b> undoes that, so <span class="tex">\sqrt{36}=6</span>.</div>
+  <div class="u1l5-tblwrap">
+    <div class="u1l5-tblh"><b>Memorize this list.</b> <span class="muted">It is used for the rest of the course. Tap a <b>?</b> to check yourself.</span> <button class="pill small" type="button" data-u1l5-fill="sq">Fill all</button></div>
+    <div id="u1l5-sqtab" class="u1l5-tbl"></div>
+  </div>
+  <div class="explainer" data-explainer="tiles"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>A square root is not half.</b> <span class="tex">\sqrt{36}</span> is 6, not 18. Ask: <b>what number times itself</b> makes 36?</div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Square roots in your head</h3></div>
+  <p class="q">Evaluate each square root mentally, using the table above.</p>
+  <div class="parts u1l5-c6">
+    <div class="part"><div class="pl">(a) <span class="tex">\sqrt{16}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4\times4=16</span><br><b><span class="tex">\sqrt{16}=4</span></b></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\sqrt{81}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">9\times9=81</span><br><b><span class="tex">\sqrt{81}=9</span></b></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\sqrt{1}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">1\times1=1</span><br><b><span class="tex">\sqrt{1}=1</span></b></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">\sqrt{121}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">11\times11=121</span><br><b><span class="tex">\sqrt{121}=11</span></b></div></div></div>
+    <div class="part"><div class="pl">(e) <span class="tex">\sqrt{49}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">7\times7=49</span><br><b><span class="tex">\sqrt{49}=7</span></b></div></div></div>
+    <div class="part"><div class="pl">(f) <span class="tex">\sqrt{144}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">12\times12=144</span><br><b><span class="tex">\sqrt{144}=12</span></b></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Perfect cubes ================= -->
+<section class="card" data-ink="s2" data-section="2. Perfect Cubes and Cube Roots">
+  <div class="sec-h"><span class="badge">2</span><h2>Perfect Cubes and Cube Roots</h2></div>
+  <div class="def">A <b>perfect cube</b> is a whole number multiplied by itself <b>three</b> times: <span class="tex">4\times4\times4=64</span>. The <b>cube root</b> undoes that, so <span class="tex">\sqrt[3]{64}=4</span>. A number can be <b>both</b>: <span class="tex">64=8^2</span> and <span class="tex">64=4^3</span>.</div>
+  <div class="u1l5-tblwrap">
+    <div class="u1l5-tblh"><b>Perfect cubes.</b> <span class="muted">Tap a <b>?</b> to check yourself.</span> <button class="pill small" type="button" data-u1l5-fill="cu">Fill all</button></div>
+    <div id="u1l5-cutab" class="u1l5-tbl"></div>
+  </div>
+  <div class="explainer" data-explainer="cubes"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Watch the little 3.</b> <span class="tex">\sqrt[3]{64}=4</span> (a cube root) but <span class="tex">\sqrt{64}=8</span> (a square root). The small number in the root sign tells you <b>how many times</b> the number is multiplied by itself.</div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Cube roots in your head</h3></div>
+  <p class="q">Evaluate each cube root mentally, using the table above.</p>
+  <div class="parts c5">
+    <div class="part"><div class="pl">(a) <span class="tex">\sqrt[3]{8}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2\times2\times2=8</span><br><b><span class="tex">\sqrt[3]{8}=2</span></b></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\sqrt[3]{27}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3\times3\times3=27</span><br><b><span class="tex">\sqrt[3]{27}=3</span></b></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">\sqrt[3]{125}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">5\times5\times5=125</span><br><b><span class="tex">\sqrt[3]{125}=5</span></b></div></div></div>
+    <div class="part"><div class="pl">(d) <span class="tex">\sqrt[3]{1}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">1\times1\times1=1</span><br><b><span class="tex">\sqrt[3]{1}=1</span></b></div></div></div>
+    <div class="part"><div class="pl">(e) <span class="tex">\sqrt[3]{64}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4\times4\times4=64</span><br><b><span class="tex">\sqrt[3]{64}=4</span></b></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Estimating ================= -->
+<section class="card" data-ink="s3" data-section="3. Estimating Square Roots">
+  <div class="sec-h"><span class="badge">3</span><h2>Estimating Square Roots of Non-Perfect Squares</h2></div>
+  <div class="u1l5-s3row">
+    <div class="def">If a number is not a perfect square, <b>trap</b> it between the perfect square just below and the one just above. Their roots are two whole numbers in a row. Then see which perfect square the number is <b>nearer</b> to.</div>
+    <div class="u1l5-mini">
+      <div class="u1l5-mini-t"><span class="tex">36&lt;40&lt;49</span>, so <span class="tex">6&lt;\sqrt{40}&lt;7</span></div>
+      <div id="u1l5-fig40"></div>
+      <div class="u1l5-mini-b">40 is <b>4</b> of the <b>13</b> steps from 36 to 49, about <b>0.3</b> of the way, so <span class="tex">\sqrt{40}\approx6.3</span>.</div>
+    </div>
+  </div>
+  <div class="explainer" data-explainer="trap"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Compare with the perfect squares, not the roots.</b> To place <span class="tex">\sqrt{40}</span>, ask how far <b>40</b> is from <b>36</b> and from <b>49</b>, not how far it is from 6 and 7.</div></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. One decimal place">
+  <h3 class="sub">One decimal place: zoom in on the gap</h3>
+  <p>The gap from 36 to 49 is <b>13 steps</b>. 40 is <b>4</b> of those steps in, a bit less than a third of the way. So <span class="tex">\sqrt{40}</span> is a bit less than a third of the way from 6 to 7: about <b>6.3</b>.</p>
+  <p class="muted">For cube roots, comparing with the neighbouring cubes is only a rough guide.</p>
+  <div class="explainer" data-explainer="zoom"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Trap it, then estimate</h3></div>
+  <p class="q">State the two consecutive whole numbers each root lies between, which one it is closer to, and a one-decimal estimate. In (c), plot your estimate of <span class="tex">\sqrt{27}</span> on the number line.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">\sqrt{27}</span></div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">25&lt;27&lt;36</span>, so <span class="tex">5&lt;\sqrt{27}&lt;6</span>: <b>between 5 and 6</b>.<br><span class="tex">27-25=2</span> but <span class="tex">36-27=9</span>: <b>closer to 5</b>.<br>27 is 2 of the 11 steps from 25 to 36, about 0.2 of the way:<br><b><span class="tex">\sqrt{27}\approx5.2</span></b></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\sqrt{95}</span></div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">81&lt;95&lt;100</span>, so <span class="tex">9&lt;\sqrt{95}&lt;10</span>: <b>between 9 and 10</b>.<br><span class="tex">95-81=14</span> but <span class="tex">100-95=5</span>: <b>closer to 10</b>.<br>95 is 14 of the 19 steps from 81 to 100, about 0.7 of the way:<br><b><span class="tex">\sqrt{95}\approx9.7</span></b></div></div></div>
+    <div class="part"><div class="pl">(c) Plot your estimate of <span class="tex">\sqrt{27}</span>. <span class="muted small">Tap the line.</span></div>
+      <div class="u1l5-plot" id="u1l5-plot27"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">From (a), <span class="tex">\sqrt{27}\approx5.2</span>: a little way past 5, well short of halfway to 6.<div id="u1l5-plot27a" class="u1l5-plota"></div></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u1l5"></section>
+
+<!-- ================= 4. Calculator ================= -->
+<section class="card" data-ink="s4" data-section="4. Using a Calculator">
+  <div class="sec-h"><span class="badge">4</span><h2>Using a Calculator to Approximate Roots</h2></div>
+  <p>On the TI-30XIIS, press <kbd>2nd</kbd> <kbd>x²</kbd> (the <span class="tex">\sqrt{\phantom{x}}</span> key), the number, then <kbd>ENTER</kbd>, and round to the place value asked for: <span class="tex">\sqrt{40}=6.32455\ldots\approx6.32</span>.</p>
+  <div class="def amber"><b>Always estimate first.</b> If the calculator value is far from your estimate, you keyed something in wrong.</div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Square root on the TI-30XIIS.</b> <span class="tex">\sqrt{\phantom{x}}</span> is the 2nd function of <kbd>x²</kbd>: <span class="keys"><kbd>2nd</kbd><kbd>x²</kbd><kbd>4</kbd><kbd>0</kbd><kbd>ENTER</kbd></span> shows 6.32455532.</div>
+    <button class="pill" data-keys="√ 40 =">Show me</button>
+  </div>
+  <div class="explainer" data-explainer="round"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Calculator check</h3></div>
+  <p class="q">Evaluate (a) and (b) to the nearest hundredth and compare with your Example 3 estimates.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">\sqrt{27}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{27}=5.19615\ldots</span><br><b><span class="tex">\approx5.20</span></b><br><span class="small">Estimate was 5.2 ✓</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">\sqrt{95}</span></div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{95}=9.74679\ldots</span><br><b><span class="tex">\approx9.75</span></b><br><span class="small">Estimate was 9.7 ✓</span></div></div></div>
+    <div class="part"><div class="pl">(c) Estimate <span class="tex">\sqrt{60}</span> by hand, then evaluate it to the nearest tenth. Are the two close?</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">49&lt;60&lt;64</span>, so <span class="tex">7&lt;\sqrt{60}&lt;8</span>; 60 is 11 of the 15 steps from 49 to 64, about 0.7 of the way: estimate <span class="tex">\approx7.7</span>.<br>Calculator: <span class="tex">\sqrt{60}=7.74596\ldots\approx</span> <b>7.7</b><br><b>Yes</b>, they match to the tenth.</div></div></div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Show each one on the calculator.</b> <span class="keys"><kbd>2nd</kbd><kbd>x²</kbd></span>, the number, <kbd>ENTER</kbd>.
+      <div class="u1l5-ckpills"><button class="chip" data-keys="CLEAR √ 27 =">(a) √27</button><button class="chip" data-keys="CLEAR √ 95 =">(b) √95</button><button class="chip" data-keys="CLEAR √ 60 =">(c) √60</button></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= 5. Area and volume ================= -->
+<section class="card" data-ink="s5" data-section="5. Application: Area and Volume">
+  <div class="sec-h"><span class="badge">5</span><h2>Application: Area and Volume</h2></div>
+  <p>Roots run the area and volume formulas <b>backwards</b>.</p>
+  <div class="def-grid">
+    <div class="def">A <b>square</b> with area <span class="tex">A</span> has side length <div class="u1l5-big"><span class="tex">s=\sqrt{A}</span></div><div class="eg">because <span class="tex">A=s\times s</span></div></div>
+    <div class="def amber">A <b>cube</b> with volume <span class="tex">V</span> has edge length <div class="u1l5-big"><span class="tex">e=\sqrt[3]{V}</span></div><div class="eg">because <span class="tex">V=e\times e\times e</span></div></div>
+  </div>
+  <div class="explainer" data-explainer="garden"></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Cube root on the TI-30XIIS.</b> Type the <b>3 first</b>, then <span class="tex">\sqrt[x]{\phantom{0}}</span> (2nd of <kbd>^</kbd>), then the number: <span class="keys"><kbd>3</kbd><kbd>2nd</kbd><kbd>^</kbd><kbd>6</kbd><kbd>4</kbd><kbd>ENTER</kbd></span> gives 4.</div>
+    <button class="pill" data-keys="CLEAR 3 ˣ√ 64 =">Show me</button>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Side lengths from area and volume</h3></div>
+  <p class="q">Estimate to the nearest whole number first, then give the calculator value to the nearest hundredth.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) A square school garden has an area of <span class="tex">55\text{ m}^2</span>. Find its side length.</div><div class="work" style="--h:270px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">s=\sqrt{A}=\sqrt{55}</span><br><span class="tex">49&lt;55&lt;64</span>, so <span class="tex">7&lt;s&lt;8</span>; 55 is 6 past 49 but 9 short of 64: <b><span class="tex">s\approx7\text{ m}</span></b><br>Calculator: <span class="tex">\sqrt{55}=7.41619\ldots\approx</span> <b>7.42 m</b></div></div></div>
+    <div class="part"><div class="pl">(b) A cube-shaped storage crate has a volume of <span class="tex">90\text{ cm}^3</span>. Find its edge length.</div><div class="work" style="--h:270px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">e=\sqrt[3]{V}=\sqrt[3]{90}</span><br><span class="tex">64&lt;90&lt;125</span>, so <span class="tex">4&lt;e&lt;5</span>; 90 is 26 past 64 but 35 short of 125: <b><span class="tex">e\approx4\text{ cm}</span></b><br>Calculator: <span class="tex">\sqrt[3]{90}=4.48140\ldots\approx</span> <b>4.48 cm</b><br><span class="small">Check: <span class="tex">4.48^3=89.9\ldots</span> ✓</span></div></div></div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>On the calculator.</b> (a) <span class="keys"><kbd>2nd</kbd><kbd>x²</kbd><kbd>5</kbd><kbd>5</kbd><kbd>ENTER</kbd></span> &nbsp; (b) <span class="keys"><kbd>3</kbd><kbd>2nd</kbd><kbd>^</kbd><kbd>9</kbd><kbd>0</kbd><kbd>ENTER</kbd></span>
+      <div class="u1l5-ckpills"><button class="chip" data-keys="CLEAR √ 55 =">(a) √55</button><button class="chip" data-keys="CLEAR 3 ˣ√ 90 =">(b) ∛90</button></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Perfect squares</b> 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225. The square root undoes squaring: <span class="tex">\sqrt{144}=12</span> because <span class="tex">12\times12=144</span>.</div>
+    <div><b>Perfect cubes</b> 1, 8, 27, 64, 125, 216, 343, 512, 729, 1 000. The cube root undoes cubing: <span class="tex">\sqrt[3]{125}=5</span>. 64 is <b>both</b>: <span class="tex">8^2</span> and <span class="tex">4^3</span>.</div>
+    <div><b>Trap it:</b> <span class="tex">36&lt;40&lt;49</span>, so <span class="tex">6&lt;\sqrt{40}&lt;7</span>. 40 is nearer 36, so <span class="tex">\sqrt{40}\approx6.3</span>. Then the calculator: <span class="tex">6.32455\ldots\approx6.32</span>.</div>
+    <div><b>Backwards formulas:</b> side of a square <span class="tex">s=\sqrt{A}</span>; edge of a cube <span class="tex">e=\sqrt[3]{V}</span>. <b>Estimate first</b>, then use the calculator.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u1l5">
+    <div><div class="kicker">Your turn</div><b>Assignment 5 — Perfect Squares, Perfect Cubes, and Estimating Roots</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l6/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 6 — Simplifying Square Roots: Entire and Mixed Radicals</b><div class="muted">50 photos make exactly two 5 × 5 walls. Could <span class="tex">\sqrt{50}</span> be written with a 5 in it?</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u1l5.js';
+  boot({ key: 'u1l5', homeHref: '../../', title: '1.5 Perfect Squares, Cubes, and Roots' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>
