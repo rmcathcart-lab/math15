@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unit Review: Equations of Lines · Math 15 7.10</title>
+<meta name="description" content="Math 15 Unit 7 Lesson 10: unit review of equations of lines. Graphing from a table and from slope and y-intercept, slope–intercept form, equations from slope and y-intercept, slope and a point, or two points, general form and intercepts, horizontal and vertical lines, slope in context, and mixed challenges. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u7l10.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u7l10">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 7 Equations of Linear Relations · Lesson 10</div>
+  <h1>Unit Review: Equations of Lines</h1>
+  <p class="lede">One reminder and one worked example for every topic in Unit 7, then mixed challenges for the test. One idea ties it all together: every line comes down to its <b class="u7l10-c-m">slope <span class="tex">m</span></b> and its <b class="u7l10-c-b"><span class="tex">y</span>-intercept <span class="tex">b</span></b>. Whatever you are given, <b>find <span class="tex">m</span>, then find <span class="tex">b</span></b>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>graph a line from a <b>table of values</b>, or from its <b>slope and <span class="tex">y</span>-intercept</b></li>
+      <li>read <span class="tex">m</span> and <span class="tex">b</span> from <span class="tex">y=mx+b</span>, rearranging first when the equation is not solved for <span class="tex">y</span></li>
+      <li>write the equation of a line from <b><span class="tex">m</span> and <span class="tex">b</span></b>, from <b><span class="tex">m</span> and a point</b>, or from <b>two points</b></li>
+      <li>convert between slope–intercept form and <b>general form</b>, and find the <b>intercepts</b></li>
+      <li>recognize <b>horizontal</b> (<span class="tex">y=k</span>) and <b>vertical</b> (<span class="tex">x=k</span>) lines</li>
+      <li>explain slope and <span class="tex">y</span>-intercept in a real situation, and use parallel and perpendicular slopes</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF7</b> Determine the equation of a linear relation, given: a graph; a point and the slope; two points; a point and the equation of a parallel or perpendicular line, to solve problems.</div>
+  <div class="outcome"><b>RF6</b> Relate linear relations expressed in: slope–intercept form (<span class="tex">y=mx+b</span>); general form (<span class="tex">Ax+By+C=0</span>); slope–point form (<span class="tex">y-y_1=m(x-x_1)</span>) to their graphs.</div>
+  <div class="outcome"><b>RF5</b> Determine the characteristics of the graphs of linear relations, including the: intercepts; slope; domain; range.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Line Dominoes" id="wu" style="--wf-side: 380px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Line Dominoes</h2>
+  <p class="wf-rule">Touching halves must show the <b>same line</b>, in a different disguise. Tiles may be turned around. Each grid square is 1 unit.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u7l10-tiles" id="u7l10-tiles">
+      <div class="u7l10-tile" data-t="P"><span class="u7l10-tl">P</span>
+        <div class="u7l10-half">through<br><span class="tex">(5,\ 3)</span><br>and <span class="tex">(1,\ -1)</span></div>
+        <div class="u7l10-half"><div class="u7l10-mini" data-mini="P"></div></div></div>
+      <div class="u7l10-tile" data-t="Q"><span class="u7l10-tl">Q</span>
+        <div class="u7l10-half"><span class="tex">y=2x+1</span></div>
+        <div class="u7l10-half"><span class="tex">x+2=0</span></div></div>
+      <div class="u7l10-tile" data-t="R"><span class="u7l10-tl">R</span>
+        <div class="u7l10-half"><div class="u7l10-mini" data-mini="R"></div></div>
+        <div class="u7l10-half"><span class="tex">x+y-3=0</span></div></div>
+      <div class="u7l10-tile" data-t="S"><span class="u7l10-tl">S</span>
+        <div class="u7l10-half">slope <span class="tex">2</span><br>through<br><span class="tex">(3,\ 3)</span></div>
+        <div class="u7l10-half"><table class="u7l10-tt"><tr><th><span class="tex">x</span></th><th><span class="tex">y</span></th></tr><tr><td><span class="tex">-2</span></td><td><span class="tex">0</span></td></tr><tr><td><span class="tex">-2</span></td><td><span class="tex">1</span></td></tr><tr><td><span class="tex">-2</span></td><td><span class="tex">2</span></td></tr></table></div></div>
+      <div class="u7l10-tile" data-t="T"><span class="u7l10-tl">T</span>
+        <div class="u7l10-half"><div class="u7l10-mini" data-mini="T"></div></div>
+        <div class="u7l10-half"><table class="u7l10-tt"><tr><th><span class="tex">x</span></th><th><span class="tex">y</span></th></tr><tr><td><span class="tex">0</span></td><td><span class="tex">1</span></td></tr><tr><td><span class="tex">1</span></td><td><span class="tex">3</span></td></tr><tr><td><span class="tex">2</span></td><td><span class="tex">5</span></td></tr></table></div></div>
+      <div class="u7l10-tile u7l10-gap" id="u7l10-gap"><span class="u7l10-tl">?</span>
+        <div class="u7l10-half"><b>?</b></div>
+        <div class="u7l10-half"><b>?</b></div>
+        <div class="u7l10-gaptag">missing tile</div></div>
+    </div>
+    <div class="u7l10-wbtns">
+      <button type="button" class="pill" id="u7l10-wfill">Fill the gap</button>
+      <button type="button" class="pill" id="u7l10-wreset">Reset</button>
+      <span class="muted u7l10-wnote" id="u7l10-wnote">Guess first (the big one), then fill the gap.</span>
+    </div>
+    <p class="u7l10-social">Your turn: invent a domino with the same line in two disguises. Swap with a neighbour!</p>
+  </div><div class="wf-side">
+    <div class="u7l10-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Tile <b>Q</b> shows <span class="tex">y=2x+1</span>. Find its partner. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l10-wa"><div class="bk-ans">Tile <b>T</b>’s table: <span class="tex">x=0,\,1,\,2</span> in <span class="tex">y=2x+1</span> gives <span class="tex">1,\,3,\,5</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Tile <b>P</b>’s graph has slope 2 too. Is it a match for <span class="tex">y=2x+1</span>? Why? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l10-wa"><div class="bk-ans"><b>No.</b> Same slope, but it crosses the <span class="tex">y</span>-axis at <span class="tex">-3</span>, not <span class="tex">1</span>: it is <span class="tex">y=2x-3</span> (parallel). Its real partner is <b>S</b>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Which <em>two</em> halves have no partner? (The gap goes there!) <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l10-wa"><div class="bk-ans"><b>R</b>’s graph (<span class="tex">y=3</span>) and <b>P</b>’s two points (slope 1, <span class="tex">b=-2</span>: <span class="tex">y=x-2</span>).</div></div></div>
+    </div>
+    <div class="poll wf-poll u7l10-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Only <em>one</em> tile closes the loop. <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> <span class="tex">x-y-2=0</span> | <span class="tex">(0,\ 3)</span> and <span class="tex">(4,\ 3)</span></div>
+        <div class="opt"><b>B</b> <span class="tex">y=x+2</span> | slope <span class="tex">0</span>, <span class="tex">b=3</span></div>
+        <div class="opt"><b>C</b> <span class="tex">y=x-2</span> | slope <span class="tex">3</span> through <span class="tex">(0,\ 0)</span></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A.</b> <span class="tex">x-y-2=0</span> is <span class="tex">y=x-2</span> ✓, and <span class="tex">(0,\ 3)</span>, <span class="tex">(4,\ 3)</span> is the flat line <span class="tex">y=3</span> ✓. B has the wrong <span class="tex">b</span>; C’s “slope 3 through the origin” is <span class="tex">y=3x</span>, not <span class="tex">y=3</span>. The ugliest-looking tile is the right one!</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="card" data-ink="wuex" data-section="Warm-up check: the loop">
+  <h3 class="sub">Warm-up check: turn every half into <span class="tex">y=mx+b</span></h3>
+  <p>To check a match, turn <b>both</b> halves into <span class="tex">y=mx+b</span> (or <span class="tex">x=k</span>), then compare <span class="tex">m</span> <b>and</b> <span class="tex">b</span>. The same slope is not enough!</p>
+  <div class="explainer" data-explainer="dominoes"></div>
+</section>
+
+<!-- ================= at a glance ================= -->
+<section class="card" data-ink="ref" data-section="Unit 7 at a Glance">
+  <div class="sec-h"><span class="badge">★</span><h2>Forms and Formulas: Unit 7 at a Glance</h2></div>
+  <table class="u7l10-ref">
+    <tr><th>Slope–intercept form <small>7.2</small></th><td><span class="tex">y=mx+b</span> <span class="muted">(<span class="tex">m=</span> slope, <span class="tex">b=</span> <span class="tex">y</span>-intercept)</span></td></tr>
+    <tr><th>General form <small>7.7</small></th><td><span class="tex">Ax+By+C=0</span> <span class="muted">(<span class="tex">A</span>, <span class="tex">B</span>, <span class="tex">C</span> integers, <span class="tex">A</span> positive)</span></td></tr>
+    <tr><th>Horizontal line <small>7.8</small></th><td><span class="tex">y=k</span> <span class="muted">(slope <span class="tex">0</span>)</span></td></tr>
+    <tr><th>Vertical line <small>7.8</small></th><td><span class="tex">x=k</span> <span class="muted">(slope undefined)</span></td></tr>
+    <tr><th>Slope formula <small>7.6</small></th><td><span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}=\dfrac{\text{rise}}{\text{run}}</span></td></tr>
+    <tr><th>Slope + a point <small>7.5</small></th><td>substitute <span class="tex">m</span> and the point into <span class="tex">y=mx+b</span>, solve for <span class="tex">b</span></td></tr>
+    <tr><th>Intercepts of <span class="tex">Ax+By+C=0</span> <small>7.7</small></th><td>set <span class="tex">y=0</span> for the <span class="tex">x</span>-intercept; set <span class="tex">x=0</span> for the <span class="tex">y</span>-intercept</td></tr>
+    <tr><th>Parallel / perpendicular <small>6.9</small></th><td><span class="tex">m_2=m_1</span> &nbsp;/&nbsp; <span class="tex">m_2=-\dfrac{1}{m_1}</span> <span class="muted">(flip it and change the sign)</span></td></tr>
+  </table>
+</section>
+
+<!-- ================= 1. table of values ================= -->
+<section class="card" data-ink="s1" data-section="1. Graphing From a Table of Values">
+  <div class="sec-h"><span class="badge">1</span><h2>Graphing From a Table of Values</h2></div>
+  <div class="def">Substitute several <span class="tex">x</span>-values into the equation, solve for <span class="tex">y</span>, plot the ordered pairs, then draw <b>one straight line</b> through them across the whole grid.</div>
+  <div class="explainer" data-explainer="table"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Table, then graph</h3></div>
+  <p class="q">For <span class="tex">y=3x-2</span>: (a) complete the table of values; (b) plot the points and draw the line across the grid.</p>
+  <div class="u7l10-exg">
+    <div class="part"><div class="pl">(a) Complete the table.</div>
+      <table class="u7l10-vt"><tr><th><span class="tex">x</span></th><td><span class="tex">-2</span></td><td><span class="tex">-1</span></td><td><span class="tex">0</span></td><td><span class="tex">1</span></td><td><span class="tex">2</span></td></tr>
+        <tr><th><span class="tex">y</span></th><td><span data-reveal><span class="tex">-8</span></span></td><td><span data-reveal><span class="tex">-5</span></span></td><td><span data-reveal><span class="tex">-2</span></span></td><td><span data-reveal><span class="tex">1</span></span></td><td><span data-reveal><span class="tex">4</span></span></td></tr></table>
+      <div class="work" style="--h:230px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x=-2</span>: <span class="tex">y=3(-2)-2=-8</span>; <span class="tex">x=-1</span>: <span class="tex">-5</span>; <span class="tex">x=0</span>: <span class="tex">-2</span>; <span class="tex">x=1</span>: <span class="tex">1</span>; <span class="tex">x=2</span>: <span class="tex">4</span>.<br>The <span class="tex">y</span>-values go up by <span class="tex">3</span> each time.</div></div></div>
+    <div class="part"><div class="pl">(b) Plot the points and draw the line.</div>
+      <div class="u7l10-fig" id="u7l10-ex1fig"></div>
+      <div class="muted small u7l10-tapnote">Tap the grid to plot a point (drag to adjust, tap it again to remove it).</div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u7l10-ansg"><div id="u7l10-ex1ans"></div><div>Plot <span class="tex">(-2,\ -8)</span>, <span class="tex">(-1,\ -5)</span>, <span class="tex">(0,\ -2)</span>, <span class="tex">(1,\ 1)</span>, <span class="tex">(2,\ 4)</span> and rule one line through them, right across the grid.</div></div></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. slope-intercept basics ================= -->
+<section class="card" data-ink="s2" data-section="2. Slope–Intercept Form Basics">
+  <div class="sec-h"><span class="badge">2</span><h2>Slope–Intercept Form Basics</h2></div>
+  <div class="def">In <span class="tex">y=\textcolor{#1f5bd6}{m}x+\textcolor{#12805a}{b}</span>, <span class="tex">m</span> is the <b class="u7l10-c-m">slope</b> and <span class="tex">b</span> is the <b class="u7l10-c-b"><span class="tex">y</span>-intercept</b>. If the equation is not solved for <span class="tex">y</span>, <b>isolate <span class="tex">y</span> first</b>.</div>
+  <div class="explainer" data-explainer="rearrange"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>State <span class="tex">m</span> and <span class="tex">b</span></h3></div>
+  <p class="q">State <span class="tex">m</span> and <span class="tex">b</span>, rearranging first where needed.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) State the slope and <span class="tex">y</span>-intercept of <span class="tex">y=-5x+6</span>.</div><div class="work" style="--h:130px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Already in <span class="tex">y=mx+b</span> form.<br>slope <span class="tex">\boldsymbol{m=-5}</span><br><span class="tex">y</span>-intercept <span class="tex">\boldsymbol{b=6}</span>, that is <span class="tex">(0,\ 6)</span></div></div></div>
+    <div class="part"><div class="pl">(b) Rearrange <span class="tex">4x+y=9</span> into slope–intercept form, then state <span class="tex">m</span> and <span class="tex">b</span>.</div><div class="work" style="--h:130px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4x+y=9</span><br><span class="tex">y=-4x+9</span> (subtract <span class="tex">4x</span>)<br><span class="tex">\boldsymbol{m=-4}</span>, <span class="tex">\boldsymbol{b=9}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. graphing with m and b ================= -->
+<section class="card" data-ink="s3" data-section="3. Graphing Using Slope–Intercept Form">
+  <div class="sec-h"><span class="badge">3</span><h2>Graphing Using Slope–Intercept Form</h2></div>
+  <div class="def">Plot <span class="tex">(0,\ b)</span> first, then write <span class="tex">m=\dfrac{\text{rise}}{\text{run}}</span> and step <b>right by the run</b> and <b>up or down by the rise</b> to get a second point.</div>
+  <div class="explainer" data-explainer="stepper"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Graph <span class="tex">y=-3x+4</span></h3></div>
+  <p class="q">Graph the line <span class="tex">y=-3x+4</span>.</p>
+  <div class="u7l10-exg">
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) State the slope and <span class="tex">y</span>-intercept.</div><div class="work" style="--h:150px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">slope <span class="tex">\boldsymbol{m=-3}=\dfrac{-3}{1}</span> (down 3, right 1)<br><span class="tex">y</span>-intercept <span class="tex">\boldsymbol{b=4}</span>, that is <span class="tex">(0,\ 4)</span></div></div></div>
+      <div class="part"><div class="pl">(b) Plot the <span class="tex">y</span>-intercept, use the slope to plot a second point, then draw the line across the grid.</div><div class="work" style="--h:120px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">From <span class="tex">(0,\ 4)</span> go right 1 and down 3 to <span class="tex">(1,\ 1)</span>, then rule the line right across the grid.<div id="u7l10-ex3ans"></div></div></div></div>
+    </div>
+    <div class="u7l10-figcol"><div class="u7l10-fig" id="u7l10-ex3fig"></div>
+      <div class="muted small u7l10-tapnote">Tap the grid to plot a point.</div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. m and b ================= -->
+<section class="card" data-ink="s4" data-section="4. Equation From Slope and y-Intercept">
+  <div class="sec-h"><span class="badge">4</span><h2>Writing an Equation From Slope and <span class="tex">y</span>-Intercept</h2></div>
+  <div class="def">With <span class="tex">m</span> and <span class="tex">b</span> both known, substitute them straight into <span class="tex">y=mx+b</span>: <b>one step, no solving</b>.</div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Straight into <span class="tex">y=mx+b</span></h3></div>
+  <p class="q">Write the equation of each line.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) slope <span class="tex">6</span>, <span class="tex">y</span>-intercept <span class="tex">-3</span></div><div class="work" style="--h:110px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=6</span>, <span class="tex">b=-3</span> into <span class="tex">y=mx+b</span>:<br><span class="tex">\boldsymbol{y=6x-3}</span></div></div></div>
+    <div class="part"><div class="pl">(b) slope <span class="tex">-\dfrac{1}{4}</span>, <span class="tex">y</span>-intercept <span class="tex">8</span></div><div class="work" style="--h:110px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=-\tfrac{1}{4}</span>, <span class="tex">b=8</span>:<br><span class="tex">\boldsymbol{y=-\tfrac{1}{4}x+8}</span></div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Keep the signs.</b> <span class="tex">b=-3</span> makes <span class="tex">y=6x-3</span>, not <span class="tex">y=6x+3</span>.</div></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= 5. slope and a point ================= -->
+<section class="card" data-ink="s5" data-section="5. Equation From Slope and a Point">
+  <div class="sec-h"><span class="badge">5</span><h2>Writing an Equation From Slope and a Point</h2></div>
+  <div class="def">When the given point is <b>not</b> the <span class="tex">y</span>-intercept: put <span class="tex">m</span> into <span class="tex">y=mx+b</span>, <b>substitute the point</b>, <b>solve for <span class="tex">b</span></b>, then rewrite the equation.</div>
+  <div class="explainer" data-explainer="solveB"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Slope and a point</h3></div>
+  <p class="q">Determine the equation of each line.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) slope <span class="tex">4</span> through <span class="tex">(3,\ 7)</span></div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=4x+b</span><br><span class="tex">7=4(3)+b\ \Rightarrow\ 7=12+b</span><br><span class="tex">b=-5</span><br><span class="tex">\boldsymbol{y=4x-5}</span></div></div></div>
+    <div class="part"><div class="pl">(b) slope <span class="tex">-2</span> through <span class="tex">(-1,\ 6)</span></div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=-2x+b</span><br><span class="tex">6=-2(-1)+b\ \Rightarrow\ 6=2+b</span><br><span class="tex">b=4</span><br><span class="tex">\boldsymbol{y=-2x+4}</span></div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Brackets around the <span class="tex">x</span>-value.</b> <span class="tex">-2(-1)=+2</span>. Write the bracket every time, especially with negatives.</div></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= 6. two points ================= -->
+<section class="card" data-ink="s6" data-section="6. Equation From Two Points">
+  <div class="sec-h"><span class="badge">6</span><h2>Writing an Equation From Two Points</h2></div>
+  <div class="def">Two points, no slope. <b>Step 1:</b> find <span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}</span>. <b>Step 2:</b> substitute <span class="tex">m</span> and <b>either</b> point into <span class="tex">y=mx+b</span> and solve for <span class="tex">b</span>.</div>
+  <div class="explainer" data-explainer="twoPts"></div>
+</section>
+
+<section class="card example" data-ink="ex6" data-section="Example 6">
+  <div class="ex-head"><span class="ex-tag">Example 6</span><h3>Two points</h3></div>
+  <p class="q">Determine the equation, in the form <span class="tex">y=mx+b</span>, of the line through <span class="tex">(1,\ 4)</span> and <span class="tex">(4,\ 13)</span>.</p>
+  <div class="parts c1">
+    <div class="part"><div class="work" style="--h:230px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Step 1</b> <span class="tex">m=\dfrac{13-4}{4-1}=\dfrac{9}{3}=3</span><br><b>Step 2</b> <span class="tex">y=3x+b</span>; using <span class="tex">(1,\ 4)</span>: <span class="tex">4=3(1)+b\ \Rightarrow\ 4=3+b\ \Rightarrow\ b=1</span><br><span class="tex">\boldsymbol{y=3x+1}</span><br><span class="muted">Check with the other point: <span class="tex">3(4)+1=13</span> ✓</span></div></div></div>
+  </div>
+  <div class="space" id="ex6-space"></div>
+  <button class="more" data-more="ex6-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u7l10"></section>
+
+<!-- ================= 7. general form ================= -->
+<section class="card" data-ink="s7" data-section="7. General Form">
+  <div class="sec-h"><span class="badge">7</span><h2>General Form</h2></div>
+  <div class="def">General form is <span class="tex">Ax+By+C=0</span> with <b>integer</b> <span class="tex">A</span>, <span class="tex">B</span>, <span class="tex">C</span> and <b><span class="tex">A</span> positive</b>. Move terms across the equal sign (clearing fractions first) to convert. Find the intercepts by setting <span class="tex">y=0</span> or <span class="tex">x=0</span>.</div>
+  <div class="explainer" data-explainer="general"></div>
+</section>
+
+<section class="card example" data-ink="ex7" data-section="Example 7">
+  <div class="ex-head"><span class="ex-tag">Example 7</span><h3>Convert, and read the intercepts</h3></div>
+  <p class="q">Convert between forms and read intercepts directly.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Convert <span class="tex">y=5x-2</span> to general form.</div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=5x-2</span><br><span class="tex">0=5x-y-2</span><br><span class="tex">\boldsymbol{5x-y-2=0}</span><br><span class="muted"><span class="tex">A=5&gt;0</span>, all integers ✓</span></div></div></div>
+    <div class="part"><div class="pl">(b) Convert <span class="tex">3x-2y-8=0</span> to slope–intercept form.</div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">-2y=-3x+8</span><br>divide by <span class="tex">-2</span>:<br><span class="tex">\boldsymbol{y=\tfrac{3}{2}x-4}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Determine the <span class="tex">x</span>- and <span class="tex">y</span>-intercepts of <span class="tex">2x+3y-12=0</span> without converting.</div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=0</span>: <span class="tex">2x-12=0</span>, <span class="tex">x=6</span><br><span class="tex">x</span>-intercept <span class="tex">\boldsymbol{(6,\ 0)}</span><br><span class="tex">x=0</span>: <span class="tex">3y-12=0</span>, <span class="tex">y=4</span><br><span class="tex">y</span>-intercept <span class="tex">\boldsymbol{(0,\ 4)}</span></div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Divide every term.</b> In (b), dividing <span class="tex">-2y=-3x+8</span> by <span class="tex">-2</span> changes <b>both</b> signs on the right: <span class="tex">\tfrac{-3}{-2}=\tfrac32</span> and <span class="tex">\tfrac{8}{-2}=-4</span>.</div></div>
+  <div class="space" id="ex7-space"></div>
+  <button class="more" data-more="ex7-space">+ More space</button>
+</section>
+
+<!-- ================= 8. horizontal, vertical, any form ================= -->
+<section class="card" data-ink="s8" data-section="8. Horizontal, Vertical, and Any Form">
+  <div class="sec-h"><span class="badge">8</span><h2>Horizontal Lines, Vertical Lines, and Any Form</h2></div>
+  <div class="def-grid u7l10-mb">
+    <div class="def"><b>Horizontal:</b> <span class="tex">y=k</span>. Every point has the same <span class="tex">y</span>. Slope <span class="tex">0</span>.</div>
+    <div class="def"><b>Vertical:</b> <span class="tex">x=k</span>. Every point has the same <span class="tex">x</span>. Slope <b>undefined</b>.</div>
+  </div>
+  <div class="def amber">For <b>general form</b>, the <b>two-intercept method</b> is usually the fastest graph: find both intercepts, plot them, join them.</div>
+  <div class="explainer" data-explainer="hv"></div>
+</section>
+
+<section class="card example" data-ink="ex8" data-section="Example 8">
+  <div class="ex-head"><span class="ex-tag">Example 8</span><h3>Which kind of line?</h3></div>
+  <p class="q">Describe each graph, then find the two points you would plot in part (c).</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Is <span class="tex">y=3</span> horizontal or vertical? Give one point on it.</div><div class="work" style="--h:150px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Horizontal</b>: <span class="tex">y</span> is stuck at <span class="tex">3</span> for every <span class="tex">x</span> (slope <span class="tex">0</span>).<br>For example <span class="tex">\boldsymbol{(0,\ 3)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Is <span class="tex">x=-4</span> horizontal or vertical? Give one point on it.</div><div class="work" style="--h:150px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Vertical</b>: <span class="tex">x</span> is stuck at <span class="tex">-4</span> for every <span class="tex">y</span> (slope undefined).<br>For example <span class="tex">\boldsymbol{(-4,\ 0)}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Determine the <span class="tex">x</span>- and <span class="tex">y</span>-intercepts of <span class="tex">3x-y-3=0</span> for the two-intercept method.</div><div class="work" style="--h:150px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y=0</span>: <span class="tex">3x-3=0</span>, <span class="tex">x=1</span>: <span class="tex">\boldsymbol{(1,\ 0)}</span><br><span class="tex">x=0</span>: <span class="tex">-y-3=0</span>, <span class="tex">y=-3</span>: <span class="tex">\boldsymbol{(0,\ -3)}</span><br>Plot those two and join them.</div></div></div>
+  </div>
+  <div class="space" id="ex8-space"></div>
+  <button class="more" data-more="ex8-space">+ More space</button>
+</section>
+
+<!-- ================= 9. slope in context ================= -->
+<section class="card" data-ink="s9" data-section="9. Slope in Context">
+  <div class="sec-h"><span class="badge">9</span><h2>Slope in Context</h2></div>
+  <div class="def-grid u7l10-mb">
+    <div class="def u7l10-def-m">In a real-world linear model the <b class="u7l10-c-m">slope</b> is the constant <b>rate of change</b>, with units (“per”).</div>
+    <div class="def u7l10-def-b">The <b class="u7l10-c-b"><span class="tex">y</span>-intercept</b> is the <b>starting value</b>: a base fee, a starting amount.</div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex9" data-section="Example 9">
+  <div class="ex-head"><span class="ex-tag">Example 9</span><h3>A ride-share fare</h3></div>
+  <p class="q">A ride-share app charges a <b>$4 base fee</b> plus <b>$2.50 per kilometre</b>. Let <span class="tex">F</span> be the fare (dollars) for a trip of <span class="tex">k</span> kilometres.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Write an equation for <span class="tex">F</span> in terms of <span class="tex">k</span>.</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">fare = rate × km + base fee<br><span class="tex">\boldsymbol{F=2.50k+4}</span></div></div></div>
+    <div class="part"><div class="pl">(b) State what the slope and the <span class="tex">F</span>-intercept represent here.</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Slope <span class="tex">2.50</span>: the fare grows by <b>$2.50 for each extra kilometre</b>.<br><span class="tex">F</span>-intercept <span class="tex">4</span>: the <b>$4 base fee</b>, charged before any distance is driven.</div></div></div>
+    <div class="part"><div class="pl">(c) Determine the fare for a 12 km trip.</div><div class="work" style="--h:170px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">F=2.50(12)+4</span><br><span class="tex">=30+4</span><br>A 12 km trip costs <b>$34</b>.</div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>No calculator:</b> <span class="tex">2.50(12)</span> is 12 lots of $2.50: <span class="tex">12\times2=24</span> plus <span class="tex">12\times0.50=6</span>, so <span class="tex">30</span>.</div></div>
+  <div class="space" id="ex9-space"></div>
+  <button class="more" data-more="ex9-space">+ More space</button>
+</section>
+
+<!-- ================= which tool ================= -->
+<section class="card" data-ink="which" data-section="★ Which method?">
+  <div class="sec-h"><span class="badge">★</span><h2>Which Method? The Whole Unit on One Page</h2></div>
+  <p>Every “write the equation” question starts the same way: <b>what am I given?</b> Then it is always <b>find <span class="tex">m</span>, then find <span class="tex">b</span></b>.</p>
+  <div class="explainer" data-explainer="whichTool"></div>
+</section>
+
+<!-- ================= 10. mixed review ================= -->
+<section class="card" data-ink="s10" data-section="10. Mixed Review">
+  <div class="sec-h"><span class="badge">10</span><h2>Mixed Review: Putting It All Together</h2></div>
+  <p>Each challenge below combines several skills from the unit, exactly like a test question.</p>
+</section>
+
+<section class="card example" data-ink="ch1" data-section="Challenge 1">
+  <div class="ex-head"><span class="ex-tag">Challenge 1</span><h3>Filling the pool</h3></div>
+  <p class="q">A backyard pool already contains <b>300 L</b> of water, and a hose adds water at <b>60 L per minute</b>.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Write an equation for the volume <span class="tex">V</span> (litres) after <span class="tex">t</span> minutes.</div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">rate <span class="tex">m=60</span>, start <span class="tex">b=300</span><br><span class="tex">\boldsymbol{V=60t+300}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Determine the volume after 8 minutes.</div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">V=60(8)+300</span><br><span class="tex">=480+300</span><br>After 8 min there is <b>780 L</b>.</div></div></div>
+    <div class="part"><div class="pl">(c) How many minutes until the pool reaches <span class="tex">1\,500</span> L?</div><div class="work" style="--h:190px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">1\,500=60t+300</span><br><span class="tex">1\,200=60t</span><br><span class="tex">t=\boldsymbol{20}</span> <b>minutes</b></div></div></div>
+  </div>
+  <div class="space" id="ch1-space"></div>
+  <button class="more" data-more="ch1-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ch2" data-section="Challenge 2">
+  <div class="ex-head"><span class="ex-tag">Challenge 2</span><h3>The weather balloon</h3></div>
+  <p class="q">A weather balloon was at <b>450 m</b> after <b>3 minutes</b> and at <b><span class="tex">1\,050</span> m</b> after <b>7 minutes</b>, rising at a constant rate.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Determine an equation for the altitude <span class="tex">A</span> (metres) in terms of the minutes <span class="tex">t</span> since launch.</div><div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Points <span class="tex">(3,\ 450)</span> and <span class="tex">(7,\ 1\,050)</span>.<br><span class="tex">m=\dfrac{1\,050-450}{7-3}=\dfrac{600}{4}=150</span><br><span class="tex">450=150(3)+b\ \Rightarrow\ b=0</span><br><span class="tex">\boldsymbol{A=150t}</span></div></div></div>
+    <div class="part"><div class="pl">(b) State what the slope represents in this situation.</div><div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The balloon climbs <b>150 m every minute</b>: its constant rate of ascent.</div></div></div>
+    <div class="part"><div class="pl">(c) Predict the altitude after 15 minutes.</div><div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">A=150(15)</span><br>After 15 min it is at <b><span class="tex">2\,250</span> m</b>.</div></div></div>
+  </div>
+  <div class="space" id="ch2-space"></div>
+  <button class="more" data-more="ch2-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ch3" data-section="Challenge 3">
+  <div class="ex-head"><span class="ex-tag">Challenge 3</span><h3>Parallel and perpendicular (back to Unit 6)</h3></div>
+  <p class="q">Segment <span class="tex">AB</span> joins <span class="tex">A(-2,\ -3)</span> and <span class="tex">B(1,\ 3)</span>. This question connects back to Unit 6.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Determine the slope of <span class="tex">AB</span>.</div><div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=\dfrac{3-(-3)}{1-(-2)}=\dfrac{6}{3}</span><br><span class="tex">\boldsymbol{m=2}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Line <span class="tex">L_1</span> is parallel to <span class="tex">AB</span> through <span class="tex">P(3,\ -1)</span>. Determine its equation in slope–intercept form.</div><div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Parallel, so <span class="tex">m=2</span>.<br><span class="tex">-1=2(3)+b\ \Rightarrow\ -1=6+b</span><br><span class="tex">b=-7</span><br><span class="tex">\boldsymbol{y=2x-7}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Line <span class="tex">L_2</span> is perpendicular to <span class="tex">AB</span> through <span class="tex">Q(-4,\ 5)</span>. Determine its equation in general form.</div><div class="work" style="--h:210px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Perpendicular, so <span class="tex">m=-\tfrac{1}{2}</span>.<br><span class="tex">5=-\tfrac{1}{2}(-4)+b\ \Rightarrow\ 5=2+b</span>, <span class="tex">b=3</span><br><span class="tex">y=-\tfrac{1}{2}x+3\ \Rightarrow\ 2y=-x+6</span><br><span class="tex">\boldsymbol{x+2y-6=0}</span></div></div></div>
+  </div>
+  <div class="explainer" data-explainer="parperp"></div>
+  <div class="space" id="ch3-space"></div>
+  <button class="more" data-more="ch3-space">+ More space</button>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Every line comes down to <span class="tex">m</span> and <span class="tex">b</span>.</b> In <span class="tex">y=mx+b</span>: plot <span class="tex">(0,\ b)</span>, then step the rise and run. A table goes up by the same amount each step.</div>
+    <div><b>Find <span class="tex">m</span>, then find <span class="tex">b</span>.</b> Given <span class="tex">m</span> and <span class="tex">b</span>: write it. Given <span class="tex">m</span> and a point: substitute, solve for <span class="tex">b</span>. Given two points: slope formula first.</div>
+    <div><b>General form</b> <span class="tex">Ax+By+C=0</span>: integers, <span class="tex">A</span> positive. Isolate <span class="tex">y</span> to read <span class="tex">m</span> and <span class="tex">b</span>; set <span class="tex">x=0</span> or <span class="tex">y=0</span> for the intercepts. <span class="tex">y=k</span> is flat, <span class="tex">x=k</span> is vertical.</div>
+    <div><b>In context</b>, the slope is a rate with units and <span class="tex">b</span> is the start. Parallel lines: same slope. Perpendicular: flip it and change the sign.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u7l10">
+    <div><div class="kicker">Your turn</div><b>Assignment 10 — Unit Review: Equations of Lines</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <div class="u7l10-review">
+    <div class="u7l10-review-h"><span class="kicker">Up next</span><b>Unit 7 test.</b> <span class="muted">Shaky on an idea today? Go back to its lesson.</span></div>
+    <div class="u7l10-review-grid">
+      <a href="../l1/"><span class="rn">7.1</span>Graphing from a table of values <small>Example 1</small></a>
+      <a href="../l2/"><span class="rn">7.2</span>Slope–intercept form <small>Example 2</small></a>
+      <a href="../l3/"><span class="rn">7.3</span>Graphing with <i>m</i> and <i>b</i> <small>Example 3</small></a>
+      <a href="../l4/"><span class="rn">7.4</span>Equation from slope and <i>y</i>-intercept <small>Example 4</small></a>
+      <a href="../l5/"><span class="rn">7.5</span>Equation from slope and a point <small>Example 5, Challenge 3(b)</small></a>
+      <a href="../l6/"><span class="rn">7.6</span>Equation from two points <small>Example 6, Challenge 2(a)</small></a>
+      <a href="../l7/"><span class="rn">7.7</span>General form <small>Example 7, Challenge 3(c)</small></a>
+      <a href="../l8/"><span class="rn">7.8</span>Horizontal, vertical, any form <small>Example 8</small></a>
+      <a href="../l9/"><span class="rn">7.9</span>Slope in context <small>Example 9, Challenges 1 and 2</small></a>
+      <div class="test"><span class="rn">Test</span>Unit 7 test <small>no calculator · every idea from today’s review</small></div>
+    </div>
+  </div>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u7l10.js';
+  boot({ key: 'u7l10', homeHref: '../../', title: '7.10 Unit 7 Review' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

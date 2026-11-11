@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u7l1.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u7l1">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Spot the Fake">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Spot the Fake</h2>
+  <p class="wf-rule">A rule makes the points <span class="tex">(1,\ 3)</span>, <span class="tex">(2,\ 5)</span>, <span class="tex">(3,\ 7)</span> and keeps going forever. One of these far-away points is a <b>fake</b>. Which one?</p></div>
+  <div class="vw-tiles" style="--n:3"><div><b>A</b><span class="tex">(10,\ 21)</span></div><div><b>B</b><span class="tex">(50,\ 101)</span></div><div><b>C</b><span class="tex">(100,\ 200)</span></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>What is the rule doing to the first number?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>C.</b> The rule doubles the first number and adds 1, so the point should be <span class="tex">(100,\ 201)</span>.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -43,46 +53,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Which Rule Made This?" id="wu" style="--wf-side: 330px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Which Rule Made This?</h2>
-  <p class="wf-rule">Each pattern card was made by one rule… but one card is an <b>imposter</b>.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u7l1-wtop">
-      <div class="u7l1-cards" id="u7l1-cards"></div>
-      <div class="u7l1-rules">
-        <div class="u7l1-rules-h">The rules:</div>
-        <div class="u7l1-tag"><span class="tex">y=x^{2}+2</span></div>
-        <div class="u7l1-tag"><span class="tex">y=-2x+8</span></div>
-        <div class="u7l1-tag"><span class="tex">y=2x+3</span></div>
-        <div class="u7l1-tag"><span class="tex">y=3x+2</span></div>
-      </div>
-    </div>
-    <div class="u7l1-wbtns">
-      <button type="button" class="pill small" id="u7l1-wsteps">Show the steps</button>
-      <button type="button" class="pill small" id="u7l1-wplot">Plot A and B</button>
-    </div>
-    <div class="u7l1-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Fill in the <b class="u7l1-red">?</b> on Card C. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l1-wa"><div class="bk-ans"><b>0.</b> Card C drops by 2 each step: <span class="tex">8,\ 6,\ 4,\ 2,\ \mathbf{0}</span>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Match each card to its rule. (One rule is a spare.) <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l1-wa"><div class="bk-ans">A <span class="tex">\to y=3x+2</span>, B <span class="tex">\to y=x^2+2</span>, C <span class="tex">\to y=-2x+8</span>. Spare: <span class="tex">y=2x+3</span>. <span class="muted">Careful: A and B both have <span class="tex">(0,\ 2)</span> and <span class="tex">(3,\ 11)</span>, so check more than one row.</span></div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>One card’s points do <b>not</b> make a straight line. Which card? How can you tell? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l1-wa"><div class="bk-ans"><b>Card B.</b> A goes up <b>+3</b> every step and C goes down <b>−2</b> every step. B goes <b>+1, +3, +5, +7</b>: the step keeps growing, so its points bend. Its rule has <span class="tex">x^2</span>.</div></div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Card A’s line goes on <em>forever</em>. Three far-away points were added to it… but <b>one is a fake</b>. Which one? <b>Guess first</b>, then prove it with no graph!</div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> <span class="tex">(10,\ 32)</span></div>
-        <div class="opt"><b>B</b> <span class="tex">(20,\ 62)</span></div>
-        <div class="opt right"><b>C</b> <span class="tex">(30,\ 90)</span></div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>C is the fake.</b> Put each <span class="tex">x</span> into Card A’s rule <span class="tex">y=3x+2</span>:<br><span class="tex">3(10)+2=32</span> ✓ <span class="tex">3(20)+2=62</span> ✓<br><span class="tex">3(30)+2=92\neq90</span> ✗<br><span class="muted">The neatest-looking point is the fake. Substituting settles it in seconds, far off any grid you could draw.</span></div>
-    </div>
-  </div></div>
-  <p class="u7l1-social">Your turn: make up a point on Card C’s line with <span class="tex">x=10</span>, plus a fake. Can a neighbour spot it?</p>
-</section>
+
 
 <!-- ================= 1. Linear and non-linear ================= -->
 <section class="card" data-ink="s1" data-section="1. Linear and Non-Linear Equations">
@@ -126,7 +97,7 @@
   <button class="more" data-more="ex1-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s1b" data-section="1. Same step, straight line">
+<section data-extra class="card" data-ink="s1b" data-section="1. Same step, straight line">
   <h3 class="sub">The warm-up again: same step every time, straight line</h3>
   <p>A table tells you too. When <span class="tex">x</span> goes up by 1 each time, a <b>linear</b> equation’s <span class="tex">y</span>-values change by the <b>same step</b> every time, so the points line up. A non-linear one’s steps keep changing, so its points bend.</p>
   <div class="explainer" data-explainer="steps"></div>
@@ -223,7 +194,16 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s3b" data-section="3. One point off the line?">
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–8">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 1 · Questions 1–8</h2>
+  <p class="pr-t">Linear or not, tables of values, then graphing.</p>
+  <div class="pr-chips n1"><span><b>1–8</b>Linear or non-linear, tables and graphs</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 6.</span><a class="pill" href="../../../#/lesson/u7l1">Open the Practice site</a></div>
+</section>
+
+<section data-extra class="card" data-ink="s3b" data-section="3. One point off the line?">
   <h3 class="sub">One point off the line? Check it again</h3>
   <p>Points from a linear equation <b>always</b> line up. If one of yours doesn’t, it isn’t the line’s fault: re-check that point’s <b>arithmetic</b>, then how you <b>plotted</b> it.</p>
   <div class="explainer" data-explainer="fixIt"></div>
@@ -236,7 +216,7 @@
 <section class="card" data-ink="s4" data-section="4. Is a Point on the Line?">
   <div class="sec-h"><span class="badge">4</span><h2>Checking Whether a Point Lies on a Line</h2></div>
   <div class="def">No graph is needed. <b>Substitute</b> the point’s <b class="u7l1-cx">x-coordinate</b> for <span class="tex">x</span> and its <b class="u7l1-cy">y-coordinate</b> for <span class="tex">y</span>. If the statement is <b>true</b>, the point lies on the line. If it is <b>false</b>, the point does not.</div>
-  <div class="explainer" data-explainer="onLine"></div>
+  <div data-extra><div class="explainer" data-explainer="onLine"></div></div>
 </section>
 
 <section class="card" data-ink="try" data-section="4. Try it: on the line or not?">
@@ -269,6 +249,47 @@
   <div class="explainer" data-explainer="zoomOut"></div>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Which Rule Made This?" id="wu" style="--wf-side: 330px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Which Rule Made This?</h2>
+  <p class="wf-rule">Each pattern card was made by one rule… but one card is an <b>imposter</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u7l1-wtop">
+      <div class="u7l1-cards" id="u7l1-cards"></div>
+      <div class="u7l1-rules">
+        <div class="u7l1-rules-h">The rules:</div>
+        <div class="u7l1-tag"><span class="tex">y=x^{2}+2</span></div>
+        <div class="u7l1-tag"><span class="tex">y=-2x+8</span></div>
+        <div class="u7l1-tag"><span class="tex">y=2x+3</span></div>
+        <div class="u7l1-tag"><span class="tex">y=3x+2</span></div>
+      </div>
+    </div>
+    <div class="u7l1-wbtns">
+      <button type="button" class="pill small" id="u7l1-wsteps">Show the steps</button>
+      <button type="button" class="pill small" id="u7l1-wplot">Plot A and B</button>
+    </div>
+    <div class="u7l1-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Fill in the <b class="u7l1-red">?</b> on Card C. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l1-wa"><div class="bk-ans"><b>0.</b> Card C drops by 2 each step: <span class="tex">8,\ 6,\ 4,\ 2,\ \mathbf{0}</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Match each card to its rule. (One rule is a spare.) <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l1-wa"><div class="bk-ans">A <span class="tex">\to y=3x+2</span>, B <span class="tex">\to y=x^2+2</span>, C <span class="tex">\to y=-2x+8</span>. Spare: <span class="tex">y=2x+3</span>. <span class="muted">Careful: A and B both have <span class="tex">(0,\ 2)</span> and <span class="tex">(3,\ 11)</span>, so check more than one row.</span></div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>One card’s points do <b>not</b> make a straight line. Which card? How can you tell? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l1-wa"><div class="bk-ans"><b>Card B.</b> A goes up <b>+3</b> every step and C goes down <b>−2</b> every step. B goes <b>+1, +3, +5, +7</b>: the step keeps growing, so its points bend. Its rule has <span class="tex">x^2</span>.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Card A’s line goes on <em>forever</em>. Three far-away points were added to it… but <b>one is a fake</b>. Which one? <b>Guess first</b>, then prove it with no graph!</div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> <span class="tex">(10,\ 32)</span></div>
+        <div class="opt"><b>B</b> <span class="tex">(20,\ 62)</span></div>
+        <div class="opt right"><b>C</b> <span class="tex">(30,\ 90)</span></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C is the fake.</b> Put each <span class="tex">x</span> into Card A’s rule <span class="tex">y=3x+2</span>:<br><span class="tex">3(10)+2=32</span> ✓ <span class="tex">3(20)+2=62</span> ✓<br><span class="tex">3(30)+2=92\neq90</span> ✗<br><span class="muted">The neatest-looking point is the fake. Substituting settles it in seconds, far off any grid you could draw.</span></div>
+    </div>
+  </div></div>
+  <p class="u7l1-social">Your turn: make up a point on Card C’s line with <span class="tex">x=10</span>, plus a fake. Can a neighbour spot it?</p>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -279,7 +300,7 @@
     <div><b>On the line?</b> Substitute both coordinates. <span class="tex">5\overset{?}{=}3+2</span> is true, so <span class="tex">(3,\ 5)</span> is on <span class="tex">y=x+2</span>. False means the point is not on the line.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u7l1">
-    <div><div class="kicker">Your turn</div><b>Assignment 1 — Review: Graphing Linear Equations from a Table of Values</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 1 · Questions 9–15</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l2/">
     <div><div class="kicker">Next lesson</div><b>Lesson 2 — Slope–Intercept Form: <span class="tex">y=mx+b</span></b><div class="muted">The number in front of <span class="tex">x</span> is the slope, and the number on its own is where the line crosses the <span class="tex">y</span>-axis.</div></div><span class="arrow">→</span>
@@ -292,7 +313,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u7l1.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u7l1', homeHref: '../../', title: '7.1 Graphing From a Table' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

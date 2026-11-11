@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u7l3.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u7l3">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Frog Hops">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Frog Hops</h2>
+  <p class="wf-rule">Do the two frogs ever land on the same spot?</p></div>
+  <div class="vw-tiles" style="--n:2;--fs:30px"><div><b>Green frog</b>starts at <span class="tex">(0,\ 1)</span><small>every hop: up 2, right 3</small></div><div><b>Blue frog</b>starts at <span class="tex">(0,\ 8)</span><small>every hop: down 1, right 2</small></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Where does each frog land after 1 hop? 2 hops?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>Yes, at <span class="tex">(6,\ 5)</span>.</b> Green lands there on its 2nd hop: (3, 3), then (6, 5). Blue lands there on its 3rd: (2, 7), (4, 6), (6, 5).</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,41 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Frog Hops" id="wu" style="--wf-side: 360px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Frog Hops</h2>
-  <p class="wf-rule">Each frog starts on the <span class="tex">y</span>-axis and <b>always</b> makes the <b>same hop</b>. <span class="u7l3-green"><b>Green frog</b></span> hop: <b>up 2, right 3</b>.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u7l3-pond" id="u7l3-pond"></div>
-    <div class="u7l3-wbtns">
-      <button type="button" class="pill" id="u7l3-hopG">Green hops</button>
-      <button type="button" class="pill" id="u7l3-hopB">Blue hops</button>
-      <button type="button" class="pill" id="u7l3-ruler">Ruler</button>
-      <button type="button" class="pill" id="u7l3-wreset">Start over</button>
-    </div>
-  </div><div class="wf-side">
-    <div class="u7l3-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Green starts at what height on the <span class="tex">y</span>-axis? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l3-wa"><div class="bk-ans">Height <b>1</b>: Green sits on <span class="tex">(0,1)</span>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which pad does Green land on after <b>1 hop</b>? After <b>3 hops</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l3-wa"><div class="bk-ans">1 hop: <b>pad B</b> <span class="tex">(3,3)</span>. Then F <span class="tex">(6,5)</span>, then <b>pad H</b> <span class="tex">(9,7)</span> after 3 hops.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Green says, “I’ll land on pad C.” True or false? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l3-wa"><div class="bk-ans"><b>False.</b> C <span class="tex">(4,4)</span> looks close, but from B <span class="tex">(3,3)</span> the next hop goes to <span class="tex">(6,5)</span>: it jumps right over C. Close is not <em>on</em>.</div></div></div>
-    </div>
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> <span class="u7l3-blue"><b>Blue frog</b></span> starts at <b>8</b> and hops <b>down 1, right 2</b>. Is there a pad <b>both</b> frogs land on? <b>Guess first.</b></div></div>
-      <div class="poll-opts c2">
-        <div class="opt"><b>A</b> Pad E</div>
-        <div class="opt right"><b>B</b> Pad F</div>
-        <div class="opt"><b>C</b> Pad H</div>
-        <div class="opt"><b>D</b> Never!</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>B, pad F <span class="tex">(6,5)</span>.</b> Blue: <span class="tex">(0,8)\to</span> A <span class="tex">(2,7)\to</span> D <span class="tex">(4,6)\to</span> <b>F</b> <span class="tex">(6,5)\to</span> G <span class="tex">(8,4)</span>. Green reaches F on its <b>2nd</b> hop, Blue on its <b>3rd</b>: same pad, different hop counts.<br>
-        <span class="muted"><b>A</b>: pad E <span class="tex">(5,5)</span> sits in the gap where the eye guesses the paths cross, but neither frog lands there. Blue’s 5th hop is <span class="tex">(10,3)</span>: no pad, <em>splash!</em></span></div>
-    </div>
-  </div></div>
-  <p class="u7l3-social">Challenge your neighbour: invent a frog (start + hop) that lands on <b>pad E</b>.</p>
-</section>
+
 
 <!-- ================= 1. Reading m and b ================= -->
 <section class="card" data-ink="s1" data-section="1. Reading m and b">
@@ -95,14 +71,14 @@
   <div class="explainer" data-explainer="frogLine"></div>
   <h3 class="sub">Spot <span class="tex">m</span> and <span class="tex">b</span></h3>
   <p><span class="tex">m</span> is the number <b>in front of <span class="tex">x</span></b>. <span class="tex">b</span> is the number <b>on its own</b>. Each one keeps its <b>sign</b>.</p>
-  <div class="explainer" data-explainer="readMB"></div>
+  <div data-extra><div class="explainer" data-explainer="readMB"></div></div>
 </section>
 
 <!-- ================= 2. Step 1 ================= -->
 <section class="card" data-ink="s2" data-section="2. Step 1: Plot the y-Intercept">
   <div class="sec-h"><span class="badge">2</span><h2>Step 1 — Plot the <span class="tex">y</span>-Intercept</h2></div>
   <div class="def">Every graph starts the same way: plot <span class="tex">\textcolor{#12805a}{(0,\,b)}</span>. It sits on the <span class="tex">y</span>-axis (since <span class="tex">x=0</span>), it is guaranteed to be on the line, and it needs <b>no calculation</b>: just read <span class="tex">b</span> off the equation.</div>
-  <div class="explainer" data-explainer="start"></div>
+  <div data-extra><div class="explainer" data-explainer="start"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -124,7 +100,7 @@
   <div class="sec-h"><span class="badge">3</span><h2>Step 2 — Use the Slope to Find a Second Point</h2></div>
   <div class="def">One point will not determine a line; you need two. Write <span class="tex">m</span> as <span class="tex">\dfrac{\textcolor{#7b4fc4}{\text{rise}}}{\textcolor{#c27a0e}{\text{run}}}</span>, then from the <span class="tex">y</span>-intercept move <b class="u7l3-c-run">right</b> by the run and <b class="u7l3-c-rise">up or down</b> by the rise (up if the rise is positive, down if it is negative). Where you land is a second point.</div>
   <div class="tip u7l3-info"><div class="tip-ic">i</div><div><b>A whole number is itself over 1.</b> <span class="tex">3=\dfrac{3}{1}</span>: rise <span class="tex">3</span>, run <span class="tex">1</span>. So <b>right 1, up 3</b>.</div></div>
-  <div class="explainer" data-explainer="overOne"></div>
+  <div data-extra><div class="explainer" data-explainer="overOne"></div></div>
 </section>
 
 <section class="card example" data-ink="ex2" data-section="Example 2">
@@ -181,6 +157,15 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–6">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 3 · Questions 1–6</h2>
+  <p class="pr-t">Read the slope and the y-intercept, then graph.</p>
+  <div class="pr-chips n1"><span><b>1–6</b>Reading m and b, then graphing</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 5.</span><a class="pill" href="../../../#/lesson/u7l3">Open the Practice site</a></div>
+</section>
+
 <section class="card" data-ink="s4b" data-section="4. Three ways it goes wrong">
   <h3 class="sub">Three ways it goes wrong (and how to catch them)</h3>
   <p>After you draw a line, <b>check one more point</b>: read a point off your line and put its <span class="tex">x</span> into the equation. If the <span class="tex">y</span> doesn’t match, something slipped.</p>
@@ -201,7 +186,7 @@
   <h3 class="sub">Negative slopes go downhill</h3>
   <div class="explainer" data-explainer="negStep"></div>
   <h3 class="sub">Fraction slopes: the bottom number is the run</h3>
-  <div class="explainer" data-explainer="fracStep"></div>
+  <div data-extra><div class="explainer" data-explainer="fracStep"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -221,6 +206,42 @@
   <div class="u7l3-build" id="u7l3-build"></div>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Frog Hops" id="wu" style="--wf-side: 360px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Frog Hops</h2>
+  <p class="wf-rule">Each frog starts on the <span class="tex">y</span>-axis and <b>always</b> makes the <b>same hop</b>. <span class="u7l3-green"><b>Green frog</b></span> hop: <b>up 2, right 3</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u7l3-pond" id="u7l3-pond"></div>
+    <div class="u7l3-wbtns">
+      <button type="button" class="pill" id="u7l3-hopG">Green hops</button>
+      <button type="button" class="pill" id="u7l3-hopB">Blue hops</button>
+      <button type="button" class="pill" id="u7l3-ruler">Ruler</button>
+      <button type="button" class="pill" id="u7l3-wreset">Start over</button>
+    </div>
+  </div><div class="wf-side">
+    <div class="u7l3-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Green starts at what height on the <span class="tex">y</span>-axis? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l3-wa"><div class="bk-ans">Height <b>1</b>: Green sits on <span class="tex">(0,1)</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which pad does Green land on after <b>1 hop</b>? After <b>3 hops</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l3-wa"><div class="bk-ans">1 hop: <b>pad B</b> <span class="tex">(3,3)</span>. Then F <span class="tex">(6,5)</span>, then <b>pad H</b> <span class="tex">(9,7)</span> after 3 hops.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Green says, “I’ll land on pad C.” True or false? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l3-wa"><div class="bk-ans"><b>False.</b> C <span class="tex">(4,4)</span> looks close, but from B <span class="tex">(3,3)</span> the next hop goes to <span class="tex">(6,5)</span>: it jumps right over C. Close is not <em>on</em>.</div></div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> <span class="u7l3-blue"><b>Blue frog</b></span> starts at <b>8</b> and hops <b>down 1, right 2</b>. Is there a pad <b>both</b> frogs land on? <b>Guess first.</b></div></div>
+      <div class="poll-opts c2">
+        <div class="opt"><b>A</b> Pad E</div>
+        <div class="opt right"><b>B</b> Pad F</div>
+        <div class="opt"><b>C</b> Pad H</div>
+        <div class="opt"><b>D</b> Never!</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, pad F <span class="tex">(6,5)</span>.</b> Blue: <span class="tex">(0,8)\to</span> A <span class="tex">(2,7)\to</span> D <span class="tex">(4,6)\to</span> <b>F</b> <span class="tex">(6,5)\to</span> G <span class="tex">(8,4)</span>. Green reaches F on its <b>2nd</b> hop, Blue on its <b>3rd</b>: same pad, different hop counts.<br>
+        <span class="muted"><b>A</b>: pad E <span class="tex">(5,5)</span> sits in the gap where the eye guesses the paths cross, but neither frog lands there. Blue’s 5th hop is <span class="tex">(10,3)</span>: no pad, <em>splash!</em></span></div>
+    </div>
+  </div></div>
+  <p class="u7l3-social">Challenge your neighbour: invent a frog (start + hop) that lands on <b>pad E</b>.</p>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -231,7 +252,7 @@
     <div><b>Step 3: join and extend.</b> Rule a line through the points, across the whole grid. Check: a point on your line must fit the equation.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u7l3">
-    <div><div class="kicker">Your turn</div><b>Assignment 3 — Graphing a Line Using Slope–Intercept Form</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 3 · Questions 7–14</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l4/">
     <div><div class="kicker">Next lesson</div><b>Lesson 4 — Writing the Equation of a Line Given Slope and y-Intercept</b><div class="muted">Run it backwards: read <span class="tex">m</span> and <span class="tex">b</span> off a graph or a table and write <span class="tex">y=mx+b</span>.</div></div><span class="arrow">→</span>
@@ -244,7 +265,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u7l3.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u7l3', homeHref: '../../', title: '7.3 Graphing From y = mx + b' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Equation From Slope and y-Intercept · Math 15 7.4</title>
+<meta name="description" content="Math 15 Unit 7 Lesson 4: writing the equation of a line given its slope and y-intercept. Substitute m and b into y = mx + b (the y-intercept may arrive as a point (0, b)); read m and b off a graph using lattice points; read them from a table of values; and write an equation for a story with a starting amount and a constant rate. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u7l4.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u7l4">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 7 Equations of Linear Relations · Lesson 4</div>
+  <h1>Writing the Equation of a Line Given Slope and <span class="tex">y</span>-Intercept</h1>
+  <p class="lede">Lesson 3 went from the equation to the picture. Today runs it <b>backwards</b>: find the two numbers <b class="u7l4-cm">m</b> and <b class="u7l4-cb">b</b>, then substitute them into <span class="tex">y=\textcolor{#1f5bd6}{m}x+\textcolor{#12805a}{b}</span>. Nothing to calculate.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>write <span class="tex">y=mx+b</span> when I am <b>given</b> the slope and the <span class="tex">y</span>-intercept, even when the <span class="tex">y</span>-intercept arrives as a point <span class="tex">(0,\,b)</span></li>
+      <li>read <span class="tex">m</span> and <span class="tex">b</span> off a <b>graph</b>, counting rise over run between lattice points</li>
+      <li>read <span class="tex">m</span> and <span class="tex">b</span> from a <b>table of values</b></li>
+      <li>write an equation for a <b>story</b> with a starting amount and a constant rate, and use it</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF7</b> Determine the equation of a linear relation, given: a graph; a point and the slope; two points; a point and the equation of a parallel or perpendicular line, to solve problems.<br><span class="muted">Today: the equation from the slope and the <span class="tex">y</span>-intercept, read from numbers, a graph, a table or a story.</span></div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Name That Line" id="wu" style="--wf-side: 470px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Name That Line</h2>
+  <p class="wf-rule">Every straight line has a name made of just <b>two numbers</b>. <span class="muted">Tap a line’s name to light it up.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u7l4-wfig" id="u7l4-wfig"></div>
+    <div class="u7l4-wbtns" id="u7l4-wbtns"></div>
+  </div><div class="wf-side">
+    <div class="u7l4-recipe"><div class="u7l4-rec-eq"><span class="tex">y=\textcolor{#c93a33}{m}\,x+\textcolor{#1f6fd6}{b}</span></div><div><b class="u7l4-red">m</b> = slope (rise over run) · <b class="u7l4-blue">b</b> = where it crosses the <span class="tex">y</span>-axis</div></div>
+    <div class="u7l4-name">
+      <div class="u7l4-nr u7l4-nh"><div></div><div>Read <span class="tex">b</span></div><div>Count <span class="tex">m</span></div><div>Name it!</div></div>
+      <div class="u7l4-nr"><div><span class="u7l4-chip u7l4-ch-red">Red</span></div><div data-reveal><span class="tex">2</span></div><div data-reveal><span class="tex">1</span></div><div data-reveal><span class="tex">y=x+2</span></div></div>
+      <div class="u7l4-nr"><div><span class="u7l4-chip u7l4-ch-blue">Blue</span></div><div data-reveal><span class="tex">2</span></div><div data-reveal><span class="tex">-1</span></div><div data-reveal><span class="tex">y=-x+2</span></div></div>
+      <div class="u7l4-nr"><div><span class="u7l4-chip u7l4-ch-green">Green</span></div><div data-reveal><span class="tex">0</span></div><div data-reveal><span class="tex">2</span></div><div data-reveal><span class="tex">y=2x</span></div></div>
+      <div class="u7l4-nr"><div><span class="u7l4-chip u7l4-ch-purple">Purple</span></div><div data-reveal><span class="tex">-4</span></div><div data-reveal><span class="tex">\tfrac{1}{2}</span></div><div data-reveal><span class="tex">y=\tfrac{1}{2}x-4</span></div></div>
+    </div>
+    <div class="u7l4-wqs"><div class="bk-wq"><div class="q-line"><div class="q-num">?</div><div><b>Hmm…</b> Green’s <span class="tex">b</span> is <span class="tex">0</span>. Now what? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="u7l4-wa"><div class="bk-ans"><span class="tex">y=2x+0</span> is just <span class="tex">y=2x</span>: a line through the origin has no “<span class="tex">+b</span>” showing.</div></div></div></div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Can <em>every</em> straight line get a name like <span class="tex">y=mx+b</span>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Yes, every single one</div>
+        <div class="opt"><b>B</b> All but one line</div>
+        <div class="opt right"><b>C</b> No: infinitely many can’t</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C.</b> A <b>vertical</b> line (like the one straight up through <span class="tex">x=3</span>) has an undefined slope, and it never crosses the <span class="tex">y</span>-axis at one point: no <span class="tex">m</span> and no <span class="tex">b</span> to write. There is a vertical line for every <span class="tex">x</span>-value, so infinitely many. (They get their own name, <span class="tex">x=k</span>, in Lesson 8.)<br>
+        <span class="muted">Red and Blue have the <b>same</b> <span class="tex">b</span> but opposite slopes, so <span class="tex">b</span> alone doesn’t name a line: it takes both numbers.</span></div>
+    </div>
+  </div></div>
+  <p class="u7l4-social">Partner game: draw a secret line. Tell your partner only its <span class="tex">m</span> and <span class="tex">b</span>. Can they draw it exactly?</p>
+</section>
+
+<!-- ================= 1. From slope and y-intercept ================= -->
+<section class="card" data-ink="s1" data-section="1. From Slope and y-Intercept">
+  <div class="sec-h"><span class="badge">1</span><h2>Writing an Equation from Slope and <span class="tex">y</span>-Intercept</h2></div>
+  <div class="def">In slope–intercept form <span class="tex">y=mx+b</span>, the slope is <span class="tex">m</span> and the <span class="tex">y</span>-intercept is <span class="tex">b</span>. When both are handed to you, writing the equation is a single step: <b>substitute and simplify</b>. Nothing to calculate. The <span class="tex">y</span>-intercept may be given as a <b>value</b> (<span class="tex">b=-4</span>) or as the <b>point</b> <span class="tex">(0,b)</span>, such as <span class="tex">(0,-4)</span>; either way only the number <span class="tex">-4</span> goes into the equation.</div>
+  <div class="explainer" data-explainer="sub"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Substitute and simplify</h3></div>
+  <p class="q">Write the equation of each line.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) slope <span class="tex">5</span> and <span class="tex">y</span>-intercept <span class="tex">2</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=5</span>, <span class="tex">b=2</span>, so <span class="tex">y=mx+b</span> gives<br><span class="tex">\boldsymbol{y=5x+2}</span></div></div></div>
+    <div class="part"><div class="pl">(b) slope <span class="tex">-2</span> and <span class="tex">y</span>-intercept <span class="tex">-7</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=-2</span>, <span class="tex">b=-7</span>, so<br><span class="tex">y=-2x+(-7)</span><br><span class="tex">\boldsymbol{y=-2x-7}</span></div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Plus a negative is minus.</b> <span class="tex">y=-2x+(-7)</span> tidies to <span class="tex">y=-2x-7</span>. Keep the sign with its number.</div></div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s1b" data-section="1. A point on the y-axis">
+  <h3 class="sub">A point on the <span class="tex">y</span>-axis is <span class="tex">b</span> in disguise</h3>
+  <p>If a point has <span class="tex">x=0</span>, it sits on the <span class="tex">y</span>-axis, so it <b>is</b> the <span class="tex">y</span>-intercept. Check which coordinate is the zero!</p>
+  <div class="explainer" data-explainer="pointB"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Watch how the information is given</h3></div>
+  <p class="q">Write the equation of each line. Watch for the <span class="tex">y</span>-intercept given as a point.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) slope <span class="tex">\dfrac{1}{3}</span>, passing through <span class="tex">(0,-4)</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The point <span class="tex">(0,-4)</span> has <span class="tex">x=0</span>, so it <b>is</b> the <span class="tex">y</span>-intercept: <span class="tex">b=-4</span>.<br><span class="tex">\boldsymbol{y=\tfrac{1}{3}x-4}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">y</span>-intercept <span class="tex">9</span> and slope <span class="tex">-\dfrac{3}{4}</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=-\tfrac{3}{4}</span>, <span class="tex">b=9</span> (the slope is given second, but it is still <span class="tex">m</span>).<br><span class="tex">\boldsymbol{y=-\tfrac{3}{4}x+9}</span></div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Order doesn’t matter in the sentence; it matters in the equation.</b> The slope always goes in front of <span class="tex">x</span>, and the <span class="tex">y</span>-intercept always goes on its own.</div></div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 2. From a graph ================= -->
+<section class="card" data-ink="s2" data-section="2. From a Graph">
+  <div class="sec-h"><span class="badge">2</span><h2>Writing an Equation from a Graph</h2></div>
+  <div class="def">Both ingredients can be read straight off a graph: the <b class="u7l4-cb"><span class="tex">y</span>-intercept</b> is where the line crosses the vertical axis, and the <b class="u7l4-cm">slope</b> is the rise over run counted between two <b>lattice points</b> (points where the line passes exactly through a grid corner, so both coordinates are integers), just as in Unit 6.</div>
+  <div class="explainer" data-explainer="fromGraph"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Two lines on one grid</h3></div>
+  <p class="q">Each line passes through points with integer coordinates. State the slope and <span class="tex">y</span>-intercept, then write the equation.</p>
+  <div class="u7l4-exg">
+    <div class="u7l4-fig" id="u7l4-ex3fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl"><b class="u7l4-cm">Line <span class="tex">p</span></b></div>
+        <div class="u7l4-fill">Slope: <span class="u7l4-blank" data-reveal><span class="tex">2</span></span> <span class="u7l4-gap"></span> <span class="tex">y</span>-intercept: <span class="u7l4-blank" data-reveal><span class="tex">-4</span></span><br>Equation: <span class="u7l4-blank u7l4-wide" data-reveal><span class="tex">y=2x-4</span></span></div>
+        <div class="work" style="--h:110px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Lattice points <span class="tex">(0,-4)</span> and <span class="tex">(2,0)</span>: <span class="tex">m=\dfrac{0-(-4)}{2-0}=\dfrac{4}{2}=2</span>, and <span class="tex">p</span> cuts the <span class="tex">y</span>-axis at <span class="tex">-4</span>. So <span class="tex">\boldsymbol{y=2x-4}</span>.</div></div></div>
+      <div class="part"><div class="pl"><b class="u7l4-red">Line <span class="tex">q</span></b></div>
+        <div class="u7l4-fill">Slope: <span class="u7l4-blank" data-reveal><span class="tex">-\tfrac{1}{2}</span></span> <span class="u7l4-gap"></span> <span class="tex">y</span>-intercept: <span class="u7l4-blank" data-reveal><span class="tex">3</span></span><br>Equation: <span class="u7l4-blank u7l4-wide" data-reveal><span class="tex">y=-\tfrac{1}{2}x+3</span></span></div>
+        <div class="work" style="--h:110px"></div>
+        <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Lattice points <span class="tex">(0,3)</span> and <span class="tex">(2,2)</span>: <span class="tex">m=\dfrac{2-3}{2-0}=-\dfrac{1}{2}</span>, and <span class="tex">q</span> cuts the <span class="tex">y</span>-axis at <span class="tex">3</span>. So <span class="tex">\boldsymbol{y=-\tfrac{1}{2}x+3}</span>.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s2b" data-section="2. It takes both numbers">
+  <h3 class="sub">It takes both numbers</h3>
+  <p>Remember Red and Blue from the warm-up? Same <span class="tex">b</span>, different lines. A line is pinned down only when you know <b>both</b> <span class="tex">m</span> and <span class="tex">b</span>.</p>
+  <div class="explainer" data-explainer="twoNumbers"></div>
+</section>
+
+<!-- ================= 3. From a table ================= -->
+<section class="card" data-ink="s3" data-section="3. From a Table of Values">
+  <div class="sec-h"><span class="badge">3</span><h2>Writing an Equation from a Table of Values</h2></div>
+  <div class="def">A table hides the same two numbers. If the <span class="tex">x</span>-values go up by <span class="tex">1</span> each row, the <b class="u7l4-cm">slope</b> is the constant change in <span class="tex">y</span> from row to row. The <b class="u7l4-cb"><span class="tex">y</span>-intercept</b> is the <span class="tex">y</span>-value paired with <span class="tex">x=0</span>.</div>
+  <div class="explainer" data-explainer="fromTable"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Two tables</h3></div>
+  <p class="q">Determine the equation of the line represented by each table.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a)</div>
+      <div class="u7l4-tab" data-bk-table='{"rows":[[0,4],[1,7],[2,10],[3,13]],"layout":"h","cellW":74,"cellH":50}'></div>
+      <div class="u7l4-fill">Slope: <span class="u7l4-blank" data-reveal><span class="tex">3</span></span> <span class="u7l4-gap"></span> <span class="tex">y</span>-intercept: <span class="u7l4-blank" data-reveal><span class="tex">4</span></span><br>Equation: <span class="u7l4-blank u7l4-wide" data-reveal><span class="tex">y=3x+4</span></span></div>
+      <div class="work" style="--h:110px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x</span> goes up by 1 and <span class="tex">y</span> goes up by 3 each row, so <span class="tex">m=3</span>; at <span class="tex">x=0</span>, <span class="tex">y=4</span>, so <span class="tex">b=4</span>.<br><span class="tex">\boldsymbol{y=3x+4}</span><br><span class="muted">Check: <span class="tex">x=3\Rightarrow 3(3)+4=13</span> ✓</span></div></div></div>
+    <div class="part"><div class="pl">(b)</div>
+      <div class="u7l4-tab" data-bk-table='{"rows":[[0,10],[1,8],[2,6],[3,4]],"layout":"h","cellW":74,"cellH":50}'></div>
+      <div class="u7l4-fill">Slope: <span class="u7l4-blank" data-reveal><span class="tex">-2</span></span> <span class="u7l4-gap"></span> <span class="tex">y</span>-intercept: <span class="u7l4-blank" data-reveal><span class="tex">10</span></span><br>Equation: <span class="u7l4-blank u7l4-wide" data-reveal><span class="tex">y=-2x+10</span></span></div>
+      <div class="work" style="--h:110px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">y</span> drops by 2 for every 1 that <span class="tex">x</span> gains, so <span class="tex">m=-2</span>; at <span class="tex">x=0</span>, <span class="tex">y=10</span>, so <span class="tex">b=10</span>.<br><span class="tex">\boldsymbol{y=-2x+10}</span><br><span class="muted">Check: <span class="tex">x=3\Rightarrow -2(3)+10=4</span> ✓</span></div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Going down means a negative slope.</b> In (b) the <span class="tex">y</span>-values shrink by 2 each time, so the change is <span class="tex">-2</span>, not <span class="tex">2</span>.</div></div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u7l4"></section>
+
+<!-- ================= 4. Application ================= -->
+<section class="card" data-ink="s4" data-section="4. A Real-World Application">
+  <div class="sec-h"><span class="badge">4</span><h2>A Real-World Application</h2></div>
+  <div class="def">A story that names a <b>starting amount</b> and a <b>constant rate of change</b> is already in <span class="tex">y=mx+b</span> form: the <b class="u7l4-cb">starting value</b> (before any time passes) is <span class="tex">b</span>, and the <b class="u7l4-cm">rate</b> per time period is <span class="tex">m</span>.</div>
+  <div class="u7l4-words">
+    <div class="u7l4-wd u7l4-wd-b"><b>Start words → <span class="tex">b</span></b><br>starting balance, sign-up fee, flat fee, already contains, at first, initial</div>
+    <div class="u7l4-wd u7l4-wd-m"><b>Rate words → <span class="tex">m</span></b><br>per week, each hour, every month, for each, per kilometre</div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Jaden’s savings</h3></div>
+  <p class="q">Jaden opens a savings account with a starting balance of <b>$60</b>. He deposits <b>$12 every week</b> and makes no withdrawals. Let <span class="tex">B</span> be the balance in dollars after <span class="tex">w</span> weeks.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Identify the starting value and the constant rate of change, then write an equation for <span class="tex">B</span> in terms of <span class="tex">w</span>.</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Starting value (at <span class="tex">w=0</span>): <span class="tex">b=\$60</span>.<br>Rate of change: <span class="tex">m=\$12</span> per week.<br><span class="tex">\boldsymbol{B=12w+60}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Use your equation to determine Jaden’s balance after <span class="tex">9</span> weeks.</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">B=12(9)+60</span><br><span class="tex">\phantom{B}=108+60</span><br><span class="tex">\phantom{B}=\boldsymbol{168}</span><br>After 9 weeks the balance is <b>$168</b>.</div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>New letters, same form.</b> <span class="tex">B=12w+60</span> is <span class="tex">y=mx+b</span> with <span class="tex">B</span> in place of <span class="tex">y</span> and <span class="tex">w</span> in place of <span class="tex">x</span>. The rate still goes in front of the variable.</div></div>
+  <div class="explainer u7l4-exgap" data-explainer="story"></div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s4b" data-section="Where are m and b hiding?">
+  <h3 class="sub">Where are <span class="tex">m</span> and <span class="tex">b</span> hiding?</h3>
+  <p>Four ways the two numbers can arrive. Find them, then substitute into <span class="tex">y=mx+b</span>.</p>
+  <div class="explainer" data-explainer="where"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Given <span class="tex">m</span> and <span class="tex">b</span>?</b> Substitute into <span class="tex">y=\textcolor{#1f5bd6}{m}x+\textcolor{#12805a}{b}</span> and tidy: <span class="tex">+(-7)</span> is <span class="tex">-7</span>, <span class="tex">1x</span> is <span class="tex">x</span>, <span class="tex">+0</span> disappears. A point <span class="tex">(0,b)</span> is the <span class="tex">y</span>-intercept.</div>
+    <div><b>From a graph.</b> <span class="tex">b</span> is where the line crosses the <span class="tex">y</span>-axis. Count rise over run between two <b>lattice points</b> for <span class="tex">m</span>.</div>
+    <div><b>From a table.</b> With <span class="tex">x</span> going up by 1, the change in <span class="tex">y</span> is <span class="tex">m</span>. The <span class="tex">y</span> beside <span class="tex">x=0</span> is <span class="tex">b</span>.</div>
+    <div><b>From a story.</b> The starting amount is <span class="tex">b</span>; the rate per time period is <span class="tex">m</span>. Then substitute to answer questions: <span class="tex">B=12(9)+60=168</span>.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u7l4">
+    <div><div class="kicker">Your turn</div><b>Assignment 4 — Writing the Equation of a Line Given Slope and y-Intercept</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l5/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 5 — Writing the Equation of a Line Given Slope and a Point</b><div class="muted">When <span class="tex">b</span> isn’t handed to you: put the point into <span class="tex">y=mx+b</span> and solve for <span class="tex">b</span>.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u7l4.js';
+  boot({ key: 'u7l4', homeHref: '../../', title: '7.4 Equation From m and b' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

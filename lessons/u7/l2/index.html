@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u7l2.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u7l2">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Pick a Phone Plan">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Pick a Phone Plan</h2>
+  <p class="wf-rule">You use <b>6 GB</b> of data a month. Which plan is the cheapest?</p></div>
+  <div class="vw-tiles" style="--n:3;--fs:30px"><div><b>A · Spark</b>$20 a month<small>plus $5 per GB</small></div><div><b>B · Orbit</b>$35 a month<small>plus $2 per GB</small></div><div><b>C · Pixel</b>$0 a month<small>plus $10 per GB</small></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Would your answer change if you used 1 GB?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>B, Orbit: $47.</b> Spark costs 20 + 5 × 6 = $50 and Pixel costs 10 × 6 = $60. The plan with the biggest fee wins because each GB costs the least.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -43,35 +53,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Pick a Phone Plan" id="wu" style="--wf-side: 330px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Pick a Phone Plan</h2>
-  <p class="wf-rule">Three made-up plans. <span class="tex">C</span> = cost for the month ($), <span class="tex">g</span> = GB of data used.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u7l2-phones" id="u7l2-phones"></div>
-    <div class="u7l2-gbrow" id="u7l2-gbrow"><span class="u7l2-gbl">Try a month, in GB:</span></div>
-    <div class="u7l2-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What does Plan A cost for <b>2 GB</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l2-wa"><div class="bk-ans"><b>$30</b>: <span class="tex">5(2)+20=10+20=30</span>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which plan costs the most <b>per GB</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l2-wa"><div class="bk-ans"><b>Plan C (Pixel)</b>: $10 for every GB.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>In each equation, which number is the <b>monthly fee</b>? The <b>cost per GB</b>? How can you tell? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l2-wa"><div class="bk-ans">The number <b>multiplied by <span class="tex">g</span></b> is the cost per GB (it is charged again for every GB). The number <b>on its own</b> is the monthly fee (you pay it even at 0 GB). B is written in a different order, <span class="tex">35+2g</span>: fee $35, $2 per GB. C has no number on its own: fee $0.</div></div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> You use <b>6 GB</b> of data a month. Which plan is the <b>cheapest</b>? <b>Guess first</b>, then check with the equations.</div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> Spark</div>
-        <div class="opt right"><b>B</b> Orbit</div>
-        <div class="opt"><b>C</b> Pixel</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>B, Orbit ($47).</b> A: <span class="tex">5(6)+20=50</span>, B: <span class="tex">35+2(6)=47</span>, C: <span class="tex">10(6)=60</span>.<br><span class="muted">The <b>biggest</b> fee wins: its cost per GB is the smallest.</span></div>
-    </div>
-  <div class="bk-wq u7l2-pollq"><div class="q-line"><div class="q-num bonus">+</div><div><b>Poll the room:</b> is one plan cheapest for <b>everybody</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-      <div class="u7l2-wa"><div class="bk-ans"><b>No.</b> Pixel is cheapest up to 3 GB and Orbit from 6 GB up (Spark ties Pixel at 4 GB and Orbit at 5 GB). Light users want a small fee; heavy users want a small cost per GB.</div></div></div>
-  </div></div>
-</section>
+
 
 <!-- ================= 1. Slope–intercept form ================= -->
 <section class="card" data-ink="s1" data-section="1. Slope–Intercept Form">
@@ -84,7 +66,7 @@
     </div>
   </div>
   <p>So for <span class="tex">y=\textcolor{#1f5bd6}{2}x+\textcolor{#12805a}{3}</span>: <span class="tex">m=2</span>, so <span class="tex">y</span> increases by 2 each time <span class="tex">x</span> increases by 1. And <span class="tex">b=3</span>, so the line passes through <span class="tex">(0,\ 3)</span>.</p>
-  <div class="explainer" data-explainer="meaning"></div>
+  <div data-extra><div class="explainer" data-explainer="meaning"></div></div>
 </section>
 
 <section class="card" data-ink="s1b" data-section="1. The phone plans are lines">
@@ -146,6 +128,15 @@
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–6">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 2 · Questions 1–6</h2>
+  <p class="pr-t">Read the slope and the y-intercept off each equation.</p>
+  <div class="pr-chips n1"><span><b>1–6</b>Reading m and b directly</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 5.</span><a class="pill" href="../../../#/lesson/u7l2">Open the Practice site</a></div>
+</section>
+
 <!-- ================= 3. Rearranging ================= -->
 <section class="card" data-ink="s3" data-section="3. Rearranging Into y = mx + b">
   <div class="sec-h"><span class="badge">3</span><h2>Rearranging Into Slope–Intercept Form</h2></div>
@@ -172,7 +163,7 @@
   <div class="sec-h"><span class="badge">4</span><h2>When <span class="tex">y</span> Has a Coefficient</h2></div>
   <p>If <span class="tex">y</span> has a coefficient other than 1, move the <span class="tex">x</span>-term first, then <b>divide every term</b> (not just the first one) by that coefficient:</p>
   <div class="u7l2-disp"><span class="tex">2y=6x+10\ \Rightarrow\ \dfrac{2y}{2}=\dfrac{6x}{2}+\dfrac{10}{2}\ \Rightarrow\ y=\textcolor{#1f5bd6}{3}x+\textcolor{#12805a}{5}</span>, so <span class="tex">m=3</span> and <span class="tex">b=5</span>.</div>
-  <div class="explainer" data-explainer="balance"></div>
+  <div data-extra><div class="explainer" data-explainer="balance"></div></div>
 </section>
 
 <section class="card example" data-ink="ex4" data-section="Example 4">
@@ -194,7 +185,7 @@
 <section class="card" data-ink="s5" data-section="5. Checking Tables, Interpreting m and b">
   <div class="sec-h"><span class="badge">5</span><h2>Checking Tables and Interpreting <span class="tex">m</span> and <span class="tex">b</span></h2></div>
   <p>To test a table against <span class="tex">y=mx+b</span>, substitute each <span class="tex">x</span>-value and compare with the table’s <span class="tex">y</span>. <b>One row that fails</b> means the table does not match.</p>
-  <div class="explainer" data-explainer="tableCheck"></div>
+  <div data-extra><div class="explainer" data-explainer="tableCheck"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -214,7 +205,7 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s5b" data-section="5. m and b in a real situation">
+<section data-extra class="card" data-ink="s5b" data-section="5. m and b in a real situation">
   <h3 class="sub">In a real situation: <span class="tex">b</span> is the start, <span class="tex">m</span> is the rate</h3>
   <p>In a real situation, <b class="u7l2-cb"><span class="tex">b</span> is usually the starting amount</b> and <b class="u7l2-cm"><span class="tex">m</span> is the rate</b>: the change for each additional unit.</p>
   <div class="explainer" data-explainer="context"></div>
@@ -232,6 +223,36 @@
   <button class="more" data-more="ex6-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Pick a Phone Plan" id="wu" style="--wf-side: 330px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Pick a Phone Plan</h2>
+  <p class="wf-rule">Three made-up plans. <span class="tex">C</span> = cost for the month ($), <span class="tex">g</span> = GB of data used.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u7l2-phones" id="u7l2-phones"></div>
+    <div class="u7l2-gbrow" id="u7l2-gbrow"><span class="u7l2-gbl">Try a month, in GB:</span></div>
+    <div class="u7l2-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What does Plan A cost for <b>2 GB</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l2-wa"><div class="bk-ans"><b>$30</b>: <span class="tex">5(2)+20=10+20=30</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which plan costs the most <b>per GB</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l2-wa"><div class="bk-ans"><b>Plan C (Pixel)</b>: $10 for every GB.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>In each equation, which number is the <b>monthly fee</b>? The <b>cost per GB</b>? How can you tell? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l2-wa"><div class="bk-ans">The number <b>multiplied by <span class="tex">g</span></b> is the cost per GB (it is charged again for every GB). The number <b>on its own</b> is the monthly fee (you pay it even at 0 GB). B is written in a different order, <span class="tex">35+2g</span>: fee $35, $2 per GB. C has no number on its own: fee $0.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> You use <b>6 GB</b> of data a month. Which plan is the <b>cheapest</b>? <b>Guess first</b>, then check with the equations.</div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Spark</div>
+        <div class="opt right"><b>B</b> Orbit</div>
+        <div class="opt"><b>C</b> Pixel</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, Orbit ($47).</b> A: <span class="tex">5(6)+20=50</span>, B: <span class="tex">35+2(6)=47</span>, C: <span class="tex">10(6)=60</span>.<br><span class="muted">The <b>biggest</b> fee wins: its cost per GB is the smallest.</span></div>
+    </div>
+  <div class="bk-wq u7l2-pollq"><div class="q-line"><div class="q-num bonus">+</div><div><b>Poll the room:</b> is one plan cheapest for <b>everybody</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="u7l2-wa"><div class="bk-ans"><b>No.</b> Pixel is cheapest up to 3 GB and Orbit from 6 GB up (Spark ties Pixel at 4 GB and Orbit at 5 GB). Light users want a small fee; heavy users want a small cost per GB.</div></div></div>
+  </div></div>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -242,7 +263,7 @@
     <div><b>Tables and real life.</b> One row that fails means the table doesn’t match. In <span class="tex">\text{cost}=35+20h</span>, <span class="tex">b=35</span> is the <b>start</b> (the fee) and <span class="tex">m=20</span> is the <b>rate</b> ($20 per hour).</div>
   </div>
   <a class="assign" href="../../../#/lesson/u7l2">
-    <div><div class="kicker">Your turn</div><b>Assignment 2 — Slope–Intercept Form: <span class="tex">y=mx+b</span></b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 2 · Questions 7–16</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l3/">
     <div><div class="kicker">Next lesson</div><b>Lesson 3 — Graphing a Line Using Slope–Intercept Form</b><div class="muted">No table needed: plot <span class="tex">b</span> on the <span class="tex">y</span>-axis, then step the slope, rise over run.</div></div><span class="arrow">→</span>
@@ -255,7 +276,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u7l2.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u7l2', homeHref: '../../', title: '7.2 Slope–Intercept Form' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

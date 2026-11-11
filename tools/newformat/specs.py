@@ -508,3 +508,75 @@ SPECS['u6l10'] = dict(
     replace=[('<span class="muted">(Check Challenge 2 with the chip in the warm-up check explainer.)</span>', '<span class="muted" data-extra>(Check Challenge 2 with the chip in the “which suspect?” explainer near the end.)</span>')],
     move_with_warm=['wuex'], extra_cards=['s10b'], extra_expl=['pyth', 'lengths', 'midpoint', 'slopes', 'collinear', 'pairs', 'triangle'],
     practice=PR('ex3', '1–8', '9–26', 'Pythagoras, segment lengths and the distance formula.', [('1–5', 'Pythagorean theorem and segment lengths'), ('6–8', 'The distance formula')], 6))
+
+# ======================= Unit 7 =======================
+SPECS['u7l1'] = dict(
+    warm=dict(title='Spot the Fake', rule=f'A rule makes the points {T("(1,\\ 3)")}, {T("(2,\\ 5)")}, {T("(3,\\ 7)")} and keeps going forever. One of these far-away points is a <b>fake</b>. Which one?',
+              body=TILES(3, [('A', T('(10,\\ 21)')), ('B', T('(50,\\ 101)')), ('C', T('(100,\\ 200)'))]),
+              nudge='What is the rule doing to the first number?',
+              reveal=f'<b>C.</b> The rule doubles the first number and adds 1, so the point should be {T("(100,\\ 201)")}.'),
+    extra_cards=['s1b', 's3b'], extra_expl=['onLine'],
+    practice=PR('ex4', '1–8', '9–15', 'Linear or not, tables of values, then graphing.', [('1–8', 'Linear or non-linear, tables and graphs')], 6))
+SPECS['u7l2'] = dict(
+    warm=dict(title='Pick a Phone Plan', rule='You use <b>6 GB</b> of data a month. Which plan is the cheapest?',
+              body=TILES(3, [('A · Spark', '$20 a month<small>plus $5 per GB</small>'), ('B · Orbit', '$35 a month<small>plus $2 per GB</small>'), ('C · Pixel', '$0 a month<small>plus $10 per GB</small>')], 30),
+              nudge='Would your answer change if you used 1 GB?',
+              reveal='<b>B, Orbit: $47.</b> Spark costs 20 + 5 × 6 = $50 and Pixel costs 10 × 6 = $60. The plan with the biggest fee wins because each GB costs the least.'),
+    extra_cards=['s5b'], extra_expl=['meaning', 'balance', 'tableCheck'],
+    practice=PR('ex2', '1–6', '7–16', 'Read the slope and the y-intercept off each equation.', [('1–6', 'Reading m and b directly')], 5))
+SPECS['u7l3'] = dict(
+    warm=dict(title='Frog Hops', rule='Do the two frogs ever land on the same spot?',
+              body=TILES(2, [('Green frog', f'starts at {T("(0,\\ 1)")}<small>every hop: up 2, right 3</small>'), ('Blue frog', f'starts at {T("(0,\\ 8)")}<small>every hop: down 1, right 2</small>')], 30),
+              nudge='Where does each frog land after 1 hop? 2 hops?',
+              reveal=f'<b>Yes, at {T("(6,\\ 5)")}.</b> Green lands there on its 2nd hop: (3, 3), then (6, 5). Blue lands there on its 3rd: (2, 7), (4, 6), (6, 5).'),
+    extra_expl=['readMB', 'start', 'overOne', 'fracStep'],
+    practice=PR('ex4', '1–6', '7–14', 'Read the slope and the y-intercept, then graph.', [('1–6', 'Reading m and b, then graphing')], 5))
+SPECS['u7l4'] = dict(
+    warm=dict(title='The Taxi', rule='How far can you go with <b>$20</b>?',
+              body=BIG('A taxi costs <b>$4</b> just to get in.<small>After that it costs $2 for every kilometre.</small>'),
+              nudge='How did you work it out?',
+              reveal=f'<b>8 km.</b> $20 take away the $4 leaves $16, and $16 buys 8 km at $2 each. As an equation: {T("y=2x+4")}.'),
+    extra_cards=['s1b', 's2b', 's4b'], extra_expl=['sub', 'story'],
+    practice=PR('ex3', '1–4', '5–15', 'Write the equation from a slope and y-intercept, then from graphs and tables.', [('1', 'From a given slope and y-intercept'), ('2–4', 'From graphs and tables')], 3))
+SPECS['u7l5'] = dict(
+    warm=dict(title='The Piggy Bank', rule='How much was in the jar at the very start?',
+              body=BIG('You add the <b>same amount</b> to a jar every week.<small>After 3 weeks it holds $29. After 5 weeks it holds $41.</small>'),
+              nudge='How much goes in each week?',
+              reveal='<b>$11.</b> Two weeks added $12, so $6 goes in each week. Going back 3 weeks from $29: 29 − 18 = 11.'),
+    extra_expl=['family', 'drop1', 'drop2', 'drop3', 'drop4', 'hop', 'half'],
+    practice=PR('ex3', '1–6', '7–15', 'Substitute the point, solve for b, write the equation.', [('1–6', 'Substitute and solve')], 4))
+SPECS['u7l6'] = dict(
+    warm=dict(title='Candle Clues', rule='How tall was the candle when it was first lit?',
+              body=BIG('A candle burns down at a steady rate.<small>After 2 hours it is 20 cm tall. After 5 hours it is 14 cm tall.</small>'),
+              nudge='And when will it be all gone?',
+              reveal='<b>24 cm.</b> It lost 6 cm in 3 hours, so 2 cm every hour. Two hours before the first clue it was 20 + 4 = 24 cm. It is all gone after 12 hours.'),
+    extra_cards=['s1b', 's2b'], extra_expl=['stages1', 'stages2', 'stages3', 'stages4', 'travel', 'reduce'],
+    practice=PR('ex3', '1–4', '5–14', 'Slope first, then the equation.', [('1–4', 'Slope first, then the equation')], 3))
+SPECS['u7l7'] = dict(
+    warm=dict(title='Same Line, Different Outfit', rule=f'Three of these are the line {T("y=2x+3")} in disguise. Which one is <b>not</b>?',
+              body=TILES(4, [('A', T('y-3=2x')), ('B', T('2x-y+3=0')), ('C', T('y=3+2x')), ('D', T('2y=2x+3'))], 30),
+              nudge='How could you test one quickly?',
+              reveal=f'<b>D.</b> Dividing by 2 gives {T(r"y=x+\tfrac32")}, a different line. Quick test: {T("(0,\\ 3)")} is on the real line, but D gives {T("2y=3")} there.'),
+    extra_cards=['s2b', 's2c'], extra_expl=['zeroMeter', 'solveYFrac'],
+    practice=PR('ex4', '1–4', '5–15', 'Convert between the two forms.', [('1–4', 'Converting between the two forms')], 3))
+SPECS['u7l8'] = dict(
+    warm=dict(title='Sink the Ship', rule='A ship covers these four squares. <b>One short rule</b> describes every square on the ship. What is it?',
+              body=BIG(f'{T("(3,\\ 1)")} &emsp; {T("(3,\\ 2)")} &emsp; {T("(3,\\ 3)")} &emsp; {T("(3,\\ 4)")}'),
+              nudge='What stays the same? What changes?',
+              reveal=f'{T("x=3")}. The first number is always 3, and the second can be anything. The ship is a vertical line.'),
+    extra_cards=['s4b'], extra_expl=['pinnedV', 'mixup', 'sorter', 'graphMix'],
+    practice=PR('ex3', '1–6', '7–16', 'Horizontal and vertical lines.', [('1–6', 'Horizontal and vertical lines')], 5))
+SPECS['u7l9'] = dict(
+    warm=dict(title='The Head Start', rule='The finish line is <b>72 m</b> from the start. Nobody changes speed. Who crosses it first?',
+              body=TILES(2, [('Tortoise', 'starts 60 m ahead<small>walks 1 m every second</small>'), ('Hare', 'starts at 0 m<small>runs 4 m every second</small>')], 30),
+              nudge='When does the hare catch up?',
+              reveal='<b>The tortoise.</b> It only has 12 m to go, so it finishes in 12 seconds. The hare needs 72 ÷ 4 = 18 seconds. The hare would catch up at 80 m, but the race is over by then.'),
+    extra_cards=['s1b', 's4b'], extra_expl=['rate', 'candle'],
+    practice=PR('ex3', '1–8', '9–16', 'Say what the slope and the y-intercept mean.', [('1–8', 'Interpreting slope and y-intercept')], 6))
+SPECS['u7l10'] = dict(
+    warm=dict(title='Two Truths and a Lie', rule='Two of these are true. One is a lie. Which one?',
+              body=TILES(3, [('A', f'{T("y=3x+2")} passes through {T("(0,\\ 2)")}'), ('B', f'{T("x=4")} is a horizontal line'), ('C', f'the slope of {T("y=5")} is 0')], 27),
+              nudge='How could you prove it?',
+              reveal=f'<b>B is the lie.</b> On {T("x=4")} every point has the same first number, like (4, 0), (4, 1), (4, 2). That is a vertical line.'),
+    move_with_warm=['wuex'], extra_expl=['table', 'rearrange', 'stepper', 'solveB', 'twoPts', 'general', 'hv', 'parperp'],
+    practice=PR('ex3', '1–7', '8–26', 'Tables, slope–intercept basics and graphing.', [('1–7', 'Tables, slope–intercept basics and graphing')], 5))

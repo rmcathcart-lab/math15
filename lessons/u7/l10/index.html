@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u7l10.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u7l10">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Two Truths and a Lie">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Two Truths and a Lie</h2>
+  <p class="wf-rule">Two of these are true. One is a lie. Which one?</p></div>
+  <div class="vw-tiles" style="--n:3;--fs:27px"><div><b>A</b><span class="tex">y=3x+2</span> passes through <span class="tex">(0,\ 2)</span></div><div><b>B</b><span class="tex">x=4</span> is a horizontal line</div><div><b>C</b>the slope of <span class="tex">y=5</span> is 0</div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>How could you prove it?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>B is the lie.</b> On <span class="tex">x=4</span> every point has the same first number, like (4, 0), (4, 1), (4, 2). That is a vertical line.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -47,64 +57,9 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Line Dominoes" id="wu" style="--wf-side: 380px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Line Dominoes</h2>
-  <p class="wf-rule">Touching halves must show the <b>same line</b>, in a different disguise. Tiles may be turned around. Each grid square is 1 unit.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u7l10-tiles" id="u7l10-tiles">
-      <div class="u7l10-tile" data-t="P"><span class="u7l10-tl">P</span>
-        <div class="u7l10-half">through<br><span class="tex">(5,\ 3)</span><br>and <span class="tex">(1,\ -1)</span></div>
-        <div class="u7l10-half"><div class="u7l10-mini" data-mini="P"></div></div></div>
-      <div class="u7l10-tile" data-t="Q"><span class="u7l10-tl">Q</span>
-        <div class="u7l10-half"><span class="tex">y=2x+1</span></div>
-        <div class="u7l10-half"><span class="tex">x+2=0</span></div></div>
-      <div class="u7l10-tile" data-t="R"><span class="u7l10-tl">R</span>
-        <div class="u7l10-half"><div class="u7l10-mini" data-mini="R"></div></div>
-        <div class="u7l10-half"><span class="tex">x+y-3=0</span></div></div>
-      <div class="u7l10-tile" data-t="S"><span class="u7l10-tl">S</span>
-        <div class="u7l10-half">slope <span class="tex">2</span><br>through<br><span class="tex">(3,\ 3)</span></div>
-        <div class="u7l10-half"><table class="u7l10-tt"><tr><th><span class="tex">x</span></th><th><span class="tex">y</span></th></tr><tr><td><span class="tex">-2</span></td><td><span class="tex">0</span></td></tr><tr><td><span class="tex">-2</span></td><td><span class="tex">1</span></td></tr><tr><td><span class="tex">-2</span></td><td><span class="tex">2</span></td></tr></table></div></div>
-      <div class="u7l10-tile" data-t="T"><span class="u7l10-tl">T</span>
-        <div class="u7l10-half"><div class="u7l10-mini" data-mini="T"></div></div>
-        <div class="u7l10-half"><table class="u7l10-tt"><tr><th><span class="tex">x</span></th><th><span class="tex">y</span></th></tr><tr><td><span class="tex">0</span></td><td><span class="tex">1</span></td></tr><tr><td><span class="tex">1</span></td><td><span class="tex">3</span></td></tr><tr><td><span class="tex">2</span></td><td><span class="tex">5</span></td></tr></table></div></div>
-      <div class="u7l10-tile u7l10-gap" id="u7l10-gap"><span class="u7l10-tl">?</span>
-        <div class="u7l10-half"><b>?</b></div>
-        <div class="u7l10-half"><b>?</b></div>
-        <div class="u7l10-gaptag">missing tile</div></div>
-    </div>
-    <div class="u7l10-wbtns">
-      <button type="button" class="pill" id="u7l10-wfill">Fill the gap</button>
-      <button type="button" class="pill" id="u7l10-wreset">Reset</button>
-      <span class="muted u7l10-wnote" id="u7l10-wnote">Guess first (the big one), then fill the gap.</span>
-    </div>
-    <p class="u7l10-social">Your turn: invent a domino with the same line in two disguises. Swap with a neighbour!</p>
-  </div><div class="wf-side">
-    <div class="u7l10-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Tile <b>Q</b> shows <span class="tex">y=2x+1</span>. Find its partner. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l10-wa"><div class="bk-ans">Tile <b>T</b>’s table: <span class="tex">x=0,\,1,\,2</span> in <span class="tex">y=2x+1</span> gives <span class="tex">1,\,3,\,5</span>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Tile <b>P</b>’s graph has slope 2 too. Is it a match for <span class="tex">y=2x+1</span>? Why? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l10-wa"><div class="bk-ans"><b>No.</b> Same slope, but it crosses the <span class="tex">y</span>-axis at <span class="tex">-3</span>, not <span class="tex">1</span>: it is <span class="tex">y=2x-3</span> (parallel). Its real partner is <b>S</b>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Which <em>two</em> halves have no partner? (The gap goes there!) <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l10-wa"><div class="bk-ans"><b>R</b>’s graph (<span class="tex">y=3</span>) and <b>P</b>’s two points (slope 1, <span class="tex">b=-2</span>: <span class="tex">y=x-2</span>).</div></div></div>
-    </div>
-    <div class="poll wf-poll u7l10-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Only <em>one</em> tile closes the loop. <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt right"><b>A</b> <span class="tex">x-y-2=0</span> | <span class="tex">(0,\ 3)</span> and <span class="tex">(4,\ 3)</span></div>
-        <div class="opt"><b>B</b> <span class="tex">y=x+2</span> | slope <span class="tex">0</span>, <span class="tex">b=3</span></div>
-        <div class="opt"><b>C</b> <span class="tex">y=x-2</span> | slope <span class="tex">3</span> through <span class="tex">(0,\ 0)</span></div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>A.</b> <span class="tex">x-y-2=0</span> is <span class="tex">y=x-2</span> ✓, and <span class="tex">(0,\ 3)</span>, <span class="tex">(4,\ 3)</span> is the flat line <span class="tex">y=3</span> ✓. B has the wrong <span class="tex">b</span>; C’s “slope 3 through the origin” is <span class="tex">y=3x</span>, not <span class="tex">y=3</span>. The ugliest-looking tile is the right one!</div>
-    </div>
-  </div></div>
-</section>
 
-<section class="card" data-ink="wuex" data-section="Warm-up check: the loop">
-  <h3 class="sub">Warm-up check: turn every half into <span class="tex">y=mx+b</span></h3>
-  <p>To check a match, turn <b>both</b> halves into <span class="tex">y=mx+b</span> (or <span class="tex">x=k</span>), then compare <span class="tex">m</span> <b>and</b> <span class="tex">b</span>. The same slope is not enough!</p>
-  <div class="explainer" data-explainer="dominoes"></div>
-</section>
+
+
 
 <!-- ================= at a glance ================= -->
 <section class="card" data-ink="ref" data-section="Unit 7 at a Glance">
@@ -125,7 +80,7 @@
 <section class="card" data-ink="s1" data-section="1. Graphing From a Table of Values">
   <div class="sec-h"><span class="badge">1</span><h2>Graphing From a Table of Values</h2></div>
   <div class="def">Substitute several <span class="tex">x</span>-values into the equation, solve for <span class="tex">y</span>, plot the ordered pairs, then draw <b>one straight line</b> through them across the whole grid.</div>
-  <div class="explainer" data-explainer="table"></div>
+  <div data-extra><div class="explainer" data-explainer="table"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -150,7 +105,7 @@
 <section class="card" data-ink="s2" data-section="2. Slope–Intercept Form Basics">
   <div class="sec-h"><span class="badge">2</span><h2>Slope–Intercept Form Basics</h2></div>
   <div class="def">In <span class="tex">y=\textcolor{#1f5bd6}{m}x+\textcolor{#12805a}{b}</span>, <span class="tex">m</span> is the <b class="u7l10-c-m">slope</b> and <span class="tex">b</span> is the <b class="u7l10-c-b"><span class="tex">y</span>-intercept</b>. If the equation is not solved for <span class="tex">y</span>, <b>isolate <span class="tex">y</span> first</b>.</div>
-  <div class="explainer" data-explainer="rearrange"></div>
+  <div data-extra><div class="explainer" data-explainer="rearrange"></div></div>
 </section>
 
 <section class="card example" data-ink="ex2" data-section="Example 2">
@@ -170,7 +125,7 @@
 <section class="card" data-ink="s3" data-section="3. Graphing Using Slope–Intercept Form">
   <div class="sec-h"><span class="badge">3</span><h2>Graphing Using Slope–Intercept Form</h2></div>
   <div class="def">Plot <span class="tex">(0,\ b)</span> first, then write <span class="tex">m=\dfrac{\text{rise}}{\text{run}}</span> and step <b>right by the run</b> and <b>up or down by the rise</b> to get a second point.</div>
-  <div class="explainer" data-explainer="stepper"></div>
+  <div data-extra><div class="explainer" data-explainer="stepper"></div></div>
 </section>
 
 <section class="card example" data-ink="ex3" data-section="Example 3">
@@ -188,6 +143,15 @@
   </div>
   <div class="space" id="ex3-space"></div>
   <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–7">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 10 · Questions 1–7</h2>
+  <p class="pr-t">Tables, slope–intercept basics and graphing.</p>
+  <div class="pr-chips n1"><span><b>1–7</b>Tables, slope–intercept basics and graphing</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 5.</span><a class="pill" href="../../../#/lesson/u7l10">Open the Practice site</a></div>
 </section>
 
 <!-- ================= 4. m and b ================= -->
@@ -214,7 +178,7 @@
 <section class="card" data-ink="s5" data-section="5. Equation From Slope and a Point">
   <div class="sec-h"><span class="badge">5</span><h2>Writing an Equation From Slope and a Point</h2></div>
   <div class="def">When the given point is <b>not</b> the <span class="tex">y</span>-intercept: put <span class="tex">m</span> into <span class="tex">y=mx+b</span>, <b>substitute the point</b>, <b>solve for <span class="tex">b</span></b>, then rewrite the equation.</div>
-  <div class="explainer" data-explainer="solveB"></div>
+  <div data-extra><div class="explainer" data-explainer="solveB"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -235,7 +199,7 @@
 <section class="card" data-ink="s6" data-section="6. Equation From Two Points">
   <div class="sec-h"><span class="badge">6</span><h2>Writing an Equation From Two Points</h2></div>
   <div class="def">Two points, no slope. <b>Step 1:</b> find <span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}</span>. <b>Step 2:</b> substitute <span class="tex">m</span> and <b>either</b> point into <span class="tex">y=mx+b</span> and solve for <span class="tex">b</span>.</div>
-  <div class="explainer" data-explainer="twoPts"></div>
+  <div data-extra><div class="explainer" data-explainer="twoPts"></div></div>
 </section>
 
 <section class="card example" data-ink="ex6" data-section="Example 6">
@@ -256,7 +220,7 @@
 <section class="card" data-ink="s7" data-section="7. General Form">
   <div class="sec-h"><span class="badge">7</span><h2>General Form</h2></div>
   <div class="def">General form is <span class="tex">Ax+By+C=0</span> with <b>integer</b> <span class="tex">A</span>, <span class="tex">B</span>, <span class="tex">C</span> and <b><span class="tex">A</span> positive</b>. Move terms across the equal sign (clearing fractions first) to convert. Find the intercepts by setting <span class="tex">y=0</span> or <span class="tex">x=0</span>.</div>
-  <div class="explainer" data-explainer="general"></div>
+  <div data-extra><div class="explainer" data-explainer="general"></div></div>
 </section>
 
 <section class="card example" data-ink="ex7" data-section="Example 7">
@@ -283,7 +247,7 @@
     <div class="def"><b>Vertical:</b> <span class="tex">x=k</span>. Every point has the same <span class="tex">x</span>. Slope <b>undefined</b>.</div>
   </div>
   <div class="def amber">For <b>general form</b>, the <b>two-intercept method</b> is usually the fastest graph: find both intercepts, plot them, join them.</div>
-  <div class="explainer" data-explainer="hv"></div>
+  <div data-extra><div class="explainer" data-explainer="hv"></div></div>
 </section>
 
 <section class="card example" data-ink="ex8" data-section="Example 8">
@@ -380,9 +344,68 @@
     <div class="part"><div class="pl">(c) Line <span class="tex">L_2</span> is perpendicular to <span class="tex">AB</span> through <span class="tex">Q(-4,\ 5)</span>. Determine its equation in general form.</div><div class="work" style="--h:210px"></div>
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Perpendicular, so <span class="tex">m=-\tfrac{1}{2}</span>.<br><span class="tex">5=-\tfrac{1}{2}(-4)+b\ \Rightarrow\ 5=2+b</span>, <span class="tex">b=3</span><br><span class="tex">y=-\tfrac{1}{2}x+3\ \Rightarrow\ 2y=-x+6</span><br><span class="tex">\boldsymbol{x+2y-6=0}</span></div></div></div>
   </div>
-  <div class="explainer" data-explainer="parperp"></div>
+  <div data-extra><div class="explainer" data-explainer="parperp"></div></div>
   <div class="space" id="ch3-space"></div>
   <button class="more" data-more="ch3-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Line Dominoes" id="wu" style="--wf-side: 380px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Line Dominoes</h2>
+  <p class="wf-rule">Touching halves must show the <b>same line</b>, in a different disguise. Tiles may be turned around. Each grid square is 1 unit.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u7l10-tiles" id="u7l10-tiles">
+      <div class="u7l10-tile" data-t="P"><span class="u7l10-tl">P</span>
+        <div class="u7l10-half">through<br><span class="tex">(5,\ 3)</span><br>and <span class="tex">(1,\ -1)</span></div>
+        <div class="u7l10-half"><div class="u7l10-mini" data-mini="P"></div></div></div>
+      <div class="u7l10-tile" data-t="Q"><span class="u7l10-tl">Q</span>
+        <div class="u7l10-half"><span class="tex">y=2x+1</span></div>
+        <div class="u7l10-half"><span class="tex">x+2=0</span></div></div>
+      <div class="u7l10-tile" data-t="R"><span class="u7l10-tl">R</span>
+        <div class="u7l10-half"><div class="u7l10-mini" data-mini="R"></div></div>
+        <div class="u7l10-half"><span class="tex">x+y-3=0</span></div></div>
+      <div class="u7l10-tile" data-t="S"><span class="u7l10-tl">S</span>
+        <div class="u7l10-half">slope <span class="tex">2</span><br>through<br><span class="tex">(3,\ 3)</span></div>
+        <div class="u7l10-half"><table class="u7l10-tt"><tr><th><span class="tex">x</span></th><th><span class="tex">y</span></th></tr><tr><td><span class="tex">-2</span></td><td><span class="tex">0</span></td></tr><tr><td><span class="tex">-2</span></td><td><span class="tex">1</span></td></tr><tr><td><span class="tex">-2</span></td><td><span class="tex">2</span></td></tr></table></div></div>
+      <div class="u7l10-tile" data-t="T"><span class="u7l10-tl">T</span>
+        <div class="u7l10-half"><div class="u7l10-mini" data-mini="T"></div></div>
+        <div class="u7l10-half"><table class="u7l10-tt"><tr><th><span class="tex">x</span></th><th><span class="tex">y</span></th></tr><tr><td><span class="tex">0</span></td><td><span class="tex">1</span></td></tr><tr><td><span class="tex">1</span></td><td><span class="tex">3</span></td></tr><tr><td><span class="tex">2</span></td><td><span class="tex">5</span></td></tr></table></div></div>
+      <div class="u7l10-tile u7l10-gap" id="u7l10-gap"><span class="u7l10-tl">?</span>
+        <div class="u7l10-half"><b>?</b></div>
+        <div class="u7l10-half"><b>?</b></div>
+        <div class="u7l10-gaptag">missing tile</div></div>
+    </div>
+    <div class="u7l10-wbtns">
+      <button type="button" class="pill" id="u7l10-wfill">Fill the gap</button>
+      <button type="button" class="pill" id="u7l10-wreset">Reset</button>
+      <span class="muted u7l10-wnote" id="u7l10-wnote">Guess first (the big one), then fill the gap.</span>
+    </div>
+    <p class="u7l10-social">Your turn: invent a domino with the same line in two disguises. Swap with a neighbour!</p>
+  </div><div class="wf-side">
+    <div class="u7l10-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Tile <b>Q</b> shows <span class="tex">y=2x+1</span>. Find its partner. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l10-wa"><div class="bk-ans">Tile <b>T</b>’s table: <span class="tex">x=0,\,1,\,2</span> in <span class="tex">y=2x+1</span> gives <span class="tex">1,\,3,\,5</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Tile <b>P</b>’s graph has slope 2 too. Is it a match for <span class="tex">y=2x+1</span>? Why? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l10-wa"><div class="bk-ans"><b>No.</b> Same slope, but it crosses the <span class="tex">y</span>-axis at <span class="tex">-3</span>, not <span class="tex">1</span>: it is <span class="tex">y=2x-3</span> (parallel). Its real partner is <b>S</b>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Which <em>two</em> halves have no partner? (The gap goes there!) <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l10-wa"><div class="bk-ans"><b>R</b>’s graph (<span class="tex">y=3</span>) and <b>P</b>’s two points (slope 1, <span class="tex">b=-2</span>: <span class="tex">y=x-2</span>).</div></div></div>
+    </div>
+    <div class="poll wf-poll u7l10-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Only <em>one</em> tile closes the loop. <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> <span class="tex">x-y-2=0</span> | <span class="tex">(0,\ 3)</span> and <span class="tex">(4,\ 3)</span></div>
+        <div class="opt"><b>B</b> <span class="tex">y=x+2</span> | slope <span class="tex">0</span>, <span class="tex">b=3</span></div>
+        <div class="opt"><b>C</b> <span class="tex">y=x-2</span> | slope <span class="tex">3</span> through <span class="tex">(0,\ 0)</span></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A.</b> <span class="tex">x-y-2=0</span> is <span class="tex">y=x-2</span> ✓, and <span class="tex">(0,\ 3)</span>, <span class="tex">(4,\ 3)</span> is the flat line <span class="tex">y=3</span> ✓. B has the wrong <span class="tex">b</span>; C’s “slope 3 through the origin” is <span class="tex">y=3x</span>, not <span class="tex">y=3</span>. The ugliest-looking tile is the right one!</div>
+    </div>
+  </div></div>
+</section>
+
+<section data-extra class="card" data-ink="wuex" data-section="Warm-up check: the loop">
+  <h3 class="sub">Warm-up check: turn every half into <span class="tex">y=mx+b</span></h3>
+  <p>To check a match, turn <b>both</b> halves into <span class="tex">y=mx+b</span> (or <span class="tex">x=k</span>), then compare <span class="tex">m</span> <b>and</b> <span class="tex">b</span>. The same slope is not enough!</p>
+  <div class="explainer" data-explainer="dominoes"></div>
 </section>
 
 <!-- ================= summary ================= -->
@@ -395,7 +418,7 @@
     <div><b>In context</b>, the slope is a rate with units and <span class="tex">b</span> is the start. Parallel lines: same slope. Perpendicular: flip it and change the sign.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u7l10">
-    <div><div class="kicker">Your turn</div><b>Assignment 10 — Unit Review: Equations of Lines</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 10 · Questions 8–26</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <div class="u7l10-review">
     <div class="u7l10-review-h"><span class="kicker">Up next</span><b>Unit 7 test.</b> <span class="muted">Shaky on an idea today? Go back to its lesson.</span></div>
@@ -420,7 +443,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u7l10.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u7l10', homeHref: '../../', title: '7.10 Unit 7 Review' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

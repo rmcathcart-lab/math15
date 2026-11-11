@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u7l9.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u7l9">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: The Head Start">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Head Start</h2>
+  <p class="wf-rule">The finish line is <b>72 m</b> from the start. Nobody changes speed. Who crosses it first?</p></div>
+  <div class="vw-tiles" style="--n:2;--fs:30px"><div><b>Tortoise</b>starts 60 m ahead<small>walks 1 m every second</small></div><div><b>Hare</b>starts at 0 m<small>runs 4 m every second</small></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>When does the hare catch up?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>The tortoise.</b> It only has 12 m to go, so it finishes in 12 seconds. The hare needs 72 ÷ 4 = 18 seconds. The hare would catch up at 80 m, but the race is over by then.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -45,48 +55,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Great Race" id="wu" style="--wf-side: 392px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Great Race</h2>
-  <p class="wf-rule">A made-up <b>60 m</b> race. The rabbit is so fast, it gives the others a <b>head start</b>. The graph shows the first 2 minutes; the rest is in the fog.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u7l9-wfig">
-      <div id="u7l9-race"></div>
-      <div class="u7l9-wbtns">
-        <button type="button" class="pill" id="u7l9-wfog">Lift the fog</button>
-        <button type="button" class="pill" id="u7l9-weq">Write the equations</button>
-        <button type="button" class="pill" id="u7l9-wreset">Reset</button>
-      </div>
-      <div class="u7l9-weqs" id="u7l9-weqs"></div>
-      <div class="u7l9-wnote muted" id="u7l9-wnote">Nobody changes speed. Guess first, then lift the fog.</div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u7l9-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How big is each racer’s <b>head start</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l9-wa"><div class="bk-ans">Rabbit <b>0 m</b>, turtle <b>30 m</b>, snail <b>50 m</b>: where each line starts on the <span class="tex">d</span>-axis.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How many metres does the rabbit run <b>each minute</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l9-wa"><div class="bk-ans"><b>10 m</b> each minute (20 m in 2 min).</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Whose line is <b>steepest</b>? Why? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l9-wa"><div class="bk-ans">The <b>rabbit’s</b>: it covers the most metres each minute. Steeper line = faster racer.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>The turtle’s speed: ___ metres per ___. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l9-wa"><div class="bk-ans"><b>5 metres per minute</b> (10 m in 2 min). The snail: 2.5 m per minute.</div></div></div>
-    </div>
-    <div class="poll wf-poll u7l9-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Nobody changes speed. Who crosses the finish line <b>first</b>? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> Rabbit</div>
-        <div class="opt"><b>B</b> Turtle</div>
-        <div class="opt right"><b>C</b> Snail</div>
-        <div class="opt"><b>D</b> A tie</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>C: the snail!</b> It needs only 10 more metres at 2.5 m per minute: <span class="tex">50+2.5t=60</span> gives <span class="tex">t=4</span> min. Rabbit: <span class="tex">10t=60</span>, <span class="tex">t=6</span>. Turtle: <span class="tex">30+5t=60</span>, <span class="tex">t=6</span>.</div>
-    </div>
-  </div></div>
-  <div class="bk-wq u7l9-photo">
-    <div class="q-line"><div class="q-num bonus">+</div><div><b>Photo finish!</b> Grab a ruler with your neighbour: who comes in <b>second</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-    <div class="u7l9-wa"><div class="bk-ans">The rabbit and the turtle <b>tie for second</b>: both reach 60 m at exactly 6 minutes (<span class="tex">10t=5t+30</span> gives <span class="tex">t=6</span>). A big head start wins early; a big speed wins later.</div></div>
-  </div>
-</section>
+
 
 <!-- ================= 1. Slope as a rate of change ================= -->
 <section class="card" data-ink="s1" data-section="1. Slope as a Rate of Change">
@@ -98,7 +67,7 @@
     <div class="u7l9-sign u7l9-sg-unit"><b>Name all three</b><div>the <b>quantity</b>, the <b>rate</b> and the <b>units</b>, not just the number</div></div>
   </div>
   <p>Watch a story and its graph together: each step of <b>1</b> along the horizontal axis changes the quantity by the <b>same</b> amount. That amount is the slope.</p>
-  <div class="explainer" data-explainer="rate"></div>
+  <div data-extra><div class="explainer" data-explainer="rate"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Answer with a sentence that has units.</b> “The distance increases by 70 km per hour”, not just “70”. A bare number doesn’t say <em>what</em> is changing, which <em>way</em>, or how <em>fast</em>.</div></div>
 </section>
 
@@ -119,7 +88,7 @@
   <button class="more" data-more="ex1-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s1b" data-section="1. Say it as a sentence">
+<section data-extra class="card" data-ink="s1b" data-section="1. Say it as a sentence">
   <h3 class="sub">Say it as a sentence</h3>
   <p>A rate sentence has four blanks, and the equation with its units fills all of them: the <b>sign</b> of <span class="tex">m</span> gives the direction, its <b>size</b> gives the number, and the units of <span class="tex">y</span> and <span class="tex">x</span> finish it.</p>
   <div class="explainer" data-explainer="sentence"></div>
@@ -194,6 +163,15 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–8">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 9 · Questions 1–8</h2>
+  <p class="pr-t">Say what the slope and the y-intercept mean.</p>
+  <div class="pr-chips n1"><span><b>1–8</b>Interpreting slope and y-intercept</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 6.</span><a class="pill" href="../../../#/lesson/u7l9">Open the Practice site</a></div>
+</section>
+
 <section class="card" data-ink="s3b" data-section="3. Forwards and backwards">
   <h3 class="sub">Use the equation forwards and backwards</h3>
   <p><b>Forwards</b>, the equation turns a number of locks into a cost: substitute and calculate. <b>Backwards</b>, it answers “how many locks gave this bill?”: substitute the cost and undo the steps in reverse order.</p>
@@ -214,7 +192,7 @@
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">0=-0.4t+18</span><br><span class="tex">0.4t=18</span><br><span class="tex">t=\boldsymbol{45}</span> <b>minutes</b></div></div></div>
   </div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Dividing by a decimal, no calculator.</b> <span class="tex">0.4t=18</span>: multiply both sides by 10 to get <span class="tex">4t=180</span>, then <span class="tex">t=45</span>.</div></div>
-  <div class="explainer" data-explainer="candle"></div>
+  <div data-extra><div class="explainer" data-explainer="candle"></div></div>
   <div class="space" id="ex4-space"></div>
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
@@ -258,11 +236,54 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s4b" data-section="4. Solving for the break-even point">
+<section data-extra class="card" data-ink="s4b" data-section="4. Solving for the break-even point">
   <h3 class="sub">Solving for the break-even point</h3>
   <p>Setting the two costs equal makes an equation with the variable on <b>both sides</b>. Keep it balanced: whatever you do to one side, do to the other.</p>
   <div class="explainer" data-explainer="even"></div>
-  <div class="part think"><div class="pl"><span class="think-tag">Think</span> Company C charges <span class="tex">C=0.20d+50</span>. Is Company C ever cheaper than Company A? How do their graphs compare?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Never.</b> Both charge $0.20 per km (same slope), so the lines are <b>parallel</b> and never cross. C starts $20 higher and stays $20 higher at every distance: there is no break-even point.</div></div></div>
+  <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Company C charges <span class="tex">C=0.20d+50</span>. Is Company C ever cheaper than Company A? How do their graphs compare?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Never.</b> Both charge $0.20 per km (same slope), so the lines are <b>parallel</b> and never cross. C starts $20 higher and stays $20 higher at every distance: there is no break-even point.</div></div></div>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Great Race" id="wu" style="--wf-side: 392px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Great Race</h2>
+  <p class="wf-rule">A made-up <b>60 m</b> race. The rabbit is so fast, it gives the others a <b>head start</b>. The graph shows the first 2 minutes; the rest is in the fog.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u7l9-wfig">
+      <div id="u7l9-race"></div>
+      <div class="u7l9-wbtns">
+        <button type="button" class="pill" id="u7l9-wfog">Lift the fog</button>
+        <button type="button" class="pill" id="u7l9-weq">Write the equations</button>
+        <button type="button" class="pill" id="u7l9-wreset">Reset</button>
+      </div>
+      <div class="u7l9-weqs" id="u7l9-weqs"></div>
+      <div class="u7l9-wnote muted" id="u7l9-wnote">Nobody changes speed. Guess first, then lift the fog.</div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u7l9-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How big is each racer’s <b>head start</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l9-wa"><div class="bk-ans">Rabbit <b>0 m</b>, turtle <b>30 m</b>, snail <b>50 m</b>: where each line starts on the <span class="tex">d</span>-axis.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>How many metres does the rabbit run <b>each minute</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l9-wa"><div class="bk-ans"><b>10 m</b> each minute (20 m in 2 min).</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Whose line is <b>steepest</b>? Why? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l9-wa"><div class="bk-ans">The <b>rabbit’s</b>: it covers the most metres each minute. Steeper line = faster racer.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>The turtle’s speed: ___ metres per ___. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l9-wa"><div class="bk-ans"><b>5 metres per minute</b> (10 m in 2 min). The snail: 2.5 m per minute.</div></div></div>
+    </div>
+    <div class="poll wf-poll u7l9-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Nobody changes speed. Who crosses the finish line <b>first</b>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Rabbit</div>
+        <div class="opt"><b>B</b> Turtle</div>
+        <div class="opt right"><b>C</b> Snail</div>
+        <div class="opt"><b>D</b> A tie</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: the snail!</b> It needs only 10 more metres at 2.5 m per minute: <span class="tex">50+2.5t=60</span> gives <span class="tex">t=4</span> min. Rabbit: <span class="tex">10t=60</span>, <span class="tex">t=6</span>. Turtle: <span class="tex">30+5t=60</span>, <span class="tex">t=6</span>.</div>
+    </div>
+  </div></div>
+  <div class="bk-wq u7l9-photo">
+    <div class="q-line"><div class="q-num bonus">+</div><div><b>Photo finish!</b> Grab a ruler with your neighbour: who comes in <b>second</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="u7l9-wa"><div class="bk-ans">The rabbit and the turtle <b>tie for second</b>: both reach 60 m at exactly 6 minutes (<span class="tex">10t=5t+30</span> gives <span class="tex">t=6</span>). A big head start wins early; a big speed wins later.</div></div>
+  </div>
 </section>
 
 <!-- ================= summary ================= -->
@@ -275,7 +296,7 @@
     <div><b>Compare two plans.</b> The smaller <span class="tex">b</span> wins at first; the smaller <span class="tex">m</span> wins later. Set them equal for the <b>break-even point</b>: <span class="tex">0.20d+30=0.10d+50</span> gives <span class="tex">d=200</span> km.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u7l9">
-    <div><div class="kicker">Your turn</div><b>Assignment 9 — Slope in Context: Interpreting Rates of Change</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 9 · Questions 9–16</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l10/">
     <div><div class="kicker">Next lesson</div><b>Lesson 10 — Unit Review: Equations of Lines</b><div class="muted">Every line comes down to <span class="tex">m</span> and <span class="tex">b</span>: write, graph and use them all together to get ready for the unit test.</div></div><span class="arrow">→</span>
@@ -288,7 +309,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u7l9.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u7l9', homeHref: '../../', title: '7.9 Slope in Context' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

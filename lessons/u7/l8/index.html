@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u7l8.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u7l8">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Sink the Ship">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Sink the Ship</h2>
+  <p class="wf-rule">A ship covers these four squares. <b>One short rule</b> describes every square on the ship. What is it?</p></div>
+  <div class="vw-q"><span class="tex">(3,\ 1)</span> &emsp; <span class="tex">(3,\ 2)</span> &emsp; <span class="tex">(3,\ 3)</span> &emsp; <span class="tex">(3,\ 4)</span></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>What stays the same? What changes?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><span class="tex">x=3</span>. The first number is always 3, and the second can be anything. The ship is a vertical line.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -43,45 +53,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Tic-Tac-Toe on a Grid" id="wu" style="--wf-side: 470px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Tic-Tac-Toe on a Grid</h2>
-  <p class="wf-rule">Every line of this board goes <b>straight across</b> or <b>straight up</b>.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div id="u7l8-board" class="u7l8-board"></div>
-    <div class="u7l8-wbtns"><button type="button" class="pill small" id="u7l8-xwin">X’s move</button><button type="button" class="pill small" id="u7l8-wreset">Reset</button><span class="muted u7l8-whint">After the big one, tap a card to draw its line.</span></div>
-  </div><div class="wf-side">
-    <div class="u7l8-wqs">
-      <div class="bk-wq">
-        <div class="q-line"><div class="q-num">1</div><div>It’s X’s turn. Where should X go to win? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l8-wa"><div class="bk-ans">The <b>bottom-right</b> square: it finishes X’s diagonal.</div></div>
-      </div>
-      <div class="bk-wq">
-        <div class="q-line"><div class="q-num">2</div><div>Line <b>P</b> goes straight up. Name three points on it. What stays the <b>same</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l8-wa"><div class="bk-ans">e.g. <span class="tex">(4,1)</span>, <span class="tex">(4,5)</span>, <span class="tex">(4,8)</span>. The <span class="tex">x</span>-coordinate is always <span class="tex">4</span>.</div></div>
-      </div>
-      <div class="bk-wq">
-        <div class="q-line"><div class="q-num">3</div><div>So line P is <span class="tex">x=4</span>. Name lines <b>Q</b>, <b>R</b> and <b>S</b> the same way. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u7l8-wa"><div class="bk-ans">Q: <span class="tex">x=7</span> · R: <span class="tex">y=3</span> · S: <span class="tex">y=6</span>. (Not “R is <span class="tex">x=3</span>”!)</div></div>
-      </div>
-    </div>
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> How many of these cards draw a line of <b>this</b> board? <b>Guess first.</b></div></div>
-      <div class="u7l8-cards" id="u7l8-cards"></div>
-      <div class="poll-opts u7l8-c4">
-        <div class="opt"><b>A</b> 1</div>
-        <div class="opt"><b>B</b> 2</div>
-        <div class="opt right"><b>C</b> 3</div>
-        <div class="opt"><b>D</b> 4</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>C: three cards.</b> <span class="tex">y-6=0</span> is <span class="tex">y=6</span> (S). <span class="tex">2x=14</span> is <span class="tex">x=7</span> (Q). <span class="tex">3=y</span> is <span class="tex">y=3</span> (R). But <span class="tex">x+y=7</span> has <b>both</b> letters, so it is slanted.</div>
-    </div>
-  </div></div>
-  <div class="bk-wq u7l8-early">
-    <div class="q-line"><div class="q-num bonus">+</div><div><b>Your turn:</b> write the missing board line P on a card in <b>disguise</b>. Can your neighbour unmask it? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-    <div class="u7l8-wa"><div class="bk-ans">P is <span class="tex">x=4</span>. Disguises: <span class="tex">x-4=0</span>, <span class="tex">3x=12</span>, <span class="tex">4=x</span>, <span class="tex">2x-8=0</span>, <span class="tex">x+1=5</span>, …</div></div>
-  </div>
-</section>
+
 
 <!-- ================= 1. Horizontal ================= -->
 <section class="card" data-ink="s1" data-section="1. Horizontal Lines: y = k">
@@ -119,7 +91,7 @@
   <div class="sec-h"><span class="badge">2</span><h2>Vertical Lines: <span class="tex">x=k</span></h2></div>
   <div class="def amber">Every point on a vertical line shares the <b>same <span class="tex">x</span>-coordinate</b>, so its equation is <span class="tex">x=k</span> and <span class="tex">y</span> never appears. <span class="tex">(1,-5)</span>, <span class="tex">(1,0)</span> and <span class="tex">(1,6)</span> all lie on <span class="tex">x=1</span>.</div>
   <p>Here <span class="tex">x</span> never changes while <span class="tex">y</span> does, so the <b class="u7l8-crun">run</b> is <span class="tex">0</span>, and rise over run would divide by zero: every vertical line has an <b>undefined</b> slope.</p>
-  <div class="explainer" data-explainer="pinnedV"></div>
+  <div data-extra><div class="explainer" data-explainer="pinnedV"></div></div>
 </section>
 
 <section class="card example" data-ink="ex2" data-section="Example 2">
@@ -158,7 +130,7 @@
     </div>
   </div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>The classic error</b> is drawing <span class="tex">x=3</span> as a flat line through <span class="tex">3</span> on the <span class="tex">y</span>-axis. Compare the two lines in the picture: both go through the number <span class="tex">3</span>, but on <b>different axes</b>.</div></div>
-  <div class="explainer" data-explainer="mixup"></div>
+  <div data-extra><div class="explainer" data-explainer="mixup"></div></div>
 </section>
 
 <section class="card" data-ink="s3b" data-section="3. Drag the point">
@@ -193,9 +165,18 @@
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans">(a) horizontal, e.g. <span class="tex">(0,-2)</span> · (b) vertical, e.g. <span class="tex">(7,0)</span> · (c) neither (slope <span class="tex">4</span>) · (d) vertical: the <span class="tex">y</span>-axis, e.g. <span class="tex">(0,5)</span>. Any point with the fixed coordinate works, like <span class="tex">(3,-2)</span> for (a).</div></div>
     </div>
   </div>
-  <div class="explainer u7l8-exgap" data-explainer="sorter"></div>
+  <div data-extra><div class="explainer u7l8-exgap" data-explainer="sorter"></div></div>
   <div class="space" id="ex3-space"></div>
   <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–6">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 8 · Questions 1–6</h2>
+  <p class="pr-t">Horizontal and vertical lines.</p>
+  <div class="pr-chips n1"><span><b>1–6</b>Horizontal and vertical lines</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 5.</span><a class="pill" href="../../../#/lesson/u7l8">Open the Practice site</a></div>
 </section>
 
 <!-- ================= 4. Strategy ================= -->
@@ -211,7 +192,7 @@
   <div class="explainer" data-explainer="flow"></div>
 </section>
 
-<section class="card" data-ink="s4b" data-section="4. Graph it">
+<section data-extra class="card" data-ink="s4b" data-section="4. Graph it">
   <h3 class="sub">Now graph it</h3>
   <p>Each route ends the same way: <b>two or more points</b>, joined with a ruler, arrows on both ends.</p>
   <div class="explainer" data-explainer="graphAny"></div>
@@ -247,7 +228,7 @@
 <section class="card" data-ink="s5" data-section="5. Mixed Practice">
   <div class="sec-h"><span class="badge">5</span><h2>Mixed Practice</h2></div>
   <p>Now the form is not announced: <b>read the equation first</b>, decide which of the three routes is cheapest, then graph. Constant-only equations (<span class="tex">y=k</span>, <span class="tex">x=k</span>) are the quickest of all: no table needed.</p>
-  <div class="explainer" data-explainer="graphMix"></div>
+  <div data-extra><div class="explainer" data-explainer="graphMix"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -272,6 +253,46 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Tic-Tac-Toe on a Grid" id="wu" style="--wf-side: 470px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Tic-Tac-Toe on a Grid</h2>
+  <p class="wf-rule">Every line of this board goes <b>straight across</b> or <b>straight up</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div id="u7l8-board" class="u7l8-board"></div>
+    <div class="u7l8-wbtns"><button type="button" class="pill small" id="u7l8-xwin">X’s move</button><button type="button" class="pill small" id="u7l8-wreset">Reset</button><span class="muted u7l8-whint">After the big one, tap a card to draw its line.</span></div>
+  </div><div class="wf-side">
+    <div class="u7l8-wqs">
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">1</div><div>It’s X’s turn. Where should X go to win? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l8-wa"><div class="bk-ans">The <b>bottom-right</b> square: it finishes X’s diagonal.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">2</div><div>Line <b>P</b> goes straight up. Name three points on it. What stays the <b>same</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l8-wa"><div class="bk-ans">e.g. <span class="tex">(4,1)</span>, <span class="tex">(4,5)</span>, <span class="tex">(4,8)</span>. The <span class="tex">x</span>-coordinate is always <span class="tex">4</span>.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">3</div><div>So line P is <span class="tex">x=4</span>. Name lines <b>Q</b>, <b>R</b> and <b>S</b> the same way. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u7l8-wa"><div class="bk-ans">Q: <span class="tex">x=7</span> · R: <span class="tex">y=3</span> · S: <span class="tex">y=6</span>. (Not “R is <span class="tex">x=3</span>”!)</div></div>
+      </div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> How many of these cards draw a line of <b>this</b> board? <b>Guess first.</b></div></div>
+      <div class="u7l8-cards" id="u7l8-cards"></div>
+      <div class="poll-opts u7l8-c4">
+        <div class="opt"><b>A</b> 1</div>
+        <div class="opt"><b>B</b> 2</div>
+        <div class="opt right"><b>C</b> 3</div>
+        <div class="opt"><b>D</b> 4</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: three cards.</b> <span class="tex">y-6=0</span> is <span class="tex">y=6</span> (S). <span class="tex">2x=14</span> is <span class="tex">x=7</span> (Q). <span class="tex">3=y</span> is <span class="tex">y=3</span> (R). But <span class="tex">x+y=7</span> has <b>both</b> letters, so it is slanted.</div>
+    </div>
+  </div></div>
+  <div class="bk-wq u7l8-early">
+    <div class="q-line"><div class="q-num bonus">+</div><div><b>Your turn:</b> write the missing board line P on a card in <b>disguise</b>. Can your neighbour unmask it? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+    <div class="u7l8-wa"><div class="bk-ans">P is <span class="tex">x=4</span>. Disguises: <span class="tex">x-4=0</span>, <span class="tex">3x=12</span>, <span class="tex">4=x</span>, <span class="tex">2x-8=0</span>, <span class="tex">x+1=5</span>, …</div></div>
+  </div>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -282,7 +303,7 @@
     <div><b>Any form, three questions.</b> (1) <span class="tex">y=k</span> or <span class="tex">x=k</span>: graph directly. (2) <span class="tex">y=mx+b</span>: plot <span class="tex">(0,b)</span>, count the slope. (3) <span class="tex">Ax+By+C=0</span>: two intercepts, join them.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u7l8">
-    <div><div class="kicker">Your turn</div><b>Assignment 8 — Graphing Horizontal Lines, Vertical Lines, and Any Form</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 8 · Questions 7–16</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l9/">
     <div><div class="kicker">Next lesson</div><b>Lesson 9 — Slope in Context: Interpreting Rates of Change</b><div class="muted">Slope becomes a rate with units, and <span class="tex">b</span> becomes the starting value.</div></div><span class="arrow">→</span>
@@ -295,7 +316,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u7l8.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u7l8', homeHref: '../../', title: '7.8 Horizontal, Vertical, Any Form' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>
