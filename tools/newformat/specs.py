@@ -1,3 +1,4 @@
+from pics import *
 T = lambda x: '<span class="tex">%s</span>' % x
 BIG = lambda html: f'<div class="vw-q">{html}</div>'
 SPECS = {}
@@ -28,7 +29,7 @@ def grid_svg(cols, rows, marks, cell=46, extra=''):
     """A bare grid (no axes, no numbers). marks: [(col, row, text, colour)] at grid crossings, rows counted from the bottom."""
     W, H = cols * cell, rows * cell
     ln = ''.join(f'<line x1="{c*cell}" y1="0" x2="{c*cell}" y2="{H}"/>' for c in range(cols + 1)) + ''.join(f'<line x1="0" y1="{r*cell}" x2="{W}" y2="{r*cell}"/>' for r in range(rows + 1))
-    mk = ''.join(f'<text x="{c*cell}" y="{H - r*cell}" fill="{col}" font-size="{int(cell*.9)}" font-weight="800" text-anchor="middle" dominant-baseline="central">{t}</text>' for c, r, t, col in marks)
+    mk = ''.join(f'<text x="{c*cell}" y="{H - r*cell}" fill="{col}" font-size="{int(cell*.9)}" font-weight="800" text-anchor="middle" dominant-baseline="central">{t}<animate attributeName="opacity" values="1;.3;1" dur="1.8s" begin="{i*.4}s" repeatCount="indefinite"/></text>' for i, (c, r, t, col) in enumerate(marks))
     return f'<svg class="vw-grid" viewBox="-24 -24 {W+48} {H+48}" style="max-height:{H+48}px"><g stroke="#cfc8b8" stroke-width="1.5">{ln}</g>{extra}{mk}</svg>'
 PIC = lambda inner, cap='': f'<div class="vw-pic">{inner}{("<p>" + cap + "</p>") if cap else ""}</div>'
 
@@ -217,14 +218,14 @@ SPECS['u1l1'] = dict(
     extra_cards=['s2b', 's3b'], extra_expl=['chips', 'signs', 'sub'],
     practice=PR('ex3', '1–10', '11–16', 'Integer operations, then the order of operations.', [('1–4', 'Adding and subtracting'), ('5–7', 'Multiplying and dividing'), ('8–10', 'Order of operations')], 8))
 SPECS['u1l2'] = dict(
-    warm=dict(title='The Cookie Recipe', rule='How many scoops?',
+    warm=dict(pic=COOKIE, title='The Cookie Recipe', rule='How many scoops?',
               body=BIG(f'The recipe needs {T(r"1\tfrac12")} cups of flour.<small>Your little brother hid every measuring cup except the {T(r"\tfrac13")} cup.</small>'),
               nudge='How could you check with a drawing?',
               reveal=f'<b>{T(r"4\tfrac12")} scoops.</b> Three scoops make 1 cup, so {T(r"1\tfrac12")} cups takes {T(r"3+1\tfrac12=4\tfrac12")} scoops. That is {T(r"1\tfrac12\div\tfrac13")}.'),
     extra_cards=['s1b', 's2b', 's3c', 's4b'], extra_expl=['equiv', 'times', 'fbedmas', 'decimals'],
     practice=PR('ex3', '1–7', '8–16', 'Equivalent fractions, then adding, subtracting, multiplying and dividing.', [('1–2', 'Equivalent fractions and simplifying'), ('3–7', 'Operations with fractions and mixed numbers')], 5))
 SPECS['u1l3'] = dict(
-    warm=dict(title='Together Again', rule='How many years until both kinds are out together again?',
+    warm=dict(pic=CICADA, title='Together Again', rule='How many years until both kinds are out together again?',
               body=BIG('Some cicadas come out of the ground every <b>13 years</b>. Others come out every <b>17 years</b>.<small>Both kinds came out this year.</small>'),
               nudge='Why can’t it be sooner?',
               reveal=f'<b>221 years.</b> 13 and 17 share no factors, so the first year both lists hit is {T(r"13\times17=221")}.'),
@@ -238,7 +239,7 @@ SPECS['u1l4'] = dict(
     extra_cards=['s2b', 's3b', 's4b'], extra_expl=['nwi', 'asFrac', 'perfectSq', 'order'],
     practice=PR('ex4', '1–8', '9–14', 'Name the sets, then reason about them.', [('1–5', 'Naming the sets'), ('6–8', 'Reasoning about the sets')], 6))
 SPECS['u1l5'] = dict(
-    warm=dict(title='The Photo Wall', rule='About how many photos wide will the wall be?',
+    warm=dict(pic=PHOTOS, title='The Photo Wall', rule='About how many photos wide will the wall be?',
               body=BIG('The whole school brings in <b>200 photos</b> for one giant <b>square</b> wall.<small>Every photo is the same size.</small>'),
               nudge='How close can you get without a calculator?',
               reveal=f'<b>About 14.</b> {T(r"14\times14=196")}, just under 200, and {T(r"15\times15=225")} is too many.'),
@@ -250,20 +251,8 @@ SPECS['u1l6'] = dict(
               reveal=f'<b>A.</b> Put each one under a single root: {T(r"2\sqrt5=\sqrt{20}")}, {T(r"3\sqrt2=\sqrt{18}")} and {T(r"\sqrt{19}")}.'),
     extra_expl=['area', 'order', 'again'],
     practice=PR('ex3', '1–7', '8–14', 'Entire to mixed, then mixed to entire.', [('1–2', 'Vocabulary'), ('3–5', 'Entire to mixed'), ('6–7', 'Mixed to entire')], 5))
-def _die(x, y, s, pips):
-    r = s * .16; pr = s * .085
-    pos = {'c': (.5, .5), 'tl': (.27, .27), 'tr': (.73, .27), 'bl': (.27, .73), 'br': (.73, .73), 'ml': (.27, .5), 'mr': (.73, .5)}
-    d = f'<rect x="{x}" y="{y}" width="{s}" height="{s}" rx="{r}" fill="#fffdf6" stroke="#4a4436" stroke-width="{max(2.5, s*.03):.1f}"/>'
-    return d + ''.join(f'<circle cx="{x + s*pos[k][0]:.1f}" cy="{y + s*pos[k][1]:.1f}" r="{pr:.1f}" fill="#c93a33"/>' for k in pips)
-DICE = ('<svg viewBox="0 0 330 250" role="img" aria-label="A small die beside a much bigger die">'
-        + _die(20, 172, 58, ['tl', 'c', 'br']) + _die(120, 40, 190, ['tl', 'tr', 'c', 'bl', 'br'])
-        + '<g stroke="#2b55a0" stroke-width="3" stroke-linecap="round"><line x1="104" y1="42" x2="104" y2="228"/><line x1="96" y1="42" x2="112" y2="42"/><line x1="96" y1="228" x2="112" y2="228"/></g>'
-        + '<text x="92" y="128" text-anchor="end" font-size="34" font-weight="800" fill="#2b55a0">?</text>'
-        + '<g stroke="#6b6557" stroke-width="2.5" stroke-linecap="round"><line x1="8" y1="174" x2="8" y2="228"/><line x1="3" y1="174" x2="13" y2="174"/><line x1="3" y1="228" x2="13" y2="228"/></g>'
-        + '</svg>')
 SPECS['u1l7'] = dict(
-    warm=dict(title='The Giant Die', rule='How many times as tall as a normal die is the giant one?',
-              pic=DICE,
+    warm=dict(pic=DICE, title='The Giant Die', rule='How many times as tall as a normal die is the giant one?',
               body=BIG('A toy store sells a giant die that holds exactly <b>16 normal dice</b>.'),
               nudge='Could it be a whole number?',
               reveal=f'<b>About 2.5 times.</b> A die 2 tall holds {T(r"2\times2\times2=8")} and a die 3 tall holds 27, so 16 is in between. The exact height is {T(r"\sqrt[3]{16}")}.'),
@@ -279,7 +268,7 @@ SPECS['u1l8'] = dict(
 
 # ======================= Unit 2 =======================
 SPECS['u2l1'] = dict(
-    warm=dict(title='Pass It On', rule='In which round does a single round first reach more than <b>1000</b> people?',
+    warm=dict(pic=TREE, title='Pass It On', rule='In which round does a single round first reach more than <b>1000</b> people?',
               body=BIG('You send a meme to <b>3 friends</b>.<small>Each of them sends it to 3 new people. Then each of those sends it to 3 new people, and so on.</small>'),
               nudge='How fast do the rounds grow?',
               reveal=f'<b>Round 7.</b> The rounds go 3, 9, 27, 81, 243, 729, 2187. That is {T("3^7=2187")}.'),
@@ -287,14 +276,14 @@ SPECS['u2l1'] = dict(
     replace=[(' Watch the two kinds of power side by side as the exponent grows.</p>', '<span data-extra> Watch the two kinds of power side by side as the exponent grows.</span></p>')],
     practice=PR('ex3', '1–6', '7–13', 'Vocabulary and evaluating powers.', [('1–6', 'Vocabulary and evaluating')], 5))
 SPECS['u2l2'] = dict(
-    warm=dict(title='Boxes Inside Boxes', rule='How many candies are on the truck?',
+    warm=dict(pic=NEST, title='Boxes Inside Boxes', rule='How many candies are on the truck?',
               body=BIG('A bag holds <b>5</b> candies. A box holds <b>5</b> bags.<small>A crate holds 5 boxes. A truck holds 5 crates.</small>'),
               nudge='Is there a quick way to write it?',
               reveal=f'<b>625.</b> {T(r"5\times5\times5\times5=5^4=625")}.'),
     extra_cards=['s3b'], extra_expl=['coefDiv', 'chain'],
     practice=PR('ex4', '1–7', '8–14', 'The Quotient Law, then the Power of a Power Law.', [('1–4', 'The Quotient Law'), ('5–7', 'Power of a power')], 5))
 SPECS['u2l3'] = dict(
-    warm=dict(title='Supersize It!', rule='How many normal dice fit inside the giant one?',
+    warm=dict(pic=SUPER, title='Supersize It!', rule='How many normal dice fit inside the giant one?',
               body=BIG('A giant die is <b>10 times as long</b>, <b>10 times as wide</b> and <b>10 times as tall</b> as a normal die.'),
               nudge='Why isn’t it 30?',
               reveal=f'<b>1000.</b> {T(r"10\times10\times10=10^3")}: 10 along, 10 across, 10 layers high.'),
@@ -309,14 +298,14 @@ SPECS['u2l4'] = dict(
     extra_cards=['s3b'], extra_expl=['which', 'columns'],
     practice=PR('ex3', '1–5', '6–14', 'Combine two laws at a time.', [('1–5', 'Two-law combinations')], 4))
 SPECS['u2l5'] = dict(
-    warm=dict(title='Fold to the Moon', rule='About how many folds until the stack reaches the Moon?',
+    warm=dict(pic=MOON, title='Fold to the Moon', rule='About how many folds until the stack reaches the Moon?',
               body=BIG('A sheet of paper is <b>0.1 mm</b> thick. Every fold <b>doubles</b> the stack.<small>The Moon is 384 400 km away. Pretend you can keep folding.</small>'),
               nudge='Hundreds? Thousands? Millions?',
               reveal=f'<b>Only 42 folds.</b> Doubling 42 times multiplies by {T("2^{42}")}, about 4.4 trillion, which turns 0.1 mm into about 440 000 km.'),
     extra_cards=['s4b'], extra_expl=['zcancel', 'zsimp'],
     practice=PR('ex3', '1–7', '8–13', 'Zero exponents on numbers, then on variables.', [('1–5', 'Zero exponents with numbers'), ('6–7', 'Variables')], 6))
 SPECS['u2l6'] = dict(
-    warm=dict(title='The Fridge Mould', rule='How big was the spot <b>6 hours earlier</b>?',
+    warm=dict(pic=MOULD, title='The Fridge Mould', rule='How big was the spot <b>6 hours earlier</b>?',
               body=BIG('A spot of mould <b>triples</b> in size every hour.<small>Right now it covers 81 cm².</small>'),
               nudge='Keep going back, one hour at a time.',
               reveal=f'{T(r"\tfrac19")} <b>cm².</b> Going back, divide by 3 each hour: 81, 27, 9, 3, 1, {T(r"\tfrac13")}, {T(r"\tfrac19")}. The pattern doesn’t stop at 1.'),
@@ -336,7 +325,7 @@ SPECS['u2l8'] = dict(
     extra_cards=['s4b'], extra_expl=['places', 'toStd', 'ladder'],
     practice=PR('ex3', '1–7', '8–15', 'Convert between standard and scientific notation.', [('1–7', 'Converting between forms')], 5))
 SPECS['u2l9'] = dict(
-    warm=dict(title='One Million Cubes', rule='How tall is the giant cube?',
+    warm=dict(pic=CUBE, title='One Million Cubes', rule='How tall is the giant cube?',
               body=BIG('A unit cube is <b>1 cm</b> on each edge.<small>Stack exactly one million of them into one giant cube.</small>'),
               nudge='Taller than you? Taller than the school?',
               reveal=f'<b>100 cm, just 1 metre.</b> {T(r"100\times100\times100=1\,000\,000")}, so each edge is 100 cubes long.'),
@@ -457,34 +446,34 @@ SPECS['u4l7'] = dict(
 
 # ======================= Unit 6 =======================
 SPECS['u6l1'] = dict(
-    warm=dict(title='Will It Fit?', rule='What is the longest thin rod that can lie flat on the floor of the trunk?',
+    warm=dict(pic=TRUNK, title='Will It Fit?', rule='What is the longest thin rod that can lie flat on the floor of the trunk?',
               body=BIG('The floor of a car trunk is a rectangle, <b>120 cm</b> by <b>50 cm</b>.'),
               nudge='Longer than 120 cm?',
               reveal=f'<b>130 cm.</b> Lay it corner to corner: {T(r"120^2+50^2=14\,400+2\,500=16\,900=130^2")}.'),
     extra_cards=['s2b'], extra_expl=['nameSides', 'verify', 'simplify', 'decide'],
     practice=PR('ex3', '1–8', '9–15', 'Name the sides, verify the theorem, find the hypotenuse.', [('1–3', 'Naming the sides'), ('4–8', 'Verifying, and finding the hypotenuse')], 6))
 SPECS['u6l2'] = dict(
-    warm=dict(title='The Elevator', rule='How many floors did you travel?',
+    warm=dict(pic=ELEVATOR, title='The Elevator', rule='How many floors did you travel?',
               body=BIG(f'You park on floor {T("-3")} and ride the elevator up to floor <b>5</b>.'),
               nudge='Count them.', reveal=f'<b>8 floors.</b> Three floors up to floor 0, then five more: {T("5-(-3)=8")}.'),
     extra_cards=['s2b', 's2c', 's3b'], extra_expl=['segIntro', 'lengthsV'],
     practice=PR('ex4', '1–6', '7–13', 'Find each length from the coordinates.', [('1–6', 'Finding lengths from coordinates')], 5))
 SPECS['u6l3'] = dict(
-    warm=dict(title='Drone vs. Delivery Truck', rule='How far does the drone fly?',
+    warm=dict(pic=DRONE, title='Drone vs. Delivery Truck', rule='How far does the drone fly?',
               body=BIG('To reach the farm, the truck drives <b>12 blocks east</b>, then <b>5 blocks north</b>: 17 blocks.<small>The drone flies there in a straight line.</small>'),
               nudge='More than 12? Less than 17?',
               reveal=f'<b>13 blocks.</b> The drone flies the hypotenuse: {T(r"12^2+5^2=169=13^2")}.'),
     extra_cards=['s1b', 's2b'], extra_expl=['lift', 'simplify', 'map'],
     practice=PR('ex3', '1–7', '8–15', 'Build the right triangle, then use the distance formula.', [('1–3', 'Building the right triangle'), ('4–7', 'The distance formula')], 5))
 SPECS['u6l4'] = dict(
-    warm=dict(title='Meet Me Halfway', rule='They walk straight toward each other and meet exactly halfway. Where?',
+    warm=dict(pic=HALFWAY, title='Meet Me Halfway', rule='They walk straight toward each other and meet exactly halfway. Where?',
               body=BIG(f'Ava is at {T("(2,\\ 1)")}. Dev is at {T("(8,\\ 5)")}.'),
               nudge='How could you check?',
               reveal=f'{T("(5,\\ 3)")}. Halfway between 2 and 8 is 5, and halfway between 1 and 5 is 3.'),
     extra_expl=['halfway', 'midcount', 'trail'],
     practice=PR('ex4', '1–5', '6–15', 'Find each midpoint.', [('1–5', 'Finding midpoints')], 4))
 SPECS['u6l5'] = dict(
-    warm=dict(title='The Other End of the Zip-Line', rule='Where is the hidden end?',
+    warm=dict(pic=ZIP, title='The Other End of the Zip-Line', rule='Where is the hidden end?',
               body=BIG(f'A zip-line starts at {T("S(2,\\ 9)")}.<small>Its exact middle is at {T("M(6,\\ 6)")}.</small>'),
               nudge='How did the line get from S to M?',
               reveal=f'{T("E(10,\\ 3)")}. From S to M is 4 right and 3 down. Do the same again from M.'),
@@ -521,7 +510,7 @@ SPECS['u6l9'] = dict(
     extra_cards=['s2b', 's3c'], extra_expl=['translate', 'rotate', 'dialK'],
     practice=PR('ex4', '1–5', '6–15', 'Parallel segments, then perpendicular segments.', [('1–2', 'Slope review and parallel segments'), ('3–5', 'Perpendicular segments')], 4))
 SPECS['u6l10'] = dict(
-    warm=dict(title='The Missing Corner', rule='Where is the fourth corner?',
+    warm=dict(pic=CORNER, title='The Missing Corner', rule='Where is the fourth corner?',
               body=BIG(f'Three corners of a <b>square</b> are {T("(1,\\ 1)")}, {T("(4,\\ 2)")} and {T("(3,\\ 5)")}.'),
               nudge='How do you get from one corner to the next?',
               reveal=f'{T("(0,\\ 4)")}. From (1, 1) to (4, 2) is 3 right, 1 up. The opposite side makes the same move, so go 3 left and 1 down from (3, 5).'),
@@ -552,21 +541,21 @@ SPECS['u7l3'] = dict(
     extra_expl=['readMB', 'start', 'overOne', 'fracStep'],
     practice=PR('ex4', '1–6', '7–14', 'Read the slope and the y-intercept, then graph.', [('1–6', 'Reading m and b, then graphing')], 5))
 SPECS['u7l4'] = dict(
-    warm=dict(title='The Taxi', rule='How far can you go with <b>$20</b>?',
+    warm=dict(pic=TAXI, title='The Taxi', rule='How far can you go with <b>$20</b>?',
               body=BIG('A taxi costs <b>$4</b> just to get in.<small>After that it costs $2 for every kilometre.</small>'),
               nudge='How did you work it out?',
               reveal=f'<b>8 km.</b> $20 take away the $4 leaves $16, and $16 buys 8 km at $2 each. As an equation: {T("y=2x+4")}.'),
     extra_cards=['s1b', 's2b', 's4b'], extra_expl=['sub', 'story'],
     practice=PR('ex3', '1–4', '5–15', 'Write the equation from a slope and y-intercept, then from graphs and tables.', [('1', 'From a given slope and y-intercept'), ('2–4', 'From graphs and tables')], 3))
 SPECS['u7l5'] = dict(
-    warm=dict(title='The Piggy Bank', rule='How much was in the jar at the very start?',
+    warm=dict(pic=JAR, title='The Piggy Bank', rule='How much was in the jar at the very start?',
               body=BIG('You add the <b>same amount</b> to a jar every week.<small>After 3 weeks it holds $29. After 5 weeks it holds $41.</small>'),
               nudge='How much goes in each week?',
               reveal='<b>$11.</b> Two weeks added $12, so $6 goes in each week. Going back 3 weeks from $29: 29 − 18 = 11.'),
     extra_expl=['family', 'drop1', 'drop2', 'drop3', 'drop4', 'hop', 'half'],
     practice=PR('ex3', '1–6', '7–15', 'Substitute the point, solve for b, write the equation.', [('1–6', 'Substitute and solve')], 4))
 SPECS['u7l6'] = dict(
-    warm=dict(title='Candle Clues', rule='How tall was the candle when it was first lit?',
+    warm=dict(pic=CANDLE, title='Candle Clues', rule='How tall was the candle when it was first lit?',
               body=BIG('A candle burns down at a steady rate.<small>After 2 hours it is 20 cm tall. After 5 hours it is 14 cm tall.</small>'),
               nudge='And when will it be all gone?',
               reveal='<b>24 cm.</b> It lost 6 cm in 3 hours, so 2 cm every hour. Two hours before the first clue it was 20 + 4 = 24 cm. It is all gone after 12 hours.'),
@@ -580,7 +569,7 @@ SPECS['u7l7'] = dict(
     extra_cards=['s2b', 's2c'], extra_expl=['zeroMeter', 'solveYFrac'],
     practice=PR('ex4', '1–4', '5–15', 'Convert between the two forms.', [('1–4', 'Converting between the two forms')], 3))
 SPECS['u7l8'] = dict(
-    warm=dict(title='Sink the Ship', rule='A ship covers these four squares. <b>One short rule</b> describes every square on the ship. What is it?',
+    warm=dict(pic=SHIP, title='Sink the Ship', rule='A ship covers these four squares. <b>One short rule</b> describes every square on the ship. What is it?',
               body=BIG(f'{T("(3,\\ 1)")} &emsp; {T("(3,\\ 2)")} &emsp; {T("(3,\\ 3)")} &emsp; {T("(3,\\ 4)")}'),
               nudge='What stays the same? What changes?',
               reveal=f'{T("x=3")}. The first number is always 3, and the second can be anything. The ship is a vertical line.'),
@@ -604,7 +593,7 @@ SPECS['u7l10'] = dict(
 
 # ======================= Unit 8 =======================
 SPECS['u8l1'] = dict(
-    warm=dict(title='Two Mystery Numbers', rule='What are my two numbers?',
+    warm=dict(pic=TWOQ, title='Two Mystery Numbers', rule='What are my two numbers?',
               body=BIG('“My two numbers <b>add to 10</b>.”<small>“The bigger one minus the smaller one is 4.”</small>'),
               nudge='How many pairs fit the first clue on its own?',
               reveal='<b>7 and 3.</b> Lots of pairs add to 10, and lots of pairs differ by 4, but only one pair does both.'),
@@ -625,7 +614,7 @@ SPECS['u8l3'] = dict(
     extra_cards=['s2b', 's3b', 's4b'], extra_expl=['brackets', 'checkBoth'],
     practice=PR('ex3', '1–3', '4–6', 'Substitute, solve, back-substitute.', [('1–3', 'Substitute, solve, back-substitute')], 2))
 SPECS['u8l4'] = dict(
-    warm=dict(title='Movie Night', rule='How much is one ticket?',
+    warm=dict(pic=MOVIE, title='Movie Night', rule='How much is one ticket?',
               body=BIG('3 tickets and 1 popcorn cost <b>$22</b>.<small>2 tickets and 5 popcorn cost $32.</small>'),
               nudge='Could a ticket be $5? Try it.',
               reveal='<b>$6.</b> Popcorn is $4. Check: 3 × 6 + 4 = 22 and 2 × 6 + 5 × 4 = 32.'),
@@ -639,13 +628,13 @@ SPECS['u8l5'] = dict(
     move_with_warm=['warm2'], extra_cards=['s2b', 's3b', 's4b'], extra_expl=['balance', 'zero'],
     practice=PR('ex2', '1–5', '6–15', 'Eliminate by subtracting, then by adding.', [('1–3', 'Eliminate by subtraction'), ('4–5', 'Eliminate by addition')], 4))
 SPECS['u8l6'] = dict(
-    warm=dict(title='The School Store', rule='How much for <b>1 pencil and 1 eraser</b>?',
+    warm=dict(pic=STORE, title='The School Store', rule='How much for <b>1 pencil and 1 eraser</b>?',
               body=BIG('3 pencils and 2 erasers cost <b>$7</b>.<small>2 pencils and 3 erasers cost $8.</small>'),
               reveal='<b>$3.</b> Put the two orders together: 5 pencils and 5 erasers cost $15, so one of each costs $3.'),
     move_with_warm=['warm2'], extra_cards=['s2b', 's4b'], extra_expl=['stuck', 'route'],
     practice=PR('ex2', '1–5', '6–14', 'Multiply one equation, then both.', [('1', 'Identify the multiplier'), ('2–3', 'Multiply one equation'), ('4–5', 'Multiply both equations')], 4))
 SPECS['u8l7'] = dict(
-    warm=dict(title='Heads and Legs', rule='This puzzle is over 1 500 years old. How many <b>rabbits</b>?',
+    warm=dict(pic=CAGE, title='Heads and Legs', rule='This puzzle is over 1 500 years old. How many <b>rabbits</b>?',
               body=BIG('A cage holds pheasants (2 legs) and rabbits (4 legs).<small>There are 35 heads and 94 feet.</small>'),
               nudge='What if they were all pheasants?',
               reveal='<b>12 rabbits</b> and 23 pheasants. If all 35 were pheasants there would be 70 feet. The 24 extra feet come in pairs from the rabbits.'),

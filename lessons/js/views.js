@@ -56,6 +56,8 @@ export function views({ initial = 'class' } = {}) {
     };
     new MutationObserver(addRow).observe(menu, { childList: true, attributes: true, attributeFilter: ['class'] });
   }
+  // warm-up pictures loop gently; hold them still when the device asks for reduced motion
+  try { if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('.vw-art svg, .vw-pic svg').forEach((g) => g.pauseAnimations && g.pauseAnimations()); } catch (e) {}
   set(view, false);
   return { set, get: () => view };
 }
