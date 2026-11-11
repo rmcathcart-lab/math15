@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- 15 Lessons: the lesson-page web app. A board on an easel in the course colour, the course mark on it,
+       an amber pen stroke and a pencil. (Practice site: plain 15 on the course colour; Teacher Ledger: 15 on dark navy.) -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f5aa3"/><stop offset="1" stop-color="#152a51"/></linearGradient>
+    <clipPath id="clip"><rect width="512" height="512" rx="112"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip)">
+    <rect width="512" height="512" fill="url(#bg)"/>
+    <!-- easel legs -->
+    <g stroke="#ffffff" stroke-opacity=".5" stroke-width="20" stroke-linecap="round">
+      <path d="M176 360 L124 470"/><path d="M336 360 L388 470"/><path d="M256 360 L256 448"/>
+    </g>
+    <!-- the board -->
+    <rect x="50" y="78" width="412" height="290" rx="30" fill="#000" opacity=".18" transform="translate(0 8)"/>
+    <rect x="50" y="78" width="412" height="290" rx="30" fill="#fbf8f1"/>
+    <rect x="50" y="78" width="412" height="290" rx="30" fill="none" stroke="#ffffff" stroke-width="6"/>
+    <!-- the course mark -->
+    <path transform="translate(152.36 273.99) scale(0.08724)" fill="#1e3a6e" d="M725 -1490H403L36 -1260V-955L377 -1168H379V0H725ZM1399.04 23C1745.04 23 1973.04 -198 1973.04 -507C1973.04 -793 1737.04 -1012 1470.04 -1012C1353.04 -1012 1255.04 -976 1186.04 -906H1184.04L1207.04 -1205H1883.04V-1490H891.04L847.04 -610H1171.04C1200.04 -696 1287.04 -750 1404.04 -750C1540.04 -750 1635.04 -645 1635.04 -497C1635.04 -350 1540.04 -248 1401.04 -248C1266.04 -248 1165.04 -341 1162.04 -468H826.04C844.04 -168 1069.04 23 1399.04 23Z"/>
+    <!-- a pen stroke under it -->
+    <path d="M112 318 C168 296 214 330 262 312 S 352 292 384 306" fill="none" stroke="#f2a516" stroke-width="20" stroke-linecap="round"/>
+    <!-- the pencil, its tip at the end of the stroke -->
+    <g transform="translate(392 306) rotate(-60)">
+      <path d="M0 0 L28 -12 L28 12 Z" fill="#e2d6c2"/>
+      <path d="M0 0 L9 -3.9 L9 3.9 Z" fill="#1c2230"/>
+      <rect x="26" y="-13" width="118" height="26" rx="6" fill="#2b3242"/>
+      <rect x="118" y="-13" width="26" height="26" rx="6" fill="#9aa1ae"/>
+      <rect x="30" y="-13" width="112" height="7" rx="3" fill="#ffffff" opacity=".18"/>
+    </g>
+  </g>
+</svg>
