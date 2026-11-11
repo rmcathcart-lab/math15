@@ -104,3 +104,87 @@ TWOQ = svg(''.join(f'<g>{bob(10, 1.8, i * .5)}<rect x="{45 + i*135}" y="60" widt
 MOVIE = svg(emo('🎟️', 100, 150, 96, 10, 1.8) + emo('🍿', 230, 150, 96, 10, 1.8, .6), 'A movie ticket and popcorn')
 STORE = svg(emo('✏️', 105, 150, 96, 10, 1.8) + f'<g>{bob(10, 1.8, .6)}<rect x="185" y="92" width="96" height="58" rx="12" fill="#f3a6b5" stroke="{INK}" stroke-width="4" transform="rotate(-12 233 121)"/><rect x="185" y="92" width="34" height="58" rx="12" fill="#7fb0e6" stroke="{INK}" stroke-width="4" transform="rotate(-12 233 121)"/></g>', 'A pencil and an eraser')
 CAGE = svg(emo('🐓', 105, 160, 92, 12, 1.4) + emo('🐇', 235, 160, 92, 12, 1.4, .5) + f'<g stroke="{INK}" stroke-width="4" stroke-linecap="round">' + ''.join(f'<line x1="{30 + i*30}" y1="40" x2="{30 + i*30}" y2="200"/>' for i in range(10)) + '<line x1="20" y1="40" x2="310" y2="40"/><line x1="20" y1="200" x2="310" y2="200"/></g>', 'A pheasant and a rabbit in a cage')
+
+# ---------------- header strips: a tiny moving scene in the white space at the top right of a warm-up card ----------------
+# viewBox 340 x 60. Purely for fun; a strip never carries information the puzzle needs. Emoji that move are flipped so
+# they face the way they travel (most emoji face left).
+def strip(*els, label=''):
+    return f'<svg viewBox="0 0 340 60" aria-hidden="true">{"".join(els)}</svg>'
+def sb(ch, x, begin=0, size=40, dy=7, dur=1.5, y=46):
+    return f'<g>{bob(dy, dur, begin)}<text x="{x}" y="{y}" font-size="{size}" text-anchor="middle">{ch}</text></g>'
+def sblink(ch, x, begin=0, size=40, dur=1.6, y=46, lo=.15):
+    return f'<text x="{x}" y="{y}" font-size="{size}" text-anchor="middle">{ch}{blink(dur, begin, lo)}</text>'
+def sspin(ch, x, dur=4, size=40, y=30, rev=False):
+    return f'<g><animateTransform attributeName="transform" type="rotate" values="{"360" if rev else "0"} {x} {y};{"0" if rev else "360"} {x} {y}" dur="{dur}s" repeatCount="indefinite"/><text x="{x}" y="{y}" font-size="{size}" text-anchor="middle" dominant-baseline="central">{ch}</text></g>'
+def srock(ch, x, deg=12, dur=2.2, size=44, y=46):
+    return f'<g><animateTransform attributeName="transform" type="rotate" values="{-deg} {x} {y};{deg} {x} {y};{-deg} {x} {y}" dur="{dur}s" repeatCount="indefinite"/><text x="{x}" y="{y}" font-size="{size}" text-anchor="middle">{ch}</text></g>'
+def sdrive(ch, dur=5, begin=0, size=40, y=46, x0=-40, x1=380, flip=True, hop=0):
+    inner = f'<text x="0" y="{y}" font-size="{size}" text-anchor="middle"{" transform=" + chr(34) + "scale(-1 1)" + chr(34) if flip else ""}>{ch}</text>'
+    if hop: inner = f'<g>{bob(hop, .5)}{inner}</g>'
+    return f'<g transform="translate({x0} 0)"><animateTransform attributeName="transform" type="translate" values="{x0} 0;{x1} 0" dur="{dur}s" begin="{begin}s" repeatCount="indefinite"/>{inner}</g>'
+def sroad(y=52):
+    return f'<line x1="0" y1="{y}" x2="340" y2="{y}" stroke="{LINE}" stroke-width="3" stroke-dasharray="16 12"><animate attributeName="stroke-dashoffset" values="0;-28" dur=".7s" repeatCount="indefinite"/></line>'
+def sfloat(ch, x, dur=3, begin=0, size=30):
+    return f'<text x="{x}" font-size="{size}" text-anchor="middle">{ch}<animate attributeName="y" values="64;-6" dur="{dur}s" begin="{begin}s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.15;.8;1" dur="{dur}s" begin="{begin}s" repeatCount="indefinite"/></text>'
+def sbatt(x, col, dur):
+    return (f'<rect x="{x}" y="14" width="92" height="36" rx="7" fill="#fffdf6" stroke="{INK}" stroke-width="3.5"/><rect x="{x+92}" y="24" width="7" height="16" rx="2" fill="{INK}"/>'
+            f'<rect x="{x+6}" y="20" height="24" rx="3" fill="{col}"><animate attributeName="width" values="80;4;80" keyTimes="0;.9;1" dur="{dur}s" repeatCount="indefinite"/></rect>')
+def sclock(x=170):
+    hand = lambda L, w, dur: f'<line x1="{x}" y1="30" x2="{x}" y2="{30 - L}" stroke="{INK}" stroke-width="{w}" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" values="0 {x} 30;360 {x} 30" dur="{dur}s" repeatCount="indefinite"/></line>'
+    return f'<circle cx="{x}" cy="30" r="27" fill="#fffdf6" stroke="{INK}" stroke-width="3.5"/>' + ''.join(f'<line x1="{x}" y1="6" x2="{x}" y2="10" stroke="{INK}" stroke-width="2.5" transform="rotate({a} {x} 30)"/>' for a in range(0, 360, 30)) + hand(14, 4.5, 48) + hand(22, 3, 4) + f'<circle cx="{x}" cy="30" r="3" fill="{RED}"/>'
+def ssquares(n=12):
+    return ''.join(f'<rect x="{30 + i*24}" y="20" width="20" height="20" rx="3" fill="{[BLUE, AMBER, GREEN, RED][i % 4]}">{blink(2.4, i * .2, .2)}</rect>' for i in range(n))
+
+STRIPS = {
+    'u1l1': strip(sfloat('👍', 60, 3, 0), sfloat('❤️', 130, 3.4, .8), sfloat('💬', 200, 2.8, 1.5), sfloat('👍', 270, 3.2, .4)),
+    'u1l4': strip(sdrive('🕵️', 7, hop=3), sblink('❓', 300, .3, 30)),
+    'u1l6': strip(sb('🥉', 100, 0), sb('🥈', 170, .3), sb('🥇', 240, .6)),
+    'u1l8': strip(sb('😇', 90, 0), sb('😇', 170, .3), srock('🤥', 250)),
+    'u2l4': strip(sdrive('🐭', 5, hop=3, size=34), sblink('🧀', 310, 0, 32, lo=.5)),
+    'u2l7': strip(srock('⚖️', 170, 10, 2.6, 48)),
+    'u2l8': strip(sspin('⏱️', 90, 6, 40), sb('🧍', 190, 0, 36), sb('🧍‍♀️', 230, .3, 36), sb('🧍', 270, .6, 36)),
+    'u2l10': strip(f'<g><animateTransform attributeName="transform" type="translate" values="-30 50;360 -40" dur="3.5s" repeatCount="indefinite"/><text x="0" y="30" font-size="40" text-anchor="middle">🚀</text></g>', sblink('✨', 60, 0, 22), sblink('✨', 250, .7, 22), sblink('⭐', 160, 1.1, 20)),
+    'u3l1': strip(sb('🍎', 90, 0), sb('🍌', 170, .3), sb('🥥', 250, .6)),
+    'u3l2': strip(sb('🧠', 120, 0, 42), sblink('⚡', 172, 0, 30, 1.1), sb('📟', 225, .5, 38)),
+    'u3l3': strip(srock('📅', 150, 8, 2.4), sblink('✨', 215, 0, 26), sblink('✨', 95, .7, 22)),
+    'u3l4': strip(sb('🧠', 150, 0, 42), sblink('💡', 205, 0, 34, 1.4)),
+    'u3l5': strip(sb('🤔', 150, 0, 42), sblink('❗', 200, 0, 30, 1.2)),
+    'u3l6': strip(sdrive('✂️', 6, size=32, flip=False), sb('📦', 280, 0, 42)),
+    'u3l7': strip(sb('🔮', 170, 0, 44, 5, 2.2), sblink('✨', 120, 0, 24), sblink('✨', 222, .6, 24), sblink('✨', 170, 1.1, 16, y=14)),
+    'u4l1': strip(ssquares(12)),
+    'u4l2': strip(sfloat('🎈', 70, 3.2, 0, 34), sfloat('🎈', 270, 3.6, 1.2, 34), sb('🍬', 130, 0, 34), sb('🎁', 190, .4, 38)),
+    'u4l3': strip(sb('✖️', 110, 0, 34), sb('➕', 170, .4, 34), sblink('❓', 230, 0, 34)),
+    'u4l4': strip(srock('🤫', 130, 8, 2.4, 42), sb('🃏', 200, .3, 38), sb('🃏', 245, .6, 38)),
+    'u4l5': strip(sdrive('🔍', 6, size=36, flip=False), sb('🕵️', 300, 0, 40)),
+    'u4l6': strip(sb('🧠', 150, 0, 42), sblink('💭', 205, 0, 34, 1.8, lo=.3)),
+    'u4l7': strip(sb('❓', 130, 0, 36), sb('❓', 190, .5, 36), sblink('🤝', 250, 0, 34, 2.2, lo=.4)),
+    'u4l8': strip(''.join(f'<circle cx="{95 + i*50}" cy="30" r="15" fill="{BLUE}">{blink(3.2, i * .8, .2)}</circle>' for i in range(4))),
+    'u4l9': strip(srock('🎭', 150, 10, 2.4, 44), sblink('❓', 205, 0, 32)),
+    'u4l10': strip(sb('😇', 90, 0), sb('😇', 170, .3), srock('🤥', 250)),
+    'u5l1': strip(sb('📱', 70, 0, 38), sdrive('✉️', 3, size=26, flip=False, x0=100, x1=250, y=40), sb('📱', 280, .5, 38)),
+    'u5l2': strip(sblink('🏠', 80, 0, 38, 3, lo=0), sblink('🏠', 130, .5, 38, 3, lo=0), sblink('🏠', 180, 1, 38, 3, lo=0), sblink('🏠', 230, 1.5, 38, 3, lo=0), sblink('🏠', 280, 2, 38, 3, lo=0)),
+    'u5l3': strip(sspin('⚙️', 140, 5, 44), sspin('⚙️', 196, 5, 34, 36, True), sblink('❓', 250, 0, 30)),
+    'u5l4': strip(sbatt(60, GREEN, 8), sbatt(190, RED, 5)),
+    'u5l5': strip(sspin('☀️', 170, 12, 46)),
+    'u5l6': strip(sdrive('🎢', 6, size=42, flip=False), sspin('🎡', 300, 10, 40)),
+    'u5l7': strip(sdrive('🔍', 6, size=38, flip=False)),
+    'u5l8': strip(sb('🥤', 110, 0, 36), sblink('⚠️', 170, 0, 36, 1.2), sb('🍫', 230, .5, 36)),
+    'u5l9': strip(sdrive('🐕', 7, 0, 34, hop=3), sdrive('🐎', 7, 1.6, 36, hop=3), sdrive('🐈', 7, 3.2, 30, hop=3), sdrive('🐘', 7, 4.8, 38, hop=2)),
+    'u5l10': strip(srock('🔐', 150, 9, .9, 42), sb('🔑', 215, 0, 34, 6, 1.8)),
+    'u5l11': strip(sb('🏃', 110, 0, 40, 6, .5), sb('🏃‍♀️', 180, .25, 40, 6, .5), srock('🏁', 270, 8, 1.4, 38)),
+    'u5l12': strip(sb('📍', 170, 0, 44, 12, 1.2)),
+    'u6l6': strip(sb('🛝', 130, 0, 44, 4, 2.4), sb('😱', 215, .4, 38, 8, 1.1)),
+    'u6l7': strip(sdrive('🚶', 8, hop=2), sdrive('🚶‍♀️', 8, 4, hop=2)),
+    'u6l8': strip(sdrive('📏', 7, size=40, flip=False), sblink('🚧', 300, 0, 30, 2.4, lo=.5)),
+    'u6l9': strip(sclock(170)),
+    'u7l1': strip(sdrive('🔍', 6, size=36, flip=False), sb('🕵️', 300, 0, 40)),
+    'u7l2': strip(sb('📱', 150, 0, 42, 5, 2), sblink('📶', 205, 0, 32, 1.4, lo=.3)),
+    'u7l3': strip(sdrive('🐸', 6, 0, 38, hop=12, flip=False), sdrive('🐸', 6, 3, 38, hop=12, flip=False), sb('🪷', 310, 0, 26, 2, 3)),
+    'u7l7': strip(sblink('🎩', 110, 0, 38, 3, lo=0), sb('🥸', 170, 0, 42), sblink('🕶️', 235, 1.5, 36, 3, lo=0)),
+    'u7l9': strip(sroad(), sdrive('🐢', 14, 0, 34, y=44, x0=120, x1=400), sdrive('🐇', 3.5, 0, 34, y=44)),
+    'u7l10': strip(sb('😇', 90, 0), sb('😇', 170, .3), srock('🤥', 250)),
+    'u8l2': strip(sroad(), f'<g>{bob(2, .45)}<text x="-220" y="44" font-size="40" text-anchor="middle" transform="scale(-1 1)">🚗</text></g>', f'<g>{bob(2, .45, .2)}<text x="-90" y="44" font-size="40" text-anchor="middle" transform="scale(-1 1)">🚙</text></g>'),
+    'u8l3': strip(srock('⚖️', 170, 9, 2.6, 46), sb('🍎', 105, 0, 30), sb('🍌', 240, .5, 30)),
+    'u8l5': strip(sb('🌮', 110, 0, 38), sb('🥤', 170, .3, 38), srock('🧾', 235, 7, 2.4, 38)),
+    'u8l8': strip(f'<g stroke-width="5" stroke-linecap="round"><line x1="100" y1="50" x2="240" y2="10" stroke="{BLUE}"><animateTransform attributeName="transform" type="rotate" values="0 170 30;-22 170 30;0 170 30" dur="4s" repeatCount="indefinite"/></line><line x1="100" y1="12" x2="240" y2="48" stroke="{RED}"><animateTransform attributeName="transform" type="rotate" values="0 170 30;22 170 30;0 170 30" dur="4s" repeatCount="indefinite"/></line></g>'),
+}

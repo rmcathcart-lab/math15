@@ -72,8 +72,10 @@ def run(key):
     else:
         inner = (f'<div class="vw-seq has-art"><div class="vw-txt">{w["body"]}</div>{pic}</div>' if pic else w['body'])
         head = f'\n  <p class="wf-rule vw-rule">{w["rule"]}</p>'
+    from pics import STRIPS
+    stripx = f'\n  <div class="vw-strip">{STRIPS[key]}</div>' if key in STRIPS else ''
     new = f'''<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
-<section class="card warm wf" data-ink="warmq" data-section="Warm-up: {w['title']}">
+<section class="card warm wf" data-ink="warmq" data-section="Warm-up: {w['title']}">{stripx}
   <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>{w['title']}</h2>{head}</div>
   {inner}{reveal}
 </section>
