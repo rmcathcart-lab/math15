@@ -494,7 +494,7 @@ const LR = [
 ];
 function mountLightning() {
   const host = document.getElementById('u4l8-lr'); if (!host) return;
-  host.innerHTML = `<div class="u4l8-lrh no-ink"><span></span><span>Expression</span><span>Tools, in order</span><span>Fully factored <button class="pill small" type="button" data-lr-all>Reveal all</button></span></div>`;
+  host.innerHTML = `<div class="u4l8-lrh no-ink"><span></span><span>Expression</span><span>Methods, in order</span><span>Fully factored <button class="pill small" type="button" data-lr-all>Reveal all</button></span></div>`;
   LR.forEach((r, i) => {
     const pills = r.r.map((L, k) => (k ? '<i class="u4l8-to">→</i>' : '') + `<span class="u4l8-rp ${TOOLS[L].k}"><b>${L}</b>${TOOLS[L].name.replace('x²+bx+c', T('x^2+bx+c'))}</span>`).join('');
     const row = h('button', 'u4l8-lrr', `<span class="u4l8-lrn">${i + 1}</span><span class="u4l8-lrq">${T(r.q)}</span><span class="u4l8-lrs"><span class="u4l8-wait">· · · tap · · ·</span><span class="u4l8-show">${pills}</span></span><span class="u4l8-lra"><span class="u4l8-show">${T(r.a)}</span></span>`);

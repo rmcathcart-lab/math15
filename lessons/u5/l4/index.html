@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u5l4.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u5l4">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Low Battery!">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Low Battery!</h2>
+  <p class="wf-rule">You both start right now. Whose phone dies first?</p></div>
+  <div class="vw-tiles" style="--n:2"><div><b>You</b><span>80%<small>texting: loses <b>10%</b> every hour</small></span></div><div><b>Jordan</b><span>100%<small>streaming video: loses <b>20%</b> every hour</small></span></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>How long does each phone last?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>Jordan’s dies first,</b> after 5 hours (100 ÷ 20). Yours lasts 8 hours (80 ÷ 10), even though it started lower.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,45 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Low Battery!" id="wu" style="--wf-side: 400px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Low Battery!</h2>
-  <p class="wf-rule">Your phone drains at a steady rate while you text. Read the graph.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u5l4-wtop">
-      <div id="batt-graph"></div>
-      <div class="u5l4-phones">
-        <div class="u5l4-phone" id="ph-you"><div class="u5l4-ph-scr"><div class="u5l4-ph-bat"><i></i></div><b>80%</b></div><div class="u5l4-ph-lab">You<small>texting</small></div></div>
-        <div class="u5l4-phone u5l4-ph-j" id="ph-jo"><div class="u5l4-ph-scr"><div class="u5l4-ph-bat"><i></i></div><b>100%</b></div><div class="u5l4-ph-lab">Jordan<small>streaming video</small><em>loses 20% every hour</em></div></div>
-        <div class="u5l4-clock"><span id="batt-t">0</span> h</div>
-        <button type="button" class="pill small" id="batt-play">Play: start texting</button>
-      </div>
-    </div>
-    <div class="u5l4-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What was your battery at the <b>start</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u5l4-wa"><div class="bk-ans"><b>80%.</b> At 0 hours the line sits at 80 on the side axis.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>After how many hours does it <b>die</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u5l4-wa"><div class="bk-ans"><b>8 hours.</b> The line reaches the bottom axis at 8. (It drops 10% per hour, and <span class="tex">80\div10=8</span>.)</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Fill in the blanks. <span class="muted small">(tap a blank)</span> <button class="pill small" type="button" data-bk-toggle>Answer</button><br>
-        On the <b>bottom</b> axis, battery <span class="tex">=</span> <span data-reveal><b class="u5l4-blank">0</b></span> %. &nbsp; On the <b>side</b> axis, time <span class="tex">=</span> <span data-reveal><b class="u5l4-blank">0</b></span> hours.</div></div>
-        <div class="u5l4-wa"><div class="bk-ans">Both blanks are <b>0</b>. Everywhere on the bottom axis the battery is 0; everywhere on the side axis no time has passed yet.</div></div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll" id="wpoll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Jordan starts with a <b>full</b> 100% battery, but streaming video eats <b>20%</b> every hour. You both start now. Whose phone dies <b>first</b>? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> Yours</div>
-        <div class="opt right"><b>B</b> Jordan’s</div>
-        <div class="opt"><b>C</b> A tie</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>B, Jordan’s phone dies first</b>, at <b>5 hours</b> (<span class="tex">100\div20=5</span>), three hours before yours. A higher start does not mean a later finish: how fast it drains matters too.<br>
-        <button class="pill small" type="button" id="batt-race">Race the two phones</button><br>
-        Jordan’s line runs from <span class="tex">(0,\ 100)</span> to <span class="tex">(5,\ 0)</span>. It crosses yours at <span class="tex">(2,\ 60)</span>: after 2 hours both phones show 60%.<br>
-        <b>Today’s lesson:</b> the points where a graph meets the axes, like <span class="tex">(0,\ 80)</span> and <span class="tex">(8,\ 0)</span>, are called <b>intercepts</b>.</div>
-    </div>
-  </div></div>
-  <p class="u5l4-social">Come up and sketch Jordan’s line on the grid. Where does it start? Where does it hit zero?</p>
-</section>
+
 
 <!-- ================= 1. What an intercept is ================= -->
 <section class="card" data-ink="s1" data-section="1. What an Intercept Is">
@@ -99,7 +71,7 @@
     <div class="u5l4-form u5l4-fy"><div class="u5l4-fh"><span class="tex">y</span>-intercept</div><div class="u5l4-fb"><span class="tex">(\,0,\ \square\,)</span></div><div class="u5l4-ff">on the <span class="tex">y</span>-axis, so <b><span class="tex">x=0</span></b></div></div>
   </div>
   <p class="u5l4-method">So <b>an <span class="tex">x</span>-intercept is the point where <span class="tex">y=0</span>, and a <span class="tex">y</span>-intercept is the point where <span class="tex">x=0</span>.</b></p>
-  <div class="explainer" data-explainer="axisZero"></div>
+  <div data-extra><div class="explainer" data-explainer="axisZero"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>The zero goes in the other spot.</b> A line that crosses the <span class="tex">x</span>-axis at 4 has <span class="tex">x</span>-intercept <span class="tex">(4,\ 0)</span>, not <span class="tex">(0,\ 4)</span>. The point is <b>on the <span class="tex">x</span>-axis</b>, so its <span class="tex">y</span>-coordinate is the zero.</div></div>
 </section>
 
@@ -138,14 +110,14 @@
 <section class="card" data-ink="s2" data-section="2. Several Intercepts">
   <div class="sec-h"><span class="badge">2</span><h2>Several Intercepts, and Intercepts from a Table</h2></div>
   <div class="def">A graph can meet the <span class="tex">x</span>-axis <b>more than once</b>, so list <b>every</b> spot where the graph touches an axis.</div>
-  <div class="explainer" data-explainer="meetAxes"></div>
-  <div class="explainer" data-explainer="countMeet"></div>
+  <div data-extra><div class="explainer" data-explainer="meetAxes"></div></div>
+  <div data-extra><div class="explainer" data-explainer="countMeet"></div></div>
 </section>
 
 <section class="card" data-ink="s2b" data-section="2. Intercepts from a table">
   <h3 class="sub">Intercepts from a table</h3>
   <div class="def">A table of values works the same way without a picture: the column (or row) where <span class="tex">x=0</span> gives the <b class="u5l4-yt"><span class="tex">y</span>-intercept</b>, and the column (or row) where <span class="tex">y=0</span> gives the <b class="u5l4-xt"><span class="tex">x</span>-intercept</b>.</div>
-  <div class="explainer" data-explainer="tableInt"></div>
+  <div data-extra><div class="explainer" data-explainer="tableInt"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Look for the 0, not for the first column.</b> The intercepts are wherever a <b>0</b> shows up. If the table is out of order, the zero might be anywhere.</div></div>
 </section>
 
@@ -174,6 +146,15 @@
   <button class="more" data-more="ex34-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–8">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 4 · Questions 1–8</h2>
+  <p class="pr-t">Find the intercepts from graphs and from tables.</p>
+  <div class="pr-chips n2"><span><b>1–5</b>Intercepts from graphs</span><span><b>6–8</b>Intercepts from tables, and key facts</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 6.</span><a class="pill" href="../../../#/lesson/u5l4">Open the Practice site</a></div>
+</section>
+
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
 <section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l4"></section>
 
@@ -185,13 +166,13 @@
     <div class="u5l4-form u5l4-fy"><div class="u5l4-fh"><span class="tex">y</span>-intercept <span class="tex">(0,\ \square)</span></div><div class="u5l4-fb2">the <b>start</b></div><div class="u5l4-ff">time is 0: nothing has happened yet</div></div>
     <div class="u5l4-form u5l4-fx"><div class="u5l4-fh"><span class="tex">x</span>-intercept <span class="tex">(\square,\ 0)</span></div><div class="u5l4-fb2">the <b>end</b></div><div class="u5l4-ff">the amount has run out: it is 0</div></div>
   </div>
-  <div class="explainer" data-explainer="story"></div>
+  <div data-extra><div class="explainer" data-explainer="story"></div></div>
 </section>
 
 <section class="card" data-ink="s3b" data-section="3. Reading between the intercepts">
   <h3 class="sub">Reading the graph between the intercepts</h3>
   <p>To find an output, go <b>up</b> from the input to the graph, then <b>across</b> to the side axis. To find an input, go <b>across</b> from the output to the graph, then <b>down</b>.</p>
-  <div class="explainer" data-explainer="readGraph"></div>
+  <div data-extra><div class="explainer" data-explainer="readGraph"></div></div>
   <div class="tip calc-tip">
     <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
     <div><b>Check a graph reading with the rate.</b> $40 spent evenly over 8 weeks is <span class="keys"><kbd>4</kbd><kbd>0</kbd><kbd>÷</kbd><kbd>8</kbd><kbd>=</kbd></span> $5 per week. After 4 weeks: <span class="keys"><kbd>4</kbd><kbd>0</kbd><kbd>−</kbd><kbd>4</kbd><kbd>×</kbd><kbd>5</kbd><kbd>=</kbd></span> $20 left.</div>
@@ -215,6 +196,46 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Low Battery!" id="wu" style="--wf-side: 400px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Low Battery!</h2>
+  <p class="wf-rule">Your phone drains at a steady rate while you text. Read the graph.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l4-wtop">
+      <div id="batt-graph"></div>
+      <div class="u5l4-phones">
+        <div class="u5l4-phone" id="ph-you"><div class="u5l4-ph-scr"><div class="u5l4-ph-bat"><i></i></div><b>80%</b></div><div class="u5l4-ph-lab">You<small>texting</small></div></div>
+        <div class="u5l4-phone u5l4-ph-j" id="ph-jo"><div class="u5l4-ph-scr"><div class="u5l4-ph-bat"><i></i></div><b>100%</b></div><div class="u5l4-ph-lab">Jordan<small>streaming video</small><em>loses 20% every hour</em></div></div>
+        <div class="u5l4-clock"><span id="batt-t">0</span> h</div>
+        <button type="button" class="pill small" id="batt-play">Play: start texting</button>
+      </div>
+    </div>
+    <div class="u5l4-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What was your battery at the <b>start</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l4-wa"><div class="bk-ans"><b>80%.</b> At 0 hours the line sits at 80 on the side axis.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>After how many hours does it <b>die</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l4-wa"><div class="bk-ans"><b>8 hours.</b> The line reaches the bottom axis at 8. (It drops 10% per hour, and <span class="tex">80\div10=8</span>.)</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Fill in the blanks. <span class="muted small">(tap a blank)</span> <button class="pill small" type="button" data-bk-toggle>Answer</button><br>
+        On the <b>bottom</b> axis, battery <span class="tex">=</span> <span data-reveal><b class="u5l4-blank">0</b></span> %. &nbsp; On the <b>side</b> axis, time <span class="tex">=</span> <span data-reveal><b class="u5l4-blank">0</b></span> hours.</div></div>
+        <div class="u5l4-wa"><div class="bk-ans">Both blanks are <b>0</b>. Everywhere on the bottom axis the battery is 0; everywhere on the side axis no time has passed yet.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll" id="wpoll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Jordan starts with a <b>full</b> 100% battery, but streaming video eats <b>20%</b> every hour. You both start now. Whose phone dies <b>first</b>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Yours</div>
+        <div class="opt right"><b>B</b> Jordan’s</div>
+        <div class="opt"><b>C</b> A tie</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, Jordan’s phone dies first</b>, at <b>5 hours</b> (<span class="tex">100\div20=5</span>), three hours before yours. A higher start does not mean a later finish: how fast it drains matters too.<br>
+        <button class="pill small" type="button" id="batt-race">Race the two phones</button><br>
+        Jordan’s line runs from <span class="tex">(0,\ 100)</span> to <span class="tex">(5,\ 0)</span>. It crosses yours at <span class="tex">(2,\ 60)</span>: after 2 hours both phones show 60%.<br>
+        <b>Today’s lesson:</b> the points where a graph meets the axes, like <span class="tex">(0,\ 80)</span> and <span class="tex">(8,\ 0)</span>, are called <b>intercepts</b>.</div>
+    </div>
+  </div></div>
+  <p class="u5l4-social">Come up and sketch Jordan’s line on the grid. Where does it start? Where does it hit zero?</p>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -225,7 +246,7 @@
     <div><b>In a story:</b> the <span class="tex">y</span>-intercept is the <b>starting value</b> ($40 on the card); the <span class="tex">x</span>-intercept is <b>when it runs out</b> (empty after 8 weeks).</div>
   </div>
   <a class="assign" href="../../../#/lesson/u5l4">
-    <div><div class="kicker">Your turn</div><b>Assignment 4 — Where Graphs Meet the Axes: <span class="tex">x</span>- and <span class="tex">y</span>-Intercepts</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 4 · Questions 9–13</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l5/">
     <div><div class="kicker">Next lesson</div><b>Lesson 5 — Domain and Range of a Relation, Part 1: Reading From a Graph</b><div class="muted">Which inputs and outputs does a graph use? Squash it onto each axis and see.</div></div><span class="arrow">→</span>
@@ -238,7 +259,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u5l4.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u5l4', homeHref: '../../', title: '5.4 Intercepts' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

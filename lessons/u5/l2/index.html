@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u5l2.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Toothpick Street">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Toothpick Street</h2>
+  <p class="wf-rule">These 3 houses took <b>16 toothpicks</b>. How many toothpicks for a street of <b>10 houses</b>?</p></div>
+  <div class="vw-pic"><svg viewBox="-14 -6 280 152.08" style="max-width:378px"><g stroke="#c9902f" stroke-width="7" stroke-linecap="round"><line x1="0" y1="58.08" x2="0" y2="130.08"/><line x1="6" y1="52.08" x2="78" y2="52.08"/><line x1="6" y1="136.08" x2="78" y2="136.08"/><line x1="84" y1="58.08" x2="84" y2="130.08"/><line x1="4" y1="46.08" x2="39.0" y2="6"/><line x1="45.0" y1="6" x2="80" y2="46.08"/><line x1="90" y1="52.08" x2="162" y2="52.08"/><line x1="90" y1="136.08" x2="162" y2="136.08"/><line x1="168" y1="58.08" x2="168" y2="130.08"/><line x1="88" y1="46.08" x2="123.0" y2="6"/><line x1="129.0" y1="6" x2="164" y2="46.08"/><line x1="174" y1="52.08" x2="246" y2="52.08"/><line x1="174" y1="136.08" x2="246" y2="136.08"/><line x1="252" y1="58.08" x2="252" y2="130.08"/><line x1="172" y1="46.08" x2="207.0" y2="6"/><line x1="213.0" y1="6" x2="248" y2="46.08"/></g></svg></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Why isn’t it just 10 times one house?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>51 toothpicks.</b> The first house takes 6. Every house after that shares a wall, so it only adds 5: <span class="tex">6+9\times5=51</span>.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -43,55 +53,14 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Toothpick Street" id="wu" style="--wf-side: 420px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Toothpick Street</h2>
-  <p class="wf-rule">Each stage adds one more house to the street. <b>Count the toothpicks!</b> <span class="muted">Press + to build the next stage.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u5l2-street">
-      <div class="u5l2-stbar no-ink">
-        <span class="u5l2-stlab">Stage</span>
-        <button type="button" class="pill small" data-st="-">−</button><b class="u5l2-stn" id="st-n">3</b><button type="button" class="pill small" data-st="+">+</button>
-        <span class="u5l2-stcount" id="st-count">16 toothpicks</span>
-      </div>
-      <div class="u5l2-stsvg" id="st-svg"></div>
-    </div>
-    <div class="u5l2-wrow">
-      <div class="u5l2-wtab" id="st-tab"></div>
-      <div class="u5l2-wgraph" id="st-graph"></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u5l2-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many toothpicks in Stage <b>4</b>? In Stage <b>5</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans">Stage 4: <b>21</b>. Stage 5: <b>26</b>.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Each new house adds how many? Why not 6? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>5</b>: a new house <b>borrows</b> the wall beside it.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>You <b>choose</b> the stage. Do you choose the toothpicks? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>No.</b> The toothpicks are <b>decided for you</b>.</div></div>
-    </div>
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Stage <b>100</b> is a street of 100 houses. How many toothpicks does it take? <b>Guess first.</b></div></div>
-      <div class="poll-opts c3">
-        <div class="opt"><b>A</b> 500</div>
-        <div class="opt right"><b>B</b> 501</div>
-        <div class="opt"><b>C</b> 600</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>B: 501.</b> The first house uses 6, and each of the other 99 houses adds 5: <span class="tex">6+99\times5=501</span>. Or: 1 left wall plus 5 per house, <span class="tex">1+5\times100=501</span>.
-        <span class="muted">C (600) forgets the shared walls; A (500) forgets the very first wall.</span></div>
-    </div>
-  </div></div>
-  <div class="bk-wq u5l2-race">
-    <div class="q-line"><div class="q-num bonus">+</div><div><b>Race your neighbour:</b> which stage uses exactly <b>76</b> toothpicks?</div></div>
-    <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>Stage 15.</b> Take away the first wall: <span class="tex">76-1=75</span>. Then 5 per house: <span class="tex">75\div5=15</span>. Check: <span class="tex">6+14\times5=76</span> ✓</div>
-  </div>
-</section>
+
 
 <!-- ================= 1. Growing patterns ================= -->
 <section class="card" data-ink="s1" data-section="1. Growing Patterns">
   <div class="sec-h"><span class="badge">1</span><h2>Growing Patterns</h2></div>
   <div class="def">A <b>growing pattern</b> is a sequence of figures or numbers in which each step grows by the <b>same fixed amount</b> every time. We say the pattern grows by a <b>constant amount</b>.</div>
-  <p>Toothpick Street grows by a constant amount: every new house adds <b>5</b> toothpicks. Counting them in groups shows why.</p>
-  <div class="explainer" data-explainer="streetCount"></div>
+  <div data-extra><p>Toothpick Street grows by a constant amount: every new house adds <b>5</b> toothpicks. Counting them in groups shows why.</p>
+  <div class="explainer" data-explainer="streetCount"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -112,7 +81,7 @@
   <button class="more" data-more="ex1-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s1b" data-section="1. Watch the tiles grow">
+<section data-extra class="card" data-ink="s1b" data-section="1. Watch the tiles grow">
   <h3 class="sub">Watch the tile pattern grow</h3>
   <p>Each new figure is the one before it <b>plus one new column</b>. Watch the new tiles, and keep a running count.</p>
   <div class="explainer" data-explainer="growTiles"></div>
@@ -129,7 +98,7 @@
     </table>
     <p>For the tile pattern: <span class="tex">n=1,\ 2,\ 3</span> gives <span class="tex">T=2,\ 4,\ 6</span>. The <b>difference</b> between neighbours is the constant amount the pattern grows by.</p>
   </div>
-  <div class="explainer" data-explainer="tableDiffs"></div>
+  <div data-extra><div class="explainer" data-explainer="tableDiffs"></div></div>
 </section>
 
 <section class="card example" data-ink="ex2" data-section="Example 2">
@@ -162,14 +131,14 @@
     <div class="def u5l2-dvdef">The <b class="u5l2-dvt">dependent variable</b> <b>results</b> from that choice: it depends on it. It goes in the <b>second row</b> and on the <b>vertical (<span class="tex">y</span>) axis</b>.</div>
   </div>
   <p>If notebooks cost <b>$2 each</b>, the number you buy is the independent variable (you choose it) and the total cost is the dependent variable (it results from your choice). For the tiles, the figure number <span class="tex">n</span> is independent and the number of tiles <span class="tex">T</span> is dependent.</p>
-  <div class="explainer" data-explainer="causeEffect"></div>
+  <div data-extra><div class="explainer" data-explainer="causeEffect"></div></div>
   <div class="tip u5l2-ahead"><div class="tip-ic">?</div><div><b>A quick test:</b> say the sentence “<i>___ depends on ___</i>” both ways. Only one way makes sense. The cost depends on the number of notebooks, but the number of notebooks does not depend on the cost (you decide it).</div></div>
 </section>
 
 <section class="card" data-ink="s3b" data-section="3. Look for “based on”">
   <h3 class="sub">Look for the words “based on”</h3>
   <p>In a sentence like “the <b>cost</b>, based on the number of <b>kilometres</b>”, the quantity <b>after</b> “based on” is what changes first: the <b class="u5l2-ivt">independent</b> variable. The quantity that is “based on” it is the <b class="u5l2-dvt">dependent</b> variable.</p>
-  <div class="explainer" data-explainer="sortVars"></div>
+  <div data-extra><div class="explainer" data-explainer="sortVars"></div></div>
 </section>
 
 <section class="card example" data-ink="ex3" data-section="Example 3">
@@ -199,6 +168,15 @@
   </div>
   <div class="space" id="ex3-space"></div>
   <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–7">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 2 · Questions 1–7</h2>
+  <p class="pr-t">Patterns, tables of values, and independent or dependent.</p>
+  <div class="pr-chips n3"><span><b>1–2</b>Vocabulary and review</span><span><b>3–5</b>Patterns and tables</span><span><b>6–7</b>Independent and dependent</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 6.</span><a class="pill" href="../../../#/lesson/u5l2">Open the Practice site</a></div>
 </section>
 
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
@@ -252,6 +230,49 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Toothpick Street" id="wu" style="--wf-side: 420px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Toothpick Street</h2>
+  <p class="wf-rule">Each stage adds one more house to the street. <b>Count the toothpicks!</b> <span class="muted">Press + to build the next stage.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l2-street">
+      <div class="u5l2-stbar no-ink">
+        <span class="u5l2-stlab">Stage</span>
+        <button type="button" class="pill small" data-st="-">−</button><b class="u5l2-stn" id="st-n">3</b><button type="button" class="pill small" data-st="+">+</button>
+        <span class="u5l2-stcount" id="st-count">16 toothpicks</span>
+      </div>
+      <div class="u5l2-stsvg" id="st-svg"></div>
+    </div>
+    <div class="u5l2-wrow">
+      <div class="u5l2-wtab" id="st-tab"></div>
+      <div class="u5l2-wgraph" id="st-graph"></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u5l2-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many toothpicks in Stage <b>4</b>? In Stage <b>5</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Stage 4: <b>21</b>. Stage 5: <b>26</b>.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Each new house adds how many? Why not 6? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>5</b>: a new house <b>borrows</b> the wall beside it.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>You <b>choose</b> the stage. Do you choose the toothpicks? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>No.</b> The toothpicks are <b>decided for you</b>.</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Stage <b>100</b> is a street of 100 houses. How many toothpicks does it take? <b>Guess first.</b></div></div>
+      <div class="poll-opts c3">
+        <div class="opt"><b>A</b> 500</div>
+        <div class="opt right"><b>B</b> 501</div>
+        <div class="opt"><b>C</b> 600</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: 501.</b> The first house uses 6, and each of the other 99 houses adds 5: <span class="tex">6+99\times5=501</span>. Or: 1 left wall plus 5 per house, <span class="tex">1+5\times100=501</span>.
+        <span class="muted">C (600) forgets the shared walls; A (500) forgets the very first wall.</span></div>
+    </div>
+  </div></div>
+  <div class="bk-wq u5l2-race">
+    <div class="q-line"><div class="q-num bonus">+</div><div><b>Race your neighbour:</b> which stage uses exactly <b>76</b> toothpicks?</div></div>
+    <button class="pill small" type="button" data-bk-toggle>Answer</button><div class="bk-ans"><b>Stage 15.</b> Take away the first wall: <span class="tex">76-1=75</span>. Then 5 per house: <span class="tex">75\div5=15</span>. Check: <span class="tex">6+14\times5=76</span> ✓</div>
+  </div>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -262,7 +283,7 @@
     <div><b>Plotting:</b> each column <span class="tex">(n,\ T)</span> is a point in Quadrant I. A pattern that grows by a constant amount makes points that <b>line up</b> in a straight row.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u5l2">
-    <div><div class="kicker">Your turn</div><b>Assignment 2 — Growing Patterns and Types of Variables</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 2 · Questions 8–13</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l3/">
     <div><div class="kicker">Next lesson</div><b>Lesson 3 — Describing Relationships Between Two Quantities</b><div class="muted">One relation shown four ways: ordered pairs, a table, a mapping diagram and a graph</div></div><span class="arrow">→</span>
@@ -275,7 +296,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u5l2.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u5l2', homeHref: '../../', title: '5.2 Growing Patterns' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

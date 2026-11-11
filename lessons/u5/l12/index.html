@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u5l12.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Where Am I?">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Where Am I?</h2>
+  <p class="wf-rule">A riddle from a point on the grid.</p></div>
+  <div class="vw-q">“My two coordinates <b>add to 10</b> and <b>multiply to 21</b>.”<small>Where am I?</small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Convince the person beside you.</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans">The numbers are 3 and 7. But the point could be <span class="tex">(3,\ 7)</span> <b>or</b> <span class="tex">(7,\ 3)</span>: two different points, because the order matters.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -51,37 +61,9 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Relation Bingo" id="wu" style="--wf-side: 390px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Relation Bingo</h2>
-  <p class="wf-rule">The caller reads a clue. It fits <b>exactly one</b> square: find it and mark it! <span class="muted">Tap a square to mark it.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u5l12-bingo" id="wu-bingo"></div>
-  </div><div class="wf-side">
-    <div class="u5l12-calls">
-      <div class="u5l12-ch">The first 3 calls <span class="muted">(3 in a line wins)</span></div>
-      <div class="u5l12-call"><span class="u5l12-ball">1</span><div>My <span class="tex">y</span>-intercept is <span class="tex">2</span>.</div><div class="u5l12-cg">square <span data-reveal><b>C</b></span></div></div>
-      <div class="u5l12-call"><span class="u5l12-ball">2</span><div>My domain is <span class="tex">\{1,2,3,4\}</span>.</div><div class="u5l12-cg">square <span data-reveal><b>E</b></span></div></div>
-      <div class="u5l12-call"><span class="u5l12-ball">3</span><div><span class="tex">f(4)=1</span>.</div><div class="u5l12-cg">square <span data-reveal><b>B</b></span></div></div>
-    </div>
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Call <span class="u5l12-ball sm">4</span> “I am <b>NOT</b> a function.” Ana: “BINGO, top row!” Ben: “BINGO, diagonal!” Who is right? <b>Guess first.</b></div></div>
-      <div class="poll-opts u5l12-c3">
-        <div class="opt"><b>A</b> Ana</div>
-        <div class="opt right"><b>B</b> Ben</div>
-        <div class="opt"><b>C</b> both</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>Ben: square G</b>, so the diagonal C–E–G. G has the input 5 <b>twice</b>, with outputs 1 and 6: one input, two outputs, <b>not a function</b>.<br>
-        <span class="muted">Ana marked A because two arrows land on 5. That’s allowed! Each <b>input</b> still has one arrow, so A is a function.</span></div>
-    </div>
-    <p class="u5l12-social">Your turn: write a call that fits square <b>I</b> and <b>no other</b> square. Can your neighbour find it?</p>
-  </div></div>
-</section>
 
-<section class="card" data-ink="wuex" data-section="Warm-up: play the calls">
-  <h3 class="sub">Warm-up check: play the calls</h3>
-  <div class="explainer" data-explainer="bingo"></div>
-</section>
+
+
 
 <!-- ================= quick reference ================= -->
 <section class="card" data-ink="ref" data-section="The Whole Unit on One Card">
@@ -100,7 +82,7 @@
 <section class="card" data-ink="s1" data-section="1. The Cartesian Plane">
   <div class="sec-h"><span class="badge">1</span><h2>The Cartesian Plane and Plotting Points</h2></div>
   <p>The <b>signs</b> of the coordinates decide the quadrant. A <b>zero</b> coordinate puts a point on an axis, not in a quadrant.</p>
-  <div class="explainer" data-explainer="plane"></div>
+  <div data-extra><div class="explainer" data-explainer="plane"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -167,7 +149,7 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s3b" data-section="3. Four views">
+<section data-extra class="card" data-ink="s3b" data-section="3. Four views">
   <h3 class="sub">Examples 2 and 3 check: one relation, four views</h3>
   <div class="explainer" data-explainer="views"></div>
 </section>
@@ -189,7 +171,7 @@
     <div class="part"><div class="pl"><b>(b)</b> Which ordered pair is the <span class="tex">x</span>-intercept?</div><div class="work" style="--h:110px"></div>
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Find the column with <span class="tex">y=0</span>; it pairs with <span class="tex">x=3</span>: <span class="tex">\boldsymbol{(3,\ 0)}</span></div></div></div>
   </div>
-  <div class="explainer" data-explainer="intercepts"></div>
+  <div data-extra><div class="explainer" data-explainer="intercepts"></div></div>
 </section>
 
 <!-- ================= 5. Domain and range ================= -->
@@ -213,7 +195,16 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s5b" data-section="5. The shadows">
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–11">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 12 · Questions 1–11</h2>
+  <p class="pr-t">The first half of the unit, one skill at a time.</p>
+  <div class="pr-chips n3"><span><b>1–3</b>The Cartesian plane</span><span><b>4–7</b>Patterns and relations</span><span><b>8–11</b>Intercepts, domain and range</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 8.</span><a class="pill" href="../../../#/lesson/u5l12">Open the Practice site</a></div>
+</section>
+
+<section data-extra class="card" data-ink="s5b" data-section="5. The shadows">
   <h3 class="sub">Example 5 check: squash it onto the axes</h3>
   <div class="explainer" data-explainer="shadow"></div>
 </section>
@@ -238,7 +229,7 @@
         <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The line leaves the screen through opposite edges with no endpoints, so it continues forever. <b>Domain: all real numbers. Range: all real numbers.</b></div></div></div>
     </div>
   </div>
-  <div class="explainer" data-explainer="screen"></div>
+  <div data-extra><div class="explainer" data-explainer="screen"></div></div>
 </section>
 
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
@@ -258,7 +249,7 @@
     <div class="part"><div class="work" style="--h:120px"></div>
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Graph B is not a function.</b> A vertical line through the middle of the circle (for example <span class="tex">x=0</span>) crosses it <b>twice</b>, once at the top and once at the bottom: one input has two different outputs. A (an arch) and C (a V) each pass the test: every vertical line meets them at most once.</div></div></div>
   </div>
-  <div class="explainer" data-explainer="vlt"></div>
+  <div data-extra><div class="explainer" data-explainer="vlt"></div></div>
 </section>
 
 <!-- ================= 8. Evaluating ================= -->
@@ -276,7 +267,7 @@
     <div class="part"><div class="pl"><b>(b)</b> If <span class="tex">g(k)=7</span>, determine the value of <span class="tex">k</span>.</div><div class="work" style="--h:160px"></div>
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans">The <b>output</b> is given, so set the rule equal to 7 and solve:<br><span class="tex">4k-9=7\ \Rightarrow\ 4k=16\ \Rightarrow\ k=\boldsymbol{4}</span><br>Check: <span class="tex">g(4)=4(4)-9=7</span> ✓</div></div></div>
   </div>
-  <div class="explainer" data-explainer="fwdBack"></div>
+  <div data-extra><div class="explainer" data-explainer="fwdBack"></div></div>
 </section>
 
 <!-- ================= 9. Graphs and models ================= -->
@@ -304,7 +295,7 @@
   <button class="more" data-more="ex9-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s9b" data-section="9. Reading the graph">
+<section data-extra class="card" data-ink="s9b" data-section="9. Reading the graph">
   <h3 class="sub">Example 9 check: across, up or down, then over</h3>
   <div class="explainer" data-explainer="readGraph"></div>
 </section>
@@ -326,13 +317,13 @@
       <div class="work u5l12-axwork" style="--h:300px"><div class="u5l12-ax" id="ex10b-ax"></div></div>
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><div class="u5l12-ansfig" id="ex10b-ans"></div>Start high (just poured), fall <b>steeply</b> at first, then flatten as the coffee nears room temperature. Once it gets there the graph is <b>flat</b>: it cannot cool any further.</div></div></div>
   </div>
-  <div class="explainer" data-explainer="story"></div>
+  <div data-extra><div class="explainer" data-explainer="story"></div></div>
 </section>
 
 <!-- ================= 11. Mixed review ================= -->
 <section class="card" data-ink="s11" data-section="11. Mixed Review">
   <div class="sec-h"><span class="badge">11</span><h2>Mixed Review: Putting It All Together</h2></div>
-  <p>Each question below combines more than one skill: exactly like a test question. <span class="muted">(Check them with the Challenge chips in the explainers of Sections 3, 4, 5, 7 and 8.)</span></p>
+  <p>Each question below combines more than one skill: exactly like a test question. <span class="muted" data-extra>(Check them with the Challenge chips in the explainers of Sections 3, 4, 5, 7 and 8.)</span></p>
 </section>
 
 <section class="card example" data-ink="ch1" data-section="Challenge 1">
@@ -385,6 +376,38 @@
   <button class="more" data-more="ch3-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Relation Bingo" id="wu" style="--wf-side: 390px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Relation Bingo</h2>
+  <p class="wf-rule">The caller reads a clue. It fits <b>exactly one</b> square: find it and mark it! <span class="muted">Tap a square to mark it.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l12-bingo" id="wu-bingo"></div>
+  </div><div class="wf-side">
+    <div class="u5l12-calls">
+      <div class="u5l12-ch">The first 3 calls <span class="muted">(3 in a line wins)</span></div>
+      <div class="u5l12-call"><span class="u5l12-ball">1</span><div>My <span class="tex">y</span>-intercept is <span class="tex">2</span>.</div><div class="u5l12-cg">square <span data-reveal><b>C</b></span></div></div>
+      <div class="u5l12-call"><span class="u5l12-ball">2</span><div>My domain is <span class="tex">\{1,2,3,4\}</span>.</div><div class="u5l12-cg">square <span data-reveal><b>E</b></span></div></div>
+      <div class="u5l12-call"><span class="u5l12-ball">3</span><div><span class="tex">f(4)=1</span>.</div><div class="u5l12-cg">square <span data-reveal><b>B</b></span></div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Call <span class="u5l12-ball sm">4</span> “I am <b>NOT</b> a function.” Ana: “BINGO, top row!” Ben: “BINGO, diagonal!” Who is right? <b>Guess first.</b></div></div>
+      <div class="poll-opts u5l12-c3">
+        <div class="opt"><b>A</b> Ana</div>
+        <div class="opt right"><b>B</b> Ben</div>
+        <div class="opt"><b>C</b> both</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>Ben: square G</b>, so the diagonal C–E–G. G has the input 5 <b>twice</b>, with outputs 1 and 6: one input, two outputs, <b>not a function</b>.<br>
+        <span class="muted">Ana marked A because two arrows land on 5. That’s allowed! Each <b>input</b> still has one arrow, so A is a function.</span></div>
+    </div>
+    <p class="u5l12-social">Your turn: write a call that fits square <b>I</b> and <b>no other</b> square. Can your neighbour find it?</p>
+  </div></div>
+</section>
+
+<section data-extra class="card" data-ink="wuex" data-section="Warm-up: play the calls">
+  <h3 class="sub">Warm-up check: play the calls</h3>
+  <div class="explainer" data-explainer="bingo"></div>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -395,7 +418,7 @@
     <div><b>Real-world graphs:</b> rising, falling, flat; steep = fast. Read the axis labels, and think about the context for the domain.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u5l12">
-    <div><div class="kicker">Your turn</div><b>Assignment 12 — Unit Review: Relations and Functions</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 12 · Questions 12–26</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <div class="u5l12-review">
     <div class="u5l12-review-h"><span class="kicker">Up next</span><b>Unit 5 test.</b> <span class="muted">Shaky on an idea today? Go back to its lesson.</span></div>
@@ -422,7 +445,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u5l12.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u5l12', homeHref: '../../', title: '5.12 Unit 5 Review' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

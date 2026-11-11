@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u5l7.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Through the Window">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Through the Window</h2>
+  <p class="wf-rule">This is all you can see through a small window. What is the <b>whole picture</b>?</p></div>
+  <div class="vw-pic"><svg viewBox="170 90 82 82" style="max-width:300px"><defs><clipPath id="vwwin"><rect x="176" y="96" width="70" height="70"/></clipPath></defs><rect x="176" y="96" width="70" height="70" fill="#fbfaf6"/><g clip-path="url(#vwwin)"><polyline points="20,20 150,200 280,20" fill="none" stroke="#2b55a0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></g><rect x="176" y="96" width="70" height="70" fill="none" stroke="#4a4436" stroke-width="3"/></svg></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>How sure are you?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><span style="display:flex;gap:18px;align-items:center"><svg viewBox="0 0 300 220" style="width:220px;flex:none"><polyline points="20,20 150,200 280,20" fill="none" stroke="#2b55a0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><rect x="176" y="96" width="70" height="70" fill="rgba(224,161,27,.18)" stroke="#e0a11b" stroke-width="4"/></svg><span><b>A big V.</b> The window only showed a small piece of one side, so it looked like a plain straight line. What you see depends on where the window is and how big it is.</span></span></div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -45,60 +55,13 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Wrong Window!" id="wu" style="--wf-side: 318px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Wrong Window!</h2>
-  <p class="wf-rule">Four screens, <b>one</b> line: <span class="tex">y=2x-40</span>. The window cards got mixed up!</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u5l7-wscreens">
-      <div class="u5l7-wcol"><div class="u5l7-wname">Screen A <b class="u5l7-wmatch">Card 2</b></div><div class="u5l7-wscr" data-wscreen="A"></div></div>
-      <div class="u5l7-wcol"><div class="u5l7-wname">Screen B <b class="u5l7-wmatch">Card 3</b></div><div class="u5l7-wscr" data-wscreen="B"></div></div>
-      <div class="u5l7-wcol"><div class="u5l7-wname">Screen C <b class="u5l7-wmatch">Card 1</b></div><div class="u5l7-wscr" data-wscreen="C"></div></div>
-    </div>
-    <div class="u5l7-wcards">
-      <div class="u5l7-wcard"><b class="u5l7-wnum">1</b><div><span class="tex">x</span>: −10 to 30<br><span class="tex">y</span>: −50 to 10</div></div>
-      <div class="u5l7-wcard"><b class="u5l7-wnum">2</b><div><span class="tex">x</span>: −10 to 10<br><span class="tex">y</span>: −200 to 200</div></div>
-      <div class="u5l7-wcard"><b class="u5l7-wnum">3</b><div><span class="tex">x</span>: −100 to 100<br><span class="tex">y</span>: −10 to 10</div></div>
-    </div>
-    <div class="u5l7-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Which screen shows a nearly <b>flat</b> line? Which one looks almost <b>straight up</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u5l7-wa"><div class="bk-ans">Flat: <b>Screen A</b>. Straight up: <b>Screen B</b>. Same line, same steepness: only the window changed.</div></div></div>
-      <div class="bk-wq" id="wq2"><div class="q-line"><div class="q-num">2</div><div>Match screens A, B, C to cards 1, 2, 3. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u5l7-wa"><div class="bk-ans"><b>A–2, B–3, C–1.</b> Card 2 stretches <span class="tex">y</span> to ±200, so the line looks flat. Card 3 stretches <span class="tex">x</span> to ±100, so it looks steep. Card 1 is the only one not centred on the origin.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Find the screen for <b>Card 1</b> (grid lines 10 apart). Where does the line cross the <span class="tex">x</span>-axis? The <span class="tex">y</span>-axis? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u5l7-wa"><div class="bk-ans">Screen C. It crosses the <span class="tex">x</span>-axis at <span class="tex">(20,\ 0)</span> and the <span class="tex">y</span>-axis at <span class="tex">(0,\ -40)</span>. Check: <span class="tex">2(20)-40=0</span> ✓</div></div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u5l7-wD">
-      <div class="u5l7-wname red">Screen D <span class="u5l7-wmsg" id="wDmsg">empty!</span></div>
-      <div class="u5l7-wscr" data-wscreen="D"></div>
-      <div class="u5l7-wcard u5l7-wcardD"><b class="u5l7-wnum">D</b>
-        <div class="u5l7-wsteps">
-          <div class="u5l7-wstep"><span class="tex">x</span>: <button type="button" class="u5l7-sb" data-wd="xmin-">−</button><b data-wv="xmin">−10</b><button type="button" class="u5l7-sb" data-wd="xmin+">+</button> to <button type="button" class="u5l7-sb" data-wd="xmax-">−</button><b data-wv="xmax">10</b><button type="button" class="u5l7-sb" data-wd="xmax+">+</button></div>
-          <div class="u5l7-wstep"><span class="tex">y</span>: <button type="button" class="u5l7-sb" data-wd="ymin-">−</button><b data-wv="ymin">−10</b><button type="button" class="u5l7-sb" data-wd="ymin+">+</button> to <button type="button" class="u5l7-sb" data-wd="ymax-">−</button><b data-wv="ymax">10</b><button type="button" class="u5l7-sb" data-wd="ymax+">+</button></div>
-        </div></div>
-    </div>
-    <div class="poll wf-poll" id="wpoll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Screen D uses the <b>standard</b> window and it’s <b>empty</b>! Where is the line? <b>Guess first:</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> Above it</div>
-        <div class="opt right"><b>B</b> Below it</div>
-        <div class="opt"><b>C</b> To the left</div>
-        <div class="opt"><b>D</b> Not there</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>B: below the screen.</b> From <span class="tex">x=-10</span> to <span class="tex">x=10</span>, <span class="tex">y=2x-40</span> only goes from <span class="tex">-60</span> up to <span class="tex">-20</span>. Every point is below <span class="tex">\text{Ymin}=-10</span>. Nothing is broken: the frame is in the wrong place.</div>
-    </div>
-  </div></div>
-  <p class="u5l7-social"><b>Try it:</b> tap <b>−</b> or <b>+</b> to change just <b>one</b> number on Card D so the line shows up on Screen D. How many different ways can your table find?</p>
-  <div class="bk-wq u5l7-tryans"><button class="pill small" type="button" data-bk-toggle id="tryBtn">Show two ways</button>
-    <div class="bk-ans">Make <b>Ymin = −50</b> (the line shows from <span class="tex">x=-5</span> to <span class="tex">10</span>) or make <b>Xmax = 30</b> (it shows from <span class="tex">x=15</span> to <span class="tex">25</span>). Card 1 does both: that is Screen C.</div></div>
-</section>
+
 
 <!-- ================= 1. Entering a relation and setting a window ================= -->
 <section class="card" data-ink="s1" data-section="1. Setting a Window">
   <div class="sec-h"><span class="badge">1</span><h2>Entering a Relation and Setting a Window</h2></div>
   <div class="def">The <b>viewing window</b> is a <b>picture frame</b> laid over the plane: only the part of the graph <b>inside the frame</b> appears on the screen. Four numbers control it: <b>Xmin</b> and <b>Xmax</b> (the smallest and largest <span class="tex">x</span> shown) and <b>Ymin</b> and <b>Ymax</b> (the smallest and largest <span class="tex">y</span> shown).<div class="eg">The <b>standard window</b> is <span class="tex">x:[-10,\ 10]</span>, <span class="tex">y:[-10,\ 10]</span>. We read <span class="tex">x:[-10,\ 10]</span> as “<span class="tex">x</span> from −10 to 10”.</div></div>
-  <div class="explainer" data-explainer="frame"></div>
+  <div data-extra><div class="explainer" data-explainer="frame"></div></div>
 </section>
 
 <section class="card" data-ink="s1b" data-section="1. TI-84 or Desmos">
@@ -114,7 +77,7 @@
         <li>Click the <b>wrench</b> icon to type exact window values.</li></ol>
       <a class="pill small u5l7-out" href="https://www.desmos.com/calculator" target="_blank" rel="noopener">Open Desmos ↗</a></div>
   </div>
-  <div class="explainer" data-explainer="keys"></div>
+  <div data-extra><div class="explainer" data-explainer="keys"></div></div>
 </section>
 
 <!-- ================= Window Lab: the interactive screen ================= -->
@@ -172,7 +135,7 @@
   <div class="sec-h"><span class="badge">2</span><h2>Adjusting the Window When Needed</h2></div>
   <p>If an intercept or another important part of the graph is missing, change the window. Either <b>type a custom window</b> (<span class="keys"><kbd>WINDOW</kbd></span> on a calculator, the wrench in Desmos) or <b>zoom out</b> (<span class="keys"><kbd>ZOOM</kbd><kbd>3</kbd></span> on a TI-84; scroll or pinch in Desmos).</p>
   <div class="def amber"><b>Best strategy:</b> work out the intercepts <b>first</b>, then set Xmin, Xmax, Ymin and Ymax a little <b>beyond</b> them, so there is room to spare.</div>
-  <div class="explainer" data-explainer="fixWindow"></div>
+  <div data-extra><div class="explainer" data-explainer="fixWindow"></div></div>
 </section>
 
 <section class="card example" data-ink="ex2" data-section="Example 2">
@@ -211,7 +174,7 @@
 <section class="card" data-ink="s3b" data-section="3. The table">
   <h3 class="sub">The table: two rows tell you both intercepts</h3>
   <p>In a table, the <span class="tex">x</span>-intercept is the row where <span class="tex">y</span> is <b>0</b>, and the <span class="tex">y</span>-intercept is the row where <span class="tex">x</span> is <b>0</b>.</p>
-  <div class="explainer" data-explainer="table"></div>
+  <div data-extra><div class="explainer" data-explainer="table"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Trace is close, zero is exact.</b> The trace cursor jumps from pixel to pixel, so it may land near the intercept but not exactly on it (like <span class="tex">x=2.9787</span>). Use <b>zero</b> or <b>value</b> for the exact answer.</div></div>
 </section>
 
@@ -242,7 +205,7 @@
     <div class="u5l7-rule u5l7-rule2"><div class="u5l7-rh">Stops or turns around</div>You can see an end: the domain or range is <b>limited</b>.</div>
   </div>
   <div class="def">A straight, <b>slanted</b> line (not horizontal or vertical) runs off the screen at <b>both ends</b>, however far you zoom out. So its domain <b>and</b> its range are both <b>all real numbers</b>: <span class="tex">x\in R</span> and <span class="tex">y\in R</span>.</div>
-  <div class="explainer" data-explainer="offEdges"></div>
+  <div data-extra><div class="explainer" data-explainer="offEdges"></div></div>
 </section>
 
 <section class="card example" data-ink="ex4" data-section="Example 4">
@@ -260,6 +223,15 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–7">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 7 · Questions 1–7</h2>
+  <p class="pr-t">Choose a window, then read intercepts, domain and range off the screen.</p>
+  <div class="pr-chips n2"><span><b>1–3</b>Vocabulary and choosing a window</span><span><b>4–7</b>Intercepts, domain and range off a screen</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 5.</span><a class="pill" href="../../../#/lesson/u5l7">Open the Practice site</a></div>
+</section>
+
 <!-- ================= 5. A real-world relation ================= -->
 <section class="card" data-ink="s5" data-section="5. A Real-World Relation">
   <div class="sec-h"><span class="badge">5</span><h2>A Real-World Relation Explored with Technology</h2></div>
@@ -268,7 +240,7 @@
     <div class="u5l7-rule u5l7-rule3"><div class="u5l7-rh">Counting things</div>Only <b>whole numbers</b> make sense (items ordered, people, tickets): the graph is really just <b>dots</b>.</div>
     <div class="u5l7-rule u5l7-rule4"><div class="u5l7-rh">Measuring things</div>Any value <b>in between</b> makes sense too (hours, kilometres, litres): the graph is a <b>solid</b> line or ray.</div>
   </div>
-  <div class="explainer" data-explainer="context"></div>
+  <div data-extra><div class="explainer" data-explainer="context"></div></div>
   <div class="tip calc-tip">
     <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
     <div><b>No graphing calculator? The scientific calculator works too.</b> Cost of 6 candles: <span class="keys"><kbd>5</kbd><kbd>+</kbd><kbd>2</kbd><kbd>×</kbd><kbd>6</kbd><kbd>=</kbd></span> gives 17. Candles for $23: undo the steps, <span class="keys"><kbd>(</kbd><kbd>2</kbd><kbd>3</kbd><kbd>−</kbd><kbd>5</kbd><kbd>)</kbd><kbd>÷</kbd><kbd>2</kbd><kbd>=</kbd></span> gives 9.</div>
@@ -297,6 +269,55 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Wrong Window!" id="wu" style="--wf-side: 318px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Wrong Window!</h2>
+  <p class="wf-rule">Four screens, <b>one</b> line: <span class="tex">y=2x-40</span>. The window cards got mixed up!</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l7-wscreens">
+      <div class="u5l7-wcol"><div class="u5l7-wname">Screen A <b class="u5l7-wmatch">Card 2</b></div><div class="u5l7-wscr" data-wscreen="A"></div></div>
+      <div class="u5l7-wcol"><div class="u5l7-wname">Screen B <b class="u5l7-wmatch">Card 3</b></div><div class="u5l7-wscr" data-wscreen="B"></div></div>
+      <div class="u5l7-wcol"><div class="u5l7-wname">Screen C <b class="u5l7-wmatch">Card 1</b></div><div class="u5l7-wscr" data-wscreen="C"></div></div>
+    </div>
+    <div class="u5l7-wcards">
+      <div class="u5l7-wcard"><b class="u5l7-wnum">1</b><div><span class="tex">x</span>: −10 to 30<br><span class="tex">y</span>: −50 to 10</div></div>
+      <div class="u5l7-wcard"><b class="u5l7-wnum">2</b><div><span class="tex">x</span>: −10 to 10<br><span class="tex">y</span>: −200 to 200</div></div>
+      <div class="u5l7-wcard"><b class="u5l7-wnum">3</b><div><span class="tex">x</span>: −100 to 100<br><span class="tex">y</span>: −10 to 10</div></div>
+    </div>
+    <div class="u5l7-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Which screen shows a nearly <b>flat</b> line? Which one looks almost <b>straight up</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l7-wa"><div class="bk-ans">Flat: <b>Screen A</b>. Straight up: <b>Screen B</b>. Same line, same steepness: only the window changed.</div></div></div>
+      <div class="bk-wq" id="wq2"><div class="q-line"><div class="q-num">2</div><div>Match screens A, B, C to cards 1, 2, 3. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l7-wa"><div class="bk-ans"><b>A–2, B–3, C–1.</b> Card 2 stretches <span class="tex">y</span> to ±200, so the line looks flat. Card 3 stretches <span class="tex">x</span> to ±100, so it looks steep. Card 1 is the only one not centred on the origin.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Find the screen for <b>Card 1</b> (grid lines 10 apart). Where does the line cross the <span class="tex">x</span>-axis? The <span class="tex">y</span>-axis? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l7-wa"><div class="bk-ans">Screen C. It crosses the <span class="tex">x</span>-axis at <span class="tex">(20,\ 0)</span> and the <span class="tex">y</span>-axis at <span class="tex">(0,\ -40)</span>. Check: <span class="tex">2(20)-40=0</span> ✓</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u5l7-wD">
+      <div class="u5l7-wname red">Screen D <span class="u5l7-wmsg" id="wDmsg">empty!</span></div>
+      <div class="u5l7-wscr" data-wscreen="D"></div>
+      <div class="u5l7-wcard u5l7-wcardD"><b class="u5l7-wnum">D</b>
+        <div class="u5l7-wsteps">
+          <div class="u5l7-wstep"><span class="tex">x</span>: <button type="button" class="u5l7-sb" data-wd="xmin-">−</button><b data-wv="xmin">−10</b><button type="button" class="u5l7-sb" data-wd="xmin+">+</button> to <button type="button" class="u5l7-sb" data-wd="xmax-">−</button><b data-wv="xmax">10</b><button type="button" class="u5l7-sb" data-wd="xmax+">+</button></div>
+          <div class="u5l7-wstep"><span class="tex">y</span>: <button type="button" class="u5l7-sb" data-wd="ymin-">−</button><b data-wv="ymin">−10</b><button type="button" class="u5l7-sb" data-wd="ymin+">+</button> to <button type="button" class="u5l7-sb" data-wd="ymax-">−</button><b data-wv="ymax">10</b><button type="button" class="u5l7-sb" data-wd="ymax+">+</button></div>
+        </div></div>
+    </div>
+    <div class="poll wf-poll" id="wpoll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Screen D uses the <b>standard</b> window and it’s <b>empty</b>! Where is the line? <b>Guess first:</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Above it</div>
+        <div class="opt right"><b>B</b> Below it</div>
+        <div class="opt"><b>C</b> To the left</div>
+        <div class="opt"><b>D</b> Not there</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: below the screen.</b> From <span class="tex">x=-10</span> to <span class="tex">x=10</span>, <span class="tex">y=2x-40</span> only goes from <span class="tex">-60</span> up to <span class="tex">-20</span>. Every point is below <span class="tex">\text{Ymin}=-10</span>. Nothing is broken: the frame is in the wrong place.</div>
+    </div>
+  </div></div>
+  <p class="u5l7-social"><b>Try it:</b> tap <b>−</b> or <b>+</b> to change just <b>one</b> number on Card D so the line shows up on Screen D. How many different ways can your table find?</p>
+  <div class="bk-wq u5l7-tryans"><button class="pill small" type="button" data-bk-toggle id="tryBtn">Show two ways</button>
+    <div class="bk-ans">Make <b>Ymin = −50</b> (the line shows from <span class="tex">x=-5</span> to <span class="tex">10</span>) or make <b>Xmax = 30</b> (it shows from <span class="tex">x=15</span> to <span class="tex">25</span>). Card 1 does both: that is Screen C.</div></div>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -307,7 +328,7 @@
     <div><b>Domain and range:</b> a slanted line runs off both edges: <b>all real numbers</b> for both. In a real situation the <b>context</b> decides: whole numbers only for things you count.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u5l7">
-    <div><div class="kicker">Your turn</div><b>Assignment 7 — Using Technology to Graph and Explore Relations</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 7 · Questions 8–12</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l8/">
     <div><div class="kicker">Next lesson</div><b>Lesson 8 — Introducing Functions: The Vertical Line Test</b><div class="muted">A function gives each input exactly one output, and a vertical line can check a whole graph in one sweep.</div></div><span class="arrow">→</span>
@@ -320,7 +341,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u5l7.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u5l7', homeHref: '../../', title: '5.7 Graphing with Technology' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

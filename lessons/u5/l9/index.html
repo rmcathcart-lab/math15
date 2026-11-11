@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u5l9.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Crack the Rule">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Crack the Rule</h2>
+  <p class="wf-rule">What is the last one?</p></div>
+  <div class="vw-q"><span class="tex">f(\text{dog})=3</span> &emsp; <span class="tex">f(\text{horse})=5</span> &emsp; <span class="tex">f(\text{cat})=3</span><small><span class="tex">f(\text{elephant})=\ ?</span></small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>What is the rule doing with each word?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>8.</b> The rule counts the letters: <span class="tex">f(\text{elephant})=8</span>. The word goes in, a number comes out.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,59 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Pizza Counter" id="wu" style="--wf-side: 318px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Pizza Counter</h2>
-  <p class="wf-rule">Every order ticket asks the same rule a different question. <span class="muted">Tap a ticket to ring it up.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u5l9-wtop">
-      <div class="u5l9-board">
-        <div class="u5l9-bname">LUIGI’S PIZZA</div>
-        <div class="u5l9-brow">
-          <svg class="u5l9-pz" id="u5l9-pz" viewBox="0 0 120 120" aria-label="A pizza with the chosen number of toppings"></svg>
-          <div class="u5l9-bmenu">
-            <div class="u5l9-bl"><b>Large pizza:</b></div>
-            <div class="u5l9-bl">$8 + $2 per topping</div>
-            <div class="u5l9-brule"><span class="tex">P(t)=8+2t</span></div>
-            <div class="u5l9-bt"><span class="tex">t</span> = number of toppings</div>
-          </div>
-        </div>
-        <div class="u5l9-build">
-          <button type="button" class="pill small" data-tp="-1" aria-label="One topping fewer">−</button>
-          <span class="u5l9-bout" id="u5l9-bout"></span>
-          <button type="button" class="pill small" data-tp="1" aria-label="One more topping">+</button>
-        </div>
-      </div>
-      <div class="u5l9-tix">
-        <button type="button" class="u5l9-tk" data-t="0"><span class="u5l9-tkh">ORDER #1</span><span class="u5l9-tkd">plain cheese<br>no toppings</span><span class="u5l9-tkp"><span class="tex">P(0)=</span></span><span class="u5l9-tkv">$ ___</span></button>
-        <button type="button" class="u5l9-tk" data-t="3"><span class="u5l9-tkh">ORDER #2</span><span class="u5l9-tkd">ham, peppers,<br>mushrooms</span><span class="u5l9-tkp"><span class="tex">P(3)=</span></span><span class="u5l9-tkv">$ ___</span></button>
-        <button type="button" class="u5l9-tk" data-t="5"><span class="u5l9-tkh">ORDER #3</span><span class="u5l9-tkd">“the works”<br>5 toppings</span><span class="u5l9-tkp"><span class="tex">P(5)=</span></span><span class="u5l9-tkv">$ ___</span></button>
-      </div>
-    </div>
-    <div class="u5l9-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What does a plain cheese pizza cost? Fill in ticket #1. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u5l9-wa"><div class="bk-ans"><span class="tex">P(0)=8+2(0)=\$8</span>. No toppings: just the base price.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Fill in tickets #2 and #3. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u5l9-wa"><div class="bk-ans"><span class="tex">P(3)=8+2(3)=\$14</span> and <span class="tex">P(5)=8+2(5)=\$18</span>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Luigi’s receipt says <span class="tex">P(7)=22</span>. What does the <b>7</b> count? The <b>22</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u5l9-wa"><div class="bk-ans">7 is the number of <b>toppings</b> (the input). 22 is the <b>price</b> in dollars (the output): 7 toppings cost $22.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>“My pizza cost $20.” So <span class="tex">P(t)=20</span>. How many toppings? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u5l9-wa"><div class="bk-ans"><span class="tex">8+2t=20</span>, so <span class="tex">2t=12</span> and <b>6 toppings</b>. Check: <span class="tex">P(6)=8+12=20</span> ✓</div></div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Two tickets are waiting. Ticket X says <span class="u5l9-box"><span class="tex">P(10)</span></span>. Ticket Y says <span class="u5l9-box"><span class="tex">P(t)=10</span></span>, the price is $10. Which pizza has <b>more toppings</b>? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt right"><b>A</b> ticket X</div>
-        <div class="opt"><b>B</b> ticket Y</div>
-        <div class="opt"><b>C</b> the same</div>
-        <div class="opt"><b>D</b> can’t tell</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>A: ticket X.</b> <span class="tex">P(10)</span> puts <b>10 toppings</b> in: <span class="tex">8+2(10)=\$28</span>. Ticket Y says the <b>price</b> is $10: <span class="tex">8+2t=10</span>, so just <b>1 topping</b>. The number <b>inside the brackets</b> is always the input.</div>
-    </div>
-  </div></div>
-  <p class="u5l9-social">Argue with your neighbour: Jordan says <span class="tex">P(3)</span> means “<span class="tex">P</span> times 3.” Why is that silly here?</p>
-</section>
+
 
 <!-- ================= 1. Introducing function notation ================= -->
 <section class="card" data-ink="s1" data-section="1. Function Notation">
@@ -113,7 +71,7 @@
     </div>
     <p class="u5l9-fmtext"><span class="tex">f</span> is a machine: the input <span class="tex">x</span> goes in, the rule is applied, and the output <span class="tex">f(x)</span> comes out.</p>
   </div>
-  <div class="explainer" data-explainer="machine"></div>
+  <div data-extra><div class="explainer" data-explainer="machine"></div></div>
 </section>
 
 <section class="card" data-ink="s1b" data-section="1. Name, input, output">
@@ -125,7 +83,7 @@
     <div>When <span class="tex">x=3</span>: <span class="tex">y=2(3)+5</span></div><div><span class="tex">f(3)=2(3)+5</span></div><div></div>
     <div><span class="tex">y=11</span></div><div><span class="tex">f(3)=11</span></div><div class="note">input 3, output 11: the point <span class="tex">(3,\ 11)</span></div>
   </div>
-  <div class="explainer" data-explainer="anatomy"></div>
+  <div data-extra><div class="explainer" data-explainer="anatomy"></div></div>
   <p class="u5l9-fliph">Quick check: tap a card to flip it.</p>
   <div class="bk-flips" style="--bk-cols:4">
     <div class="bk-flip"><div class="bk-front">Does <span class="tex">g(5)</span> mean <span class="tex">g\times5</span>?</div><div class="bk-back"><b>No.</b> It is the output of <span class="tex">g</span> when the input is 5.</div></div>
@@ -204,7 +162,16 @@
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s2b" data-section="2. Read the direction">
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–9">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 9 · Questions 1–9</h2>
+  <p class="pr-t">Read the notation, then evaluate for a number.</p>
+  <div class="pr-chips n2"><span><b>1–3</b>Notation and vocabulary</span><span><b>4–9</b>Evaluating for a number</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 7.</span><a class="pill" href="../../../#/lesson/u5l9">Open the Practice site</a></div>
+</section>
+
+<section data-extra class="card" data-ink="s2b" data-section="2. Read the direction">
   <h3 class="sub">Read the direction carefully</h3>
   <div class="def-grid">
     <div class="def"><span class="tex">f(3)</span> <b>hands you the input</b> (3) and asks for the output. Go <b>forwards</b> through the rule.</div>
@@ -245,7 +212,7 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s3b" data-section="3. Check Example 4">
+<section data-extra class="card" data-ink="s3b" data-section="3. Check Example 4">
   <h3 class="sub">Check Example 4: the square takes the whole input</h3>
   <p>The input goes into the slot <b>whole</b> and <b>in brackets</b>, so the square acts on all of it. Then check your answer by putting a number in for the letter: both forms must agree.</p>
   <div class="explainer" data-explainer="squareSub"></div>
@@ -263,7 +230,7 @@
     <div class="u5l9-tr"><span class="u5l9-trn"><span class="tex">\textcolor{#7b4fc4}{C}(\textcolor{#1f5bd6}{8})=\textcolor{#c27a0e}{35}</span></span><span class="u5l9-tra">⇄</span><span class="u5l9-trw">“the cost of <b class="u5l9-ci">8 items</b> is <b class="u5l9-co">$35</b>”</span></div>
   </div>
   <p class="u5l9-rule3">The number <b class="u5l9-ci">inside the brackets</b> is the input: what you choose. The number <b class="u5l9-co">after the equals sign</b> is the output: what you get.</p>
-  <div class="explainer" data-explainer="context"></div>
+  <div data-extra><div class="explainer" data-explainer="context"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -275,12 +242,66 @@
     <div class="part"><div class="pl">(c) Translate into a function notation statement, and check that it is correct: <i>“The cost of ordering 12 tacos is $42.”</i></div><div class="work" style="--h:176px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Input = 12 tacos, output = $42: <span class="tex">\boldsymbol{C(12)=42}</span><br>Check: <span class="tex">C(12)=3(12)+6=36+6=42</span> ✓<br>The statement is <b>correct</b>.</div></div></div>
   </div>
   <div class="parts c1">
-    <div class="part think"><div class="pl"><span class="think-tag">Think</span> <span class="tex">D(t)</span> is the distance, in kilometres, a cyclist rides in <span class="tex">t</span> hours. Which sentence matches <span class="tex">D(2)=30</span>?</div>
+    <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> <span class="tex">D(t)</span> is the distance, in kilometres, a cyclist rides in <span class="tex">t</span> hours. Which sentence matches <span class="tex">D(2)=30</span>?</div>
       <div class="bk-mc" data-answer="C" data-pick><div>The cyclist rides 2 km in 30 hours.</div><div>The cyclist rides 2 km every hour.</div><div>In 2 hours the cyclist rides 30 km.</div><div>The cyclist rides 30 km per hour for 2 km.</div></div>
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>C.</b> Inside the brackets is the input: 2 <b>hours</b>. After the equals sign is the output: 30 <b>km</b>. A swaps them.</div></div></div>
   </div>
   <div class="space" id="ex5-space"></div>
   <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Pizza Counter" id="wu" style="--wf-side: 318px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Pizza Counter</h2>
+  <p class="wf-rule">Every order ticket asks the same rule a different question. <span class="muted">Tap a ticket to ring it up.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l9-wtop">
+      <div class="u5l9-board">
+        <div class="u5l9-bname">LUIGI’S PIZZA</div>
+        <div class="u5l9-brow">
+          <svg class="u5l9-pz" id="u5l9-pz" viewBox="0 0 120 120" aria-label="A pizza with the chosen number of toppings"></svg>
+          <div class="u5l9-bmenu">
+            <div class="u5l9-bl"><b>Large pizza:</b></div>
+            <div class="u5l9-bl">$8 + $2 per topping</div>
+            <div class="u5l9-brule"><span class="tex">P(t)=8+2t</span></div>
+            <div class="u5l9-bt"><span class="tex">t</span> = number of toppings</div>
+          </div>
+        </div>
+        <div class="u5l9-build">
+          <button type="button" class="pill small" data-tp="-1" aria-label="One topping fewer">−</button>
+          <span class="u5l9-bout" id="u5l9-bout"></span>
+          <button type="button" class="pill small" data-tp="1" aria-label="One more topping">+</button>
+        </div>
+      </div>
+      <div class="u5l9-tix">
+        <button type="button" class="u5l9-tk" data-t="0"><span class="u5l9-tkh">ORDER #1</span><span class="u5l9-tkd">plain cheese<br>no toppings</span><span class="u5l9-tkp"><span class="tex">P(0)=</span></span><span class="u5l9-tkv">$ ___</span></button>
+        <button type="button" class="u5l9-tk" data-t="3"><span class="u5l9-tkh">ORDER #2</span><span class="u5l9-tkd">ham, peppers,<br>mushrooms</span><span class="u5l9-tkp"><span class="tex">P(3)=</span></span><span class="u5l9-tkv">$ ___</span></button>
+        <button type="button" class="u5l9-tk" data-t="5"><span class="u5l9-tkh">ORDER #3</span><span class="u5l9-tkd">“the works”<br>5 toppings</span><span class="u5l9-tkp"><span class="tex">P(5)=</span></span><span class="u5l9-tkv">$ ___</span></button>
+      </div>
+    </div>
+    <div class="u5l9-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What does a plain cheese pizza cost? Fill in ticket #1. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l9-wa"><div class="bk-ans"><span class="tex">P(0)=8+2(0)=\$8</span>. No toppings: just the base price.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Fill in tickets #2 and #3. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l9-wa"><div class="bk-ans"><span class="tex">P(3)=8+2(3)=\$14</span> and <span class="tex">P(5)=8+2(5)=\$18</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Luigi’s receipt says <span class="tex">P(7)=22</span>. What does the <b>7</b> count? The <b>22</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l9-wa"><div class="bk-ans">7 is the number of <b>toppings</b> (the input). 22 is the <b>price</b> in dollars (the output): 7 toppings cost $22.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>“My pizza cost $20.” So <span class="tex">P(t)=20</span>. How many toppings? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l9-wa"><div class="bk-ans"><span class="tex">8+2t=20</span>, so <span class="tex">2t=12</span> and <b>6 toppings</b>. Check: <span class="tex">P(6)=8+12=20</span> ✓</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Two tickets are waiting. Ticket X says <span class="u5l9-box"><span class="tex">P(10)</span></span>. Ticket Y says <span class="u5l9-box"><span class="tex">P(t)=10</span></span>, the price is $10. Which pizza has <b>more toppings</b>? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> ticket X</div>
+        <div class="opt"><b>B</b> ticket Y</div>
+        <div class="opt"><b>C</b> the same</div>
+        <div class="opt"><b>D</b> can’t tell</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A: ticket X.</b> <span class="tex">P(10)</span> puts <b>10 toppings</b> in: <span class="tex">8+2(10)=\$28</span>. Ticket Y says the <b>price</b> is $10: <span class="tex">8+2t=10</span>, so just <b>1 topping</b>. The number <b>inside the brackets</b> is always the input.</div>
+    </div>
+  </div></div>
+  <p class="u5l9-social">Argue with your neighbour: Jordan says <span class="tex">P(3)</span> means “<span class="tex">P</span> times 3.” Why is that silly here?</p>
 </section>
 
 <!-- ================= summary ================= -->
@@ -293,7 +314,7 @@
     <div><b>In context:</b> inside the brackets is the input, after the equals sign is the output. <span class="tex">C(4)=18</span>: ordering 4 tacos costs $18.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u5l9">
-    <div><div class="kicker">Your turn</div><b>Assignment 9 — Function Notation: Evaluating and Interpreting <span class="tex">f(x)</span></b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 9 · Questions 10–16</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l10/">
     <div><div class="kicker">Next lesson</div><b>Lesson 10 — Function Notation: Graphs, Conversions, and Real-World Models</b><div class="muted">Reading <span class="tex">f(a)</span> off a graph, switching between <span class="tex">y=</span> and <span class="tex">f(x)=</span>, and functions that model real situations</div></div><span class="arrow">→</span>
@@ -306,7 +327,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u5l9.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u5l9', homeHref: '../../', title: '5.9 Function Notation' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

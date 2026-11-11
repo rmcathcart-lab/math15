@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Domain and Range, Part 1 · Math 15 5.5</title>
+<meta name="description" content="Math 15 Unit 5 Lesson 5: reading the domain and range of a relation from a graph. The floor shadow and the wall shadow, leftmost to rightmost and lowest to highest, discrete dots versus continuous lines, scanning the whole curve, and real situations where time can't be negative. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u5l5.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 5 Relations and Functions · Lesson 5</div>
+  <h1>Domain and Range of a Relation, Part 1: Reading From a Graph</h1>
+  <p class="lede">Shine a light on a graph and it casts two shadows: one on the <b>floor</b> (the <span class="tex">x</span>-axis) and one on the <b>wall</b> (the <span class="tex">y</span>-axis). Today we read them. The <b>domain</b> is how far the graph reaches from left to right. The <b>range</b> is how far it reaches from bottom to top.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>read the <b>domain</b> of a graph: every <span class="tex">x</span>-value from the <b>leftmost</b> point to the <b>rightmost</b> point</li>
+      <li>read the <b>range</b> of a graph: every <span class="tex">y</span>-value from the <b>lowest</b> point to the <b>highest</b> point</li>
+      <li>tell a <b>discrete</b> graph (separate dots: write a list) from a <b>continuous</b> graph (unbroken: “from … to …”)</li>
+      <li>scan the <b>whole</b> graph, because the highest or lowest point is not always at an end</li>
+      <li>keep only the values that make sense in a <b>real situation</b>, like a time that can’t be negative</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF2</b> Demonstrate an understanding of relations and functions.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Shadow Shapes" id="wu">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Shadow Shapes</h2>
+  <p class="wf-rule">Sun <b>above</b> → a <b>floor</b> shadow. Flashlight at the <b>side</b> → a <b>wall</b> shadow.</p></div>
+  <div class="u5l5-wtop">
+    <div class="u5l5-cbox">
+      <div class="u5l5-ch">The roller coaster</div>
+      <div id="u5l5-coaster"></div>
+      <div class="u5l5-wctl">
+        <button type="button" class="pill small" data-u5l5-light="x">Sun from above</button>
+        <button type="button" class="pill small" data-u5l5-light="y">Flashlight from the side</button>
+      </div>
+    </div>
+    <div class="u5l5-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div><b>Floor</b> shadow: from <span class="tex">x=</span><span class="u5l5-blank"></span> to <span class="tex">x=</span><span class="u5l5-blank"></span>? <button class="pill small" type="button" data-bk-toggle data-u5l5-wq="1">Answer</button></div></div>
+        <div class="u5l5-wa"><div class="bk-ans">From <span class="tex">x=1</span> to <span class="tex">x=9</span>: the track’s left end <span class="tex">(1,2)</span> and right end <span class="tex">(9,3)</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div><b>Wall</b> shadow: from <span class="tex">y=</span><span class="u5l5-blank"></span> to <span class="tex">y=</span><span class="u5l5-blank"></span>? <button class="pill small" type="button" data-bk-toggle data-u5l5-wq="2">Answer</button></div></div>
+        <div class="u5l5-wa"><div class="bk-ans">From <span class="tex">y=1</span> up to <span class="tex">y=6</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>The track’s two ends are at heights <b>2</b> and <b>3</b>. So what makes the bottom and the top of the wall shadow? <button class="pill small" type="button" data-bk-toggle data-u5l5-wq="3">Answer</button></div></div>
+        <div class="u5l5-wa"><div class="bk-ans">Not the ends! The <b>dip</b> at <span class="tex">(6,1)</span> makes the bottom and the <b>peak</b> at <span class="tex">(3,6)</span> makes the top. The ends are hidden <b>inside</b> the shadow.</div></div></div>
+      <p class="u5l5-social">Your turn: draw the <b>weirdest</b> shape you can that casts the coaster’s two shadows. Compare with a neighbour.</p>
+    </div>
+  </div>
+  <div class="poll wf-poll u5l5-poll">
+    <div class="u5l5-pq">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Which shape casts <b>the same two shadows</b> as the coaster? <b>Guess first!</b></div></div>
+      <div class="u5l5-pbtns"><button class="pill small" type="button" data-poll-reveal>Reveal</button><button class="pill small" type="button" data-u5l5-shine>Shine both lights</button></div>
+    </div>
+    <div class="poll-opts u5l5-popts">
+      <div class="opt"><b>A</b><span class="u5l5-on">Copycat coaster</span><div class="u5l5-mini" data-u5l5-mini="A"></div></div>
+      <div class="opt right"><b>B</b><span class="u5l5-on">Plain ramp</span><div class="u5l5-mini" data-u5l5-mini="B"></div></div>
+      <div class="opt"><b>C</b><span class="u5l5-on">Five balloons</span><div class="u5l5-mini" data-u5l5-mini="C"></div></div>
+    </div>
+    <div class="poll-ans"><b>B, the plain ramp.</b> It runs from <span class="tex">(1,1)</span> to <span class="tex">(9,6)</span>: floor shadow 1 to 9, wall shadow 1 to 6. A perfect match, even though it looks nothing like a coaster.
+      <span class="muted"><b>A</b> dips down to <span class="tex">(6,0)</span>, so its wall shadow is 0 to 6: too long. <b>C</b>: each balloon casts a separate <b>spot</b>, and five spots are not a solid bar.</span>
+      <b>Today:</b> the floor shadow is the <b>domain</b> and the wall shadow is the <b>range</b>.</div>
+  </div>
+</section>
+
+<!-- ================= 1. Domain ================= -->
+<section class="card" data-ink="s1" data-section="1. Domain: Left to Right">
+  <div class="sec-h"><span class="badge">1</span><h2>Domain: How Far the Graph Reaches Left to Right</h2></div>
+  <div class="u5l5-figtext">
+    <div class="u5l5-sfig" data-fig="s1"></div>
+    <div>
+      <div class="def">The <b>domain</b> of a relation is the set of all possible <span class="tex">x</span>-values: the <b>inputs</b> the relation uses.</div>
+      <p>To read it from a graph, find the graph’s <b>leftmost</b> point and its <b>rightmost</b> point. The domain is every <span class="tex">x</span>-value from one to the other. The graph at left starts at <span class="tex">x=-4</span> and ends at <span class="tex">x=3</span>, and every <span class="tex">x</span>-value in between is used somewhere on the line. So its domain is: <i><span class="tex">x</span> can be any value from <span class="tex">-4</span> to <span class="tex">3</span>.</i></p>
+    </div>
+  </div>
+  <div class="explainer" data-explainer="floor"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>The domain of a line segment</h3></div>
+  <p class="q">The graph below shows a line segment.</p>
+  <div class="u5l5-exg">
+    <div class="u5l5-fig" data-fig="e1"></div>
+    <div class="parts c1">
+      <div class="part" data-p="a"><div class="pl">(a) State the domain of the graph.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The segment starts at <span class="tex">x=-2</span> (leftmost point) and ends at <span class="tex">x=4</span> (rightmost point), unbroken in between.<br><b>Domain: <span class="tex">x</span> can be any value from <span class="tex">-2</span> to <span class="tex">4</span>.</b></div></div></div>
+      <div class="part" data-p="b"><div class="pl">(b) Could <span class="tex">x=5</span> be part of this relation? Explain.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> The graph stops at the endpoint <span class="tex">(4,1)</span>, so no point on it has <span class="tex">x=5</span>. The value <span class="tex">5</span> is outside the domain.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Range ================= -->
+<section class="card" data-ink="s2" data-section="2. Range: Bottom to Top">
+  <div class="sec-h"><span class="badge">2</span><h2>Range: How Far the Graph Reaches Bottom to Top</h2></div>
+  <div class="u5l5-figtext">
+    <div class="u5l5-sfig" data-fig="s2"></div>
+    <div>
+      <div class="def">The <b>range</b> of a relation is the set of all possible <span class="tex">y</span>-values: the <b>outputs</b> the relation produces.</div>
+      <p>To read it from a graph, find the graph’s <b>lowest</b> point and its <b>highest</b> point. The range is every <span class="tex">y</span>-value from one to the other. The lowest point at left is <span class="tex">y=-1</span> and the highest is the peak at <span class="tex">y=4</span>. So the range is: <i><span class="tex">y</span> can be any value from <span class="tex">-1</span> to <span class="tex">4</span>.</i></p>
+    </div>
+  </div>
+  <div class="explainer" data-explainer="wall"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>The range of a curve</h3></div>
+  <p class="q">The graph below shows a curve.</p>
+  <div class="u5l5-exg">
+    <div class="u5l5-fig" data-fig="e2"></div>
+    <div class="parts c1">
+      <div class="part" data-p="a"><div class="pl">(a) State the range of the graph.</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Scan the curve from bottom to top: the lowest point is <span class="tex">(0,-3)</span> and the highest point is the right endpoint <span class="tex">(3,4)</span>.<br><b>Range: <span class="tex">y</span> can be any value from <span class="tex">-3</span> to <span class="tex">4</span>.</b></div></div></div>
+      <div class="part" data-p="b"><div class="pl">(b) Could <span class="tex">y=5</span> be part of this relation? Explain.</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> The highest the curve ever reaches is <span class="tex">y=4</span>, so no point on the graph has a <span class="tex">y</span>-value of <span class="tex">5</span>.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Discrete vs continuous ================= -->
+<section class="card" data-ink="s3" data-section="3. Discrete vs. Continuous">
+  <div class="sec-h"><span class="badge">3</span><h2>Discrete Graphs vs. Continuous Graphs</h2></div>
+  <div class="u5l5-2q">
+    <div class="u5l5-qd"><span class="u5l5-qtag">Discrete</span> A set of <b>separate dots</b> that are not joined. Only the plotted points belong to the relation, so write the domain and range as a <b>list</b> of the exact values used: “<span class="tex">x</span> can be <span class="tex">-3</span>, <span class="tex">0</span> or <span class="tex">4</span>.”</div>
+    <div class="u5l5-qr"><span class="u5l5-qtag">Continuous</span> An <b>unbroken</b> line or curve with no gaps. Every point along it counts, so describe the domain and range as everything <b>from</b> the lowest value <b>to</b> the highest value.</div>
+  </div>
+  <div class="explainer" data-explainer="discrete"></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Try it: the Shadow Maker">
+  <h3 class="sub">Try it: the Shadow Maker</h3>
+  <p>Tap the grid to plot a point, drag a point to move it, tap it again to remove it. Then switch between <b>separate dots</b> and <b>joined</b> and watch the domain and range change.</p>
+  <div class="u5l5-mkrow">
+    <div id="u5l5-maker"></div>
+    <div class="u5l5-mkside">
+      <div class="u5l5-mkbtns">
+        <button type="button" class="pill small" data-u5l5-mk="dots">Separate dots</button>
+        <button type="button" class="pill small" data-u5l5-mk="join">Join the dots</button>
+        <button type="button" class="pill small" data-u5l5-mk="reset">Start over</button>
+        <button type="button" class="pill small" data-u5l5-mk="clear">Clear</button>
+      </div>
+      <div class="u5l5-panel u5l5-mkout" id="u5l5-mkout"></div>
+      <div class="u5l5-chal">
+        <div class="u5l5-ph">Challenges</div>
+        <ol>
+          <li>Make a <b>discrete</b> graph with domain <span class="tex">-3,\ 0,\ 2</span> and range <span class="tex">1,\ 4</span>.</li>
+          <li>Make a <b>continuous</b> graph with domain from <span class="tex">-4</span> to <span class="tex">4</span> and range from <span class="tex">0</span> to <span class="tex">5</span>.</li>
+          <li>Find two graphs that look <b>nothing alike</b> but have the same domain and range.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Discrete or continuous?</h3></div>
+  <p class="q">For each graph, state whether it is discrete or continuous, then state its domain and range.</p>
+  <div class="parts c2">
+    <div class="part" data-p="a"><div class="pl">(a)<div class="u5l5-fig" data-fig="e3a"></div></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Type: <b>discrete</b>. Separate dots, so list each value.<br><b>D: <span class="tex">-4,\ -2,\ 0,\ 1,\ 3</span></b><br><b>R: <span class="tex">-1,\ 0,\ 1,\ 3,\ 4</span></b></div></div></div>
+    <div class="part" data-p="b"><div class="pl">(b)<div class="u5l5-fig" data-fig="e3b"></div></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Type: <b>continuous</b>. An unbroken segment, so give the endpoints.<br><b>D: <span class="tex">x</span> from <span class="tex">-3</span> to <span class="tex">4</span></b><br><b>R: <span class="tex">y</span> from <span class="tex">-2</span> to <span class="tex">3</span></b></div></div></div>
+  </div>
+  <div class="tip u5l5-rem"><div class="tip-ic">i</div><div><b>Reminder.</b> A discrete answer is a <b>list</b> of the dots’ values. A continuous answer runs “from <span class="u5l5-blank sm"></span> to <span class="u5l5-blank sm"></span>.” Count squares carefully before writing each endpoint.</div></div>
+  <div class="parts c1">
+    <div class="part think"><div class="pl"><span class="think-tag">Think</span> If you <b>joined</b> the dots in (a) from left to right, what would the domain and range become?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The graph would be <b>continuous</b>, so the lists turn into “from … to …”: <span class="tex">x</span> from <span class="tex">-4</span> to <span class="tex">3</span>, and <span class="tex">y</span> from <span class="tex">-1</span> to <span class="tex">4</span>. Now every value in between counts, like <span class="tex">x=2.5</span>.</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Curves that bend ================= -->
+<section class="card" data-ink="s4" data-section="4. Curves That Bend">
+  <div class="sec-h"><span class="badge">4</span><h2>Curves That Bend More Than Once</h2></div>
+  <p>On a curve that bends more than once, the highest or lowest point is <b>not always</b> at one of the two endpoints. Always scan the <b>whole</b> graph, not just its ends, before you state the domain and range.</p>
+  <div class="explainer" data-explainer="scan"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>The ends can fool you.</b> The domain always comes from the leftmost and rightmost points. But for the range, look for the <b>peaks</b> and <b>dips</b> too: the highest or lowest point may be in the middle.</div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Scan the whole curve</h3></div>
+  <p class="q">The graph below shows a continuous curve.</p>
+  <div class="u5l5-exg">
+    <div class="u5l5-fig" data-fig="e4"></div>
+    <div class="parts c1">
+      <div class="part" data-p="a"><div class="pl">(a) State the domain of the graph.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Leftmost point <span class="tex">x=-4</span>, rightmost point <span class="tex">x=4</span>, unbroken in between.<br><b>Domain: <span class="tex">x</span> from <span class="tex">-4</span> to <span class="tex">4</span>.</b></div></div></div>
+      <div class="part" data-p="b"><div class="pl">(b) State the range of the graph. <span class="muted">(Hint: look at the whole curve, not just the two ends.)</span></div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The lowest point <b>is</b> an endpoint: <span class="tex">y=-3</span> at <span class="tex">(-4,-3)</span>. But the highest point is <b>not</b> an endpoint: the curve peaks at <span class="tex">(0,2)</span>. (The right endpoint only reaches <span class="tex">y=-2</span>.)<br><b>Range: <span class="tex">y</span> from <span class="tex">-3</span> to <span class="tex">2</span>.</b></div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l5"></section>
+
+<!-- ================= 5. Everyday graphs ================= -->
+<section class="card" data-ink="s5" data-section="5. Everyday Graphs">
+  <div class="sec-h"><span class="badge">5</span><h2>Domain and Range in Everyday Graphs</h2></div>
+  <p>When a graph tells the story of a real situation, the domain and range only include values that <b>make sense</b>. On a height-versus-time graph, <b>time cannot be negative</b>: the situation only exists once it begins. Always ask what is happening in real life before you write the domain and range.</p>
+  <div class="explainer" data-explainer="rocket"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>A toy rocket</h3></div>
+  <p class="q">A toy rocket is launched straight up from the ground. The graph shows the rocket’s height, <span class="tex">h</span> metres, after <span class="tex">t</span> seconds. It peaks at <span class="tex">20</span>&nbsp;m when <span class="tex">t=3</span>&nbsp;s and lands at <span class="tex">t=6</span>&nbsp;s.</p>
+  <div class="u5l5-exg">
+    <div class="u5l5-fig" data-fig="e5"></div>
+    <div class="parts c1">
+      <div class="part" data-p="a"><div class="pl">(a) State the domain of the graph (in seconds).</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The flight starts at <span class="tex">t=0</span> (launch) and ends at <span class="tex">t=6</span> (landing).<br><b>Domain: <span class="tex">t</span> from <span class="tex">0</span> to <span class="tex">6</span> seconds.</b></div></div></div>
+      <div class="part" data-p="b"><div class="pl">(b) State the range of the graph (in metres).</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Lowest height <span class="tex">0</span>&nbsp;m (on the ground at the start and the end); highest height <span class="tex">20</span>&nbsp;m at the peak.<br><b>Range: <span class="tex">h</span> from <span class="tex">0</span> to <span class="tex">20</span> metres.</b></div></div></div>
+      <div class="part" data-p="c"><div class="pl">(c) Explain why the domain of this graph could not include negative values of <span class="tex">t</span>.</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">A negative <span class="tex">t</span> would mean “before the rocket was launched.” The situation only exists from the moment of launch onward, so time starts at <span class="tex">0</span> and no negative <span class="tex">t</span>-values make sense.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s5b" data-section="5. Putting it together">
+  <h3 class="sub">Putting it together</h3>
+  <p>Every question today came down to the same few checks. Dots or unbroken? Leftmost to rightmost? Lowest to highest, scanning the whole graph? And in a real situation: does it make sense?</p>
+  <div class="explainer" data-explainer="which"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Domain</b> = the <b>floor shadow</b>: all the <span class="tex">x</span>-values, from the leftmost point to the rightmost point. <b>Range</b> = the <b>wall shadow</b>: all the <span class="tex">y</span>-values, from the lowest point to the highest point.</div>
+    <div><b>Discrete</b> (separate dots): write a <b>list</b>, each value once, like D: <span class="tex">-4,\ -2,\ 0,\ 1,\ 3</span>. <b>Continuous</b> (unbroken): write “<b>from</b> … <b>to</b> …”, like <span class="tex">x</span> from <span class="tex">-3</span> to <span class="tex">4</span>.</div>
+    <div><b>Scan the whole graph.</b> The highest or lowest point can be a peak or a dip in the middle. Example 4: <span class="tex">y</span> from <span class="tex">-3</span> to <span class="tex">2</span>, and the peak is not an end.</div>
+    <div><b>Real situations:</b> keep only values that make sense. Time can’t be negative. The rocket: <span class="tex">t</span> from <span class="tex">0</span> to <span class="tex">6</span>&nbsp;s, <span class="tex">h</span> from <span class="tex">0</span> to <span class="tex">20</span>&nbsp;m.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u5l5">
+    <div><div class="kicker">Your turn</div><b>Assignment 5 — Domain and Range of a Relation, Part 1: Reading From a Graph</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l6/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 6 — Domain and Range of a Relation, Part 2</b><div class="muted">Domain and range from ordered pairs and tables, and writing them in set notation, like <span class="tex">D=\{-2,\ 0,\ 3\}</span></div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u5l5.js';
+  boot({ key: 'u5l5', homeHref: '../../', title: '5.5 Domain and Range, Part 1' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

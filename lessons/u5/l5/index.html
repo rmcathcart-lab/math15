@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u5l5.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: The Shadow">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Shadow</h2>
+  <p class="wf-rule">The sun is <b>straight overhead</b>. How long is the shadow of the blue stick on the ground?</p></div>
+  <div class="vw-pic"><svg class="vw-grid" viewBox="-24 -24 462 278" style="max-height:278px"><g stroke="#cfc8b8" stroke-width="1.5"><line x1="0" y1="0" x2="0" y2="230"/><line x1="46" y1="0" x2="46" y2="230"/><line x1="92" y1="0" x2="92" y2="230"/><line x1="138" y1="0" x2="138" y2="230"/><line x1="184" y1="0" x2="184" y2="230"/><line x1="230" y1="0" x2="230" y2="230"/><line x1="276" y1="0" x2="276" y2="230"/><line x1="322" y1="0" x2="322" y2="230"/><line x1="368" y1="0" x2="368" y2="230"/><line x1="414" y1="0" x2="414" y2="230"/><line x1="0" y1="0" x2="414" y2="0"/><line x1="0" y1="46" x2="414" y2="46"/><line x1="0" y1="92" x2="414" y2="92"/><line x1="0" y1="138" x2="414" y2="138"/><line x1="0" y1="184" x2="414" y2="184"/><line x1="0" y1="230" x2="414" y2="230"/></g><line x1="0" y1="230" x2="414" y2="230" stroke="#4a4436" stroke-width="5" stroke-linecap="round"/><line x1="92" y1="184" x2="276" y2="46" stroke="#2b55a0" stroke-width="9" stroke-linecap="round"/><text x="184" y="-4.599999999999994" fill="#e0a11b" font-size="41" font-weight="800" text-anchor="middle" dominant-baseline="central">☀</text></svg><p>Each square is 1 unit.</p></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Is the shadow as long as the stick?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>4 units.</b> The shadow runs from under one end of the stick to under the other end. The stick itself is 5 units long, but the shadow only shows how far it reaches left to right.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,43 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Shadow Shapes" id="wu">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Shadow Shapes</h2>
-  <p class="wf-rule">Sun <b>above</b> → a <b>floor</b> shadow. Flashlight at the <b>side</b> → a <b>wall</b> shadow.</p></div>
-  <div class="u5l5-wtop">
-    <div class="u5l5-cbox">
-      <div class="u5l5-ch">The roller coaster</div>
-      <div id="u5l5-coaster"></div>
-      <div class="u5l5-wctl">
-        <button type="button" class="pill small" data-u5l5-light="x">Sun from above</button>
-        <button type="button" class="pill small" data-u5l5-light="y">Flashlight from the side</button>
-      </div>
-    </div>
-    <div class="u5l5-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div><b>Floor</b> shadow: from <span class="tex">x=</span><span class="u5l5-blank"></span> to <span class="tex">x=</span><span class="u5l5-blank"></span>? <button class="pill small" type="button" data-bk-toggle data-u5l5-wq="1">Answer</button></div></div>
-        <div class="u5l5-wa"><div class="bk-ans">From <span class="tex">x=1</span> to <span class="tex">x=9</span>: the track’s left end <span class="tex">(1,2)</span> and right end <span class="tex">(9,3)</span>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div><b>Wall</b> shadow: from <span class="tex">y=</span><span class="u5l5-blank"></span> to <span class="tex">y=</span><span class="u5l5-blank"></span>? <button class="pill small" type="button" data-bk-toggle data-u5l5-wq="2">Answer</button></div></div>
-        <div class="u5l5-wa"><div class="bk-ans">From <span class="tex">y=1</span> up to <span class="tex">y=6</span>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>The track’s two ends are at heights <b>2</b> and <b>3</b>. So what makes the bottom and the top of the wall shadow? <button class="pill small" type="button" data-bk-toggle data-u5l5-wq="3">Answer</button></div></div>
-        <div class="u5l5-wa"><div class="bk-ans">Not the ends! The <b>dip</b> at <span class="tex">(6,1)</span> makes the bottom and the <b>peak</b> at <span class="tex">(3,6)</span> makes the top. The ends are hidden <b>inside</b> the shadow.</div></div></div>
-      <p class="u5l5-social">Your turn: draw the <b>weirdest</b> shape you can that casts the coaster’s two shadows. Compare with a neighbour.</p>
-    </div>
-  </div>
-  <div class="poll wf-poll u5l5-poll">
-    <div class="u5l5-pq">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Which shape casts <b>the same two shadows</b> as the coaster? <b>Guess first!</b></div></div>
-      <div class="u5l5-pbtns"><button class="pill small" type="button" data-poll-reveal>Reveal</button><button class="pill small" type="button" data-u5l5-shine>Shine both lights</button></div>
-    </div>
-    <div class="poll-opts u5l5-popts">
-      <div class="opt"><b>A</b><span class="u5l5-on">Copycat coaster</span><div class="u5l5-mini" data-u5l5-mini="A"></div></div>
-      <div class="opt right"><b>B</b><span class="u5l5-on">Plain ramp</span><div class="u5l5-mini" data-u5l5-mini="B"></div></div>
-      <div class="opt"><b>C</b><span class="u5l5-on">Five balloons</span><div class="u5l5-mini" data-u5l5-mini="C"></div></div>
-    </div>
-    <div class="poll-ans"><b>B, the plain ramp.</b> It runs from <span class="tex">(1,1)</span> to <span class="tex">(9,6)</span>: floor shadow 1 to 9, wall shadow 1 to 6. A perfect match, even though it looks nothing like a coaster.
-      <span class="muted"><b>A</b> dips down to <span class="tex">(6,0)</span>, so its wall shadow is 0 to 6: too long. <b>C</b>: each balloon casts a separate <b>spot</b>, and five spots are not a solid bar.</span>
-      <b>Today:</b> the floor shadow is the <b>domain</b> and the wall shadow is the <b>range</b>.</div>
-  </div>
-</section>
+
 
 <!-- ================= 1. Domain ================= -->
 <section class="card" data-ink="s1" data-section="1. Domain: Left to Right">
@@ -143,10 +117,10 @@
     <div class="u5l5-qd"><span class="u5l5-qtag">Discrete</span> A set of <b>separate dots</b> that are not joined. Only the plotted points belong to the relation, so write the domain and range as a <b>list</b> of the exact values used: “<span class="tex">x</span> can be <span class="tex">-3</span>, <span class="tex">0</span> or <span class="tex">4</span>.”</div>
     <div class="u5l5-qr"><span class="u5l5-qtag">Continuous</span> An <b>unbroken</b> line or curve with no gaps. Every point along it counts, so describe the domain and range as everything <b>from</b> the lowest value <b>to</b> the highest value.</div>
   </div>
-  <div class="explainer" data-explainer="discrete"></div>
+  <div data-extra><div class="explainer" data-explainer="discrete"></div></div>
 </section>
 
-<section class="card" data-ink="s3b" data-section="3. Try it: the Shadow Maker">
+<section data-extra class="card" data-ink="s3b" data-section="3. Try it: the Shadow Maker">
   <h3 class="sub">Try it: the Shadow Maker</h3>
   <p>Tap the grid to plot a point, drag a point to move it, tap it again to remove it. Then switch between <b>separate dots</b> and <b>joined</b> and watch the domain and range change.</p>
   <div class="u5l5-mkrow">
@@ -180,7 +154,7 @@
   </div>
   <div class="tip u5l5-rem"><div class="tip-ic">i</div><div><b>Reminder.</b> A discrete answer is a <b>list</b> of the dots’ values. A continuous answer runs “from <span class="u5l5-blank sm"></span> to <span class="u5l5-blank sm"></span>.” Count squares carefully before writing each endpoint.</div></div>
   <div class="parts c1">
-    <div class="part think"><div class="pl"><span class="think-tag">Think</span> If you <b>joined</b> the dots in (a) from left to right, what would the domain and range become?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The graph would be <b>continuous</b>, so the lists turn into “from … to …”: <span class="tex">x</span> from <span class="tex">-4</span> to <span class="tex">3</span>, and <span class="tex">y</span> from <span class="tex">-1</span> to <span class="tex">4</span>. Now every value in between counts, like <span class="tex">x=2.5</span>.</div></div></div>
+    <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> If you <b>joined</b> the dots in (a) from left to right, what would the domain and range become?</div><div class="work" style="--h:90px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The graph would be <b>continuous</b>, so the lists turn into “from … to …”: <span class="tex">x</span> from <span class="tex">-4</span> to <span class="tex">3</span>, and <span class="tex">y</span> from <span class="tex">-1</span> to <span class="tex">4</span>. Now every value in between counts, like <span class="tex">x=2.5</span>.</div></div></div>
   </div>
   <div class="space" id="ex3-space"></div>
   <button class="more" data-more="ex3-space">+ More space</button>
@@ -190,7 +164,7 @@
 <section class="card" data-ink="s4" data-section="4. Curves That Bend">
   <div class="sec-h"><span class="badge">4</span><h2>Curves That Bend More Than Once</h2></div>
   <p>On a curve that bends more than once, the highest or lowest point is <b>not always</b> at one of the two endpoints. Always scan the <b>whole</b> graph, not just its ends, before you state the domain and range.</p>
-  <div class="explainer" data-explainer="scan"></div>
+  <div data-extra><div class="explainer" data-explainer="scan"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>The ends can fool you.</b> The domain always comes from the leftmost and rightmost points. But for the range, look for the <b>peaks</b> and <b>dips</b> too: the highest or lowest point may be in the middle.</div></div>
 </section>
 
@@ -208,6 +182,15 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–7">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 5 · Questions 1–7</h2>
+  <p class="pr-t">Read the domain and range from each graph.</p>
+  <div class="pr-chips n1"><span><b>1–7</b>Domain and range from a graph</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 5.</span><a class="pill" href="../../../#/lesson/u5l5">Open the Practice site</a></div>
+</section>
+
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
 <section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l5"></section>
 
@@ -215,7 +198,7 @@
 <section class="card" data-ink="s5" data-section="5. Everyday Graphs">
   <div class="sec-h"><span class="badge">5</span><h2>Domain and Range in Everyday Graphs</h2></div>
   <p>When a graph tells the story of a real situation, the domain and range only include values that <b>make sense</b>. On a height-versus-time graph, <b>time cannot be negative</b>: the situation only exists once it begins. Always ask what is happening in real life before you write the domain and range.</p>
-  <div class="explainer" data-explainer="rocket"></div>
+  <div data-extra><div class="explainer" data-explainer="rocket"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -233,10 +216,48 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s5b" data-section="5. Putting it together">
+<section data-extra class="card" data-ink="s5b" data-section="5. Putting it together">
   <h3 class="sub">Putting it together</h3>
   <p>Every question today came down to the same few checks. Dots or unbroken? Leftmost to rightmost? Lowest to highest, scanning the whole graph? And in a real situation: does it make sense?</p>
   <div class="explainer" data-explainer="which"></div>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Shadow Shapes" id="wu">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Shadow Shapes</h2>
+  <p class="wf-rule">Sun <b>above</b> → a <b>floor</b> shadow. Flashlight at the <b>side</b> → a <b>wall</b> shadow.</p></div>
+  <div class="u5l5-wtop">
+    <div class="u5l5-cbox">
+      <div class="u5l5-ch">The roller coaster</div>
+      <div id="u5l5-coaster"></div>
+      <div class="u5l5-wctl">
+        <button type="button" class="pill small" data-u5l5-light="x">Sun from above</button>
+        <button type="button" class="pill small" data-u5l5-light="y">Flashlight from the side</button>
+      </div>
+    </div>
+    <div class="u5l5-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div><b>Floor</b> shadow: from <span class="tex">x=</span><span class="u5l5-blank"></span> to <span class="tex">x=</span><span class="u5l5-blank"></span>? <button class="pill small" type="button" data-bk-toggle data-u5l5-wq="1">Answer</button></div></div>
+        <div class="u5l5-wa"><div class="bk-ans">From <span class="tex">x=1</span> to <span class="tex">x=9</span>: the track’s left end <span class="tex">(1,2)</span> and right end <span class="tex">(9,3)</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div><b>Wall</b> shadow: from <span class="tex">y=</span><span class="u5l5-blank"></span> to <span class="tex">y=</span><span class="u5l5-blank"></span>? <button class="pill small" type="button" data-bk-toggle data-u5l5-wq="2">Answer</button></div></div>
+        <div class="u5l5-wa"><div class="bk-ans">From <span class="tex">y=1</span> up to <span class="tex">y=6</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>The track’s two ends are at heights <b>2</b> and <b>3</b>. So what makes the bottom and the top of the wall shadow? <button class="pill small" type="button" data-bk-toggle data-u5l5-wq="3">Answer</button></div></div>
+        <div class="u5l5-wa"><div class="bk-ans">Not the ends! The <b>dip</b> at <span class="tex">(6,1)</span> makes the bottom and the <b>peak</b> at <span class="tex">(3,6)</span> makes the top. The ends are hidden <b>inside</b> the shadow.</div></div></div>
+      <p class="u5l5-social">Your turn: draw the <b>weirdest</b> shape you can that casts the coaster’s two shadows. Compare with a neighbour.</p>
+    </div>
+  </div>
+  <div class="poll wf-poll u5l5-poll">
+    <div class="u5l5-pq">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Which shape casts <b>the same two shadows</b> as the coaster? <b>Guess first!</b></div></div>
+      <div class="u5l5-pbtns"><button class="pill small" type="button" data-poll-reveal>Reveal</button><button class="pill small" type="button" data-u5l5-shine>Shine both lights</button></div>
+    </div>
+    <div class="poll-opts u5l5-popts">
+      <div class="opt"><b>A</b><span class="u5l5-on">Copycat coaster</span><div class="u5l5-mini" data-u5l5-mini="A"></div></div>
+      <div class="opt right"><b>B</b><span class="u5l5-on">Plain ramp</span><div class="u5l5-mini" data-u5l5-mini="B"></div></div>
+      <div class="opt"><b>C</b><span class="u5l5-on">Five balloons</span><div class="u5l5-mini" data-u5l5-mini="C"></div></div>
+    </div>
+    <div class="poll-ans"><b>B, the plain ramp.</b> It runs from <span class="tex">(1,1)</span> to <span class="tex">(9,6)</span>: floor shadow 1 to 9, wall shadow 1 to 6. A perfect match, even though it looks nothing like a coaster.
+      <span class="muted"><b>A</b> dips down to <span class="tex">(6,0)</span>, so its wall shadow is 0 to 6: too long. <b>C</b>: each balloon casts a separate <b>spot</b>, and five spots are not a solid bar.</span>
+      <b>Today:</b> the floor shadow is the <b>domain</b> and the wall shadow is the <b>range</b>.</div>
+  </div>
 </section>
 
 <!-- ================= summary ================= -->
@@ -249,7 +270,7 @@
     <div><b>Real situations:</b> keep only values that make sense. Time can’t be negative. The rocket: <span class="tex">t</span> from <span class="tex">0</span> to <span class="tex">6</span>&nbsp;s, <span class="tex">h</span> from <span class="tex">0</span> to <span class="tex">20</span>&nbsp;m.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u5l5">
-    <div><div class="kicker">Your turn</div><b>Assignment 5 — Domain and Range of a Relation, Part 1: Reading From a Graph</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 5 · Questions 8–13</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l6/">
     <div><div class="kicker">Next lesson</div><b>Lesson 6 — Domain and Range of a Relation, Part 2</b><div class="muted">Domain and range from ordered pairs and tables, and writing them in set notation, like <span class="tex">D=\{-2,\ 0,\ 3\}</span></div></div><span class="arrow">→</span>
@@ -262,7 +283,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u5l5.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u5l5', homeHref: '../../', title: '5.5 Domain and Range, Part 1' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

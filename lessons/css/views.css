@@ -3,8 +3,6 @@ body.view-class [data-extra] { display: none !important; }
 body.view-full .card[data-extra] { box-shadow: inset 5px 0 0 #b9c3d6, var(--shadow, 0 1px 3px rgba(0,0,0,.08)); }
 body.view-full .card[data-extra]::before { content: 'Full notes'; float: right; font: 800 13px var(--font); color: #5b6880; background: #e9edf4; border-radius: 999px; padding: 4px 11px; margin: -6px -8px 0 12px; }
 
-.vw-banner { background: #2e3c4f; color: #fff; font: 600 15px var(--font); text-align: center; padding: 8px 14px; }
-.vw-banner a { color: #ffd98a; }
 
 /* the Class | Full notes switch: in the header bar on view-only pages, and in the ••• menu for everyone */
 .vw-hswitch { display: none; flex: none; background: #e9e6dd; border-radius: 999px; padding: 3px; gap: 2px; }
@@ -28,3 +26,23 @@ body.viewer #tb .vw-hswitch, .vw-hswitch.in-menu { display: inline-flex; }
 .vw-wodb { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0 16px; }
 .vw-wodb > div { position: relative; display: grid; place-items: center; min-height: 150px; background: #fff; border: 2px solid var(--line); border-radius: 18px; font-size: 44px; }
 .vw-wodb > div b { position: absolute; left: 14px; top: 10px; font: 800 20px var(--round); color: var(--muted); }
+
+/* warm-up: one big question */
+.vw-q { text-align: center; margin: 12px 0 14px; padding: 46px 28px; background: #fff; border: 2px solid var(--line); border-radius: 18px; font: 600 40px/1.3 var(--round); }
+.vw-q small { display: block; font: 600 26px var(--font); color: var(--muted); margin-top: 10px; }
+.vw-q .katex { font-size: 1.05em; }
+.vw-tiles { display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: 14px; margin: 14px 0 16px; }
+.vw-tiles > div { position: relative; display: grid; place-items: center; text-align: center; min-height: 130px; padding: 12px; background: #fff; border: 2px solid var(--line); border-radius: 18px; font-size: var(--fs, 34px); line-height: 1.25; }
+.vw-tiles > div > b:first-child { position: absolute; left: 14px; top: 10px; font: 800 20px var(--round); color: var(--muted); }
+.vw-tiles > div small { display: block; font-size: 18px; color: var(--muted); }
+.pr-chips.n3 { grid-template-columns: repeat(3, 1fr); } .pr-chips.n2 { grid-template-columns: repeat(2, 1fr); } .pr-chips.n5 { grid-template-columns: repeat(5, 1fr); }
+.vw-pic { display: grid; justify-items: center; gap: 8px; margin: 12px 0 14px; padding: 16px; background: #fff; border: 2px solid var(--line); border-radius: 18px; }
+.vw-pic svg { width: 100%; height: auto; display: block; }
+.vw-pic p { margin: 0; font-size: 20px; color: var(--muted); text-align: center; }
+.vw-mach { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 14px 0 16px; }
+.vw-mach > div { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; justify-items: center; background: #fff; border: 2px solid var(--line); border-radius: 18px; padding: 26px 10px; font: 700 40px var(--round); }
+.vw-mach i { font-style: normal; color: var(--muted); font-size: 30px; }
+.vw-mach .q { color: var(--red); }
+.vw-vend { display: grid; gap: 6px; font-size: 27px; text-align: left; padding: 22px 0 6px; }
+.bk-wq.vw-rev .bk-ans { display: none; font-size: 21px; }
+.bk-wq.vw-rev.shown .bk-ans { display: block; }

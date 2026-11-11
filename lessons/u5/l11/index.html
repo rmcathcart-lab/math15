@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u5l11.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Sam’s Phone">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Sam’s Phone</h2>
+  <p class="wf-rule">This is the battery on Sam’s phone over one day. <b>What happened at 3 pm?</b></p></div>
+  <div class="vw-pic"><svg viewBox="0 0 660 290" style="max-width:820px"><line x1="60" y1="250.0" x2="60" y2="29.99999999999997" stroke="#e4dfd2" stroke-width="1.5"/><text x="60" y="276.0" text-anchor="middle" font-size="17" fill="#6b6557">8 am</text><line x1="140" y1="250.0" x2="140" y2="29.99999999999997" stroke="#e4dfd2" stroke-width="1.5"/><text x="140" y="276.0" text-anchor="middle" font-size="17" fill="#6b6557">10</text><line x1="220" y1="250.0" x2="220" y2="29.99999999999997" stroke="#e4dfd2" stroke-width="1.5"/><text x="220" y="276.0" text-anchor="middle" font-size="17" fill="#6b6557">noon</text><line x1="300" y1="250.0" x2="300" y2="29.99999999999997" stroke="#e4dfd2" stroke-width="1.5"/><text x="300" y="276.0" text-anchor="middle" font-size="17" fill="#6b6557">2 pm</text><line x1="380" y1="250.0" x2="380" y2="29.99999999999997" stroke="#e4dfd2" stroke-width="1.5"/><text x="380" y="276.0" text-anchor="middle" font-size="17" fill="#6b6557">4</text><line x1="460" y1="250.0" x2="460" y2="29.99999999999997" stroke="#e4dfd2" stroke-width="1.5"/><text x="460" y="276.0" text-anchor="middle" font-size="17" fill="#6b6557">6</text><line x1="540" y1="250.0" x2="540" y2="29.99999999999997" stroke="#e4dfd2" stroke-width="1.5"/><text x="540" y="276.0" text-anchor="middle" font-size="17" fill="#6b6557">8</text><line x1="620" y1="250.0" x2="620" y2="29.99999999999997" stroke="#e4dfd2" stroke-width="1.5"/><text x="620" y="276.0" text-anchor="middle" font-size="17" fill="#6b6557">10 pm</text><line x1="60" y1="250.0" x2="620" y2="250.0" stroke="#e4dfd2" stroke-width="1.5"/><text x="50" y="256.0" text-anchor="end" font-size="17" fill="#6b6557">0%</text><line x1="60" y1="195.0" x2="620" y2="195.0" stroke="#e4dfd2" stroke-width="1.5"/><text x="50" y="201.0" text-anchor="end" font-size="17" fill="#6b6557">25%</text><line x1="60" y1="140.0" x2="620" y2="140.0" stroke="#e4dfd2" stroke-width="1.5"/><text x="50" y="146.0" text-anchor="end" font-size="17" fill="#6b6557">50%</text><line x1="60" y1="85.0" x2="620" y2="85.0" stroke="#e4dfd2" stroke-width="1.5"/><text x="50" y="91.0" text-anchor="end" font-size="17" fill="#6b6557">75%</text><line x1="60" y1="29.99999999999997" x2="620" y2="29.99999999999997" stroke="#e4dfd2" stroke-width="1.5"/><text x="50" y="35.99999999999997" text-anchor="end" font-size="17" fill="#6b6557">100%</text><polyline points="60,29.99999999999997 340,162.0 420,51.99999999999997 620,206.0" fill="none" stroke="#12805a" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>What else can you tell about Sam’s day?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>Sam plugged the phone in.</b> From 3 pm to 5 pm is the only time the graph goes up. It was unplugged at 5 pm, and it drains fastest in the evening: that is the steepest drop.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,35 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Who’s Who?" id="wu" style="--wf-side: 400px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Who’s Who?</h2>
-  <p class="wf-rule">Each graph shows how far a friend is from <b>home</b> as time goes by. <b>Match each friend to a graph.</b></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u5l11-wgraphs" id="wu-graphs"></div>
-    <div class="u5l11-wqs">
-      <div class="u5l11-mq"><div class="q-num">1</div><div><b>Ava</b> walks to school at a steady pace.</div><div class="u5l11-mg">graph <span data-reveal><b>D</b></span></div></div>
-      <div class="u5l11-mq"><div class="q-num">2</div><div><b>Ben</b> runs to a friend’s house and stays to play.</div><div class="u5l11-mg">graph <span data-reveal><b>C</b></span></div></div>
-      <div class="u5l11-mq"><div class="q-num">3</div><div><b>Cam</b> walks toward school, turns back home for his lunch, then runs all the way to school.</div><div class="u5l11-mg">graph <span data-reveal><b>A</b></span></div></div>
-      <div class="u5l11-mq"><div class="q-num">4</div><div><b>Dee</b> walks to the bus stop, waits, then rides the bus to school.</div><div class="u5l11-mg">graph <span data-reveal><b>B</b></span></div></div>
-      <div class="u5l11-mq q5"><div class="q-num">5</div><div>Ava and Ben both head straight out. Who is <b>faster</b>? How can you <b>see</b> it?</div><div class="u5l11-mg"><span data-reveal><b>Ben</b>: his line is <b>steeper</b></span></div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Eli graphed <i>his</i> trip to school. How long did he take to cover the <b class="u5l11-red">red part</b>? <b>Guess first.</b></div></div>
-      <div class="u5l11-eli" id="wu-eli"></div>
-      <div class="poll-opts u5l11-c4">
-        <div class="opt"><b>A</b> 3 min</div>
-        <div class="opt"><b>B</b> 1 min</div>
-        <div class="opt"><b>C</b> 10 s</div>
-        <div class="opt right"><b>D</b> 0 s</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>D, 0 seconds.</b> The red part is <b>vertical</b>: it starts and ends at 3 min. At 3 minutes the graph says Eli is at 200 m <b>and</b> at 600 m: in two places at once! That’s teleporting, so the graph is <b>impossible</b>.<br>
-        <span class="muted">A real trip takes some time, so the red part must lean to the right, for example from (3, 200) to (4, 600) for a 1-minute bus ride.</span></div>
-    </div>
-    <p class="u5l11-social">Argue with your neighbour: could Eli’s trip really happen? What would he have to do?</p>
-  </div></div>
-</section>
+
 
 <!-- ================= 1. Reading the shape ================= -->
 <section class="card" data-ink="s1" data-section="1. Reading the Shape of a Graph">
@@ -86,10 +68,10 @@
   </div>
   <div class="def">The <b>steepness</b> of a piece is its <b>rate of change</b>: a <b>steep</b> piece changes fast, a <b>gradual</b> piece changes slowly.
     <div class="eg">On a <b>distance from home</b> graph: rising = moving away, flat = stopped, falling = coming back home. Careful: on a <b>speed</b> graph, flat means a <b>steady speed</b>; only flat <b>at 0</b> means stopped.</div></div>
-  <p>Watch the warm-up trips happen, in step with their graphs.</p>
-  <div class="explainer" data-explainer="story"></div>
+  <div data-extra><p>Watch the warm-up trips happen, in step with their graphs.</p>
+  <div class="explainer" data-explainer="story"></div></div>
   <div class="parts c1" style="margin-top:16px">
-    <div class="part think"><div class="pl"><span class="think-tag">Think</span> Could a real distance-from-home graph ever have a perfectly <b>vertical</b> piece? What about a very steep one?</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Never vertical:</b> a vertical piece puts you in two places at the same moment (like Eli). A <b>very steep</b> piece is fine: a fast trip (a bus, a car) still takes a little time, so the piece leans slightly to the right.</div></div></div>
+    <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Could a real distance-from-home graph ever have a perfectly <b>vertical</b> piece? What about a very steep one?</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Never vertical:</b> a vertical piece puts you in two places at the same moment (like Eli). A <b>very steep</b> piece is fine: a fast trip (a bus, a car) still takes a little time, so the piece leans slightly to the right.</div></div></div>
   </div>
 </section>
 
@@ -98,7 +80,7 @@
   <p>To compare steepness with numbers, find the <b>rate of change</b> of a piece:</p>
   <div class="def"><span class="tex">\text{rate of change}=\dfrac{\text{change in the quantity (up or down)}}{\text{change in time (across)}}</span>
     <div class="eg">The units are “quantity <b>per</b> time”: km/h per minute, cm per minute, m per minute. Rising pieces have a <b>positive</b> rate, falling pieces a <b>negative</b> rate, flat pieces a rate of <b>0</b>.</div></div>
-  <div class="explainer" data-explainer="rate"></div>
+  <div data-extra><div class="explainer" data-explainer="rate"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Steeper means faster, not higher.</b> To find the fastest change, compare the <b>size</b> of the rates and ignore the sign: a rate of <span class="tex">-12</span> is a faster change than a rate of <span class="tex">6</span>.</div></div>
 </section>
 
@@ -129,12 +111,12 @@
 
 <section class="card" data-ink="ex1b" data-section="Example 1: Jae’s ride">
   <h3 class="sub">Example 1 check: ride along with Jae</h3>
-  <p>The bike, the speedometer and the graph move together. Check your answers to part (a).</p>
-  <div class="explainer" data-explainer="jae"></div>
+  <div data-extra><p>The bike, the speedometer and the graph move together. Check your answers to part (a).</p>
+  <div class="explainer" data-explainer="jae"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Flat doesn’t always mean stopped.</b> Read the <b>axis label</b> first. On a <b>speed</b> graph, flat and high means moving at a <b>steady speed</b>; only flat <b>at 0</b> means stopped. On a <b>distance</b> graph, any flat piece means stopped.</div></div>
 </section>
 
-<section class="card" data-ink="ex1c" data-section="Example 1: sorting the pieces">
+<section data-extra class="card" data-ink="ex1c" data-section="Example 1: sorting the pieces">
   <h3 class="sub">Sorting the pieces</h3>
   <p>To answer “for how long was it increasing (or constant)?”, sort the pieces first, then add up their times.</p>
   <div class="explainer" data-explainer="pieces"></div>
@@ -163,7 +145,16 @@
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="ex2b" data-section="Example 2: rule them out">
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–5">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 11 · Questions 1–5</h2>
+  <p class="pr-t">Read each graph, then match a story to a graph.</p>
+  <div class="pr-chips n2"><span><b>1–3</b>Reading and interpreting graphs</span><span><b>4–5</b>Matching a story to a graph</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 4.</span><a class="pill" href="../../../#/lesson/u5l11">Open the Practice site</a></div>
+</section>
+
+<section data-extra class="card" data-ink="ex2b" data-section="Example 2: rule them out">
   <h3 class="sub">Example 2 check: phase by phase, rule them out</h3>
   <div class="explainer" data-explainer="match"></div>
 </section>
@@ -184,7 +175,7 @@
   <h3 class="sub">Straight or curved?</h3>
   <p>A <b>steady</b> rate makes a <b>straight</b> piece. If the change gets faster or slower, the piece <b>curves</b>. <span class="muted">Name each shape first, then tap it.</span></p>
   <div class="u5l11-shapes" id="shape-row"></div>
-  <div class="explainer" data-explainer="shapes"></div>
+  <div data-extra><div class="explainer" data-explainer="shapes"></div></div>
 </section>
 
 <section class="card example" data-ink="ex3" data-section="Example 3">
@@ -198,7 +189,7 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="ex3b" data-section="Example 3: sketch it">
+<section data-extra class="card" data-ink="ex3b" data-section="Example 3: sketch it">
   <h3 class="sub">Example 3 check: one phrase, one piece</h3>
   <p>Each phrase of the story becomes one piece of the graph. Watch the scene and the sketch together.</p>
   <div class="explainer" data-explainer="sketch"></div>
@@ -224,7 +215,7 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="ex4b" data-section="Example 4: the bath">
+<section data-extra class="card" data-ink="ex4b" data-section="Example 4: the bath">
   <h3 class="sub">Example 4 check: fill, soak, drain</h3>
   <div class="explainer" data-explainer="bath"></div>
 </section>
@@ -246,10 +237,40 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="ex5b" data-section="Example 5: the drive">
+<section data-extra class="card" data-ink="ex5b" data-section="Example 5: the drive">
   <h3 class="sub">Example 5 check: drive to the cabin</h3>
   <p>The same phrase-by-phrase method, with a speedometer to watch.</p>
   <div class="explainer" data-explainer="drive"></div>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Who’s Who?" id="wu" style="--wf-side: 400px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Who’s Who?</h2>
+  <p class="wf-rule">Each graph shows how far a friend is from <b>home</b> as time goes by. <b>Match each friend to a graph.</b></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l11-wgraphs" id="wu-graphs"></div>
+    <div class="u5l11-wqs">
+      <div class="u5l11-mq"><div class="q-num">1</div><div><b>Ava</b> walks to school at a steady pace.</div><div class="u5l11-mg">graph <span data-reveal><b>D</b></span></div></div>
+      <div class="u5l11-mq"><div class="q-num">2</div><div><b>Ben</b> runs to a friend’s house and stays to play.</div><div class="u5l11-mg">graph <span data-reveal><b>C</b></span></div></div>
+      <div class="u5l11-mq"><div class="q-num">3</div><div><b>Cam</b> walks toward school, turns back home for his lunch, then runs all the way to school.</div><div class="u5l11-mg">graph <span data-reveal><b>A</b></span></div></div>
+      <div class="u5l11-mq"><div class="q-num">4</div><div><b>Dee</b> walks to the bus stop, waits, then rides the bus to school.</div><div class="u5l11-mg">graph <span data-reveal><b>B</b></span></div></div>
+      <div class="u5l11-mq q5"><div class="q-num">5</div><div>Ava and Ben both head straight out. Who is <b>faster</b>? How can you <b>see</b> it?</div><div class="u5l11-mg"><span data-reveal><b>Ben</b>: his line is <b>steeper</b></span></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Eli graphed <i>his</i> trip to school. How long did he take to cover the <b class="u5l11-red">red part</b>? <b>Guess first.</b></div></div>
+      <div class="u5l11-eli" id="wu-eli"></div>
+      <div class="poll-opts u5l11-c4">
+        <div class="opt"><b>A</b> 3 min</div>
+        <div class="opt"><b>B</b> 1 min</div>
+        <div class="opt"><b>C</b> 10 s</div>
+        <div class="opt right"><b>D</b> 0 s</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D, 0 seconds.</b> The red part is <b>vertical</b>: it starts and ends at 3 min. At 3 minutes the graph says Eli is at 200 m <b>and</b> at 600 m: in two places at once! That’s teleporting, so the graph is <b>impossible</b>.<br>
+        <span class="muted">A real trip takes some time, so the red part must lean to the right, for example from (3, 200) to (4, 600) for a 1-minute bus ride.</span></div>
+    </div>
+    <p class="u5l11-social">Argue with your neighbour: could Eli’s trip really happen? What would he have to do?</p>
+  </div></div>
 </section>
 
 <!-- ================= summary ================= -->
@@ -262,7 +283,7 @@
     <div><b>Sketching:</b> label the axes, one piece per phase, steady = <b>straight</b>, changing speed = <b>curved</b>. Read the axis label: flat on a <b>speed</b> graph is not stopped!</div>
   </div>
   <a class="assign" href="../../../#/lesson/u5l11">
-    <div><div class="kicker">Your turn</div><b>Assignment 11 — Interpreting and Sketching Real-World Graphs</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 11 · Questions 6–14</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l12/">
     <div><div class="kicker">Next lesson</div><b>Lesson 12 — Unit Review: Relations and Functions</b><div class="muted">The whole unit together: relations, domain and range, intercepts, functions, f(x) and story graphs</div></div><span class="arrow">→</span>
@@ -275,7 +296,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u5l11.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u5l11', homeHref: '../../', title: '5.11 Real-World Graphs' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

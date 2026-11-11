@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Function Notation: Graphs and Models · Math 15 5.10</title>
+<meta name="description" content="Math 15 Unit 5 Lesson 10: function notation with graphs, tables and real-world models. Reading f(a) and solving f(x) = b from a graph, converting between y = and f(x) = notation, function notation in tables, and models for earnings and a burning candle with domain and range. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u5l10.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 5 Relations and Functions · Lesson 10</div>
+  <h1>Function Notation: Graphs, Conversions, and Real-World Models</h1>
+  <p class="lede">In Lesson 9 you put inputs into a rule like <span class="tex">f(x)=2x+5</span>. Today the same notation meets <b>graphs</b> and <b>tables</b>: read <span class="tex">f(a)</span> straight off a picture, switch between <span class="tex">y=</span> and <span class="tex">f(x)=</span>, and use function notation to tell a real story with units.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>read <span class="tex">f(a)</span> from a graph (start on the <b>horizontal</b> axis) and find <span class="tex">x</span> when <span class="tex">f(x)=b</span> (start on the <b>vertical</b> axis)</li>
+      <li>rewrite <span class="tex">f(x)=4x-3</span> as <span class="tex">y=4x-3</span>, and <span class="tex">y=5x+2</span> as <span class="tex">f(x)=5x+2</span></li>
+      <li>complete a table of values labelled <span class="tex">h(x)</span>, and read it both ways</li>
+      <li>use a function to model a real situation, explain a value in words with <b>units</b>, and suggest a sensible <b>domain</b> and <b>range</b></li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF8</b> Represent a linear function, using function notation.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Hiking Trail" id="wu" style="--wf-side: 318px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Hiking Trail</h2>
+  <p class="wf-rule"><span class="tex">h(d)</span> = your <b>height</b> (m) after you walk <span class="tex">d</span> <b>km</b> along the trail. <span class="muted">Use − and + to walk the hiker.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u5l10-wtop">
+      <div id="u5l10-trail"></div>
+      <div class="u5l10-walk">
+        <button type="button" class="pill small" data-walk="-0.5" aria-label="Walk back half a kilometre">−</button>
+        <div class="u5l10-wread" id="u5l10-wread"></div>
+        <button type="button" class="pill small" data-walk="0.5" aria-label="Walk on half a kilometre">+</button>
+      </div>
+    </div>
+    <div class="u5l10-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Find <span class="tex">h(0)</span>. (the trailhead) <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l10-wa"><div class="bk-ans"><span class="tex">h(0)=200</span>: the trailhead is 200 m high.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Find <span class="tex">h(5)</span>. What is there? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l10-wa"><div class="bk-ans"><span class="tex">h(5)=100</span>: the lake, the lowest point on the trail.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Say <span class="tex">h(7)=500</span> in words. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l10-wa"><div class="bk-ans">After walking 7 km, you are 500 m high: the summit.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>Higher: <span class="tex">h(2)</span> or <span class="tex">h(8)</span>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u5l10-wa"><div class="bk-ans"><b>Neither.</b> <span class="tex">h(2)=400</span> and <span class="tex">h(8)=400</span>: two inputs, the same output.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A rest bench is <b>300 m</b> high: <span class="tex">h(d)=300</span>. How many places on the trail could it be? <b>Guess first.</b></div></div>
+      <div class="poll-opts c4">
+        <div class="opt"><b>A</b> 1</div>
+        <div class="opt"><b>B</b> 2</div>
+        <div class="opt right"><b>C</b> 3</div>
+        <div class="opt"><b>D</b> 4</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C: 3 places.</b> Go across from 300 on the height axis. The trail is 300 m high at <span class="tex">d=1</span> (climbing to the lookout), <span class="tex">d=3</span> (coming down) and <span class="tex">d=6</span> (climbing to the summit).
+        <button type="button" class="pill small u5l10-show300" data-h300>Show it on the trail</button></div>
+    </div>
+  </div></div>
+  <p class="u5l10-social">Challenge your neighbour: find a height the trail reaches <b>exactly once</b>.</p>
+</section>
+
+<!-- ================= 1. Recall ================= -->
+<section class="card" data-ink="s1" data-section="1. Recall: Evaluating f(x)">
+  <div class="sec-h"><span class="badge">1</span><h2>Recall: Evaluating <span class="tex">f(x)</span></h2></div>
+  <p>Function notation replaces <span class="tex">y</span> with a function name such as <span class="tex">f(x)</span>, <span class="tex">g(x)</span> or <span class="tex">h(t)</span>. The notation <span class="tex">f(a)</span> says: put <span class="tex">a</span> in for the input <b>everywhere</b> it appears in the rule, then simplify.</p>
+  <div class="u5l10-disp">If <span class="tex">f(x)=3x+1</span>, then <span class="tex">f(2)=3(2)+1=7</span>.</div>
+  <div class="def">Every statement <span class="tex">f(a)=b</span> is a <b>point</b> <span class="tex">(a,\ b)</span> on the graph of <span class="tex">f</span>: input across, output up. So <span class="tex">f(2)=7</span> is the point <span class="tex">(2,\ 7)</span>.</div>
+  <div class="explainer" data-explainer="pointLink"></div>
+</section>
+
+<!-- ================= 2. Reading values from a graph ================= -->
+<section class="card" data-ink="s2" data-section="2. Reading Values from a Graph">
+  <div class="sec-h"><span class="badge">2</span><h2>Reading Function Values from a Graph</h2></div>
+  <div class="def-grid">
+    <div class="def"><b>To find <span class="tex">f(a)</span>:</b> find <span class="tex">a</span> on the <b>horizontal</b> axis, move up or down to the graph, then read across to the vertical axis.</div>
+    <div class="def amber"><b>To find <span class="tex">x</span> when <span class="tex">f(x)=b</span>:</b> start at <span class="tex">b</span> on the <b>vertical</b> axis, move across to the graph, then read up or down to the horizontal axis.</div>
+  </div>
+  <div class="explainer" data-explainer="readGraph"></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b><span class="tex">f(3)</span> and <span class="tex">f(x)=3</span> are different questions.</b> In <span class="tex">f(3)</span> the 3 is an <b>input</b>: start on the horizontal axis. In <span class="tex">f(x)=3</span> the 3 is an <b>output</b>: start on the vertical axis.</div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Reading a graph both ways</h3></div>
+  <p class="q">The graph of a function <span class="tex">f</span> is shown. Use it to answer both parts.</p>
+  <div class="u5l10-ex1">
+    <div id="u5l10-g-ex1"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Use the graph to determine &nbsp;i) <span class="tex">f(-3)</span> &nbsp; ii) <span class="tex">f(0)</span> &nbsp; iii) <span class="tex">f(2)</span></div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Go to the <span class="tex">x</span>-value, up or down to the line, then across to the vertical axis.<br>i) <span class="tex">f(-3)=\boldsymbol{-1}</span> &nbsp; ii) <span class="tex">f(0)=\boldsymbol{2}</span> &nbsp; iii) <span class="tex">f(2)=\boldsymbol{4}</span></div></div></div>
+      <div class="part"><div class="pl">(b) Use the graph to determine the value of <span class="tex">x</span> if &nbsp;i) <span class="tex">f(x)=-2</span> &nbsp; ii) <span class="tex">f(x)=3</span> &nbsp; iii) <span class="tex">f(x)=6</span></div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Work backwards: start on the vertical axis, across to the line, then up or down to the <span class="tex">x</span>-axis.<br>i) <span class="tex">x=\boldsymbol{-4}</span> &nbsp; ii) <span class="tex">x=\boldsymbol{1}</span> &nbsp; iii) <span class="tex">x=\boldsymbol{4}</span></div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Converting ================= -->
+<section class="card" data-ink="s3" data-section="3. Converting y= and f(x)">
+  <div class="sec-h"><span class="badge">3</span><h2>Converting Between <span class="tex">y=</span> Notation and <span class="tex">f(x)</span> Notation</h2></div>
+  <p>The two forms describe exactly the same rule: <span class="tex">f(x)</span> and <span class="tex">y</span> name the very same output, so <span class="tex">f(x)=4x+5</span> and <span class="tex">y=4x+5</span> are the same equation.</p>
+  <div class="u5l10-ntab">
+    <div class="u5l10-nh">function notation</div><div class="u5l10-nh"><span class="tex">x</span>-<span class="tex">y</span> notation</div>
+    <div><span class="tex">f(x)=4x+5</span></div><div><span class="tex">y=4x+5</span></div>
+  </div>
+  <div class="def">To convert one way, replace the function name and its bracket, such as <span class="tex">f(x)</span>, with <span class="tex">y</span>. To convert back, replace <span class="tex">y</span> with a function name and bracket. <b>The right side never changes.</b></div>
+  <div class="explainer" data-explainer="swap"></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Switching notations</h3></div>
+  <p class="q"><b>(a)</b> Write each in <span class="tex">x</span>-<span class="tex">y</span> notation. &nbsp; <b>(b)</b> Write each in function notation.</p>
+  <div class="parts u5l10-c4">
+    <div class="part"><div class="pl">(a) i) <span class="tex">f(x)=4x-3</span></div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Replace <span class="tex">f(x)</span> with <span class="tex">y</span>:<br><span class="tex">\boldsymbol{y=4x-3}</span></div></div></div>
+    <div class="part"><div class="pl">(a) ii) <span class="tex">g(t)=t+6</span></div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Here the input is <span class="tex">t</span>, so the variables are <span class="tex">t</span> and <span class="tex">y</span>:<br><span class="tex">\boldsymbol{y=t+6}</span></div></div></div>
+    <div class="part"><div class="pl">(b) i) <span class="tex">y=5x+2</span></div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Replace <span class="tex">y</span> with a name and its input:<br><span class="tex">\boldsymbol{f(x)=5x+2}</span></div></div></div>
+    <div class="part"><div class="pl">(b) ii) <span class="tex">y=9-x</span></div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\boldsymbol{f(x)=9-x}</span><br><small>(Any name works: <span class="tex">g(x)</span>, <span class="tex">h(x)</span>, …)</small></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Tables ================= -->
+<section class="card" data-ink="s4" data-section="4. Function Notation in Tables">
+  <div class="sec-h"><span class="badge">4</span><h2>Function Notation in Tables</h2></div>
+  <p>A table can be written in function notation too: the top row lists the inputs <span class="tex">x</span>, and the bottom row lists the matching outputs, labelled <span class="tex">f(x)</span> or <span class="tex">h(x)</span> instead of <span class="tex">y</span>. Read a value directly, or fill a missing entry by evaluating the rule.</p>
+  <div class="explainer" data-explainer="tableFill"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>A table in function notation</h3></div>
+  <p class="q">Let <span class="tex">h(x)=3x+3</span>.</p>
+  <div class="parts c1">
+    <div class="part"><div class="pl">(a) Complete the table of values.</div>
+      <table class="u5l10-tbl"><tr><th><span class="tex">x</span></th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th><span class="tex">h(x)</span></th><td></td><td></td><td></td><td></td><td></td><td></td></tr></table>
+      <div class="work" style="--h:110px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><table class="u5l10-tbl ans"><tr><th><span class="tex">x</span></th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th><span class="tex">h(x)</span></th><td>3</td><td>6</td><td>9</td><td>12</td><td>15</td><td>18</td></tr></table>
+        <span class="tex">h(0)=3(0)+3=3</span>, &nbsp;<span class="tex">h(1)=3(1)+3=6</span>, … Each step of 1 in <span class="tex">x</span> adds 3 to the output.</div></div></div>
+  </div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(b) Use your completed table to state the value of <span class="tex">h(4)</span>.</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Read the column <span class="tex">x=4</span>: &nbsp;<span class="tex">h(4)=\boldsymbol{15}</span></div></div></div>
+    <div class="part"><div class="pl">(c) Use your completed table to determine the value of <span class="tex">x</span> for which <span class="tex">h(x)=15</span>.</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Search the <b>bottom</b> row for 15: it sits under <span class="tex">x=4</span>. So <span class="tex">x=\boldsymbol{4}</span>.<br><small>(b) and (c) are the same fact read in opposite directions.</small></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l10"></section>
+
+<!-- ================= 5. Real-world models ================= -->
+<section class="card" data-ink="s5" data-section="5. Real-World Function Models">
+  <div class="sec-h"><span class="badge">5</span><h2>Real-World Function Models</h2></div>
+  <p>Earnings, height, distance and cost often change by a rule that can be written in function notation. Evaluate the rule to answer the question, then always <b>interpret</b> the value in words with the correct <b>units</b>.</p>
+  <div class="def-grid">
+    <div class="def"><b>Input given</b> (like <span class="tex">E(6)</span>): put it into the rule. One answer.</div>
+    <div class="def amber"><b>Output given</b> (like “she earned $56”): set the rule equal to it and work backwards.</div>
+  </div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Walking dogs</h3></div>
+  <p class="q">Jasmine earns money walking dogs. Her earnings are modelled by <span class="tex">E(n)=8n</span>, where <span class="tex">E(n)</span> is her total earnings, in dollars, for walking <span class="tex">n</span> dogs.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Complete the table of values.</div>
+      <table class="u5l10-tbl"><tr><th><span class="tex">n</span></th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th><span class="tex">E(n)</span></th><td></td><td></td><td></td><td></td><td></td></tr></table>
+      <div class="work" style="--h:70px"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><table class="u5l10-tbl ans"><tr><th><span class="tex">n</span></th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th><span class="tex">E(n)</span></th><td>8</td><td>16</td><td>24</td><td>32</td><td>40</td></tr></table>
+        <span class="tex">E(n)=8n</span>, so multiply each input by 8.</div></div></div>
+    <div class="part"><div class="pl">(b) Determine the value of <span class="tex">E(6)</span>, and explain what it means in this situation.</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">E(6)=8(6)=\boldsymbol{48}</span><br><b>Meaning:</b> walking 6 dogs earns Jasmine <b>$48</b>.</div></div></div>
+    <div class="part"><div class="pl">(c) How many dogs did Jasmine walk if she earned $56?</div><div class="work" style="--h:130px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Here the <b>output</b> is known, so solve:<br><span class="tex">56=8n</span>, so <span class="tex">n=\dfrac{56}{8}=\boldsymbol{7}</span> <b>dogs</b></div></div></div>
+    <div class="part"><div class="pl">(d) Suggest an appropriate domain for this function, given that Jasmine can realistically walk at most 8 dogs in one day.</div><div class="work" style="--h:106px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">A number of dogs must be a whole number and cannot be more than 8:<br><span class="tex">D=\{0,\ 1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7,\ 8\}</span><br><small>(Starting at 1 is also fine if you count only days she actually works.)</small></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s5b" data-section="5. Check Example 4">
+  <h3 class="sub">Check Example 4: dots, not a line</h3>
+  <p>You can’t walk 2.5 dogs. When the input counts whole things, the graph is separate <b>dots</b>, and the domain is a <b>list</b> of whole numbers.</p>
+  <div class="explainer" data-explainer="dogs"></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>A burning candle</h3></div>
+  <p class="q">A candle burns down at a steady rate. Its height is modelled by <span class="tex">h(t)=20-2t</span>, where <span class="tex">h(t)</span> is the height, in centimetres, <span class="tex">t</span> minutes after it is lit.</p>
+  <div class="u5l10-ex5">
+    <div class="part u5l10-gpart"><div class="pl">(a) Sketch the graph of the function on the grid.</div><div id="u5l10-g-ex5"></div>
+      <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Plot the start <span class="tex">(0,\ 20)</span> and the burn-out point <span class="tex">(10,\ 0)</span>, then join them: the height drops 2 cm each minute.<div id="u5l10-a-ex5"></div></div></div></div>
+    <div class="parts c1 u5l10-ex5r">
+      <div class="part"><div class="pl">(b) Determine the value of <span class="tex">h(3)</span>.</div><div class="work" style="--h:62px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">h(3)=20-2(3)=20-6=\boldsymbol{14}</span></div></div></div>
+      <div class="part"><div class="pl">(c) Write in words the meaning of <span class="tex">h(3)</span>.</div><div class="work" style="--h:62px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Three minutes after the candle is lit, it is 14 cm tall.</b></div></div></div>
+      <div class="part"><div class="pl">(d) Evaluate <span class="tex">h(0)</span> and explain its significance.</div><div class="work" style="--h:62px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">h(0)=20-2(0)=\boldsymbol{20}</span>. At <span class="tex">t=0</span> nothing has burned yet: the candle’s <b>original height, 20 cm</b> (the vertical intercept).</div></div></div>
+    </div>
+  </div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(e) How many minutes will it take for the candle to burn out completely (height <span class="tex">=0</span>)?</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Set <span class="tex">h(t)=0</span>: <span class="tex">0=20-2t</span>, so <span class="tex">2t=20</span> and <span class="tex">t=\boldsymbol{10}</span> <b>minutes</b>.</div></div></div>
+    <div class="part"><div class="pl">(f) Suggest an appropriate domain and range for the function <span class="tex">h(t)</span>.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Time runs from lighting the candle until it is gone; the height runs from 0 up to 20 cm (any value in between):<br><span class="tex">D:\ 0\le t\le 10</span> (minutes) &nbsp; <span class="tex">R:\ 0\le h(t)\le 20</span> (cm)</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s5c" data-section="5. Check Example 5">
+  <h3 class="sub">Check Example 5: the candle and its graph</h3>
+  <div class="explainer" data-explainer="candle"></div>
+</section>
+
+<section class="card" data-ink="s5d" data-section="5. Where the model stops">
+  <h3 class="sub">Where does the model stop?</h3>
+  <p>The rule <span class="tex">h(t)=20-2t</span> will happily take any number. The candle won’t. A sensible <b>domain</b> keeps only the inputs that make sense in the story.</p>
+  <div class="explainer" data-explainer="limits"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Graph, forwards:</b> <span class="tex">f(a)</span> starts at <span class="tex">a</span> on the <b>horizontal</b> axis: up or down to the graph, across to read. <b>Backwards:</b> <span class="tex">f(x)=b</span> starts at <span class="tex">b</span> on the <b>vertical</b> axis.</div>
+    <div><b>Convert:</b> <span class="tex">f(x)</span> and <span class="tex">y</span> are the same output. <span class="tex">f(x)=4x-3</span> ⇄ <span class="tex">y=4x-3</span>. The right side never changes.</div>
+    <div><b>Tables:</b> top row inputs, bottom row outputs <span class="tex">h(x)</span>. <span class="tex">h(4)=15</span> and “<span class="tex">h(x)=15</span> when <span class="tex">x=4</span>” are the same fact read both ways.</div>
+    <div><b>Models:</b> answer in words with units: <span class="tex">h(3)=14</span> means 3 minutes after lighting, the candle is 14 cm tall. The domain keeps only inputs that make sense.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u5l10">
+    <div><div class="kicker">Your turn</div><b>Assignment 10 — Function Notation: Graphs, Conversions, and Real-World Models</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <a class="assign next-l" href="../l11/">
+    <div><div class="kicker">Next lesson</div><b>Lesson 11 — Interpreting and Sketching Real-World Graphs</b><div class="muted">Every graph tells a story: speeding up, stopping, turning back. Read the story, then sketch your own.</div></div><span class="arrow">→</span>
+  </a>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u5l10.js';
+  boot({ key: 'u5l10', homeHref: '../../', title: '5.10 f(x): Graphs and Models' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

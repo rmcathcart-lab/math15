@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u5l8.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Which Machine Is Broken?">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Which Machine Is Broken?</h2>
+  <p class="wf-rule">Two vending machines. One of them is broken. Which one?</p></div>
+  <div class="vw-tiles" style="--n:2"><div><b>Machine A</b><span class="vw-vend"><span>Press <b>1</b> → chips</span><span>Press <b>2</b> → chips</span><span>Press <b>3</b> → gum</span></span></div><div><b>Machine B</b><span class="vw-vend"><span>Press <b>1</b> → chips</span><span>Press <b>1</b> → gum</span><span>Press <b>2</b> → pop</span></span></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>What would make you stop trusting a machine?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>Machine B.</b> The same button gave two different snacks, so you can’t know what you’ll get. Machine A is fine: two buttons can give the same snack.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,8 +54,157 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Laser Scanner" id="wu" style="--wf-side: 330px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Laser Scanner</h2>
+
+
+<!-- ================= 1. From relations to functions ================= -->
+<section class="card" data-ink="s1" data-section="1. Relations to Functions">
+  <div class="sec-h"><span class="badge">1</span><h2>From Relations to Functions</h2></div>
+  <p>A <b>relation</b> pairs inputs (the <b>domain</b>) with outputs (the <b>range</b>). It may pair an input with any number of outputs.</p>
+  <div class="def">A <b>function</b> is a relation in which <u>every input is paired with exactly one output</u>. If even <b>one</b> input is paired with two <b>different</b> outputs, the relation is <b>not</b> a function.</div>
+  <div class="u5l8-rules">
+    <div class="u5l8-rule"><div class="u5l8-rh">Mapping diagram</div>Count the arrows <b>leaving</b> each input. Exactly one from every input: <b>function</b>. Two or more from any input: <b>not</b> a function.</div>
+    <div class="u5l8-rule u5l8-rule2"><div class="u5l8-rh">Arrows coming in</div>Arrows pointing <b>into</b> an output never matter. An output may be used as often as you like.</div>
+  </div>
+  <div data-extra><div class="explainer" data-explainer="arrows"></div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Favourite subject and clubs joined</h3></div>
+  <p class="q">Four students were asked two questions. Diagram A gives each student’s <b>one</b> favourite subject; Diagram B gives every club each student joined.</p>
+  <div class="parts c2">
+    <div class="part"><div class="u5l8-dh">Diagram A — Favourite Subject</div><div class="u5l8-qfig" data-fig="mapA"></div><div class="pl">(a) Count the arrows leaving each student. Is this relation a function? Explain.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Arrows leaving: Ana 1, Ben 1, Cho 1, Dev 1.<br><b>Yes, it is a function.</b> Every student (input) has exactly one favourite subject. Math is used twice (Ana and Dev), but a repeated <b>output</b> is allowed.</div></div></div>
+    <div class="part"><div class="u5l8-dh">Diagram B — Clubs Joined</div><div class="u5l8-qfig" data-fig="mapB"></div><div class="pl">(b) Count the arrows leaving each student. Is this relation a function? Explain.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Arrows leaving: Ana <b>2</b> (Chess and Track), Ben 1, Cho 1, Dev 1.<br><b>No, not a function.</b> Ana, a single input, is paired with two different outputs.</div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Ordered pairs and tables ================= -->
+<section class="card" data-ink="s2" data-section="2. Ordered Pairs and Tables">
+  <div class="sec-h"><span class="badge">2</span><h2>Checking a List of Ordered Pairs or a Table</h2></div>
+  <p>The one-output rule doesn’t change; only the way you look for it does. Scan the <span class="tex">x</span>-values (the inputs).</p>
+  <div class="u5l8-rules u5l8-r3">
+    <div class="u5l8-rule u5l8-rbad"><div class="u5l8-rh">Not a function</div>The <b>same</b> <span class="tex">x</span>-value appears twice with two <b>different</b> <span class="tex">y</span>-values.</div>
+    <div class="u5l8-rule u5l8-rule2"><div class="u5l8-rh">Still fine</div>A repeated <span class="tex">y</span>-value is never a problem.</div>
+    <div class="u5l8-rule u5l8-rule2"><div class="u5l8-rh">Still fine</div>The same pair listed twice is not a problem either.</div>
+  </div>
+  <div data-extra><div class="explainer" data-explainer="pairsCheck"></div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Check the <span class="tex">x</span>-values</h3></div>
+  <p class="q">Decide whether each relation is a function, and justify by checking the <span class="tex">x</span>-values.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">(1,\ 4),\ (2,\ 7),\ (3,\ 4),\ (5,\ 9)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x</span>-values: <span class="tex">1,\ 2,\ 3,\ 5</span>, all different.<br><b>Function.</b> (The repeated <span class="tex">y</span>-value 4 doesn’t matter.)</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">(2,\ 6),\ (3,\ 8),\ (2,\ 11),\ (4,\ 8)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x</span>-values: <span class="tex">2,\ 3,\ \mathbf{2},\ 4</span>. The input 2 appears twice, with <span class="tex">y=6</span> and <span class="tex">y=11</span>.<br><b>Not a function.</b></div></div></div>
+    <div class="part"><div class="pl">(c)</div>
+      <table class="u5l8-tab"><tr><th><span class="tex">x</span></th><td><span class="tex">-1</span></td><td><span class="tex">0</span></td><td><span class="tex">1</span></td><td><span class="tex">-1</span></td></tr><tr><th><span class="tex">y</span></th><td><span class="tex">5</span></td><td><span class="tex">5</span></td><td><span class="tex">5</span></td><td><span class="tex">5</span></td></tr></table>
+      <div class="work" style="--h:116px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x=-1</span> appears twice, but <b>both</b> times the output is 5: the same pair listed twice. No input has two <b>different</b> outputs.<br><b>Function.</b></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. The vertical line test ================= -->
+<section class="card" data-ink="s3" data-section="3. The Vertical Line Test">
+  <div class="sec-h"><span class="badge">3</span><h2>The Vertical Line Test</h2></div>
+  <div class="def"><b>Vertical line test:</b> if <b>any</b> vertical line crosses the graph <u>more than once</u>, the relation is <b>not</b> a function: that line has found one input with two different outputs. If <b>every</b> vertical line crosses <u>at most once</u>, the graph <b>is</b> a function.</div>
+  <div class="u5l8-figrow">
+    <div class="u5l8-fbox"><div data-fig="vltLine"></div><div class="u5l8-fcap">The line <span class="tex">x=1</span> meets the graph <b>once</b>: function.</div></div>
+    <div class="u5l8-fbox"><div data-fig="vltCircle"></div><div class="u5l8-fcap">The line <span class="tex">x=0</span> meets the circle <b>twice</b>, at <span class="tex">y=2.5</span> and <span class="tex">y=-2.5</span>: not a function.</div></div>
+  </div>
+  <p>Why <b>vertical</b>? Every point on a vertical line has the <b>same</b> <span class="tex">x</span>-value. So the points the line passes through are <b>all the outputs of that one input</b>.</p>
+  <div data-extra><div class="explainer" data-explainer="whyVertical"></div></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Horizontal lines don’t count.</b> A horizontal line crossing twice means two <b>inputs</b> share one output. That is allowed for a function. Only a <b>vertical</b> line crossing twice breaks the rule.</div></div>
+</section>
+
+<section class="card" data-ink="s3b" data-section="3. Sweeping the line">
+  <h3 class="sub">Sweep the line across</h3>
+  <p>Slide a vertical line from left to right across the whole graph. Watch the number of crossings.</p>
+  <div class="explainer" data-explainer="vlt"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Draw your own vertical lines</h3></div>
+  <p class="q">Draw two or three vertical lines of your own on each grid, then decide: <b>function</b> or <b>not a function</b>?</p>
+  <div class="parts c2">
+    <div class="part"><div class="u5l8-qfig" data-fig="ex3a"></div><div class="pl">(a) Function or not? Explain how you know.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Function.</b> Every vertical line I draw (one on each arm of the V, and one right at the corner) crosses the graph <b>exactly once</b>. No input goes to two outputs.</div></div></div>
+    <div class="part"><div class="u5l8-qfig" data-fig="ex3b"></div><div class="pl">(b) Function or not? Explain how you know.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Not a function.</b> A vertical line at <span class="tex">x=-0.4</span> hits the curve <b>twice</b>, near <span class="tex">y=2</span> and near <span class="tex">y=-2</span>. One input, two different outputs. (Every sideways parabola fails for the same reason.)</div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–8">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 8 · Questions 1–8</h2>
+  <p class="pr-t">Is it a function? Check the pairs, the tables and the graphs.</p>
+  <div class="pr-chips n2"><span><b>1–6</b>Is it a function?</span><span><b>7–8</b>The vertical line test</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 7.</span><a class="pill" href="../../../#/lesson/u5l8">Open the Practice site</a></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l8"></section>
+
+<!-- ================= 4. Classifying several graphs ================= -->
+<section class="card" data-ink="s4" data-section="4. Classifying Graphs">
+  <div class="sec-h"><span class="badge">4</span><h2>Classifying Several Graphs at Once</h2></div>
+  <p>Run the test in your head, left to right across each graph. Some shapes always give the same answer:</p>
+  <div class="u5l8-rules">
+    <div class="u5l8-rule"><div class="u5l8-rh">Always pass</div>Straight lines that are not vertical, and ordinary parabolas opening <b>up</b> or <b>down</b>.</div>
+    <div class="u5l8-rule u5l8-rbad"><div class="u5l8-rh">Always fail</div>Closed curves (circles, ellipses, loops), sideways parabolas, and vertical lines.</div>
+  </div>
+  <div data-extra><div class="explainer" data-explainer="families"></div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Yes or no?</h3></div>
+  <p class="q">Use the vertical line test to classify each graph as a function: write <b>Yes</b> or <b>No</b>.</p>
+  <div class="parts u5l8-c4">
+    <div class="part"><div class="u5l8-gh">P</div><div class="u5l8-qfig" data-fig="P"></div><div class="work" style="--h:56px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> A parabola opening down.</div></div></div>
+    <div class="part"><div class="u5l8-gh">Q</div><div class="u5l8-qfig" data-fig="Q"></div><div class="work" style="--h:56px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> A horizontal line: one <span class="tex">y</span> for each <span class="tex">x</span>.</div></div></div>
+    <div class="part"><div class="u5l8-gh">R</div><div class="u5l8-qfig" data-fig="R"></div><div class="work" style="--h:56px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> A vertical line cuts the ellipse twice.</div></div></div>
+    <div class="part"><div class="u5l8-gh">S</div><div class="u5l8-qfig" data-fig="S"></div><div class="work" style="--h:56px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> A closed loop fails as well.</div></div></div>
+  </div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">From Graph R, write two ordered pairs that share the same <span class="tex">x</span>-value but have different <span class="tex">y</span>-values, to show why it is not a function.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Graph R is an ellipse centred at the origin, reaching <span class="tex">x=\pm 2.6</span> and <span class="tex">y=\pm 1.3</span>. The vertical line <span class="tex">x=0</span> meets it at the top and the bottom: <span class="tex">\boldsymbol{(0,\ 1.3)}</span> and <span class="tex">\boldsymbol{(0,\ -1.3)}</span>. One input, two different outputs: not a function. (Any vertical line inside the ellipse gives a similar pair.)</div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<section data-extra class="card" data-ink="s4b" data-section="4. Checking Example 4">
+  <h3 class="sub">Checking Example 4: four sweeps</h3>
+  <div class="explainer" data-explainer="classify"></div>
+</section>
+
+<!-- ================= 5. Functions in context ================= -->
+<section class="card" data-ink="s5" data-section="5. Functions in Context">
+  <div class="sec-h"><span class="badge">5</span><h2>Functions in Context</h2></div>
+  <p>Real quantities measured over <b>time</b> are functions: at one instant a thermometer, an odometer or an altimeter can only show <b>one</b> reading. A relation fails when a single input honestly has <b>several</b> outputs (one bus route number, many stops along that route).</p>
+  <div data-extra><div class="explainer" data-explainer="context"></div></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Temperature over one day</h3></div>
+  <p class="q">The graph shows the outdoor temperature <span class="tex">T</span> (°C) recorded hourly over one day, starting at midnight.</p>
+  <div class="u5l8-ex5">
+    <div class="u5l8-qfig" data-fig="temp"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">(a) Apply the vertical line test. Is temperature over time a function? Explain.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes, it is a function.</b> Pick any time, say <span class="tex">t=16</span> h: the vertical line through it meets the curve just once (at <span class="tex">T=14</span> °C). The graph never doubles back, so no vertical line can cross it twice.</div></div></div>
+      <div class="part"><div class="pl">(b) Explain why it makes sense that at one moment in time the outdoor temperature could not be two different values at once.</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">At one instant the thermometer shows <b>one</b> reading. The same place can’t be 10 °C and 14 °C at the very same moment, so each input (time) has exactly one output (temperature).</div></div></div>
+    </div>
+  </div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">(c) Describe a different everyday relation that would <b>not</b> be a function, and explain why in one sentence.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Pairing each <b>month</b> with the students born in it: one input (say September) is paired with several different students, so one input has many outputs. (Other good answers: a jersey number paired with every player who has worn it; a price paired with all the items that cost it.)</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Laser Scanner" id="wu" style="--wf-side: 330px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Laser Scanner</h2>
   <p class="wf-rule">A straight-up laser sweeps left to right. <b>Two or more hits at once = FAIL.</b> <span class="muted">Slide the laser.</span></p></div>
   <div class="wf-grid"><div class="wf-main">
     <div class="u5l8-cards" id="wcards">
@@ -88,144 +247,6 @@
   <p class="u5l8-social">Person → birthday: can one person have <b>two</b> birthdays? Can two people <b>share</b> one? Find someone in the room born in the same month as you!</p>
 </section>
 
-<!-- ================= 1. From relations to functions ================= -->
-<section class="card" data-ink="s1" data-section="1. Relations to Functions">
-  <div class="sec-h"><span class="badge">1</span><h2>From Relations to Functions</h2></div>
-  <p>A <b>relation</b> pairs inputs (the <b>domain</b>) with outputs (the <b>range</b>). It may pair an input with any number of outputs.</p>
-  <div class="def">A <b>function</b> is a relation in which <u>every input is paired with exactly one output</u>. If even <b>one</b> input is paired with two <b>different</b> outputs, the relation is <b>not</b> a function.</div>
-  <div class="u5l8-rules">
-    <div class="u5l8-rule"><div class="u5l8-rh">Mapping diagram</div>Count the arrows <b>leaving</b> each input. Exactly one from every input: <b>function</b>. Two or more from any input: <b>not</b> a function.</div>
-    <div class="u5l8-rule u5l8-rule2"><div class="u5l8-rh">Arrows coming in</div>Arrows pointing <b>into</b> an output never matter. An output may be used as often as you like.</div>
-  </div>
-  <div class="explainer" data-explainer="arrows"></div>
-</section>
-
-<section class="card example" data-ink="ex1" data-section="Example 1">
-  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Favourite subject and clubs joined</h3></div>
-  <p class="q">Four students were asked two questions. Diagram A gives each student’s <b>one</b> favourite subject; Diagram B gives every club each student joined.</p>
-  <div class="parts c2">
-    <div class="part"><div class="u5l8-dh">Diagram A — Favourite Subject</div><div class="u5l8-qfig" data-fig="mapA"></div><div class="pl">(a) Count the arrows leaving each student. Is this relation a function? Explain.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Arrows leaving: Ana 1, Ben 1, Cho 1, Dev 1.<br><b>Yes, it is a function.</b> Every student (input) has exactly one favourite subject. Math is used twice (Ana and Dev), but a repeated <b>output</b> is allowed.</div></div></div>
-    <div class="part"><div class="u5l8-dh">Diagram B — Clubs Joined</div><div class="u5l8-qfig" data-fig="mapB"></div><div class="pl">(b) Count the arrows leaving each student. Is this relation a function? Explain.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Arrows leaving: Ana <b>2</b> (Chess and Track), Ben 1, Cho 1, Dev 1.<br><b>No, not a function.</b> Ana, a single input, is paired with two different outputs.</div></div></div>
-  </div>
-  <div class="space" id="ex1-space"></div>
-  <button class="more" data-more="ex1-space">+ More space</button>
-</section>
-
-<!-- ================= 2. Ordered pairs and tables ================= -->
-<section class="card" data-ink="s2" data-section="2. Ordered Pairs and Tables">
-  <div class="sec-h"><span class="badge">2</span><h2>Checking a List of Ordered Pairs or a Table</h2></div>
-  <p>The one-output rule doesn’t change; only the way you look for it does. Scan the <span class="tex">x</span>-values (the inputs).</p>
-  <div class="u5l8-rules u5l8-r3">
-    <div class="u5l8-rule u5l8-rbad"><div class="u5l8-rh">Not a function</div>The <b>same</b> <span class="tex">x</span>-value appears twice with two <b>different</b> <span class="tex">y</span>-values.</div>
-    <div class="u5l8-rule u5l8-rule2"><div class="u5l8-rh">Still fine</div>A repeated <span class="tex">y</span>-value is never a problem.</div>
-    <div class="u5l8-rule u5l8-rule2"><div class="u5l8-rh">Still fine</div>The same pair listed twice is not a problem either.</div>
-  </div>
-  <div class="explainer" data-explainer="pairsCheck"></div>
-</section>
-
-<section class="card example" data-ink="ex2" data-section="Example 2">
-  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Check the <span class="tex">x</span>-values</h3></div>
-  <p class="q">Decide whether each relation is a function, and justify by checking the <span class="tex">x</span>-values.</p>
-  <div class="parts c3">
-    <div class="part"><div class="pl">(a) <span class="tex">(1,\ 4),\ (2,\ 7),\ (3,\ 4),\ (5,\ 9)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x</span>-values: <span class="tex">1,\ 2,\ 3,\ 5</span>, all different.<br><b>Function.</b> (The repeated <span class="tex">y</span>-value 4 doesn’t matter.)</div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">(2,\ 6),\ (3,\ 8),\ (2,\ 11),\ (4,\ 8)</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x</span>-values: <span class="tex">2,\ 3,\ \mathbf{2},\ 4</span>. The input 2 appears twice, with <span class="tex">y=6</span> and <span class="tex">y=11</span>.<br><b>Not a function.</b></div></div></div>
-    <div class="part"><div class="pl">(c)</div>
-      <table class="u5l8-tab"><tr><th><span class="tex">x</span></th><td><span class="tex">-1</span></td><td><span class="tex">0</span></td><td><span class="tex">1</span></td><td><span class="tex">-1</span></td></tr><tr><th><span class="tex">y</span></th><td><span class="tex">5</span></td><td><span class="tex">5</span></td><td><span class="tex">5</span></td><td><span class="tex">5</span></td></tr></table>
-      <div class="work" style="--h:116px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">x=-1</span> appears twice, but <b>both</b> times the output is 5: the same pair listed twice. No input has two <b>different</b> outputs.<br><b>Function.</b></div></div></div>
-  </div>
-  <div class="space" id="ex2-space"></div>
-  <button class="more" data-more="ex2-space">+ More space</button>
-</section>
-
-<!-- ================= 3. The vertical line test ================= -->
-<section class="card" data-ink="s3" data-section="3. The Vertical Line Test">
-  <div class="sec-h"><span class="badge">3</span><h2>The Vertical Line Test</h2></div>
-  <div class="def"><b>Vertical line test:</b> if <b>any</b> vertical line crosses the graph <u>more than once</u>, the relation is <b>not</b> a function: that line has found one input with two different outputs. If <b>every</b> vertical line crosses <u>at most once</u>, the graph <b>is</b> a function.</div>
-  <div class="u5l8-figrow">
-    <div class="u5l8-fbox"><div data-fig="vltLine"></div><div class="u5l8-fcap">The line <span class="tex">x=1</span> meets the graph <b>once</b>: function.</div></div>
-    <div class="u5l8-fbox"><div data-fig="vltCircle"></div><div class="u5l8-fcap">The line <span class="tex">x=0</span> meets the circle <b>twice</b>, at <span class="tex">y=2.5</span> and <span class="tex">y=-2.5</span>: not a function.</div></div>
-  </div>
-  <p>Why <b>vertical</b>? Every point on a vertical line has the <b>same</b> <span class="tex">x</span>-value. So the points the line passes through are <b>all the outputs of that one input</b>.</p>
-  <div class="explainer" data-explainer="whyVertical"></div>
-  <div class="tip watch"><div class="tip-ic">!</div><div><b>Horizontal lines don’t count.</b> A horizontal line crossing twice means two <b>inputs</b> share one output. That is allowed for a function. Only a <b>vertical</b> line crossing twice breaks the rule.</div></div>
-</section>
-
-<section class="card" data-ink="s3b" data-section="3. Sweeping the line">
-  <h3 class="sub">Sweep the line across</h3>
-  <p>Slide a vertical line from left to right across the whole graph. Watch the number of crossings.</p>
-  <div class="explainer" data-explainer="vlt"></div>
-</section>
-
-<section class="card example" data-ink="ex3" data-section="Example 3">
-  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Draw your own vertical lines</h3></div>
-  <p class="q">Draw two or three vertical lines of your own on each grid, then decide: <b>function</b> or <b>not a function</b>?</p>
-  <div class="parts c2">
-    <div class="part"><div class="u5l8-qfig" data-fig="ex3a"></div><div class="pl">(a) Function or not? Explain how you know.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Function.</b> Every vertical line I draw (one on each arm of the V, and one right at the corner) crosses the graph <b>exactly once</b>. No input goes to two outputs.</div></div></div>
-    <div class="part"><div class="u5l8-qfig" data-fig="ex3b"></div><div class="pl">(b) Function or not? Explain how you know.</div><div class="work" style="--h:120px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Not a function.</b> A vertical line at <span class="tex">x=-0.4</span> hits the curve <b>twice</b>, near <span class="tex">y=2</span> and near <span class="tex">y=-2</span>. One input, two different outputs. (Every sideways parabola fails for the same reason.)</div></div></div>
-  </div>
-  <div class="space" id="ex3-space"></div>
-  <button class="more" data-more="ex3-space">+ More space</button>
-</section>
-
-<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
-<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u5l8"></section>
-
-<!-- ================= 4. Classifying several graphs ================= -->
-<section class="card" data-ink="s4" data-section="4. Classifying Graphs">
-  <div class="sec-h"><span class="badge">4</span><h2>Classifying Several Graphs at Once</h2></div>
-  <p>Run the test in your head, left to right across each graph. Some shapes always give the same answer:</p>
-  <div class="u5l8-rules">
-    <div class="u5l8-rule"><div class="u5l8-rh">Always pass</div>Straight lines that are not vertical, and ordinary parabolas opening <b>up</b> or <b>down</b>.</div>
-    <div class="u5l8-rule u5l8-rbad"><div class="u5l8-rh">Always fail</div>Closed curves (circles, ellipses, loops), sideways parabolas, and vertical lines.</div>
-  </div>
-  <div class="explainer" data-explainer="families"></div>
-</section>
-
-<section class="card example" data-ink="ex4" data-section="Example 4">
-  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Yes or no?</h3></div>
-  <p class="q">Use the vertical line test to classify each graph as a function: write <b>Yes</b> or <b>No</b>.</p>
-  <div class="parts u5l8-c4">
-    <div class="part"><div class="u5l8-gh">P</div><div class="u5l8-qfig" data-fig="P"></div><div class="work" style="--h:56px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> A parabola opening down.</div></div></div>
-    <div class="part"><div class="u5l8-gh">Q</div><div class="u5l8-qfig" data-fig="Q"></div><div class="work" style="--h:56px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> A horizontal line: one <span class="tex">y</span> for each <span class="tex">x</span>.</div></div></div>
-    <div class="part"><div class="u5l8-gh">R</div><div class="u5l8-qfig" data-fig="R"></div><div class="work" style="--h:56px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> A vertical line cuts the ellipse twice.</div></div></div>
-    <div class="part"><div class="u5l8-gh">S</div><div class="u5l8-qfig" data-fig="S"></div><div class="work" style="--h:56px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> A closed loop fails as well.</div></div></div>
-  </div>
-  <div class="parts c1">
-    <div class="part"><div class="pl">From Graph R, write two ordered pairs that share the same <span class="tex">x</span>-value but have different <span class="tex">y</span>-values, to show why it is not a function.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Graph R is an ellipse centred at the origin, reaching <span class="tex">x=\pm 2.6</span> and <span class="tex">y=\pm 1.3</span>. The vertical line <span class="tex">x=0</span> meets it at the top and the bottom: <span class="tex">\boldsymbol{(0,\ 1.3)}</span> and <span class="tex">\boldsymbol{(0,\ -1.3)}</span>. One input, two different outputs: not a function. (Any vertical line inside the ellipse gives a similar pair.)</div></div></div>
-  </div>
-  <div class="space" id="ex4-space"></div>
-  <button class="more" data-more="ex4-space">+ More space</button>
-</section>
-
-<section class="card" data-ink="s4b" data-section="4. Checking Example 4">
-  <h3 class="sub">Checking Example 4: four sweeps</h3>
-  <div class="explainer" data-explainer="classify"></div>
-</section>
-
-<!-- ================= 5. Functions in context ================= -->
-<section class="card" data-ink="s5" data-section="5. Functions in Context">
-  <div class="sec-h"><span class="badge">5</span><h2>Functions in Context</h2></div>
-  <p>Real quantities measured over <b>time</b> are functions: at one instant a thermometer, an odometer or an altimeter can only show <b>one</b> reading. A relation fails when a single input honestly has <b>several</b> outputs (one bus route number, many stops along that route).</p>
-  <div class="explainer" data-explainer="context"></div>
-</section>
-
-<section class="card example" data-ink="ex5" data-section="Example 5">
-  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Temperature over one day</h3></div>
-  <p class="q">The graph shows the outdoor temperature <span class="tex">T</span> (°C) recorded hourly over one day, starting at midnight.</p>
-  <div class="u5l8-ex5">
-    <div class="u5l8-qfig" data-fig="temp"></div>
-    <div class="parts c1">
-      <div class="part"><div class="pl">(a) Apply the vertical line test. Is temperature over time a function? Explain.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes, it is a function.</b> Pick any time, say <span class="tex">t=16</span> h: the vertical line through it meets the curve just once (at <span class="tex">T=14</span> °C). The graph never doubles back, so no vertical line can cross it twice.</div></div></div>
-      <div class="part"><div class="pl">(b) Explain why it makes sense that at one moment in time the outdoor temperature could not be two different values at once.</div><div class="work" style="--h:100px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">At one instant the thermometer shows <b>one</b> reading. The same place can’t be 10 °C and 14 °C at the very same moment, so each input (time) has exactly one output (temperature).</div></div></div>
-    </div>
-  </div>
-  <div class="parts c1">
-    <div class="part"><div class="pl">(c) Describe a different everyday relation that would <b>not</b> be a function, and explain why in one sentence.</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Pairing each <b>month</b> with the students born in it: one input (say September) is paired with several different students, so one input has many outputs. (Other good answers: a jersey number paired with every player who has worn it; a price paired with all the items that cost it.)</div></div></div>
-  </div>
-  <div class="space" id="ex5-space"></div>
-  <button class="more" data-more="ex5-space">+ More space</button>
-</section>
-
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -236,7 +257,7 @@
     <div><b>Graphs:</b> the <b>vertical line test</b>. If any vertical line crosses more than once, it is not a function, and those crossings give the proof, like <span class="tex">(0,\ 2.5)</span> and <span class="tex">(0,\ -2.5)</span>.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u5l8">
-    <div><div class="kicker">Your turn</div><b>Assignment 8 — Introducing Functions: The Vertical Line Test</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 8 · Questions 9–15</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l9/">
     <div><div class="kicker">Next lesson</div><b>Lesson 9 — Function Notation: Evaluating and Interpreting <span class="tex">f(x)</span></b><div class="muted">One output per input means we can name it: <span class="tex">f(1)</span> is the output when the input is 1.</div></div><span class="arrow">→</span>
@@ -249,7 +270,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u5l8.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u5l8', homeHref: '../../', title: '5.8 Functions and the Vertical Line Test' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

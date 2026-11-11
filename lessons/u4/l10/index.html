@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u4l10.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Two Truths and a Lie">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Two Truths and a Lie</h2>
+  <p class="wf-rule">Two of these are true. One is a lie. Which one?</p></div>
+  <div class="vw-tiles" style="--n:3;--fs:27px"><div><b>A</b><span class="tex">x^2-9=(x-3)(x+3)</span></div><div><b>B</b><span class="tex">x^2+9=(x+3)^2</span></div><div><b>C</b><span class="tex">x^2+6x+9=(x+3)^2</span></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>How could you prove it?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>B is the lie.</b> Expand it: <span class="tex">(x+3)^2=x^2+6x+9</span>, not <span class="tex">x^2+9</span>. A sum of squares doesn’t factor.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,8 +54,222 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Escape the Room" id="wu" style="--wf-side: 300px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Escape the Room</h2>
+
+
+<!-- ================= the toolbox ================= -->
+<section class="card" data-ink="tools" data-section="The Whole Unit on One Card">
+  <div class="sec-h"><span class="badge">★</span><h2>The Whole Unit on One Card</h2></div>
+  <div class="u4l10-big-idea">
+    <div class="u4l10-bi-l"><span class="tex">x^2+5x+6</span></div>
+    <div class="u4l10-bi-arrows"><span class="u4l10-bi-f">factor →</span><span class="u4l10-bi-e">← expand</span></div>
+    <div class="u4l10-bi-r"><span class="tex">(x+2)(x+3)</span></div>
+    <div class="u4l10-bi-t"><b>Factoring is expanding run backwards.</b> So every answer can be checked by expanding it again.</div>
+  </div>
+  <p>Each type: what it <b>looks like</b>, and its <b>factored form</b>. Tap a card to see an example. <button class="pill small" data-deckall>Show all examples</button></p>
+  <div class="u4l10-deck">
+    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Common factor (GCF) <em>4.2</em></span><span class="u4l10-tf">Every term shares a factor. Write <b>GCF × (what is left)</b>.</span><span class="u4l10-tw"><span class="tex">6x^2+9x=3x(2x+3)</span></span></button>
+    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Trinomial, <span class="tex">a=1</span> <em>4.3–4.4</em></span><span class="u4l10-tf"><span class="tex">x^2+bx+c=(x+m)(x+n)</span> with <b>product</b> <span class="tex">mn=c</span> and <b>sum</b> <span class="tex">m+n=b</span>.</span><span class="u4l10-tw"><span class="tex">x^2+7x+10=(x+2)(x+5)</span></span></button>
+    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Difference of squares <em>4.5</em></span><span class="u4l10-tf"><span class="tex">A^2-B^2=(A+B)(A-B)</span></span><span class="u4l10-tw"><span class="tex">x^2-64=(x+8)(x-8)</span></span></button>
+    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Sum of squares <em>4.5</em></span><span class="u4l10-tf"><span class="tex">A^2+B^2</span> <b>cannot be factored.</b></span><span class="u4l10-tw"><span class="tex">x^2+64</span><small>no pair works: it doesn’t factor</small></span></button>
+    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Perfect square trinomial <em>4.6</em></span><span class="u4l10-tf"><span class="tex">A^2\pm2AB+B^2=(A\pm B)^2</span></span><span class="u4l10-tw"><span class="tex">x^2-6x+9=(x-3)^2</span><small>middle: <span class="tex">2(x)(3)=6x</span></small></span></button>
+    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Trinomial, <span class="tex">a\neq1</span> <em>4.7</em></span><span class="u4l10-tf"><span class="tex">ax^2+bx+c</span>: <b>decompose</b> (product <span class="tex">ac</span>, sum <span class="tex">b</span>), then group.</span><span class="u4l10-tw"><span class="tex">2x^2+11x+5=(2x+1)(x+5)</span><small><span class="tex">ac=10</span>: <span class="tex">10</span> and <span class="tex">1</span></small></span></button>
+    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Choosing a strategy <em>4.8</em></span><span class="u4l10-tf"><b>GCF first</b>, then count the terms. Factor <b>completely</b>.</span><span class="u4l10-tw"><span class="tex">2x^2-18=2(x^2-9)</span><small><span class="tex">=2(x-3)(x+3)</span></small></span></button>
+    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Zero product property <em>4.9</em></span><span class="u4l10-tf">If <span class="tex">A\times B=0</span>, then <span class="tex">A=0</span> or <span class="tex">B=0</span>.</span><span class="u4l10-tw"><span class="tex">(x-2)(x+5)=0</span><small><span class="tex">x=2</span> or <span class="tex">x=-5</span></small></span></button>
+  </div>
+</section>
+
+<!-- ================= 1. GCF ================= -->
+<section class="card" data-ink="s1" data-section="1. Removing the GCF">
+  <div class="sec-h"><span class="badge">1</span><h2>Removing the Greatest Common Factor</h2></div>
+  <p>Find the GCF of the coefficients, times the <b>lowest</b> power of each variable that every term has. Divide every term by it and write <b>GCF × (what’s left)</b>. If the leading term is negative, take out a <b>negative</b> GCF.</p>
+  <div data-extra><div class="explainer" data-explainer="gcfEx"></div></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Take out the GCF</h3></div>
+  <p class="q">Factor completely.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">16x^2-24x</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Coefficients: GCF 8; both terms have <span class="tex">x</span>.<br><span class="tex">=\boldsymbol{8x(2x-3)}</span><br>Check: <span class="tex">8x(2x-3)=16x^2-24x</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">-18a^3+27a^2-9a</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Leading term negative, so use <span class="tex">-9a</span>: <span class="tex">=-9a(2a^2-3a+1)</span><br>The bracket still factors (<span class="tex">ac=2</span>, sum −3: −2, −1):<br><span class="tex">=\boldsymbol{-9a(2a-1)(a-1)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. c positive ================= -->
+<section class="card" data-ink="s2" data-section="2. x² + bx + c, c Positive">
+  <div class="sec-h"><span class="badge">2</span><h2>Trinomials <span class="tex">x^2+bx+c</span>, <span class="tex">c</span> Positive</h2></div>
+  <p>When <span class="tex">c</span> is positive, the two integers (product <span class="tex">c</span>, sum <span class="tex">b</span>) have the <b>same</b> sign: both positive if <span class="tex">b</span> is positive, both negative if <span class="tex">b</span> is negative.</p>
+  <div data-extra><div class="explainer" data-explainer="inspectA"></div></div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Same signs</h3></div>
+  <p class="q">Factor each trinomial.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2+15x+44</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product 44, sum 15: <span class="tex">4</span> and <span class="tex">11</span><br><span class="tex">=\boldsymbol{(x+4)(x+11)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2-12x+35</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product 35, sum −12: <span class="tex">-5</span> and <span class="tex">-7</span><br><span class="tex">=\boldsymbol{(x-5)(x-7)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. c negative ================= -->
+<section class="card" data-ink="s3" data-section="3. x² + bx + c, c Negative">
+  <div class="sec-h"><span class="badge">3</span><h2>Trinomials <span class="tex">x^2+bx+c</span>, <span class="tex">c</span> Negative</h2></div>
+  <p>When <span class="tex">c</span> is negative, the two integers have <b>opposite</b> signs, and the one with the <b>larger absolute value</b> takes the same sign as <span class="tex">b</span>.</p>
+  <div data-extra><div class="explainer" data-explainer="inspectB"></div></div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Right numbers, wrong signs.</b> <span class="tex">(x-7)(x+5)</span> has the right numbers for <span class="tex">x^2+2x-35</span> but expands to <span class="tex">x^2-2x-35</span>. Expanding catches it every time.</div></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Opposite signs</h3></div>
+  <p class="q">Factor each trinomial.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2+2x-35</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product −35, sum 2: <span class="tex">7</span> and <span class="tex">-5</span><br><span class="tex">=\boldsymbol{(x+7)(x-5)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">x^2-x-56</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product −56, sum −1: <span class="tex">-8</span> and <span class="tex">7</span><br><span class="tex">=\boldsymbol{(x-8)(x+7)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. difference of squares ================= -->
+<section class="card" data-ink="s4" data-section="4. Difference of Squares">
+  <div class="sec-h"><span class="badge">4</span><h2>Difference of Squares</h2></div>
+  <p>Two perfect squares separated by <b>subtraction</b>, <span class="tex">A^2-B^2</span>, factor right away as <span class="tex">(A+B)(A-B)</span>. A <b>sum</b> of squares never factors this way.</p>
+  <div data-extra><div class="explainer" data-explainer="squares"></div></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Square minus square</h3></div>
+  <p class="q">Factor each binomial.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2-121</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{121}=11</span><br><span class="tex">=\boldsymbol{(x-11)(x+11)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">49x^2-25</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">7x</span> and <span class="tex">5</span><br><span class="tex">=\boldsymbol{(7x-5)(7x+5)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= 5. perfect squares ================= -->
+<section class="card" data-ink="s5" data-section="5. Perfect Square Trinomials">
+  <div class="sec-h"><span class="badge">5</span><h2>Perfect Square Trinomials</h2></div>
+  <p>The first and last terms are perfect squares, and the middle term is <b>twice</b> the product of their roots: <span class="tex">A^2+2AB+B^2=(A+B)^2</span> and <span class="tex">A^2-2AB+B^2=(A-B)^2</span>.</p>
+  <div data-extra><div class="explainer" data-explainer="perfect"></div></div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Square ends, middle <span class="tex">2AB</span></h3></div>
+  <p class="q">Factor each perfect square trinomial.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2+28x+196</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{196}=14</span> and <span class="tex">2(x)(14)=28x</span> ✓<br><span class="tex">=\boldsymbol{(x+14)^2}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">4x^2-20x+25</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">2x</span> and <span class="tex">5</span>; <span class="tex">2(2x)(5)=20x</span> ✓<br><span class="tex">=\boldsymbol{(2x-5)^2}</span></div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–11">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 10 · Questions 1–11</h2>
+  <p class="pr-t">One factoring type at a time.</p>
+  <div class="pr-chips n3"><span><b>1–3</b>Common factor</span><span><b>4–7</b>Trinomials, <span class="tex">a=1</span></span><span><b>8–11</b>Difference of squares and perfect squares</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 8.</span><a class="pill" href="../../../#/lesson/u4l10">Open the Practice site</a></div>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u4l10"></section>
+
+<!-- ================= 6. decomposition ================= -->
+<section class="card" data-ink="s6" data-section="6. Decomposition">
+  <div class="sec-h"><span class="badge">6</span><h2>Factoring <span class="tex">ax^2+bx+c</span> by Decomposition</h2></div>
+  <p>When <span class="tex">a\neq1</span>: multiply <span class="tex">a\times c</span>, find two integers with that <b>product</b> that add to <span class="tex">b</span>, <b>split</b> the middle term with them, then factor by <b>grouping</b>.</p>
+  <div data-extra><div class="explainer" data-explainer="decomp"></div></div>
+</section>
+
+<section class="card example" data-ink="ex6" data-section="Example 6">
+  <div class="ex-head"><span class="ex-tag">Example 6</span><h3>Product <span class="tex">ac</span>, sum <span class="tex">b</span></h3></div>
+  <p class="q">Factor by decomposition.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">2x^2+13x+6</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=12</span>, sum 13: <span class="tex">12</span> and <span class="tex">1</span><br><span class="tex">2x^2+12x+x+6</span><br><span class="tex">=2x(x+6)+1(x+6)</span><br><span class="tex">=\boldsymbol{(x+6)(2x+1)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">3x^2-x-10</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=-30</span>, sum −1: <span class="tex">-6</span> and <span class="tex">5</span><br><span class="tex">3x^2-6x+5x-10</span><br><span class="tex">=3x(x-2)+5(x-2)</span><br><span class="tex">=\boldsymbol{(x-2)(3x+5)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex6-space"></div>
+  <button class="more" data-more="ex6-space">+ More space</button>
+</section>
+
+<!-- ================= 7. choosing a strategy ================= -->
+<section class="card" data-ink="s7" data-section="7. Choosing a Strategy">
+  <div class="sec-h"><span class="badge">7</span><h2>Choosing a Strategy</h2></div>
+  <div class="u4l10-steps3">
+    <div><b class="n">1</b>Always remove a <b>GCF</b> first.</div>
+    <div><b class="n">2</b>Count the terms left. <b>Two terms:</b> difference of squares? <b>Three terms:</b> perfect square? If not, sum–product (<span class="tex">a=1</span>) or decomposition (<span class="tex">a\neq1</span>).</div>
+    <div><b class="n">3</b>Check <b>every factor</b> for more factoring, and <b>verify by expanding</b>.</div>
+  </div>
+  <div data-extra><div class="explainer" data-explainer="flow"></div></div>
+</section>
+
+<section class="card example" data-ink="ex7" data-section="Example 7">
+  <div class="ex-head"><span class="ex-tag">Example 7</span><h3>Factor completely</h3></div>
+  <p class="q">Factor each expression completely.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">5x^2-80</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF 5: <span class="tex">5(x^2-16)</span><br>Difference of squares:<br><span class="tex">=\boldsymbol{5(x-4)(x+4)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">2x^2+16x+32</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF 2: <span class="tex">2(x^2+8x+16)</span><br>Perfect square trinomial:<br><span class="tex">=\boldsymbol{2(x+4)^2}</span></div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">4x^3-4x^2-24x</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">4x</span>: <span class="tex">4x(x^2-x-6)</span><br><span class="tex">-3</span> and <span class="tex">2</span>:<br><span class="tex">=\boldsymbol{4x(x-3)(x+2)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex7-space"></div>
+  <button class="more" data-more="ex7-space">+ More space</button>
+</section>
+
+<!-- ================= 8. solving ================= -->
+<section class="card" data-ink="s8" data-section="8. Solving by Factoring">
+  <div class="sec-h"><span class="badge">8</span><h2>Solving Equations by Factoring</h2></div>
+  <p>Move everything to one side so the equation equals <b>0</b>, factor, then set <b>each factor</b> equal to 0 and solve (the zero product property).</p>
+  <div data-extra><div class="explainer" data-explainer="solveRev"></div></div>
+</section>
+
+<section class="card example" data-ink="ex8" data-section="Example 8">
+  <div class="ex-head"><span class="ex-tag">Example 8</span><h3>Factor, then split</h3></div>
+  <p class="q">Solve each equation by factoring.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">x^2+x-42=0</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product −42, sum 1: <span class="tex">7</span> and <span class="tex">-6</span><br><span class="tex">(x+7)(x-6)=0</span><br><span class="tex">\boldsymbol{x=-7}</span> or <span class="tex">\boldsymbol{x=6}</span></div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">3x^2+5x-2=0</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=-6</span>, sum 5: <span class="tex">6</span> and <span class="tex">-1</span><br><span class="tex">3x^2+6x-x-2=3x(x+2)-1(x+2)</span><br><span class="tex">(x+2)(3x-1)=0</span><br><span class="tex">\boldsymbol{x=-2}</span> or <span class="tex">\boldsymbol{x=\tfrac13}</span></div></div></div>
+  </div>
+  <div class="space" id="ex8-space"></div>
+  <button class="more" data-more="ex8-space">+ More space</button>
+</section>
+
+<!-- ================= 9. mixed review ================= -->
+<section class="card" data-ink="s9" data-section="9. Mixed Review">
+  <div class="sec-h"><span class="badge">9</span><h2>Mixed Review: Putting It All Together</h2></div>
+  <p>Each question below combines more than one skill from the unit: exactly the kind of question you might see on the <b>unit test</b>.<span data-extra> (The checklist explainer in Section 7 replays Challenge 1, and the solving explainer in Section 8 replays Challenge 2.)</span></p>
+</section>
+
+<section class="card example" data-ink="ch1" data-section="Challenges 1 and 2">
+  <div class="ex-head"><span class="ex-tag">Challenges 1–2</span><h3>Two skills at once</h3></div>
+  <div class="parts c2">
+    <div class="part"><div class="pl"><b>Challenge 1.</b> Factor completely: <span class="tex">6x^3+3x^2-45x</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">3x</span>: <span class="tex">3x(2x^2+x-15)</span><br><span class="tex">ac=-30</span>, sum 1: <span class="tex">6</span> and <span class="tex">-5</span><br><span class="tex">2x^2+6x-5x-15=2x(x+3)-5(x+3)=(x+3)(2x-5)</span><br><span class="tex">=\boldsymbol{3x(x+3)(2x-5)}</span></div></div></div>
+    <div class="part"><div class="pl"><b>Challenge 2.</b> Solve: <span class="tex">3x^2=12x</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Move everything to one side (do <b>not</b> divide by <span class="tex">x</span>, or the root <span class="tex">x=0</span> is lost):<br><span class="tex">3x^2-12x=0\Rightarrow 3x(x-4)=0</span><br><span class="tex">\boldsymbol{x=0}</span> or <span class="tex">\boldsymbol{x=4}</span></div></div></div>
+  </div>
+  <div class="space" id="ch1-space"></div>
+  <button class="more" data-more="ch1-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ch3" data-section="Challenge 3">
+  <div class="ex-head"><span class="ex-tag">Challenge 3</span><h3>The garden</h3></div>
+  <p class="q">A rectangular garden has area <span class="tex">(x^2+3x-54)</span> m². One side length of the garden is <span class="tex">(x+9)</span> m.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Determine a simplified expression for the other side length.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product −54, sum 3: <span class="tex">9</span> and <span class="tex">-6</span><br><span class="tex">x^2+3x-54=(x+9)(x-6)</span><br>Since one side is <span class="tex">(x+9)</span>, the other is <span class="tex">\boldsymbol{(x-6)}</span> m.</div></div></div>
+    <div class="part"><div class="pl">(b) Determine the actual dimensions of the garden if <span class="tex">x=8</span>.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">8+9=17</span> m by <span class="tex">8-6=2</span> m: <b>17 m by 2 m</b><br>Check: <span class="tex">17\times2=34</span>, and <span class="tex">64+24-54=34</span> ✓</div></div></div>
+  </div>
+  <div data-extra><div class="explainer" data-explainer="garden"></div></div>
+  <div class="space" id="ch3-space"></div>
+  <button class="more" data-more="ch3-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Escape the Room" id="wu" style="--wf-side: 300px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Escape the Room</h2>
   <p class="wf-rule">Each card hides <b>one digit</b> for the lock. <b>But one card is a trap…</b></p></div>
   <div class="wf-grid"><div class="wf-main">
     <div class="u4l10-room">
@@ -87,209 +311,6 @@
   </div></div>
 </section>
 
-<!-- ================= the toolbox ================= -->
-<section class="card" data-ink="tools" data-section="The Whole Unit on One Card">
-  <div class="sec-h"><span class="badge">★</span><h2>The Whole Unit on One Card</h2></div>
-  <div class="u4l10-big-idea">
-    <div class="u4l10-bi-l"><span class="tex">x^2+5x+6</span></div>
-    <div class="u4l10-bi-arrows"><span class="u4l10-bi-f">factor →</span><span class="u4l10-bi-e">← expand</span></div>
-    <div class="u4l10-bi-r"><span class="tex">(x+2)(x+3)</span></div>
-    <div class="u4l10-bi-t"><b>Factoring is expanding run backwards.</b> So every answer can be checked by expanding it again.</div>
-  </div>
-  <p>Each type: what it <b>looks like</b>, and its <b>factored form</b>. Tap a card to see an example. <button class="pill small" data-deckall>Show all examples</button></p>
-  <div class="u4l10-deck">
-    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Common factor (GCF) <em>4.2</em></span><span class="u4l10-tf">Every term shares a factor. Write <b>GCF × (what is left)</b>.</span><span class="u4l10-tw"><span class="tex">6x^2+9x=3x(2x+3)</span></span></button>
-    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Trinomial, <span class="tex">a=1</span> <em>4.3–4.4</em></span><span class="u4l10-tf"><span class="tex">x^2+bx+c=(x+m)(x+n)</span> with <b>product</b> <span class="tex">mn=c</span> and <b>sum</b> <span class="tex">m+n=b</span>.</span><span class="u4l10-tw"><span class="tex">x^2+7x+10=(x+2)(x+5)</span></span></button>
-    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Difference of squares <em>4.5</em></span><span class="u4l10-tf"><span class="tex">A^2-B^2=(A+B)(A-B)</span></span><span class="u4l10-tw"><span class="tex">x^2-64=(x+8)(x-8)</span></span></button>
-    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Sum of squares <em>4.5</em></span><span class="u4l10-tf"><span class="tex">A^2+B^2</span> <b>cannot be factored.</b></span><span class="u4l10-tw"><span class="tex">x^2+64</span><small>no pair works: it doesn’t factor</small></span></button>
-    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Perfect square trinomial <em>4.6</em></span><span class="u4l10-tf"><span class="tex">A^2\pm2AB+B^2=(A\pm B)^2</span></span><span class="u4l10-tw"><span class="tex">x^2-6x+9=(x-3)^2</span><small>middle: <span class="tex">2(x)(3)=6x</span></small></span></button>
-    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Trinomial, <span class="tex">a\neq1</span> <em>4.7</em></span><span class="u4l10-tf"><span class="tex">ax^2+bx+c</span>: <b>decompose</b> (product <span class="tex">ac</span>, sum <span class="tex">b</span>), then group.</span><span class="u4l10-tw"><span class="tex">2x^2+11x+5=(2x+1)(x+5)</span><small><span class="tex">ac=10</span>: <span class="tex">10</span> and <span class="tex">1</span></small></span></button>
-    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Choosing a strategy <em>4.8</em></span><span class="u4l10-tf"><b>GCF first</b>, then count the terms. Factor <b>completely</b>.</span><span class="u4l10-tw"><span class="tex">2x^2-18=2(x^2-9)</span><small><span class="tex">=2(x-3)(x+3)</span></small></span></button>
-    <button class="u4l10-tool" type="button"><span class="u4l10-tn">Zero product property <em>4.9</em></span><span class="u4l10-tf">If <span class="tex">A\times B=0</span>, then <span class="tex">A=0</span> or <span class="tex">B=0</span>.</span><span class="u4l10-tw"><span class="tex">(x-2)(x+5)=0</span><small><span class="tex">x=2</span> or <span class="tex">x=-5</span></small></span></button>
-  </div>
-</section>
-
-<!-- ================= 1. GCF ================= -->
-<section class="card" data-ink="s1" data-section="1. Removing the GCF">
-  <div class="sec-h"><span class="badge">1</span><h2>Removing the Greatest Common Factor</h2></div>
-  <p>Find the GCF of the coefficients, times the <b>lowest</b> power of each variable that every term has. Divide every term by it and write <b>GCF × (what’s left)</b>. If the leading term is negative, take out a <b>negative</b> GCF.</p>
-  <div class="explainer" data-explainer="gcfEx"></div>
-</section>
-
-<section class="card example" data-ink="ex1" data-section="Example 1">
-  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>Take out the GCF</h3></div>
-  <p class="q">Factor completely.</p>
-  <div class="parts c2">
-    <div class="part"><div class="pl">(a) <span class="tex">16x^2-24x</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Coefficients: GCF 8; both terms have <span class="tex">x</span>.<br><span class="tex">=\boldsymbol{8x(2x-3)}</span><br>Check: <span class="tex">8x(2x-3)=16x^2-24x</span> ✓</div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">-18a^3+27a^2-9a</span></div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Leading term negative, so use <span class="tex">-9a</span>: <span class="tex">=-9a(2a^2-3a+1)</span><br>The bracket still factors (<span class="tex">ac=2</span>, sum −3: −2, −1):<br><span class="tex">=\boldsymbol{-9a(2a-1)(a-1)}</span></div></div></div>
-  </div>
-  <div class="space" id="ex1-space"></div>
-  <button class="more" data-more="ex1-space">+ More space</button>
-</section>
-
-<!-- ================= 2. c positive ================= -->
-<section class="card" data-ink="s2" data-section="2. x² + bx + c, c Positive">
-  <div class="sec-h"><span class="badge">2</span><h2>Trinomials <span class="tex">x^2+bx+c</span>, <span class="tex">c</span> Positive</h2></div>
-  <p>When <span class="tex">c</span> is positive, the two integers (product <span class="tex">c</span>, sum <span class="tex">b</span>) have the <b>same</b> sign: both positive if <span class="tex">b</span> is positive, both negative if <span class="tex">b</span> is negative.</p>
-  <div class="explainer" data-explainer="inspectA"></div>
-</section>
-
-<section class="card example" data-ink="ex2" data-section="Example 2">
-  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Same signs</h3></div>
-  <p class="q">Factor each trinomial.</p>
-  <div class="parts c2">
-    <div class="part"><div class="pl">(a) <span class="tex">x^2+15x+44</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product 44, sum 15: <span class="tex">4</span> and <span class="tex">11</span><br><span class="tex">=\boldsymbol{(x+4)(x+11)}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">x^2-12x+35</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product 35, sum −12: <span class="tex">-5</span> and <span class="tex">-7</span><br><span class="tex">=\boldsymbol{(x-5)(x-7)}</span></div></div></div>
-  </div>
-  <div class="space" id="ex2-space"></div>
-  <button class="more" data-more="ex2-space">+ More space</button>
-</section>
-
-<!-- ================= 3. c negative ================= -->
-<section class="card" data-ink="s3" data-section="3. x² + bx + c, c Negative">
-  <div class="sec-h"><span class="badge">3</span><h2>Trinomials <span class="tex">x^2+bx+c</span>, <span class="tex">c</span> Negative</h2></div>
-  <p>When <span class="tex">c</span> is negative, the two integers have <b>opposite</b> signs, and the one with the <b>larger absolute value</b> takes the same sign as <span class="tex">b</span>.</p>
-  <div class="explainer" data-explainer="inspectB"></div>
-  <div class="tip watch"><div class="tip-ic">!</div><div><b>Right numbers, wrong signs.</b> <span class="tex">(x-7)(x+5)</span> has the right numbers for <span class="tex">x^2+2x-35</span> but expands to <span class="tex">x^2-2x-35</span>. Expanding catches it every time.</div></div>
-</section>
-
-<section class="card example" data-ink="ex3" data-section="Example 3">
-  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Opposite signs</h3></div>
-  <p class="q">Factor each trinomial.</p>
-  <div class="parts c2">
-    <div class="part"><div class="pl">(a) <span class="tex">x^2+2x-35</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product −35, sum 2: <span class="tex">7</span> and <span class="tex">-5</span><br><span class="tex">=\boldsymbol{(x+7)(x-5)}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">x^2-x-56</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product −56, sum −1: <span class="tex">-8</span> and <span class="tex">7</span><br><span class="tex">=\boldsymbol{(x-8)(x+7)}</span></div></div></div>
-  </div>
-  <div class="space" id="ex3-space"></div>
-  <button class="more" data-more="ex3-space">+ More space</button>
-</section>
-
-<!-- ================= 4. difference of squares ================= -->
-<section class="card" data-ink="s4" data-section="4. Difference of Squares">
-  <div class="sec-h"><span class="badge">4</span><h2>Difference of Squares</h2></div>
-  <p>Two perfect squares separated by <b>subtraction</b>, <span class="tex">A^2-B^2</span>, factor right away as <span class="tex">(A+B)(A-B)</span>. A <b>sum</b> of squares never factors this way.</p>
-  <div class="explainer" data-explainer="squares"></div>
-</section>
-
-<section class="card example" data-ink="ex4" data-section="Example 4">
-  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Square minus square</h3></div>
-  <p class="q">Factor each binomial.</p>
-  <div class="parts c2">
-    <div class="part"><div class="pl">(a) <span class="tex">x^2-121</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{121}=11</span><br><span class="tex">=\boldsymbol{(x-11)(x+11)}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">49x^2-25</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">7x</span> and <span class="tex">5</span><br><span class="tex">=\boldsymbol{(7x-5)(7x+5)}</span></div></div></div>
-  </div>
-  <div class="space" id="ex4-space"></div>
-  <button class="more" data-more="ex4-space">+ More space</button>
-</section>
-
-<!-- ================= 5. perfect squares ================= -->
-<section class="card" data-ink="s5" data-section="5. Perfect Square Trinomials">
-  <div class="sec-h"><span class="badge">5</span><h2>Perfect Square Trinomials</h2></div>
-  <p>The first and last terms are perfect squares, and the middle term is <b>twice</b> the product of their roots: <span class="tex">A^2+2AB+B^2=(A+B)^2</span> and <span class="tex">A^2-2AB+B^2=(A-B)^2</span>.</p>
-  <div class="explainer" data-explainer="perfect"></div>
-</section>
-
-<section class="card example" data-ink="ex5" data-section="Example 5">
-  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>Square ends, middle <span class="tex">2AB</span></h3></div>
-  <p class="q">Factor each perfect square trinomial.</p>
-  <div class="parts c2">
-    <div class="part"><div class="pl">(a) <span class="tex">x^2+28x+196</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\sqrt{196}=14</span> and <span class="tex">2(x)(14)=28x</span> ✓<br><span class="tex">=\boldsymbol{(x+14)^2}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">4x^2-20x+25</span></div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Roots <span class="tex">2x</span> and <span class="tex">5</span>; <span class="tex">2(2x)(5)=20x</span> ✓<br><span class="tex">=\boldsymbol{(2x-5)^2}</span></div></div></div>
-  </div>
-  <div class="space" id="ex5-space"></div>
-  <button class="more" data-more="ex5-space">+ More space</button>
-</section>
-
-<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
-<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u4l10"></section>
-
-<!-- ================= 6. decomposition ================= -->
-<section class="card" data-ink="s6" data-section="6. Decomposition">
-  <div class="sec-h"><span class="badge">6</span><h2>Factoring <span class="tex">ax^2+bx+c</span> by Decomposition</h2></div>
-  <p>When <span class="tex">a\neq1</span>: multiply <span class="tex">a\times c</span>, find two integers with that <b>product</b> that add to <span class="tex">b</span>, <b>split</b> the middle term with them, then factor by <b>grouping</b>.</p>
-  <div class="explainer" data-explainer="decomp"></div>
-</section>
-
-<section class="card example" data-ink="ex6" data-section="Example 6">
-  <div class="ex-head"><span class="ex-tag">Example 6</span><h3>Product <span class="tex">ac</span>, sum <span class="tex">b</span></h3></div>
-  <p class="q">Factor by decomposition.</p>
-  <div class="parts c2">
-    <div class="part"><div class="pl">(a) <span class="tex">2x^2+13x+6</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=12</span>, sum 13: <span class="tex">12</span> and <span class="tex">1</span><br><span class="tex">2x^2+12x+x+6</span><br><span class="tex">=2x(x+6)+1(x+6)</span><br><span class="tex">=\boldsymbol{(x+6)(2x+1)}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">3x^2-x-10</span></div><div class="work" style="--h:240px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=-30</span>, sum −1: <span class="tex">-6</span> and <span class="tex">5</span><br><span class="tex">3x^2-6x+5x-10</span><br><span class="tex">=3x(x-2)+5(x-2)</span><br><span class="tex">=\boldsymbol{(x-2)(3x+5)}</span></div></div></div>
-  </div>
-  <div class="space" id="ex6-space"></div>
-  <button class="more" data-more="ex6-space">+ More space</button>
-</section>
-
-<!-- ================= 7. choosing a strategy ================= -->
-<section class="card" data-ink="s7" data-section="7. Choosing a Strategy">
-  <div class="sec-h"><span class="badge">7</span><h2>Choosing a Strategy</h2></div>
-  <div class="u4l10-steps3">
-    <div><b class="n">1</b>Always remove a <b>GCF</b> first.</div>
-    <div><b class="n">2</b>Count the terms left. <b>Two terms:</b> difference of squares? <b>Three terms:</b> perfect square? If not, sum–product (<span class="tex">a=1</span>) or decomposition (<span class="tex">a\neq1</span>).</div>
-    <div><b class="n">3</b>Check <b>every factor</b> for more factoring, and <b>verify by expanding</b>.</div>
-  </div>
-  <div class="explainer" data-explainer="flow"></div>
-</section>
-
-<section class="card example" data-ink="ex7" data-section="Example 7">
-  <div class="ex-head"><span class="ex-tag">Example 7</span><h3>Factor completely</h3></div>
-  <p class="q">Factor each expression completely.</p>
-  <div class="parts c3">
-    <div class="part"><div class="pl">(a) <span class="tex">5x^2-80</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF 5: <span class="tex">5(x^2-16)</span><br>Difference of squares:<br><span class="tex">=\boldsymbol{5(x-4)(x+4)}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">2x^2+16x+32</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF 2: <span class="tex">2(x^2+8x+16)</span><br>Perfect square trinomial:<br><span class="tex">=\boldsymbol{2(x+4)^2}</span></div></div></div>
-    <div class="part"><div class="pl">(c) <span class="tex">4x^3-4x^2-24x</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">4x</span>: <span class="tex">4x(x^2-x-6)</span><br><span class="tex">-3</span> and <span class="tex">2</span>:<br><span class="tex">=\boldsymbol{4x(x-3)(x+2)}</span></div></div></div>
-  </div>
-  <div class="space" id="ex7-space"></div>
-  <button class="more" data-more="ex7-space">+ More space</button>
-</section>
-
-<!-- ================= 8. solving ================= -->
-<section class="card" data-ink="s8" data-section="8. Solving by Factoring">
-  <div class="sec-h"><span class="badge">8</span><h2>Solving Equations by Factoring</h2></div>
-  <p>Move everything to one side so the equation equals <b>0</b>, factor, then set <b>each factor</b> equal to 0 and solve (the zero product property).</p>
-  <div class="explainer" data-explainer="solveRev"></div>
-</section>
-
-<section class="card example" data-ink="ex8" data-section="Example 8">
-  <div class="ex-head"><span class="ex-tag">Example 8</span><h3>Factor, then split</h3></div>
-  <p class="q">Solve each equation by factoring.</p>
-  <div class="parts c2">
-    <div class="part"><div class="pl">(a) <span class="tex">x^2+x-42=0</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product −42, sum 1: <span class="tex">7</span> and <span class="tex">-6</span><br><span class="tex">(x+7)(x-6)=0</span><br><span class="tex">\boldsymbol{x=-7}</span> or <span class="tex">\boldsymbol{x=6}</span></div></div></div>
-    <div class="part"><div class="pl">(b) <span class="tex">3x^2+5x-2=0</span></div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">ac=-6</span>, sum 5: <span class="tex">6</span> and <span class="tex">-1</span><br><span class="tex">3x^2+6x-x-2=3x(x+2)-1(x+2)</span><br><span class="tex">(x+2)(3x-1)=0</span><br><span class="tex">\boldsymbol{x=-2}</span> or <span class="tex">\boldsymbol{x=\tfrac13}</span></div></div></div>
-  </div>
-  <div class="space" id="ex8-space"></div>
-  <button class="more" data-more="ex8-space">+ More space</button>
-</section>
-
-<!-- ================= 9. mixed review ================= -->
-<section class="card" data-ink="s9" data-section="9. Mixed Review">
-  <div class="sec-h"><span class="badge">9</span><h2>Mixed Review: Putting It All Together</h2></div>
-  <p>Each question below combines more than one skill from the unit: exactly the kind of question you might see on the <b>unit test</b>. (The checklist explainer in Section 7 replays Challenge 1, and the solving explainer in Section 8 replays Challenge 2.)</p>
-</section>
-
-<section class="card example" data-ink="ch1" data-section="Challenges 1 and 2">
-  <div class="ex-head"><span class="ex-tag">Challenges 1–2</span><h3>Two skills at once</h3></div>
-  <div class="parts c2">
-    <div class="part"><div class="pl"><b>Challenge 1.</b> Factor completely: <span class="tex">6x^3+3x^2-45x</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">GCF <span class="tex">3x</span>: <span class="tex">3x(2x^2+x-15)</span><br><span class="tex">ac=-30</span>, sum 1: <span class="tex">6</span> and <span class="tex">-5</span><br><span class="tex">2x^2+6x-5x-15=2x(x+3)-5(x+3)=(x+3)(2x-5)</span><br><span class="tex">=\boldsymbol{3x(x+3)(2x-5)}</span></div></div></div>
-    <div class="part"><div class="pl"><b>Challenge 2.</b> Solve: <span class="tex">3x^2=12x</span></div><div class="work" style="--h:260px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Move everything to one side (do <b>not</b> divide by <span class="tex">x</span>, or the root <span class="tex">x=0</span> is lost):<br><span class="tex">3x^2-12x=0\Rightarrow 3x(x-4)=0</span><br><span class="tex">\boldsymbol{x=0}</span> or <span class="tex">\boldsymbol{x=4}</span></div></div></div>
-  </div>
-  <div class="space" id="ch1-space"></div>
-  <button class="more" data-more="ch1-space">+ More space</button>
-</section>
-
-<section class="card example" data-ink="ch3" data-section="Challenge 3">
-  <div class="ex-head"><span class="ex-tag">Challenge 3</span><h3>The garden</h3></div>
-  <p class="q">A rectangular garden has area <span class="tex">(x^2+3x-54)</span> m². One side length of the garden is <span class="tex">(x+9)</span> m.</p>
-  <div class="parts c2">
-    <div class="part"><div class="pl">(a) Determine a simplified expression for the other side length.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Product −54, sum 3: <span class="tex">9</span> and <span class="tex">-6</span><br><span class="tex">x^2+3x-54=(x+9)(x-6)</span><br>Since one side is <span class="tex">(x+9)</span>, the other is <span class="tex">\boldsymbol{(x-6)}</span> m.</div></div></div>
-    <div class="part"><div class="pl">(b) Determine the actual dimensions of the garden if <span class="tex">x=8</span>.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">8+9=17</span> m by <span class="tex">8-6=2</span> m: <b>17 m by 2 m</b><br>Check: <span class="tex">17\times2=34</span>, and <span class="tex">64+24-54=34</span> ✓</div></div></div>
-  </div>
-  <div class="explainer" data-explainer="garden"></div>
-  <div class="space" id="ch3-space"></div>
-  <button class="more" data-more="ch3-space">+ More space</button>
-</section>
-
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -300,7 +321,7 @@
     <div><b>Solving:</b> make one side 0, factor, set each factor equal to 0. Never divide by <span class="tex">x</span>. Then <b>check every factor</b> once more: is the factoring complete?</div>
   </div>
   <a class="assign" href="../../../#/lesson/u4l10">
-    <div><div class="kicker">Your turn</div><b>Assignment 10 — Unit Review: Factoring</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 10 · Questions 12–24</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <div class="u4l10-review">
     <div class="u4l10-review-h"><span class="kicker">Up next</span><b>Unit 4 test.</b> <span class="muted">Shaky on a type today? Go back to its lesson.</span></div>
@@ -325,7 +346,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u4l10.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u4l10', homeHref: '../../', title: '4.10 Unit Review: Factoring' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>
