@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u8l4.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u8l4">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warmq" data-section="Warm-up: Movie Night">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Movie Night</h2>
+  <p class="wf-rule">How much is one ticket?</p></div>
+  <div class="vw-q">3 tickets and 1 popcorn cost <b>$22</b>.<small>2 tickets and 5 popcorn cost $32.</small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Could a ticket be $5? Try it.</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>$6.</b> Popcorn is $4. Check: 3 × 6 + 4 = 22 and 2 × 6 + 5 × 4 = 32.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -43,62 +53,13 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Movie Night" id="wu" style="--wf-side: 400px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Movie Night</h2>
-  <p class="wf-rule">A family bought <b>9 tickets</b> and paid <b>$78</b>. How many adults? How many kids?</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u8l4-tix">
-      <div class="u8l4-tk u8l4-tka"><span class="u8l4-tkn">ADULT</span><span class="u8l4-tkp">$12</span></div>
-      <div class="u8l4-tk u8l4-tkc"><span class="u8l4-tkn">CHILD</span><span class="u8l4-tkp">$7</span></div>
-      <div class="u8l4-bo"><div class="u8l4-boh">BOX OFFICE</div><div class="u8l4-bor"><span>Tickets:</span><b>9</b></div><div class="u8l4-bor"><span>TOTAL:</span><b class="u8l4-red">$78</b></div></div>
-    </div>
-    <div class="u8l4-wtab">
-      <div class="u8l4-wth">Adults</div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
-      <div class="u8l4-wth">Kids</div><div>8</div><div><span data-reveal><b>7</b></span></div><div><span data-reveal><b>6</b></span></div><div><span data-reveal><b>5</b></span></div><div><span data-reveal><b>4</b></span></div>
-      <div class="u8l4-wth">Cost</div><div>$68</div><div><span data-reveal><b>$73</b></span></div><div class="u8l4-hit"><span data-reveal><b>$78</b></span></div><div><span data-reveal><b>$83</b></span></div><div><span data-reveal><b>$88</b></span></div>
-    </div>
-    <p class="u8l4-tnote">Kids and adults always add to 9. Tap a <b>?</b> to check.</p>
-  </div><div class="wf-side">
-    <div class="u8l4-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Fill in the <b>Kids</b> row of the table. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u8l4-wa"><div class="bk-ans"><span class="tex">8,\ 7,\ 6,\ 5,\ 4</span>: kids = 9 − adults.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Fill in the <b>Cost</b> row. Which column costs <b>$78</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u8l4-wa"><div class="bk-ans">$68, $73, $78, $83, $88. <b>3 adults and 6 kids</b>: <span class="tex">36+42=78</span>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Finish the rule: Kids <span class="tex">=</span> ____ <span class="tex">-</span> Adults. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u8l4-wa"><div class="bk-ans">Kids <span class="tex">=</span> <b>9</b> <span class="tex">-</span> Adults. With letters: <span class="tex">a+c=9</span> becomes <span class="tex">c=9-a</span>.</div></div></div>
-    </div>
-  </div></div>
 
-  <div class="poll u8l4-bigone">
-    <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one: pick the easy one.</b> Get one letter <b>alone</b> first. Only <b>one</b> choice avoids fractions. <b>Guess first.</b>
-      <div class="u8l4-bsys"><span class="u8l4-bl">Top:</span> <span class="tex">3x+y=22</span> <span class="u8l4-bl">Bottom:</span> <span class="tex">2x+5y=32</span></div></div></div>
-    <div class="poll-opts">
-      <div class="opt"><b>A</b> <span class="tex">x</span> in the top</div>
-      <div class="opt right"><b>B</b> <span class="tex">y</span> in the top</div>
-      <div class="opt"><b>C</b> <span class="tex">x</span> in the bottom</div>
-      <div class="opt"><b>D</b> <span class="tex">y</span> in the bottom</div>
-    </div>
-    <button class="pill" type="button" data-poll-reveal>Reveal</button>
-    <div class="poll-ans"><b>B: <span class="tex">y</span> in the top.</b> <span class="tex">y</span> has a coefficient of <span class="tex">1</span>, so <span class="tex">y=22-3x</span> in one step, no fraction. The others give <span class="tex">x=\tfrac{22-y}{3}</span>, <span class="tex">x=\tfrac{32-5y}{2}</span> and <span class="tex">y=\tfrac{32-2x}{5}</span>: fractions. Then <span class="tex">2x+5(22-3x)=32</span>, so <span class="tex">x=6</span>, <span class="tex">y=4</span>: <span class="tex">(6,\ 4)</span>.<br><span class="muted">Many people grab <span class="tex">x</span> in the top because it comes first. Look at the <b>coefficients</b>, not the order!</span></div>
-  </div>
-
-  <div class="u8l4-tray-box">
-    <div class="u8l4-tray-h"><b>Test it.</b> Change the number of adults. The other tickets are kids.</div>
-    <div class="u8l4-tray" id="u8l4-tray"></div>
-    <div class="u8l4-tray-row">
-      <button type="button" class="pill" id="u8l4-less">◂ One less adult</button>
-      <button type="button" class="pill" id="u8l4-more">One more adult ▸</button>
-      <div class="u8l4-tray-read" id="u8l4-read"></div>
-    </div>
-  </div>
-  <p class="u8l4-social">Tell a partner: which letter would <b>you</b> get alone first, and why?</p>
-</section>
 
 <!-- ================= 1. Isolate first ================= -->
 <section class="card" data-ink="s1" data-section="1. The Extra Step: Isolate First">
   <div class="sec-h"><span class="badge">1</span><h2>The Extra Step: Isolate Before You Substitute</h2></div>
   <p>In Lesson 3 one equation already read <span class="tex">y=\ldots</span> or <span class="tex">x=\ldots</span>. In a system like <span class="tex">x+2y=11,\ 3x-y=5</span> neither variable stands alone, so substitution needs one new step first: <b>isolate a variable yourself</b>, then continue exactly as before.</p>
-  <div class="explainer" data-explainer="table"></div>
+  <div data-extra><div class="explainer" data-explainer="table"></div></div>
 </section>
 
 <section class="card" data-ink="s1b" data-section="1. Which variable to isolate?">
@@ -107,7 +68,7 @@
   <div class="explainer" data-explainer="choose"></div>
 </section>
 
-<section class="card" data-ink="s1c" data-section="1. Isolate in one step">
+<section data-extra class="card" data-ink="s1c" data-section="1. Isolate in one step">
   <h3 class="sub">Isolating in one step</h3>
   <p>Move the other term to the other side by doing the <b>opposite</b> to both sides. If the variable is left with a <span class="tex">-1</span> in front, like <span class="tex">-y</span>, multiply every term by <span class="tex">-1</span>: <b>every sign flips</b>.</p>
   <div class="explainer" data-explainer="isolate"></div>
@@ -169,6 +130,15 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–5">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 4 · Questions 1–5</h2>
+  <p class="pr-t">Choose a variable to isolate, then solve.</p>
+  <div class="pr-chips n1"><span><b>1–5</b>Choosing a variable and solving</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 4.</span><a class="pill" href="../../../#/lesson/u8l4">Open the Practice site</a></div>
+</section>
+
 <section class="card example" data-ink="ex4" data-section="Example 4">
   <div class="ex-head"><span class="ex-tag">Example 4</span><h3>A coefficient of <span class="tex">-1</span>: watch your signs</h3></div>
   <p class="q">Solve <span class="tex">\textcolor{#1f5bd6}{3x-y=8}</span>, <span class="tex">\textcolor{#c27a0e}{x+4y=7}</span>. The variable you isolate has a coefficient of <span class="tex">-1</span>: watch your signs.</p>
@@ -186,7 +156,7 @@
 <section class="card" data-ink="s2b" data-section="When no coefficient is 1 or −1">
   <h3 class="sub">When no coefficient is <span class="tex">1</span> or <span class="tex">-1</span></h3>
   <p>Sometimes every choice makes a fraction. That is fine: isolate anyway, keep the fraction in brackets when you substitute, then <b>multiply every term</b> by the denominator. The fraction disappears and the numbers come out whole.</p>
-  <div class="explainer" data-explainer="fracs"></div>
+  <div data-extra><div class="explainer" data-explainer="fracs"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -200,10 +170,61 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s2c" data-section="Check in the ORIGINAL equations">
+<section data-extra class="card" data-ink="s2c" data-section="Check in the ORIGINAL equations">
   <h3 class="sub">Step 5: check in the <b>original</b> equations</h3>
   <p>Check in the equations you were <b>given</b>, not in your rearranged one: if the isolating step had a slip, the rearranged equation has the slip too. A pair that balances only one equation is not the solution.</p>
   <div class="explainer" data-explainer="checkBoth"></div>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Movie Night" id="wu" style="--wf-side: 400px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Movie Night</h2>
+  <p class="wf-rule">A family bought <b>9 tickets</b> and paid <b>$78</b>. How many adults? How many kids?</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u8l4-tix">
+      <div class="u8l4-tk u8l4-tka"><span class="u8l4-tkn">ADULT</span><span class="u8l4-tkp">$12</span></div>
+      <div class="u8l4-tk u8l4-tkc"><span class="u8l4-tkn">CHILD</span><span class="u8l4-tkp">$7</span></div>
+      <div class="u8l4-bo"><div class="u8l4-boh">BOX OFFICE</div><div class="u8l4-bor"><span>Tickets:</span><b>9</b></div><div class="u8l4-bor"><span>TOTAL:</span><b class="u8l4-red">$78</b></div></div>
+    </div>
+    <div class="u8l4-wtab">
+      <div class="u8l4-wth">Adults</div><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+      <div class="u8l4-wth">Kids</div><div>8</div><div><span data-reveal><b>7</b></span></div><div><span data-reveal><b>6</b></span></div><div><span data-reveal><b>5</b></span></div><div><span data-reveal><b>4</b></span></div>
+      <div class="u8l4-wth">Cost</div><div>$68</div><div><span data-reveal><b>$73</b></span></div><div class="u8l4-hit"><span data-reveal><b>$78</b></span></div><div><span data-reveal><b>$83</b></span></div><div><span data-reveal><b>$88</b></span></div>
+    </div>
+    <p class="u8l4-tnote">Kids and adults always add to 9. Tap a <b>?</b> to check.</p>
+  </div><div class="wf-side">
+    <div class="u8l4-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Fill in the <b>Kids</b> row of the table. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l4-wa"><div class="bk-ans"><span class="tex">8,\ 7,\ 6,\ 5,\ 4</span>: kids = 9 − adults.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Fill in the <b>Cost</b> row. Which column costs <b>$78</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l4-wa"><div class="bk-ans">$68, $73, $78, $83, $88. <b>3 adults and 6 kids</b>: <span class="tex">36+42=78</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Finish the rule: Kids <span class="tex">=</span> ____ <span class="tex">-</span> Adults. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l4-wa"><div class="bk-ans">Kids <span class="tex">=</span> <b>9</b> <span class="tex">-</span> Adults. With letters: <span class="tex">a+c=9</span> becomes <span class="tex">c=9-a</span>.</div></div></div>
+    </div>
+  </div></div>
+
+  <div class="poll u8l4-bigone">
+    <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one: pick the easy one.</b> Get one letter <b>alone</b> first. Only <b>one</b> choice avoids fractions. <b>Guess first.</b>
+      <div class="u8l4-bsys"><span class="u8l4-bl">Top:</span> <span class="tex">3x+y=22</span> <span class="u8l4-bl">Bottom:</span> <span class="tex">2x+5y=32</span></div></div></div>
+    <div class="poll-opts">
+      <div class="opt"><b>A</b> <span class="tex">x</span> in the top</div>
+      <div class="opt right"><b>B</b> <span class="tex">y</span> in the top</div>
+      <div class="opt"><b>C</b> <span class="tex">x</span> in the bottom</div>
+      <div class="opt"><b>D</b> <span class="tex">y</span> in the bottom</div>
+    </div>
+    <button class="pill" type="button" data-poll-reveal>Reveal</button>
+    <div class="poll-ans"><b>B: <span class="tex">y</span> in the top.</b> <span class="tex">y</span> has a coefficient of <span class="tex">1</span>, so <span class="tex">y=22-3x</span> in one step, no fraction. The others give <span class="tex">x=\tfrac{22-y}{3}</span>, <span class="tex">x=\tfrac{32-5y}{2}</span> and <span class="tex">y=\tfrac{32-2x}{5}</span>: fractions. Then <span class="tex">2x+5(22-3x)=32</span>, so <span class="tex">x=6</span>, <span class="tex">y=4</span>: <span class="tex">(6,\ 4)</span>.<br><span class="muted">Many people grab <span class="tex">x</span> in the top because it comes first. Look at the <b>coefficients</b>, not the order!</span></div>
+  </div>
+
+  <div class="u8l4-tray-box">
+    <div class="u8l4-tray-h"><b>Test it.</b> Change the number of adults. The other tickets are kids.</div>
+    <div class="u8l4-tray" id="u8l4-tray"></div>
+    <div class="u8l4-tray-row">
+      <button type="button" class="pill" id="u8l4-less">◂ One less adult</button>
+      <button type="button" class="pill" id="u8l4-more">One more adult ▸</button>
+      <div class="u8l4-tray-read" id="u8l4-read"></div>
+    </div>
+  </div>
+  <p class="u8l4-social">Tell a partner: which letter would <b>you</b> get alone first, and why?</p>
 </section>
 
 <!-- ================= summary ================= -->
@@ -216,7 +237,7 @@
     <div><b>Fractions clear.</b> If every choice makes a fraction, multiply every term by the denominator. Then <b>check</b> both values in the <b>original</b> equations and state <span class="tex">(x,\ y)</span>.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u8l4">
-    <div><div class="kicker">Your turn</div><b>Assignment 4 — Solving Systems by Substitution, Part 2: Isolating a Variable First</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 4 · Questions 6–14</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l5/">
     <div><div class="kicker">Next lesson</div><b>Lesson 5 — Solving Systems by Elimination, Part 1: When Coefficients Already Match</b><div class="muted">Two receipts, one difference: add or subtract whole equations so a variable vanishes.</div></div><span class="arrow">→</span>
@@ -229,7 +250,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u8l4.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u8l4', homeHref: '../../', title: '8.4 Substitution, Part 2' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

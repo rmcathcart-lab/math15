@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u8l6.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u8l6">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warmq" data-section="Warm-up: The School Store">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The School Store</h2>
+  <p class="wf-rule">How much for <b>1 pencil and 1 eraser</b>?</p></div>
+  <div class="vw-q">3 pencils and 2 erasers cost <b>$7</b>.<small>2 pencils and 3 erasers cost $8.</small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Convince the person beside you.</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>$3.</b> Put the two orders together: 5 pencils and 5 erasers cost $15, so one of each costs $3.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,46 +54,16 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Stack the Books" id="wu" style="--wf-side: 420px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Stack the Books</h2>
-  <p class="wf-rule">All <span class="u8l6-bk u8l6-bkt"></span> <b class="u8l6-cthick">thick</b> books are the same. All <span class="u8l6-bk u8l6-bkn"></span> <b class="u8l6-cthin">thin</b> books are the same.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div id="u8l6-stacks" class="u8l6-stacks"></div>
-  </div><div class="wf-side">
-    <div class="u8l6-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How tall is the pile of <b>3 copies</b> of Stack A? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans"><b>27 cm</b>: three copies of a 9 cm stack, <span class="tex">3\times9=27</span>.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>The pile and Stack B have the <b>same</b> thick books. Which books stick up above the dashed line? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans">The pile has 3 thick + 6 thin; Stack B has 3 thick + 1 thin. The thick books line up, so <b>5 thin books</b> stick up.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>How thick is <b>one</b> book of each kind? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans">The 5 thin books make the extra <span class="tex">27-17=10</span> cm, so a thin book is <span class="tex">10\div5=2</span> cm. Stack A: thick <span class="tex">+\,2+2=9</span>, so a thick book is <b>5 cm</b>. Check B: <span class="tex">5+5+5+2=17</span> ✓</div></div>
-    </div>
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Stack P <span class="tex">=</span> 2 <span class="u8l6-bk u8l6-bkt"></span> + 3 <span class="u8l6-bk u8l6-bkn"></span>, Stack Q <span class="tex">=</span> 3 <span class="u8l6-bk u8l6-bkt"></span> + 2 <span class="u8l6-bk u8l6-bkn"></span>. How many copies of each make the <b class="u8l6-cthin">thin</b> books match? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt right"><b>A</b> 2 of P, 3 of Q</div>
-        <div class="opt"><b>B</b> 3 of P, 2 of Q</div>
-        <div class="opt"><b>C</b> It can’t be done</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>A: 2 of P and 3 of Q.</b> 2 copies of P have <b>6 thin</b> books; 3 copies of Q have <b>6 thin</b> books. They match! (B gives 9 thin and 4 thin.) Neither stack alone can be copied to match, so you copy <b>both</b>, each by the <b>other</b> stack’s thin-book count.</div>
-    </div>
-  </div></div>
-  <p class="u8l6-social">Try it with real books: find one notebook’s thickness by measuring only piles.</p>
-</section>
 
-<section class="card" data-ink="warm2" data-section="Warm-up: the books, solved">
-  <h3 class="sub">The books, solved: copy a stack until something matches</h3>
-  <p>Copying a whole stack copies its books <b>and</b> its height. Once one kind of book matches, compare the piles and that kind <b>cancels</b>.</p>
-  <div class="explainer" data-explainer="books"></div>
-</section>
+
+
 
 <!-- ================= 1. Neither matches ================= -->
 <section class="card" data-ink="s1" data-section="1. When Neither Coefficient Matches">
   <div class="sec-h"><span class="badge">1</span><h2>When Neither Coefficient Matches</h2></div>
   <p>In Lesson 5 one variable always arrived with matching or opposite coefficients. In <span class="tex u8l6-e1">x+2y=9</span> and <span class="tex u8l6-e2">3x-y=13</span> the <span class="tex">x</span>-coefficients are <span class="tex">1</span> and <span class="tex">3</span>, and the <span class="tex">y</span>-coefficients are <span class="tex">2</span> and <span class="tex">-1</span>. Neither pair matches and neither pair is opposite, so adding or subtracting as written eliminates <b>nothing</b>.</p>
   <div class="def">Elimination still works. It just needs one extra step first: <b>multiply</b> an equation by a constant.</div>
-  <div class="explainer" data-explainer="stuck"></div>
+  <div data-extra><div class="explainer" data-explainer="stuck"></div></div>
 </section>
 
 <!-- ================= 2. Multiply one ================= -->
@@ -118,14 +98,14 @@
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Into <span class="tex">x+2y=9</span>: <span class="tex">5+2y=9\Rightarrow 2y=4\Rightarrow \boldsymbol{y=2}</span><br>Check: <span class="tex">5+2(2)=9</span> ✓ &nbsp; <span class="tex">3(5)-2=13</span> ✓<br>Solution: <span class="tex">\boldsymbol{(5,\ 2)}</span></div></div></div>
   </div>
   <div class="parts c1">
-    <div class="part think"><div class="pl"><span class="think-tag">Think</span> Could you eliminate <span class="tex">x</span> instead? What would you multiply, and would you add or subtract?</div><div class="work" style="--h:80px"></div>
+    <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Could you eliminate <span class="tex">x</span> instead? What would you multiply, and would you add or subtract?</div><div class="work" style="--h:80px"></div>
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes.</b> <span class="tex">1</span> is a factor of <span class="tex">3</span>, so multiply Equation 1 by <span class="tex">3</span>: <span class="tex">3x+6y=27</span>. Now both have <span class="tex">3x</span> (same sign), so <b>subtract</b>: <span class="tex">(3x+6y)-(3x-y)=27-13</span>, <span class="tex">7y=14</span>, <span class="tex">y=2</span>. Same answer.</div></div></div>
   </div>
   <div class="space" id="ex1-space"></div>
   <button class="more" data-more="ex1-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s2b" data-section="2. Multiplied, then subtracted">
+<section data-extra class="card" data-ink="s2b" data-section="2. Multiplied, then subtracted">
   <h3 class="sub">Multiplied, then subtracted: every sign flips</h3>
   <p>Sometimes the multiplied coefficients <b>match</b> (same sign), so you subtract. Write the second equation in brackets, flip <b>every</b> sign inside (the constant too), then add down the columns.</p>
   <div class="explainer" data-explainer="columns"></div>
@@ -158,6 +138,15 @@
   </div>
   <div class="space" id="ex2-space"></div>
   <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–5">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 6 · Questions 1–5</h2>
+  <p class="pr-t">Multiply one equation, then both.</p>
+  <div class="pr-chips n3"><span><b>1</b>Identify the multiplier</span><span><b>2–3</b>Multiply one equation</span><span><b>4–5</b>Multiply both equations</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 4.</span><a class="pill" href="../../../#/lesson/u8l6">Open the Practice site</a></div>
 </section>
 
 <!-- sources: https://en.wikipedia.org/wiki/Fangcheng_(mathematics) (Chapter 8, Problem 1: 3, 2, 1 bundles → 39; 2, 3, 1 → 34; 1, 2, 3 → 26; answers 9 1/4, 4 1/4, 2 3/4; the earliest recorded fangcheng procedure is similar to Gaussian elimination)
@@ -195,7 +184,7 @@
     <div><b class="n">5</b><b>Back-substitute</b></div>
     <div><b class="n">6</b>State the <b>ordered pair</b></div>
   </div>
-  <div class="explainer" data-explainer="route"></div>
+  <div data-extra><div class="explainer" data-explainer="route"></div></div>
 </section>
 
 <section class="card example" data-ink="ex3" data-section="Example 3">
@@ -256,10 +245,44 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s4b" data-section="4. Examples check">
+<section data-extra class="card" data-ink="s4b" data-section="4. Examples check">
   <h3 class="sub">Examples 1 to 5 check: choose, multiply, eliminate, solve, back-substitute, check</h3>
   <p>Step through a full solution, one line at a time, to check the class’s work.</p>
   <div class="explainer" data-explainer="walk"></div>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Stack the Books" id="wu" style="--wf-side: 420px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Stack the Books</h2>
+  <p class="wf-rule">All <span class="u8l6-bk u8l6-bkt"></span> <b class="u8l6-cthick">thick</b> books are the same. All <span class="u8l6-bk u8l6-bkn"></span> <b class="u8l6-cthin">thin</b> books are the same.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div id="u8l6-stacks" class="u8l6-stacks"></div>
+  </div><div class="wf-side">
+    <div class="u8l6-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How tall is the pile of <b>3 copies</b> of Stack A? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans"><b>27 cm</b>: three copies of a 9 cm stack, <span class="tex">3\times9=27</span>.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>The pile and Stack B have the <b>same</b> thick books. Which books stick up above the dashed line? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">The pile has 3 thick + 6 thin; Stack B has 3 thick + 1 thin. The thick books line up, so <b>5 thin books</b> stick up.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>How thick is <b>one</b> book of each kind? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">The 5 thin books make the extra <span class="tex">27-17=10</span> cm, so a thin book is <span class="tex">10\div5=2</span> cm. Stack A: thick <span class="tex">+\,2+2=9</span>, so a thick book is <b>5 cm</b>. Check B: <span class="tex">5+5+5+2=17</span> ✓</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Stack P <span class="tex">=</span> 2 <span class="u8l6-bk u8l6-bkt"></span> + 3 <span class="u8l6-bk u8l6-bkn"></span>, Stack Q <span class="tex">=</span> 3 <span class="u8l6-bk u8l6-bkt"></span> + 2 <span class="u8l6-bk u8l6-bkn"></span>. How many copies of each make the <b class="u8l6-cthin">thin</b> books match? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt right"><b>A</b> 2 of P, 3 of Q</div>
+        <div class="opt"><b>B</b> 3 of P, 2 of Q</div>
+        <div class="opt"><b>C</b> It can’t be done</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>A: 2 of P and 3 of Q.</b> 2 copies of P have <b>6 thin</b> books; 3 copies of Q have <b>6 thin</b> books. They match! (B gives 9 thin and 4 thin.) Neither stack alone can be copied to match, so you copy <b>both</b>, each by the <b>other</b> stack’s thin-book count.</div>
+    </div>
+  </div></div>
+  <p class="u8l6-social">Try it with real books: find one notebook’s thickness by measuring only piles.</p>
+</section>
+
+<section data-extra class="card" data-ink="warm2" data-section="Warm-up: the books, solved">
+  <h3 class="sub">The books, solved: copy a stack until something matches</h3>
+  <p>Copying a whole stack copies its books <b>and</b> its height. Once one kind of book matches, compare the piles and that kind <b>cancels</b>.</p>
+  <div class="explainer" data-explainer="books"></div>
 </section>
 
 <!-- ================= summary ================= -->
@@ -272,7 +295,7 @@
     <div><b>Choose the easier variable,</b> then add (opposite signs) or subtract (same sign), solve, back-substitute into an <b>original</b> equation, and check in <b>both</b>.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u8l6">
-    <div><div class="kicker">Your turn</div><b>Assignment 6 — Solving Systems by Elimination, Part 2: Multiplying First</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 6 · Questions 6–14</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l7/">
     <div><div class="kicker">Next lesson</div><b>Lesson 7 — Solving Word Problems with Systems of Equations</b><div class="muted">The bake sale was just the start: name the two unknowns, write two equations, and solve.</div></div><span class="arrow">→</span>
@@ -285,7 +308,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u8l6.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u8l6', homeHref: '../../', title: '8.6 Elimination, Part 2' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

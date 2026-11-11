@@ -48,3 +48,5 @@ body.viewer #tb .vw-hswitch, .vw-hswitch.in-menu { display: inline-flex; }
 .bk-wq.vw-rev.shown .bk-ans { display: block; }
 .vw-cal { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 .vw-cal span { display: grid; place-items: center; width: 84px; height: 64px; border: 2px solid var(--line); border-radius: 10px; font: 700 30px var(--round); }
+.vw-tiles > div.lab { align-content: center; gap: 4px; }
+.vw-tiles > div.lab > b:first-child { position: static; font: 800 19px var(--round); color: var(--brand2); }

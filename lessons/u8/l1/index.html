@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u8l1.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u8l1">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warmq" data-section="Warm-up: Two Mystery Numbers">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Two Mystery Numbers</h2>
+  <p class="wf-rule">What are my two numbers?</p></div>
+  <div class="vw-q">“My two numbers <b>add to 10</b>.”<small>“The bigger one minus the smaller one is 4.”</small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>How many pairs fit the first clue on its own?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>7 and 3.</b> Lots of pairs add to 10, and lots of pairs differ by 4, but only one pair does both.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,43 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Two Mystery Numbers" id="wu" style="--wf-side: 344px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Two Mystery Numbers</h2>
-  <p class="wf-rule">“I’m thinking of two numbers. Can you work out <b>both</b> of them?”</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u8l1-clues">
-      <div class="u8l1-clue u8l1-clue1">
-        <div class="u8l1-clh"><span class="u8l1-ball">1</span><span class="u8l1-clt">Clue 1: They add to <b>10</b>.</span></div>
-        <div class="u8l1-ct"><b>smaller</b><i>1</i><i>2</i><i>3</i><i>4</i><b class="u8l1-cr">bigger</b><i>9</i><i><span data-reveal>8</span></i><i><span data-reveal>7</span></i><i><span data-reveal>6</span></i></div>
-      </div>
-      <div class="u8l1-clue u8l1-clue2">
-        <div class="u8l1-clh"><span class="u8l1-ball">2</span><span class="u8l1-clt">Clue 2: The bigger one is <b>4 more</b>.</span></div>
-        <div class="u8l1-ct"><b>smaller</b><i>1</i><i>2</i><i>3</i><i>4</i><b class="u8l1-cb">bigger</b><i>5</i><i><span data-reveal>6</span></i><i><span data-reveal>7</span></i><i><span data-reveal>8</span></i></div>
-      </div>
-    </div>
-    <div class="u8l1-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Fill in the <b>?</b>s in both tables. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u8l1-wa"><div class="bk-ans">Clue 1: <b>9, 8, 7, 6</b>. Clue 2: <b>5, 6, 7, 8</b>. Tap the <b>?</b>s.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which pair is in <b>both</b> tables? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u8l1-wa"><div class="bk-ans"><b>3 and 7:</b> <span class="tex">3+7=10</span> ✓, <span class="tex">7=3+4</span> ✓. (6 is in both rows, but with <b>different partners</b>.)</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>What is hiding under the sticky note? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u8l1-wa"><div class="bk-ans">The point <span class="tex">(3,\ 7)</span>, where the lines <b>cross</b>. Tap the note to lift it.</div></div></div>
-    </div>
-  <div class="poll wf-poll u8l1-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> “My two numbers add to <b>10</b>. Double them both, and the doubles add to <b>30</b>.” How many pairs? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> exactly one pair</div>
-        <div class="opt right"><b>B</b> no pair</div>
-        <div class="opt"><b>C</b> lots of pairs</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>B: no pair works.</b> If two numbers add to 10, their doubles <b>always</b> add to 20: <span class="tex">(1,\ 9)\to2+18=20</span>, <span class="tex">(3,\ 7)\to6+14=20</span>. Never 30. On a graph the two clues are <b>parallel lines</b> that never cross: no crossing, no answer. (More on that in Lesson 2.)</div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u8l1-wgraph" id="u8l1-wgraph"></div>
-    <p class="u8l1-social">Your turn: write a two-clue riddle for your neighbour. Can they find your numbers?</p>
-  </div></div>
-</section>
+
 
 <!-- ================= 1. What is a system? ================= -->
 <section class="card" data-ink="s1" data-section="1. What Is a System?">
@@ -95,7 +69,7 @@
   <p>Every point on a line makes <b>that line’s</b> equation true. Drag the point around the grid (or press <b>Next</b> for a tour): each equation gets a ✓ or a ✗. Only <b>one</b> point gets <b>✓ ✓</b>.</p>
   <div class="explainer" data-explainer="dragLab"></div>
   <div class="parts c1">
-    <div class="part think"><div class="pl"><span class="think-tag">Think</span> Is <span class="tex">(1,\ 3)</span> the solution to the system <span class="tex u8l1-c1">y=x+2</span> and <span class="tex u8l1-c2">y=-x+6</span>?</div><div class="work" style="--h:90px"></div>
+    <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Is <span class="tex">(1,\ 3)</span> the solution to the system <span class="tex u8l1-c1">y=x+2</span> and <span class="tex u8l1-c2">y=-x+6</span>?</div><div class="work" style="--h:90px"></div>
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> <span class="tex">3=1+2</span> ✓, but <span class="tex">-1+6=5\neq3</span> ✗. The point is on the first line only. The solution to a <b>system</b> has to work in <b>both</b> equations.</div></div></div>
   </div>
 </section>
@@ -125,7 +99,7 @@
   <button class="more" data-more="ex1-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s2b" data-section="2. Example 1 check">
+<section data-extra class="card" data-ink="s2b" data-section="2. Example 1 check">
   <h3 class="sub">Example 1 check: read it, then check it</h3>
   <p>Drop from the crossing straight down to the <span class="tex">x</span>-axis and straight across to the <span class="tex">y</span>-axis. Then substitute into <b>both</b> equations.</p>
   <div class="explainer" data-explainer="readGraph"></div>
@@ -172,6 +146,15 @@
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–5">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 1 · Questions 1–5</h2>
+  <p class="pr-t">Read the solution off a graph, then solve by graphing.</p>
+  <div class="pr-chips n1"><span><b>1–5</b>Reading and solving by graphing</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 4.</span><a class="pill" href="../../../#/lesson/u8l1">Open the Practice site</a></div>
+</section>
+
 <section class="card" data-ink="s3b" data-section="3. Example 2 check">
   <h3 class="sub">Example 2 check: the four steps</h3>
   <p>Start each line at its <span class="tex">y</span>-intercept, step out the slope, draw the line. The crossing is the solution.</p>
@@ -181,7 +164,7 @@
 <section class="card" data-ink="s3c" data-section="3. Step 1: get y alone">
   <h3 class="sub">Step 1: getting <span class="tex">y</span> alone</h3>
   <p>An equation like <span class="tex">2x+y=1</span> has the <span class="tex">x</span>-term on the same side as <span class="tex">y</span>. To get <span class="tex">y</span> alone, <b>do the same thing to both sides</b>: subtract <span class="tex">2x</span> from each side. Then write the <span class="tex">x</span>-term first, so it looks like <span class="tex">y=mx+b</span>.</p>
-  <div class="explainer" data-explainer="rearrange"></div>
+  <div data-extra><div class="explainer" data-explainer="rearrange"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>The sign goes with the term.</b> <span class="tex">y=1-2x</span> means <span class="tex">y=-2x+1</span>: the slope is <span class="tex">-2</span>, <b>not</b> <span class="tex">2</span>. And with <span class="tex">-y</span>, change <b>every</b> sign at the end (Step 1): you want <span class="tex">y</span>, not <span class="tex">-y</span>.</div></div>
 </section>
 
@@ -205,7 +188,7 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s3d" data-section="3. Example 3 check">
+<section data-extra class="card" data-ink="s3d" data-section="3. Example 3 check">
   <h3 class="sub">Example 3 check: rewrite, graph, cross</h3>
   <p>Step 1 matters this time: <span class="tex">2x+y=1</span> becomes <span class="tex">y=-2x+1</span> before it can be graphed.</p>
   <div class="explainer" data-explainer="byHand3"></div>
@@ -238,7 +221,7 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s4b" data-section="4. When the check fails">
+<section data-extra class="card" data-ink="s4b" data-section="4. When the check fails">
   <h3 class="sub">When the check fails: find the mistake</h3>
   <p>A failed check is <b>good news</b>: it tells you something went wrong <b>before</b> you hand in a wrong answer. Look for the slip, fix the line, and check again.</p>
   <div class="explainer" data-explainer="oops"></div>
@@ -267,10 +250,48 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s4c" data-section="4. Example 5 check">
+<section data-extra class="card" data-ink="s4c" data-section="4. Example 5 check">
   <h3 class="sub">Example 5 check: all four steps, then the check</h3>
   <p>Check in the <b>original</b> equations, <span class="tex">x+y=3</span> and <span class="tex">y=2x-3</span>, not only in the rewritten one: a slip in Step 1 would hide in the rewritten equation.</p>
   <div class="explainer" data-explainer="byHand5"></div>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Two Mystery Numbers" id="wu" style="--wf-side: 344px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Two Mystery Numbers</h2>
+  <p class="wf-rule">“I’m thinking of two numbers. Can you work out <b>both</b> of them?”</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u8l1-clues">
+      <div class="u8l1-clue u8l1-clue1">
+        <div class="u8l1-clh"><span class="u8l1-ball">1</span><span class="u8l1-clt">Clue 1: They add to <b>10</b>.</span></div>
+        <div class="u8l1-ct"><b>smaller</b><i>1</i><i>2</i><i>3</i><i>4</i><b class="u8l1-cr">bigger</b><i>9</i><i><span data-reveal>8</span></i><i><span data-reveal>7</span></i><i><span data-reveal>6</span></i></div>
+      </div>
+      <div class="u8l1-clue u8l1-clue2">
+        <div class="u8l1-clh"><span class="u8l1-ball">2</span><span class="u8l1-clt">Clue 2: The bigger one is <b>4 more</b>.</span></div>
+        <div class="u8l1-ct"><b>smaller</b><i>1</i><i>2</i><i>3</i><i>4</i><b class="u8l1-cb">bigger</b><i>5</i><i><span data-reveal>6</span></i><i><span data-reveal>7</span></i><i><span data-reveal>8</span></i></div>
+      </div>
+    </div>
+    <div class="u8l1-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Fill in the <b>?</b>s in both tables. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l1-wa"><div class="bk-ans">Clue 1: <b>9, 8, 7, 6</b>. Clue 2: <b>5, 6, 7, 8</b>. Tap the <b>?</b>s.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Which pair is in <b>both</b> tables? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l1-wa"><div class="bk-ans"><b>3 and 7:</b> <span class="tex">3+7=10</span> ✓, <span class="tex">7=3+4</span> ✓. (6 is in both rows, but with <b>different partners</b>.)</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>What is hiding under the sticky note? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u8l1-wa"><div class="bk-ans">The point <span class="tex">(3,\ 7)</span>, where the lines <b>cross</b>. Tap the note to lift it.</div></div></div>
+    </div>
+  <div class="poll wf-poll u8l1-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> “My two numbers add to <b>10</b>. Double them both, and the doubles add to <b>30</b>.” How many pairs? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> exactly one pair</div>
+        <div class="opt right"><b>B</b> no pair</div>
+        <div class="opt"><b>C</b> lots of pairs</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: no pair works.</b> If two numbers add to 10, their doubles <b>always</b> add to 20: <span class="tex">(1,\ 9)\to2+18=20</span>, <span class="tex">(3,\ 7)\to6+14=20</span>. Never 30. On a graph the two clues are <b>parallel lines</b> that never cross: no crossing, no answer. (More on that in Lesson 2.)</div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u8l1-wgraph" id="u8l1-wgraph"></div>
+    <p class="u8l1-social">Your turn: write a two-clue riddle for your neighbour. Can they find your numbers?</p>
+  </div></div>
 </section>
 
 <!-- ================= summary ================= -->
@@ -283,7 +304,7 @@
     <div><b>Always check</b> in <b>both original</b> equations. Both true ✓ ✓: confirmed. One false ✗: not the solution, so find the mistake.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u8l1">
-    <div><div class="kicker">Your turn</div><b>Assignment 1 — What Is a System of Linear Equations? Solving by Graphing</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 1 · Questions 6–14</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l2/">
     <div><div class="kicker">Next lesson</div><b>Lesson 2 — Classifying Systems: One Solution, No Solution, or Infinite Solutions</b><div class="muted">Do two lines always cross? Remember the big one: doubles that add to 30.</div></div><span class="arrow">→</span>
@@ -296,7 +317,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u8l1.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u8l1', homeHref: '../../', title: '8.1 Systems: Solving by Graphing' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

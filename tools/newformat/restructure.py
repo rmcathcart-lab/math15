@@ -61,7 +61,7 @@ def run(key):
   <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>{w.get('nudge', 'Convince the person beside you.')}</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
     <div class="bk-ans">{w['reveal']}</div></div>'''
     new = f'''<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
-<section class="card warm wf" data-ink="warm2" data-section="Warm-up: {w['title']}">
+<section class="card warm wf" data-ink="warmq" data-section="Warm-up: {w['title']}">
   <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>{w['title']}</h2>
   <p class="wf-rule">{w['rule']}</p></div>
   {w['body']}{reveal}

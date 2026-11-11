@@ -205,7 +205,7 @@ SPECS['u5l12'] = dict(
 )
 
 # ======================= Unit 1 =======================
-TILES = lambda n, items, fs=None: f'<div class="vw-tiles" style="--n:{n}' + (f';--fs:{fs}px' if fs else '') + '">' + ''.join(f'<div><b>{a}</b>{b}</div>' for a, b in items) + '</div>'
+TILES = lambda n, items, fs=None: f'<div class="vw-tiles" style="--n:{n}' + (f';--fs:{fs}px' if fs else '') + '">' + ''.join((f'<div class="lab"><b>{a}</b><span>{b}</span></div>' if len(a) > 2 else f'<div><b>{a}</b>{b}</div>') for a, b in items) + '</div>'
 def PR(after, qs, rest, line, chips, upto=None):
     return dict(after=after, qs=qs, rest=rest, line=line, chips=chips, note=f'We carry on when most of the class has reached Question {upto}.' if upto else 'We carry on when most of the class has finished.')
 SPECS['u1l1'] = dict(
@@ -511,10 +511,10 @@ SPECS['u6l10'] = dict(
 
 # ======================= Unit 7 =======================
 SPECS['u7l1'] = dict(
-    warm=dict(title='Spot the Fake', rule=f'A rule makes the points {T("(1,\\ 3)")}, {T("(2,\\ 5)")}, {T("(3,\\ 7)")} and keeps going forever. One of these far-away points is a <b>fake</b>. Which one?',
-              body=TILES(3, [('A', T('(10,\\ 21)')), ('B', T('(50,\\ 101)')), ('C', T('(100,\\ 200)'))]),
+    warm=dict(title='Spot the Fake', rule=f'A rule makes the points {T("(0,\\ 2)")}, {T("(1,\\ 5)")}, {T("(2,\\ 8)")}, {T("(3,\\ 11)")} and keeps going forever. One of these far-away points is a <b>fake</b>. Which one?',
+              body=TILES(3, [('A', T('(10,\\ 32)')), ('B', T('(20,\\ 62)')), ('C', T('(30,\\ 90)'))]),
               nudge='What is the rule doing to the first number?',
-              reveal=f'<b>C.</b> The rule doubles the first number and adds 1, so the point should be {T("(100,\\ 201)")}.'),
+              reveal=f'<b>C.</b> The rule multiplies the first number by 3 and adds 2, so the point should be {T("(30,\\ 92)")}.'),
     extra_cards=['s1b', 's3b'], extra_expl=['onLine'],
     practice=PR('ex4', '1–8', '9–15', 'Linear or not, tables of values, then graphing.', [('1–8', 'Linear or non-linear, tables and graphs')], 6))
 SPECS['u7l2'] = dict(
@@ -580,3 +580,60 @@ SPECS['u7l10'] = dict(
               reveal=f'<b>B is the lie.</b> On {T("x=4")} every point has the same first number, like (4, 0), (4, 1), (4, 2). That is a vertical line.'),
     move_with_warm=['wuex'], extra_expl=['table', 'rearrange', 'stepper', 'solveB', 'twoPts', 'general', 'hv', 'parperp'],
     practice=PR('ex3', '1–7', '8–26', 'Tables, slope–intercept basics and graphing.', [('1–7', 'Tables, slope–intercept basics and graphing')], 5))
+
+# ======================= Unit 8 =======================
+SPECS['u8l1'] = dict(
+    warm=dict(title='Two Mystery Numbers', rule='What are my two numbers?',
+              body=BIG('“My two numbers <b>add to 10</b>.”<small>“The bigger one minus the smaller one is 4.”</small>'),
+              nudge='How many pairs fit the first clue on its own?',
+              reveal='<b>7 and 3.</b> Lots of pairs add to 10, and lots of pairs differ by 4, but only one pair does both.'),
+    extra_cards=['s2b', 's3d', 's4b', 's4c'], extra_expl=['rearrange'],
+    practice=PR('ex2', '1–5', '6–14', 'Read the solution off a graph, then solve by graphing.', [('1–5', 'Reading and solving by graphing')], 4))
+SPECS['u8l2'] = dict(
+    warm=dict(title='The Chase', rule='When does Blue catch up to Red?',
+              body=TILES(2, [('Red car', 'starts 30 km ahead<small>drives 100 km/h</small>'), ('Blue car', 'starts at 0 km<small>drives 100 km/h</small>')], 30),
+              nudge='How big is the gap after 1 hour? After 2 hours?',
+              reveal='<b>Never.</b> They drive at the same speed, so the gap stays 30 km forever. On a graph the two lines are parallel.'),
+    extra_cards=['ex1c', 's1b', 'ex2c', 'ex3c', 'ex5c'], extra_expl=['gapB'],
+    practice=PR('ex3', '1–3', '4–15', 'Graph each system and say how many solutions it has.', [('1–3', 'Graph and classify')], 2))
+SPECS['u8l3'] = dict(
+    warm=dict(title='Swap It Out!', rule='How heavy is one banana?',
+              body=BIG('🍎 = 🍌 + 🍌<br>🍎 + 🍌 = 150 g'),
+              nudge='What could you swap the apple for?',
+              reveal='<b>50 g.</b> Swap the apple for two bananas: then three bananas weigh 150 g. The apple is 100 g.'),
+    extra_cards=['s2b', 's3b', 's4b'], extra_expl=['brackets', 'checkBoth'],
+    practice=PR('ex3', '1–3', '4–6', 'Substitute, solve, back-substitute.', [('1–3', 'Substitute, solve, back-substitute')], 2))
+SPECS['u8l4'] = dict(
+    warm=dict(title='Movie Night', rule='How much is one ticket?',
+              body=BIG('3 tickets and 1 popcorn cost <b>$22</b>.<small>2 tickets and 5 popcorn cost $32.</small>'),
+              nudge='Could a ticket be $5? Try it.',
+              reveal='<b>$6.</b> Popcorn is $4. Check: 3 × 6 + 4 = 22 and 2 × 6 + 5 × 4 = 32.'),
+    extra_cards=['s1c', 's2c'], extra_expl=['table', 'fracs'],
+    practice=PR('ex3', '1–5', '6–14', 'Choose a variable to isolate, then solve.', [('1–5', 'Choosing a variable and solving')], 4))
+SPECS['u8l5'] = dict(
+    warm=dict(title='The Two Receipts', rule='How much is one drink?',
+              body=TILES(2, [('Monday', '2 tacos + 3 drinks<small>$17</small>'), ('Tuesday', '2 tacos + 1 drink<small>$11</small>')], 30),
+              nudge='What is different about the two orders?',
+              reveal='<b>$3.</b> Monday has 2 more drinks and costs $6 more. A taco is $4.'),
+    move_with_warm=['warm2'], extra_cards=['s2b', 's3b', 's4b'], extra_expl=['balance', 'zero'],
+    practice=PR('ex2', '1–5', '6–15', 'Eliminate by subtracting, then by adding.', [('1–3', 'Eliminate by subtraction'), ('4–5', 'Eliminate by addition')], 4))
+SPECS['u8l6'] = dict(
+    warm=dict(title='The School Store', rule='How much for <b>1 pencil and 1 eraser</b>?',
+              body=BIG('3 pencils and 2 erasers cost <b>$7</b>.<small>2 pencils and 3 erasers cost $8.</small>'),
+              reveal='<b>$3.</b> Put the two orders together: 5 pencils and 5 erasers cost $15, so one of each costs $3.'),
+    move_with_warm=['warm2'], extra_cards=['s2b', 's4b'], extra_expl=['stuck', 'route'],
+    practice=PR('ex2', '1–5', '6–14', 'Multiply one equation, then both.', [('1', 'Identify the multiplier'), ('2–3', 'Multiply one equation'), ('4–5', 'Multiply both equations')], 4))
+SPECS['u8l7'] = dict(
+    warm=dict(title='Heads and Legs', rule='This puzzle is over 1 500 years old. How many <b>rabbits</b>?',
+              body=BIG('A cage holds pheasants (2 legs) and rabbits (4 legs).<small>There are 35 heads and 94 feet.</small>'),
+              nudge='What if they were all pheasants?',
+              reveal='<b>12 rabbits</b> and 23 pheasants. If all 35 were pheasants there would be 70 feet. The 24 extra feet come in pairs from the rabbits.'),
+    extra_cards=['ex1c', 'ex2c', 'ex34c', 'ex5c'], extra_expl=['translate', 'bars', 'swap'],
+    practice=PR('ex2', '1–5', '6–14', 'Translate, then solve number and age problems.', [('1', 'Translating only'), ('2–5', 'Number and age problems')], 4))
+SPECS['u8l8'] = dict(
+    warm=dict(title='Odd One Out', rule='Three pairs of lines. Which pair is the odd one out?',
+              body=TILES(3, [('A', f'{T("y=2x+1")}<br>{T("y=2x-3")}'), ('B', f'{T("y=x+1")}<br>{T("y=-x+5")}'), ('C', f'{T("y=3x")}<br>{T("y=x+4")}')], 30),
+              nudge='Picture each pair on a graph.',
+              reveal='<b>A.</b> Its two lines have the same slope, so they are parallel and never meet. B crosses at (2, 3) and C crosses at (2, 6).'),
+    extra_cards=['ex1c', 'ex2c', 'ex34c', 'ex56c', 'ex7c', 'ch2c'], extra_expl=['howMany'],
+    practice=PR('ex34', '1–11', '12–24', 'Graphing, classifying and substitution.', [('1–7', 'Graphing and classifying'), ('8–11', 'Substitution')], 8))

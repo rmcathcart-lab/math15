@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u8l5.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u8l5">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warmq" data-section="Warm-up: The Two Receipts">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Two Receipts</h2>
+  <p class="wf-rule">How much is one drink?</p></div>
+  <div class="vw-tiles" style="--n:2;--fs:30px"><div class="lab"><b>Monday</b><span>2 tacos + 3 drinks<small>$17</small></span></div><div class="lab"><b>Tuesday</b><span>2 tacos + 1 drink<small>$11</small></span></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>What is different about the two orders?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>$3.</b> Monday has 2 more drinks and costs $6 more. A taco is $4.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -43,42 +53,9 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Two Receipts" id="wu" style="--wf-side: 390px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Two Receipts</h2>
-  <p class="wf-rule">Mia and Jay ate at <b>Burger Barn</b>. Same prices, but the price tags <b>tore off</b>.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u8l5-rcpts" id="u8l5-bb"></div>
-    <div class="u8l5-bigframe"><span class="u8l5-bigtag">for the big one</span><div class="u8l5-rcpts" id="u8l5-tt"></div></div>
-  </div><div class="wf-side">
-    <div class="u8l5-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What’s <b>the same</b> on both receipts? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans">Both receipts have <b>2 burgers</b>.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>What’s <b>different</b>? How much more did Jay pay? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans">Jay has <b>2 more drinks</b>, and paid <span class="tex">18-14=\$4</span> more.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>So <b>one drink</b> costs…? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans">The burgers are the same, so the extra $4 is <b>only</b> the 2 extra drinks: 2 drinks <span class="tex">=\$4</span>, one drink <span class="tex">=\$2</span>.</div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>And <b>one burger</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="bk-ans">Mia: 2 burgers <span class="tex">+\ \$2=\$14</span>, so 2 burgers <span class="tex">=\$12</span>, one burger <span class="tex">=\$6</span>. Check Jay: <span class="tex">12+3(2)=18</span> ✓</div></div>
-    </div>
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A refund is a <b>minus</b>. To find a taco’s price, what do you do with Sam’s two slips? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> Subtract them</div>
-        <div class="opt right"><b>B</b> Add them</div>
-        <div class="opt"><b>C</b> Can’t be done</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>B: add them.</b> Put everything Sam did together: <span class="tex">3+1=4</span> tacos, and the 2 juices he bought were handed back, so the juices are <b>gone</b>. Money: paid $13, got $1 back, so $12 spent. 4 tacos <span class="tex">=\$12</span>, one taco <span class="tex">=\$3</span>, and then a juice is $2.<br><span class="muted"><b>Why not A?</b> Subtracting leaves 2 tacos and 4 juices: nothing vanished. Many pick A because “that’s what we did last time.”</span></div>
-    </div>
-  </div></div>
-  <p class="u8l5-social">Your turn: write two receipts for your neighbour to crack!</p>
-</section>
 
-<section class="card" data-ink="warm2" data-section="Warm-up: the receipts, solved">
-  <h3 class="sub">The receipts, solved: compare them, and one item vanishes</h3>
-  <p>Stack the two receipts and combine them, item by item and total by total. Something <b>cancels</b> and leaves just one kind of item. That move has a name: <b>elimination</b>.</p>
-  <div class="explainer" data-explainer="receipts"></div>
-</section>
+
+
 
 <!-- ================= 1. The idea ================= -->
 <section class="card" data-ink="s1" data-section="1. The Idea Behind Elimination">
@@ -97,7 +74,7 @@
     <span class="u8l5-ksep"></span>
     <span class="u8l5-tg u8l5-t1">Eq. 1</span><span class="u8l5-tg u8l5-t2">Eq. 2</span><span class="u8l5-tg u8l5-tr">combined</span>
   </div>
-  <div class="explainer" data-explainer="balance"></div>
+  <div data-extra><div class="explainer" data-explainer="balance"></div></div>
 </section>
 
 <!-- ================= 2. Subtraction ================= -->
@@ -134,14 +111,14 @@
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">3x+4(2)=23\ \Rightarrow\ 3x=15\ \Rightarrow\ \boldsymbol{x=5}</span><br>Check: <span class="tex">3(5)+4(2)=23</span> ✓ &nbsp; <span class="tex">3(5)-2(2)=11</span> ✓<br>The solution is <span class="tex">\boldsymbol{(5,\ 2)}</span>.</div></div></div>
   </div>
   <div class="parts c1">
-    <div class="part think"><div class="pl"><span class="think-tag">Think</span> What if you subtract the other way, Eq. 2 <span class="tex">-</span> Eq. 1? Do you get a different answer?</div><div class="work" style="--h:80px"></div>
+    <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> What if you subtract the other way, Eq. 2 <span class="tex">-</span> Eq. 1? Do you get a different answer?</div><div class="work" style="--h:80px"></div>
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Same answer.</b> <span class="tex">(3x-2y)-(3x+4y)=11-23</span> gives <span class="tex">-6y=-12</span>, so <span class="tex">y=2</span> again. Either order works; pick the one that keeps the numbers positive.</div></div></div>
   </div>
   <div class="space" id="ex1-space"></div>
   <button class="more" data-more="ex1-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s2b" data-section="2. Back-substitute into either">
+<section data-extra class="card" data-ink="s2b" data-section="2. Back-substitute into either">
   <h3 class="sub">Back-substitute into <b>either</b> original equation</h3>
   <p>Once you know one variable, put it into <b>either</b> original equation to find the other. Both give the same answer, so pick the one with the friendlier numbers. Then check in <b>both</b>.</p>
   <div class="explainer" data-explainer="either"></div>
@@ -152,7 +129,7 @@
   <div class="sec-h"><span class="badge">3</span><h2>Eliminating by Addition (Opposite Coefficients)</h2></div>
   <p>Sometimes the coefficients are not equal but <b>opposite</b>: same number, <b>opposite signs</b>, like <span class="tex">+5y</span> and <span class="tex">-5y</span>. Then <b>add</b> the two equations: left sides together, right sides together.</p>
   <div class="def">A number plus its opposite is <span class="tex">0</span>, so <span class="tex">5y+(-5y)=0</span> and the variable is <b>gone</b>. Solve, then back-substitute and check in both original equations, exactly as before.</div>
-  <div class="explainer" data-explainer="zero"></div>
+  <div data-extra><div class="explainer" data-explainer="zero"></div></div>
 </section>
 
 <section class="card example" data-ink="ex2" data-section="Example 2">
@@ -173,7 +150,16 @@
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s3b" data-section="3. On the graph">
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–5">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 5 · Questions 1–5</h2>
+  <p class="pr-t">Eliminate by subtracting, then by adding.</p>
+  <div class="pr-chips n2"><span><b>1–3</b>Eliminate by subtraction</span><span><b>4–5</b>Eliminate by addition</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 4.</span><a class="pill" href="../../../#/lesson/u8l5">Open the Practice site</a></div>
+</section>
+
+<section data-extra class="card" data-ink="s3b" data-section="3. On the graph">
   <h3 class="sub">What elimination does on the graph</h3>
   <p>Back in Lesson 1, the solution was the point where the two lines <b>cross</b>. Adding or subtracting the equations makes a <b>new</b> line that still goes through that crossing. Elimination picks the new line that is <b>flat</b> (<span class="tex">y=\ldots</span>) or <b>straight up and down</b> (<span class="tex">x=\ldots</span>), so you can read one coordinate right off it.</p>
   <div class="explainer" data-explainer="graph"></div>
@@ -206,7 +192,7 @@
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">4(6)+3y=18\ \Rightarrow\ 3y=-6\ \Rightarrow\ \boldsymbol{y=-2}</span><br>Check: <span class="tex">4(6)+3(-2)=18</span> ✓<br><span class="tex">7(6)+3(-2)=36</span> ✓<br>The solution is <span class="tex">\boldsymbol{(6,\ -2)}</span>.</div></div></div>
   </div>
   <div class="parts c1">
-    <div class="part think"><div class="pl"><span class="think-tag">Think</span> The answer in (b) subtracts Eq. 1 from Eq. 2, not Eq. 2 from Eq. 1. Why is that order friendlier here?</div><div class="work" style="--h:70px"></div>
+    <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> The answer in (b) subtracts Eq. 1 from Eq. 2, not Eq. 2 from Eq. 1. Why is that order friendlier here?</div><div class="work" style="--h:70px"></div>
       <div class="ansrow"><button class="reveal">Answer</button><div class="ans">Bigger minus smaller keeps the numbers <b>positive</b>: <span class="tex">7x-4x=3x</span> and <span class="tex">36-18=18</span>. The other order gives <span class="tex">-3x=-18</span>: the same <span class="tex">x=6</span>, just more negatives to handle.</div></div></div>
   </div>
   <div class="space" id="ex3-space"></div>
@@ -253,10 +239,47 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s4b" data-section="4. Examples check">
+<section data-extra class="card" data-ink="s4b" data-section="4. Examples check">
   <h3 class="sub">Examples 1 to 5 check: decide, eliminate, solve, back-substitute, check</h3>
   <p>Step through a full solution, one line at a time, to check the class’s work.</p>
   <div class="explainer" data-explainer="walk"></div>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Two Receipts" id="wu" style="--wf-side: 390px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>The Two Receipts</h2>
+  <p class="wf-rule">Mia and Jay ate at <b>Burger Barn</b>. Same prices, but the price tags <b>tore off</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u8l5-rcpts" id="u8l5-bb"></div>
+    <div class="u8l5-bigframe"><span class="u8l5-bigtag">for the big one</span><div class="u8l5-rcpts" id="u8l5-tt"></div></div>
+  </div><div class="wf-side">
+    <div class="u8l5-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>What’s <b>the same</b> on both receipts? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Both receipts have <b>2 burgers</b>.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>What’s <b>different</b>? How much more did Jay pay? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Jay has <b>2 more drinks</b>, and paid <span class="tex">18-14=\$4</span> more.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>So <b>one drink</b> costs…? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">The burgers are the same, so the extra $4 is <b>only</b> the 2 extra drinks: 2 drinks <span class="tex">=\$4</span>, one drink <span class="tex">=\$2</span>.</div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>And <b>one burger</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="bk-ans">Mia: 2 burgers <span class="tex">+\ \$2=\$14</span>, so 2 burgers <span class="tex">=\$12</span>, one burger <span class="tex">=\$6</span>. Check Jay: <span class="tex">12+3(2)=18</span> ✓</div></div>
+    </div>
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> A refund is a <b>minus</b>. To find a taco’s price, what do you do with Sam’s two slips? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Subtract them</div>
+        <div class="opt right"><b>B</b> Add them</div>
+        <div class="opt"><b>C</b> Can’t be done</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: add them.</b> Put everything Sam did together: <span class="tex">3+1=4</span> tacos, and the 2 juices he bought were handed back, so the juices are <b>gone</b>. Money: paid $13, got $1 back, so $12 spent. 4 tacos <span class="tex">=\$12</span>, one taco <span class="tex">=\$3</span>, and then a juice is $2.<br><span class="muted"><b>Why not A?</b> Subtracting leaves 2 tacos and 4 juices: nothing vanished. Many pick A because “that’s what we did last time.”</span></div>
+    </div>
+  </div></div>
+  <p class="u8l5-social">Your turn: write two receipts for your neighbour to crack!</p>
+</section>
+
+<section data-extra class="card" data-ink="warm2" data-section="Warm-up: the receipts, solved">
+  <h3 class="sub">The receipts, solved: compare them, and one item vanishes</h3>
+  <p>Stack the two receipts and combine them, item by item and total by total. Something <b>cancels</b> and leaves just one kind of item. That move has a name: <b>elimination</b>.</p>
+  <div class="explainer" data-explainer="receipts"></div>
 </section>
 
 <!-- ================= summary ================= -->
@@ -269,7 +292,7 @@
     <div><b>Finish the job.</b> Solve for the variable that is left, <b>back-substitute</b> into either original equation, and <b>check</b> the pair in <b>both</b> equations.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u8l5">
-    <div><div class="kicker">Your turn</div><b>Assignment 5 — Solving Systems by Elimination, Part 1: When Coefficients Already Match</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 5 · Questions 6–15</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l6/">
     <div><div class="kicker">Next lesson</div><b>Lesson 6 — Solving Systems by Elimination, Part 2: Multiplying First</b><div class="muted">What if Mia bought 1 burger and Jay bought 2? Nothing matches, until you double a whole receipt.</div></div><span class="arrow">→</span>
@@ -282,7 +305,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u8l5.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u8l5', homeHref: '../../', title: '8.5 Elimination, Part 1' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>
