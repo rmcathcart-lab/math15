@@ -50,3 +50,14 @@ body.viewer #tb .vw-hswitch, .vw-hswitch.in-menu { display: inline-flex; }
 .vw-cal span { display: grid; place-items: center; width: 84px; height: 64px; border: 2px solid var(--line); border-radius: 10px; font: 700 30px var(--round); }
 .vw-tiles > div.lab { align-content: center; gap: 4px; }
 .vw-tiles > div.lab > b:first-child { position: static; font: 800 19px var(--round); color: var(--brand2); }
+
+/* warm-up, read in order: the situation, then the question (same weight of attention), picture beside them */
+.vw-seq { display: grid; grid-template-columns: 1fr; gap: 26px; align-items: center; margin: 14px 0 16px; padding: 30px 34px; background: #fff; border: 2px solid var(--line); border-radius: 18px; }
+.vw-seq.has-art { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+.vw-txt { display: grid; gap: 12px; min-width: 0; }
+.vw-ctx { margin: 0; font: 500 30px/1.35 var(--font); color: var(--ink); }
+.vw-ask { margin: 8px 0 0; font: 800 34px/1.25 var(--round); color: var(--brand2); }
+.vw-art { display: grid; place-items: center; min-width: 0; }
+.vw-art svg { width: 100%; max-width: 360px; height: auto; }
+.vw-seq .vw-txt > .vw-q, .vw-seq .vw-txt > .vw-tiles { margin: 0; border: 0; padding: 0; }
+[data-ink="warmq"] .vw-rule { font-size: 26px; line-height: 1.35; color: var(--ink); margin-top: 8px; }

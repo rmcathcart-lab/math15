@@ -42,6 +42,8 @@ def run(key):
         rep(a, '<div data-extra>' + a + '</div>')
     for a, b in sp.get('replace', []):
         rep(a, b)
+    for a, b in sp.get('replace_all', []):
+        assert a in s, (key, a[:60]); s = s.replace(a, b)
     for ink in sp.get('extra_cards', []):
         tag_card(ink)
     if sp.get('think', True):
@@ -60,11 +62,20 @@ def run(key):
     reveal = f'''
   <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>{w.get('nudge', 'Convince the person beside you.')}</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
     <div class="bk-ans">{w['reveal']}</div></div>'''
+    pic = f'<div class="vw-art">{w["pic"]}</div>' if w.get('pic') else ''
+    mq = re.match(r'<div class="vw-q">(.*)</div>$', w['body'], flags=re.S)
+    if mq and w['rule'].rstrip().endswith('?'):
+        # read in order: the situation first, then the question (Ryan: the question was small and above a big box)
+        ctx = re.sub(r'<small[^>]*>(.*?)</small>', r'</p><p class="vw-ctx">\1', mq.group(1), flags=re.S)
+        inner = f'<div class="vw-seq{" has-art" if pic else ""}"><div class="vw-txt"><p class="vw-ctx">{ctx}</p><p class="vw-ask">{w["rule"]}</p></div>{pic}</div>'
+        head = ''
+    else:
+        inner = (f'<div class="vw-seq has-art"><div class="vw-txt">{w["body"]}</div>{pic}</div>' if pic else w['body'])
+        head = f'\n  <p class="wf-rule vw-rule">{w["rule"]}</p>'
     new = f'''<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
 <section class="card warm wf" data-ink="warmq" data-section="Warm-up: {w['title']}">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>{w['title']}</h2>
-  <p class="wf-rule">{w['rule']}</p></div>
-  {w['body']}{reveal}
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>{w['title']}</h2>{head}</div>
+  {inner}{reveal}
 </section>
 
 '''

@@ -75,6 +75,7 @@ SPECS['u5l3'] = dict(
               reveal=f'<b>31.</b> The machine multiplies by 3, then adds 1: {T(r"3\times10+1=31")}.'),
     extra_cards=['s4b'],
     extra_expl=['plotPairs', 'threeViews', 'tableRead'],
+    replace=[(' (like Jo’s in the warm-up).</p>', '<span data-extra> (like Jo’s in “Who’s Connected?”, near the end of these notes)</span>.</p>')],
     practice=dict(after='ex3', qs='1–6', rest='7–13', line='Ordered pairs, tables of values and mapping diagrams.',
                   chips=[('1–4', 'Ordered pairs and tables'), ('5–6', 'Mapping diagrams')],
                   note='We carry on when most of the class has reached Question 5.'),
@@ -186,6 +187,7 @@ SPECS['u5l11'] = dict(
               reveal='<b>Green won.</b> Green reaches 100 m after 8 seconds; Red gets there after 9. Red sprinted ahead, then stood still for 5 seconds (the flat part), then ran again.'),
     extra_cards=['ex1c', 'ex2b'],
     extra_expl=['rate', 'shapes'],
+    replace=[('Watch the warm-up trips happen, in step with their graphs.', 'Watch each trip happen, in step with its graph.')],
     practice=dict(after='ex2', qs='1–5', rest='6–14', line='Read each graph, then match a story to a graph.',
                   chips=[('1–3', 'Reading and interpreting graphs'), ('4–5', 'Matching a story to a graph')],
                   note='We carry on when most of the class has reached Question 4.'),
@@ -248,8 +250,20 @@ SPECS['u1l6'] = dict(
               reveal=f'<b>A.</b> Put each one under a single root: {T(r"2\sqrt5=\sqrt{20}")}, {T(r"3\sqrt2=\sqrt{18}")} and {T(r"\sqrt{19}")}.'),
     extra_expl=['area', 'order', 'again'],
     practice=PR('ex3', '1–7', '8–14', 'Entire to mixed, then mixed to entire.', [('1–2', 'Vocabulary'), ('3–5', 'Entire to mixed'), ('6–7', 'Mixed to entire')], 5))
+def _die(x, y, s, pips):
+    r = s * .16; pr = s * .085
+    pos = {'c': (.5, .5), 'tl': (.27, .27), 'tr': (.73, .27), 'bl': (.27, .73), 'br': (.73, .73), 'ml': (.27, .5), 'mr': (.73, .5)}
+    d = f'<rect x="{x}" y="{y}" width="{s}" height="{s}" rx="{r}" fill="#fffdf6" stroke="#4a4436" stroke-width="{max(2.5, s*.03):.1f}"/>'
+    return d + ''.join(f'<circle cx="{x + s*pos[k][0]:.1f}" cy="{y + s*pos[k][1]:.1f}" r="{pr:.1f}" fill="#c93a33"/>' for k in pips)
+DICE = ('<svg viewBox="0 0 330 250" role="img" aria-label="A small die beside a much bigger die">'
+        + _die(20, 172, 58, ['tl', 'c', 'br']) + _die(120, 40, 190, ['tl', 'tr', 'c', 'bl', 'br'])
+        + '<g stroke="#2b55a0" stroke-width="3" stroke-linecap="round"><line x1="104" y1="42" x2="104" y2="228"/><line x1="96" y1="42" x2="112" y2="42"/><line x1="96" y1="228" x2="112" y2="228"/></g>'
+        + '<text x="92" y="128" text-anchor="end" font-size="34" font-weight="800" fill="#2b55a0">?</text>'
+        + '<g stroke="#6b6557" stroke-width="2.5" stroke-linecap="round"><line x1="8" y1="174" x2="8" y2="228"/><line x1="3" y1="174" x2="13" y2="174"/><line x1="3" y1="228" x2="13" y2="228"/></g>'
+        + '</svg>')
 SPECS['u1l7'] = dict(
     warm=dict(title='The Giant Die', rule='How many times as tall as a normal die is the giant one?',
+              pic=DICE,
               body=BIG('A toy store sells a giant die that holds exactly <b>16 normal dice</b>.'),
               nudge='Could it be a whole number?',
               reveal=f'<b>About 2.5 times.</b> A die 2 tall holds {T(r"2\times2\times2=8")} and a die 3 tall holds 27, so 16 is in between. The exact height is {T(r"\sqrt[3]{16}")}.'),
@@ -270,6 +284,7 @@ SPECS['u2l1'] = dict(
               nudge='How fast do the rounds grow?',
               reveal=f'<b>Round 7.</b> The rounds go 3, 9, 27, 81, 243, 729, 2187. That is {T("3^7=2187")}.'),
     extra_expl=['anatomy', 'order', 'signs', 'substitute', 'coef'],
+    replace=[(' Watch the two kinds of power side by side as the exponent grows.</p>', '<span data-extra> Watch the two kinds of power side by side as the exponent grows.</span></p>')],
     practice=PR('ex3', '1–6', '7–13', 'Vocabulary and evaluating powers.', [('1–6', 'Vocabulary and evaluating')], 5))
 SPECS['u2l2'] = dict(
     warm=dict(title='Boxes Inside Boxes', rule='How many candies are on the truck?',
@@ -284,6 +299,7 @@ SPECS['u2l3'] = dict(
               nudge='Why isn’t it 30?',
               reveal=f'<b>1000.</b> {T(r"10\times10\times10=10^3")}: 10 along, 10 across, 10 layers high.'),
     extra_cards=['s2c', 's3b'], extra_expl=['recap', 'chain', 'check'],
+    replace=[('data-section="2. Back to the warm-up"', 'data-section="2. Supersize a tile"'), ('Back to the warm-up: supersize a tile', 'Supersize a tile')],
     practice=PR('ex3', '1–6', '7–12', 'Power of a product, then power of a quotient.', [('1–6', 'The two new laws')], 5))
 SPECS['u2l4'] = dict(
     warm=dict(title='The Power Maze', rule='Start with <b>2</b>. Use each tile exactly once. Which order gives the <b>biggest</b> finish?',
@@ -332,6 +348,7 @@ SPECS['u2l10'] = dict(
               nudge='Can you write them all with the same base?',
               reveal=f'<b>A, by a huge amount.</b> {T("100^{10}=(10^2)^{10}=10^{20}")} and {T("1000^5=(10^3)^5=10^{15}")}. Both are tiny beside {T("10^{100}")}.'),
     extra_expl=['count', 'dist', 'steps1', 'anatomy', 'flip', 'steps2', 'sci', 'radical'],
+    replace=[('<p class="muted">Replay the counting with the <b>Example 2 check</b> chips in the explainer above.</p>', '<p class="muted" data-extra>Replay the counting with the <b>Example 2 check</b> chips in the explainer above.</p>'), (' Try each one by hand first, then check it with the <b>Challenge</b> chips in the Section 7 stepper and the Section 8 scientific-notation explainer.</p>', '<span data-extra> Try each one by hand first, then check it with the <b>Challenge</b> chips in the Section 7 stepper and the Section 8 scientific-notation explainer.</span></p>')],
     practice=PR('ex4', '1–9', '10–25', 'The exponent laws, one at a time.', [('1–9', 'The exponent laws')], 6))
 
 # ======================= Unit 3 =======================
@@ -362,6 +379,7 @@ SPECS['u3l4'] = dict(
               body=BIG(T(r'49\times51')), nudge='Both numbers are very close to 50.',
               reveal=f'<b>2 499.</b> It is one less than {T(r"50\times50=2\,500")}.'),
     extra_expl=['foilRecall', 'squareSplit', 'minusSquare'],
+    replace=[(', so warm up with one full expansion first.</p>', '.<span data-extra> Warm up with one full expansion first.</span></p>')],
     practice=PR('ex4', '1–8', '9–16', 'Expand with the two patterns.', [('1–8', 'Expand and simplify')], 6))
 SPECS['u3l5'] = dict(
     warm=dict(title='Jordan’s Shortcut', rule='How far off is Jordan?',
@@ -369,6 +387,7 @@ SPECS['u3l5'] = dict(
               nudge='What did Jordan leave out?',
               reveal=f'<b>Off by 820.</b> The real answer is 2 829. Jordan left out {T(r"20\times23=460")} and {T(r"3\times100=300")} and {T(r"20\times3=60")}: every part has to multiply every part.'),
     extra_cards=['s2c'], extra_expl=['recall', 'sort', 'signs', 'combo'],
+    replace=[('The warm-up already did this with numbers.', 'Multiplying two numbers already works this way: every part times every part.')],
     practice=PR('ex3', '1–6', '7–16', 'Six partial products, then collect.', [('1–6', 'Six partial products, then collect')], 4))
 SPECS['u3l6'] = dict(
     warm=dict(title='The Open-Top Box', rule='Cut the same square from each corner of a <b>20 cm by 20 cm</b> sheet and fold up the sides. Which cut makes the box that <b>holds the most</b>?',
@@ -384,6 +403,7 @@ SPECS['u3l7'] = dict(
               nudge='Compare answers with the person beside you.',
               reveal=f'<b>Everyone gets 1.</b> Start with {T("n")}: {T(r"n+3\to2n+6\to2n+2\to n+1")}, and taking away {T("n")} leaves 1.'),
     extra_cards=['mach', 's1b', 's4b'], extra_expl=['tiles', 'dist', 'foil', 'patterns', 'grid', 'measure'],
+    replace_all=[('<p class="muted u3l7-chk">', '<p class="muted u3l7-chk" data-extra>')],
     practice=PR('ex3', '1–11', '12–22', 'The first half of the unit, one skill at a time.', [('1–4', 'Like terms, adding and subtracting'), ('5–8', 'Monomial times polynomial'), ('9–11', 'Two binomials')], 8))
 
 # ======================= Unit 4, lessons 1–7 =======================
@@ -572,6 +592,7 @@ SPECS['u7l9'] = dict(
               nudge='When does the hare catch up?',
               reveal='<b>The tortoise.</b> It only has 12 m to go, so it finishes in 12 seconds. The hare needs 72 ÷ 4 = 18 seconds. The hare would catch up at 80 m, but the race is over by then.'),
     extra_cards=['s1b', 's4b'], extra_expl=['rate', 'candle'],
+    replace=[('<p>Watch a story and its graph together: each step of', '<p><span data-extra>Watch a story and its graph together. </span>Each step of')],
     practice=PR('ex3', '1–8', '9–16', 'Say what the slope and the y-intercept mean.', [('1–8', 'Interpreting slope and y-intercept')], 6))
 SPECS['u7l10'] = dict(
     warm=dict(title='Two Truths and a Lie', rule='Two of these are true. One is a lie. Which one?',
