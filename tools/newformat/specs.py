@@ -434,3 +434,77 @@ SPECS['u4l7'] = dict(
               nudge='How did you find them?',
               reveal=f'<b>4 and 9.</b> {T(r"4\times9=36")} and {T("4+9=13")}. Listing the pairs that multiply to 36 finds them fast: 1 and 36, 2 and 18, 3 and 12, 4 and 9.'),
     practice=PR('ex2', '1–4', '5–14', 'Find the two numbers, then factor with positive coefficients.', [('1–2', 'Finding the two integers'), ('3–4', 'Decomposition with positive coefficients')], 3))
+
+# ======================= Unit 6 =======================
+SPECS['u6l1'] = dict(
+    warm=dict(title='Will It Fit?', rule='What is the longest thin rod that can lie flat on the floor of the trunk?',
+              body=BIG('The floor of a car trunk is a rectangle, <b>120 cm</b> by <b>50 cm</b>.'),
+              nudge='Longer than 120 cm?',
+              reveal=f'<b>130 cm.</b> Lay it corner to corner: {T(r"120^2+50^2=14\,400+2\,500=16\,900=130^2")}.'),
+    extra_cards=['s2b'], extra_expl=['nameSides', 'verify', 'simplify', 'decide'],
+    practice=PR('ex3', '1–8', '9–15', 'Name the sides, verify the theorem, find the hypotenuse.', [('1–3', 'Naming the sides'), ('4–8', 'Verifying, and finding the hypotenuse')], 6))
+SPECS['u6l2'] = dict(
+    warm=dict(title='The Elevator', rule='How many floors did you travel?',
+              body=BIG(f'You park on floor {T("-3")} and ride the elevator up to floor <b>5</b>.'),
+              nudge='Count them.', reveal=f'<b>8 floors.</b> Three floors up to floor 0, then five more: {T("5-(-3)=8")}.'),
+    extra_cards=['s2b', 's2c', 's3b'], extra_expl=['segIntro', 'lengthsV'],
+    practice=PR('ex4', '1–6', '7–13', 'Find each length from the coordinates.', [('1–6', 'Finding lengths from coordinates')], 5))
+SPECS['u6l3'] = dict(
+    warm=dict(title='Drone vs. Delivery Truck', rule='How far does the drone fly?',
+              body=BIG('To reach the farm, the truck drives <b>12 blocks east</b>, then <b>5 blocks north</b>: 17 blocks.<small>The drone flies there in a straight line.</small>'),
+              nudge='More than 12? Less than 17?',
+              reveal=f'<b>13 blocks.</b> The drone flies the hypotenuse: {T(r"12^2+5^2=169=13^2")}.'),
+    extra_cards=['s1b', 's2b'], extra_expl=['lift', 'simplify', 'map'],
+    practice=PR('ex3', '1–7', '8–15', 'Build the right triangle, then use the distance formula.', [('1–3', 'Building the right triangle'), ('4–7', 'The distance formula')], 5))
+SPECS['u6l4'] = dict(
+    warm=dict(title='Meet Me Halfway', rule='They walk straight toward each other and meet exactly halfway. Where?',
+              body=BIG(f'Ava is at {T("(2,\\ 1)")}. Dev is at {T("(8,\\ 5)")}.'),
+              nudge='How could you check?',
+              reveal=f'{T("(5,\\ 3)")}. Halfway between 2 and 8 is 5, and halfway between 1 and 5 is 3.'),
+    extra_expl=['halfway', 'midcount', 'trail'],
+    practice=PR('ex4', '1–5', '6–15', 'Find each midpoint.', [('1–5', 'Finding midpoints')], 4))
+SPECS['u6l5'] = dict(
+    warm=dict(title='The Other End of the Zip-Line', rule='Where is the hidden end?',
+              body=BIG(f'A zip-line starts at {T("S(2,\\ 9)")}.<small>Its exact middle is at {T("M(6,\\ 6)")}.</small>'),
+              nudge='How did the line get from S to M?',
+              reveal=f'{T("E(10,\\ 3)")}. From S to M is 4 right and 3 down. Do the same again from M.'),
+    extra_cards=['s2b'], extra_expl=['tools', 'rescue', 'busstop', 'which'],
+    practice=PR('ex2', '1–4', '5–16', 'Find the missing endpoint.', [('1–4', 'Finding a missing endpoint')], 3))
+SPECS['u6l6'] = dict(
+    warm=dict(title='Which Slide Is Scariest?', rule='Four playground slides. Which one is the <b>steepest</b>?',
+              body=TILES(4, [('A', '3 m tall<small>6 m along the ground</small>'), ('B', '4 m tall<small>4 m along the ground</small>'), ('C', '5 m tall<small>10 m along the ground</small>'), ('D', '6 m tall<small>20 m along the ground</small>')], 30),
+              nudge='Is the tallest one the steepest?',
+              reveal='<b>B.</b> It climbs 1 m for every 1 m along the ground. A and C climb 1 m for every 2 m. D is the tallest but the gentlest: 1 m for every 3 m or so.'),
+    extra_cards=['s2b', 's3b'], extra_expl=['stairs', 'grade'],
+    practice=PR('ex4', '1–4', '5–15', 'Count rise and run, then use the slope formula.', [('1–2', 'Counting rise and run'), ('3–4', 'Using the slope formula')], 3))
+def mini_line(x1, y1, x2, y2):
+    return f'<svg viewBox="0 0 120 90" style="width:150px;height:auto"><line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#2b55a0" stroke-width="7" stroke-linecap="round"/></svg>'
+SPECS['u6l7'] = dict(
+    warm=dict(title='The Walk', rule='You walk each path from <b>left to right</b>. Which one is impossible to walk?',
+              body=TILES(4, [('A', mini_line(15, 75, 105, 15)), ('B', mini_line(15, 15, 105, 75)), ('C', mini_line(15, 45, 105, 45)), ('D', mini_line(60, 80, 60, 10))]),
+              nudge='How would you describe each of the other three?',
+              reveal='<b>D.</b> It is a wall: all up and no across. A is uphill, B is downhill and C is flat.'),
+    extra_cards=['s2b', 's2c'], extra_expl=['mirror', 'walk', 'ex5'],
+    practice=PR('ex4', '1–5', '6–15', 'One type of slope at a time.', [('1–5', 'Vocabulary and one type at a time')], 4))
+SPECS['u6l8'] = dict(
+    warm=dict(title='Is the Fence Straight?', rule='Three fence posts on a grid. Is the fence <b>perfectly</b> straight?',
+              body=PIC(grid_svg(9, 7, [(1, 1, '●', '#c93a33'), (4, 3, '●', '#c93a33'), (8, 6, '●', '#c93a33')], 42)),
+              nudge='How could you be sure without a ruler?',
+              reveal='<b>No.</b> From the first post to the second is 3 across and 2 up. From the second to the third is 4 across and 3 up. The steepness changes, so there is a slight bend.'),
+    extra_cards=['s3b'], extra_expl=['ruler', 'missing', 'road'], extra_with_prev=['shots'],
+    practice=PR('ex3', '1–6', '7–16', 'Test whether three points are collinear.', [('1–3', 'Reading and testing for collinearity'), ('4–6', 'Negative coordinates')], 4))
+SPECS['u6l9'] = dict(
+    warm=dict(title='Square Corners', rule='At which of these times do the hands of a clock make a <b>perfect square corner</b>?',
+              body=TILES(4, [('A', '3:00'), ('B', '6:00'), ('C', '12:15'), ('D', '9:30')]),
+              nudge='Picture exactly where the hour hand is.',
+              reveal='<b>Only A.</b> At 6:00 the hands make a straight line. At 12:15 the hour hand has already crept past the 12, and at 9:30 it is halfway to the 10, so neither is exactly a square corner.'),
+    extra_cards=['s2b', 's3c'], extra_expl=['translate', 'rotate', 'dialK'],
+    practice=PR('ex4', '1–5', '6–15', 'Parallel segments, then perpendicular segments.', [('1–2', 'Slope review and parallel segments'), ('3–5', 'Perpendicular segments')], 4))
+SPECS['u6l10'] = dict(
+    warm=dict(title='The Missing Corner', rule='Where is the fourth corner?',
+              body=BIG(f'Three corners of a <b>square</b> are {T("(1,\\ 1)")}, {T("(4,\\ 2)")} and {T("(3,\\ 5)")}.'),
+              nudge='How do you get from one corner to the next?',
+              reveal=f'{T("(0,\\ 4)")}. From (1, 1) to (4, 2) is 3 right, 1 up. The opposite side makes the same move, so go 3 left and 1 down from (3, 5).'),
+    replace=[('<span class="muted">(Check Challenge 2 with the chip in the warm-up check explainer.)</span>', '<span class="muted" data-extra>(Check Challenge 2 with the chip in the “which suspect?” explainer near the end.)</span>')],
+    move_with_warm=['wuex'], extra_cards=['s10b'], extra_expl=['pyth', 'lengths', 'midpoint', 'slopes', 'collinear', 'pairs', 'triangle'],
+    practice=PR('ex3', '1–8', '9–26', 'Pythagoras, segment lengths and the distance formula.', [('1–5', 'Pythagorean theorem and segment lengths'), ('6–8', 'The distance formula')], 6))

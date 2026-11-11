@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u6l9.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u6l9">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Square Corners">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Square Corners</h2>
+  <p class="wf-rule">At which of these times do the hands of a clock make a <b>perfect square corner</b>?</p></div>
+  <div class="vw-tiles" style="--n:4"><div><b>A</b>3:00</div><div><b>B</b>6:00</div><div><b>C</b>12:15</div><div><b>D</b>9:30</div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Picture exactly where the hour hand is.</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>Only A.</b> At 6:00 the hands make a straight line. At 12:15 the hour hand has already crept past the 12, and at 9:30 it is halfway to the 10, so neither is exactly a square corner.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,42 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Pick-Up Sticks" id="wu" style="--wf-side: 372px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Pick-Up Sticks</h2>
-  <p class="wf-rule">The sticks landed on a pegboard. Every stick runs from <b>peg</b> to <b>peg</b>.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u6l9-wfig">
-      <div id="u6l9-board"></div>
-      <div class="u6l9-wbtns">
-        <button type="button" class="pill" id="u6l9-wcount">Count A, B, G</button>
-        <button type="button" class="pill" id="u6l9-wlong">Make A, B, G longer</button>
-        <button type="button" class="pill" id="u6l9-wsq">Square corners?</button>
-      </div>
-      <div class="u6l9-wnote muted" id="u6l9-wnote"></div>
-    </div>
-    <div class="poll wf-poll u6l9-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Which pair of sticks makes a <b>perfect square corner</b> (exactly <span class="tex">90^\circ</span>) if you slid them or made them longer until they met? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> C and D</div>
-        <div class="opt right"><b>B</b> E and F</div>
-        <div class="opt"><b>C</b> both pairs</div>
-        <div class="opt"><b>D</b> neither pair</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>B: only E and F.</b> C and D look like a perfect “+”, but that corner is about <span class="tex">93^\circ</span>. E goes up 2, across 3; F goes down 3, across 2: the numbers <b>swapped</b> and the direction <b>flipped</b>. Exactly <span class="tex">90^\circ</span>, even though E and F never touch.<br><b>Today:</b> your eyes can be fooled; the slopes can’t.</div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u6l9-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Stick <b>A</b> goes how many pegs <b>up</b>, and how many <b>across</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l9-wa"><div class="bk-ans"><b>Up 2, across 6.</b></div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Sticks <b>B</b> and <b>G</b> both look like A. Only one of them would <em>never</em> touch A, even if both sticks were a mile long. Which one? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l9-wa"><div class="bk-ans"><b>B.</b> G goes up 2 for every 5 across, a little steeper than A, so far enough to the left it would cross A (30 pegs left of the board!).</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Compare B’s up and across with A’s. What do you notice? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l9-wa"><div class="bk-ans">B goes up 1, across 3. A goes up 2, across 6: that is also <b>1 up for every 3 across</b>. Same steepness, so they never meet.</div></div></div>
-    </div>
-    <p class="u6l9-social">Make a perfect “+” with two pencils by eye. Then check it with the corner of a sheet of paper!</p>
-  </div></div>
-</section>
+
 
 <!-- ================= 1. Slope and the two relationships ================= -->
 <section class="card" data-ink="s1" data-section="1. Slope, and the Two Relationships">
@@ -106,7 +81,7 @@
       <div class="def u6l9-rulebox"><b>Rule:</b> <span class="tex">AB\parallel CD</span> if and only if <span class="tex">m_{AB}=m_{CD}</span>. To <b>test</b> a pair, find each slope separately, then compare the two values.</div>
     </div>
   </div>
-  <div class="explainer" data-explainer="translate"></div>
+  <div data-extra><div class="explainer" data-explainer="translate"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -142,7 +117,7 @@
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s2b" data-section="2. Make them longer: do they meet?">
+<section data-extra class="card" data-ink="s2b" data-section="2. Make them longer: do they meet?">
   <h3 class="sub">Make them longer: do they ever meet?</h3>
   <p>Equal slopes keep the gap between two segments the same forever. If the slopes are even a little different, the segments are <b>not</b> parallel: make them long enough and they cross.</p>
   <div class="explainer" data-explainer="meet"></div>
@@ -184,7 +159,7 @@
       <div class="def u6l9-rulebox"><b>Rule:</b> two segments are perpendicular if and only if <span class="tex">m_1\times m_2=-1</span>. To test a pair, find both slopes and <b>multiply</b>.</div>
     </div>
   </div>
-  <div class="explainer" data-explainer="rotate"></div>
+  <div data-extra><div class="explainer" data-explainer="rotate"></div></div>
 </section>
 
 <section class="card" data-ink="s3b" data-section="3. Flip it and change the sign">
@@ -199,7 +174,7 @@
   <div class="explainer" data-explainer="flipSign"></div>
 </section>
 
-<section class="card" data-ink="s3c" data-section="3. Multiply the slopes">
+<section data-extra class="card" data-ink="s3c" data-section="3. Multiply the slopes">
   <h3 class="sub">Multiply the slopes: is it a square corner?</h3>
   <p>A “+” can <b>look</b> perfect and still be a few degrees off. The product of the slopes settles it: exactly <span class="tex">-1</span> means a right angle; anything else means it is not.</p>
   <div class="explainer" data-explainer="perpTest"></div>
@@ -237,6 +212,15 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–5">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 9 · Questions 1–5</h2>
+  <p class="pr-t">Parallel segments, then perpendicular segments.</p>
+  <div class="pr-chips n2"><span><b>1–2</b>Slope review and parallel segments</span><span><b>3–5</b>Perpendicular segments</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 4.</span><a class="pill" href="../../../#/lesson/u6l9">Open the Practice site</a></div>
+</section>
+
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
 <section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u6l9"></section>
 
@@ -266,9 +250,46 @@
     <div class="part"><div class="pl">(a) <b class="u6l9-part">parallel</b> (the slopes are equal).</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">\dfrac{k}{4}=-\dfrac{1}{2}</span><br>Multiply both sides by 4: <span class="tex">k=\boldsymbol{-2}</span>.</div></div></div>
     <div class="part"><div class="pl">(b) <b class="u6l9-perp">perpendicular</b> (the slopes multiply to <span class="tex">-1</span>).</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The perpendicular slope is <span class="tex">-\tfrac{1}{2}</span> flipped with the sign changed: <span class="tex">\tfrac{2}{1}=2</span>.<br><span class="tex">\dfrac{k}{4}=2</span>, so <span class="tex">k=\boldsymbol{8}</span>. Check: <span class="tex">-\tfrac12\times\tfrac84=-1</span> ✓</div></div></div>
   </div>
-  <div class="explainer" data-explainer="dialK"></div>
+  <div data-extra><div class="explainer" data-explainer="dialK"></div></div>
   <div class="space" id="ex6-space"></div>
   <button class="more" data-more="ex6-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Pick-Up Sticks" id="wu" style="--wf-side: 372px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Pick-Up Sticks</h2>
+  <p class="wf-rule">The sticks landed on a pegboard. Every stick runs from <b>peg</b> to <b>peg</b>.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u6l9-wfig">
+      <div id="u6l9-board"></div>
+      <div class="u6l9-wbtns">
+        <button type="button" class="pill" id="u6l9-wcount">Count A, B, G</button>
+        <button type="button" class="pill" id="u6l9-wlong">Make A, B, G longer</button>
+        <button type="button" class="pill" id="u6l9-wsq">Square corners?</button>
+      </div>
+      <div class="u6l9-wnote muted" id="u6l9-wnote"></div>
+    </div>
+    <div class="poll wf-poll u6l9-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Which pair of sticks makes a <b>perfect square corner</b> (exactly <span class="tex">90^\circ</span>) if you slid them or made them longer until they met? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> C and D</div>
+        <div class="opt right"><b>B</b> E and F</div>
+        <div class="opt"><b>C</b> both pairs</div>
+        <div class="opt"><b>D</b> neither pair</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: only E and F.</b> C and D look like a perfect “+”, but that corner is about <span class="tex">93^\circ</span>. E goes up 2, across 3; F goes down 3, across 2: the numbers <b>swapped</b> and the direction <b>flipped</b>. Exactly <span class="tex">90^\circ</span>, even though E and F never touch.<br><b>Today:</b> your eyes can be fooled; the slopes can’t.</div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u6l9-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Stick <b>A</b> goes how many pegs <b>up</b>, and how many <b>across</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l9-wa"><div class="bk-ans"><b>Up 2, across 6.</b></div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Sticks <b>B</b> and <b>G</b> both look like A. Only one of them would <em>never</em> touch A, even if both sticks were a mile long. Which one? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l9-wa"><div class="bk-ans"><b>B.</b> G goes up 2 for every 5 across, a little steeper than A, so far enough to the left it would cross A (30 pegs left of the board!).</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Compare B’s up and across with A’s. What do you notice? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l9-wa"><div class="bk-ans">B goes up 1, across 3. A goes up 2, across 6: that is also <b>1 up for every 3 across</b>. Same steepness, so they never meet.</div></div></div>
+    </div>
+    <p class="u6l9-social">Make a perfect “+” with two pencils by eye. Then check it with the corner of a sheet of paper!</p>
+  </div></div>
 </section>
 
 <!-- ================= summary ================= -->
@@ -281,7 +302,7 @@
     <div><b>Neither</b> if the slopes are not equal and the product is not <span class="tex">-1</span>. Special case: horizontal (<span class="tex">0</span>) <span class="tex">\perp</span> vertical (undefined).</div>
   </div>
   <a class="assign" href="../../../#/lesson/u6l9">
-    <div><div class="kicker">Your turn</div><b>Assignment 9 — Parallel and Perpendicular Lines</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 9 · Questions 6–15</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l10/">
     <div><div class="kicker">Next lesson</div><b>Lesson 10 — Unit Review: Coordinate Geometry</b><div class="muted">Lengths, midpoints and slopes, all on one grid: get ready for the unit test.</div></div><span class="arrow">→</span>
@@ -294,7 +315,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u6l9.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u6l9', homeHref: '../../', title: '6.9 Parallel and Perpendicular Lines' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u6l1.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u6l1">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Will It Fit?">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Will It Fit?</h2>
+  <p class="wf-rule">What is the longest thin rod that can lie flat on the floor of the trunk?</p></div>
+  <div class="vw-q">The floor of a car trunk is a rectangle, <b>120 cm</b> by <b>50 cm</b>.</div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Longer than 120 cm?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>130 cm.</b> Lay it corner to corner: <span class="tex">120^2+50^2=14\,400+2\,500=16\,900=130^2</span>.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,40 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Will It Fit?" id="wu" style="--wf-side: 372px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Will It Fit?</h2>
-  <p class="wf-rule">Too long to lie straight? Try it <b>corner to corner</b>: the diagonal is longer. Each corner below is a right angle.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u6l1-wfig" id="u6l1-wfig"></div>
-    <div class="u6l1-wbtns">
-      <button type="button" class="pill small" id="u6l1-w1">① Measure the box</button>
-      <button type="button" class="pill small" id="u6l1-w2">② Measure the drawer</button>
-      <button type="button" class="pill small" id="u6l1-w3">③ Lay the rod</button>
-    </div>
-    <div class="u6l1-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Is each diagonal a <b>leg</b> or the <b>hypotenuse</b>? How can you tell? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l1-wa"><div class="bk-ans">The <b>hypotenuse</b>: it is across from the right angle, and it is the longest side. The length and the width are the two <b>legs</b>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Box ①: does the 95&nbsp;cm umbrella fit lying flat, corner to corner? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l1-wa"><div class="bk-ans"><b>Yes.</b> <span class="tex">60^2+80^2=3600+6400=10\,000</span> and <span class="tex">\sqrt{10\,000}=100</span>: the diagonal is 100&nbsp;cm, 5&nbsp;cm to spare.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Drawer ②: how wide is the drawer? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l1-wa"><div class="bk-ans"><b>25&nbsp;cm.</b> The stick is the hypotenuse and the width is a leg, so subtract: <span class="tex">65^2-60^2=4225-3600=625</span>, and <span class="tex">\sqrt{625}=25</span>.</div></div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Trunk ③ is 120&nbsp;cm by 50&nbsp;cm. What is the <b>longest</b> thin rod that can lie flat on its floor? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> 120 cm</div>
-        <div class="opt right"><b>B</b> 130 cm</div>
-        <div class="opt"><b>C</b> 170 cm</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>B, 130&nbsp;cm.</b> <span class="tex">120^2+50^2=14\,400+2500=16\,900</span>, and <span class="tex">\sqrt{16\,900}=130</span>.<br>
-        <span class="muted"><b>C</b> adds the sides (<span class="tex">120+50</span>), but that is walking around the edges, not cutting across. <b>A</b> lies along the length: the diagonal buys just 10&nbsp;cm more.</span><br>
-        <b>Today’s lesson:</b> add the <b>squares</b> of the sides, not the sides.</div>
-    </div>
-    <p class="u6l1-social">TVs and phones are sold by their <b>diagonal</b>. Predict your notebook’s diagonal, then measure it!</p>
-  </div></div>
-</section>
+
 
 <!-- ================= 1. Parts ================= -->
 <section class="card" data-ink="s1" data-section="1. Right Triangles and Their Parts">
@@ -86,7 +63,7 @@
     <div class="def">A <b>right triangle</b> has one <span class="tex">90^\circ</span> angle, marked with a small square. The two sides that meet to make that angle are the <b class="u6l1-ca">legs</b>. The third side, the one <b>opposite</b> the right angle, is the <b class="u6l1-cc">hypotenuse</b>. It is always the <b>longest</b> side. A right triangle has two legs (in either order) but only ever <b>one</b> hypotenuse.</div>
     <div id="u6l1-partsfig" class="u6l1-partsfig"></div>
   </div>
-  <div class="explainer" data-explainer="nameSides"></div>
+  <div data-extra><div class="explainer" data-explainer="nameSides"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -98,7 +75,7 @@
     <div class="part"><div class="pl">(c) Triangle <span class="tex">C</span></div><div class="u6l1-tfig" id="u6l1-ex1c"></div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Legs: <b>7</b> and <b>24</b><br>Hypotenuse: <b>25</b></div></div></div>
   </div>
   <div class="parts c1">
-    <div class="part think"><div class="pl"><span class="think-tag">Think</span> Is the hypotenuse always the slanted side at the top?</div><div class="work" style="--h:60px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> It is the side <b>across from the square corner</b>, wherever that is. Turn the triangle and the hypotenuse can be flat along the bottom (try the “roof” chip above).</div></div></div>
+    <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Is the hypotenuse always the slanted side at the top?</div><div class="work" style="--h:60px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>No.</b> It is the side <b>across from the square corner</b>, wherever that is. Turn the triangle and the hypotenuse can be flat along the bottom (try the “roof” chip above).</div></div></div>
   </div>
   <div class="space" id="ex1-space"></div>
   <button class="more" data-more="ex1-space">+ More space</button>
@@ -118,7 +95,7 @@
   <div class="explainer" data-explainer="squares"></div>
 </section>
 
-<section class="card" data-ink="s2b" data-section="2. Why every right triangle">
+<section data-extra class="card" data-ink="s2b" data-section="2. Why every right triangle">
   <h3 class="sub">Why does it work for <b>every</b> right triangle?</h3>
   <p>Here is a proof you can see. Four copies of the same right triangle sit inside one big square. Slide them around: the empty space never changes size.</p>
   <div class="explainer" data-explainer="whyAll"></div>
@@ -132,7 +109,7 @@
     <div class="part"><div class="pl">(b) Legs <span class="tex">6</span> and <span class="tex">8</span>, hypotenuse <span class="tex">10</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">a^2+b^2=6^2+8^2=36+64=\boldsymbol{100}</span><br><span class="tex">c^2=10^2=\boldsymbol{100}</span><br>Both sides give 100, so the theorem holds. ✓</div></div></div>
   </div>
   <p>It works the other way too: if the two shorter sides give <span class="tex">a^2+b^2\neq c^2</span>, the triangle is <b>not</b> a right triangle.</p>
-  <div class="explainer" data-explainer="verify"></div>
+  <div data-extra><div class="explainer" data-explainer="verify"></div></div>
   <div class="space" id="ex2-space"></div>
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
@@ -163,10 +140,19 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–8">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 1 · Questions 1–8</h2>
+  <p class="pr-t">Name the sides, verify the theorem, find the hypotenuse.</p>
+  <div class="pr-chips n2"><span><b>1–3</b>Naming the sides</span><span><b>4–8</b>Verifying, and finding the hypotenuse</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 6.</span><a class="pill" href="../../../#/lesson/u6l1">Open the Practice site</a></div>
+</section>
+
 <section class="card" data-ink="s3b" data-section="3. Simplifying the radical">
   <h3 class="sub">A Unit 1 refresher: simplifying a square root</h3>
   <p>Look for the <b>biggest perfect square</b> that divides the number under the root, and take its square root out front. If no perfect square (other than 1) divides it, the root is already as simple as it gets.</p>
-  <div class="explainer" data-explainer="simplify"></div>
+  <div data-extra><div class="explainer" data-explainer="simplify"></div></div>
 </section>
 
 <!-- ================= 4. Missing leg ================= -->
@@ -207,7 +193,7 @@
     <div><b class="n">2</b>Is the unknown <b>across</b> from it? Then it’s the <b class="u6l1-cc">hypotenuse</b>: <b>add</b>.</div>
     <div><b class="n">3</b>Does the unknown <b>touch</b> the corner? Then it’s a <b class="u6l1-ca">leg</b>: <b>subtract</b>.</div>
   </div>
-  <div class="explainer" data-explainer="decide"></div>
+  <div data-extra><div class="explainer" data-explainer="decide"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -247,6 +233,41 @@
   </div>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Will It Fit?" id="wu" style="--wf-side: 372px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Will It Fit?</h2>
+  <p class="wf-rule">Too long to lie straight? Try it <b>corner to corner</b>: the diagonal is longer. Each corner below is a right angle.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u6l1-wfig" id="u6l1-wfig"></div>
+    <div class="u6l1-wbtns">
+      <button type="button" class="pill small" id="u6l1-w1">① Measure the box</button>
+      <button type="button" class="pill small" id="u6l1-w2">② Measure the drawer</button>
+      <button type="button" class="pill small" id="u6l1-w3">③ Lay the rod</button>
+    </div>
+    <div class="u6l1-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Is each diagonal a <b>leg</b> or the <b>hypotenuse</b>? How can you tell? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l1-wa"><div class="bk-ans">The <b>hypotenuse</b>: it is across from the right angle, and it is the longest side. The length and the width are the two <b>legs</b>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Box ①: does the 95&nbsp;cm umbrella fit lying flat, corner to corner? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l1-wa"><div class="bk-ans"><b>Yes.</b> <span class="tex">60^2+80^2=3600+6400=10\,000</span> and <span class="tex">\sqrt{10\,000}=100</span>: the diagonal is 100&nbsp;cm, 5&nbsp;cm to spare.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Drawer ②: how wide is the drawer? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l1-wa"><div class="bk-ans"><b>25&nbsp;cm.</b> The stick is the hypotenuse and the width is a leg, so subtract: <span class="tex">65^2-60^2=4225-3600=625</span>, and <span class="tex">\sqrt{625}=25</span>.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Trunk ③ is 120&nbsp;cm by 50&nbsp;cm. What is the <b>longest</b> thin rod that can lie flat on its floor? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 120 cm</div>
+        <div class="opt right"><b>B</b> 130 cm</div>
+        <div class="opt"><b>C</b> 170 cm</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B, 130&nbsp;cm.</b> <span class="tex">120^2+50^2=14\,400+2500=16\,900</span>, and <span class="tex">\sqrt{16\,900}=130</span>.<br>
+        <span class="muted"><b>C</b> adds the sides (<span class="tex">120+50</span>), but that is walking around the edges, not cutting across. <b>A</b> lies along the length: the diagonal buys just 10&nbsp;cm more.</span><br>
+        <b>Today’s lesson:</b> add the <b>squares</b> of the sides, not the sides.</div>
+    </div>
+    <p class="u6l1-social">TVs and phones are sold by their <b>diagonal</b>. Predict your notebook’s diagonal, then measure it!</p>
+  </div></div>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -257,7 +278,7 @@
     <div><b>Word problems:</b> find the right angle first, decide <b>hypotenuse or leg</b>, then add or subtract. Give exact answers (<span class="tex">4\sqrt5</span>) or decimals (<span class="tex">\approx8.94</span>) as asked, with units.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u6l1">
-    <div><div class="kicker">Your turn</div><b>Assignment 1 — Review: The Pythagorean Theorem</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 1 · Questions 9–15</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l2/">
     <div><div class="kicker">Next lesson</div><b>Lesson 2 — Measuring the Length of a Line Segment</b><div class="muted">Horizontal and vertical segments on a grid: count the squares, or subtract the coordinates.</div></div><span class="arrow">→</span>
@@ -270,7 +291,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u6l1.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u6l1', homeHref: '../../', title: '6.1 The Pythagorean Theorem' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

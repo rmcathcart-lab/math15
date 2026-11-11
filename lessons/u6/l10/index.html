@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u6l10.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u6l10">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: The Missing Corner">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Missing Corner</h2>
+  <p class="wf-rule">Where is the fourth corner?</p></div>
+  <div class="vw-q">Three corners of a <b>square</b> are <span class="tex">(1,\ 1)</span>, <span class="tex">(4,\ 2)</span> and <span class="tex">(3,\ 5)</span>.</div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>How do you get from one corner to the next?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><span class="tex">(0,\ 4)</span>. From (1, 1) to (4, 2) is 3 right, 1 up. The opposite side makes the same move, so go 3 left and 1 down from (3, 5).</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -45,58 +55,9 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Shape Detective" id="wu" style="--wf-side: 372px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Shape Detective: The Mystery Shape</h2>
-  <p class="wf-rule">Four corners, four sides. It <em>looks</em> like a rectangle… but is it? <b>Prove it.</b></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u6l10-wtop">
-      <div id="u6l10-shape"></div>
-      <div class="u6l10-suspects">
-        <div class="u6l10-sh">The suspects</div>
-        <div class="u6l10-sus u6l10-s1"><svg viewBox="0 0 40 26" aria-hidden="true"><path d="M3 23 L11 3 L37 3 L29 23 Z"/></svg><div><b>Parallelogram</b>opposite sides parallel</div></div>
-        <div class="u6l10-sarr">↙ ↘</div>
-        <div class="u6l10-srow">
-          <div class="u6l10-sus"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2 L27 15 L15 28 L3 15 Z"/></svg><div><b>Rhombus</b>+ all 4 sides equal</div></div>
-          <div class="u6l10-sus"><svg viewBox="0 0 36 26" aria-hidden="true"><path d="M3 3 H33 V23 H3 Z"/><path class="rm" d="M3 17 H9 V23"/></svg><div><b>Rectangle</b>+ 4 square corners</div></div>
-        </div>
-        <div class="u6l10-sarr">↘ ↙</div>
-        <div class="u6l10-sus u6l10-s1"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M3 3 H25 V25 H3 Z"/><path class="rm" d="M3 19 H9 V25"/></svg><div><b>Square</b><b class="u6l10-both">both</b> of the above!</div></div>
-      </div>
-    </div>
-    <div class="u6l10-wbtns">
-      <button type="button" class="pill" id="u6l10-wslopes">Show the slopes</button>
-      <button type="button" class="pill" id="u6l10-wcase2">Case 2: slide C and D up</button>
-    </div>
-    <div class="bk-wq u6l10-case2"><div class="q-line"><div class="q-num bonus">2</div><div><b>Case 2:</b> slide <b>C</b> and <b>D</b> up <b>one square</b> each. Vote with a neighbour: what is it now? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-      <div class="u6l10-wa"><div class="bk-ans">A <b>square</b>, tilted so it looks like a diamond! <span class="tex">C(8,\ 9)</span>, <span class="tex">D(1,\ 8)</span>: now <span class="tex">AD</span> and <span class="tex">BC</span> have slope <span class="tex">-7</span>, and <span class="tex">\tfrac17\times(-7)=-1</span> (square corners). All four sides are <span class="tex">\sqrt{50}</span>.</div></div></div>
-  </div><div class="wf-side">
-    <div class="u6l10-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Coordinates of <b>A</b>, <b>B</b>, <b>C</b> and <b>D</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l10-wa"><div class="bk-ans"><span class="tex">A(2,\ 1)</span>, <span class="tex">B(9,\ 2)</span>, <span class="tex">C(8,\ 8)</span>, <span class="tex">D(1,\ 7)</span></div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Rise / run of <b>AB</b>? Of <b>DC</b>? Parallel? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l10-wa"><div class="bk-ans">Both <span class="tex">\tfrac17</span> (up 1, across 7). Equal slopes: <b>parallel</b>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Same for the tall sides <b>AD</b> and <b>BC</b>. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l10-wa"><div class="bk-ans">Both <span class="tex">\tfrac{6}{-1}=-6</span>. Also parallel, so it is <b>at least</b> a parallelogram.</div></div></div>
-    </div>
-    <div class="poll wf-poll u6l10-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Which suspect is it? Give the <em>most exact</em> name. <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> Square</div>
-        <div class="opt"><b>B</b> Rectangle</div>
-        <div class="opt"><b>C</b> Rhombus</div>
-        <div class="opt right"><b>D</b> Parallelogram</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>D, a parallelogram.</b> <span class="tex">\tfrac17\times(-6)=-\tfrac67\ne-1</span>: the corner is about <span class="tex">91^\circ</span>, not square. And <span class="tex">AB=\sqrt{50}</span> but <span class="tex">AD=\sqrt{37}</span>: not all equal. “Looks square-cornered” is not proof!</div>
-    </div>
-  </div></div>
-</section>
 
-<section class="card" data-ink="wuex" data-section="Warm-up check: which suspect?">
-  <h3 class="sub">Warm-up check: which suspect? Slopes first, then lengths</h3>
-  <p>To name a four-sided shape, find the <b>slope</b> and the <b>length</b> of every side. Then ask three questions in order: opposite sides parallel? Corners square? All sides equal?</p>
-  <div class="explainer" data-explainer="whichTool"></div>
-</section>
+
+
 
 <!-- ================= formula summary ================= -->
 <section class="card" data-ink="ref" data-section="Formula Summary">
@@ -129,7 +90,7 @@
 <section class="card" data-ink="s1" data-section="1. The Pythagorean Theorem">
   <div class="sec-h"><span class="badge">1</span><h2>The Pythagorean Theorem</h2></div>
   <div class="def">Legs <span class="tex">a</span>, <span class="tex">b</span> and hypotenuse <span class="tex">c</span> satisfy <span class="tex">a^2+b^2=c^2</span>: <b>add</b> the squares to find <span class="tex">c</span>, <b>subtract</b> to find a leg.</div>
-  <div class="explainer" data-explainer="pyth"></div>
+  <div data-extra><div class="explainer" data-explainer="pyth"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -174,7 +135,7 @@
 <section class="card" data-ink="s3" data-section="3. The Distance Formula">
   <div class="sec-h"><span class="badge">3</span><h2>The Distance Formula</h2></div>
   <div class="def">For a diagonal segment, the <b class="u6l10-am">run</b> and <b class="u6l10-pu">rise</b> are the legs of a right triangle, so <span class="tex">d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}</span>.</div>
-  <div class="explainer" data-explainer="lengths"></div>
+  <div data-extra><div class="explainer" data-explainer="lengths"></div></div>
 </section>
 
 <section class="card example" data-ink="ex3" data-section="Example 3">
@@ -193,11 +154,20 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–8">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 10 · Questions 1–8</h2>
+  <p class="pr-t">Pythagoras, segment lengths and the distance formula.</p>
+  <div class="pr-chips n2"><span><b>1–5</b>Pythagorean theorem and segment lengths</span><span><b>6–8</b>The distance formula</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 6.</span><a class="pill" href="../../../#/lesson/u6l10">Open the Practice site</a></div>
+</section>
+
 <!-- ================= 4. Midpoint ================= -->
 <section class="card" data-ink="s4" data-section="4. The Midpoint Formula">
   <div class="sec-h"><span class="badge">4</span><h2>The Midpoint Formula</h2></div>
   <div class="def">The midpoint is the <b>average</b> of the <span class="tex">x</span>’s and the average of the <span class="tex">y</span>’s: <span class="tex">M\left(\dfrac{x_1+x_2}{2},\ \dfrac{y_1+y_2}{2}\right)</span>. On the grid: walk <b>half the run</b> and <b>half the rise</b>.</div>
-  <div class="explainer" data-explainer="midpoint"></div>
+  <div data-extra><div class="explainer" data-explainer="midpoint"></div></div>
 </section>
 
 <section class="card example" data-ink="ex4" data-section="Example 4">
@@ -250,7 +220,7 @@
 <section class="card" data-ink="s7" data-section="7. Types of Slope">
   <div class="sec-h"><span class="badge">7</span><h2>Types of Slope</h2></div>
   <div class="def">Rising <span class="tex">\Rightarrow</span> <b class="u6l10-ok">positive</b>; falling <span class="tex">\Rightarrow</span> <b class="u6l10-no">negative</b>; horizontal <span class="tex">\Rightarrow</span> <b>zero</b>; vertical <span class="tex">\Rightarrow</span> <b>undefined</b> (zero and undefined are <b>not</b> the same).</div>
-  <div class="explainer" data-explainer="slopes"></div>
+  <div data-extra><div class="explainer" data-explainer="slopes"></div></div>
 </section>
 
 <section class="card example" data-ink="ex7" data-section="Example 7">
@@ -269,7 +239,7 @@
 <section class="card" data-ink="s8" data-section="8. Collinearity">
   <div class="sec-h"><span class="badge">8</span><h2>Collinearity</h2></div>
   <div class="def">Three points lie on one straight line exactly when the two slopes through the <b>shared point</b> match: <span class="tex">m_{AB}=m_{BC}</span>.</div>
-  <div class="explainer" data-explainer="collinear"></div>
+  <div data-extra><div class="explainer" data-explainer="collinear"></div></div>
 </section>
 
 <section class="card example" data-ink="ex8" data-section="Example 8">
@@ -288,7 +258,7 @@
 <section class="card" data-ink="s9" data-section="9. Parallel and Perpendicular Lines">
   <div class="sec-h"><span class="badge">9</span><h2>Parallel and Perpendicular Lines</h2></div>
   <div class="def"><b class="u6l10-ok">Parallel</b> <span class="tex">\Rightarrow</span> equal slopes; <b class="u6l10-no">perpendicular</b> <span class="tex">\Rightarrow</span> the slopes multiply to <span class="tex">-1</span> (negative reciprocals: flip it and change the sign).</div>
-  <div class="explainer" data-explainer="pairs"></div>
+  <div data-extra><div class="explainer" data-explainer="pairs"></div></div>
 </section>
 
 <section class="card example" data-ink="ex9" data-section="Example 9">
@@ -304,8 +274,8 @@
 <!-- ================= 10. Mixed review ================= -->
 <section class="card" data-ink="s10" data-section="10. Mixed Review">
   <div class="sec-h"><span class="badge">10</span><h2>Mixed Review: Putting It All Together</h2></div>
-  <p>Each question below chains several skills together: exactly what a test question looks like. <span class="muted">(Check Challenge 2 with the chip in the warm-up check explainer.)</span></p>
-  <div class="explainer" data-explainer="triangle"></div>
+  <p>Each question below chains several skills together: exactly what a test question looks like. <span class="muted" data-extra>(Check Challenge 2 with the chip in the “which suspect?” explainer near the end.)</span></p>
+  <div data-extra><div class="explainer" data-explainer="triangle"></div></div>
 </section>
 
 <section class="card example" data-ink="ch1" data-section="Challenge 1">
@@ -343,10 +313,63 @@
   <button class="more" data-more="ch3-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s10b" data-section="Challenge 3 check">
+<section data-extra class="card" data-ink="s10b" data-section="Challenge 3 check">
   <h3 class="sub">Challenge 3 check: slide <span class="tex">K</span> until the segments are parallel</h3>
   <p><span class="tex">K</span> must stay on the vertical line <span class="tex">x=2</span>. Only one height makes <span class="tex">JK</span> point the same way as <span class="tex">LM</span>.</p>
   <div class="explainer" data-explainer="dialQ"></div>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Shape Detective" id="wu" style="--wf-side: 372px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Shape Detective: The Mystery Shape</h2>
+  <p class="wf-rule">Four corners, four sides. It <em>looks</em> like a rectangle… but is it? <b>Prove it.</b></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u6l10-wtop">
+      <div id="u6l10-shape"></div>
+      <div class="u6l10-suspects">
+        <div class="u6l10-sh">The suspects</div>
+        <div class="u6l10-sus u6l10-s1"><svg viewBox="0 0 40 26" aria-hidden="true"><path d="M3 23 L11 3 L37 3 L29 23 Z"/></svg><div><b>Parallelogram</b>opposite sides parallel</div></div>
+        <div class="u6l10-sarr">↙ ↘</div>
+        <div class="u6l10-srow">
+          <div class="u6l10-sus"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2 L27 15 L15 28 L3 15 Z"/></svg><div><b>Rhombus</b>+ all 4 sides equal</div></div>
+          <div class="u6l10-sus"><svg viewBox="0 0 36 26" aria-hidden="true"><path d="M3 3 H33 V23 H3 Z"/><path class="rm" d="M3 17 H9 V23"/></svg><div><b>Rectangle</b>+ 4 square corners</div></div>
+        </div>
+        <div class="u6l10-sarr">↘ ↙</div>
+        <div class="u6l10-sus u6l10-s1"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M3 3 H25 V25 H3 Z"/><path class="rm" d="M3 19 H9 V25"/></svg><div><b>Square</b><b class="u6l10-both">both</b> of the above!</div></div>
+      </div>
+    </div>
+    <div class="u6l10-wbtns">
+      <button type="button" class="pill" id="u6l10-wslopes">Show the slopes</button>
+      <button type="button" class="pill" id="u6l10-wcase2">Case 2: slide C and D up</button>
+    </div>
+    <div class="bk-wq u6l10-case2"><div class="q-line"><div class="q-num bonus">2</div><div><b>Case 2:</b> slide <b>C</b> and <b>D</b> up <b>one square</b> each. Vote with a neighbour: what is it now? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="u6l10-wa"><div class="bk-ans">A <b>square</b>, tilted so it looks like a diamond! <span class="tex">C(8,\ 9)</span>, <span class="tex">D(1,\ 8)</span>: now <span class="tex">AD</span> and <span class="tex">BC</span> have slope <span class="tex">-7</span>, and <span class="tex">\tfrac17\times(-7)=-1</span> (square corners). All four sides are <span class="tex">\sqrt{50}</span>.</div></div></div>
+  </div><div class="wf-side">
+    <div class="u6l10-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Coordinates of <b>A</b>, <b>B</b>, <b>C</b> and <b>D</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l10-wa"><div class="bk-ans"><span class="tex">A(2,\ 1)</span>, <span class="tex">B(9,\ 2)</span>, <span class="tex">C(8,\ 8)</span>, <span class="tex">D(1,\ 7)</span></div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Rise / run of <b>AB</b>? Of <b>DC</b>? Parallel? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l10-wa"><div class="bk-ans">Both <span class="tex">\tfrac17</span> (up 1, across 7). Equal slopes: <b>parallel</b>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Same for the tall sides <b>AD</b> and <b>BC</b>. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l10-wa"><div class="bk-ans">Both <span class="tex">\tfrac{6}{-1}=-6</span>. Also parallel, so it is <b>at least</b> a parallelogram.</div></div></div>
+    </div>
+    <div class="poll wf-poll u6l10-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Which suspect is it? Give the <em>most exact</em> name. <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Square</div>
+        <div class="opt"><b>B</b> Rectangle</div>
+        <div class="opt"><b>C</b> Rhombus</div>
+        <div class="opt right"><b>D</b> Parallelogram</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D, a parallelogram.</b> <span class="tex">\tfrac17\times(-6)=-\tfrac67\ne-1</span>: the corner is about <span class="tex">91^\circ</span>, not square. And <span class="tex">AB=\sqrt{50}</span> but <span class="tex">AD=\sqrt{37}</span>: not all equal. “Looks square-cornered” is not proof!</div>
+    </div>
+  </div></div>
+</section>
+
+<section data-extra class="card" data-ink="wuex" data-section="Warm-up check: which suspect?">
+  <h3 class="sub">Warm-up check: which suspect? Slopes first, then lengths</h3>
+  <p>To name a four-sided shape, find the <b>slope</b> and the <b>length</b> of every side. Then ask three questions in order: opposite sides parallel? Corners square? All sides equal?</p>
+  <div class="explainer" data-explainer="whichTool"></div>
 </section>
 
 <!-- ================= summary ================= -->
@@ -359,7 +382,7 @@
     <div><b>Compare slopes:</b> collinear <span class="tex">m_{AB}=m_{BC}</span>; parallel <span class="tex">m_1=m_2</span>; perpendicular <span class="tex">m_1\times m_2=-1</span>. To name a shape: slopes first, then lengths.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u6l10">
-    <div><div class="kicker">Your turn</div><b>Assignment 10 — Unit Review: Coordinate Geometry</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 10 · Questions 9–26</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <div class="u6l10-review">
     <div class="u6l10-review-h"><span class="kicker">Up next</span><b>Unit 6 test.</b> <span class="muted">Shaky on an idea today? Go back to its lesson.</span></div>
@@ -384,7 +407,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u6l10.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u6l10', homeHref: '../../', title: '6.10 Unit 6 Review' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

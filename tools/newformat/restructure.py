@@ -32,8 +32,8 @@ def run(key):
         s = s[:i] + s[i:head_end].replace('<section class="', '<section data-extra class="', 1) + s[head_end:]
     # explainers: wrap (optionally with the lead-in paragraph just before)
     for name in sp.get('extra_expl', []) + sp.get('extra_with_prev', []):
-        tagx = f'<div class="explainer" data-explainer="{name}"></div>'; assert s.count(tagx) == 1, (key, name)
-        i = s.index(tagx); j = i + len(tagx)
+        ms = list(re.finditer(r'<div class="explainer[^"]*"[^>]*data-explainer="%s"[^>]*></div>' % re.escape(name), s)); assert len(ms) == 1, (key, name, len(ms))
+        i, j = ms[0].start(), ms[0].end()
         if name in sp.get('extra_with_prev', []):
             before = s[:i].rstrip(); assert before.endswith('</p>'), (key, name, before[-80:])
             i = before.rindex('<p')

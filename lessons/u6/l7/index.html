@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u6l7.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u6l7">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: The Walk">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Walk</h2>
+  <p class="wf-rule">You walk each path from <b>left to right</b>. Which one is impossible to walk?</p></div>
+  <div class="vw-tiles" style="--n:4"><div><b>A</b><svg viewBox="0 0 120 90" style="width:150px;height:auto"><line x1="15" y1="75" x2="105" y2="15" stroke="#2b55a0" stroke-width="7" stroke-linecap="round"/></svg></div><div><b>B</b><svg viewBox="0 0 120 90" style="width:150px;height:auto"><line x1="15" y1="15" x2="105" y2="75" stroke="#2b55a0" stroke-width="7" stroke-linecap="round"/></svg></div><div><b>C</b><svg viewBox="0 0 120 90" style="width:150px;height:auto"><line x1="15" y1="45" x2="105" y2="45" stroke="#2b55a0" stroke-width="7" stroke-linecap="round"/></svg></div><div><b>D</b><svg viewBox="0 0 120 90" style="width:150px;height:auto"><line x1="60" y1="80" x2="60" y2="10" stroke="#2b55a0" stroke-width="7" stroke-linecap="round"/></svg></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>How would you describe each of the other three?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>D.</b> It is a wall: all up and no across. A is uphill, B is downhill and C is flat.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,41 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: The Runner" id="wu" style="--wf-side: 372px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Level 1: The Runner</h2>
-  <p class="wf-rule">Your runner always goes <b>left to right</b>. Every piece of ground is a straight line. <span class="muted">Tap a letter to count that piece.</span></p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u6l7-level" id="u6l7-level"></div>
-    <div class="u6l7-lvbtns">
-      <button type="button" class="pill" id="u6l7-run">Run!</button>
-      <button type="button" class="pill" id="u6l7-lvreset">Start over</button>
-      <span class="u6l7-lvread" id="u6l7-lvread"></span>
-    </div>
-    <div class="u6l7-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Which pieces go <b>uphill</b>? Which go <b>downhill</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l7-wa"><div class="bk-ans">Uphill: <b>B</b> and <b>H</b>. Downhill: <b>E</b> and <b>G</b>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Sort all 8 pieces into 4 groups: uphill / downhill / flat / wall. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l7-wa"><div class="bk-ans">Uphill <b>B, H</b> · Downhill <b>E, G</b> · Flat <b>A, D</b> · Wall <b>C, F</b>. Two of each!</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>On flat piece <b>D</b>, count the blocks. Up: ___ Across: ___ <span class="tex">\dfrac{\text{up}}{\text{across}}=\,?</span> <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l7-wa"><div class="bk-ans">Up <span class="tex">0</span>, across <span class="tex">3</span>: <span class="tex">\tfrac{0}{3}=0</span>. Flat ground has a perfectly ordinary answer: <b>zero</b>.</div></div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="poll wf-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Wall <b>C</b> goes up <b>3</b> blocks and across ___ blocks. So what is <span class="tex">\tfrac{\text{up}}{\text{across}}</span> for the wall? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> 0</div>
-        <div class="opt"><b>B</b> 3</div>
-        <div class="opt"><b>C</b> infinity</div>
-        <div class="opt right"><b>D</b> there is no answer at all</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>D, there is no answer.</b> Across is <span class="tex">0</span>, so we would need <span class="tex">\tfrac{3}{0}</span>.<br>
-        Division undoes multiplication: <span class="tex">\tfrac{6}{3}=2</span> because <span class="tex">2\times3=6</span>. For <span class="tex">\tfrac{3}{0}</span> we need a number that <span class="tex">\times\,0</span> gives <span class="tex">3</span>, but anything <span class="tex">\times\,0</span> is <span class="tex">0</span>. No such number exists, not even “infinity”.<br>
-        <span class="muted"><b>A</b> is flat piece D’s answer, not the wall’s. <b>C</b> is a nice instinct (the wall is super steep), but infinity isn’t a number you can divide your way to.</span></div>
-    </div>
-  </div></div>
-  <p class="u6l7-social">Arm game: I call a letter. Everyone make that piece’s shape with one arm!</p>
-</section>
+
 
 <!-- ================= 1. Positive and negative ================= -->
 <section class="card" data-ink="s1" data-section="1. Positive and Negative Slope">
@@ -125,7 +101,7 @@
     <div><b>Negatives on the calculator.</b> Put brackets around the top and the bottom, and use <kbd>(−)</kbd> for a negative number: <span class="keys"><kbd>(</kbd><kbd>(−)</kbd><kbd>3</kbd><kbd>−</kbd><kbd>3</kbd><kbd>)</kbd><kbd>÷</kbd><kbd>(</kbd><kbd>2</kbd><kbd>−</kbd><kbd>(−)</kbd><kbd>4</kbd><kbd>)</kbd><kbd>ENTER</kbd></span> gives <span class="tex">-1</span>.</div>
     <div class="pill-col"><button class="pill" data-keys="( (−) 3 − 3 ) ÷ ( 2 − (−) 4 ) =">Show EF</button><button class="pill" data-keys="( 3 − (−) 3 ) ÷ ( 2 − (−) 4 ) =">Show CD</button></div>
   </div>
-  <div class="explainer u6l7-exgap" data-explainer="mirror"></div>
+  <div data-extra><div class="explainer u6l7-exgap" data-explainer="mirror"></div></div>
   <div class="space" id="ex2-space"></div>
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
@@ -143,7 +119,7 @@
   <div class="explainer" data-explainer="zeroCase"></div>
 </section>
 
-<section class="card" data-ink="s2b" data-section="2. Why can't we divide by 0?">
+<section data-extra class="card" data-ink="s2b" data-section="2. Why can't we divide by 0?">
   <h3 class="sub">Why can’t we divide by 0?</h3>
   <p>Division undoes multiplication: <span class="tex">6\div3=2</span> because <span class="tex">2\times3=6</span>. So to divide by <span class="tex">0</span>, we need a number that gives an answer when it is multiplied by <span class="tex">0</span>.</p>
   <div class="explainer" data-explainer="divZero"></div>
@@ -184,7 +160,16 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s2c" data-section="Examples 3 and 4: check">
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–5">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 7 · Questions 1–5</h2>
+  <p class="pr-t">One type of slope at a time.</p>
+  <div class="pr-chips n1"><span><b>1–5</b>Vocabulary and one type at a time</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 4.</span><a class="pill" href="../../../#/lesson/u6l7">Open the Practice site</a></div>
+</section>
+
+<section data-extra class="card" data-ink="s2c" data-section="Examples 3 and 4: check">
   <h3 class="sub">Any two points agree</h3>
   <p>Check Examples 3 and 4 here. Then slide a point along each line: on a horizontal line the <b class="u6l7-c-rise">rise</b> is stuck at <span class="tex">0</span>; on a vertical line the <b class="u6l7-c-run">run</b> is stuck at <span class="tex">0</span>.</p>
   <div class="explainer" data-explainer="flatWall"></div>
@@ -197,7 +182,7 @@
 <section class="card" data-ink="s3" data-section="3. Mixed Practice">
   <div class="sec-h"><span class="badge">3</span><h2>Mixed Practice: All Four Types on One Grid</h2></div>
   <p>On a test all four types arrive on one grid. So <b>read each segment’s tilt first</b> (left to right), then <b>confirm with the formula</b>.</p>
-  <div class="explainer" data-explainer="walk"></div>
+  <div data-extra><div class="explainer" data-explainer="walk"></div></div>
   <div class="def u6l7-kinds-box"><b>The four types of slope</b> <span class="muted">(always read a graph from left to right)</span>
     <div class="u6l7-kinds">
       <div class="u6l7-kind u6l7-k-pos"><div class="u6l7-kfig" data-kfig="pos"></div><b>Positive</b><span class="u6l7-kt">rises; rise and run have the same sign</span></div>
@@ -236,9 +221,45 @@
     </div>
     <div class="part"><div class="pl">(b) One of these four segments has no slope number at all. Which one, and what is its equation?</div><div class="work" style="--h:110px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b><span class="tex">TU</span></b>, the vertical segment. Its run is <span class="tex">0</span>, so its slope is <b>undefined</b>: there is no number for its slope. Every point on it has <span class="tex">x</span>-coordinate 5, so its equation is <span class="tex">\boldsymbol{x=5}</span>.</div></div></div>
   </div>
-  <div class="explainer u6l7-exgap" data-explainer="ex5"></div>
+  <div data-extra><div class="explainer u6l7-exgap" data-explainer="ex5"></div></div>
   <div class="space" id="ex5-space"></div>
   <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: The Runner" id="wu" style="--wf-side: 372px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Level 1: The Runner</h2>
+  <p class="wf-rule">Your runner always goes <b>left to right</b>. Every piece of ground is a straight line. <span class="muted">Tap a letter to count that piece.</span></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u6l7-level" id="u6l7-level"></div>
+    <div class="u6l7-lvbtns">
+      <button type="button" class="pill" id="u6l7-run">Run!</button>
+      <button type="button" class="pill" id="u6l7-lvreset">Start over</button>
+      <span class="u6l7-lvread" id="u6l7-lvread"></span>
+    </div>
+    <div class="u6l7-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Which pieces go <b>uphill</b>? Which go <b>downhill</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l7-wa"><div class="bk-ans">Uphill: <b>B</b> and <b>H</b>. Downhill: <b>E</b> and <b>G</b>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Sort all 8 pieces into 4 groups: uphill / downhill / flat / wall. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l7-wa"><div class="bk-ans">Uphill <b>B, H</b> · Downhill <b>E, G</b> · Flat <b>A, D</b> · Wall <b>C, F</b>. Two of each!</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>On flat piece <b>D</b>, count the blocks. Up: ___ Across: ___ <span class="tex">\dfrac{\text{up}}{\text{across}}=\,?</span> <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l7-wa"><div class="bk-ans">Up <span class="tex">0</span>, across <span class="tex">3</span>: <span class="tex">\tfrac{0}{3}=0</span>. Flat ground has a perfectly ordinary answer: <b>zero</b>.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="poll wf-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Wall <b>C</b> goes up <b>3</b> blocks and across ___ blocks. So what is <span class="tex">\tfrac{\text{up}}{\text{across}}</span> for the wall? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> 0</div>
+        <div class="opt"><b>B</b> 3</div>
+        <div class="opt"><b>C</b> infinity</div>
+        <div class="opt right"><b>D</b> there is no answer at all</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D, there is no answer.</b> Across is <span class="tex">0</span>, so we would need <span class="tex">\tfrac{3}{0}</span>.<br>
+        Division undoes multiplication: <span class="tex">\tfrac{6}{3}=2</span> because <span class="tex">2\times3=6</span>. For <span class="tex">\tfrac{3}{0}</span> we need a number that <span class="tex">\times\,0</span> gives <span class="tex">3</span>, but anything <span class="tex">\times\,0</span> is <span class="tex">0</span>. No such number exists, not even “infinity”.<br>
+        <span class="muted"><b>A</b> is flat piece D’s answer, not the wall’s. <b>C</b> is a nice instinct (the wall is super steep), but infinity isn’t a number you can divide your way to.</span></div>
+    </div>
+  </div></div>
+  <p class="u6l7-social">Arm game: I call a letter. Everyone make that piece’s shape with one arm!</p>
 </section>
 
 <!-- ================= summary ================= -->
@@ -251,7 +272,7 @@
     <div><b>Vertical: undefined.</b> The run is always <span class="tex">0</span>, and we can’t divide by <span class="tex">0</span>. Equation <span class="tex">x=k</span>. Zero is an answer; undefined means <b>no answer</b>.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u6l7">
-    <div><div class="kicker">Your turn</div><b>Assignment 7 — Types of Slope: Positive, Negative, Zero, and Undefined</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 7 · Questions 6–15</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l8/">
     <div><div class="kicker">Next lesson</div><b>Lesson 8 — Determining Collinearity Using Slope</b><div class="muted">Do three points lie on one straight line? Compare two slopes and find out.</div></div><span class="arrow">→</span>
@@ -264,7 +285,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u6l7.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u6l7', homeHref: '../../', title: '6.7 Types of Slope' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

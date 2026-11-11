@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unit Review: Coordinate Geometry · Math 15 6.10</title>
+<meta name="description" content="Math 15 Unit 6 Lesson 10: the unit review. The Pythagorean theorem, horizontal and vertical lengths, the distance formula, the midpoint formula and a missing endpoint, slope and the types of slope, collinearity, parallel and perpendicular lines, then mixed challenges for the Unit 6 test. Write on it with an Apple Pencil.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="15 Lessons">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#1e3a6e">
+<link rel="manifest" href="../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../assets/icon-180.png">
+<link rel="icon" href="../../assets/icon-192.png">
+<link rel="stylesheet" href="../../../assets/katex/katex.min.css">
+<link rel="stylesheet" href="../../css/site.css">
+<link rel="stylesheet" href="../../css/calc.css">
+<link rel="stylesheet" href="../../css/lessons/u6l10.css">
+<script src="../../../js/ns.js"></script>
+<script src="../../../assets/katex/katex.min.js"></script>
+<script src="../../../js/calc.js"></script>
+<script src="../../js/vendor/qrcode.js"></script>
+</head>
+<body>
+<main class="lesson screen u6l10">
+
+<!-- ================= title ================= -->
+<section class="card hero" data-ink="hero" data-section="Start">
+  <div class="kicker">Math 15 · Unit 6 Characteristics of Linear Relations · Lesson 10</div>
+  <h1>Unit Review: Coordinate Geometry</h1>
+  <p class="lede">One reminder and a quick check for each of the nine ideas, then mixed challenges for the test. One big idea ties the unit together: every slanted segment hides a <b>right triangle</b>. Its <b class="u6l10-am">run</b> and <b class="u6l10-pu">rise</b> give you the <b>length</b> (Pythagoras), half of them give the <b>midpoint</b>, and <span class="tex">\tfrac{\text{rise}}{\text{run}}</span> gives the <b>slope</b>.</p>
+  <div class="goals">
+    <div class="goals-h">I can…</div>
+    <ul>
+      <li>use the <b>Pythagorean theorem</b> to find a missing side of a right triangle</li>
+      <li>find the length of a horizontal or vertical segment, and use the <b>distance formula</b> for a diagonal one</li>
+      <li>find a <b>midpoint</b>, and work backwards to a <b>missing endpoint</b></li>
+      <li>calculate a <b>slope</b> and tell whether it is positive, negative, zero or undefined</li>
+      <li>use slopes to test for <b>collinear</b> points, and for <b>parallel</b> and <b>perpendicular</b> segments</li>
+      <li>chain these tools together to name a triangle or a quadrilateral</li>
+    </ul>
+  </div>
+  <div class="outcome"><b>RF3</b> Demonstrate an understanding of slope with respect to: rise and run; line segments and lines; rate of change; parallel lines; perpendicular lines.</div>
+</section>
+
+<!-- ================= warm-up ================= -->
+<section class="card warm wf" data-ink="warm" data-section="Warm-up: Shape Detective" id="wu" style="--wf-side: 372px">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Shape Detective: The Mystery Shape</h2>
+  <p class="wf-rule">Four corners, four sides. It <em>looks</em> like a rectangle… but is it? <b>Prove it.</b></p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u6l10-wtop">
+      <div id="u6l10-shape"></div>
+      <div class="u6l10-suspects">
+        <div class="u6l10-sh">The suspects</div>
+        <div class="u6l10-sus u6l10-s1"><svg viewBox="0 0 40 26" aria-hidden="true"><path d="M3 23 L11 3 L37 3 L29 23 Z"/></svg><div><b>Parallelogram</b>opposite sides parallel</div></div>
+        <div class="u6l10-sarr">↙ ↘</div>
+        <div class="u6l10-srow">
+          <div class="u6l10-sus"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 2 L27 15 L15 28 L3 15 Z"/></svg><div><b>Rhombus</b>+ all 4 sides equal</div></div>
+          <div class="u6l10-sus"><svg viewBox="0 0 36 26" aria-hidden="true"><path d="M3 3 H33 V23 H3 Z"/><path class="rm" d="M3 17 H9 V23"/></svg><div><b>Rectangle</b>+ 4 square corners</div></div>
+        </div>
+        <div class="u6l10-sarr">↘ ↙</div>
+        <div class="u6l10-sus u6l10-s1"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M3 3 H25 V25 H3 Z"/><path class="rm" d="M3 19 H9 V25"/></svg><div><b>Square</b><b class="u6l10-both">both</b> of the above!</div></div>
+      </div>
+    </div>
+    <div class="u6l10-wbtns">
+      <button type="button" class="pill" id="u6l10-wslopes">Show the slopes</button>
+      <button type="button" class="pill" id="u6l10-wcase2">Case 2: slide C and D up</button>
+    </div>
+    <div class="bk-wq u6l10-case2"><div class="q-line"><div class="q-num bonus">2</div><div><b>Case 2:</b> slide <b>C</b> and <b>D</b> up <b>one square</b> each. Vote with a neighbour: what is it now? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+      <div class="u6l10-wa"><div class="bk-ans">A <b>square</b>, tilted so it looks like a diamond! <span class="tex">C(8,\ 9)</span>, <span class="tex">D(1,\ 8)</span>: now <span class="tex">AD</span> and <span class="tex">BC</span> have slope <span class="tex">-7</span>, and <span class="tex">\tfrac17\times(-7)=-1</span> (square corners). All four sides are <span class="tex">\sqrt{50}</span>.</div></div></div>
+  </div><div class="wf-side">
+    <div class="u6l10-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Coordinates of <b>A</b>, <b>B</b>, <b>C</b> and <b>D</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l10-wa"><div class="bk-ans"><span class="tex">A(2,\ 1)</span>, <span class="tex">B(9,\ 2)</span>, <span class="tex">C(8,\ 8)</span>, <span class="tex">D(1,\ 7)</span></div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Rise / run of <b>AB</b>? Of <b>DC</b>? Parallel? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l10-wa"><div class="bk-ans">Both <span class="tex">\tfrac17</span> (up 1, across 7). Equal slopes: <b>parallel</b>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Same for the tall sides <b>AD</b> and <b>BC</b>. <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l10-wa"><div class="bk-ans">Both <span class="tex">\tfrac{6}{-1}=-6</span>. Also parallel, so it is <b>at least</b> a parallelogram.</div></div></div>
+    </div>
+    <div class="poll wf-poll u6l10-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Which suspect is it? Give the <em>most exact</em> name. <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Square</div>
+        <div class="opt"><b>B</b> Rectangle</div>
+        <div class="opt"><b>C</b> Rhombus</div>
+        <div class="opt right"><b>D</b> Parallelogram</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D, a parallelogram.</b> <span class="tex">\tfrac17\times(-6)=-\tfrac67\ne-1</span>: the corner is about <span class="tex">91^\circ</span>, not square. And <span class="tex">AB=\sqrt{50}</span> but <span class="tex">AD=\sqrt{37}</span>: not all equal. “Looks square-cornered” is not proof!</div>
+    </div>
+  </div></div>
+</section>
+
+<section class="card" data-ink="wuex" data-section="Warm-up check: which suspect?">
+  <h3 class="sub">Warm-up check: which suspect? Slopes first, then lengths</h3>
+  <p>To name a four-sided shape, find the <b>slope</b> and the <b>length</b> of every side. Then ask three questions in order: opposite sides parallel? Corners square? All sides equal?</p>
+  <div class="explainer" data-explainer="whichTool"></div>
+</section>
+
+<!-- ================= formula summary ================= -->
+<section class="card" data-ink="ref" data-section="Formula Summary">
+  <div class="sec-h"><span class="badge">★</span><h2>Formula Summary</h2></div>
+  <p>Everything in Unit 6 comes from these. Learn the table, then the questions are just careful substitution.</p>
+  <div class="u6l10-ref">
+    <div class="u6l10-rc"><div class="u6l10-rfig" data-mini="pyth"></div><div><div class="u6l10-rh"><b>Pythagoras</b><small>6.1</small></div><span class="tex">a^2+b^2=c^2</span> <span class="muted">(<span class="tex">c</span> = hypotenuse)</span></div></div>
+    <div class="u6l10-rc"><div class="u6l10-rfig" data-mini="slope"></div><div><div class="u6l10-rh"><b>Slope</b><small>6.6</small></div><span class="tex">m=\dfrac{\text{rise}}{\text{run}}=\dfrac{y_2-y_1}{x_2-x_1}</span></div></div>
+    <div class="u6l10-rc"><div class="u6l10-rfig" data-mini="hv"></div><div><div class="u6l10-rh"><b>Horizontal / vertical</b><small>6.2</small></div>length <span class="tex">=|x_2-x_1|</span> / <span class="tex">|y_2-y_1|</span></div></div>
+    <div class="u6l10-rc"><div class="u6l10-rfig" data-mini="types"></div><div><div class="u6l10-rh"><b>Types of slope</b><small>6.7</small></div><b class="u6l10-ok">+</b> rises, <b class="u6l10-no">−</b> falls, <span class="tex">0</span> horizontal, <b>undefined</b> vertical</div></div>
+    <div class="u6l10-rc"><div class="u6l10-rfig" data-mini="dist"></div><div><div class="u6l10-rh"><b>Distance</b><small>6.3</small></div><span class="tex">d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}</span></div></div>
+    <div class="u6l10-rc"><div class="u6l10-rfig" data-mini="col"></div><div><div class="u6l10-rh"><b>Collinear</b><small>6.8</small></div><span class="tex">m_{AB}=m_{BC}</span> <span class="muted">(shared point <span class="tex">B</span>)</span></div></div>
+    <div class="u6l10-rc"><div class="u6l10-rfig" data-mini="mid"></div><div><div class="u6l10-rh"><b>Midpoint</b><small>6.4</small></div><span class="tex">M\left(\dfrac{x_1+x_2}{2},\ \dfrac{y_1+y_2}{2}\right)</span></div></div>
+    <div class="u6l10-rc"><div class="u6l10-rfig" data-mini="par"></div><div><div class="u6l10-rh"><b>Parallel</b><small>6.9</small></div><span class="tex">m_1=m_2</span></div></div>
+    <div class="u6l10-rc"><div class="u6l10-rfig" data-mini="end"></div><div><div class="u6l10-rh"><b>Missing endpoint</b><small>6.5</small></div><span class="tex">x_2=2x_M-x_1</span>, &nbsp;<span class="tex">y_2=2y_M-y_1</span></div></div>
+    <div class="u6l10-rc"><div class="u6l10-rfig" data-mini="perp"></div><div><div class="u6l10-rh"><b>Perpendicular</b><small>6.9</small></div><span class="tex">m_1\times m_2=-1</span> <span class="muted">(negative reciprocals)</span></div></div>
+  </div>
+  <h3 class="sub u6l10-gap">Which tool? Tap a card to check.</h3>
+  <div class="bk-flips u6l10-flips" style="--bk-cols:3">
+    <div class="bk-flip"><div class="bk-front">How far apart are two points?</div><div class="bk-back"><b>Distance formula</b> (or just subtract, if the segment is horizontal or vertical)</div></div>
+    <div class="bk-flip"><div class="bk-front">Where is the halfway point?</div><div class="bk-back"><b>Midpoint</b>: average the <span class="tex">x</span>’s, average the <span class="tex">y</span>’s</div></div>
+    <div class="bk-flip"><div class="bk-front">You know the midpoint and one end. Where is the other end?</div><div class="bk-back"><b>Double the midpoint, subtract</b> the known end</div></div>
+    <div class="bk-flip"><div class="bk-front">Do three points lie on one straight line?</div><div class="bk-back"><b>Slopes</b> through the shared point: <span class="tex">m_{AB}=m_{BC}</span>?</div></div>
+    <div class="bk-flip"><div class="bk-front">Is the corner a right angle?</div><div class="bk-back"><b>Slopes</b>: <span class="tex">m_1\times m_2=-1</span>? (or Pythagoras with the side lengths)</div></div>
+    <div class="bk-flip"><div class="bk-front">Is this shape a parallelogram?</div><div class="bk-back"><b>Slopes</b> of all four sides: opposite sides equal?</div></div>
+  </div>
+</section>
+
+<!-- ================= 1. Pythagoras ================= -->
+<section class="card" data-ink="s1" data-section="1. The Pythagorean Theorem">
+  <div class="sec-h"><span class="badge">1</span><h2>The Pythagorean Theorem</h2></div>
+  <div class="def">Legs <span class="tex">a</span>, <span class="tex">b</span> and hypotenuse <span class="tex">c</span> satisfy <span class="tex">a^2+b^2=c^2</span>: <b>add</b> the squares to find <span class="tex">c</span>, <b>subtract</b> to find a leg.</div>
+  <div class="explainer" data-explainer="pyth"></div>
+</section>
+
+<section class="card example" data-ink="ex1" data-section="Example 1">
+  <div class="ex-head"><span class="ex-tag">Example 1</span><h3>A missing side</h3></div>
+  <div class="u6l10-ex1">
+    <svg class="u6l10-tri" viewBox="0 0 230 200" role="img" aria-label="A right triangle with legs 20 and 21 and hypotenuse c">
+      <path d="M30 170 L210 170 L30 22 Z" fill="#f1ebfb" stroke="#1c2230" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M30 152 H48 V170" fill="none" stroke="#1c2230" stroke-width="2"/>
+      <text x="120" y="194" text-anchor="middle">21</text><text x="22" y="100" text-anchor="end">20</text><text x="130" y="88" font-style="italic">c</text>
+    </svg>
+    <div class="parts c2">
+      <div class="part"><div class="pl">(a) A right triangle has legs of length <span class="tex">20</span> and <span class="tex">21</span>. Determine the length of the hypotenuse.</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">c^2=a^2+b^2=20^2+21^2</span><br><span class="tex">c^2=400+441=841</span><br><span class="tex">c=\sqrt{841}=\boldsymbol{29}</span></div></div></div>
+      <div class="part"><div class="pl">(b) A right triangle has a hypotenuse of length <span class="tex">34</span> and one leg of length <span class="tex">16</span>. Determine the length of the other leg.</div><div class="work" style="--h:190px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">a^2+16^2=34^2</span><br><span class="tex">a^2=1156-256=900</span><br><span class="tex">a=\sqrt{900}=\boldsymbol{30}</span></div></div></div>
+    </div>
+  </div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Square root in one go.</b> <span class="tex">\sqrt{\phantom{x}}</span> is <span class="keys"><kbd>2nd</kbd><kbd>x²</kbd></span>, and it opens a bracket: <span class="keys"><kbd>√</kbd><kbd>2</kbd><kbd>0</kbd><kbd>x²</kbd><kbd>+</kbd><kbd>2</kbd><kbd>1</kbd><kbd>x²</kbd><kbd>)</kbd><kbd>=</kbd></span> gives 29. For a leg, <b>subtract</b> inside the root: <span class="keys"><kbd>√</kbd><kbd>3</kbd><kbd>4</kbd><kbd>x²</kbd><kbd>−</kbd><kbd>1</kbd><kbd>6</kbd><kbd>x²</kbd><kbd>)</kbd><kbd>=</kbd></span> gives 30.</div>
+    <div class="pill-col"><button class="pill" data-keys="√ 20 x² + 21 x² ) =">Show (a)</button><button class="pill" data-keys="√ 34 x² − 16 x² ) =">Show (b)</button></div>
+  </div>
+  <div class="space" id="ex1-space"></div>
+  <button class="more" data-more="ex1-space">+ More space</button>
+</section>
+
+<!-- ================= 2. Horizontal and vertical ================= -->
+<section class="card" data-ink="s2" data-section="2. Horizontal and Vertical Segment Lengths">
+  <div class="sec-h"><span class="badge">2</span><h2>Horizontal and Vertical Segment Lengths</h2></div>
+  <div class="def">Same <span class="tex">y</span>: <b>horizontal</b>, length <span class="tex">|x_2-x_1|</span>. Same <span class="tex">x</span>: <b>vertical</b>, length <span class="tex">|y_2-y_1|</span>. A length is never negative.</div>
+</section>
+
+<section class="card example" data-ink="ex2" data-section="Example 2">
+  <div class="ex-head"><span class="ex-tag">Example 2</span><h3>Straight across, straight up</h3></div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Determine the length of the horizontal segment joining <span class="tex">E(-7,\ 4)</span> and <span class="tex">F(5,\ 4)</span>.</div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Same <span class="tex">y</span>, so use <span class="tex">|x_2-x_1|</span>:<br><span class="tex">|5-(-7)|=|12|=\boldsymbol{12}</span> units</div></div></div>
+    <div class="part"><div class="pl">(b) Determine the length of the vertical segment joining <span class="tex">G(3,\ 9)</span> and <span class="tex">H(3,\ -6)</span>.</div><div class="work" style="--h:140px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Same <span class="tex">x</span>, so use <span class="tex">|y_2-y_1|</span>:<br><span class="tex">|-6-9|=|-15|=\boldsymbol{15}</span> units</div></div></div>
+  </div>
+  <div class="space" id="ex2-space"></div>
+  <button class="more" data-more="ex2-space">+ More space</button>
+</section>
+
+<!-- ================= 3. Distance ================= -->
+<section class="card" data-ink="s3" data-section="3. The Distance Formula">
+  <div class="sec-h"><span class="badge">3</span><h2>The Distance Formula</h2></div>
+  <div class="def">For a diagonal segment, the <b class="u6l10-am">run</b> and <b class="u6l10-pu">rise</b> are the legs of a right triangle, so <span class="tex">d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}</span>.</div>
+  <div class="explainer" data-explainer="lengths"></div>
+</section>
+
+<section class="card example" data-ink="ex3" data-section="Example 3">
+  <div class="ex-head"><span class="ex-tag">Example 3</span><h3>Exact distances</h3></div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Determine the exact distance between <span class="tex">M(-2,\ -1)</span> and <span class="tex">N(10,\ 4)</span>.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">d=\sqrt{(10-(-2))^2+(4-(-1))^2}</span><br><span class="tex">=\sqrt{12^2+5^2}=\sqrt{144+25}</span><br><span class="tex">=\sqrt{169}=\boldsymbol{13}</span> units</div></div></div>
+    <div class="part"><div class="pl">(b) Determine the exact distance, as a simplified mixed radical, between <span class="tex">P(-4,\ 1)</span> and <span class="tex">Q(2,\ 5)</span>.</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">d=\sqrt{(2-(-4))^2+(5-1)^2}</span><br><span class="tex">=\sqrt{6^2+4^2}=\sqrt{36+16}=\sqrt{52}</span><br><span class="tex">=\sqrt{4}\cdot\sqrt{13}=\boldsymbol{2\sqrt{13}}</span> units</div></div></div>
+  </div>
+  <div class="tip watch"><div class="tip-ic">!</div><div><b>Squaring removes the negative.</b> <span class="tex">(-5)^2=25</span>, so it doesn’t matter which point you call the first one. Brackets around negatives: <span class="tex">10-(-2)=12</span>.</div></div>
+  <div class="tip calc-tip">
+    <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
+    <div><b>Check a mixed radical.</b> <span class="keys"><kbd>√</kbd><kbd>5</kbd><kbd>2</kbd><kbd>=</kbd></span> and <span class="keys"><kbd>2</kbd><kbd>×</kbd><kbd>√</kbd><kbd>1</kbd><kbd>3</kbd><kbd>=</kbd></span> both give 7.211102551, so <span class="tex">\sqrt{52}=2\sqrt{13}\approx7.2</span>.</div>
+    <div class="pill-col"><button class="pill" data-keys="√ 52 =">√52</button><button class="pill" data-keys="2 × √ 13 =">2√13</button></div>
+  </div>
+  <div class="space" id="ex3-space"></div>
+  <button class="more" data-more="ex3-space">+ More space</button>
+</section>
+
+<!-- ================= 4. Midpoint ================= -->
+<section class="card" data-ink="s4" data-section="4. The Midpoint Formula">
+  <div class="sec-h"><span class="badge">4</span><h2>The Midpoint Formula</h2></div>
+  <div class="def">The midpoint is the <b>average</b> of the <span class="tex">x</span>’s and the average of the <span class="tex">y</span>’s: <span class="tex">M\left(\dfrac{x_1+x_2}{2},\ \dfrac{y_1+y_2}{2}\right)</span>. On the grid: walk <b>half the run</b> and <b>half the rise</b>.</div>
+  <div class="explainer" data-explainer="midpoint"></div>
+</section>
+
+<section class="card example" data-ink="ex4" data-section="Example 4">
+  <div class="ex-head"><span class="ex-tag">Example 4</span><h3>The halfway point</h3></div>
+  <div class="parts c1">
+    <div class="part"><div class="pl">Determine the coordinates of the midpoint of the segment joining <span class="tex">A(-10,\ 3)</span> and <span class="tex">B(6,\ -9)</span>.</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">M=\left(\dfrac{-10+6}{2},\ \dfrac{3+(-9)}{2}\right)=\left(\dfrac{-4}{2},\ \dfrac{-6}{2}\right)=\boldsymbol{(-2,\ -3)}</span></div></div></div>
+  </div>
+  <div class="space" id="ex4-space"></div>
+  <button class="more" data-more="ex4-space">+ More space</button>
+</section>
+
+<!-- ================= 5. Missing endpoints ================= -->
+<section class="card" data-ink="s5" data-section="5. Missing Endpoints and Applications">
+  <div class="sec-h"><span class="badge">5</span><h2>Missing Endpoints and Applications</h2></div>
+  <div class="def">Know the midpoint and one endpoint? Run the formula backward: <b>double the midpoint, subtract the known endpoint</b>. On the grid, it is the <b>same step again</b>.</div>
+</section>
+
+<section class="card example" data-ink="ex5" data-section="Example 5">
+  <div class="ex-head"><span class="ex-tag">Example 5</span><h3>The other end, and a rest stop</h3></div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) <span class="tex">M(5,\ -1)</span> is the midpoint of segment <span class="tex">\overline{CD}</span>. If <span class="tex">C(-3,\ 7)</span>, determine the coordinates of <span class="tex">D</span>.</div><div class="work" style="--h:210px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Double the midpoint, subtract <span class="tex">C</span>:<br><span class="tex">x_D=2(5)-(-3)=10+3=13</span><br><span class="tex">y_D=2(-1)-7=-2-7=-9</span><br><span class="tex">\boldsymbol{D(13,\ -9)}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Two trailheads are at <span class="tex">P(2,\ 9)</span> and <span class="tex">Q(18,\ -5)</span> on a park map, where each grid unit represents <span class="tex">10</span> m. A rest stop is built exactly halfway between them. Determine its coordinates, and state how far east and how far south it is from trailhead <span class="tex">P</span>.</div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">M=\left(\dfrac{2+18}{2},\ \dfrac{9+(-5)}{2}\right)=\boldsymbol{(10,\ 2)}</span><br>East of <span class="tex">P</span>: <span class="tex">10-2=8</span> units <span class="tex">=\boldsymbol{80}</span> m. South of <span class="tex">P</span>: <span class="tex">9-2=7</span> units <span class="tex">=\boldsymbol{70}</span> m.</div></div></div>
+  </div>
+  <div class="space" id="ex5-space"></div>
+  <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
+<section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u6l10"></section>
+
+<!-- ================= 6. Slope ================= -->
+<section class="card" data-ink="s6" data-section="6. Slope: Rise Over Run">
+  <div class="sec-h"><span class="badge">6</span><h2>Slope: Rise Over Run</h2></div>
+  <div class="def"><span class="tex">m=\dfrac{\text{rise}}{\text{run}}=\dfrac{y_2-y_1}{x_2-x_1}</span>: subtract in the <b>same order</b> top and bottom.</div>
+</section>
+
+<section class="card example" data-ink="ex6" data-section="Example 6">
+  <div class="ex-head"><span class="ex-tag">Example 6</span><h3>The slope of a segment</h3></div>
+  <div class="u6l10-exg">
+    <div id="u6l10-ex6fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">Determine the slope of the segment joining <span class="tex">R(-3,\ -2)</span> and <span class="tex">S(9,\ 4)</span>.</div><div class="work" style="--h:170px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=\dfrac{y_2-y_1}{x_2-x_1}=\dfrac{4-(-2)}{9-(-3)}=\dfrac{6}{12}=\boldsymbol{\dfrac{1}{2}}</span><br>The segment rises <span class="tex">1</span> unit for every <span class="tex">2</span> units right, so the slope is positive.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex6-space"></div>
+  <button class="more" data-more="ex6-space">+ More space</button>
+</section>
+
+<!-- ================= 7. Types of slope ================= -->
+<section class="card" data-ink="s7" data-section="7. Types of Slope">
+  <div class="sec-h"><span class="badge">7</span><h2>Types of Slope</h2></div>
+  <div class="def">Rising <span class="tex">\Rightarrow</span> <b class="u6l10-ok">positive</b>; falling <span class="tex">\Rightarrow</span> <b class="u6l10-no">negative</b>; horizontal <span class="tex">\Rightarrow</span> <b>zero</b>; vertical <span class="tex">\Rightarrow</span> <b>undefined</b> (zero and undefined are <b>not</b> the same).</div>
+  <div class="explainer" data-explainer="slopes"></div>
+</section>
+
+<section class="card example" data-ink="ex7" data-section="Example 7">
+  <div class="ex-head"><span class="ex-tag">Example 7</span><h3>Positive, negative, zero, or undefined?</h3></div>
+  <p class="q">Classify the slope of each segment below as positive, negative, zero, or undefined.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) <span class="tex">A(-5,\ -3)</span> and <span class="tex">B(4,\ 3)</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=\dfrac{3-(-3)}{4-(-5)}=\dfrac{6}{9}=\dfrac{2}{3}</span><br>Rises left to right: <b>positive</b>.</div></div></div>
+    <div class="part"><div class="pl">(b) <span class="tex">C(-2,\ 6)</span> and <span class="tex">D(3,\ 6)</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=\dfrac{6-6}{3-(-2)}=\dfrac{0}{5}=0</span><br>Same <span class="tex">y</span>, horizontal: <b>zero</b>.</div></div></div>
+    <div class="part"><div class="pl">(c) <span class="tex">E(7,\ -4)</span> and <span class="tex">F(7,\ 5)</span></div><div class="work" style="--h:150px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m=\dfrac{5-(-4)}{7-7}=\dfrac{9}{0}</span><br>Division by zero, vertical: <b>undefined</b>.</div></div></div>
+  </div>
+  <div class="space" id="ex7-space"></div>
+  <button class="more" data-more="ex7-space">+ More space</button>
+</section>
+
+<!-- ================= 8. Collinearity ================= -->
+<section class="card" data-ink="s8" data-section="8. Collinearity">
+  <div class="sec-h"><span class="badge">8</span><h2>Collinearity</h2></div>
+  <div class="def">Three points lie on one straight line exactly when the two slopes through the <b>shared point</b> match: <span class="tex">m_{AB}=m_{BC}</span>.</div>
+  <div class="explainer" data-explainer="collinear"></div>
+</section>
+
+<section class="card example" data-ink="ex8" data-section="Example 8">
+  <div class="ex-head"><span class="ex-tag">Example 8</span><h3>One straight line?</h3></div>
+  <div class="u6l10-exg">
+    <div id="u6l10-ex8fig"></div>
+    <div class="parts c1">
+      <div class="part"><div class="pl">Determine whether the points <span class="tex">X(-4,\ -2)</span>, <span class="tex">Y(2,\ 8)</span>, and <span class="tex">Z(8,\ 18)</span> are collinear.</div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m_{XY}=\dfrac{8-(-2)}{2-(-4)}=\dfrac{10}{6}=\dfrac{5}{3}</span><br><span class="tex">m_{YZ}=\dfrac{18-8}{8-2}=\dfrac{10}{6}=\dfrac{5}{3}</span><br>The two slopes are equal and the segments share the point <span class="tex">Y</span>, so all three points lie on one straight line: <span class="tex">X</span>, <span class="tex">Y</span>, and <span class="tex">Z</span> are <b>collinear</b>.</div></div></div>
+    </div>
+  </div>
+  <div class="space" id="ex8-space"></div>
+  <button class="more" data-more="ex8-space">+ More space</button>
+</section>
+
+<!-- ================= 9. Parallel and perpendicular ================= -->
+<section class="card" data-ink="s9" data-section="9. Parallel and Perpendicular Lines">
+  <div class="sec-h"><span class="badge">9</span><h2>Parallel and Perpendicular Lines</h2></div>
+  <div class="def"><b class="u6l10-ok">Parallel</b> <span class="tex">\Rightarrow</span> equal slopes; <b class="u6l10-no">perpendicular</b> <span class="tex">\Rightarrow</span> the slopes multiply to <span class="tex">-1</span> (negative reciprocals: flip it and change the sign).</div>
+  <div class="explainer" data-explainer="pairs"></div>
+</section>
+
+<section class="card example" data-ink="ex9" data-section="Example 9">
+  <div class="ex-head"><span class="ex-tag">Example 9</span><h3>Compare the slopes</h3></div>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Segment <span class="tex">AB</span> joins <span class="tex">A(-6,\ -1)</span> and <span class="tex">B(2,\ 5)</span>; segment <span class="tex">CD</span> joins <span class="tex">C(-3,\ 4)</span> and <span class="tex">D(5,\ 10)</span>. Are <span class="tex">AB</span> and <span class="tex">CD</span> parallel, perpendicular, or neither?</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m_{AB}=\dfrac{5-(-1)}{2-(-6)}=\dfrac{6}{8}=\dfrac{3}{4}</span><br><span class="tex">m_{CD}=\dfrac{10-4}{5-(-3)}=\dfrac{6}{8}=\dfrac{3}{4}</span><br>Equal slopes, so <span class="tex">AB</span> and <span class="tex">CD</span> are <b>parallel</b>.</div></div></div>
+    <div class="part"><div class="pl">(b) Segment <span class="tex">EF</span> joins <span class="tex">E(-2,\ 3)</span> and <span class="tex">F(4,\ -5)</span>; segment <span class="tex">GH</span> joins <span class="tex">G(1,\ -4)</span> and <span class="tex">H(9,\ 2)</span>. Are <span class="tex">EF</span> and <span class="tex">GH</span> perpendicular?</div><div class="work" style="--h:200px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m_{EF}=\dfrac{-5-3}{4-(-2)}=\dfrac{-8}{6}=-\dfrac{4}{3}</span><br><span class="tex">m_{GH}=\dfrac{2-(-4)}{9-1}=\dfrac{6}{8}=\dfrac{3}{4}</span><br><span class="tex">m_{EF}\times m_{GH}=-\dfrac{4}{3}\times\dfrac{3}{4}=-1</span>, so <b>yes</b>, <span class="tex">EF\perp GH</span>.</div></div></div>
+  </div>
+  <div class="space" id="ex9-space"></div>
+  <button class="more" data-more="ex9-space">+ More space</button>
+</section>
+
+<!-- ================= 10. Mixed review ================= -->
+<section class="card" data-ink="s10" data-section="10. Mixed Review">
+  <div class="sec-h"><span class="badge">10</span><h2>Mixed Review: Putting It All Together</h2></div>
+  <p>Each question below chains several skills together: exactly what a test question looks like. <span class="muted">(Check Challenge 2 with the chip in the warm-up check explainer.)</span></p>
+  <div class="explainer" data-explainer="triangle"></div>
+</section>
+
+<section class="card example" data-ink="ch1" data-section="Challenge 1">
+  <div class="ex-head"><span class="ex-tag">Challenge 1</span><h3>Triangle <span class="tex">PQR</span></h3></div>
+  <p class="q">Triangle <span class="tex">PQR</span> has vertices <span class="tex">P(-5,\ -3)</span>, <span class="tex">Q(3,\ 1)</span>, and <span class="tex">R(-1,\ 9)</span>.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Determine the slope of <span class="tex">PQ</span> and the slope of <span class="tex">QR</span>, and show that the triangle has a right angle at <span class="tex">Q</span>.</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m_{PQ}=\dfrac{1-(-3)}{3-(-5)}=\dfrac{4}{8}=\dfrac{1}{2}</span><br><span class="tex">m_{QR}=\dfrac{9-1}{-1-3}=\dfrac{8}{-4}=-2</span><br><span class="tex">\dfrac{1}{2}\times(-2)=-1</span>, so <span class="tex">PQ\perp QR</span> and the angle at <span class="tex">Q</span> is <span class="tex">\boldsymbol{90^\circ}</span>.</div></div></div>
+    <div class="part"><div class="pl">(b) Determine the length of each side using the distance formula, and verify that the Pythagorean theorem holds.</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">PQ=\sqrt{8^2+4^2}=\sqrt{80}=\boldsymbol{4\sqrt5}</span><br><span class="tex">QR=\sqrt{(-4)^2+8^2}=\sqrt{80}=\boldsymbol{4\sqrt5}</span><br><span class="tex">PR=\sqrt{4^2+12^2}=\sqrt{160}=\boldsymbol{4\sqrt{10}}</span><br>Check: <span class="tex">80+80=160</span> ✓</div></div></div>
+    <div class="part"><div class="pl">(c) Determine the midpoint of the hypotenuse, <span class="tex">PR</span>.</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">M=\left(\dfrac{-5+(-1)}{2},\ \dfrac{-3+9}{2}\right)</span><br><span class="tex">=\left(\dfrac{-6}{2},\ \dfrac{6}{2}\right)=\boldsymbol{(-3,\ 3)}</span></div></div></div>
+  </div>
+  <div class="space" id="ch1-space"></div>
+  <button class="more" data-more="ch1-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ch2" data-section="Challenge 2">
+  <div class="ex-head"><span class="ex-tag">Challenge 2</span><h3>Name the quadrilateral</h3></div>
+  <p class="q">Quadrilateral <span class="tex">KLMN</span> has vertices <span class="tex">K(-6,\ -2)</span>, <span class="tex">L(-2,\ 4)</span>, <span class="tex">M(6,\ 2)</span>, and <span class="tex">N(2,\ -4)</span>.</p>
+  <div class="parts c3">
+    <div class="part"><div class="pl">(a) Determine the slope of each of the four sides.</div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m_{KL}=\dfrac{4-(-2)}{-2-(-6)}=\dfrac{6}{4}=\dfrac{3}{2}</span><br><span class="tex">m_{LM}=\dfrac{2-4}{6-(-2)}=\dfrac{-2}{8}=-\dfrac{1}{4}</span><br><span class="tex">m_{MN}=\dfrac{-4-2}{2-6}=\dfrac{-6}{-4}=\dfrac{3}{2}</span><br><span class="tex">m_{NK}=\dfrac{-2-(-4)}{-6-2}=\dfrac{2}{-8}=-\dfrac{1}{4}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Determine the length of each of the four sides.</div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">KL=\sqrt{4^2+6^2}=\sqrt{52}=\boldsymbol{2\sqrt{13}}</span><br><span class="tex">LM=\sqrt{8^2+(-2)^2}=\sqrt{68}=\boldsymbol{2\sqrt{17}}</span><br><span class="tex">MN=\sqrt{(-4)^2+(-6)^2}=\sqrt{52}=\boldsymbol{2\sqrt{13}}</span><br><span class="tex">NK=\sqrt{(-8)^2+2^2}=\sqrt{68}=\boldsymbol{2\sqrt{17}}</span></div></div></div>
+    <div class="part"><div class="pl">(c) What is the most precise name for quadrilateral <span class="tex">KLMN</span>? Justify your answer.</div><div class="work" style="--h:250px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Both pairs of opposite sides have equal slopes (<span class="tex">\tfrac32</span> and <span class="tex">-\tfrac14</span>), so both pairs are parallel, and opposite sides are equal in length. Adjacent sides are neither perpendicular (<span class="tex">\tfrac32\times\left(-\tfrac14\right)=-\tfrac38\ne-1</span>) nor equal in length, so it is a <b>parallelogram</b>: not a rectangle, rhombus, or square.</div></div></div>
+  </div>
+  <div class="space" id="ch2-space"></div>
+  <button class="more" data-more="ch2-space">+ More space</button>
+</section>
+
+<section class="card example" data-ink="ch3" data-section="Challenge 3">
+  <div class="ex-head"><span class="ex-tag">Challenge 3</span><h3>A missing coordinate</h3></div>
+  <p class="q">Segment <span class="tex">JK</span> joins <span class="tex">J(-4,\ -1)</span> and <span class="tex">K(2,\ q)</span>. Segment <span class="tex">LM</span> joins <span class="tex">L(-3,\ 5)</span> and <span class="tex">M(3,\ -4)</span>.</p>
+  <div class="parts c2">
+    <div class="part"><div class="pl">(a) Determine the value of <span class="tex">q</span> so that <span class="tex">JK\parallel LM</span>.</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">m_{LM}=\dfrac{-4-5}{3-(-3)}=\dfrac{-9}{6}=-\dfrac{3}{2}</span><br>Parallel means <span class="tex">m_{JK}=m_{LM}</span>:<br><span class="tex">\dfrac{q-(-1)}{2-(-4)}=\dfrac{q+1}{6}=-\dfrac{3}{2}</span><br><span class="tex">2(q+1)=-18\ \Rightarrow\ q+1=-9\ \Rightarrow\ \boldsymbol{q=-10}</span></div></div></div>
+    <div class="part"><div class="pl">(b) Using your value of <span class="tex">q</span>, determine the exact length of <span class="tex">JK</span>.</div><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">J(-4,\ -1)</span> and <span class="tex">K(2,\ -10)</span>:<br><span class="tex">JK=\sqrt{(2-(-4))^2+(-10-(-1))^2}</span><br><span class="tex">=\sqrt{6^2+(-9)^2}=\sqrt{36+81}=\sqrt{117}</span><br><span class="tex">=\sqrt{9}\cdot\sqrt{13}=\boldsymbol{3\sqrt{13}}</span> units</div></div></div>
+  </div>
+  <div class="space" id="ch3-space"></div>
+  <button class="more" data-more="ch3-space">+ More space</button>
+</section>
+
+<section class="card" data-ink="s10b" data-section="Challenge 3 check">
+  <h3 class="sub">Challenge 3 check: slide <span class="tex">K</span> until the segments are parallel</h3>
+  <p><span class="tex">K</span> must stay on the vertical line <span class="tex">x=2</span>. Only one height makes <span class="tex">JK</span> point the same way as <span class="tex">LM</span>.</p>
+  <div class="explainer" data-explainer="dialQ"></div>
+</section>
+
+<!-- ================= summary ================= -->
+<section class="card summary" data-ink="sum" data-section="Summary">
+  <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
+  <div class="sum-grid">
+    <div><b>Every diagonal segment hides a right triangle.</b> Its legs are the run and the rise: <span class="tex">d=\sqrt{\text{run}^2+\text{rise}^2}</span>. Exact answers as a simplified mixed radical.</div>
+    <div><b>A midpoint is an average.</b> Average the <span class="tex">x</span>’s, average the <span class="tex">y</span>’s. Backwards: double the midpoint, subtract the known end.</div>
+    <div><b>Slope</b> <span class="tex">=\dfrac{\text{rise}}{\text{run}}</span>, same order top and bottom. Rising <span class="tex">+</span>, falling <span class="tex">-</span>, flat <span class="tex">0</span>, vertical undefined.</div>
+    <div><b>Compare slopes:</b> collinear <span class="tex">m_{AB}=m_{BC}</span>; parallel <span class="tex">m_1=m_2</span>; perpendicular <span class="tex">m_1\times m_2=-1</span>. To name a shape: slopes first, then lengths.</div>
+  </div>
+  <a class="assign" href="../../../#/lesson/u6l10">
+    <div><div class="kicker">Your turn</div><b>Assignment 10 — Unit Review: Coordinate Geometry</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+  </a>
+  <div class="u6l10-review">
+    <div class="u6l10-review-h"><span class="kicker">Up next</span><b>Unit 6 test.</b> <span class="muted">Shaky on an idea today? Go back to its lesson.</span></div>
+    <div class="u6l10-review-grid">
+      <a href="../l1/"><span class="rn">6.1</span>The Pythagorean theorem <small>Example 1, Challenge 1(b)</small></a>
+      <a href="../l2/"><span class="rn">6.2</span>Horizontal and vertical lengths <small>Example 2</small></a>
+      <a href="../l3/"><span class="rn">6.3</span>The distance formula <small>Example 3, Challenges 1(b), 2(b), 3(b)</small></a>
+      <a href="../l4/"><span class="rn">6.4</span>The midpoint formula <small>Example 4, Challenge 1(c)</small></a>
+      <a href="../l5/"><span class="rn">6.5</span>Applications, missing endpoint <small>Example 5</small></a>
+      <a href="../l6/"><span class="rn">6.6</span>Rise over run: slope <small>Example 6, Challenge 2(a)</small></a>
+      <a href="../l7/"><span class="rn">6.7</span>Types of slope <small>Example 7</small></a>
+      <a href="../l8/"><span class="rn">6.8</span>Collinearity <small>Example 8</small></a>
+      <a href="../l9/"><span class="rn">6.9</span>Parallel and perpendicular lines <small>Example 9, Challenges 1(a), 2(c), 3(a)</small></a>
+      <div class="test"><span class="rn">Test</span>Unit 6 test: RF3 <small>scientific calculator allowed · every idea from today’s review</small></div>
+    </div>
+  </div>
+  <div class="space" id="sum-space" style="min-height:120px"></div>
+</section>
+
+</main>
+
+<script type="module">
+  import { boot } from '../../js/ui.js';
+  import '../../js/lessons/u6l10.js';
+  boot({ key: 'u6l10', homeHref: '../../', title: '6.10 Unit 6 Review' });
+</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
+</body>
+</html>

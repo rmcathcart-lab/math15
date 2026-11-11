@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u6l4.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u6l4">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Meet Me Halfway">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Meet Me Halfway</h2>
+  <p class="wf-rule">They walk straight toward each other and meet exactly halfway. Where?</p></div>
+  <div class="vw-q">Ava is at <span class="tex">(2,\ 1)</span>. Dev is at <span class="tex">(8,\ 5)</span>.</div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>How could you check?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><span class="tex">(5,\ 3)</span>. Halfway between 2 and 8 is 5, and halfway between 1 and 5 is 3.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,46 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Meet Me Halfway" id="wu" style="--wf-side: 440px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Meet Me Halfway</h2>
-  <p class="wf-rule">Friends always meet <b>exactly halfway</b> between their two houses. 1 square = 1 block.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u6l4-town" id="u6l4-town"></div>
-    <div class="u6l4-wbtns">
-      <span class="muted u6l4-send">Pick two friends:</span>
-      <button type="button" class="pill" data-u6l4-f="Ava">Ava</button>
-      <button type="button" class="pill" data-u6l4-f="Ben">Ben</button>
-      <button type="button" class="pill" data-u6l4-f="Cara">Cara</button>
-      <button type="button" class="pill" data-u6l4-f="Dev">Dev</button>
-      <button type="button" class="pill u6l4-clr" id="u6l4-wclear">Clear</button>
-    </div>
-    <div class="u6l4-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Ava and Ben live on the same street. Where do they meet? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l4-wa"><div class="bk-ans"><span class="tex">(-2,\ 3)</span>. Same street, so <span class="tex">y</span> stays 3. They are 6 blocks apart, so each walks 3.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Ben and Cara meet halfway. What is there? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l4-wa"><div class="bk-ans">The <b>Bakery</b>, <span class="tex">(3,\ 0)</span>. Ben to Cara is 4 right and 6 down; halfway is 2 right and 3 down.</div></div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u6l4-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Halfway between 2 and 8 is ___. What’s a shortcut? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l4-wa"><div class="bk-ans"><b>5.</b> Shortcut: <b>add and halve</b>, <span class="tex">(2+8)\div2=5</span>. It works for Q1 too: <span class="tex">(-5+1)\div2=-2</span>.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>Which two friends meet at <b>Town Hall</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l4-wa"><div class="bk-ans"><b>Ava and Cara</b>: <span class="tex">(-5+5)\div2=0</span> and <span class="tex">(3+(-3))\div2=0</span>.</div></div></div>
-    </div>
-    <div class="poll wf-poll u6l4-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Ava and <b>Dev</b> meet exactly halfway. Where? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> <span class="tex">(0,\ 0)</span></div>
-        <div class="opt"><b>B</b> <span class="tex">(-3,\ 0)</span></div>
-        <div class="opt"><b>C</b> <span class="tex">(3.5,\ -3)</span></div>
-        <div class="opt right"><b>D</b> <span class="tex">(-1.5,\ 0)</span></div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>D: <span class="tex">(-1.5,\ 0)</span>, in the lake!</b> <span class="tex">(-5+2)\div2=-1.5</span> and <span class="tex">(3+(-3))\div2=0</span>. Someone needs a boat.<br><span class="muted"><b>B</b> added but forgot to halve. <b>C</b> subtracted (the distance habit). <b>A</b> is just “the middle of town”.</span></div>
-    </div>
-  </div></div>
-  <p class="u6l4-social"><b>Challenge:</b> Kai meets Ben halfway, at Town Hall. Where does Kai live?</p>
-</section>
+
 
 <!-- ================= 1. What is a midpoint? ================= -->
 <section class="card" data-ink="s1" data-section="1. What Is a Midpoint?">
@@ -100,14 +71,14 @@
     </svg></div>
   </div>
   <p>The distance formula <b>subtracts</b> coordinates to measure <b>how far apart</b> two points are. The midpoint asks a different question: <b>where</b> is the point in the middle? On a number line, the halfway number is found by <b>adding and halving</b>.</p>
-  <div class="explainer" data-explainer="halfway"></div>
+  <div data-extra><div class="explainer" data-explainer="halfway"></div></div>
 </section>
 
 <!-- ================= 2. Counting ================= -->
 <section class="card" data-ink="s2" data-section="2. Locating a Midpoint by Counting">
   <div class="sec-h"><span class="badge">2</span><h2>Locating a Midpoint by Counting</h2></div>
   <p>On a grid, the midpoint of a horizontal or vertical segment can be found just by <b>counting squares</b>: count the squares between the endpoints, and step in <b>half</b> that many. For a diagonal segment, walk <b>half the run</b> across and <b>half the rise</b> up (or down).</p>
-  <div class="explainer" data-explainer="midcount"></div>
+  <div data-extra><div class="explainer" data-explainer="midcount"></div></div>
 </section>
 
 <section class="card example" data-ink="ex1" data-section="Example 1">
@@ -205,6 +176,15 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–5">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 4 · Questions 1–5</h2>
+  <p class="pr-t">Find each midpoint.</p>
+  <div class="pr-chips n1"><span><b>1–5</b>Finding midpoints</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 4.</span><a class="pill" href="../../../#/lesson/u6l4">Open the Practice site</a></div>
+</section>
+
 <section class="card" data-ink="s3c" data-section="3. Spot the mistake">
   <h3 class="sub">Spot the mistake</h3>
   <p>Four students found the same midpoint. Only one is right. Plot each answer: the real midpoint sits <b>on</b> the segment, exactly halfway.</p>
@@ -218,7 +198,7 @@
 <section class="card" data-ink="s4" data-section="4. Midpoints on a Map">
   <div class="sec-h"><span class="badge">4</span><h2>Midpoints on a Map</h2></div>
   <p>On a coordinate map, “exactly halfway between” two places means the <b>midpoint</b> of the segment joining them. Substitute the two locations into the formula, just like any other pair of points.</p>
-  <div class="explainer" data-explainer="trail"></div>
+  <div data-extra><div class="explainer" data-explainer="trail"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -226,10 +206,51 @@
   <p class="q">A trail committee lays a coordinate grid over a map, with each unit representing 1 km. <b>Fairview</b> is at <span class="tex">(-15,\ 22)</span> and <b>Oakdale</b> is at <span class="tex">(35,\ -8)</span>. The committee wants a rest area exactly halfway between the two towns. Determine its coordinates.</p>
   <div class="parts c1">
     <div class="part"><div class="work" style="--h:230px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">M=\left(\dfrac{-15+35}{2},\ \dfrac{22+(-8)}{2}\right)=\left(\dfrac{20}{2},\ \dfrac{14}{2}\right)=\boldsymbol{(10,\ 7)}</span><br>The rest area belongs at <span class="tex">(10,\ 7)</span>: 10 km east and 7 km north of the map’s origin.</div></div></div>
-    <div class="part think"><div class="pl"><span class="think-tag">Think</span> How could you check that <span class="tex">(10,\ 7)</span> really is halfway?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Walk from Fairview to <span class="tex">(10,\ 7)</span>: 25 east and 15 south. Then from <span class="tex">(10,\ 7)</span> to Oakdale: 25 east and 15 south again. The <b>same trip twice</b>, so the two halves are equal (each is <span class="tex">\sqrt{25^2+15^2}\approx29.2</span> km).</div></div></div>
+    <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> How could you check that <span class="tex">(10,\ 7)</span> really is halfway?</div><div class="work" style="--h:80px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">Walk from Fairview to <span class="tex">(10,\ 7)</span>: 25 east and 15 south. Then from <span class="tex">(10,\ 7)</span> to Oakdale: 25 east and 15 south again. The <b>same trip twice</b>, so the two halves are equal (each is <span class="tex">\sqrt{25^2+15^2}\approx29.2</span> km).</div></div></div>
   </div>
   <div class="space" id="ex5-space"></div>
   <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Meet Me Halfway" id="wu" style="--wf-side: 440px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Meet Me Halfway</h2>
+  <p class="wf-rule">Friends always meet <b>exactly halfway</b> between their two houses. 1 square = 1 block.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u6l4-town" id="u6l4-town"></div>
+    <div class="u6l4-wbtns">
+      <span class="muted u6l4-send">Pick two friends:</span>
+      <button type="button" class="pill" data-u6l4-f="Ava">Ava</button>
+      <button type="button" class="pill" data-u6l4-f="Ben">Ben</button>
+      <button type="button" class="pill" data-u6l4-f="Cara">Cara</button>
+      <button type="button" class="pill" data-u6l4-f="Dev">Dev</button>
+      <button type="button" class="pill u6l4-clr" id="u6l4-wclear">Clear</button>
+    </div>
+    <div class="u6l4-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>Ava and Ben live on the same street. Where do they meet? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l4-wa"><div class="bk-ans"><span class="tex">(-2,\ 3)</span>. Same street, so <span class="tex">y</span> stays 3. They are 6 blocks apart, so each walks 3.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>Ben and Cara meet halfway. What is there? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l4-wa"><div class="bk-ans">The <b>Bakery</b>, <span class="tex">(3,\ 0)</span>. Ben to Cara is 4 right and 6 down; halfway is 2 right and 3 down.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u6l4-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>Halfway between 2 and 8 is ___. What’s a shortcut? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l4-wa"><div class="bk-ans"><b>5.</b> Shortcut: <b>add and halve</b>, <span class="tex">(2+8)\div2=5</span>. It works for Q1 too: <span class="tex">(-5+1)\div2=-2</span>.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">4</div><div>Which two friends meet at <b>Town Hall</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l4-wa"><div class="bk-ans"><b>Ava and Cara</b>: <span class="tex">(-5+5)\div2=0</span> and <span class="tex">(3+(-3))\div2=0</span>.</div></div></div>
+    </div>
+    <div class="poll wf-poll u6l4-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Ava and <b>Dev</b> meet exactly halfway. Where? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> <span class="tex">(0,\ 0)</span></div>
+        <div class="opt"><b>B</b> <span class="tex">(-3,\ 0)</span></div>
+        <div class="opt"><b>C</b> <span class="tex">(3.5,\ -3)</span></div>
+        <div class="opt right"><b>D</b> <span class="tex">(-1.5,\ 0)</span></div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>D: <span class="tex">(-1.5,\ 0)</span>, in the lake!</b> <span class="tex">(-5+2)\div2=-1.5</span> and <span class="tex">(3+(-3))\div2=0</span>. Someone needs a boat.<br><span class="muted"><b>B</b> added but forgot to halve. <b>C</b> subtracted (the distance habit). <b>A</b> is just “the middle of town”.</span></div>
+    </div>
+  </div></div>
+  <p class="u6l4-social"><b>Challenge:</b> Kai meets Ben halfway, at Town Hall. Where does Kai live?</p>
 </section>
 
 <!-- ================= summary ================= -->
@@ -242,7 +263,7 @@
     <div><b>Add, don’t subtract.</b> Distance subtracts (how far?). Midpoint adds and halves (where?). A midpoint can land between grid lines, like <span class="tex">(-1.5,\ 0)</span>.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u6l4">
-    <div><div class="kicker">Your turn</div><b>Assignment 4 — The Midpoint Formula</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 4 · Questions 6–15</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l5/">
     <div><div class="kicker">Next lesson</div><b>Lesson 5 — Applications: Distance, Midpoint, and Finding a Missing Endpoint</b><div class="muted">Kai meets Ben halfway, at Town Hall. Where does Kai live? Working backwards from a midpoint.</div></div><span class="arrow">→</span>
@@ -255,7 +276,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u6l4.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u6l4', homeHref: '../../', title: '6.4 The Midpoint Formula' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

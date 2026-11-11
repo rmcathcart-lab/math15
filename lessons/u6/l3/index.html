@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u6l3.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u6l3">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Drone vs. Delivery Truck">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Drone vs. Delivery Truck</h2>
+  <p class="wf-rule">How far does the drone fly?</p></div>
+  <div class="vw-q">To reach the farm, the truck drives <b>12 blocks east</b>, then <b>5 blocks north</b>: 17 blocks.<small>The drone flies there in a straight line.</small></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>More than 12? Less than 17?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>13 blocks.</b> The drone flies the hypotenuse: <span class="tex">12^2+5^2=169=13^2</span>.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,50 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Drone vs. Delivery Truck" id="wu" style="--wf-side: 440px">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Drone vs. Delivery Truck</h2>
-  <p class="wf-rule">The truck drives along the <b>streets</b>. The drone flies in a <b>straight line</b>. 1 square = 1 block.</p></div>
-  <div class="wf-grid"><div class="wf-main">
-    <div class="u6l3-city" id="u6l3-city"></div>
-    <div class="u6l3-wbtns">
-      <span class="muted u6l3-send">Send both to:</span><button type="button" class="pill" data-u6l3-go="A">House A</button>
-      <button type="button" class="pill" data-u6l3-go="B">House B</button>
-      <button type="button" class="pill" data-u6l3-go="F">Farm</button>
-      <button type="button" class="pill u6l3-clr" id="u6l3-wclear">Clear</button>
-    </div>
-    <div class="u6l3-wqs">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many blocks does the truck drive to <b>House A</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l3-wa"><div class="bk-ans"><b>7 blocks</b>: 3 right, then 4 up.</div></div></div>
-      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>To <b>House B</b>: does the drone save any blocks? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l3-wa"><div class="bk-ans"><b>No.</b> House B is 6 blocks straight along one street, so truck = drone = 6. No corner to cut, so no triangle.</div></div></div>
-    </div>
-  </div><div class="wf-side">
-    <div class="u6l3-wtab">
-      <div class="u6l3-wth">From the shop</div>
-      <div class="u6l3-wtg">
-        <div></div><div class="u6l3-wtc">truck</div><div class="u6l3-wtc u6l3-cr">drone</div>
-        <div class="u6l3-wtr">House A</div><div><span data-reveal><b>7</b></span></div><div><span data-reveal><b class="u6l3-cr">5</b></span></div>
-        <div class="u6l3-wtr">House B</div><div><span data-reveal><b>6</b></span></div><div><span data-reveal><b class="u6l3-cr">6</b></span></div>
-        <div class="u6l3-wtr">Farm</div><div><span data-reveal><b>17</b></span></div><div><span data-reveal><b class="u6l3-cr">13</b></span></div>
-      </div>
-    </div>
-    <div class="u6l3-wqs u6l3-wq3">
-      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>To House A, the two paths make a triangle. What kind? How far does the drone fly? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l3-wa"><div class="bk-ans">A <b>right triangle</b>: the streets meet at a square corner. The drone’s path is the <b>hypotenuse</b>: <span class="tex">3^2+4^2=25</span>, so <span class="tex">\sqrt{25}=5</span> blocks. It saves 2 blocks.</div></div></div>
-    </div>
-    <div class="poll wf-poll u6l3-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> To the <b>Farm</b>, the truck drives <b>12</b> blocks right, then <b>5</b> up: <b>17</b> blocks. How far does the drone fly? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> <span class="tex">8\tfrac12</span></div>
-        <div class="opt right"><b>B</b> 13</div>
-        <div class="opt"><b>C</b> 16</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>B: 13 blocks.</b> <span class="tex">12^2+5^2=144+25=169</span>, and <span class="tex">\sqrt{169}=13</span>. The drone saves only 4 blocks: the trip is mostly in one direction, so the corner it cuts is small (not half!).<br><b>Today:</b> every diagonal segment is the drone’s path, and the truck’s two streets are its <b class="u6l3-crun">run</b> and <b class="u6l3-crise">rise</b>.</div>
-    </div>
-  </div></div>
-  <p class="u6l3-social">Tell your neighbour: where do <b>you</b> cut across like a drone?</p>
-</section>
+
 
 <!-- ================= 1. Diagonal → right triangle ================= -->
 <section class="card" data-ink="s1" data-section="1. Diagonal Segment → Right Triangle">
@@ -106,7 +73,7 @@
   <div class="tip watch"><div class="tip-ic">!</div><div><b>Don’t add the run and the rise.</b> <span class="tex">4+3=7</span> is the truck’s trip along the two legs (the long way round). The diagonal is the drone’s short cut: <b>shorter</b> than run + rise, but <b>longer</b> than either leg.</div></div>
 </section>
 
-<section class="card" data-ink="s1b" data-section="1. Finding the corner">
+<section data-extra class="card" data-ink="s1b" data-section="1. Finding the corner">
   <h3 class="sub">Finding the corner</h3>
   <p>The right-angle corner sits straight <b>across</b> from one endpoint and straight <b>up or down</b> from the other. So it borrows one coordinate from each end: the <span class="tex">x</span> from one, the <span class="tex">y</span> from the other.</p>
   <div class="explainer" data-explainer="corner"></div>
@@ -126,7 +93,7 @@
     </div>
   </div>
   <div class="parts c1">
-    <div class="part think"><div class="pl"><span class="think-tag">Think</span> Could the corner go <b>above</b> the segment instead, at <span class="tex">(-1,\ 1)</span>? Would <span class="tex">CD</span> come out different?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes, that corner works too</b> (its <span class="tex">x</span> comes from <span class="tex">C</span>, its <span class="tex">y</span> from <span class="tex">D</span>). The triangle is flipped, but the legs are still 4 and 3, so <span class="tex">CD=5</span> either way.</div></div></div>
+    <div data-extra class="part think"><div class="pl"><span class="think-tag">Think</span> Could the corner go <b>above</b> the segment instead, at <span class="tex">(-1,\ 1)</span>? Would <span class="tex">CD</span> come out different?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><b>Yes, that corner works too</b> (its <span class="tex">x</span> comes from <span class="tex">C</span>, its <span class="tex">y</span> from <span class="tex">D</span>). The triangle is flipped, but the legs are still 4 and 3, so <span class="tex">CD=5</span> either way.</div></div></div>
   </div>
   <div class="space" id="ex1-space"></div>
   <button class="more" data-more="ex1-space">+ More space</button>
@@ -140,11 +107,11 @@
     <div class="u6l3-disp"><span class="tex">d=\sqrt{(\textcolor{#c27a0e}{x_2-x_1})^2+(\textcolor{#7b4fc4}{y_2-y_1})^2}</span></div>
     <div class="eg"><span class="u6l3-crun"><b>run</b></span> squared, plus <span class="u6l3-crise"><b>rise</b></span> squared, then the square root. It is just Pythagoras written with coordinates.</div>
   </div>
-  <div class="explainer" data-explainer="lift"></div>
+  <div data-extra><div class="explainer" data-explainer="lift"></div></div>
   <div class="tip watch"><div class="tip-ic">!</div><div><b>The square root covers the whole sum.</b> <span class="tex">\sqrt{16+9}=\sqrt{25}=5</span>. Taking the roots separately gives <span class="tex">\sqrt{16}+\sqrt{9}=4+3=7</span>: that’s adding the run and the rise again (the truck!). Add first, then take the root.</div></div>
 </section>
 
-<section class="card" data-ink="s2b" data-section="2. Either point can go first">
+<section data-extra class="card" data-ink="s2b" data-section="2. Either point can go first">
   <h3 class="sub">Either point can go first</h3>
   <p>It does not matter which point you call <span class="tex">(x_1,\ y_1)</span>. Subtracting in the other order only flips the <b>signs</b>, and squaring erases them. A negative run or rise just means the segment goes left or down; squaring makes it positive. (A horizontal segment is the special case where the rise is <span class="tex">0</span>, so the formula gives just the run.)</p>
   <div class="explainer" data-explainer="order"></div>
@@ -192,10 +159,19 @@
   <button class="more" data-more="ex3-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–7">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 3 · Questions 1–7</h2>
+  <p class="pr-t">Build the right triangle, then use the distance formula.</p>
+  <div class="pr-chips n2"><span><b>1–3</b>Building the right triangle</span><span><b>4–7</b>The distance formula</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 5.</span><a class="pill" href="../../../#/lesson/u6l3">Open the Practice site</a></div>
+</section>
+
 <section class="card" data-ink="s3b" data-section="3. Simplest form">
   <h3 class="sub">Exact answers: a mixed radical in simplest form</h3>
   <p>Look for the <b>biggest perfect square</b> that divides the number under the root, and take its square root out front. If no perfect square (other than 1) divides it, the root is already in simplest form.</p>
-  <div class="explainer" data-explainer="simplify"></div>
+  <div data-extra><div class="explainer" data-explainer="simplify"></div></div>
   <div class="tip calc-tip">
     <div class="tip-ic"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><rect x="8" y="5.5" width="8" height="4" rx="1"/></svg></div>
     <div><b>The decimal of a root.</b> <span class="tex">\sqrt{\phantom{x}}</span> is <span class="keys"><kbd>2nd</kbd><kbd>x²</kbd></span>: <span class="keys"><kbd>√</kbd><kbd>4</kbd><kbd>5</kbd><kbd>ENTER</kbd></span> gives 6.708203932 → <b>6.71</b>. Check your mixed radical gives the same decimal: <span class="keys"><kbd>3</kbd><kbd>×</kbd><kbd>√</kbd><kbd>5</kbd><kbd>ENTER</kbd></span>.</div>
@@ -230,7 +206,7 @@
     <div><b class="n">1</b>Find the distance in <b>grid units</b> with the distance formula.</div>
     <div><b class="n">2</b><b>Multiply</b> by the map scale to get the real distance.</div>
   </div>
-  <div class="explainer" data-explainer="map"></div>
+  <div data-extra><div class="explainer" data-explainer="map"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -239,10 +215,55 @@
   <div class="parts c2">
     <div class="part"><div class="pl">(a) Determine the distance between the picnic shelter and the swimming dock, in grid units.</div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">d=\sqrt{(11-3)^2+(2-8)^2}</span><br><span class="tex">=\sqrt{64+36}=\sqrt{100}=\boldsymbol{10}</span> grid units</div></div></div>
     <div class="part"><div class="pl">(b) Use the map scale to convert your answer from part (a) into an actual distance, in metres.</div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">10\text{ units}\times25\text{ m per unit}=\boldsymbol{250}\text{ m}</span><br>The shelter and the dock are 250 m apart.</div></div></div>
-    <div class="part think span2"><div class="pl"><span class="think-tag">Think</span> The park paths only run east–west and north–south. How much farther is it to <b>walk the paths</b> from the shelter to the dock?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The paths are the run and the rise: <span class="tex">8+6=14</span> units <span class="tex">=14\times25=350</span> m. That’s <b>100 m farther</b> than the straight line (the truck vs. the drone again).</div></div></div>
+    <div data-extra class="part think span2"><div class="pl"><span class="think-tag">Think</span> The park paths only run east–west and north–south. How much farther is it to <b>walk the paths</b> from the shelter to the dock?</div><div class="work" style="--h:70px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">The paths are the run and the rise: <span class="tex">8+6=14</span> units <span class="tex">=14\times25=350</span> m. That’s <b>100 m farther</b> than the straight line (the truck vs. the drone again).</div></div></div>
   </div>
   <div class="space" id="ex5-space"></div>
   <button class="more" data-more="ex5-space">+ More space</button>
+</section>
+
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Drone vs. Delivery Truck" id="wu" style="--wf-side: 440px">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Drone vs. Delivery Truck</h2>
+  <p class="wf-rule">The truck drives along the <b>streets</b>. The drone flies in a <b>straight line</b>. 1 square = 1 block.</p></div>
+  <div class="wf-grid"><div class="wf-main">
+    <div class="u6l3-city" id="u6l3-city"></div>
+    <div class="u6l3-wbtns">
+      <span class="muted u6l3-send">Send both to:</span><button type="button" class="pill" data-u6l3-go="A">House A</button>
+      <button type="button" class="pill" data-u6l3-go="B">House B</button>
+      <button type="button" class="pill" data-u6l3-go="F">Farm</button>
+      <button type="button" class="pill u6l3-clr" id="u6l3-wclear">Clear</button>
+    </div>
+    <div class="u6l3-wqs">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">1</div><div>How many blocks does the truck drive to <b>House A</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l3-wa"><div class="bk-ans"><b>7 blocks</b>: 3 right, then 4 up.</div></div></div>
+      <div class="bk-wq"><div class="q-line"><div class="q-num">2</div><div>To <b>House B</b>: does the drone save any blocks? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l3-wa"><div class="bk-ans"><b>No.</b> House B is 6 blocks straight along one street, so truck = drone = 6. No corner to cut, so no triangle.</div></div></div>
+    </div>
+  </div><div class="wf-side">
+    <div class="u6l3-wtab">
+      <div class="u6l3-wth">From the shop</div>
+      <div class="u6l3-wtg">
+        <div></div><div class="u6l3-wtc">truck</div><div class="u6l3-wtc u6l3-cr">drone</div>
+        <div class="u6l3-wtr">House A</div><div><span data-reveal><b>7</b></span></div><div><span data-reveal><b class="u6l3-cr">5</b></span></div>
+        <div class="u6l3-wtr">House B</div><div><span data-reveal><b>6</b></span></div><div><span data-reveal><b class="u6l3-cr">6</b></span></div>
+        <div class="u6l3-wtr">Farm</div><div><span data-reveal><b>17</b></span></div><div><span data-reveal><b class="u6l3-cr">13</b></span></div>
+      </div>
+    </div>
+    <div class="u6l3-wqs u6l3-wq3">
+      <div class="bk-wq"><div class="q-line"><div class="q-num">3</div><div>To House A, the two paths make a triangle. What kind? How far does the drone fly? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l3-wa"><div class="bk-ans">A <b>right triangle</b>: the streets meet at a square corner. The drone’s path is the <b>hypotenuse</b>: <span class="tex">3^2+4^2=25</span>, so <span class="tex">\sqrt{25}=5</span> blocks. It saves 2 blocks.</div></div></div>
+    </div>
+    <div class="poll wf-poll u6l3-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> To the <b>Farm</b>, the truck drives <b>12</b> blocks right, then <b>5</b> up: <b>17</b> blocks. How far does the drone fly? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> <span class="tex">8\tfrac12</span></div>
+        <div class="opt right"><b>B</b> 13</div>
+        <div class="opt"><b>C</b> 16</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>B: 13 blocks.</b> <span class="tex">12^2+5^2=144+25=169</span>, and <span class="tex">\sqrt{169}=13</span>. The drone saves only 4 blocks: the trip is mostly in one direction, so the corner it cuts is small (not half!).<br><b>Today:</b> every diagonal segment is the drone’s path, and the truck’s two streets are its <b class="u6l3-crun">run</b> and <b class="u6l3-crise">rise</b>.</div>
+    </div>
+  </div></div>
+  <p class="u6l3-social">Tell your neighbour: where do <b>you</b> cut across like a drone?</p>
 </section>
 
 <!-- ================= summary ================= -->
@@ -255,7 +276,7 @@
     <div><b>Exact and decimal.</b> Simplify the root: <span class="tex">\sqrt{45}=3\sqrt5</span>. Round only at the end: <span class="tex">\approx6.71</span>. On a map: grid units first, then <b>× the scale</b>.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u6l3">
-    <div><div class="kicker">Your turn</div><b>Assignment 3 — Measuring the Length of a Line Segment: Diagonal Segments and the Distance Formula</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 3 · Questions 8–15</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l4/">
     <div><div class="kicker">Next lesson</div><b>Lesson 4 — The Midpoint Formula</b><div class="muted">The drone’s battery dies exactly halfway to the Farm. Where does it land?</div></div><span class="arrow">→</span>
@@ -268,7 +289,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u6l3.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u6l3', homeHref: '../../', title: '6.3 The Distance Formula' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>

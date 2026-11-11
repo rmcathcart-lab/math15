@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="../../css/site.css">
 <link rel="stylesheet" href="../../css/calc.css">
 <link rel="stylesheet" href="../../css/lessons/u6l6.css">
+<link rel="stylesheet" href="../../css/views.css">
 <script src="../../../js/ns.js"></script>
 <script src="../../../assets/katex/katex.min.js"></script>
 <script src="../../../js/calc.js"></script>
@@ -24,6 +25,15 @@
 </head>
 <body>
 <main class="lesson screen u6l6">
+
+<!-- ================= warm-up: one clear question, first thing on the screen ================= -->
+<section class="card warm wf" data-ink="warm2" data-section="Warm-up: Which Slide Is Scariest?">
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Which Slide Is Scariest?</h2>
+  <p class="wf-rule">Four playground slides. Which one is the <b>steepest</b>?</p></div>
+  <div class="vw-tiles" style="--n:4;--fs:30px"><div><b>A</b>3 m tall<small>6 m along the ground</small></div><div><b>B</b>4 m tall<small>4 m along the ground</small></div><div><b>C</b>5 m tall<small>10 m along the ground</small></div><div><b>D</b>6 m tall<small>20 m along the ground</small></div></div>
+  <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Is the tallest one the steepest?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
+    <div class="bk-ans"><b>B.</b> It climbs 1 m for every 1 m along the ground. A and C climb 1 m for every 2 m. D is the tallest but the gentlest: 1 m for every 3 m or so.</div></div>
+</section>
 
 <!-- ================= title ================= -->
 <section class="card hero" data-ink="hero" data-section="Start">
@@ -44,42 +54,7 @@
 </section>
 
 <!-- ================= warm-up ================= -->
-<section class="card warm wf" data-ink="warm" data-section="Warm-up: Which Slide Is Scariest?" id="wu">
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Which Slide Is Scariest?</h2>
-  <p class="wf-rule">Scariest = <b>steepest</b>. Each slide shows how far it goes <b class="u6l6-crise">up</b> and <b class="u6l6-crun">across</b>. All four are drawn to the same scale: every square is 1 m.</p></div>
-  <div class="u6l6-slides" id="u6l6-slides"></div>
-  <div class="u6l6-wbtns">
-    <button type="button" class="pill" id="u6l6-wdiv">Show up ÷ across</button>
-    <button type="button" class="pill" id="u6l6-we">Add slide E</button>
-  </div>
-  <div class="u6l6-wlow">
-    <div class="u6l6-wqs">
-      <div class="bk-wq">
-        <div class="q-line"><div class="q-num">1</div><div>Which slide is the <b>tallest</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l6-wa"><div class="bk-ans"><b>A</b>, 4 m tall.</div></div>
-      </div>
-      <div class="bk-wq">
-        <div class="q-line"><div class="q-num">2</div><div><b>B</b> and <b>D</b> are both 3 m tall. Which is steeper? Why? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l6-wa"><div class="bk-ans"><b>B.</b> Both climb 3 m, but B does it in only 4 m across instead of 5 m. Same climb in less distance = steeper.</div></div>
-      </div>
-      <div class="bk-wq">
-        <div class="q-line"><div class="q-num">3</div><div>For each slide, work out <b>up ÷ across</b>. Which slide gets the <b>biggest</b> number? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
-        <div class="u6l6-wa"><div class="bk-ans">A: <span class="tex">4\div8=0.5</span>, B: <span class="tex">3\div4=0.75</span>, C: <span class="tex">2\div5=0.4</span>, D: <span class="tex">3\div5=0.6</span>. <b>B</b> gets the biggest number, and B <b>is</b> the steepest slide.</div></div>
-      </div>
-    </div>
-    <div class="poll wf-poll u6l6-poll">
-      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Slide <b>E</b> (not shown yet) is <b>6 m</b> tall, taller than all four! It stretches <b>20 m</b> across the ground. Where does E rank? <b>Guess first.</b></div></div>
-      <div class="poll-opts">
-        <div class="opt"><b>A</b> Steepest of all</div>
-        <div class="opt"><b>B</b> Somewhere in the middle</div>
-        <div class="opt right"><b>C</b> Gentlest of all</div>
-      </div>
-      <button class="pill" type="button" data-poll-reveal>Reveal</button>
-      <div class="poll-ans"><b>C, gentlest of all.</b> <span class="tex">6\div20=0.3</span>, smaller than every other slide. E is the tallest, but it is spread over so much ground that it is the least scary. Tap <b>Add slide E</b> to see it.<br><span class="muted">Height alone doesn’t tell you steepness: you have to <b>compare</b> up with across.</span></div>
-    </div>
-  </div>
-  <p class="u6l6-social">With a neighbour: rank A–D, scariest to gentlest. Do your eyes agree with Question 3?</p>
-</section>
+
 
 <!-- ================= 1. What slope measures ================= -->
 <section class="card" data-ink="s1" data-section="1. What Slope Measures">
@@ -94,7 +69,7 @@
     </div>
   </div>
   <p>Rise is <b>positive</b> counting <b>up</b>, negative counting down. Run is <b>positive</b> counting <b>right</b>, negative counting left. Every segment in this lesson’s notes climbs to the right, so its slope is positive. (A segment that falls to the right has a negative slope; Lesson 7 looks at every kind of slope.)</p>
-  <div class="explainer" data-explainer="stairs"></div>
+  <div data-extra><div class="explainer" data-explainer="stairs"></div></div>
 </section>
 
 <section class="card" data-ink="s1b" data-section="1. Tallest isn't steepest">
@@ -144,7 +119,7 @@
   <button class="more" data-more="ex2-space">+ More space</button>
 </section>
 
-<section class="card" data-ink="s2b" data-section="2. Rise on top">
+<section data-extra class="card" data-ink="s2b" data-section="2. Rise on top">
   <h3 class="sub">Rise on top, run on the bottom</h3>
   <p>The order matters. <span class="tex">\dfrac{3}{4}</span> and <span class="tex">\dfrac{4}{3}</span> describe two very different lines: flip the fraction and you get a much steeper line that misses the point you were aiming for.</p>
   <div class="explainer" data-explainer="flip"></div>
@@ -176,7 +151,7 @@
   <div class="explainer" data-explainer="formula"></div>
 </section>
 
-<section class="card" data-ink="s3b" data-section="3. Lowest terms">
+<section data-extra class="card" data-ink="s3b" data-section="3. Lowest terms">
   <h3 class="sub">Lowest terms: smaller triangles, same slope</h3>
   <p>Reducing the fraction is not just a rule: a big slope triangle splits into smaller copies, and each copy has the <b>same</b> slope. <span class="tex">\dfrac{6}{3}=\dfrac{2}{1}</span> means “2 up for every 1 right”.</p>
   <div class="explainer" data-explainer="split"></div>
@@ -218,6 +193,15 @@
   <button class="more" data-more="ex4-space">+ More space</button>
 </section>
 
+<!-- ================= practice break (one per lesson at most) ================= -->
+<section class="card practice" data-ink="p1" data-section="Practice: Questions 1–4">
+  <div class="pr-k">Your turn</div>
+  <h2>Assignment 6 · Questions 1–4</h2>
+  <p class="pr-t">Count rise and run, then use the slope formula.</p>
+  <div class="pr-chips n2"><span><b>1–2</b>Counting rise and run</span><span><b>3–4</b>Using the slope formula</span></div>
+  <div class="pr-foot"><span>We carry on when most of the class has reached Question 3.</span><a class="pill" href="../../../#/lesson/u6l6">Open the Practice site</a></div>
+</section>
+
 <!-- ================= Stand Up Break! (whiteboard stations; lessons/js/standup.js) ================= -->
 <section class="card standup" data-ink="standup" data-section="Stand Up Break!" data-standup="u6l6"></section>
 
@@ -226,7 +210,7 @@
   <div class="sec-h"><span class="badge">4</span><h2>Slope in the Real World</h2></div>
   <p>Ramps, roads and trails are described by the same ratio: <b>vertical climb</b> over <b>horizontal distance</b>. Read the rise and the run off the description, then reduce.</p>
   <div class="def u6l6-grade"><b>Grade.</b> Road signs and trail maps often give the slope as a <b>percent</b>, called the <b>grade</b>: divide, then multiply by 100. For example, a slope of <span class="tex">\tfrac{1}{4}=0.25</span> is a <b>25%</b> grade: it climbs 25 m for every 100 m across.</div>
-  <div class="explainer" data-explainer="grade"></div>
+  <div data-extra><div class="explainer" data-explainer="grade"></div></div>
 </section>
 
 <section class="card example" data-ink="ex5" data-section="Example 5">
@@ -240,6 +224,43 @@
   <button class="more" data-more="ex5-space">+ More space</button>
 </section>
 
+<section data-extra class="card warm wf" data-ink="warm" data-section="Extra: Which Slide Is Scariest?" id="wu">
+  <div class="wf-head"><span class="badge warm-b">Extra</span><h2>Which Slide Is Scariest?</h2>
+  <p class="wf-rule">Scariest = <b>steepest</b>. Each slide shows how far it goes <b class="u6l6-crise">up</b> and <b class="u6l6-crun">across</b>. All four are drawn to the same scale: every square is 1 m.</p></div>
+  <div class="u6l6-slides" id="u6l6-slides"></div>
+  <div class="u6l6-wbtns">
+    <button type="button" class="pill" id="u6l6-wdiv">Show up ÷ across</button>
+    <button type="button" class="pill" id="u6l6-we">Add slide E</button>
+  </div>
+  <div class="u6l6-wlow">
+    <div class="u6l6-wqs">
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">1</div><div>Which slide is the <b>tallest</b>? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l6-wa"><div class="bk-ans"><b>A</b>, 4 m tall.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">2</div><div><b>B</b> and <b>D</b> are both 3 m tall. Which is steeper? Why? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l6-wa"><div class="bk-ans"><b>B.</b> Both climb 3 m, but B does it in only 4 m across instead of 5 m. Same climb in less distance = steeper.</div></div>
+      </div>
+      <div class="bk-wq">
+        <div class="q-line"><div class="q-num">3</div><div>For each slide, work out <b>up ÷ across</b>. Which slide gets the <b>biggest</b> number? <button class="pill small" type="button" data-bk-toggle>Answer</button></div></div>
+        <div class="u6l6-wa"><div class="bk-ans">A: <span class="tex">4\div8=0.5</span>, B: <span class="tex">3\div4=0.75</span>, C: <span class="tex">2\div5=0.4</span>, D: <span class="tex">3\div5=0.6</span>. <b>B</b> gets the biggest number, and B <b>is</b> the steepest slide.</div></div>
+      </div>
+    </div>
+    <div class="poll wf-poll u6l6-poll">
+      <div class="q-line"><div class="q-num big-one">!</div><div><b>The big one.</b> Slide <b>E</b> (not shown yet) is <b>6 m</b> tall, taller than all four! It stretches <b>20 m</b> across the ground. Where does E rank? <b>Guess first.</b></div></div>
+      <div class="poll-opts">
+        <div class="opt"><b>A</b> Steepest of all</div>
+        <div class="opt"><b>B</b> Somewhere in the middle</div>
+        <div class="opt right"><b>C</b> Gentlest of all</div>
+      </div>
+      <button class="pill" type="button" data-poll-reveal>Reveal</button>
+      <div class="poll-ans"><b>C, gentlest of all.</b> <span class="tex">6\div20=0.3</span>, smaller than every other slide. E is the tallest, but it is spread over so much ground that it is the least scary. Tap <b>Add slide E</b> to see it.<br><span class="muted">Height alone doesn’t tell you steepness: you have to <b>compare</b> up with across.</span></div>
+    </div>
+  </div>
+  <p class="u6l6-social">With a neighbour: rank A–D, scariest to gentlest. Do your eyes agree with Question 3?</p>
+</section>
+
 <!-- ================= summary ================= -->
 <section class="card summary" data-ink="sum" data-section="Summary">
   <div class="sec-h"><span class="badge">✓</span><h2>Key ideas</h2></div>
@@ -250,7 +271,7 @@
     <div><b>Lowest terms:</b> <span class="tex">\frac{4}{6}=\frac{2}{3}</span> means “2 up for every 3 right”. Real world: <span class="tex">\frac{45}{300}=\frac{3}{20}</span>, a 15% grade.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u6l6">
-    <div><div class="kicker">Your turn</div><b>Assignment 6 — Rise Over Run: The Slope of a Line Segment</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Your turn</div><b>Assignment 6 · Questions 5–15</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l7/">
     <div><div class="kicker">Next lesson</div><b>Lesson 7 — Types of Slope: Positive, Negative, Zero, and Undefined</b><div class="muted">Lines that go downhill, lie flat, or stand straight up: what is their slope?</div></div><span class="arrow">→</span>
@@ -263,7 +284,9 @@
 <script type="module">
   import { boot } from '../../js/ui.js';
   import '../../js/lessons/u6l6.js';
+  import { views } from '../../js/views.js';
   boot({ key: 'u6l6', homeHref: '../../', title: '6.6 Rise Over Run: Slope' });
+  views();
 </script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('../../sw.js').catch(function () {});</script>
 </body>
