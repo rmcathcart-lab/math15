@@ -291,10 +291,10 @@ SPECS['u2l3'] = dict(
     replace=[('data-section="2. Back to the warm-up"', 'data-section="2. Supersize a tile"'), ('Back to the warm-up: supersize a tile', 'Supersize a tile')],
     practice=PR('ex3', '1–6', '7–12', 'Power of a product, then power of a quotient.', [('1–6', 'The two new laws')], 5))
 SPECS['u2l4'] = dict(
-    warm=dict(title='The Power Maze', rule='Start with <b>2</b>. Use each tile exactly once. Which order gives the <b>biggest</b> finish?',
+    warm=dict(title='The Power Maze', rule='Start with <b>2</b>. Use each tile exactly once. Which order gives the <b>largest</b> end result?',
               body=TILES(3, [('', '× 4'), ('', 'square it'), ('', '÷ 2')]),
               nudge='Does the order really matter?',
-              reveal=f'<b>× 4, then square it, then ÷ 2 gives 32.</b> {T(r"2\times4=8")}, {T("8^2=64")}, {T(r"64\div2=32")}. Squaring last-but-one makes the biggest number bigger. The smallest finish is 4.'),
+              reveal=f'<b>× 4, then square it, then ÷ 2 gives 32.</b> {T(r"2\times4=8")}, {T("8^2=64")}, {T(r"64\div2=32")}. Squaring after the × 4 makes a big number much bigger. The smallest end result is 4.'),
     extra_cards=['s3b'], extra_expl=['which', 'columns'],
     practice=PR('ex3', '1–5', '6–14', 'Combine two laws at a time.', [('1–5', 'Two-law combinations')], 4))
 SPECS['u2l5'] = dict(
