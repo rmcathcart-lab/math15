@@ -1,6 +1,6 @@
 """Small looping pictures for the warm-up cards (Ryan, 2026-11-11: a fun visual that moves, to pull eyes to the screen
 as students come in). Plain SVG with SMIL animation, viewBox 330 x 250, no scripts. A picture must never give the
-answer away. lessons/js/views.js pauses them when the device asks for reduced motion."""
+answer away. They are not paused for reduced motion (Ryan's choice, 2026-11-11)."""
 INK, BLUE, RED, GREEN, AMBER, LINE = '#4a4436', '#2b55a0', '#c93a33', '#12805a', '#e0a11b', '#d9d3c4'
 def svg(inner, label, vb='0 0 330 250'):
     return f'<svg viewBox="{vb}" role="img" aria-label="{label}">{inner}</svg>'

@@ -56,8 +56,8 @@ export function views({ initial = 'class' } = {}) {
     };
     new MutationObserver(addRow).observe(menu, { childList: true, attributes: true, attributeFilter: ['class'] });
   }
-  // warm-up pictures loop gently; hold them still when the device asks for reduced motion
-  try { if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('.vw-art svg, .vw-pic svg, .vw-strip svg').forEach((g) => g.pauseAnimations && g.pauseAnimations()); } catch (e) {}
+  // The warm-up pictures always loop, even when the device asks for reduced motion: Ryan wants them moving as students
+  // come in, and with the pause in place they were completely still on his own device (2026-11-11).
   set(view, false);
   return { set, get: () => view };
 }
