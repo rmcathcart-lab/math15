@@ -97,10 +97,10 @@ def stick():
     ex = f'<line x1="0" y1="{H}" x2="{9*cell}" y2="{H}" stroke="#4a4436" stroke-width="5" stroke-linecap="round"/><line x1="{2*cell}" y1="{H-1*cell}" x2="{6*cell}" y2="{H-4*cell}" stroke="#2b55a0" stroke-width="9" stroke-linecap="round"/>'
     return grid_svg(9, 5, [(4, 5.1, '☀', '#e0a11b')], cell, ex)
 SPECS['u5l5'] = dict(
-    warm=dict(title='The Shadow', rule='The sun is <b>straight overhead</b>. How long is the shadow of the blue stick on the ground?',
-              body=PIC(stick(), 'Each square is 1 unit.'),
-              nudge='Is the shadow as long as the stick?',
-              reveal='<b>4 units.</b> The shadow runs from under one end of the stick to under the other end. The stick itself is 5 units long, but the shadow only shows how far it reaches left to right.'),
+    warm=dict(pic=LADDER, title='The Shadow', rule='How long is the ladder’s shadow on the ground?',
+              body=BIG('A ladder leans against a wall. The sun is <b>straight overhead</b>.<small>Each square on the grid is 1 m.</small>'),
+              nudge='Is the shadow as long as the ladder?',
+              reveal='<b>4 m.</b> With the sun straight overhead, the shadow lies right under the ladder: from its foot to the wall, 4 squares. The ladder itself is 5 m long, but the shadow only shows how far it reaches left to right.'),
     extra_cards=['s5b'],
     extra_expl=['discrete', 'scan'],
     practice=dict(after='ex4', qs='1–7', rest='8–13', line='Read the domain and range from each graph.',
@@ -125,10 +125,10 @@ def window_svg(full=False):
         return f'<svg viewBox="0 0 300 220" style="width:220px;flex:none">{v}<rect x="176" y="96" width="70" height="70" fill="rgba(224,161,27,.18)" stroke="#e0a11b" stroke-width="4"/></svg>'
     return '<svg viewBox="170 90 82 82" style="max-width:300px"><defs><clipPath id="vwwin"><rect x="176" y="96" width="70" height="70"/></clipPath></defs><rect x="176" y="96" width="70" height="70" fill="#fbfaf6"/><g clip-path="url(#vwwin)">' + v + '</g><rect x="176" y="96" width="70" height="70" fill="none" stroke="#4a4436" stroke-width="3"/></svg>'
 SPECS['u5l7'] = dict(
-    warm=dict(title='Through the Window', rule='This is all you can see through a small window. What is the <b>whole picture</b>?',
-              body=PIC(window_svg()),
-              nudge='How sure are you?',
-              reveal='<span style="display:flex;gap:18px;align-items:center">' + window_svg(True) + '<span><b>A big V.</b> The window only showed a small piece of one side, so it looked like a plain straight line. What you see depends on where the window is and how big it is.</span></span>'),
+    warm=dict(pic=CALC_BLANK, title='The Blank Screen', rule='Is the calculator broken?',
+              body=BIG(f'You type {T("y=2x-40")} into a graphing calculator and press GRAPH.<small>The screen shows {T("x")} from −10 to 10 and {T("y")} from −10 to 10. There is no line anywhere.</small>'),
+              nudge=f'What is {T("y")} when {T("x=0")}? When {T("x=10")}?',
+              reveal=f'<b>No, the line is just off the screen.</b> For every {T("x")} from −10 to 10, {T("y=2x-40")} is somewhere from −60 to −20, so the whole piece is below the bottom of the screen ({T("y=-10")}). Change the window, for example {T("y")} from −50 to 10, and the line appears. It crosses the axes at {T("(20,\\ 0)")} and {T("(0,\\ -40)")}.'),
     extra_expl=['keys', 'fixWindow', 'table', 'offEdges', 'context'],
     practice=dict(after='ex4', qs='1–7', rest='8–12', line='Choose a window, then read intercepts, domain and range off the screen.',
                   chips=[('1–3', 'Vocabulary and choosing a window'), ('4–7', 'Intercepts, domain and range off a screen')],
@@ -291,11 +291,13 @@ SPECS['u2l3'] = dict(
     replace=[('data-section="2. Back to the warm-up"', 'data-section="2. Supersize a tile"'), ('Back to the warm-up: supersize a tile', 'Supersize a tile')],
     practice=PR('ex3', '1–6', '7–12', 'Power of a product, then power of a quotient.', [('1–6', 'The two new laws')], 5))
 SPECS['u2l4'] = dict(
-    warm=dict(title='The Power Maze', rule='Start with <b>2</b>. Use each tile exactly once. Which order gives the <b>largest</b> end result?',
+    warm=dict(title='Three Tiles', rule='Start with <b>2</b>. Send it through all three tiles, each one once, in any order you like. Which order gives the <b>largest</b> result?',
               body=TILES(3, [('', '× 4'), ('', 'square it'), ('', '÷ 2')]),
               nudge='Does the order really matter?',
               reveal=f'<b>× 4, then square it, then ÷ 2 gives 32.</b> {T(r"2\times4=8")}, {T("8^2=64")}, {T(r"64\div2=32")}. Squaring after the × 4 makes a big number much bigger. The smallest end result is 4.'),
     extra_cards=['s3b'], extra_expl=['which', 'columns'],
+    replace=[('Why brackets first? Back to the maze', 'Why brackets first? Back to the warm-up tiles'), ('Write every maze number as a power of 2:', 'Write every tile number as a power of 2:'),
+             ('Add a “÷4” tile to the maze:', 'Add a “÷4” tile:')],
     practice=PR('ex3', '1–5', '6–14', 'Combine two laws at a time.', [('1–5', 'Two-law combinations')], 4))
 SPECS['u2l5'] = dict(
     warm=dict(pic=MOON, title='Fold to the Moon', rule='About how many folds until the stack reaches the Moon?',
@@ -344,7 +346,7 @@ SPECS['u2l10'] = dict(
 CAL = lambda a: f'<span class="vw-cal"><span>{a}</span><span>{a+1}</span><span>{a+7}</span><span>{a+8}</span></span>'
 SPECS['u3l1'] = dict(
     warm=dict(title='The Fruit Puzzle', rule='What is the last line worth?',
-              body=BIG('🍎 + 🍎 + 🍎 = 30<br>🍎 + 🍌 + 🍌 = 18<br>🍌 − 🥥 = 2<small style="font-size:40px;color:inherit">🥥 + 🍎 + 🍌 = ?</small>'),
+              body=BIG(f'{APPLE} + {APPLE} + {APPLE} = 30<br>{APPLE} + {BANANA} + {BANANA} = 18<br>{BANANA} − {COCONUT} = 2<small style="font-size:40px;color:inherit">{COCONUT} + {APPLE} + {BANANA} = ?</small>'),
               nudge='What is each fruit worth?',
               reveal='<b>16.</b> An apple is 10, a banana is 4 and a coconut is 2, so the last line is 2 + 10 + 4.'),
     extra_cards=['s1b', 's4b', 's4c', 's4d', 's5b', 's5c'], extra_expl=['anatomy'],
@@ -357,10 +359,10 @@ SPECS['u3l2'] = dict(
     replace=[('That is exactly what the warm-up rectangles did.', 'That is exactly how the warm-up worked: 8 × 2 000, take away 8 × 3.')],
     practice=PR('ex3', '1–5', '6–15', 'Multiply monomials, then distribute.', [('1–3', 'Monomials and binomials'), ('4–5', 'Trinomials')], 4))
 SPECS['u3l3'] = dict(
-    warm=dict(title='The Calendar Trick', rule='Take any 2 by 2 block from a calendar. Multiply each diagonal pair. What do you notice?',
-              body='<div class="vw-tiles" style="--n:2"><div>' + CAL(9) + '</div><div>' + CAL(20) + '</div></div>',
+    warm=dict(pic=CALENDAR, title='The Calendar Trick', rule='What do you get?',
+              body=BIG('Box any 2 × 2 block of dates on the calendar.<small>Multiply the two numbers on each diagonal. Then subtract the smaller answer from the bigger one.</small>'),
               nudge='Try another block. Does it always happen?',
-              reveal=f'<b>The two products always differ by 7.</b> {T(r"10\times16-9\times17=160-153=7")} and {T(r"21\times27-20\times28=567-560=7")}.'),
+              reveal=f'<b>Always 7.</b> For the block 3, 4, 10, 11: {T(r"4\times10-3\times11=40-33=7")}. For 16, 17, 23, 24: {T(r"17\times23-16\times24=391-384=7")}. Any block, any month: the bottom row is always 7 more than the top row.'),
     extra_cards=['s2b'], extra_expl=['areaGrow', 'foilNeg', 'middle', 'combine'],
     practice=PR('ex3', '1–9', '10–16', 'Distribute and FOIL, then negative terms.', [('1–5', 'Distributing and FOIL'), ('6–9', 'Negative terms and two variables')], 6))
 SPECS['u3l4'] = dict(
@@ -374,13 +376,13 @@ SPECS['u3l5'] = dict(
     warm=dict(title='Jordan’s Shortcut', rule='How far off is Jordan?',
               body=BIG(f'Jordan says {T(r"23\times123=2\,009")}<small>“because {T(r"20\times100=2\,000")} and {T(r"3\times3=9")}.”</small>'),
               nudge='What did Jordan leave out?',
-              reveal=f'<b>Off by 820.</b> The real answer is 2 829. Jordan left out {T(r"20\times23=460")} and {T(r"3\times100=300")} and {T(r"20\times3=60")}: every part has to multiply every part.'),
+              reveal=f'<b>Off by 820.</b> The real answer is 2 829. Split it up: {T(r"(20+3)(100+20+3)")} has six parts. Jordan kept two of them and left out {T(r"20\times20=400")}, {T(r"20\times3=60")}, {T(r"3\times100=300")} and {T(r"3\times20=60")}. Every part has to multiply every part.'),
     extra_cards=['s2c'], extra_expl=['recall', 'sort', 'signs', 'combo'],
     replace=[('The warm-up already did this with numbers.', 'Multiplying two numbers already works this way: every part times every part.')],
     practice=PR('ex3', '1–6', '7–16', 'Six partial products, then collect.', [('1–6', 'Six partial products, then collect')], 4))
 SPECS['u3l6'] = dict(
-    warm=dict(title='The Open-Top Box', rule='Cut the same square from each corner of a <b>20 cm by 20 cm</b> sheet and fold up the sides. Which cut makes the box that <b>holds the most</b>?',
-              body=TILES(4, [('A', '1 cm'), ('B', '3 cm'), ('C', '5 cm'), ('D', '8 cm')]),
+    warm=dict(pic=BOXFOLD, title='The Open-Top Box', rule='Cut the same square from each corner of a <b>20 cm by 20 cm</b> sheet and fold up the sides. Which cut makes the box that <b>holds the most</b>?',
+              body=TILES(2, [('A', '1 cm'), ('B', '3 cm'), ('C', '5 cm'), ('D', '8 cm')]),
               nudge='A small cut is wide but flat. A big cut is tall but skinny.',
               reveal=f'<b>B, the 3 cm cut:</b> {T(r"14\times14\times3=588")} cm³. The others hold 324, 500 and 128 cm³.'),
     extra_expl=['area', 'box', 'tank'],
@@ -608,7 +610,7 @@ SPECS['u8l2'] = dict(
     practice=PR('ex3', '1–3', '4–15', 'Graph each system and say how many solutions it has.', [('1–3', 'Graph and classify')], 2))
 SPECS['u8l3'] = dict(
     warm=dict(title='Swap It Out!', rule='How heavy is one banana?',
-              body=BIG('🍎 = 🍌 + 🍌<br>🍎 + 🍌 = 150 g'),
+              body=BIG(f'{APPLE} = {BANANA} + {BANANA}<br>{APPLE} + {BANANA} = 150 g'),
               nudge='What could you swap the apple for?',
               reveal='<b>50 g.</b> Swap the apple for two bananas: then three bananas weigh 150 g. The apple is 100 g.'),
     extra_cards=['s2b', 's3b', 's4b'], extra_expl=['brackets', 'checkBoth'],

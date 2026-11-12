@@ -27,10 +27,10 @@
 <main class="lesson screen u2l4">
 
 <!-- ================= warm-up: one clear question, first thing on the screen ================= -->
-<section class="card warm wf" data-ink="warmq" data-section="Warm-up: The Power Maze">
-  <div class="vw-strip"><svg viewBox="0 0 340 60" aria-hidden="true"><g transform="translate(-40 0)"><animateTransform attributeName="transform" type="translate" values="-40 0;380 0" dur="5s" begin="0s" repeatCount="indefinite"/><g><animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="0.5s" begin="0s" repeatCount="indefinite"/><text x="0" y="46" font-size="34" text-anchor="middle" transform="scale(-1 1)">🐭</text></g></g><text x="310" y="46" font-size="32" text-anchor="middle">🧀<animate attributeName="opacity" values="1;0.5;1" dur="1.6s" begin="0s" repeatCount="indefinite"/></text></svg></div>
-  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>The Power Maze</h2>
-  <p class="wf-rule vw-rule">Start with <b>2</b>. Use each tile exactly once. Which order gives the <b>largest</b> end result?</p></div>
+<section class="card warm wf" data-ink="warmq" data-section="Warm-up: Three Tiles">
+  <div class="vw-strip"><svg viewBox="0 0 340 60" aria-hidden="true"><rect x="86" y="12" width="48" height="36" rx="8" fill="#fffdf6" stroke="#2b55a0" stroke-width="2.6"><animate attributeName="fill" values="#fffdf6;#fffdf6;#dbe7f8;#fffdf6;#fffdf6" keyTimes="0;0.23;0.27;0.35;1" dur="5s" repeatCount="indefinite"/></rect><text x="110" y="36" font-size="17" font-weight="800" fill="#2b55a0" text-anchor="middle" font-family="system-ui, sans-serif">×4</text><rect x="156" y="12" width="48" height="36" rx="8" fill="#fffdf6" stroke="#2b55a0" stroke-width="2.6"><animate attributeName="fill" values="#fffdf6;#fffdf6;#dbe7f8;#fffdf6;#fffdf6" keyTimes="0;0.46;0.50;0.58;1" dur="5s" repeatCount="indefinite"/></rect><text x="180" y="36" font-size="17" font-weight="800" fill="#2b55a0" text-anchor="middle" font-family="system-ui, sans-serif">( )²</text><rect x="226" y="12" width="48" height="36" rx="8" fill="#fffdf6" stroke="#2b55a0" stroke-width="2.6"><animate attributeName="fill" values="#fffdf6;#fffdf6;#dbe7f8;#fffdf6;#fffdf6" keyTimes="0;0.69;0.73;0.81;1" dur="5s" repeatCount="indefinite"/></rect><text x="250" y="36" font-size="17" font-weight="800" fill="#2b55a0" text-anchor="middle" font-family="system-ui, sans-serif">÷2</text><g><animateTransform attributeName="transform" type="translate" values="30 30;330 30" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;.05;.9;1" dur="5s" repeatCount="indefinite"/><circle r="9" fill="#e0a11b" stroke="#4a4436" stroke-width="2"/></g></svg></div>
+  <div class="wf-head"><span class="badge warm-b">Warm-up</span><h2>Three Tiles</h2>
+  <p class="wf-rule vw-rule">Start with <b>2</b>. Send it through all three tiles, each one once, in any order you like. Which order gives the <b>largest</b> result?</p></div>
   <div class="vw-tiles" style="--n:3"><div><b></b>× 4</div><div><b></b>square it</div><div><b></b>÷ 2</div></div>
   <div class="bk-wq vw-rev"><div class="q-line"><div class="q-num">?</div><div>Does the order really matter?</div><button class="pill small" type="button" data-bk-toggle>Reveal</button></div>
     <div class="bk-ans"><b>× 4, then square it, then ÷ 2 gives 32.</b> <span class="tex">2\times4=8</span>, <span class="tex">8^2=64</span>, <span class="tex">64\div2=32</span>. Squaring after the × 4 makes a big number much bigger. The smallest end result is 4.</div></div>
@@ -103,8 +103,8 @@
 </section>
 
 <section class="card" data-ink="s1c" data-section="1. Why brackets first?">
-  <h3 class="sub">Why brackets first? Back to the maze</h3>
-  <p>Write every maze number as a power of 2: <span class="tex">4=2^{2}</span>, <span class="tex">\times4=\times2^{2}</span>, <span class="tex">\div2=\div2^{1}</span>. Now every tile <b>is</b> an exponent law. The “square it” tile acts like a <b>bracket with an outer exponent</b>: it squares everything that came before it.</p>
+  <h3 class="sub">Why brackets first? Back to the warm-up tiles</h3>
+  <p>Write every tile number as a power of 2: <span class="tex">4=2^{2}</span>, <span class="tex">\times4=\times2^{2}</span>, <span class="tex">\div2=\div2^{1}</span>. Now every tile <b>is</b> an exponent law. The “square it” tile acts like a <b>bracket with an outer exponent</b>: it squares everything that came before it.</p>
   <div class="explainer" data-explainer="maze"></div>
 </section>
 
@@ -235,7 +235,7 @@
     <div><div class="kicker">Your turn</div><b>Assignment 4 · Questions 6–14</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>
   </a>
   <a class="assign next-l" href="../l5/">
-    <div><div class="kicker">Next lesson</div><b>Lesson 5 — Zero Exponents</b><div class="muted">Add a “÷4” tile to the maze: <span class="tex">2^{2}\div2^{2}=2^{0}</span>. But <span class="tex">4\div4=1</span>… so what is <span class="tex">2^{0}</span>?</div></div><span class="arrow">→</span>
+    <div><div class="kicker">Next lesson</div><b>Lesson 5 — Zero Exponents</b><div class="muted">Add a “÷4” tile: <span class="tex">2^{2}\div2^{2}=2^{0}</span>. But <span class="tex">4\div4=1</span>… so what is <span class="tex">2^{0}</span>?</div></div><span class="arrow">→</span>
   </a>
   <div class="space" id="sum-space" style="min-height:120px"></div>
 </section>
