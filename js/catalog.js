@@ -7,7 +7,7 @@
   /* lessons that have a lesson page under lessons/ (examples + the teacher's class notes); the home page and the
    * lesson sidebar link to it as lessons/u1/l7/?class=<block> */
   root.HW.TEACHING = { base: 'lessons/',
-    lessons: ['u1l1', 'u1l2', 'u1l3', 'u1l4', 'u1l5', 'u1l6', 'u1l7', 'u1l8',
+    lessons: ['u1l0', 'u1l1', 'u1l2', 'u1l3', 'u1l4', 'u1l5', 'u1l6', 'u1l7', 'u1l8',
       'u2l1', 'u2l2', 'u2l3', 'u2l4', 'u2l5', 'u2l6', 'u2l7', 'u2l8', 'u2l9', 'u2l10',
       'u3l1', 'u3l2', 'u3l3', 'u3l4', 'u3l5', 'u3l6', 'u3l7',
       'u4l1', 'u4l2', 'u4l3', 'u4l4', 'u4l5', 'u4l6', 'u4l7', 'u4l8', 'u4l9', 'u4l10',
@@ -17,6 +17,7 @@
       'u8l1', 'u8l2', 'u8l3', 'u8l4', 'u8l5', 'u8l6', 'u8l7', 'u8l8'] };
   root.HW.CATALOG = [
     { unit: 1, title: 'Number', outcomes: 'AN1 · AN2', lessons: [
+      { id: 'u1l0', num: '0', title: 'Welcome to Math 15', intro: true }, // day one: the course introduction (no assignment)
       { id: 'u1l1', num: '1', title: 'Review: Integer Operations and Order of Operations' },
       { id: 'u1l2', num: '2', title: 'Review: Operations with Fractions and Decimals' },
       { id: 'u1l3', num: '3', title: 'Prime Factorization, GCF, and LCM' },
