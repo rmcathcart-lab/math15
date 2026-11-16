@@ -360,15 +360,15 @@
           var ins = pick(function () { return { m: r.int(1, 9), n: r.int(1, 7), sI: r.pick([1, -1]), sJ: r.pick([1, -1]) }; }, function (z) { return z.m !== z.n && z.m * z.n <= 40 && z.sI * z.m + z.sJ * z.n !== 0; });
           var de = pick(function () { return { a: r.pick([2, 3, 5]), p: r.int(1, 4) * r.pick([1, -1]), q: r.int(1, 5) * r.pick([1, -1]) }; }, function (z) { return gcd(z.a, z.p) === 1 && z.a * z.q + z.p !== 0; });
           var items = [Aitem, B,
-            { kind: 'C', tex: tx(P.mul(sum(lin(1, 'x', ins.sI * ins.m)), sum(lin(1, 'x', ins.sJ * ins.n)))), why: 'it has the form ' + t('x^{2}+bx+c') + ' (no common factor, not a perfect square): find two integers with product ' + t('c') + ' and sum ' + t('b') },
+            { kind: 'C', tex: tx(P.mul(sum(lin(1, 'x', ins.sI * ins.m)), sum(lin(1, 'x', ins.sJ * ins.n)))), why: 'it has the form ' + t('x^{2}+bx+c') + ' (no common factor, not a perfect square): factor by inspection, finding two integers with product ' + t('c') + ' and sum ' + t('b') },
             { kind: 'D', tex: tx(P.mul(sum(lin(de.a, 'x', de.p)), sum(lin(1, 'x', de.q)))), why: 'the leading coefficient is not 1 and there is no common factor: decomposition' }];
           items = r.shuffle(items);
           var rows = items.map(function (x, i) { return { id: 'abcd'[i], html: t(x.tex), label: 'abcd'[i] }; }), want = {}, by = {};
           items.forEach(function (x, i) { want['abcd'[i]] = x.kind; by['abcd'[i]] = x; });
-          var cols = [{ id: 'A', html: '<b>A</b> common factor (GCF)', label: 'A' }, { id: 'B', html: '<b>B</b> difference of squares', label: 'B' }, { id: 'C', html: '<b>C</b> sum–product (' + t('a=1') + ')', label: 'C' }, { id: 'D', html: '<b>D</b> decomposition (' + t('a\\ne 1') + ')', label: 'D' }];
+          var cols = [{ id: 'A', html: '<b>A</b> common factor (GCF)', label: 'A' }, { id: 'B', html: '<b>B</b> difference of squares', label: 'B' }, { id: 'C', html: '<b>C</b> factoring by inspection (' + t('a=1') + ')', label: 'C' }, { id: 'D', html: '<b>D</b> decomposition (' + t('a\\ne 1') + ')', label: 'D' }];
           var p = KP.grid('Choose the method you should use <b>first</b> for each expression. (You do not need to factor.)', rows, cols, want, { why: function (id) { return { code: 'row', hint: 'Check ' + t(by[id].tex) + ': ' + by[id].why + '.' }; }, rowHead: 'Expression' },
             items.map(function (x) { return t(x.tex) + ': <b>' + x.kind + '</b> — ' + x.why + '.'; }).join('<br>'),
-            ['Always look for a common factor first. Then count the terms: two terms with a minus → difference of squares; three terms → sum–product (if ' + t('a=1') + ') or decomposition.'], 'method first');
+            ['Always look for a common factor first. Then count the terms: two terms with a minus → difference of squares; three terms → factoring by inspection (if ' + t('a=1') + ') or decomposition.'], 'method first');
           var sw = {}; Object.keys(want).forEach(function (k) { sw[k] = want[k]; }); var k0 = Object.keys(sw)[0], k1 = Object.keys(sw)[1], tmp = sw[k0]; sw[k0] = sw[k1]; sw[k1] = tmp;
           p.bad = [sw];
           return p;

@@ -710,7 +710,7 @@
         { id: 'e6b', level: 'PRG', make: function (r) { var o = pq(r, 2, 6, 3, 9); return gcfFac(M(r.pick([2, 3]), { x: 1 }), -o[0], -o[1]); } },
         { id: 'e6c', level: 'PRG', make: function (r) { var o = pq(r, 1, 4, 3, 7), L = r.pick(['a', 'a', 'k', 'm']); return gcfFac(M(r.pick([2, 3, 4]), { [L]: 1 }), o[0], o[1]); } }] },
       /* ---------------- Part C ---------------- */
-      { num: '7', section: 'Extra practice C — Two variables and higher powers', stem: 'The sum–product rule doesn’t care what the variable is called: in ' + t('x^{2}+7xy+12y^{2}') + ' the pattern is ' + t('(x+py)(x+qy)') + ' with ' + t('pq=12') + ' and ' + t('p+q=7') + '. Factor each trinomial in two variables.', parts: [
+      { num: '7', section: 'Extra practice C — Two variables and higher powers', stem: 'Factoring by inspection doesn’t care what the variable is called: in ' + t('x^{2}+7xy+12y^{2}') + ' the pattern is ' + t('(x+py)(x+qy)') + ' with ' + t('pq=12') + ' and ' + t('p+q=7') + '. Factor each trinomial in two variables.', parts: [
         { id: 'e7a', level: 'PRG', make: function (r) { var o = pq(r, 1, 5, 3, 8), L = r.pick(YV); return fac(sp(o[0], o[1], { v: L[0], y: L[1] })); } },
         { id: 'e7b', level: 'PRG', make: function (r) { var o = pq(r, 2, 6, 5, 10), L = r.pick(YV); return fac(sp(-o[0], -o[1], { v: L[0], y: L[1] })); } },
         { id: 'e7c', level: 'PRG', make: function (r) { var o = pq(r, 4, 8, 6, 11), L = r.pick(YV); return fac(sp(o[0], o[1], { v: L[0], y: L[1] })); } },

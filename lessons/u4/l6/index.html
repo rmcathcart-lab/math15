@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Factoring Perfect Square Trinomials · Math 15 4.6</title>
-<meta name="description" content="Math 15 Unit 4 Lesson 6: perfect square trinomials. The three-part test, the sum case a² + 2ab + b² = (a + b)², the difference case a² − 2ab + b² = (a − b)², and telling a true perfect square from an impostor (then using sum–product). Write on it with an Apple Pencil.">
+<meta name="description" content="Math 15 Unit 4 Lesson 6: perfect square trinomials. The three-part test, the sum case a² + 2ab + b² = (a + b)², the difference case a² − 2ab + b² = (a − b)², and telling a true perfect square from an impostor (then factoring by inspection). Write on it with an Apple Pencil.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Math 15 Lessons">
@@ -46,7 +46,7 @@
     <ul>
       <li>use the <b>three-part test</b> to decide whether a trinomial is a perfect square trinomial</li>
       <li>factor the <b>sum case</b> <span class="tex">a^2+2ab+b^2=(a+b)^2</span> and the <b>difference case</b> <span class="tex">a^2-2ab+b^2=(a-b)^2</span></li>
-      <li>spot an impostor and factor it with the <b>sum–product</b> method instead</li>
+      <li>spot an impostor and factor it <b>by inspection</b> instead</li>
       <li>check every answer by expanding</li>
     </ul>
   </div>
@@ -164,7 +164,7 @@
 <!-- ================= 4. Perfect square or ordinary? ================= -->
 <section class="card" data-ink="s4" data-section="4. Perfect Square, or an Ordinary Trinomial?">
   <div class="sec-h"><span class="badge">4</span><h2>Perfect Square, or an Ordinary Trinomial?</h2></div>
-  <p>Most trinomials are <b>not</b> perfect squares, so run the test first. If it passes, use the shortcut. If it fails, fall back on the <b>sum–product method</b>: two numbers that multiply to <span class="tex">c</span> and add to <span class="tex">b</span>.</p>
+  <p>Most trinomials are <b>not</b> perfect squares, so run the test first. If it passes, use the shortcut. If it fails, fall back on <b>factoring by inspection</b>: two numbers that multiply to <span class="tex">c</span> and add to <span class="tex">b</span>.</p>
   <div class="def amber"><b>Classic near-misses.</b> <span class="tex">x^2+10x+24</span> looks almost like <span class="tex">(x+5)^2=x^2+10x+25</span>, but 24 is not a perfect square: <span class="tex">(x+4)(x+6)</span>. And Kit D, <span class="tex">x^2+10x+16</span>, has the right squares but the wrong middle: <span class="tex">2(x)(4)=8x\neq10x</span>, so <span class="tex">(x+2)(x+8)</span>.</div>
   <div class="explainer" data-explainer="chooser"></div>
 </section>
@@ -173,7 +173,7 @@
   <div class="ex-head"><span class="ex-tag">Example 4</span><h3>Choose the method</h3></div>
   <p class="q">Decide whether each is a perfect square trinomial, then factor completely by the appropriate method.</p>
   <div class="parts c4">
-    <div class="part"><div class="pl">(a) <span class="tex">x^2+9x+14</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">14 isn’t a square: <b>not</b> a PST.<br>Sum–product (<span class="tex">2,7</span>):<br><span class="tex">=\boldsymbol{(x+2)(x+7)}</span></div></div></div>
+    <div class="part"><div class="pl">(a) <span class="tex">x^2+9x+14</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">14 isn’t a square: <b>not</b> a PST.<br>By inspection (<span class="tex">2,7</span>):<br><span class="tex">=\boldsymbol{(x+2)(x+7)}</span></div></div></div>
     <div class="part"><div class="pl">(b) <span class="tex">x^2+14x+49</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2(x)(7)=14x</span> ✓ <b>PST</b><br><span class="tex">=\boldsymbol{(x+7)^2}</span></div></div></div>
     <div class="part"><div class="pl">(c) <span class="tex">x^2-11x+18</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans">18 isn’t a square: <b>not</b> a PST.<br><span class="tex">(-2)(-9)</span>:<br><span class="tex">=\boldsymbol{(x-2)(x-9)}</span></div></div></div>
     <div class="part"><div class="pl">(d) <span class="tex">x^2-16x+64</span></div><div class="work" style="--h:220px"></div><div class="ansrow"><button class="reveal">Answer</button><div class="ans"><span class="tex">2(x)(8)=16x</span> ✓ <b>PST</b><br><span class="tex">=\boldsymbol{(x-8)^2}</span></div></div></div>
@@ -248,7 +248,7 @@
     <div><span class="tex">a^2+2ab+b^2=(a+b)^2</span> and <span class="tex">a^2-2ab+b^2=(a-b)^2</span>. The <b>2</b> is the two equal rectangles in the square.</div>
     <div><b>Three-part test:</b> first term a square, last term a square (and +), middle <span class="tex">=2\times\sqrt{\text{first}}\times\sqrt{\text{last}}</span>.</div>
     <div><b>Factor:</b> square roots in one bracket, joined by the <b>middle sign</b>, then square it: <span class="tex">x^2-10x+25=(x-5)^2</span>. Check by expanding.</div>
-    <div><b>Impostor?</b> If any test fails, use sum–product: <span class="tex">x^2+10x+24=(x+4)(x+6)</span>.</div>
+    <div><b>Impostor?</b> If any test fails, factor by inspection: <span class="tex">x^2+10x+24=(x+4)(x+6)</span>.</div>
   </div>
   <a class="assign" href="../../../#/lesson/u4l6">
     <div><div class="kicker">Your turn</div><b>Assignment 6 · Questions 6–14</b><div class="muted">Practice on the Math 15 Practice site</div></div><span class="arrow">→</span>

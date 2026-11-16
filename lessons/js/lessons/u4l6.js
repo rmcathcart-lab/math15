@@ -46,7 +46,7 @@ function dimV(stage, x, y, ht, label) {
   return [bar, lab];
 }
 
-/* the sum–product search: factor pairs of c (signs arranged toward b), stopping at the pair whose sum is b */
+/* the inspection pair search: factor pairs of c (signs arranged toward b), stopping at the pair whose sum is b */
 function pairSearch(b, c) {
   const out = [], n = Math.abs(c);
   for (let d = 1; d * d <= n; d++) {
@@ -425,7 +425,7 @@ const signCase = {
 };
 
 /* ======================================================================
-   Section 4. Perfect square or ordinary? Test first, then the shortcut or sum–product
+   Section 4. Perfect square or ordinary? Test first, then the shortcut or inspection
    ====================================================================== */
 const CH = { n24: [1, 10, 24], n16: [1, 10, 16], e5a: [4, 12, 9], e5b: [1, 9, 18], e5c: [9, -30, 25], e5d: [1, -5, -14] };
 const chQ = ([a, b, c]) => coefT(a, 'x^2', true) + coefT(b, 'x') + coefT(c, '');
@@ -489,7 +489,7 @@ const chooser = {
       run: (cx) => showIn(cx, card, 350)
     });
     else steps.push({
-      cap: `A test failed, so it is <b>not</b> a perfect square trinomial.${failAt === 1 ? ' (No need to run test 3.)' : ''} Fall back on <b>sum–product</b>: two numbers that multiply to ${T(String(c))} and add to ${T(String(b))}.`,
+      cap: `A test failed, so it is <b>not</b> a perfect square trinomial.${failAt === 1 ? ' (No need to run test 3.)' : ''} Fall back on <b>factoring by inspection</b>: two numbers that multiply to ${T(String(c))} and add to ${T(String(b))}.`,
       run: async (cx) => { rows.slice(failAt + 1).forEach((r) => r.classList.add('skip')); await card.run(cx); }
     });
     steps.push({
@@ -571,7 +571,7 @@ mountExplainers(); mountKits();
   const root = (m, v) => (m === 1 ? v : `${m}${v}`);
   const testLine = (m, v, k) => `\\sqrt{${m * m === 1 ? '' : m * m}${v}^2}=${root(m, v)},\\ \\ \\sqrt{${k * k}}=${k},\\ \\ 2(${root(m, v)})(${k})=${2 * m * k}${v}\\ \\checkmark`;
   standup('u4l6', {
-    intro: 'Run the three-part test. Perfect square? Use the shortcut. If not, use sum–product. Check by expanding.',
+    intro: 'Run the three-part test. Perfect square? Use the shortcut. If not, factor by inspection. Check by expanding.',
     levels: {
       BEG: (r) => { // x² + 10x + 25 = (x + 5)²
         const v = r.pick(LET), k = r.int(1, 12), q = pstQ(1, v, k, 1);

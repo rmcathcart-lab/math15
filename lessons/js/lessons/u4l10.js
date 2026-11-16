@@ -395,7 +395,7 @@ const FN = {
   bin: { x: 104, y: 150, w: 188, h: 78, html: `<b>2 terms</b>${T('A^2-B^2')}<small>a sum of squares: stop</small>` },
   tri: { x: 420, y: 150, w: 230, h: 78, html: `<b>3 terms</b>${T('ax^2+bx+c')}` },
   ps: { x: 420, y: 250, w: 280, h: 56, html: `<b>Perfect square?</b><small>square ends, middle ${T('2AB')}</small>` },
-  insp: { x: 312, y: 340, w: 200, h: 60, html: `<b>${T('a=1')}: sum–product</b><small>product ${T('c')}, sum ${T('b')}</small>` },
+  insp: { x: 312, y: 340, w: 200, h: 60, html: `<b>${T('a=1')}: inspection</b><small>product ${T('c')}, sum ${T('b')}</small>` },
   dec: { x: 538, y: 340, w: 216, h: 60, html: `<b>${T('a\\neq1')}: decomposition</b><small>product ${T('ac')}, sum ${T('b')}</small>` },
   again: { x: 320, y: 420, w: 560, h: 40, html: `<b>Step 3 · Can any factor be factored again?</b>`, dash: true },
   exp: { x: 320, y: 476, w: 280, h: 38, html: `<b>Check by expanding ✓</b>` }
@@ -422,7 +422,7 @@ const FLOW = {
     { n: 'gcf', b: T('4x'), l: '=4x(x^2-x-6)', cap: `<b>Step 1: common factor.</b> ${T('\\gcd(4,4,24)=4')} and every term has an ${T('x')}: take out ${T('4x')}.` },
     { n: 'tri', cap: `<b>Three terms</b> left: ${T('x^2-x-6')}.` },
     { n: 'ps', b: 'no', bc: 'none', cap: `Perfect square? No: ${T('-6')} is not a square.` },
-    { n: 'insp', b: T('-3,\\ 2'), l: '=4x(x-3)(x+2)', cap: `${T('a=1')}: <b>sum–product.</b> Product ${T('-6')}, sum ${T('-1')}: ${T('-3')} and ${T('2')}.` },
+    { n: 'insp', b: T('-3,\\ 2'), l: '=4x(x-3)(x+2)', cap: `${T('a=1')}: <b>inspection.</b> Product ${T('-6')}, sum ${T('-1')}: ${T('-3')} and ${T('2')}.` },
     { n: 'again', b: 'no', bc: 'ok', cap: `Nothing factors again: <b>complete</b>. Keep the ${T('4x')}!` },
     { n: 'exp', chk: ['(x-3)(x+2)=x^2-x-6', '4x(x^2-x-6)', '=4x^3-4x^2-24x'], cap: `<b>Check by expanding</b> ✓` }
   ] },

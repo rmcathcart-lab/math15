@@ -108,7 +108,7 @@
       if (Lc !== 1 || Mc % 1 || Cc % 1) return null;
       if (!P.eq(Sp, P.add(m2, P.scale(m1, Mc), P.scale(m0, Cc)))) return null;
       var pre = 'Your factors multiply to ' + t(tx(Sp)) + ', not ' + t(tx(s.full)) + '. ';
-      if (isSq(c) && Cc === c && (Mc === 2 * isq(c) || Mc === -2 * isq(c))) return { code: 'u4l6-not-pst', hint: pre + 'This trinomial <b>fails</b> the three-part test: the middle term would have to be ' + t('\\pm' + 2 * isq(c) + tx(s.u)) + '. Use the sum-product method: two integers with product ' + t(c) + ' and sum ' + t(b) + '.' };
+      if (isSq(c) && Cc === c && (Mc === 2 * isq(c) || Mc === -2 * isq(c))) return { code: 'u4l6-not-pst', hint: pre + 'This trinomial <b>fails</b> the three-part test: the middle term would have to be ' + t('\\pm' + 2 * isq(c) + tx(s.u)) + '. Factor by inspection: two integers with product ' + t(c) + ' and sum ' + t(b) + '.' };
       if (Cc === c && Mc === -b) return { code: 'pair-signs', hint: pre + 'The signs are backwards. ' + signHint(b, c) };
       if (Mc === c && Cc === b && b !== c) return { code: 'swap-bc', hint: pre + 'The two numbers must <b>multiply to the constant</b> ' + t(c) + ' and <b>add to the middle coefficient</b> ' + t(b) + '.' };
       if (Cc === c) return { code: 'pair-sum', hint: pre + 'Your numbers multiply to ' + t(c) + ' ✓ but add to ' + t(Mc) + ', not ' + t(b) + '. Try another factor pair of ' + t(Math.abs(c)) + '.' };
@@ -126,7 +126,7 @@
     lines.push(t(tx(s.full) + '=' + s.key));
     var ws = [];
     if (!s.g1) ws.push({ is: s.inner, code: 'gcf-dropped', hint: 'Your brackets are right, but the common factor ' + t(s.gtex) + ' is missing.' });
-    if (isSq(Math.abs(s.c)) && s.c > 0) { var h = isq(s.c); [h, -h].forEach(function (z) { var w = P.mul(s.G, P.pow(bin(s.u, z), 2)); if (!P.eq(w, s.full)) ws.push({ is: w, code: 'u4l6-not-pst', hint: 'The ends are perfect squares, but this trinomial <b>fails</b> the middle-term test (' + t('2(' + tx(s.u) + ')(' + h + ')=' + 2 * h + tx(s.u)) + '). Use the sum-product method instead.' }); }); }
+    if (isSq(Math.abs(s.c)) && s.c > 0) { var h = isq(s.c); [h, -h].forEach(function (z) { var w = P.mul(s.G, P.pow(bin(s.u, z), 2)); if (!P.eq(w, s.full)) ws.push({ is: w, code: 'u4l6-not-pst', hint: 'The ends are perfect squares, but this trinomial <b>fails</b> the middle-term test (' + t('2(' + tx(s.u) + ')(' + h + ')=' + 2 * h + tx(s.u)) + '). Factor it by inspection instead.' }); }); }
     var p = KP.factored(opt.prompt || t(tx(s.full)), s.list, { wrong: ws, diag: pairDiag(s), keyTex: s.key, vars: letters(s.full) }, lines.join('<br>'),
       opt.hints || ['Run the three-part test first. If it fails, look for two integers with product ' + t(s.c) + ' and sum ' + t(s.b) + '.', signHint(s.b, s.c)], opt.text || 'factor ' + tx(s.full));
     var pre = s.g1 ? '' : s.gtex;
@@ -232,7 +232,7 @@
 
   HW.defineLesson({
     id: 'u4l6', unit: 4, num: '6', title: 'Factoring Perfect Square Trinomials', outcome: 'AN5',
-    blurb: 'a² ± 2ab + b² = (a ± b)²: run the three-part test, then take the square roots and use the sign of the middle term. If the test fails, use the sum-product method.',
+    blurb: 'a² ± 2ab + b² = (a ± b)²: run the three-part test, then take the square roots and use the sign of the middle term. If the test fails, factor by inspection.',
     questions: [
       /* ---------- Part A ---------- */
       { num: '1', section: 'Part A — Recognizing Perfect Square Trinomials', stem: 'Use the three-part test to decide whether each trinomial is a perfect square trinomial.', parts: [
@@ -285,14 +285,14 @@
             { html: 'The second one can’t be factored at all.', why: 'It factors: ' + t('(' + v + '+' + (k - 1) + ')(' + v + '+' + (k + 1) + ')') + '. It just isn’t a perfect square.' },
             { html: 'The middle term of the second one is wrong.', why: 'Both have the same middle term ' + t(b + v) + '. Look at the last terms: is ' + t(c2) + ' a perfect square?' },
             { html: 'Both are perfect square trinomials.', why: 'Is ' + t(c2) + ' a perfect square? ' + t((k - 1) + '^{2}=' + (k - 1) * (k - 1)) + ' and ' + t(k + '^{2}=' + c) + '.' }],
-            'First: ' + t('\\sqrt{' + v + '^{2}}=' + v) + ', ' + t('\\sqrt{' + c + '}=' + k) + ', ' + t('2(' + v + ')(' + k + ')=' + b + v) + ' ✓ — ' + t('(' + v + '+' + k + ')^{2}') + '.<br>Second: ' + t(c2) + ' is not a perfect square, so the test fails. It still factors by sum and product: ' + t('(' + v + '+' + (k - 1) + ')(' + v + '+' + (k + 1) + ')') + '.',
+            'First: ' + t('\\sqrt{' + v + '^{2}}=' + v) + ', ' + t('\\sqrt{' + c + '}=' + k) + ', ' + t('2(' + v + ')(' + k + ')=' + b + v) + ' ✓ — ' + t('(' + v + '+' + k + ')^{2}') + '.<br>Second: ' + t(c2) + ' is not a perfect square, so the test fails. It still factors by inspection: ' + t('(' + v + '+' + (k - 1) + ')(' + v + '+' + (k + 1) + ')') + '.',
             ['Check each part of the test for both trinomials.'], 'PST vs near miss');
         } }] },
 
       /* ---------- Part C ---------- */
       { num: '6', section: 'Part C — Choosing a Method',
         shared: function (r) { return { a: failTri(r, 'c'), b: pickWhere(function () { return r.int(4, 12); }, function () { return true; }), c: failTri(r, 'c'), d: r.int(4, 12) }; },
-        stem: function (sh) { return 'Decide whether each is a perfect square trinomial, then factor it completely, using the shortcut if it applies or the sum-product method if it does not.<br>' + rows6(sh).map(function (x, i) { return '(' + 'abcd'[i] + ') ' + t(x.tex); }).join(', &nbsp;') + '.'; },
+        stem: function (sh) { return 'Decide whether each is a perfect square trinomial, then factor it completely, using the shortcut if it applies or factoring by inspection if it does not.<br>' + rows6(sh).map(function (x, i) { return '(' + 'abcd'[i] + ') ' + t(x.tex); }).join(', &nbsp;') + '.'; },
         parts: [
           { id: '6dec', sub: 'decide', level: 'BEG', make: function (r, sh) { return decideGrid('Which are perfect square trinomials?', rows6(sh), PST_COLS, 'PST? (4 rows)'); } },
           { id: '6a', sub: 'a', level: 'BEG', make: function (r, sh) { return triPart(sh.a, { prompt: 'Factor (a) ' + t(tx(sh.a.full)) + '.', note: failNote(sh.a) }); } },
@@ -435,7 +435,7 @@
             var k = sh.k, v = sh.v;
             return mc(r, 'Which pattern did Dmitri confuse it with?', [
               { html: 'The <b>difference of squares</b> ' + t('a^{2}-b^{2}=(a-b)(a+b)') + ', which has no middle term. ' + t(v + '^{2}+' + 2 * k + v + '+' + k * k) + ' has a middle term, so it is a bracket times itself.', right: true },
-              { html: 'The sum-product method.', why: 'The sum-product method would give two numbers with product ' + t(k * k) + ' and sum ' + t(2 * k) + ': ' + t(k) + ' and ' + t(k) + ' — the correct answer. His brackets come from a different pattern.' },
+              { html: 'Factoring by inspection.', why: 'Factoring by inspection would give two numbers with product ' + t(k * k) + ' and sum ' + t(2 * k) + ': ' + t(k) + ' and ' + t(k) + ' — the correct answer. His brackets come from a different pattern.' },
               { html: 'Removing a common factor.', why: 'There is no common factor here. Look at the shape of his answer: a plus bracket times a minus bracket.' },
               { html: 'None — his answer is right.', why: 'Expand it: you get ' + t(v + '^{2}-' + k * k) + '.' }],
               'His brackets ' + t('(a+b)(a-b)') + ' are the difference-of-squares pattern, which multiplies to ' + t(v + '^{2}-' + k * k) + '. A trinomial with middle term ' + t('2(' + v + ')(' + k + ')') + ' is a perfect square: ' + t('(' + v + '+' + k + ')^{2}') + '.',

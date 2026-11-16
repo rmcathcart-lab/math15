@@ -376,10 +376,10 @@ const expandGrid = {
   }
 };
 
-/* ============ 2. The sum–product search (Example 2's table) ============ */
+/* ============ 2. Factoring by inspection: the pair search (Example 2's table) ============ */
 const PT = { d: [11, 18], a: [7, 10], b: [9, 20], c: [10, 24], e: [13, 36] };
 const pairTable = {
-  title: 'The sum–product search',
+  title: 'Factoring by inspection: the pair search',
   height: 390,
   minW: 820, // drawn this wide and scaled to fit
   choices: [{ v: 'd', label: 'sum 11, product 18' }, { sep: 'Example 2 check (sum, product):' }, ...['a', 'b', 'c', 'e'].map((k) => ({ v: k, label: tex(`${PT[k][0]},\\ ${PT[k][1]}`) }))],
