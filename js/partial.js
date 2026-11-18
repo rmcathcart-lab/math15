@@ -1696,4 +1696,17 @@
       'zero-power': 1 // Took a zero exponent to give 0
     }
   };
+  /* Unit 4 (factoring), from Ryan's marking of the Unit 4 test (2026-11-18). These codes are only returned by Unit 4
+     checkers (js/factor.js and the u4 lesson/test files), so the change stays in Unit 4.
+     - The right numbers with every sign flipped is a slip (⅔), like 'sign': in the brackets of a trinomial, in a perfect
+       square's bracket, and in decomposition.
+     - New near misses (js/factor.js F.nearMiss, F.gcfExtra, F.solveDiag): a stray variable on one term ⅔; one bracket's
+       sign wrong ⅓; the right factors with something extra in front ⅓; "remove the GCF" with the GCF right but the
+       bracket wrong ⅓; "state the GCF" answered with the GCF and extra factors ⅓; one solution with the wrong sign ⅔
+       ('sol-sign-one' was already ⅔); x = 0 lost, even with extra values, ⅓. */
+  (function (P) {
+    ['sign-swap', 'pst-sign', 'ax-sign-swap'].forEach(function (k) { delete P.big[k]; P.small[k] = 1; });
+    ['fac-stray-var', 'sol-sign-one'].forEach(function (k) { P.small[k] = 1; });
+    ['fac-one-sign', 'fac-extra-factor', 'gcf-right-bracket', 'gcf-extra', 'u4l9-lost-zero'].forEach(function (k) { P.big[k] = 1; });
+  })(HW.PARTIAL);
 })(window);

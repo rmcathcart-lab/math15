@@ -36,5 +36,23 @@ chk('(x-1)^{2}(x+1)^{2}', {}, { '[(x-1)(x+1)]^2': 'correct', '(x^2-1)^2': 'form:
 chk('(3x-10)(x-4)', {}, { '(3(x-2)-4)(x-2-2)': 'form:simplify-bracket', '(3x-10)(x-4)': 'correct' });
 var p = K.P.factored('Factor.', '(x+3)(x-4)', {}, 's', [], 't');
 eq([p.key, p.input.keys, p.check(p.key).v], ['(x+3)(x-4)', 'poly', 'correct'], 'builder');
+// Ryan's Unit 4 near misses (2026-11-18): partial credit codes from K.factored / F.gcfExtra / F.solveDiag
+chk('(x+4)(x+5)', {}, { '(x+4)(x-5)': 'wrong:fac-one-sign', '(x-4)(x+5)': 'wrong:fac-one-sign', '(x-4)(x-5)': 'wrong:sign', 'x^2(x+4)(x+5)': 'wrong:fac-extra-factor', '(x+4)(x+6)': 'wrong' });
+chk('(x-2)(x-3)', {}, { '(x-2)(x+3)': 'wrong:fac-one-sign', '\\left(x-2\\right)\\left(x+3\\right)': 'wrong:fac-one-sign', '(x+2)(x+3)': 'wrong:sign' });
+chk('3y(3y-4)', { gcfOnly: true }, { '3y\\left(3y-4y\\right)': 'wrong:fac-stray-var', '3y(3y+4)': 'wrong:sign', '3y(3y-12)': 'wrong:middle', '3y(y-4)': 'wrong:gcf-right-bracket', '3y': 'wrong', '3(3y^2-4y)': 'form:gcf-inside' });
+chk('4x^3(x+2)', { gcfOnly: true }, { '4x^3(x+8)': 'wrong:gcf-right-bracket', '4x^3\\left(x+8\\right)': 'wrong:gcf-right-bracket', '2x^3(x+8)': 'wrong' });
+chk('3(x+3)', { gcfOnly: true }, { '3(x+9)': 'wrong:gcf-right-bracket' });
+chk('3(x-2)(x+5)', {}, { '3(x-1)(x+5)': 'wrong' }); // factor completely: the right GCF alone earns nothing
+eq(F.gcfExtra('4m^2\\left(m+2\\right)\\left(m-3m^2\\right)', '4m^2'), true, 'gcfExtra: GCF then brackets');
+eq(F.gcfExtra('2a^2(2a^2+6a^3)', '4a^4'), false, 'gcfExtra: a common factor hiding in the bracket does not count');
+eq(F.gcfExtra('4m^2', '4m^2'), false, 'gcfExtra: no brackets');
+function sd(A, T) { var r = F.solveDiag(A, T, 'lz'); return r ? r.code : null; }
+eq(sd([6, 2.5], [-2.5, 6]), 'sol-sign-one', 'one root with the wrong sign');
+eq(sd([2, -2], [0, 2]), 'lz', 'lost zero with the opposite root');
+eq(sd([-2, 2], [0, -2]), 'lz', 'lost zero with the opposite root (2)');
+eq(sd([4], [0, 4]), 'lz', 'lost zero');
+eq(sd([1, 5], [0, 5]), null, 'x = 1 for the factor x is not lost zero');
+eq(sd([-6, 2.5], [-2.5, 6]), null, 'both signs flipped is not one sign');
+
 console.log(n + ' checks, ' + fails + ' failed');
 process.exit(fails ? 1 : 0);

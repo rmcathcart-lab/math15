@@ -158,9 +158,83 @@
         : 'Check the <b>signs</b> in your factors — expand your answer and compare it with the original term by term.'));
       if (midKey && diff.length === 1 && diff[0] === midKey) return wrong('middle', multiply + 'The first and last terms are right — choose the pair so the outside and inside products <b>add</b> to the middle term.');
       if (midKey && diff.length === 1 && diff[0] === lastKey) return wrong('constant', multiply + 'Check the last terms of your factors: they must <b>multiply</b> to the constant term.');
+      var near = F.nearMiss(resp, sp, S, T, TN, opt, TF);
+      if (near) return wrong(near.code, multiply + near.hint);
       return wrong('value', multiply || null);
     };
   };
+
+  /* Recognized near misses on a factoring answer (Ryan's marking of the Math 15 Unit 4 test, 2026-11-18). Each one is a
+   * wrong answer that still shows the right factoring, so it earns partial credit on tests and exit slips (codes and
+   * credit at the end of this file) and gets a pointed hint in practice:
+   *   fac-stray-var    ⅔  one stray variable typed on a term, e.g. 3y(3y − 4y) for 3y(3y − 4): taking it out makes it right
+   *   fac-one-sign     ⅓  the right numbers with one bracket's sign wrong, e.g. (x + 4)(x − 5) for (x + 4)(x + 5)
+   *                       (every sign flipped is 'sign' / 'sign-swap', worth ⅔)
+   *   fac-extra-factor ⅓  every right factor, plus something extra in front, e.g. x²(x + 5)(x + 8) for (x + 5)(x + 8)
+   *   gcf-right-bracket ⅓ "remove the GCF" only: the right GCF out front, the bracket wrong, e.g. 4x³(x + 8) for 4x³(x + 2) */
+  function absSig(p) { var o = {}; P.terms(p).forEach(function (T) { o = P.add(o, P.mono([Math.abs(T.c[0]), T.c[1]], T.v)); }); return P.tex(o); }
+  function monoOf(N) { return P.tex(P.mono([Math.abs(N.c[0]), N.c[1]], N.v)); }
+  /* the monomial factors as written (a common factor hiding inside a bracket doesn't count) */
+  function writtenMono(factors) {
+    var m = P.num(1); factors.forEach(function (f) { if (P.count(f.p) === 1) m = P.mul(m, P.pow(f.p, f.k)); });
+    var T0 = P.terms(m)[0]; return T0 ? P.tex(P.mono([Math.abs(T0.c[0]), T0.c[1]], T0.v)) : '0';
+  }
+  function strayVar(resp, T) {
+    var s = String(resp == null ? '' : resp), re = /[a-zA-Z](\^\{[^{}]*\}|\^[0-9])?/g, m, tries = 0;
+    if (/\\(frac|sqrt)/.test(s)) return false;
+    while ((m = re.exec(s)) && tries++ < 12) {
+      var before = s.slice(0, m.index), after = s.slice(m.index + m[0].length), prev = before.replace(/\s+$/, '').slice(-1);
+      if (!/[0-9]/.test(prev)) continue; // only a letter right after a number: 4y → 4 (not a lone variable term)
+      var sp = F.split(before + after); if (!sp.ok) continue;
+      var S = sp.factors.reduce(function (acc, f) { return P.mul(acc, P.pow(f.p, f.k)); }, P.num(1));
+      if (P.eq(S, T)) return true;
+    }
+    return false;
+  }
+  F.nearMiss = function (resp, sp, S, T, TN, opt, TF) {
+    opt = opt || {};
+    try {
+      var SN = F.normal(sp.factors);
+      if (/\(/.test(String(resp)) && strayVar(resp, T)) return { code: 'fac-stray-var', hint: 'Very close: one of your terms has a variable that doesn’t belong. Divide each term by the GCF again.' };
+      var tk = Object.keys(TN.keys), sk = Object.keys(SN.keys);
+      if (tk.length && tk.every(function (k) { return (SN.keys[k] || 0) >= TN.keys[k]; }) && (sk.some(function (k) { return SN.keys[k] > (TN.keys[k] || 0); }) || Object.keys(SN.v).some(function (x) { return SN.v[x] > (TN.v[x] || 0); })))
+        return { code: 'fac-extra-factor', hint: 'Your brackets are right, but something extra is multiplied in front. Expand your answer to check.' };
+      if (TN.raw.length && SN.raw.length === TN.raw.length && monoOf(SN) === monoOf(TN)) {
+        var a = TN.raw.map(function (r) { return absSig(r.cn.prim) + '^' + r.k; }).sort().join('|'), b = SN.raw.map(function (r) { return absSig(r.cn.prim) + '^' + r.k; }).sort().join('|');
+        var same = tk.filter(function (k) { return SN.keys[k] === TN.keys[k]; }).length;
+        if (a === b && same >= 1 && same < tk.length) return { code: 'fac-one-sign', hint: 'The numbers are right, but one bracket has the wrong sign. The last terms must multiply to the constant term and the outside and inside products must add to the middle term.' };
+      }
+      if (opt.gcfOnly && SN.raw.length && TF && writtenMono(sp.factors) === writtenMono(TF)) return { code: 'gcf-right-bracket', hint: 'Your GCF is right. Now divide <b>each</b> term by it to get the bracket, and check by expanding.' };
+    } catch (e) {}
+    return null;
+  };
+  /* a code that already earns partial credit (a recognized mistake keeps what it has: these rules only ever add credit) */
+  F.credited = function (code) { var P0 = HW.PARTIAL || {}; return !!(code && ((P0.small && P0.small[code]) || (P0.big && P0.big[code]))); };
+  /* "State the GCF" answered with the right GCF and extra factors after it, e.g. 4m²(m + 2) for 4m² (⅓) */
+  F.gcfExtra = function (resp, g) {
+    try {
+      var sp = F.split(String(resp == null ? '' : resp)); if (!sp.ok) return false;
+      return sp.factors.some(function (f) { return P.count(f.p) > 1; }) && writtenMono(sp.factors) === writtenMono([{ p: P.lift(g), k: 1 }]);
+    } catch (e) { return false; }
+  };
+  /* Solving by factoring (Unit 4 tests and exit slips): A = the student's values, T = the solutions.
+   *   sol-sign-one  ⅔  the same number of solutions, all right but one, which has the wrong sign
+   *   lostCode      ⅓  x = 0 lost (divided by x) but every other solution there, with nothing else or only their opposites,
+   *                       e.g. x = ±2 for 0, 2 (not x = 1, 5 for 0, 5: taking the factor x as x = 1 is a different mistake) */
+  F.solveDiag = function (A, T, lostCode, v) {
+    v = v || 'x';
+    var near = function (x, y) { return Math.abs(x - y) < 1e-9; }, has = function (L, x) { return L.some(function (y) { return near(x, y); }); };
+    var nz = T.filter(function (x) { return !near(x, 0); });
+    if (has(T, 0) && !has(A, 0) && nz.length && nz.every(function (x) { return has(A, x); }) && A.every(function (x) { return has(nz, x) || has(nz, -x); })) return { code: lostCode || 'u4t-lost-zero', hint: 'You are missing ' + t(v + '=0') + ': never divide both sides by ' + t(v) + ' — factor it out instead.' };
+    if (A.length === T.length && T.length >= 2) {
+      var off = A.filter(function (x) { return !has(T, x); });
+      if (off.length === 1 && has(T, -off[0]) && !has(A, -off[0])) return { code: 'sol-sign-one', hint: 'One solution has the wrong sign: if ' + t(v + '-3=0') + ' then ' + t(v + '=3') + '.' };
+    }
+    return null;
+  };
+  HW.addCodes({ 'fac-stray-var': 'A stray variable on one term', 'fac-one-sign': 'Right numbers, one bracket’s sign wrong', 'fac-extra-factor': 'Right factors with something extra in front',
+    'gcf-right-bracket': 'Right GCF, bracket wrong', 'gcf-extra': 'Right GCF with extra factors after it', 'sol-sign-one': 'One solution has the wrong sign' });
+  // their partial credit is at the end of js/partial.js (it loads after this file and sets the whole table)
   HW.addCodes({ 'frac-bracket': 'Fraction or decimal left inside a bracket', 'simplify-bracket': 'Bracket not simplified', 'not-factored': 'Not written as a product', 'gcf-inside': 'Common factor left inside a bracket', 'factor-more': 'Not factored completely', middle: 'Factor pair gives the wrong middle term', constant: 'Last terms don’t multiply to the constant' });
 
   K.P.factored = function (prompt, target, opt, sol, hints, text) {

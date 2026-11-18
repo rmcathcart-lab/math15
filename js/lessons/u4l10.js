@@ -376,7 +376,7 @@
       }
       if (E.notZero && setEq(A, E.notZero)) return { code: 'u4l9-not-zero', hint: 'The zero product property only works when the product equals ' + t('0') + '. Expand, move ' + t(E.c) + ' across so one side is ' + t('0') + ', then factor again.' };
       if (E.unrearranged && setEq(A, E.unrearranged)) return { code: 'u4l9-not-rearranged', hint: 'Move every term to one side first, so the equation equals ' + t('0') + ' — then factor.' };
-      return null;
+      return HW.factor.solveDiag(A, T, 'u4l9-lost-zero', E.v); // x = 0 lost even with extra values (⅓), one sign wrong (⅔)
     };
   }
   function solvePart(E, o) {

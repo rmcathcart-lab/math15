@@ -169,19 +169,34 @@
     if (m < H) return [4, m / H]; if (m < S) return [5, (m - H) / (S - H)];
     return [6, (m - S) / (1 - S)];
   }
-  function stepsFor(f) { return f >= TC.SECURE ? 0 : f >= TC.PARTIAL ? 1 : 2; }
-  TC.indicator = function (b, p, m) {
+  /* Unit-specific changes to the rule, from Ryan's own calls on a test (2026-11-18, Math 15 Unit 4 Test):
+   *   near — an easier box at or above this share (but under 3/4) costs no step down: Sehaj had 7/10 on Beginning and
+   *          3/5 on Progressing, and Ryan gave Emerging, not Beginning.
+   *   lim  — under half the Beginning box is Limited, not Not meeting, when the student has at least this share of the
+   *          Beginning box and of all the outcome's points: Ashling's partial credit was spread through the test
+   *          (≈ ¼ of each box) and Ryan gave Limited; Ashlyn, with much less outside the Beginning box, stayed Not meeting.
+   * The unit comes from the test (def.unit) or from its questions' lesson ids (u4…). Tests and exit slips both use it. */
+  TC.UNIT_RULES = { 4: { near: 2 / 3, lim: 1 / 4 } };
+  TC.rulesFor = function (def) {
+    var u = def && def.unit;
+    if (!u && def && def.items && def.items.length) { var m = /^u(\d+)/.exec(String(def.items[0].l || '')); if (m) u = +m[1]; }
+    return TC.UNIT_RULES[u] || {};
+  };
+  function stepsFor(f, near) { return f >= TC.SECURE || (near && f >= near) ? 0 : f >= TC.PARTIAL ? 1 : 2; }
+  TC.indicator = function (b, p, m, rules, all) {
+    rules = rules || {};
     var r = rung(b, p, m), best = { i: r[0], prog: r[1], note: '' };
     var cands = [];
-    if (m >= TC.PARTIAL) cands.push([rung(1, 1, m)[0], stepsFor(b) + stepsFor(p)]);
-    if (p >= TC.PARTIAL) cands.push([rung(1, p, 0)[0], stepsFor(b)]);
-    cands.forEach(function (c) { var f = c[0] - c[1]; if (f > best.i) best = { i: f, prog: 0.5, note: 'Check this: ' + c[1] + ' step' + (c[1] === 1 ? '' : 's') + ' down from ' + TC.LADDER[c[0]] + ' for a hole in an easier box' }; });
+    if (m >= TC.PARTIAL) cands.push([rung(1, 1, m)[0], stepsFor(b, rules.near) + stepsFor(p, rules.near)]);
+    if (p >= TC.PARTIAL) cands.push([rung(1, p, 0)[0], stepsFor(b, rules.near)]);
+    cands.forEach(function (c) { var f = c[0] - c[1]; if (f > best.i) best = { i: f, prog: 0.5, note: c[1] ? 'Check this: ' + c[1] + ' step' + (c[1] === 1 ? '' : 's') + ' down from ' + TC.LADDER[c[0]] + ' for a hole in an easier box' : '' }; });
+    if (best.i === 0 && rules.lim && b >= rules.lim && all != null && all >= rules.lim) best = { i: 1, prog: 0.5, note: 'Limited: partial credit spread through the test' };
     var name = TC.LADDER[best.i], band = TC.BANDS[name];
     return { ind: name, pct: Math.round(band[0] + (band[1] - band[0]) * Math.max(0, Math.min(1, best.prog))), note: best.note };
   };
   TC.midPct = function (ind) { var b = TC.BANDS[ind]; return b ? Math.round((b[0] + b[1]) / 2) : 0; };
   TC.outcomeGrades = function (def, marksStr, opts) {
-    var pm = TC.parseMarks(marksStr), marks = pm.m, items = TC.items(def), by = {}, order = [];
+    var pm = TC.parseMarks(marksStr), marks = pm.m, items = TC.items(def), by = {}, order = [], rules = TC.rulesFor(def);
     items.forEach(function (x) {
       var o = x.it.outcome; if (!by[o]) { by[o] = { B: [], P: [], M: [] }; order.push(o); }
       by[o][TC.BOX[x.it.level] || 'B'].push(x);
@@ -213,7 +228,8 @@
         }
         return harder.some(function (h) { return box[h].total; }) ? 1 : 0;
       }
-      var g = TC.indicator(frac('B', ['P', 'M']), frac('P', ['M']), frac('M', []));
+      var allE = 0, allT = 0; ['B', 'P', 'M'].forEach(function (k) { allE += box[k].earned; allT += box[k].total; });
+      var g = TC.indicator(frac('B', ['P', 'M']), frac('P', ['M']), frac('M', []), rules, allT ? allE / allT : null);
       var fin = pm.fin[o];
       return { outcome: o, boxes: box, auto: g.ind, autoPct: g.pct, note: g.note, mcHalved: box.mcHalved, ind: fin || g.ind, pct: fin ? (fin === g.ind ? g.pct : TC.midPct(fin)) : g.pct, set: !!fin };
     });

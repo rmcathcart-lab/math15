@@ -134,6 +134,9 @@
       ['Find the greatest number that divides every coefficient. Then take each letter that is in <b>every</b> term, to its <b>lowest</b> power.', list.every(isNeg) ? 'Every term is negative, so make the GCF negative.' : 'Check: your GCF must divide every monomial exactly.'],
       opt.text || 'GCF of ' + plain(shown));
     p.bad = W.map(function (w) { return tx(w.p); });
+    // the right GCF with extra factors after it, e.g. 4m²(m + 2) for 4m²: ⅓ on tests and exit slips (Ryan, 2026-11-18)
+    var chk = p.check;
+    p.check = function (resp) { var res = chk(resp); if (res && res.v === 'wrong' && !HW.factor.credited(res.code) && HW.factor.gcfExtra(resp, g)) return wrong('gcf-extra', 'Your GCF is right, but the question asks only for the GCF — leave off the brackets.'); return res; };
     return p;
   }
 

@@ -106,6 +106,12 @@
     p.bad = ws.map(function (w) { return tx(w.is); }).concat(o.bad || []);
     return p;
   }
+  /* "State the GCF" answered with the right GCF and extra factors after it (e.g. 4m²(m + 2)): ⅓ (Ryan, 2026-11-18) */
+  function gcfExtraWrap(G, p) {
+    var chk = p.check;
+    p.check = function (resp) { var res = chk(resp); if (res && res.v === 'wrong' && !HW.factor.credited(res.code) && FX.gcfExtra(resp, G)) return wrong('gcf-extra', 'Your GCF is right, but the question asks only for the GCF — leave off the brackets.'); return res; };
+    return p;
+  }
   function numBox(label, o) { o = o || {}; return { label: label, name: o.name || label.replace(/<[^>]*>|\\\(|\\\)|:$/g, ''), before: o.before, after: o.after }; }
   function polyBox(label, vars, o) { o = o || {}; return { label: label, name: o.name || label.replace(/<[^>]*>|\\\(|\\\)|:$/g, ''), mode: 'math', keys: 'poly', vars: vars || ['x'], wide: o.wide !== false, before: o.before, after: o.after, placeholder: o.ph }; }
   /* several boxes checked together (checks[i](value, all) → result); reports the first wrong box, else the first form issue */
@@ -148,7 +154,9 @@
   }
   /* "solve" part: a list of values in any order */
   function solvePart(prompt, values, diag, sol, hints, text, bad) {
-    var p = KP.valueSet(prompt, values, { v: 'x', diag: diag }, sol, hints, text);
+    // then the near misses Ryan credits (2026-11-18): x = 0 lost even with extra values (⅓), one solution's sign wrong (⅔)
+    var T0 = values.map(function (x) { return Array.isArray(x) ? x[0] / x[1] : x; });
+    var p = KP.valueSet(prompt, values, { v: 'x', diag: function (A, T) { return (diag && diag(A, T)) || FX.solveDiag(A, T0, 'u4t-lost-zero', 'x'); } }, sol, hints, text);
     p.bad = bad || [];
     return p;
   }
@@ -232,12 +240,12 @@
           var z = pick(function () { return { g: r.int(2, 6), a: r.int(1, 4), b: r.int(2, 5), e1: r.int(1, 4), e2: r.int(2, 5) }; }, function (z) { return z.a < z.b && gcd(z.a, z.b) === 1 && z.e1 < z.e2 && z.g * z.b <= 30; });
           var c1 = z.g * z.a, c2 = z.g * z.b, G = M(z.g, v, z.e1), T1 = tx(M(c1, v, z.e1)), T2 = tx(M(c2, v, z.e2));
           var small = z.g % 2 === 0 && z.g > 2 ? 2 : 1;
-          return polyPart('State the greatest common factor (GCF) of ' + t(T1) + ' and ' + t(T2) + '.', G,
+          return gcfExtraWrap(G, polyPart('State the greatest common factor (GCF) of ' + t(T1) + ' and ' + t(T2) + '.', G,
             [{ is: M(z.g, v, z.e2), code: 'u4t-gcf-high', hint: 'The GCF can only use what <b>both</b> terms have: ' + t(T1) + ' has only ' + t(v + '^{' + z.e1 + '}') + ', so use the <b>lowest</b> power.' },
               { is: M(small, v, z.e1), code: 'gcf-not-greatest', hint: 'That divides both terms, but it isn’t the <b>greatest</b>: what is the GCF of ' + t(c1) + ' and ' + t(c2) + '?' },
               { is: N(z.g), code: 'gcf-not-greatest', hint: 'Both terms also contain ' + t(v + '^{' + z.e1 + '}') + ' — it belongs in the GCF too.' }],
             'Numbers: the GCF of ' + t(c1) + ' and ' + t(c2) + ' is ' + t(z.g) + '. Letters: the lowest power of ' + t(v) + ' in both is ' + t(v + '^{' + z.e1 + '}') + '.<br>So the GCF is ' + t(tx(G)) + '.',
-            ['Find the greatest number that divides both ' + t(c1) + ' and ' + t(c2) + '.', 'Use the lowest power of ' + t(v) + ' that appears in both terms.'], 'GCF ' + plain(T1) + ', ' + plain(T2), { vars: [v], bad: [tx(M(z.g * z.a * z.b, v, z.e1))] });
+            ['Find the greatest number that divides both ' + t(c1) + ' and ' + t(c2) + '.', 'Use the lowest power of ' + t(v) + ' that appears in both terms.'], 'GCF ' + plain(T1) + ', ' + plain(T2), { vars: [v], bad: [tx(M(z.g * z.a * z.b, v, z.e1))] }));
         } },
         { id: '1b', outcome: 'AN5', level: 'BEG', make: function (r) {
           var v = r.pick(['x', 'x', 'y', 'a', 'm']);
@@ -459,7 +467,7 @@
           var grpChk = function (i) { return function (v, all) {
             var mf = order(all) === 'm', G = i === 5 ? (mf ? g1b : g1) : (mf ? g2b : g2);
             var res = facCheck(G, [], {})(v);
-            if (res.v !== 'correct' && res.v !== 'form' && res.code === 'value') return wrong('u4t-group', 'This group should be ' + t(tx(G.poly)) + ' written as a common factor times ' + t(mf ? '(x+' + q + ')' : '(' + seq(lin(a, 'x', p)) + ')') + '.');
+            if (res.v === 'wrong' && /^(value|fac-stray-var|fac-one-sign|fac-extra-factor)$/.test(res.code || '')) return wrong('u4t-group', 'This group should be ' + t(tx(G.poly)) + ' written as a common factor times ' + t(mf ? '(x+' + q + ')' : '(' + seq(lin(a, 'x', p)) + ')') + '.');
             if (res.v === 'wrong' && res.code === 'not-factored') return wrong('u4t-group', 'Take a common factor out of this pair: write it as (common factor)(bracket).');
             return res;
           }; };
@@ -475,6 +483,17 @@
             t('a\\times c=' + a + '\\times ' + c + '=' + ac) + '. Two integers with product ' + t(ac) + ' and sum ' + t(b) + ': ' + t(n) + ' and ' + t(m) + '.<br>' + t(poly + '=' + a + 'x^{2}+' + tx(M(n, 'x')) + '+' + tx(M(m, 'x')) + '+' + c) + '<br>' + t('=' + g1.tex + '+' + g2.tex) + '<br>' + t('=' + Ft.tex) +
               '<br>(The other order works too: ' + t(a + 'x^{2}+' + tx(M(m, 'x')) + '+' + tx(M(n, 'x')) + '+' + c + '=' + g1b.tex + '+' + g2b.tex + '=(x+' + q + ')(' + seq(lin(a, 'x', p)) + ')') + '.)<br>Check: ' + t(Ft.tex + '=' + poly) + ' ✓',
             ['Multiply ' + t('a') + ' and ' + t('c') + ', then find two integers with that product and sum ' + t(b) + '.', 'Split the middle term with them, take a common factor out of each pair, then take out the common bracket.'], 'decomposition steps ' + plain(poly));
+          /* Ryan (2026-11-18): the right ac, the right pair and the right factored form earn the full mark, whatever the middle boxes show
+             (only the common factors, the other split order, the pairs themselves). */
+          var stepChk = pp.check, finalChk = facCheck(Ft, []);
+          pp.check = function (resp) {
+            var res = stepChk(resp);
+            if (res && res.v !== 'correct' && Array.isArray(resp)) {
+              var pa = HW.parse.number(String(resp[0] == null ? '' : resp[0])), pr = pc(resp[1], resp[2]), fin = finalChk(resp[7]);
+              if (pa.ok && pa.value === ac && pr && pr.v === 'correct' && fin && fin.v === 'correct') return ok();
+            }
+            return res;
+          };
           pp.bad = (a + c !== ac ? [[String(a + c)].concat(pp.key.slice(1))] : []).concat([[String(ac), String(-n), String(-m)].concat(pp.key.slice(3)), pp.key.slice(0, 7).concat(['(x+' + m + ')(x+' + n + ')'])]);
           pp.good = [[String(ac), String(m), String(n), tx(M(m, 'x')), tx(M(n, 'x')), g1b.tex, p === 1 ? '(x+' + q + ')' : g2b.tex, '(x+' + q + ')(' + seq(lin(a, 'x', p)) + ')']];
           return pp;
