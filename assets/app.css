@@ -1189,3 +1189,6 @@ button.ulv:hover { border-color: var(--brand); }
 /* "Your level" held down until 75% of the practice is done (js/calendar.js C.capLevels) */
 .ulv-cap { padding: 1px 7px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #7a5a00; background: #fff3cd; border: 1px solid #f0d68a; white-space: nowrap; }
 .oc-cap { margin: 8px 0 0; padding: 8px 10px; border-radius: 10px; background: #fff8e1; border: 1px solid #f0d68a; font-size: 13px; line-height: 1.45; }
+
+/* ---------- Unbound button (student home, bottom row): the Lorebound button's look, with Unbound's own title art ---------- */
+.home-lore.home-unbound { background-image: url('unbound-banner.jpg'); background-position: center 55%; }

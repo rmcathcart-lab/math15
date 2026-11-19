@@ -432,6 +432,11 @@
     nb.addEventListener('click', openNotes); if (Object.keys(NOTES_PAGES).length) foot.appendChild(nb);
     // unlimited practice on the prerequisite skills (integers, times tables, equations, …)
     if (HW.Drills) { var db = el('a', 'btn home-about-btn', 'Skill Drills'); db.href = '#/drills'; db.title = 'Practise the basics every unit is built on: integers, multiplication facts, fractions, equations and more'; foot.appendChild(db); }
+    foot.appendChild(el('div', 'home-break'));   // Unbound sits centred on its own line below
+    // Lorebound: Unbound, the Math 15 adventure game (the prequel to Math 10C's Lorebound), in its own style; new tab
+    var ub = el('a', 'home-lore home-unbound', '<span class="hl-k">Play</span><span class="hl-t">Unbound</span>');
+    ub.href = UNBOUND_URL; ub.target = '_blank'; ub.rel = 'noopener'; ub.title = 'Lorebound: Unbound, the Math 15 adventure game (opens in a new tab)';
+    foot.appendChild(ub);
     view.appendChild(foot);
     L.setStatus({ view: 'home' }, false);
   }
@@ -903,6 +908,7 @@
     return m ? m[1].toUpperCase() : '';
   }
   var TEACHER_EMAIL = 'rcathcart@rvschools.ab.ca';
+  var UNBOUND_URL = 'https://rmcathcart-lab.github.io/unbound/';
   function teachingUrl(lesson) {
     var T = HW.TEACHING; if (!T || T.lessons.indexOf(lesson.id) < 0) return '';
     var m = /^u(\d+)l(\w+)$/.exec(lesson.id), b = studentBlock();
