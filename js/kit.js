@@ -186,18 +186,24 @@
     def.questions = qs.map(function (x) { return x.q; });
     return def;
   }
+  /* Math 15 (Ryan, 2026-11-19): calculators are allowed on every ready-made test and exit slip (each can still be
+   * switched off in the test's settings), and the short version of a unit test is the main one, "Unit N Test"; the full
+   * one is "Unit N Test (extended)". The ids stay as they were (uNtest = extended, uNtests = the main one), so results
+   * already written keep pointing at the right test. */
   HW.defineTest = function (def) {
     def.test = true; def.num = def.num || 'Test'; def.title = def.title || 'Unit ' + def.unit + ' Test';
-    if (def.calc == null) def.calc = true;
+    def.calc = true;
+    var main = def.title;
+    if (def.short) { def.title = main + ' (extended)'; def.hasShort = true; }
     var full = HW.defineLesson(boxOrder(def));
-    if (def.short) shortTest(full);
+    if (def.short) shortTest(full, main);
     return full;
   };
   /* A short version of a unit test (Ryan, 2026-11-09: about half as long, for when a period runs short).
    * def.short lists the question numbers to keep, as numbered on the full test (after the Beginning → Progressing →
-   * Mastery ordering); '5ac' keeps only parts (a) and (c) of question 5 (relettered (a), (b) on the short test). It becomes its own test '<id>s' titled '<title> (short)', with the same questions (same
+   * Mastery ordering); '5ac' keeps only parts (a) and (c) of question 5 (relettered (a), (b) on the short test). It becomes its own test '<id>s' (Math 15: titled '<title>', the main test, while the full one becomes '<title> (extended)'), with the same questions (same
    * generators, levels and outcomes), renumbered 1, 2, 3…; the teacher's Tests tab lists it beside the full test. */
-  function shortTest(full) {
+  function shortTest(full, title) {
     // an entry is a question number (keep the whole question) or a number with part letters, e.g. '5ac' keeps 5(a) and 5(c)
     var keep = {}, seen = {};
     full.short.forEach(function (e) { var m = /^(\d+)([a-z]*)$/.exec(String(e)); if (!m) throw new Error(full.id + ': bad short entry ' + e); keep[m[1]] = m[2] || ''; });
@@ -220,14 +226,14 @@
     });
     var d = {};
     Object.keys(full).forEach(function (k) { if (['items', 'byId', 'required', 'extras', 'questions', 'extra', 'short'].indexOf(k) < 0) d[k] = full[k]; });
-    d.id = full.id + 's'; d.title = full.title + ' (short)'; d.shortOf = full.id; d.questions = copy;
+    d.id = full.id + 's'; d.title = title; d.shortOf = full.id; delete d.hasShort; d.questions = copy;
     return HW.defineLesson(d);
   }
   HW.defineExit = function (def) {
     var m = /^u(\d+)l(\d+)$/.exec(def.lesson || ''); if (!m) throw new Error('defineExit: lesson must look like u2l3');
     def.id = def.lesson + 'x'; def.unit = Number(m[1]); def.num = 'Exit'; def.forLesson = def.lesson; def.lessonNum = Number(m[2]);
     def.test = true; def.exit = true; def.title = def.title || 'Exit Slip ' + m[1] + '.' + m[2];
-    if (def.calc == null) def.calc = true;
+    def.calc = true; // Math 15: calculators allowed (see defineTest)
     return HW.defineLesson(boxOrder(def));
   };
   /* partial credit for a file's own wrong-answer codes: HW.addPartial({ 'code': 's' (small: keeps 2/3) | 'b' (bigger: keeps 1/3) | 'n' (no credit, decided) }) */

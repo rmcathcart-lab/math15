@@ -28,6 +28,7 @@
       R.busy = null;
       if (!r[0].ok) throw new Error(r[0].error === 'unknown action' ? 'The ledger (Apps Script) needs the new backend code for retests: paste backend/Code.gs into the Apps Script project, then Deploy → Manage deployments → edit → New version.' : r[0].error);
       R.data = r[0]; R.at = Date.now(); R.klass = cls();
+      if (r[1] && r[1].ok && HW.DashTests.fixSaved) HW.DashTests.fixSaved(r[1].tests); // Math 15: bring older saved copies up to date (tests.js)
       if (r[1] && r[1].ok) { // the saved tests, plus the ready-made unit tests not saved yet (saved when one is opened)
         var have = {}; r[1].tests.forEach(function (t) { have[t.id] = 1; });
         R.tests = r[1].tests.concat(Object.keys(HW.lessons).filter(function (k) { return HW.lessons[k].test && !HW.lessons[k].exit && !have['B-' + k]; }).map(function (k) { return HW.DashTests.builtin(k); }).filter(Boolean));

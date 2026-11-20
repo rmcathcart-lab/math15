@@ -640,7 +640,7 @@ function cleanDef_(d) {
   var items = (Array.isArray(d.items) ? d.items : []).slice(0, 80).map(function (x) { return { l: clean_(x && x.l, 20), i: clean_(x && x.i, 16) }; }).filter(function (x) { return x.l && x.i; });
   return { title: clean_(d.title || 'Test', 80) || 'Test', kind: d.kind === 'exit' ? 'exit' : 'test', minutes: Math.max(0, Math.min(240, Math.round(Number(d.minutes) || 0))),
     timing: ['period', 'minutes', 'none'].indexOf(d.timing) >= 0 ? d.timing : 'period',
-    calc: d.calc !== false, shuffle: !!d.shuffle, levels: d.levels !== false, unit: Math.max(0, Math.min(20, Math.round(Number(d.unit) || 0))), items: items };
+    calc: d.calc !== false, calcSet: !!d.calcSet, shuffle: !!d.shuffle, levels: d.levels !== false, unit: Math.max(0, Math.min(20, Math.round(Number(d.unit) || 0))), items: items };
 }
 function sessionDef_(sid) {
   var c = cget_('tsdef:' + sid); if (c) return c;

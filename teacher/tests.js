@@ -22,7 +22,7 @@
     var k = cls();
     return Promise.all([api('tests'), api('sessions', { 'class': k })]).then(function (r) {
       if (k !== cls()) return; // the class changed while this was loading
-      if (r[0].ok) { TS.tests = r[0].tests; TS.liveAll = r[0].live || {}; }
+      if (r[0].ok) { TS.tests = r[0].tests; TS.liveAll = r[0].live || {}; TS.fixSaved(TS.tests); }
       else throw new Error(r[0].error === 'unknown action' ? 'The ledger (Apps Script) needs the new backend code for test mode: paste backend/Code.gs into the Apps Script project, then Deploy → Manage deployments → edit → New version.' : r[0].error);
       if (r[1].ok) TS.sessions = r[1].sessions;
     });
@@ -103,6 +103,26 @@
     return saved.map(function (t) { var m = /^B-(.+)$/.exec(t.id || ''); if (m && HW.lessons[m[1]]) { t.builtin = m[1]; } return t; }).concat(builtins().filter(function (b) { return !have[b.id]; }));
   }
   TS.all = allTests;
+  /* Math 15 (2026-11-19): the short unit tests became "Unit N Test" and the full ones "Unit N Test (extended)", and the
+     ready-made tests and exit slips allow a calculator. A ready-made one saved before that (edited, or saved when it was
+     launched) is brought up to date in the Tests sheet once: the new name, and the calculator on unless it was switched
+     off in the editor since (calcSet marks a calculator setting chosen in the editor). Everything else stays. */
+  function fixDef(t) {
+    var m = /^B-(.+)$/.exec(t.id || ''), l = m && HW.lessons[m[1]], d = t.def; if (!l || !d) return null;
+    var n = Object.assign({}, d), ch = false;
+    if (l.shortOf && /\s\(short\)$/.test(d.title || '')) { n.title = l.title; ch = true; }
+    else if (l.hasShort && d.title === l.title.replace(/ \(extended\)$/, '')) { n.title = l.title; ch = true; }
+    if (d.calc === false && !d.calcSet) { n.calc = true; ch = true; }
+    if (!ch) return null; n.calcSet = true; return n;
+  }
+  var fixing = null;
+  TS.fixSaved = function (tests) {
+    if (fixing || (HW.DashDemo && cls() === HW.DashDemo.CODE)) return fixing || Promise.resolve(tests);
+    var todo = (tests || []).filter(fixDef); if (!todo.length) return Promise.resolve(tests);
+    todo.forEach(function (t) { t.def = fixDef(t); });   // shown straight away; saved one by one
+    return fixing = todo.reduce(function (pr, t) { return pr.then(function () { return api('savetest', { id: t.id, def: JSON.stringify(t.def) }).catch(function () {}); }); }, Promise.resolve()).then(function () { fixing = null; return tests; });
+  };
+  function shortFirst(t) { var l = t.builtin && HW.lessons[t.builtin]; return l && l.shortOf ? 0 : 1; } // the main (short) unit test before the extended one
   TS.load = load;
   function previewDef(def) {
     try { localStorage.setItem('hw:tmpreview', JSON.stringify({ def: def, at: Date.now() })); } catch (e) { alert('Can’t open the preview on this browser.'); return; }
@@ -121,7 +141,7 @@
       : d.unit ? '<span class="tt-bk">' + (isExit ? 'Unit' : 'Test') + '</span><span class="tt-bn">' + (isExit ? Number(d.unit) : 'U' + Number(d.unit)) + '</span>' : '<span class="tt-bn">—</span>';
     var meta = q + ' question' + (q === 1 ? '' : 's') + (q !== n ? ' · ' + n + ' parts' : '') + ' · ' + TC.timingText(d) + ' · ' + (d.calc ? 'calculator' : 'no calculator') + (d.shuffle ? ' · shuffled' : '');
     row.innerHTML = '<div class="tt-badge">' + badge + '</div>' +
-      '<div class="tt-main"><div class="tt-title">' + esc(d.title) + (t.builtin && !t.virtual ? ' <span class="tt-edited" title="You edited this one. Undo edits to go back to the original.">Edited</span>' : '') + (!t.builtin && TS.kind !== 'exit' ? ' <span class="tt-mine">Made by you</span>' : '') + '</div>' +
+      '<div class="tt-main"><div class="tt-title">' + esc(d.title) + (t.builtin && !t.virtual ? ' <span class="tt-edited" title="You edited this one. Edit → Undo all edits goes back to the original.">Edited</span>' : '') + (!t.builtin && TS.kind !== 'exit' ? ' <span class="tt-mine">Made by you</span>' : '') + '</div>' +
       (cl ? '<div class="tt-sub">' + esc(String(cl.title).replace(/<[^>]*>/g, '')) + '</div>' : '') + '<div class="tt-meta">' + meta + '</div></div>' +
       '<div class="tt-when"></div><div class="tt-card-acts"></div>';
     var wn = row.querySelector('.tt-when');
@@ -135,8 +155,8 @@
     a.appendChild(button('btn-small tt-preview', 'Preview', function () { previewDef(t.def); }));
     a.appendChild(button('btn-small', 'Edit', function () { openEditor(t.id, t.def); }));
     a.appendChild(button('btn-small', 'Copy', function () { var c = JSON.parse(JSON.stringify(t.def)); c.title = c.title + ' (copy)'; openEditor(null, c); }));
-    if (!t.virtual) a.appendChild(button('btn-small btn-ghost', t.builtin ? 'Undo edits' : 'Delete', function () {
-      if (!confirm(t.builtin ? 'Go back to the original “' + d.title + '”? Your edits are lost; results already written stay.' : 'Delete “' + d.title + '”? Results already written stay.')) return;
+    if (!t.virtual && !t.builtin) a.appendChild(button('btn-small btn-ghost', 'Delete', function () { // a ready-made one's "Undo all edits" is in its editor
+      if (!confirm('Delete “' + d.title + '”? Results already written stay.')) return;
       api('deltest', { id: t.id }).then(function () { return load(true); }).then(rerender);
     }));
     return row;
@@ -175,13 +195,13 @@
       allBtn.remove();
       var one = el('section', 'tt-unit tt-flat'), rows1 = el('div', 'tt-list');
       units.forEach(function (u) {
-        byUnit[u].sort(function (a, b) { return (b.builtin ? 1 : 0) - (a.builtin ? 1 : 0) || String(a.builtin || '').length - String(b.builtin || '').length || b.updated - a.updated; }).forEach(function (t) { var r = testCard(t); if (u && HW.unitStyle) r.setAttribute('style', HW.unitStyle(u)); rows1.appendChild(r); });
+        byUnit[u].sort(function (a, b) { return (b.builtin ? 1 : 0) - (a.builtin ? 1 : 0) || shortFirst(a) - shortFirst(b) || b.updated - a.updated; }).forEach(function (t) { var r = testCard(t); if (u && HW.unitStyle) r.setAttribute('style', HW.unitStyle(u)); rows1.appendChild(r); });
       });
       one.appendChild(rows1); list.appendChild(one); units = [];
     }
     units.forEach(function (u) {
       var cat = HW.CATALOG.filter(function (c) { return c.unit === u; })[0], ts = byUnit[u];
-      ts.sort(K === 'exit' ? function (a, b) { return lessonRank(a.def) - lessonRank(b.def) || String(a.def.title).localeCompare(String(b.def.title), undefined, { numeric: true }); } : function (a, b) { return (b.builtin ? 1 : 0) - (a.builtin ? 1 : 0) || b.updated - a.updated; });
+      ts.sort(K === 'exit' ? function (a, b) { return lessonRank(a.def) - lessonRank(b.def) || String(a.def.title).localeCompare(String(b.def.title), undefined, { numeric: true }); } : function (a, b) { return (b.builtin ? 1 : 0) - (a.builtin ? 1 : 0) || shortFirst(a) - shortFirst(b) || b.updated - a.updated; });
       var nGiven = ts.filter(function (t) { return givenOf(t).length; }).length, open = isOpen(u);
       var sec = el('section', 'tt-unit' + (open ? '' : ' closed') + (u === cur && K === 'exit' ? ' is-cur' : '')); if (cat && HW.unitStyle) sec.setAttribute('style', HW.unitStyle(u));
       var segs = K === 'exit' ? '<span class="tt-segs" aria-hidden="true">' + ts.map(function (t) { var w = HW.DashCal && HW.DashCal.lessonWhen ? HW.DashCal.lessonWhen(lessonOf(t.def)) : null; return '<i class="' + (givenOf(t).length ? 'full' : w && w.k === 'today' ? 'is-today' : '') + '"></i>'; }).join('') + '</span>' : '';
@@ -247,12 +267,17 @@
     head.appendChild(el('h2', 'tt-h', (E.id ? 'Edit ' : 'New ') + (E.kind === 'exit' ? 'exit slip' : 'test')));
     var acts = el('div', 'tt-acts');
     acts.appendChild(button('btn-ghost btn-small', 'Cancel', function () { TS.view = 'home'; rerender(); }));
+    var orig = E.id && /^B-(.+)$/.exec(E.id), edited = orig && HW.lessons[orig[1]] && (TS.tests || []).some(function (x) { return x.id === E.id; });
+    if (edited) acts.appendChild(button('btn-ghost btn-small tt-undo', 'Undo all edits', function () {
+      if (!confirm('Go back to the original “' + (HW.DashTests.builtin(orig[1]) || { def: { title: E.title } }).def.title + '”? All your edits to it are lost; results already written stay.')) return;
+      api('deltest', { id: E.id }).then(function (d) { if (d && d.ok === false) { alert('Couldn’t undo the edits: ' + d.error); return; } TS.view = 'home'; return load(true).then(rerender); });
+    }));
     acts.appendChild(button('btn-small tt-preview', 'Preview', function () { if (!E.items.length) { alert('Pick at least one question first.'); return; } previewDef({ title: E.title.trim() || 'Untitled', kind: E.kind, minutes: E.minutes, timing: E.timing, calc: E.calc, shuffle: E.shuffle, levels: E.levels, items: E.items }); }));
     var save = button('btn-primary btn-small', 'Save', function () {
       if (!E.title.trim()) { alert('Give it a title.'); return; }
       if (!E.items.length) { alert('Pick at least one question.'); return; }
       save.disabled = true;
-      api('savetest', { id: E.id || '', def: JSON.stringify({ title: E.title.trim(), kind: E.kind, unit: E.unit || 0, minutes: E.minutes, timing: E.timing, calc: E.calc, shuffle: E.shuffle, levels: E.levels, items: E.items }) }).then(function (d) {
+      api('savetest', { id: E.id || '', def: JSON.stringify({ title: E.title.trim(), kind: E.kind, unit: E.unit || 0, minutes: E.minutes, timing: E.timing, calc: E.calc, calcSet: true, shuffle: E.shuffle, levels: E.levels, items: E.items }) }).then(function (d) {
         if (!d.ok) { alert('Couldn’t save: ' + d.error); save.disabled = false; return; }
         TS.view = 'home'; if (E.kind !== TS.kind) goTab(E.kind); return load(true).then(rerender);
       });
@@ -607,25 +632,43 @@
     head.appendChild(acts); body.appendChild(head);
     var outs = []; items.forEach(function (x) { if (outs.indexOf(x.it.outcome) < 0) outs.push(x.it.outcome); });
     var t = el('table', 'tbl tt-res');
-    var h = '<thead><tr><th>Student</th><th>Status</th>' + (R.isTest ? '<th>Unit grade</th>' + outs.map(function (o) { return '<th class="tt-oh">' + esc(o) + '<div class="th-sub">B · P · M boxes</div></th>'; }).join('')
-      : '<th>Score</th>' + outs.map(function (o) { return '<th>' + esc(o) + '<div class="th-sub">highest right</div></th>'; }).join(''));
-    items.forEach(function (x) { h += '<th class="tt-qh" title="' + esc(partLabel(x)) + ' · ' + esc(x.it.outcome) + ' ' + x.it.level + '">' + esc(R.labels[x.key] || '') + '<div class="th-sub">' + x.it.level + '</div></th>'; });
+    /* sorting (click a heading; again to flip): name and status A→Z first, numbers highest first; students who didn't
+       write stay at the bottom unless sorting by name. The first 3 + outcome columns stay put when scrolling sideways. */
+    var SK = TS.resSort && TS.resSort.sid === s.id ? TS.resSort : { sid: s.id, k: 'name', d: 1 }, nStick = 3 + outs.length;
+    function th(k, cls, inner, c, title) { var on = SK.k === k; return '<th class="sortable' + (cls ? ' ' + cls : '') + (c != null ? ' tt-stk' + (c === nStick - 1 ? ' tt-stk-last' : '') : '') + (on ? ' is-sorted' : '') + '" data-s="' + esc(k) + '"' + (c != null ? ' data-c="' + c + '"' : '') + (title ? ' title="' + title + '"' : '') + '>' + inner.replace(/(<div class="th-sub">|$)/, (on ? '<span class="sarrow">' + (SK.d > 0 ? '▲' : '▼') + '</span>' : '') + '$1') + '</th>'; }
+    var h = '<thead><tr>' + th('name', '', 'Student', 0) + th('status', '', 'Status', 1) + (R.isTest ? th('unit', '', 'Unit grade', 2) + outs.map(function (o, k) { return th('o:' + o, 'tt-oh', esc(o) + '<div class="th-sub">B · P · M boxes</div>', 3 + k); }).join('')
+      : th('unit', '', 'Score', 2) + outs.map(function (o, k) { return th('o:' + o, '', esc(o) + '<div class="th-sub">highest right</div>', 3 + k); }).join(''));
+    items.forEach(function (x, i) { h += th('q:' + i, 'tt-qh', esc(R.labels[x.key] || '') + '<div class="th-sub">' + x.it.level + '</div>', null, esc(partLabel(x)) + ' · ' + esc(x.it.outcome) + ' ' + x.it.level); });
     t.innerHTML = h + '</tr></thead>';
     var tb = el('tbody'), byName = {}; R.rows.forEach(function (r) { byName[r.name] = r; });
     var names = R.names.slice(); R.rows.forEach(function (r) { if (names.indexOf(r.name) < 0) names.push(r.name); });
-    names.sort(function (a, b) { return a.localeCompare(b); });
+    var STT = { submitted: 'Submitted', left: 'Left the test', time: 'Out of time', ended: 'Ended', forced: 'Submitted by you' };
+    function sval(r) {
+      var k = SK.k;
+      if (k === 'status') return STT[r.status] || r.status || '';
+      if (k === 'unit') return R.isTest ? r.g.unit : r.sum.score / Math.max(1, r.sum.total);
+      if (k.indexOf('o:') === 0) { var o = k.slice(2); if (!R.isTest) return HW.LEVELS.indexOf(r.sum.levels[o]); var g = r.g.outcomes.filter(function (x) { return x.outcome === o; })[0]; return g ? g.pct : -1; }
+      if (k.indexOf('q:') === 0) { var x = items[Number(k.slice(2))]; return x ? TC.credit(r.final.charAt(x.pos)) : 0; }
+      return r.name;
+    }
+    if (SK.k === 'name') names.sort(function (a, b) { return SK.d * a.localeCompare(b); });
+    else {
+      var w0 = names.filter(function (n) { return byName[n]; }), w1 = names.filter(function (n) { return !byName[n]; }).sort(function (a, b) { return a.localeCompare(b); });
+      w0.sort(function (a, b) { var va = sval(byName[a]), vb = sval(byName[b]), c = typeof va === 'string' ? String(va).localeCompare(String(vb)) : va - vb; return SK.d * c || a.localeCompare(b); });
+      names = w0.concat(w1);
+    }
     var credit = items.map(function () { return 0; }), wrote = 0; R.rowIndex = {}; names.forEach(function (n, k) { R.rowIndex[n] = k + 1; });
     names.forEach(function (n) {
       var r = byName[n], tr = el('tr');
-      if (!r) { tr.innerHTML = '<td>' + esc(n) + '</td><td class="muted">Didn’t write</td><td colspan="' + (1 + outs.length + items.length) + '"></td>'; tb.appendChild(tr); return; }
+      if (!r) { tr.innerHTML = '<td class="tt-stk" data-c="0">' + esc(n) + '</td><td class="muted tt-stk" data-c="1">Didn’t write</td><td colspan="' + (1 + outs.length + items.length) + '"></td>'; tb.appendChild(tr); return; }
       wrote++;
-      var stt = { submitted: 'Submitted', left: 'Left the test', time: 'Out of time', ended: 'Ended', forced: 'Submitted by you' }[r.status] || r.status;
-      var html = '<td><b>' + esc(n) + '</b></td><td>' + esc(stt) + (r.leaves ? ' <span class="warnnum" title="Times locked for leaving">' + r.leaves + '</span>' : '') + (r.tailBlank ? ' <span class="tag warn" title="The last ' + r.tailBlank + ' parts in their order are blank">Ran out of time?</span>' : '') + '</td>';
-      if (R.isTest) html += '<td class="tt-unitg"><b>' + r.g.unit + '%</b><div class="small muted">' + TC.fmtPoints(r.g.points) + ' / ' + r.g.total + ' points</div></td>';
-      else html += '<td><b>' + r.sum.score + '</b> / ' + r.sum.total + ' <span class="muted small">' + Math.round(100 * r.sum.score / Math.max(1, r.sum.total)) + '%</span></td>';
+      var stt = STT[r.status] || r.status;
+      var html = '<td class="tt-stk" data-c="0"><b>' + esc(n) + '</b></td><td class="tt-stk" data-c="1">' + esc(stt) + (r.leaves ? ' <span class="warnnum" title="Times locked for leaving">' + r.leaves + '</span>' : '') + (r.tailBlank ? ' <span class="tag warn" title="The last ' + r.tailBlank + ' parts in their order are blank">Ran out of time?</span>' : '') + '</td>';
+      if (R.isTest) html += '<td class="tt-unitg tt-stk" data-c="2"><b>' + r.g.unit + '%</b><div class="small muted">' + TC.fmtPoints(r.g.points) + ' / ' + r.g.total + ' points</div></td>';
+      else html += '<td class="tt-stk" data-c="2"><b>' + r.sum.score + '</b> / ' + r.sum.total + ' <span class="muted small">' + Math.round(100 * r.sum.score / Math.max(1, r.sum.total)) + '%</span></td>';
       tr.innerHTML = html;
-      outs.forEach(function (o) {
-        var td = el('td', 'tt-ocell');
+      outs.forEach(function (o, k) {
+        var td = el('td', 'tt-ocell tt-stk' + (3 + k === nStick - 1 ? ' tt-stk-last' : '')); td.dataset.c = 3 + k;
         if (!R.isTest) { var lv = r.sum.levels[o], nt = r.sum.notes && r.sum.notes[o]; td.innerHTML = (lv ? '<span class="lvl lvl-' + lv + '">' + LVN[lv] + '</span>' : '<span class="muted small">—</span>') + (nt ? ' <span class="tt-flag" title="' + esc(nt) + '">⚑ Check</span>' : ''); tr.appendChild(td); return; }
         var g = r.g.outcomes.filter(function (x) { return x.outcome === o; })[0], bx = g.boxes;
         td.innerHTML = '<div class="tt-oline"><span class="lvl lvl-' + g.ind + '">' + indName(g.ind) + '</span> <b>' + g.pct + '</b>' + (g.note && !g.set ? ' <span class="tt-flag" title="' + esc(g.note) + '">⚑ Check</span>' : '') + (g.set ? ' <span class="tag" title="You set this. The rule says ' + g.auto + ' ' + g.autoPct + '">set</span>' : '') + '</div>' +
@@ -646,14 +689,29 @@
       });
       tb.appendChild(tr);
     });
-    var fr = el('tr', 'tt-foot'); fr.innerHTML = '<td colspan="' + (3 + outs.length) + '" class="small muted">Average credit (of ' + wrote + ' who wrote)</td>' + items.map(function (x, i) { return '<td class="small">' + (wrote ? Math.round(100 * credit[i] / wrote) + '%' : '—') + '</td>'; }).join('');
+    var fr = el('tr', 'tt-foot'); fr.innerHTML = '<td colspan="' + (3 + outs.length) + '" class="small muted tt-stk tt-stk-last" data-c="0">Average credit (of ' + wrote + ' who wrote)</td>' + items.map(function (x, i) { return '<td class="small">' + (wrote ? Math.round(100 * credit[i] / wrote) + '%' : '—') + '</td>'; }).join('');
     tb.appendChild(fr);
-    t.appendChild(tb); var w = el('div', 'tbl-wrap'); w.appendChild(t); body.appendChild(w);
+    t.appendChild(tb); var w = el('div', 'tbl-wrap tt-res-wrap'); w.appendChild(t); body.appendChild(w);
+    t.querySelectorAll('th.sortable').forEach(function (h) {
+      h.tabIndex = 0;
+      function go() { var k = h.dataset.s; TS.resSort = { sid: s.id, k: k, d: SK.k === k ? -SK.d : (k === 'name' || k === 'status' ? 1 : -1) }; var x = w.scrollLeft; rerender(); var w2 = document.querySelector('.tt-res-wrap'); if (w2) w2.scrollLeft = x; }
+      h.addEventListener('click', go); h.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    });
+    stick(t); requestAnimationFrame(function () { stick(t); });
     body.appendChild(el('p', 'small muted', R.isTest
       ? '✓ right · ⅔ a small recognized mistake, or the right value in the wrong form · ⅓ a bigger but reasonable mistake · ✗ wrong · – blank. Each outcome: Beginning, Progressing and Mastery box points; a box is secure at ¾ and partial at ½; the indicator and percent follow your grading rule. <b>⚑ Check</b> = a harder box done well over a hole in an easier one. Pick an indicator to set it yourself. Click a mark to see the answer and change its credit.'
       : '✓ right · ⅔ / ⅓ partly right · ✗ wrong · – blank. Exit slips: the score counts right answers, and each outcome shows the hardest level answered correctly. Click a mark to see the answer and change it.'));
     R.order = names.filter(function (n) { return byName[n]; }).map(function (n) { return byName[n]; }); // students who wrote, in table order (for the pop-up's arrows)
   }
+  /* the frozen columns: each one's left edge is the width of the columns before it (measured from the header) */
+  function stick(t) {
+    if (!t || !t.isConnected) return;
+    var cells = t.querySelectorAll('.tt-stk'), x0, lefts = [];
+    cells.forEach(function (c) { c.style.left = ''; }); x0 = t.getBoundingClientRect().left;
+    t.querySelectorAll('thead th.tt-stk').forEach(function (h) { lefts[Number(h.dataset.c)] = Math.round(h.getBoundingClientRect().left - x0); });
+    cells.forEach(function (c) { var v = lefts[Number(c.dataset.c)]; if (v != null) c.style.left = v + 'px'; });
+  }
+  root.addEventListener('resize', function () { stick(document.querySelector('.tt-res')); });
   /* one student's answer to one question, in a pop-up: the question with their numbers, their answer as they wrote it
      (typeset math, or the graph / number line they drew), the correct answer, and buttons to change the mark.
      ← → move between questions, ↑ ↓ between students, Esc closes. */
